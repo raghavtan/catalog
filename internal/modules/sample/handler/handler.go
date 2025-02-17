@@ -1,15 +1,25 @@
 package handler
 
-import "github.com/motain/fact-collector/internal/modules/sample/repository"
+import (
+	"fmt"
+
+	"github.com/motain/fact-collector/internal/services/githubservice"
+)
 
 type Handler struct {
-	repo repository.RepositoryInterface
+	github githubservice.GitHubRepositoriesServiceInterface
 }
 
-func NewHandler(repo repository.RepositoryInterface) *Handler {
-	return &Handler{repo: repo}
+func NewHandler(gh githubservice.GitHubRepositoriesServiceInterface) *Handler {
+	return &Handler{github: gh}
 }
 
 func (h *Handler) Handle() string {
-	return h.repo.FetchData()
+	t, fileErr := h.github.GetFileContent("idp-wrapper", "app.toml")
+	if fileErr != nil {
+		panic(fileErr)
+	}
+	fmt.Printf("File Content: %s\n", t)
+
+	return ""
 }

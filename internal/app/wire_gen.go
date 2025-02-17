@@ -7,6 +7,7 @@
 package app
 
 import (
+	"github.com/google/go-github/v58/github"
 	"github.com/google/wire"
 	"github.com/motain/fact-collector/internal/modules/sample/handler"
 	"github.com/motain/fact-collector/internal/modules/sample/repository"
@@ -20,12 +21,12 @@ import (
 func InitializeHandler() *handler.Handler {
 	configService := configservice.NewConfigService()
 	keyringService := keyringservice.NewKeyringService()
-	gitHubService := githubservice.NewGitHubService(configService, keyringService)
-	repositoryRepository := repository.NewRepository(configService, gitHubService)
-	handlerHandler := handler.NewHandler(repositoryRepository)
+	repositoriesService := githubservice.NewGitHubRepositoriesClient(configService, keyringService)
+	gitHubRepositoriesService := githubservice.NewGitHubRepositoriesService(repositoriesService)
+	handlerHandler := handler.NewHandler(gitHubRepositoriesService)
 	return handlerHandler
 }
 
 // wire.go:
 
-var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), githubservice.NewGitHubService, wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewHandler)
+var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), githubservice.NewGitHubRepositoriesClient, wire.Bind(new(githubservice.GitHubRepositoriesInterface), new(*github.RepositoriesService)), githubservice.NewGitHubRepositoriesService, wire.Bind(new(githubservice.GitHubRepositoriesServiceInterface), new(*githubservice.GitHubRepositoriesService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewHandler)

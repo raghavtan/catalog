@@ -6,7 +6,6 @@ package repository_test
 import (
 	"testing"
 
-	"github.com/google/go-github/v58/github"
 	"github.com/motain/fact-collector/internal/modules/sample/repository"
 	"github.com/stretchr/testify/assert"
 )
@@ -25,22 +24,10 @@ func (m *MockConfigService) GetGithubUser() string {
 	return "Mocked User"
 }
 
-type MockGitHubService struct{}
-
-func (m *MockGitHubService) GetFileContent(owner, repo, path string) (string, error) {
-	return "Mocked File Content", nil
-}
-
-func (m *MockGitHubService) GetRepo(owner, repo string) (*github.Repository, error) {
-	name := "Mocked Repo"
-	return &github.Repository{Name: &name}, nil
-}
-
 func TestFetchData(t *testing.T) {
 	cfg := &MockConfigService{}
-	gh := &MockGitHubService{}
-	repo := repository.NewRepository(cfg, gh)
+	repo := repository.NewRepository(cfg)
 
 	result := repo.FetchData()
-	assert.Contains(t, result, "Data from GitHub Org: ")
+	assert.Contains(t, result, "Data")
 }
