@@ -4,6 +4,7 @@
 package handler_test
 
 import (
+	"context"
 	"testing"
 
 	"github.com/google/go-github/v58/github"
@@ -22,10 +23,17 @@ func (m *MockGitHubRepositoriesService) GetRepo(repo string) (*github.Repository
 	return &github.Repository{Name: &name}, nil
 }
 
+type MockCompassService struct{}
+
+func (m *MockCompassService) Run(ctx context.Context, query string, variables map[string]interface{}, response interface{}) error {
+	return nil
+}
+
 func TestHandle(t *testing.T) {
 	gh := &MockGitHubRepositoriesService{}
+	compass := &MockCompassService{}
 
-	h := handler.NewHandler(gh)
+	h := handler.NewHandler(gh, compass)
 
 	result := h.Handle()
 	assert.Equal(t, "", result)

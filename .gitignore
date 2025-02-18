@@ -18,3 +18,5 @@ vendor/
 go.work
 
 tools/
+
+.env

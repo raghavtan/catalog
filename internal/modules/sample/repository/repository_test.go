@@ -16,12 +16,20 @@ func (m *MockConfigService) GetGithubOrg() string {
 	return "Mocked Data"
 }
 
-func (m *MockConfigService) GetGithubToken() string {
+func (m *MockConfigService) GetGithubUser() string {
+	return "Mocked User"
+}
+
+func (m *MockConfigService) GetCompassToken() string {
 	return "Mocked Token"
 }
 
-func (m *MockConfigService) GetGithubUser() string {
-	return "Mocked User"
+func (m *MockConfigService) GetCompassHost() string {
+	return "Mocked Host"
+}
+
+func (m *MockConfigService) GetCompassCloudId() string {
+	return "Mocked Cloud Id"
 }
 
 func TestFetchData(t *testing.T) {
