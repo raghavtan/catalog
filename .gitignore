@@ -19,4 +19,6 @@ go.work
 
 tools/
 
+.state/
+
 .env

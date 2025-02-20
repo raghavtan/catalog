@@ -6,7 +6,7 @@ package repository_test
 import (
 	"testing"
 
-	"github.com/motain/fact-collector/internal/modules/sample/repository"
+	"github.com/motain/fact-collector/internal/modules/metric/repository"
 	"github.com/stretchr/testify/assert"
 )
 

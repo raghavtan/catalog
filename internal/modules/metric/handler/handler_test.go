@@ -8,7 +8,7 @@ import (
 	"testing"
 
 	"github.com/google/go-github/v58/github"
-	"github.com/motain/fact-collector/internal/modules/sample/handler"
+	"github.com/motain/fact-collector/internal/modules/metric/handler"
 	"github.com/stretchr/testify/assert"
 )
 

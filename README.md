@@ -151,7 +151,7 @@ fact-collector/
 │   │   ├── wire.go                     # Register here the dependencies
 │   │   └── wire_gen.go                 # Do not edit manually !!!
 │   ├── modules                         # All modules are defined here
-│   │   └── sample                      # Sample is an example module
+│   │   └── metric                      # metric is a module
 │   │       ├── handler                 # Handlers expose functionalities
 │   │       │   ├── handler.go
 │   │       │   └── handler_test.go

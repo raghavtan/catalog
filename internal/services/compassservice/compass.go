@@ -10,15 +10,21 @@ import (
 
 type CompassServiceInterface interface {
 	Run(ctx context.Context, query string, variables map[string]interface{}, response interface{}) error
+	GetCompassCloudId() string
 }
 
 type CompassService struct {
-	client GraphQLClientInterface
-	token  string
+	client  GraphQLClientInterface
+	token   string
+	cloudId string
 }
 
 func NewCompassService(config configservice.ConfigServiceInterface, client GraphQLClientInterface) *CompassService {
-	return &CompassService{client: client, token: config.GetCompassToken()}
+	return &CompassService{
+		client:  client,
+		token:   config.GetCompassToken(),
+		cloudId: config.GetCompassCloudId(),
+	}
 }
 
 func (c *CompassService) Run(ctx context.Context, query string, variables map[string]interface{}, response interface{}) error {
@@ -35,4 +41,8 @@ func (c *CompassService) Run(ctx context.Context, query string, variables map[st
 	}
 
 	return nil
+}
+
+func (c *CompassService) GetCompassCloudId() string {
+	return c.cloudId
 }

@@ -5,8 +5,8 @@ package app
 import (
 	"github.com/google/go-github/v58/github"
 	"github.com/google/wire"
-	"github.com/motain/fact-collector/internal/modules/sample/handler"
-	"github.com/motain/fact-collector/internal/modules/sample/repository"
+	"github.com/motain/fact-collector/internal/modules/metric/handler"
+	"github.com/motain/fact-collector/internal/modules/metric/repository"
 	"github.com/motain/fact-collector/internal/services/compassservice"
 	"github.com/motain/fact-collector/internal/services/configservice"
 	"github.com/motain/fact-collector/internal/services/githubservice"
@@ -34,7 +34,7 @@ var ProviderSet = wire.NewSet(
 	githubservice.NewGitHubRepositoriesService,
 	wire.Bind(new(githubservice.GitHubRepositoriesServiceInterface), new(*githubservice.GitHubRepositoriesService)),
 
-	// --- Sample module ---
+	// --- metric module ---
 	// Repository
 	repository.NewRepository,
 	wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)),
