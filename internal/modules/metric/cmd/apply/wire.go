@@ -1,6 +1,6 @@
 //go:build wireinject
 
-package app
+package apply
 
 import (
 	"github.com/google/go-github/v58/github"
@@ -38,10 +38,11 @@ var ProviderSet = wire.NewSet(
 	// Repository
 	repository.NewRepository,
 	wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)),
-	// Handler
-	handler.NewHandler,
+
+	// ApplyHandler
+	handler.NewApplyHandler,
 )
 
-func InitializeHandler() *handler.Handler {
+func initializeHandler() *handler.ApplyHandler {
 	panic(wire.Build(ProviderSet))
 }

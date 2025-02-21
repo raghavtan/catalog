@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	component "github.com/motain/fact-collector/internal/modules/component/cmd"
 	metric "github.com/motain/fact-collector/internal/modules/metric/cmd"
 	"github.com/spf13/cobra"
 )
@@ -16,7 +17,8 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() {
-	rootCmd.AddCommand(metric.InitMetric())
+	rootCmd.AddCommand(component.Init())
+	rootCmd.AddCommand(metric.Init())
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)

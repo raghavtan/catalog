@@ -1,19 +1,19 @@
 # PRODUCTION-READINESS
-# ---
-# apiVersion: of-catalog/v1alpha1
-# kind: Metric
-# metadata:
-#     name: metric-test-1
-#     labels:
-#         grading-system: production-readiness
-#     componentType:
-#         - service
-#         - cloud-resource
-# spec:
-#     name: metric-test-1
-#     description: example metric-1 used to test cli
-#     format:
-#         unit: msg/sec
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: metric-test-1
+    labels:
+        grading-system: production-readiness
+    componentType:
+        - service
+        - cloud-resource
+spec:
+    name: metric-test-1
+    description: example metric-1 used to test cli
+    format:
+        unit: msg/sec
 
 
 

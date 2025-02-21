@@ -13,19 +13,19 @@ import (
 	"github.com/motain/fact-collector/internal/utils/yaml"
 )
 
-type Handler struct {
+type ApplyHandler struct {
 	github     githubservice.GitHubRepositoriesServiceInterface
 	repository repository.RepositoryInterface
 }
 
-func NewHandler(
+func NewApplyHandler(
 	gh githubservice.GitHubRepositoriesServiceInterface,
 	repository repository.RepositoryInterface,
-) *Handler {
-	return &Handler{github: gh, repository: repository}
+) *ApplyHandler {
+	return &ApplyHandler{github: gh, repository: repository}
 }
 
-func (h *Handler) Handle() string {
+func (h *ApplyHandler) Apply() string {
 	configMetrics, errConfig := yaml.ParseConfig[dtos.MetricDTO]()
 	if errConfig != nil {
 		log.Fatalf("error: %v", errConfig)
@@ -51,7 +51,7 @@ func (h *Handler) Handle() string {
 
 	newMetrics, updatedMetrics, removedMetrics, unchangedMetrics := drift.Detect(stateMetrics, configMetrics, getUniqueKey, getID, setID, isEqual)
 	for _, metricDTO := range removedMetrics {
-		errMetric := h.repository.DeleteMetric(context.Background(), *metricDTO.Spec.ID)
+		errMetric := h.repository.Delete(context.Background(), *metricDTO.Spec.ID)
 		if errMetric != nil {
 			panic(errMetric)
 		}
@@ -67,7 +67,7 @@ func (h *Handler) Handle() string {
 			},
 		}
 
-		id, errMetric := h.repository.CreateMetric(context.Background(), metric)
+		id, errMetric := h.repository.Create(context.Background(), metric)
 		if errMetric != nil {
 			panic(errMetric)
 		}
@@ -86,7 +86,7 @@ func (h *Handler) Handle() string {
 			},
 		}
 
-		errMetric := h.repository.UpdateMetric(context.Background(), metric)
+		errMetric := h.repository.Update(context.Background(), metric)
 		if errMetric != nil {
 			panic(errMetric)
 		}

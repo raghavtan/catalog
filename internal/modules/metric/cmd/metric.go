@@ -3,10 +3,12 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/motain/fact-collector/internal/modules/metric/cmd/apply"
+	"github.com/motain/fact-collector/internal/modules/metric/cmd/bind"
 	"github.com/spf13/cobra"
 )
 
-func InitMetric() *cobra.Command {
+func Init() *cobra.Command {
 	metricCmd := &cobra.Command{
 		Use:   "metric",
 		Short: "metric related commands",
@@ -15,7 +17,8 @@ func InitMetric() *cobra.Command {
 		},
 	}
 
-	metricCmd.AddCommand(InitApply())
+	metricCmd.AddCommand(apply.Init())
+	metricCmd.AddCommand(bind.Init())
 
 	return metricCmd
 }

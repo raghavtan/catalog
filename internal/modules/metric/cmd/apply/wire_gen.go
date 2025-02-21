@@ -4,7 +4,7 @@
 //go:build !wireinject
 // +build !wireinject
 
-package app
+package apply
 
 import (
 	"github.com/google/go-github/v58/github"
@@ -19,7 +19,7 @@ import (
 
 // Injectors from wire.go:
 
-func InitializeHandler() *handler.Handler {
+func initializeHandler() *handler.ApplyHandler {
 	configService := configservice.NewConfigService()
 	keyringService := keyringservice.NewKeyringService()
 	repositoriesService := githubservice.NewGitHubRepositoriesClient(configService, keyringService)
@@ -27,10 +27,10 @@ func InitializeHandler() *handler.Handler {
 	graphQLClientInterface := compassservice.NewGraphQLClient(configService)
 	compassService := compassservice.NewCompassService(configService, graphQLClientInterface)
 	repositoryRepository := repository.NewRepository(compassService)
-	handlerHandler := handler.NewHandler(gitHubRepositoriesService, repositoryRepository)
-	return handlerHandler
+	applyHandler := handler.NewApplyHandler(gitHubRepositoriesService, repositoryRepository)
+	return applyHandler
 }
 
 // wire.go:
 
-var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubRepositoriesClient, wire.Bind(new(githubservice.GitHubRepositoriesInterface), new(*github.RepositoriesService)), githubservice.NewGitHubRepositoriesService, wire.Bind(new(githubservice.GitHubRepositoriesServiceInterface), new(*githubservice.GitHubRepositoriesService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewHandler)
+var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubRepositoriesClient, wire.Bind(new(githubservice.GitHubRepositoriesInterface), new(*github.RepositoriesService)), githubservice.NewGitHubRepositoriesService, wire.Bind(new(githubservice.GitHubRepositoriesServiceInterface), new(*githubservice.GitHubRepositoriesService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewApplyHandler)
