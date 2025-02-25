@@ -1,6 +1,3 @@
-//go:build unit
-// +build unit
-
 package yaml_test
 
 import (

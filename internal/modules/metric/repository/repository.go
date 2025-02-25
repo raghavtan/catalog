@@ -1,5 +1,7 @@
 package repository
 
+//go:generate mockgen -destination=./mock_repository.go -package=repository github.com/motain/fact-collector/internal/modules/metric/repository RepositoryInterface
+
 import (
 	"context"
 	"errors"
@@ -248,7 +250,7 @@ func (r *Repository) Push(ctx context.Context, metricSourceID string, value floa
 		"timestamp":      recordedAt.UTC().Format(time.RFC3339),
 	}
 
-	r.compass.SendMetric(requestBody)
+	_, errSend := r.compass.SendMetric(requestBody)
 
-	return nil
+	return errSend
 }

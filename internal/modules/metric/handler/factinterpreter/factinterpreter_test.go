@@ -1,4 +1,4 @@
-package factinterpreter
+package factinterpreter_test
 
 import (
 	"testing"
@@ -6,6 +6,7 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/motain/fact-collector/internal/modules/metric/dtos"
 	"github.com/motain/fact-collector/internal/modules/metric/handler/factcollectors"
+	"github.com/motain/fact-collector/internal/modules/metric/handler/factinterpreter"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -14,7 +15,7 @@ func TestProcessFacts(t *testing.T) {
 	defer ctrl.Finish()
 
 	mockGithubFC := factcollectors.NewMockGithubFactCollectorInterface(ctrl)
-	factInterpreter := NewFactInterpreter(mockGithubFC)
+	factInterpreter := factinterpreter.NewFactInterpreter(mockGithubFC)
 
 	tests := []struct {
 		name           string
@@ -93,7 +94,7 @@ func TestProcessOperationsAll(t *testing.T) {
 	defer ctrl.Finish()
 
 	mockGithubFC := factcollectors.NewMockGithubFactCollectorInterface(ctrl)
-	factInterpreter := NewFactInterpreter(mockGithubFC)
+	factInterpreter := factinterpreter.NewFactInterpreter(mockGithubFC)
 
 	tests := []struct {
 		name      string
@@ -133,7 +134,7 @@ func TestProcessOperationsAny(t *testing.T) {
 	defer ctrl.Finish()
 
 	mockGithubFC := factcollectors.NewMockGithubFactCollectorInterface(ctrl)
-	factInterpreter := NewFactInterpreter(mockGithubFC)
+	factInterpreter := factinterpreter.NewFactInterpreter(mockGithubFC)
 
 	tests := []struct {
 		name      string

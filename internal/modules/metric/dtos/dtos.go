@@ -10,14 +10,7 @@ type MetricDTO struct {
 		ComponentType []string          `yaml:"componentType"`
 		Facts         FactOperations    `yaml:"facts"`
 	} `yaml:"metadata"`
-	Spec struct {
-		ID          *string `yaml:"id"`
-		Name        string  `yaml:"name"`
-		Description string  `yaml:"description"`
-		Format      struct {
-			Unit string `yaml:"unit"`
-		} `yaml:"format"`
-	} `yaml:"spec"`
+	Spec MetricSpec `yaml:"spec"`
 }
 
 type FactOperations struct {
@@ -49,6 +42,17 @@ type Fact struct {
 	RepoProperty    string   `yaml:"repoProperty"`    // Property to explore in the repo (if FactType is "repoProperties")
 	ExpectedValue   string   `yaml:"expectedValue"`   // Expected value (matched against value of  "repoProperty" or "fileJsonPath")
 	ExpectedFormula string   `yaml:"expectedFormula"` // Expected formula (matched against value of  "repoProperty" or "fileJsonPath")
+}
+
+type MetricSpec struct {
+	ID          *string          `yaml:"id"`
+	Name        string           `yaml:"name"`
+	Description string           `yaml:"description"`
+	Format      MetricSpecFormat `yaml:"format"`
+}
+
+type MetricSpecFormat struct {
+	Unit string `yaml:"unit"`
 }
 
 // MetricSourceDTO is a data transfer object representing a metric source definition.

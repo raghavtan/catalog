@@ -52,14 +52,14 @@ func (gh *GitHubRepositoriesService) GetFileExists(repo, path string) (bool, err
 // Get file contents
 func (gh *GitHubRepositoriesService) GetFileContent(repo, path string) (string, error) {
 	ctx := context.Background()
-	fileContent, _, _, err := gh.client.GetContents(ctx, gh.owner, repo, path, nil)
-	if err != nil {
-		return "", fmt.Errorf("failed to fetch file: %w", err)
+	fileContent, _, _, fetchErr := gh.client.GetContents(ctx, gh.owner, repo, path, nil)
+	if fetchErr != nil {
+		return "", fmt.Errorf("failed to fetch file: %w", fetchErr)
 	}
 
-	content, err := fileContent.GetContent()
-	if err != nil {
-		return "", fmt.Errorf("failed to decode file content: %w", err)
+	content, decodeErr := fileContent.GetContent()
+	if decodeErr != nil {
+		return "", fmt.Errorf("failed to decode file content: %w", decodeErr)
 	}
 
 	return content, nil

@@ -8,21 +8,18 @@ import (
 	"github.com/motain/fact-collector/internal/modules/metric/dtos"
 	"github.com/motain/fact-collector/internal/modules/metric/repository"
 	"github.com/motain/fact-collector/internal/modules/metric/resources"
-	"github.com/motain/fact-collector/internal/services/githubservice"
 	"github.com/motain/fact-collector/internal/utils/drift"
 	"github.com/motain/fact-collector/internal/utils/yaml"
 )
 
 type ApplyHandler struct {
-	github     githubservice.GitHubRepositoriesServiceInterface
 	repository repository.RepositoryInterface
 }
 
 func NewApplyHandler(
-	gh githubservice.GitHubRepositoriesServiceInterface,
 	repository repository.RepositoryInterface,
 ) *ApplyHandler {
-	return &ApplyHandler{github: gh, repository: repository}
+	return &ApplyHandler{repository: repository}
 }
 
 func (h *ApplyHandler) Apply() string {

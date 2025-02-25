@@ -1,5 +1,7 @@
 package configservice
 
+//go:generate mockgen -destination=./mock_config_service.go -package=configservice github.com/motain/fact-collector/internal/services/configservice ConfigServiceInterface
+
 import (
 	"log"
 	"os"

@@ -21,14 +21,11 @@ import (
 
 func initializeHandler() *handler.ApplyHandler {
 	configService := configservice.NewConfigService()
-	keyringService := keyringservice.NewKeyringService()
-	repositoriesService := githubservice.NewGitHubRepositoriesClient(configService, keyringService)
-	gitHubRepositoriesService := githubservice.NewGitHubRepositoriesService(repositoriesService)
 	graphQLClientInterface := compassservice.NewGraphQLClient(configService)
 	httpClientInterface := compassservice.NewHTTPClient(configService)
 	compassService := compassservice.NewCompassService(configService, graphQLClientInterface, httpClientInterface)
 	repositoryRepository := repository.NewRepository(compassService)
-	applyHandler := handler.NewApplyHandler(gitHubRepositoriesService, repositoryRepository)
+	applyHandler := handler.NewApplyHandler(repositoryRepository)
 	return applyHandler
 }
 

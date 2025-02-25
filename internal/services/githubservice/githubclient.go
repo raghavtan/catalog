@@ -1,5 +1,7 @@
 package githubservice
 
+//go:generate mockgen -destination=./mock_github_client.go -package=githubservice github.com/motain/fact-collector/internal/services/githubservice GitHubRepositoriesInterface
+
 import (
 	"context"
 

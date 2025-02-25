@@ -1,9 +1,12 @@
 package compassservice
 
+//go:generate mockgen -destination=./mock_compass_service.go -package=compassservice github.com/motain/fact-collector/internal/services/compassservice CompassServiceInterface
+
 import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -14,7 +17,7 @@ import (
 
 type CompassServiceInterface interface {
 	Run(ctx context.Context, query string, variables map[string]interface{}, response interface{}) error
-	SendMetric(body map[string]string) string
+	SendMetric(body map[string]string) (string, error)
 	GetCompassCloudId() string
 }
 
@@ -54,43 +57,36 @@ func (c *CompassService) Run(ctx context.Context, query string, variables map[st
 	return nil
 }
 
-func (c *CompassService) SendMetric(body map[string]string) string {
+func (c *CompassService) SendMetric(body map[string]string) (string, error) {
 	jsonBody, err := json.Marshal(body)
 	if err != nil {
-		log.Printf("Failed to marshal body: %v", err)
-		return ""
+		return "", fmt.Errorf("failed to marshal body: %v", err)
 	}
 	req, err := http.NewRequest("POST", "/gateway/api/compass/v1/metrics", bytes.NewBuffer(jsonBody))
 	if err != nil {
-		log.Printf("Failed to create request: %v", err)
-		return ""
+		return "", fmt.Errorf("failed to create request: %v", err)
 	}
 
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
-		log.Printf("Failed to send request: %v", err)
-		return ""
+		return "", fmt.Errorf("failed to send request: %v", err)
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		log.Printf("Received non-OK response: %v", resp.Status)
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			log.Printf("Failed to read response body: %v", err)
-			return ""
+			return "", fmt.Errorf("failed to read response body: %v", err)
 		}
-		log.Printf("Response body: %s", string(body))
-		return ""
+		return "", fmt.Errorf("response body: %s", string(body))
 	}
 
 	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
-		log.Printf("Failed to read response body: %v", err)
-		return ""
+		return "", fmt.Errorf("failed to read response body: %v", err)
 	}
 
-	return string(respBody)
+	return string(respBody), nil
 }
 
 func (c *CompassService) GetCompassCloudId() string {

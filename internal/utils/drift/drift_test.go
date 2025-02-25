@@ -99,6 +99,7 @@ func TestDetect(t *testing.T) {
 				tt.stateList,
 				tt.configList,
 				func(t *testStruct) string { return t.ID },
+				func(t *testStruct) string { return t.ID },
 				func(t *testStruct, id string) { t.ID = id },
 				func(t1, t2 *testStruct) bool { return t1.Value == t2.Value },
 			)
