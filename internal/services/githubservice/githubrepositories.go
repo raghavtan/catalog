@@ -1,15 +1,20 @@
 package githubservice
 
+//go:generate mockgen -destination=./mock_github_repository_service.go -package=githubservice github.com/motain/fact-collector/internal/services/githubservice GitHubRepositoriesServiceInterface
+
 import (
 	"context"
 	"fmt"
+	"strconv"
 
 	"github.com/google/go-github/v58/github"
 )
 
 type GitHubRepositoriesServiceInterface interface {
 	GetRepo(repo string) (*github.Repository, error)
+	GetFileExists(repo, path string) (bool, error)
 	GetFileContent(repo, path string) (string, error)
+	GetRepoProperties(repo string) (map[string]string, error)
 }
 
 type GitHubRepositoriesService struct {
@@ -31,6 +36,19 @@ func (gh *GitHubRepositoriesService) GetRepo(repo string) (*github.Repository, e
 	return repository, nil
 }
 
+func (gh *GitHubRepositoriesService) GetFileExists(repo, path string) (bool, error) {
+	ctx := context.Background()
+	fileContent, _, _, err := gh.client.GetContents(ctx, gh.owner, repo, path, nil)
+	if err != nil {
+		if _, ok := err.(*github.ErrorResponse); ok && err.(*github.ErrorResponse).Response.StatusCode == 404 {
+			return false, nil
+		}
+		return false, fmt.Errorf("failed to fetch file: %w", err)
+	}
+
+	return fileContent != nil, nil
+}
+
 // Get file contents
 func (gh *GitHubRepositoriesService) GetFileContent(repo, path string) (string, error) {
 	ctx := context.Background()
@@ -45,4 +63,30 @@ func (gh *GitHubRepositoriesService) GetFileContent(repo, path string) (string, 
 	}
 
 	return content, nil
+}
+
+func (gh *GitHubRepositoriesService) GetRepoProperties(repo string) (map[string]string, error) {
+	ctx := context.Background()
+
+	// Fetch repository details
+	repoDetails, _, err := gh.client.Get(ctx, gh.owner, repo)
+	if err != nil {
+		return nil, err
+	}
+
+	properties := map[string]string{
+		"Name":          repoDetails.GetName(),
+		"Description":   repoDetails.GetDescription(),
+		"DefaultBranch": repoDetails.GetDefaultBranch(),
+		"Visibility":    repoDetails.GetVisibility(),
+		"OpenIssues":    strconv.Itoa(repoDetails.GetOpenIssuesCount()),
+		"License":       "", // Default empty in case there's no license
+	}
+
+	// Handle possible nil License
+	if repoDetails.GetLicense() != nil {
+		properties["License"] = repoDetails.GetLicense().GetName()
+	}
+
+	return properties, nil
 }

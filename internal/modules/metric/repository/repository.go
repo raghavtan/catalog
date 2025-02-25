@@ -3,7 +3,9 @@ package repository
 import (
 	"context"
 	"errors"
+	"fmt"
 	"log"
+	"time"
 
 	"github.com/motain/fact-collector/internal/modules/metric/resources"
 	"github.com/motain/fact-collector/internal/services/compassservice"
@@ -15,6 +17,7 @@ type RepositoryInterface interface {
 	Delete(ctx context.Context, id string) error
 	CreateMetricSource(ctx context.Context, metricID string, componentID string, intentifier string) (string, error)
 	DeleteMetricSource(ctx context.Context, metricSourceID string) error
+	Push(ctx context.Context, metricSourceID string, value float64, recordedAt time.Time) error
 }
 
 type Repository struct {
@@ -234,6 +237,18 @@ func (r *Repository) DeleteMetricSource(ctx context.Context, metricSourceID stri
 		log.Printf("Failed to delete metric source: %v", err)
 		return err
 	}
+
+	return nil
+}
+
+func (r *Repository) Push(ctx context.Context, metricSourceID string, value float64, recordedAt time.Time) error {
+	requestBody := map[string]string{
+		"metricSourceId": metricSourceID,
+		"value":          fmt.Sprintf("%f", value),
+		"timestamp":      recordedAt.UTC().Format(time.RFC3339),
+	}
+
+	r.compass.SendMetric(requestBody)
 
 	return nil
 }

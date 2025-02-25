@@ -5,6 +5,7 @@ import (
 
 	"github.com/motain/fact-collector/internal/modules/metric/cmd/apply"
 	"github.com/motain/fact-collector/internal/modules/metric/cmd/bind"
+	"github.com/motain/fact-collector/internal/modules/metric/cmd/track"
 	"github.com/spf13/cobra"
 )
 
@@ -19,6 +20,7 @@ func Init() *cobra.Command {
 
 	metricCmd.AddCommand(apply.Init())
 	metricCmd.AddCommand(bind.Init())
+	metricCmd.AddCommand(track.Init())
 
 	return metricCmd
 }

@@ -7,6 +7,7 @@ import (
 	"github.com/motain/fact-collector/internal/modules/component/dtos"
 	"github.com/motain/fact-collector/internal/modules/component/repository"
 	"github.com/motain/fact-collector/internal/modules/component/resources"
+	"github.com/motain/fact-collector/internal/modules/component/utils"
 	"github.com/motain/fact-collector/internal/services/githubservice"
 	"github.com/motain/fact-collector/internal/utils/drift"
 	"github.com/motain/fact-collector/internal/utils/yaml"
@@ -68,7 +69,6 @@ func (h *Handler) Apply() string {
 
 	isEqual := func(c1, c2 *dtos.ComponentDTO) bool {
 		return c1.Spec.Name == c2.Spec.Name &&
-			c1.Spec.Slug == c2.Spec.Slug &&
 			c1.Spec.Description == c2.Spec.Description &&
 			c1.Spec.ConfigVersion == c2.Spec.ConfigVersion &&
 			c1.Spec.TypeID == c2.Spec.TypeID &&
@@ -118,6 +118,7 @@ func (h *Handler) handleCreated(result, components []*dtos.ComponentDTO) []*dtos
 		}
 
 		componentDTO.Spec.ID = &id
+		componentDTO.Spec.Slug = component.Slug
 		result = append(result, componentDTO)
 	}
 
@@ -142,7 +143,7 @@ func componentDTOToResource(componentDTO *dtos.ComponentDTO) resources.Component
 	return resources.Component{
 		ID:            componentDTO.Spec.ID,
 		Name:          componentDTO.Spec.Name,
-		Slug:          componentDTO.Spec.Slug,
+		Slug:          utils.GetSlug(componentDTO.Spec.Name, componentDTO.Spec.TypeID),
 		Description:   componentDTO.Spec.Description,
 		ConfigVersion: componentDTO.Spec.ConfigVersion,
 		TypeID:        componentDTO.Spec.TypeID,

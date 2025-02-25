@@ -1,11 +1,13 @@
 //go:build wireinject
 
-package bind
+package track
 
 import (
 	"github.com/google/go-github/v58/github"
 	"github.com/google/wire"
 	"github.com/motain/fact-collector/internal/modules/metric/handler"
+	"github.com/motain/fact-collector/internal/modules/metric/handler/factcollectors"
+	"github.com/motain/fact-collector/internal/modules/metric/handler/factinterpreter"
 	"github.com/motain/fact-collector/internal/modules/metric/repository"
 	"github.com/motain/fact-collector/internal/services/compassservice"
 	"github.com/motain/fact-collector/internal/services/configservice"
@@ -39,10 +41,19 @@ var ProviderSet = wire.NewSet(
 	repository.NewRepository,
 	wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)),
 
-	// BindHandler
-	handler.NewBindHandler,
+	// FactColletors
+	// GithubFactCollector
+	factcollectors.NewGithubFactCollector,
+	wire.Bind(new(factcollectors.GithubFactCollectorInterface), new(*factcollectors.GithubFactCollector)),
+
+	// FactInterpreter
+	factinterpreter.NewFactInterpreter,
+	wire.Bind(new(factinterpreter.FactInterpreterInterface), new(*factinterpreter.FactInterpreter)),
+
+	// TrackHandler
+	handler.NewTrackHandler,
 )
 
-func initializeHandler() *handler.BindHandler {
+func initializeHandler() *handler.TrackHandler {
 	panic(wire.Build(ProviderSet))
 }

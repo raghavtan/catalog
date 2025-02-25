@@ -2,6 +2,7 @@ package compassservice
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	"github.com/machinebox/graphql"
@@ -13,7 +14,9 @@ type GraphQLClientInterface interface {
 }
 
 func NewGraphQLClient(config configservice.ConfigServiceInterface) GraphQLClientInterface {
-	client := graphql.NewClient(config.GetCompassHost())
+	gqlUri := fmt.Sprintf("https://%s%s", config.GetCompassHost(), "/gateway/api/graphql")
+	client := graphql.NewClient(gqlUri)
+
 	// Keep this until we properly implement logging
 	client.Log = func(s string) { log.Println(s) }
 	return client

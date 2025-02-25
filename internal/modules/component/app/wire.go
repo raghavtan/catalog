@@ -24,7 +24,7 @@ var ProviderSet = wire.NewSet(
 
 	// Compassservice
 	compassservice.NewGraphQLClient,
-	// wire.Bind(new(compassservice.GraphQLClientInterface), new(*graphql.Client)),
+	compassservice.NewHTTPClient,
 	compassservice.NewCompassService,
 	wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)),
 

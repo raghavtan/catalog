@@ -4,6 +4,9 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"reflect"
+	"regexp"
+	"strings"
 
 	componentdtos "github.com/motain/fact-collector/internal/modules/component/dtos"
 
@@ -99,12 +102,22 @@ func (h *BindHandler) handleBind(
 
 	identifier := fmt.Sprintf("%s-%s", metric.Spec.Name, component.Spec.Slug)
 	if _, exists := metricSourceMap[identifier]; exists {
+		msFacts, msFactsErr := h.prepareSourceMetricFactOperations(metric.Metadata.Facts, *component)
+		if msFactsErr != nil {
+			fmt.Printf("Failed to prepare facts for metric source %s: %v\n", identifier, msFactsErr)
+		}
+		metricSourceMap[identifier].Metadata.Facts = msFacts
 		return append(result, metricSourceMap[identifier])
 	}
 
 	id, errBind := h.repository.CreateMetricSource(context.Background(), *metric.Spec.ID, *component.Spec.ID, identifier)
 	if errBind != nil {
 		panic(errBind)
+	}
+
+	msFacts, msFactsErr := h.prepareSourceMetricFactOperations(metric.Metadata.Facts, *component)
+	if msFactsErr != nil {
+		fmt.Printf("Failed to prepare facts for metric source %s: %v\n", identifier, msFactsErr)
 	}
 
 	metricSourceDTO := dtos.MetricSourceDTO{
@@ -114,6 +127,7 @@ func (h *BindHandler) handleBind(
 			Name:          identifier,
 			ComponentType: []string{component.Metadata.ComponentType},
 			Status:        "active",
+			Facts:         msFacts,
 		},
 		Spec: dtos.MetricSourceSpecDTO{
 			ID:        &id,
@@ -148,4 +162,104 @@ func (h *BindHandler) resolveDrifts(preBind map[string]*dtos.MetricSourceDTO, po
 	}
 
 	return postBind
+}
+
+// getFieldByPath fetches a nested field value using dot notation
+func getFieldByPath(obj interface{}, path string) (interface{}, error) {
+	fields := strings.Split(path, ".")
+	val := reflect.ValueOf(obj)
+
+	// Traverse fields
+	for _, field := range fields {
+		// Dereference pointer if necessary
+		if val.Kind() == reflect.Ptr {
+			val = val.Elem()
+		}
+
+		// Ensure it's a struct
+		if val.Kind() != reflect.Struct {
+			return nil, fmt.Errorf("invalid path: %s", path)
+		}
+
+		// Get field by name
+		val = val.FieldByName(field)
+
+		// If field is invalid, return error
+		if !val.IsValid() {
+			return nil, fmt.Errorf("field not found: %s", field)
+		}
+	}
+
+	return val.Interface(), nil
+}
+
+func (h *BindHandler) replaceMetricFactPlaceholder(placeholder string, component componentdtos.ComponentDTO) (string, error) {
+	re := regexp.MustCompile(`\$\{(.*)\}`)
+	matches := re.FindStringSubmatch(placeholder)
+	if len(matches) != 2 {
+		return placeholder, nil
+	}
+	capturedGroup := matches[1]
+
+	value, err := getFieldByPath(component, capturedGroup)
+	if err != nil {
+		return "", fmt.Errorf("error fetching '%s': %v", capturedGroup, err)
+	}
+
+	return fmt.Sprintf("%v", value), nil
+}
+
+func (h *BindHandler) prepareSourceMetricFactOperations(factOperations dtos.FactOperations, component componentdtos.ComponentDTO) (dtos.FactOperations, error) {
+	operatorAll, errAll := h.prepareSourceMetricFacts(factOperations.All, component)
+	if errAll != nil {
+		return dtos.FactOperations{}, errAll
+	}
+
+	operatorAny, errAny := h.prepareSourceMetricFacts(factOperations.Any, component)
+	if errAny != nil {
+		return dtos.FactOperations{}, errAny
+	}
+
+	operatorReport, errReport := h.prepareSourceMetricFacts(factOperations.Report, component)
+	if errReport != nil {
+		return dtos.FactOperations{}, errReport
+	}
+
+	return dtos.FactOperations{
+		All:    operatorAll,
+		Any:    operatorAny,
+		Report: operatorReport,
+	}, nil
+}
+
+func (h *BindHandler) prepareSourceMetricFacts(facts []dtos.Fact, component componentdtos.ComponentDTO) ([]dtos.Fact, error) {
+	msFacts := make([]dtos.Fact, len(facts))
+	for i, fact := range facts {
+		repo, errRepo := h.replaceMetricFactPlaceholder(fact.Repo, component)
+		if errRepo != nil {
+			fmt.Printf("Failed to replace placeholder for role in fact %s: %v\n", fact.Name, errRepo)
+			return nil, errRepo
+		}
+		expectedValue, errExpValue := h.replaceMetricFactPlaceholder(fact.ExpectedValue, component)
+		if errExpValue != nil {
+			fmt.Printf("Failed to replace placeholder for expectedValue in fact %s: %v\n", fact.Name, errExpValue)
+			return nil, errExpValue
+		}
+
+		msFacts[i] = dtos.Fact{
+			Name:            fact.Name,
+			Source:          fact.Source,
+			URI:             fact.URI,
+			Repo:            repo,
+			FactType:        fact.FactType,
+			FilePath:        fact.FilePath,
+			RegexPattern:    fact.RegexPattern,
+			JSONPath:        fact.JSONPath,
+			RepoProperty:    fact.RepoProperty,
+			ExpectedValue:   expectedValue,
+			ExpectedFormula: fact.ExpectedFormula,
+		}
+	}
+
+	return msFacts, nil
 }

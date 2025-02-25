@@ -3,11 +3,35 @@ apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
     name: comp-test-1
-    componentType: other
+    componentType: service
 dpendsOn: []
 spec:
   name: 'comp-test-1'
   slug: svc-comp-test-1
+  description: null
+  configVersion: 1
+  typeId: SERVICE
+  ownerId: null
+  fields:
+    lifecycle: Active
+    tier: 4
+  links:
+    - name: Repository
+      type: REPOSITORY
+      url: "https://github.com/motain/comp-test-1"
+    - name: Monitoring page
+      type: DASHBOARD
+      url: "https://grafana.mgm.onefootball.com"
+  labels: ["aws", "service", "foo", "bar"]
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: comp-test-2
+    componentType: service
+dpendsOn: []
+spec:
+  name: 'comp-test-2'
   description: null
   configVersion: 1
   typeId: SERVICE
