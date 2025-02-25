@@ -57,5 +57,12 @@ update-deps: do-update-deps vendor ## Update dependencies and vendor.
 clean: ## Removes the service binary.
 	rm -rf bin/
 
+.PHONY: wire-all
+wire-all:
+	find . -type f -name wire.go -exec dirname {} \; | xargs wire gen
+
 generate:
 	$(GO) generate ./...
+
+
+

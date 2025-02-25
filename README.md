@@ -112,6 +112,13 @@ go mod verify
 
     Wire will build the dependency chain, resolving the correct constructors automatically.
 
+To wire all the subcommands at once you can also run:
+
+```bash
+  make wire-all
+```
+
+
 ## Configuration
 
 Usage
