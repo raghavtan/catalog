@@ -13,19 +13,19 @@ import (
 	"github.com/motain/fact-collector/internal/utils/yaml"
 )
 
-type Handler struct {
+type ApplyHandler struct {
 	github     githubservice.GitHubRepositoriesServiceInterface
 	repository repository.RepositoryInterface
 }
 
-func NewHandler(
+func NewApplyHandler(
 	gh githubservice.GitHubRepositoriesServiceInterface,
 	repository repository.RepositoryInterface,
-) *Handler {
-	return &Handler{github: gh, repository: repository}
+) *ApplyHandler {
+	return &ApplyHandler{github: gh, repository: repository}
 }
 
-func (h *Handler) Apply() string {
+func (h *ApplyHandler) Apply() string {
 	configComponents, errConfig := yaml.ParseConfig[dtos.ComponentDTO]()
 	if errConfig != nil {
 		log.Fatalf("error: %v", errConfig)
@@ -99,7 +99,7 @@ func (h *Handler) Apply() string {
 	return ""
 }
 
-func (h *Handler) handleDeleted(components []*dtos.ComponentDTO) {
+func (h *ApplyHandler) handleDeleted(components []*dtos.ComponentDTO) {
 	for _, componentDTO := range components {
 		errComponent := h.repository.Delete(context.Background(), *componentDTO.Spec.ID)
 		if errComponent != nil {
@@ -108,7 +108,7 @@ func (h *Handler) handleDeleted(components []*dtos.ComponentDTO) {
 	}
 }
 
-func (h *Handler) handleCreated(result, components []*dtos.ComponentDTO) []*dtos.ComponentDTO {
+func (h *ApplyHandler) handleCreated(result, components []*dtos.ComponentDTO) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		component := componentDTOToResource(componentDTO)
 
@@ -125,7 +125,7 @@ func (h *Handler) handleCreated(result, components []*dtos.ComponentDTO) []*dtos
 	return result
 }
 
-func (h *Handler) handleUpdated(result, components []*dtos.ComponentDTO) []*dtos.ComponentDTO {
+func (h *ApplyHandler) handleUpdated(result, components []*dtos.ComponentDTO) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		component := componentDTOToResource(componentDTO)
 		errComponent := h.repository.Update(context.Background(), component)

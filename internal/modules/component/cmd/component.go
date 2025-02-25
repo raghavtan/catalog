@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/motain/fact-collector/internal/modules/component/cmd/apply"
 	"github.com/spf13/cobra"
 )
 
@@ -15,7 +16,7 @@ func Init() *cobra.Command {
 		},
 	}
 
-	componentCmd.AddCommand(InitApply())
+	componentCmd.AddCommand(apply.Init())
 
 	return componentCmd
 }

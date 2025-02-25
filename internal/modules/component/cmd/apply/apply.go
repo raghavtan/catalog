@@ -1,19 +1,18 @@
-package cmd
+package apply
 
 import (
 	"fmt"
 
-	"github.com/motain/fact-collector/internal/modules/component/app"
 	"github.com/spf13/cobra"
 )
 
-func InitApply() *cobra.Command {
+func Init() *cobra.Command {
 	return &cobra.Command{
 		Use:   "apply",
 		Short: "Apply changes to components",
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Println("apply component command")
-			handler := app.InitializeHandler()
+			handler := initializeHandler()
 			fmt.Println(handler.Apply())
 		},
 	}
