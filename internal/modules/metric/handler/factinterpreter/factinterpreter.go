@@ -1,7 +1,7 @@
 package factinterpreter
 
 import (
-	"log"
+	"fmt"
 
 	"github.com/motain/fact-collector/internal/modules/metric/dtos"
 	"github.com/motain/fact-collector/internal/modules/metric/handler/factcollectors"
@@ -9,7 +9,7 @@ import (
 )
 
 type FactInterpreterInterface interface {
-	ProcessFacts(factOperations dtos.FactOperations) float64
+	ProcessFacts(factOperations dtos.FactOperations) (float64, error)
 }
 
 type FactInterpreter struct {
@@ -22,44 +22,57 @@ func NewFactInterpreter(
 	return &FactInterpreter{githhubFC: ghfc}
 }
 
-func (f *FactInterpreter) ProcessFacts(factOperations dtos.FactOperations) float64 {
-	if factOperations.All != nil || factOperations.Any != nil {
+func (f *FactInterpreter) ProcessFacts(factOperations dtos.FactOperations) (float64, error) {
+	if len(factOperations.All) != 0 || len(factOperations.Any) != 0 {
 		return f.processConditionalOperations(factOperations)
 	}
 
-	return 0
-}
-
-// processConditionalOperations evaluates a set of conditional operations on facts.
-// It verifies if all facts in the "All" list and any fact in the "Any" list have a source of "github"
-// and satisfy certain conditions checked by the githhubFC.Check method.
-// If both All and Any conditions are provided, the results of All and Any are combined using a logical AND operator.
-//
-// Parameters:
-//   - factOperations: a dtos.FactOperations object containing lists of facts to be checked.
-//
-// Returns:
-//   - float64: returns 1 if all conditions are met, otherwise returns 0.
-func (f *FactInterpreter) processConditionalOperations(factOperations dtos.FactOperations) float64 {
-	operationsAllSucceed := f.ProcessOperationsAll(factOperations.All)
-	if !operationsAllSucceed {
-		return 0
+	if factOperations.Inspect != nil {
+		return f.processInspectOperation(*factOperations.Inspect)
 	}
 
-	operationsAnySucceed := f.ProcessOperationsAny(factOperations.Any)
-	return transformers.Bool2Float64(operationsAllSucceed && operationsAnySucceed)
+	return 0, nil
 }
 
-func (f *FactInterpreter) ProcessOperationsAll(facts []dtos.Fact) bool {
+// processConditionalOperations processes a set of conditional operations and returns a float64 result.
+// It first checks if all operations in the "All" field succeed. If not, it returns 0.
+// Then, it checks if any operations in the "Any" field succeed.
+// The final result is a float64 representation of the logical AND between the success of all "All" operations
+// and the success of any "Any" operations.
+//
+// Parameters:
+//   - factOperations: a dtos.FactOperations struct containing the operations to be processed.
+//
+// Returns:
+//   - float64: 1 if all "All" operations succeed and any "Any" operations succeed, otherwise 0.
+//   - error: an error if any occurs during the processing of operations.
+func (f *FactInterpreter) processConditionalOperations(factOperations dtos.FactOperations) (float64, error) {
+	operationsAllSucceed, allErr := f.ProcessOperationsAll(factOperations.All)
+	if allErr != nil {
+		return 0, fmt.Errorf("error: %v", allErr)
+	}
+
+	if !operationsAllSucceed {
+		return 0, nil
+	}
+
+	operationsAnySucceed, anyErr := f.ProcessOperationsAny(factOperations.Any)
+	if anyErr != nil {
+		return 0, fmt.Errorf("error: %v", anyErr)
+	}
+	return transformers.Bool2Float64(operationsAllSucceed && operationsAnySucceed), nil
+}
+
+func (f *FactInterpreter) ProcessOperationsAll(facts []*dtos.Fact) (bool, error) {
 	succeed := true
 	for _, fact := range facts {
 		if fact.Source != "github" {
 			continue
 		}
 
-		result, err := f.githhubFC.Check(fact)
+		result, err := f.githhubFC.Check(*fact)
 		if err != nil {
-			log.Fatalf("error: %v", err)
+			return false, fmt.Errorf("error: %v", err)
 		}
 
 		if !result {
@@ -68,19 +81,19 @@ func (f *FactInterpreter) ProcessOperationsAll(facts []dtos.Fact) bool {
 		}
 	}
 
-	return succeed
+	return succeed, nil
 }
 
-func (f *FactInterpreter) ProcessOperationsAny(facts []dtos.Fact) bool {
+func (f *FactInterpreter) ProcessOperationsAny(facts []*dtos.Fact) (bool, error) {
 	succeed := facts == nil
 	for _, fact := range facts {
 		if fact.Source != "github" {
 			continue
 		}
 
-		result, err := f.githhubFC.Check(fact)
+		result, err := f.githhubFC.Check(*fact)
 		if err != nil {
-			log.Fatalf("error: %v", err)
+			return false, fmt.Errorf("error: %v", err)
 		}
 
 		if result {
@@ -89,5 +102,9 @@ func (f *FactInterpreter) ProcessOperationsAny(facts []dtos.Fact) bool {
 		}
 	}
 
-	return succeed
+	return succeed, nil
+}
+
+func (f *FactInterpreter) processInspectOperation(fact dtos.Fact) (float64, error) {
+	return f.githhubFC.Inspect(fact)
 }

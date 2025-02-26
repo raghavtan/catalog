@@ -40,8 +40,16 @@ func (h *ComputeHandler) Compute(componentType, componentName, metricName string
 		}
 	}
 
-	metricValue := h.factInterpreter.ProcessFacts(metricSource.Metadata.Facts)
-	h.repository.Push(context.Background(), *metricSource.Spec.ID, metricValue, time.Now())
+	metricValue, processErr := h.factInterpreter.ProcessFacts(metricSource.Metadata.Facts)
+	if processErr != nil {
+		log.Fatalf("error: %v", processErr)
+	}
+
+	pushErr := h.repository.Push(context.Background(), *metricSource.Spec.ID, metricValue, time.Now())
+	if pushErr != nil {
+		log.Printf("metric source id: %s", *metricSource.Spec.ID)
+		log.Fatalf("error: %v", pushErr)
+	}
 
 	return ""
 }

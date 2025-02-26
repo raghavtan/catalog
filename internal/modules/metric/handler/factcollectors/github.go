@@ -17,7 +17,7 @@ import (
 
 type GithubFactCollectorInterface interface {
 	Check(fact dtos.Fact) (bool, error)
-	// Collect(fact dtos.Fact) (string, error)
+	Inspect(fact dtos.Fact) (float64, error)
 }
 
 type GithubFactCollector struct {
@@ -48,6 +48,20 @@ func (fc *GithubFactCollector) Check(fact dtos.Fact) (bool, error) {
 	return false, nil
 }
 
+func (fc *GithubFactCollector) Inspect(fact dtos.Fact) (float64, error) {
+	jsonData, extractionErr := fc.extractData(fact)
+	if extractionErr != nil {
+		return 0, extractionErr
+	}
+
+	value := gjson.GetBytes(jsonData, fact.JSONPath)
+	if !value.Exists() {
+		return 0, fmt.Errorf("jsonpath does not exist")
+	}
+
+	return value.Float(), nil
+}
+
 func (fc *GithubFactCollector) checkFileExists(fact dtos.Fact) (bool, error) {
 	exists, fileErr := fc.github.GetFileExists(fact.Repo, fact.FilePath)
 	if fileErr != nil {
@@ -76,30 +90,9 @@ func (fc *GithubFactCollector) checkFileRegex(fact dtos.Fact) (bool, error) {
 }
 
 func (fc *GithubFactCollector) checkFileJSONPath(fact dtos.Fact) (bool, error) {
-	fileExtension := filepath.Ext(fact.FilePath)
-	if fileExtension != ".json" && fileExtension != ".toml" {
-		return false, fmt.Errorf("unsupported file extension: %s", fileExtension)
-	}
-
-	fileContent, fileErr := fc.github.GetFileContent(fact.Repo, fact.FilePath)
-	if fileErr != nil {
-		return false, fileErr
-	}
-
-	var jsonData []byte
-	var fcransformationError error
-
-	if fileExtension == ".toml" {
-		jsonData, fcransformationError = transformers.Toml2json(fileContent)
-		if fcransformationError != nil {
-			return false, fcransformationError
-		}
-	} else {
-		jsonData = []byte(fileContent)
-	}
-
-	if fileExtension == ".json" {
-		jsonData = []byte(fileContent)
+	jsonData, extractionErr := fc.extractData(fact)
+	if extractionErr != nil {
+		return false, extractionErr
 	}
 
 	value := gjson.GetBytes(jsonData, fact.JSONPath)
@@ -134,4 +127,28 @@ func (fc *GithubFactCollector) checkRepoProperties(fact dtos.Fact) (bool, error)
 	}
 
 	return eval.Expression(fmt.Sprintf("%s %s", value, fact.ExpectedFormula))
+}
+
+func (fc *GithubFactCollector) extractData(fact dtos.Fact) ([]byte, error) {
+	var jsonData []byte
+
+	fileExtension := filepath.Ext(fact.FilePath)
+	if fileExtension != ".json" && fileExtension != ".toml" {
+		return jsonData, fmt.Errorf("unsupported file extension: %s", fileExtension)
+	}
+
+	fileContent, fileErr := fc.github.GetFileContent(fact.Repo, fact.FilePath)
+	if fileErr != nil {
+		return jsonData, fileErr
+	}
+
+	if fileExtension == ".toml" {
+		return transformers.Toml2json(fileContent)
+	}
+
+	if fileExtension == ".json" {
+		return []byte(fileContent), nil
+	}
+
+	return jsonData, fmt.Errorf("jsonpath %s does not exist in %s", fact.JSONPath, fact.FilePath)
 }

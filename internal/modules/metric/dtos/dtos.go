@@ -28,13 +28,20 @@ func GetMetricID(m *MetricDTO) string {
 }
 
 func IsEqualMetric(m1, m2 *MetricDTO) bool {
-	return m1.Spec.Name == m2.Spec.Name && m1.Spec.Description == m2.Spec.Description && reflect.DeepEqual(m1.Spec.Format, m2.Spec.Format)
+	return m1.Spec.Name == m2.Spec.Name &&
+		m1.Spec.Description == m2.Spec.Description &&
+		reflect.DeepEqual(m1.Spec.Format, m2.Spec.Format) &&
+		m1.Metadata.Name == m2.Metadata.Name &&
+		reflect.DeepEqual(m1.Metadata.Labels, m2.Metadata.Labels) &&
+		reflect.DeepEqual(m1.Metadata.ComponentType, m2.Metadata.ComponentType) &&
+		reflect.DeepEqual(m1.Metadata.Facts, m2.Metadata.Facts)
+
 }
 
 type FactOperations struct {
-	All    []Fact `yaml:"all"`
-	Any    []Fact `yaml:"any"`
-	Report []Fact `yaml:"report"`
+	All     []*Fact `yaml:"all"`
+	Any     []*Fact `yaml:"any"`
+	Inspect *Fact   `yaml:"inspect"`
 }
 
 // FactType defines the type of fact to collect
@@ -99,12 +106,12 @@ type MetricSourceMetadataDTO struct {
 	Facts         FactOperations `yaml:"facts"`
 }
 
-func FilterOutInactiveMetricSources(metricSource *MetricSourceDTO) bool {
-	return MetricSourceStatus(metricSource.Metadata.Status) != InactiveMetricSourceStatus
+func IsActiveMetricSources(metricSource *MetricSourceDTO) bool {
+	return MetricSourceStatus(metricSource.Metadata.Status) == ActiveMetricSourceStatus
 }
 
-func FilterOutActiveMetricSources(metricSource *MetricSourceDTO) bool {
-	return MetricSourceStatus(metricSource.Metadata.Status) != ActiveMetricSourceStatus
+func IsInactiveMetricSources(metricSource *MetricSourceDTO) bool {
+	return MetricSourceStatus(metricSource.Metadata.Status) == InactiveMetricSourceStatus
 }
 
 type MetricSourceSpecDTO struct {

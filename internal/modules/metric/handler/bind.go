@@ -81,7 +81,7 @@ func (*BindHandler) getStateMetricSourceHashedByName() map[string]*dtos.MetricSo
 	stateMetricSource, errState := yaml.ParseFiltered[dtos.MetricSourceDTO](
 		yaml.State,
 		dtos.GetMetricSourceUniqueKey,
-		dtos.FilterOutInactiveMetricSources,
+		dtos.IsInactiveMetricSources,
 	)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
@@ -218,46 +218,67 @@ func (h *BindHandler) prepareSourceMetricFactOperations(factOperations dtos.Fact
 		return dtos.FactOperations{}, errAny
 	}
 
-	operatorReport, errReport := h.prepareSourceMetricFacts(factOperations.Report, component)
-	if errReport != nil {
-		return dtos.FactOperations{}, errReport
+	operatorInspect, errInspect := h.prepareSourceMetricFact(factOperations.Inspect, component)
+	if errInspect != nil {
+		return dtos.FactOperations{}, errInspect
 	}
 
 	return dtos.FactOperations{
-		All:    operatorAll,
-		Any:    operatorAny,
-		Report: operatorReport,
+		All:     operatorAll,
+		Any:     operatorAny,
+		Inspect: operatorInspect,
 	}, nil
 }
 
-func (h *BindHandler) prepareSourceMetricFacts(facts []dtos.Fact, component componentdtos.ComponentDTO) ([]dtos.Fact, error) {
-	msFacts := make([]dtos.Fact, len(facts))
+func (h *BindHandler) prepareSourceMetricFacts(
+	facts []*dtos.Fact,
+	component componentdtos.ComponentDTO,
+) ([]*dtos.Fact, error) {
+	msFacts := make([]*dtos.Fact, len(facts))
 	for i, fact := range facts {
-		repo, errRepo := h.replaceMetricFactPlaceholder(fact.Repo, component)
-		if errRepo != nil {
-			fmt.Printf("Failed to replace placeholder for role in fact %s: %v\n", fact.Name, errRepo)
-			return nil, errRepo
-		}
-		expectedValue, errExpValue := h.replaceMetricFactPlaceholder(fact.ExpectedValue, component)
-		if errExpValue != nil {
-			fmt.Printf("Failed to replace placeholder for expectedValue in fact %s: %v\n", fact.Name, errExpValue)
-			return nil, errExpValue
+		processedFact, processErr := h.prepareSourceMetricFact(fact, component)
+		if processErr != nil {
+			return nil, processErr
 		}
 
-		msFacts[i] = dtos.Fact{
-			Name:            fact.Name,
-			Source:          fact.Source,
-			URI:             fact.URI,
-			Repo:            repo,
-			FactType:        fact.FactType,
-			FilePath:        fact.FilePath,
-			RegexPattern:    fact.RegexPattern,
-			JSONPath:        fact.JSONPath,
-			RepoProperty:    fact.RepoProperty,
-			ExpectedValue:   expectedValue,
-			ExpectedFormula: fact.ExpectedFormula,
-		}
+		msFacts[i] = processedFact
 	}
 
 	return msFacts, nil
+}
+
+func (h *BindHandler) prepareSourceMetricFact(
+	fact *dtos.Fact,
+	component componentdtos.ComponentDTO,
+) (*dtos.Fact, error) {
+	if fact == nil {
+		return nil, nil
+	}
+
+	repo, errRepo := h.replaceMetricFactPlaceholder(fact.Repo, component)
+	if errRepo != nil {
+		fmt.Printf("Failed to replace placeholder for role in fact %s: %v\n", fact.Name, errRepo)
+		return nil, errRepo
+	}
+	expectedValue, errExpValue := h.replaceMetricFactPlaceholder(fact.ExpectedValue, component)
+	if errExpValue != nil {
+		fmt.Printf("Failed to replace placeholder for expectedValue in fact %s: %v\n", fact.Name, errExpValue)
+		return nil, errExpValue
+	}
+
+	processedFact := dtos.Fact{
+		Name:            fact.Name,
+		Source:          fact.Source,
+		URI:             fact.URI,
+		Repo:            repo,
+		FactType:        fact.FactType,
+		FilePath:        fact.FilePath,
+		RegexPattern:    fact.RegexPattern,
+		JSONPath:        fact.JSONPath,
+		RepoProperty:    fact.RepoProperty,
+		ExpectedValue:   expectedValue,
+		ExpectedFormula: fact.ExpectedFormula,
+	}
+
+	return &processedFact, nil
 }
