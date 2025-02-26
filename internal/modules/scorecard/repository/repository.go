@@ -199,10 +199,10 @@ func (r *Repository) Update(
 
 func (r *Repository) Delete(ctx context.Context, id string) error {
 	query := `
-		mutation deleteScorecard($id: ID!) {
+		mutation deleteScorecard($scorecardId: ID!) {
 			compass {
-				deleteScorecard(input: {id: $id}) {
-					deletedScorecardId
+				deleteScorecard(scorecardId: $scorecardId) {
+					scorecardId
 					errors {
 						message
 					}
@@ -212,7 +212,7 @@ func (r *Repository) Delete(ctx context.Context, id string) error {
 		}`
 
 	variables := map[string]interface{}{
-		"id": id,
+		"scorecardId": id,
 	}
 
 	var response struct {
