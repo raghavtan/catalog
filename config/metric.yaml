@@ -14,7 +14,7 @@ metadata:
           - source: "github"
             uri: ""
             name: app-toml-exists
-            repo: simple-service
+            repo: "${Spec.Name}"
             branch: ""
             factType: fileExists
             filePath: app.toml
@@ -25,14 +25,14 @@ metadata:
           - source: "github"
             uri: ""
             name: app-toml-envs-otel-service-name
-            repo: simple-service
+            repo: "${Spec.Name}"
             branch: ""
             factType: fileJsonPath
             filePath: app.toml
             regexPattern: ""
             jsonPath: envs.OTEL_SERVICE_NAME
             repoProperty: ""
-            expectedValue: simple-service
+            expectedValue: "${Spec.Name}"
 spec:
     name: metric-test-1
     description: example metric-1 used to test cli

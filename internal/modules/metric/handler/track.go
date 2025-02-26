@@ -2,14 +2,13 @@ package handler
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"time"
 
-	componentutils "github.com/motain/fact-collector/internal/modules/component/utils"
 	"github.com/motain/fact-collector/internal/modules/metric/dtos"
 	"github.com/motain/fact-collector/internal/modules/metric/handler/factinterpreter"
 	"github.com/motain/fact-collector/internal/modules/metric/repository"
+	"github.com/motain/fact-collector/internal/modules/metric/utils"
 	"github.com/motain/fact-collector/internal/utils/yaml"
 )
 
@@ -32,12 +31,10 @@ func (h *TrackHandler) Track(componentType, componentName, metricName string) st
 		log.Fatalf("error: %v", errMSState)
 	}
 
-	componentSlug := componentutils.GetSlug(componentName, componentType)
-	metricSourceName := fmt.Sprintf("%s-%s", metricName, componentSlug)
-
+	componentIdentifier := utils.GetMetricSourceItentifier(metricName, componentName, componentType)
 	var metricSource *dtos.MetricSourceDTO
 	for _, metricSourceDTO := range stateMetricSource {
-		if metricSourceDTO.Spec.Name == metricSourceName {
+		if metricSourceDTO.Spec.Name == componentIdentifier {
 			metricSource = metricSourceDTO
 			break
 		}

@@ -1,31 +1,29 @@
-# ---
-# apiVersion: of-catalog/v1alpha1
-# kind: Scorecard
-# metadata:
-#     name: comp-test-1
-# spec:
-#   name: 'comp-test-1'
-#   description: "This is a test scorecard"
-#   ownerId: null
-#   state: "DRAFT" # DRAFT - PUBLISHED
-#   componentTypeIds: ["SERVICE"]
-#   importance: REQUIRED
-#   scoringStrategyType: "WEIGHT_BASED" # WEIGHT_BASED - POINT_BASED
-#   criteria:
-#     - hasMetricValue:
-#         weight: 60
-#         name: "msg-per-sec"
-#         metricName: "metric-test-1"
-#         # metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/847865a1-c42f-453b-a221-b5c4f8dddf14
-#         comparatorValue: 15
-#         comparator: "GREATER_THAN" # EQUALS - GREATER_THAN - LESS_THAN - GREATER_THAN_OR_EQUAL_TO - LESS_THAN_OR_EQUAL_TO
-#     - hasMetricValue:
-#         weight: 40
-#         name: "foo-bar-baz"
-#         metricName: "metric-test-2"
-#         # metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/847865a1-c42f-453b-a221-b5c4f8dddf14
-#         comparatorValue: 100
-#         comparator: "GREATER_THAN" # EQUALS - GREATER_THAN - LESS_THAN - GREATER_THAN_OR_EQUAL_TO - LESS_THAN_OR_EQUAL_TO
+---
+apiVersion: of-catalog/v1alpha1
+kind: Scorecard
+metadata:
+    name: comp-test-1
+spec:
+  name: 'comp-test-1'
+  description: "This is a test scorecard"
+  ownerId: null
+  state: "PUBLISHED" # DRAFT - PUBLISHED
+  componentTypeIds: ["SERVICE"]
+  importance: REQUIRED
+  scoringStrategyType: "WEIGHT_BASED" # WEIGHT_BASED - POINT_BASED
+  criteria:
+    - hasMetricValue:
+        weight: 60
+        name: "msg-per-sec"
+        metricName: "metric-test-1"
+        comparatorValue: 15
+        comparator: "GREATER_THAN" # EQUALS - GREATER_THAN - LESS_THAN - GREATER_THAN_OR_EQUAL_TO - LESS_THAN_OR_EQUAL_TO
+    - hasMetricValue:
+        weight: 40
+        name: "foo-bar-baz"
+        metricName: "metric-test-2"
+        comparatorValue: 100
+        comparator: "GREATER_THAN" # EQUALS - GREATER_THAN - LESS_THAN - GREATER_THAN_OR_EQUAL_TO - LESS_THAN_OR_EQUAL_TO
 
 
 

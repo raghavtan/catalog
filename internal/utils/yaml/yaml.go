@@ -32,7 +32,7 @@ func Parse[T any](defintionType DefinitionType, getKey func(def *T) string) (map
 
 	defintions, parseErr := parse[T](filePath)
 	if parseErr != nil {
-		return nil, errors.Join(errors.New("failed to parse state file"), parseErr)
+		return nil, errors.Join(fmt.Errorf("failed to parse %s file: \"%s\"", defintionType, filePath), parseErr)
 	}
 
 	mappedDefinition := make(map[string]*T, len(defintions))
@@ -63,9 +63,13 @@ func ParseFiltered[T any](defintionType DefinitionType, getKey func(def *T) stri
 		return nil, pathErr
 	}
 
+	if filePath == "" {
+		return make(map[string]*T), nil
+	}
+
 	defintions, parseErr := parse[T](filePath)
 	if parseErr != nil {
-		return nil, errors.Join(errors.New("failed to parse state file"), parseErr)
+		return nil, errors.Join(fmt.Errorf("failed to parse %s file: \"%s\"", defintionType, filePath), parseErr)
 	}
 
 	mappedDefinition := make(map[string]*T)

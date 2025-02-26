@@ -12,6 +12,7 @@ import (
 
 	"github.com/motain/fact-collector/internal/modules/metric/dtos"
 	"github.com/motain/fact-collector/internal/modules/metric/repository"
+	"github.com/motain/fact-collector/internal/modules/metric/utils"
 	"github.com/motain/fact-collector/internal/services/githubservice"
 	"github.com/motain/fact-collector/internal/utils/yaml"
 )
@@ -97,7 +98,7 @@ func (h *BindHandler) handleBind(
 ) []*dtos.MetricSourceDTO {
 	fmt.Printf("Binding metric %s to component %s\n", metric.Spec.Name, component.Metadata.Name)
 
-	identifier := fmt.Sprintf("%s-%s", metric.Spec.Name, component.Spec.Slug)
+	identifier := utils.GetMetricSourceItentifier(metric.Metadata.Name, component.Metadata.Name, component.Metadata.ComponentType)
 	if _, exists := metricSourceMap[identifier]; exists {
 		msFacts, msFactsErr := h.prepareSourceMetricFactOperations(metric.Metadata.Facts, *component)
 		if msFactsErr != nil {

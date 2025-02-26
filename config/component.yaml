@@ -47,3 +47,27 @@ spec:
       type: DASHBOARD
       url: "https://grafana.mgm.onefootball.com"
   labels: ["aws", "service", "foo", "bar"]
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: first-live-demo-always-fails
+    componentType: service
+dpendsOn: []
+spec:
+  name: 'first-live-demo-always-fails'
+  description: null
+  configVersion: 1
+  typeId: SERVICE
+  ownerId: null
+  fields:
+    lifecycle: Active
+    tier: 4
+  links:
+    - name: Repository
+      type: REPOSITORY
+      url: "https://github.com/motain/first-live-demo-always-fails"
+    - name: Monitoring page
+      type: DASHBOARD
+      url: "https://grafana.mgm.onefootball.com"
+  labels: ["aws", "service", "foo"]
