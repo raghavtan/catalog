@@ -1,0 +1,190 @@
+package handler
+
+import (
+	"context"
+	"log"
+
+	metricdtos "github.com/motain/fact-collector/internal/modules/metric/dtos"
+	"github.com/motain/fact-collector/internal/modules/scorecard/dtos"
+	"github.com/motain/fact-collector/internal/modules/scorecard/repository"
+	"github.com/motain/fact-collector/internal/modules/scorecard/resources"
+	"github.com/motain/fact-collector/internal/utils/drift"
+	"github.com/motain/fact-collector/internal/utils/yaml"
+)
+
+type ApplyHandler struct {
+	repository repository.RepositoryInterface
+}
+
+func NewApplyHandler(
+	repository repository.RepositoryInterface,
+) *ApplyHandler {
+	return &ApplyHandler{repository: repository}
+}
+
+func (h *ApplyHandler) Apply() string {
+	configScorecards, errConfig := yaml.Parse[dtos.ScorecardDTO](yaml.Config, dtos.GetScorecardUniqueKey)
+	if errConfig != nil {
+		log.Fatalf("error: %v", errConfig)
+	}
+
+	stateMetrics, errMetricState := yaml.Parse[metricdtos.MetricDTO](yaml.State, metricdtos.GetMetricUniqueKey)
+	if errMetricState != nil {
+		log.Fatalf("error: %v", errMetricState)
+	}
+
+	for _, scorecard := range configScorecards {
+		for _, criterion := range scorecard.Spec.Criteria {
+			criterion.HasMetricValue.MetricDefinitionId = stateMetrics[criterion.HasMetricValue.MetricName].Spec.ID
+		}
+	}
+
+	stateScorecards, errState := yaml.Parse[dtos.ScorecardDTO](yaml.State, dtos.GetScorecardUniqueKey)
+	if errState != nil {
+		log.Fatalf("error: %v", errState)
+	}
+
+	created, updated, deleted, unchanged := drift.Detect(
+		stateScorecards,
+		configScorecards,
+		dtos.GetScorecardID,
+		dtos.SetScorecardID,
+		dtos.IsScoreCardEqual,
+	)
+	h.handleDeleted(deleted)
+
+	result := make([]*dtos.ScorecardDTO, 0)
+	result = h.handleUnchanged(result, unchanged)
+	result = h.handleCreated(result, created)
+	result = h.handleUpdated(result, updated, stateScorecards)
+
+	err := yaml.WriteState[dtos.ScorecardDTO](result)
+	if err != nil {
+		log.Fatalf("error writing scorecards to file: %v", err)
+	}
+
+	return ""
+}
+
+func (h *ApplyHandler) handleDeleted(scorecards map[string]*dtos.ScorecardDTO) {
+	for _, scorecardDTO := range scorecards {
+		errScorecard := h.repository.Delete(context.Background(), *scorecardDTO.Spec.ID)
+		if errScorecard != nil {
+			panic(errScorecard)
+		}
+	}
+}
+
+func (h *ApplyHandler) handleUnchanged(result []*dtos.ScorecardDTO, scorecards map[string]*dtos.ScorecardDTO) []*dtos.ScorecardDTO {
+	for _, scorecardDTO := range scorecards {
+		result = append(result, scorecardDTO)
+	}
+
+	return result
+}
+
+func (h *ApplyHandler) handleCreated(result []*dtos.ScorecardDTO, scorecards map[string]*dtos.ScorecardDTO) []*dtos.ScorecardDTO {
+	for _, scorecardDTO := range scorecards {
+		scorecard := h.scorecardDTOToResource(scorecardDTO)
+
+		id, criteriaMap, errScorecard := h.repository.Create(context.Background(), scorecard)
+		if errScorecard != nil {
+			panic(errScorecard)
+		}
+
+		scorecardDTO.Spec.ID = &id
+		for _, criterion := range scorecardDTO.Spec.Criteria {
+			criterion.HasMetricValue.ID = criteriaMap[criterion.HasMetricValue.Name]
+		}
+		result = append(result, scorecardDTO)
+	}
+
+	return result
+}
+
+func (h *ApplyHandler) handleUpdated(
+	result []*dtos.ScorecardDTO,
+	scorecards map[string]*dtos.ScorecardDTO,
+	stateScorecards map[string]*dtos.ScorecardDTO,
+) []*dtos.ScorecardDTO {
+	for _, scorecardDTO := range scorecards {
+
+		stateScorecard, ok := stateScorecards[scorecardDTO.Spec.Name]
+		if !ok {
+			continue
+		}
+
+		created, updated, deleted, _ := drift.Detect(
+			h.mapCriteria(stateScorecard.Spec.Criteria),
+			h.mapCriteria(scorecardDTO.Spec.Criteria),
+			dtos.GetCriterionID,
+			dtos.SetCriterionID,
+			dtos.IsCriterionEqual,
+		)
+
+		deletedIDs := make([]string, len(deleted))
+		i := 0
+		for _, criterion := range deleted {
+			deletedIDs[i] = criterion.HasMetricValue.MetricDefinitionId
+			i += 1
+		}
+
+		scorecard := h.scorecardDTOToResource(scorecardDTO)
+		errScorecard := h.repository.Update(
+			context.Background(),
+			scorecard,
+			h.criteriaDTOToResource(created),
+			h.criteriaDTOToResource(updated),
+			deletedIDs,
+		)
+		if errScorecard != nil {
+			panic(errScorecard)
+		}
+
+		result = append(result, scorecardDTO)
+	}
+
+	return result
+}
+
+func (h *ApplyHandler) mapCriteria(criteria []*dtos.Criterion) map[string]*dtos.Criterion {
+	criteriaMap := make(map[string]*dtos.Criterion)
+	for _, criterion := range criteria {
+		criteriaMap[criterion.HasMetricValue.Name] = criterion
+	}
+	return criteriaMap
+}
+
+func (h *ApplyHandler) scorecardDTOToResource(scorecardDTO *dtos.ScorecardDTO) resources.Scorecard {
+	return resources.Scorecard{
+		ID:                  scorecardDTO.Spec.ID,
+		Name:                scorecardDTO.Spec.Name,
+		Description:         scorecardDTO.Spec.Description,
+		OwnerID:             scorecardDTO.Spec.OwnerID,
+		State:               scorecardDTO.Spec.State,
+		ComponentTypeIDs:    scorecardDTO.Spec.ComponentTypeIDs,
+		Importance:          scorecardDTO.Spec.Importance,
+		ScoringStrategyType: scorecardDTO.Spec.ScoringStrategyType,
+		Criteria:            h.criteriaDTOToResource(h.mapCriteria(scorecardDTO.Spec.Criteria)),
+	}
+}
+
+func (h *ApplyHandler) criteriaDTOToResource(criteriaDTO map[string]*dtos.Criterion) []*resources.Criterion {
+	criteria := make([]*resources.Criterion, len(criteriaDTO))
+	i := 0
+	for _, criterion := range criteriaDTO {
+		criteria[i] = &resources.Criterion{
+			HasMetricValue: resources.MetricValue{
+				ID:                 criterion.HasMetricValue.ID,
+				Weight:             criterion.HasMetricValue.Weight,
+				Name:               criterion.HasMetricValue.Name,
+				MetricName:         criterion.HasMetricValue.MetricName,
+				MetricDefinitionId: criterion.HasMetricValue.MetricDefinitionId,
+				ComparatorValue:    criterion.HasMetricValue.ComparatorValue,
+				Comparator:         criterion.HasMetricValue.Comparator,
+			},
+		}
+		i += 1
+	}
+	return criteria
+}

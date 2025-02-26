@@ -108,7 +108,7 @@ func (r *Repository) Update(ctx context.Context, metric resources.Metric) error 
 
 	variables := map[string]interface{}{
 		"cloudId":     r.compass.GetCompassCloudId(),
-		"id":          *metric.ID,
+		"id":          metric.ID,
 		"name":        metric.Name,
 		"description": metric.Description,
 		"unit":        metric.Format.Unit,

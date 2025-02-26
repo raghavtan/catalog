@@ -7,7 +7,7 @@ type MetricFormat struct {
 
 // Metric represents a metric with its details.
 type Metric struct {
-	ID          *string      // ID is the unique identifier of the metric.
+	ID          string       // ID is the unique identifier of the metric.
 	Name        string       // Name is the name of the metric.
 	Description string       // Description provides details about the metric.
 	Format      MetricFormat // Format specifies the format of the metric.

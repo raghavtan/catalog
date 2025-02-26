@@ -13,43 +13,72 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func ParseState[T any]() ([]*T, error) {
-	tKind, kindErr := GetKindFromGeneric(fmt.Sprintf("%T", new(T)))
-	if kindErr != nil {
-		return nil, kindErr
+type DefinitionType string
+
+const (
+	State  DefinitionType = "state"
+	Config DefinitionType = "config"
+)
+
+func Parse[T any](defintionType DefinitionType, getKey func(def *T) string) (map[string]*T, error) {
+	filePath, pathErr := getFilePath[T](defintionType)
+	if pathErr != nil {
+		return nil, pathErr
 	}
 
-	filePath := fmt.Sprintf(".state/%s.yaml", tKind)
-	if _, err := os.Stat(filePath); os.IsNotExist(err) {
-		return []*T{}, nil
+	if filePath == "" {
+		return make(map[string]*T), nil
 	}
 
-	res, parseErr := parse[T](filePath)
+	defintions, parseErr := parse[T](filePath)
 	if parseErr != nil {
 		return nil, errors.Join(errors.New("failed to parse state file"), parseErr)
 	}
 
-	return res, nil
+	mappedDefinition := make(map[string]*T, len(defintions))
+	for _, defintion := range defintions {
+		key := getKey(defintion)
+		mappedDefinition[key] = defintion
+	}
+
+	return mappedDefinition, nil
 }
 
-func ParseConfig[T any]() ([]*T, error) {
-	tKind, kindErr := GetKindFromGeneric(fmt.Sprintf("%T", new(T)))
-	if kindErr != nil {
-		return nil, kindErr
+// ParseFiltered parses a YAML file based on the provided DefinitionType, filters the parsed definitions using the provided filter function,
+// and returns a map of the filtered definitions keyed by the result of the getKey function.
+//
+// T is a generic type parameter representing the type of the definitions.
+//
+// Parameters:
+//   - defintionType: The type of the definitions to parse.
+//   - getKey: A function that takes a pointer to a definition of type T and returns a string key for that definition.
+//   - filter: A function that takes a pointer to a definition of type T and returns a boolean indicating whether the definition should be included in the result.
+//
+// Returns:
+//   - A map where the keys are the results of the getKey function and the values are pointers to the filtered definitions of type T.
+//   - An error if there was an issue getting the file path or parsing the YAML file.
+func ParseFiltered[T any](defintionType DefinitionType, getKey func(def *T) string, filter func(def *T) bool) (map[string]*T, error) {
+	filePath, pathErr := getFilePath[T](defintionType)
+	if pathErr != nil {
+		return nil, pathErr
 	}
 
-	filePath := fmt.Sprintf("config/%s.yaml", tKind)
-	if _, err := os.Stat(filePath); os.IsNotExist(err) {
-		return []*T{}, nil
-	}
-
-	res, parseErr := parse[T](filePath)
+	defintions, parseErr := parse[T](filePath)
 	if parseErr != nil {
-		log.Printf("Failed to parse state: %v", parseErr)
-		return nil, errors.Join(errors.New("failed to parse config file"), parseErr)
+		return nil, errors.Join(errors.New("failed to parse state file"), parseErr)
 	}
 
-	return res, nil
+	mappedDefinition := make(map[string]*T)
+	for _, defintion := range defintions {
+		if !filter(defintion) {
+			continue
+		}
+
+		key := getKey(defintion)
+		mappedDefinition[key] = defintion
+	}
+
+	return mappedDefinition, nil
 }
 
 func GetKindFromGeneric(typeName string) (string, error) {
@@ -119,4 +148,28 @@ func WriteState[T any](data []*T) error {
 	}
 
 	return os.WriteFile(fmt.Sprintf(".state/%s.yaml", tKind), buffer.Bytes(), 0644)
+}
+
+func getFilePath[T any](defintionType DefinitionType) (string, error) {
+	var fileLocation string
+	switch defintionType {
+	case State:
+		fileLocation = ".state"
+	case Config:
+		fileLocation = "config"
+	default:
+		log.Fatalf("unknown definition type: %s", defintionType)
+	}
+
+	tKind, kindErr := GetKindFromGeneric(fmt.Sprintf("%T", new(T)))
+	if kindErr != nil {
+		return "", kindErr
+	}
+
+	filePath := fmt.Sprintf("%s/%s.yaml", fileLocation, tKind)
+	if _, err := os.Stat(filePath); os.IsNotExist(err) {
+		return "", nil
+	}
+
+	return filePath, nil
 }

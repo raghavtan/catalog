@@ -27,7 +27,7 @@ func NewTrackHandler(
 
 func (h *TrackHandler) Track(componentType, componentName, metricName string) string {
 
-	stateMetricSource, errMSState := yaml.ParseState[dtos.MetricSourceDTO]()
+	stateMetricSource, errMSState := yaml.Parse[dtos.MetricSourceDTO](yaml.State, dtos.GetMetricSourceUniqueKey)
 	if errMSState != nil {
 		log.Fatalf("error: %v", errMSState)
 	}

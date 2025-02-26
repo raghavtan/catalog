@@ -1,5 +1,7 @@
 package dtos
 
+import "reflect"
+
 // MetricDTO is a data transfer object representing a metric definition.
 type MetricDTO struct {
 	APIVersion string `yaml:"apiVersion"`
@@ -11,6 +13,22 @@ type MetricDTO struct {
 		Facts         FactOperations    `yaml:"facts"`
 	} `yaml:"metadata"`
 	Spec MetricSpec `yaml:"spec"`
+}
+
+func GetMetricUniqueKey(m *MetricDTO) string {
+	return m.Spec.Name
+}
+
+func SetMetricID(m *MetricDTO, id string) {
+	m.Spec.ID = id
+}
+
+func GetMetricID(m *MetricDTO) string {
+	return m.Spec.ID
+}
+
+func IsEqualMetric(m1, m2 *MetricDTO) bool {
+	return m1.Spec.Name == m2.Spec.Name && m1.Spec.Description == m2.Spec.Description && reflect.DeepEqual(m1.Spec.Format, m2.Spec.Format)
 }
 
 type FactOperations struct {
@@ -45,7 +63,7 @@ type Fact struct {
 }
 
 type MetricSpec struct {
-	ID          *string          `yaml:"id"`
+	ID          string           `yaml:"id"`
 	Name        string           `yaml:"name"`
 	Description string           `yaml:"description"`
 	Format      MetricSpecFormat `yaml:"format"`
@@ -55,6 +73,13 @@ type MetricSpecFormat struct {
 	Unit string `yaml:"unit"`
 }
 
+type MetricSourceStatus string
+
+const (
+	ActiveMetricSourceStatus   MetricSourceStatus = "active"
+	InactiveMetricSourceStatus MetricSourceStatus = "inactvie"
+)
+
 // MetricSourceDTO is a data transfer object representing a metric source definition.
 type MetricSourceDTO struct {
 	APIVersion string                  `yaml:"apiVersion"`
@@ -63,11 +88,23 @@ type MetricSourceDTO struct {
 	Spec       MetricSourceSpecDTO     `yaml:"spec"`
 }
 
+func GetMetricSourceUniqueKey(m *MetricSourceDTO) string {
+	return m.Spec.Name
+}
+
 type MetricSourceMetadataDTO struct {
 	Name          string         `yaml:"name"`
 	ComponentType []string       `yaml:"componentType"`
 	Status        string         `yaml:"status"`
 	Facts         FactOperations `yaml:"facts"`
+}
+
+func FilterOutInactiveMetricSources(metricSource *MetricSourceDTO) bool {
+	return MetricSourceStatus(metricSource.Metadata.Status) != InactiveMetricSourceStatus
+}
+
+func FilterOutActiveMetricSources(metricSource *MetricSourceDTO) bool {
+	return MetricSourceStatus(metricSource.Metadata.Status) != ActiveMetricSourceStatus
 }
 
 type MetricSourceSpecDTO struct {

@@ -3,7 +3,6 @@ package handler
 import (
 	"context"
 	"log"
-	"reflect"
 
 	"github.com/motain/fact-collector/internal/modules/metric/dtos"
 	"github.com/motain/fact-collector/internal/modules/metric/repository"
@@ -23,73 +22,29 @@ func NewApplyHandler(
 }
 
 func (h *ApplyHandler) Apply() string {
-	configMetrics, errConfig := yaml.ParseConfig[dtos.MetricDTO]()
+	configMetrics, errConfig := yaml.Parse[dtos.MetricDTO](yaml.Config, dtos.GetMetricUniqueKey)
 	if errConfig != nil {
 		log.Fatalf("error: %v", errConfig)
 	}
 
-	stateMetrics, errState := yaml.ParseState[dtos.MetricDTO]()
+	stateMetrics, errState := yaml.Parse[dtos.MetricDTO](yaml.State, dtos.GetMetricUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}
 
-	getUniqueKey := func(m *dtos.MetricDTO) string {
-		return m.Spec.Name
-	}
-	setID := func(m *dtos.MetricDTO, id string) {
-		m.Spec.ID = &id
-	}
-	getID := func(m *dtos.MetricDTO) string {
-		return *m.Spec.ID
-	}
-	isEqual := func(m1, m2 *dtos.MetricDTO) bool {
-		return m1.Spec.Name == m2.Spec.Name && m1.Spec.Description == m2.Spec.Description && reflect.DeepEqual(m1.Spec.Format, m2.Spec.Format)
-	}
+	created, updated, deleted, unchanged := drift.Detect(
+		stateMetrics,
+		configMetrics,
+		dtos.GetMetricID,
+		dtos.SetMetricID,
+		dtos.IsEqualMetric,
+	)
+	h.handleDeleted(deleted)
 
-	newMetrics, updatedMetrics, removedMetrics, unchangedMetrics := drift.Detect(stateMetrics, configMetrics, getUniqueKey, getID, setID, isEqual)
-	for _, metricDTO := range removedMetrics {
-		errMetric := h.repository.Delete(context.Background(), *metricDTO.Spec.ID)
-		if errMetric != nil {
-			panic(errMetric)
-		}
-	}
-
-	var result = unchangedMetrics
-	for _, metricDTO := range newMetrics {
-		metric := resources.Metric{
-			Name:        metricDTO.Spec.Name,
-			Description: metricDTO.Spec.Description,
-			Format: resources.MetricFormat{
-				Unit: metricDTO.Spec.Format.Unit,
-			},
-		}
-
-		id, errMetric := h.repository.Create(context.Background(), metric)
-		if errMetric != nil {
-			panic(errMetric)
-		}
-
-		metricDTO.Spec.ID = &id
-		result = append(result, metricDTO)
-	}
-
-	for _, metricDTO := range updatedMetrics {
-		metric := resources.Metric{
-			ID:          metricDTO.Spec.ID,
-			Name:        metricDTO.Spec.Name,
-			Description: metricDTO.Spec.Description,
-			Format: resources.MetricFormat{
-				Unit: metricDTO.Spec.Format.Unit,
-			},
-		}
-
-		errMetric := h.repository.Update(context.Background(), metric)
-		if errMetric != nil {
-			panic(errMetric)
-		}
-
-		result = append(result, metricDTO)
-	}
+	var result []*dtos.MetricDTO
+	result = h.handleUnchanged(result, unchanged)
+	result = h.handleCreated(result, created)
+	result = h.handleUpdated(result, updated)
 
 	err := yaml.WriteState[dtos.MetricDTO](result)
 	if err != nil {
@@ -97,4 +52,61 @@ func (h *ApplyHandler) Apply() string {
 	}
 
 	return ""
+}
+
+func (h *ApplyHandler) handleDeleted(metrics map[string]*dtos.MetricDTO) {
+	for _, metricDTO := range metrics {
+		err := h.repository.Delete(context.Background(), metricDTO.Spec.ID)
+		if err != nil {
+			panic(err)
+		}
+	}
+}
+
+func (h *ApplyHandler) handleUnchanged(result []*dtos.MetricDTO, metrics map[string]*dtos.MetricDTO) []*dtos.MetricDTO {
+	for _, metricDTO := range metrics {
+		result = append(result, metricDTO)
+	}
+	return result
+}
+
+func (h *ApplyHandler) handleCreated(result []*dtos.MetricDTO, metrics map[string]*dtos.MetricDTO) []*dtos.MetricDTO {
+	for _, metricDTO := range metrics {
+		component := metricDTOToResource(metricDTO)
+
+		id, err := h.repository.Create(context.Background(), component)
+		if err != nil {
+			panic(err)
+		}
+
+		metricDTO.Spec.ID = id
+		result = append(result, metricDTO)
+	}
+
+	return result
+}
+
+func (h *ApplyHandler) handleUpdated(result []*dtos.MetricDTO, metrics map[string]*dtos.MetricDTO) []*dtos.MetricDTO {
+	for _, metricDTO := range metrics {
+		component := metricDTOToResource(metricDTO)
+		err := h.repository.Update(context.Background(), component)
+		if err != nil {
+			panic(err)
+		}
+
+		result = append(result, metricDTO)
+	}
+
+	return result
+}
+
+func metricDTOToResource(metricDTO *dtos.MetricDTO) resources.Metric {
+	return resources.Metric{
+		ID:          metricDTO.Spec.ID,
+		Name:        metricDTO.Spec.Name,
+		Description: metricDTO.Spec.Description,
+		Format: resources.MetricFormat{
+			Unit: metricDTO.Spec.Format.Unit,
+		},
+	}
 }

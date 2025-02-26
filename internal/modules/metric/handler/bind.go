@@ -29,12 +29,12 @@ func NewBindHandler(
 }
 
 func (h *BindHandler) Bind() string {
-	stateMetrics, errState := yaml.ParseState[dtos.MetricDTO]()
+	stateMetrics, errState := yaml.Parse[dtos.MetricDTO](yaml.State, dtos.GetMetricUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}
 
-	stateComponents, errState := yaml.ParseState[componentdtos.ComponentDTO]()
+	stateComponents, errState := yaml.Parse[componentdtos.ComponentDTO](yaml.State, componentdtos.GetComponentUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}
@@ -67,7 +67,7 @@ func (h *BindHandler) Bind() string {
 	return ""
 }
 
-func (*BindHandler) getStateComponentsGroupedByType(stateComponents []*componentdtos.ComponentDTO) map[string][]*componentdtos.ComponentDTO {
+func (*BindHandler) getStateComponentsGroupedByType(stateComponents map[string]*componentdtos.ComponentDTO) map[string][]*componentdtos.ComponentDTO {
 	componentMap := make(map[string][]*componentdtos.ComponentDTO)
 	for _, component := range stateComponents {
 		componentType := component.Metadata.ComponentType
@@ -77,19 +77,16 @@ func (*BindHandler) getStateComponentsGroupedByType(stateComponents []*component
 }
 
 func (*BindHandler) getStateMetricSourceHashedByName() map[string]*dtos.MetricSourceDTO {
-	stateMetricSource, errState := yaml.ParseState[dtos.MetricSourceDTO]()
+	stateMetricSource, errState := yaml.ParseFiltered[dtos.MetricSourceDTO](
+		yaml.State,
+		dtos.GetMetricSourceUniqueKey,
+		dtos.FilterOutInactiveMetricSources,
+	)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}
 
-	metricSourceMap := make(map[string]*dtos.MetricSourceDTO)
-	for _, metricSource := range stateMetricSource {
-		if metricSource.Metadata.Status != "inactive" {
-			metricSourceMap[metricSource.Spec.Name] = metricSource
-		}
-	}
-
-	return metricSourceMap
+	return stateMetricSource
 }
 
 func (h *BindHandler) handleBind(
@@ -110,7 +107,7 @@ func (h *BindHandler) handleBind(
 		return append(result, metricSourceMap[identifier])
 	}
 
-	id, errBind := h.repository.CreateMetricSource(context.Background(), *metric.Spec.ID, *component.Spec.ID, identifier)
+	id, errBind := h.repository.CreateMetricSource(context.Background(), metric.Spec.ID, *component.Spec.ID, identifier)
 	if errBind != nil {
 		panic(errBind)
 	}
@@ -132,7 +129,7 @@ func (h *BindHandler) handleBind(
 		Spec: dtos.MetricSourceSpecDTO{
 			ID:        &id,
 			Name:      identifier,
-			Metric:    *metric.Spec.ID,
+			Metric:    metric.Spec.ID,
 			Component: *component.Spec.ID,
 		},
 	}

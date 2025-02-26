@@ -11,7 +11,7 @@ func Init() *cobra.Command {
 		Use:   "apply",
 		Short: "Apply changes to scorecards",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("apply scorecard command")
+			fmt.Println("apply scorecards command")
 			handler := initializeHandler()
 			fmt.Println(handler.Apply())
 		},

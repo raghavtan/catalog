@@ -26,68 +26,27 @@ func NewApplyHandler(
 }
 
 func (h *ApplyHandler) Apply() string {
-	configComponents, errConfig := yaml.ParseConfig[dtos.ComponentDTO]()
+	configComponents, errConfig := yaml.Parse[dtos.ComponentDTO](yaml.Config, dtos.GetComponentUniqueKey)
 	if errConfig != nil {
 		log.Fatalf("error: %v", errConfig)
 	}
 
-	stateComponents, errState := yaml.ParseState[dtos.ComponentDTO]()
+	stateComponents, errState := yaml.Parse[dtos.ComponentDTO](yaml.State, dtos.GetComponentUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
-	}
-
-	getUniqueKey := func(c *dtos.ComponentDTO) string {
-		return c.Spec.Name
-	}
-	setID := func(c *dtos.ComponentDTO, id string) {
-		c.Spec.ID = &id
-	}
-	getID := func(c *dtos.ComponentDTO) string {
-		return *c.Spec.ID
-	}
-
-	isEqualLinks := func(l1, l2 []dtos.Link) bool {
-		for i, link := range l1 {
-			if link.Name != l2[i].Name || link.Type != l2[i].Type || link.URL != l2[i].URL {
-				return false
-			}
-		}
-		return true
-	}
-
-	isEqualLabels := func(l1, l2 []string) bool {
-		if len(l1) != len(l2) {
-			return false
-		}
-		for i, label := range l1 {
-			if label != l2[i] {
-				return false
-			}
-		}
-		return true
-	}
-
-	isEqual := func(c1, c2 *dtos.ComponentDTO) bool {
-		return c1.Spec.Name == c2.Spec.Name &&
-			c1.Spec.Description == c2.Spec.Description &&
-			c1.Spec.ConfigVersion == c2.Spec.ConfigVersion &&
-			c1.Spec.TypeID == c2.Spec.TypeID &&
-			c1.Spec.OwnerID == c2.Spec.OwnerID &&
-			isEqualLinks(c1.Spec.Links, c2.Spec.Links) &&
-			isEqualLabels(c1.Spec.Labels, c2.Spec.Labels)
 	}
 
 	created, updated, deleted, unchanged := drift.Detect(
 		stateComponents,
 		configComponents,
-		getUniqueKey,
-		getID,
-		setID,
-		isEqual,
+		dtos.GetComponentID,
+		dtos.SetComponentID,
+		dtos.IsEqualComponent,
 	)
 	h.handleDeleted(deleted)
 
-	var result = unchanged
+	var result []*dtos.ComponentDTO
+	result = h.handleUnchanged(result, unchanged)
 	result = h.handleCreated(result, created)
 	result = h.handleUpdated(result, updated)
 
@@ -99,7 +58,7 @@ func (h *ApplyHandler) Apply() string {
 	return ""
 }
 
-func (h *ApplyHandler) handleDeleted(components []*dtos.ComponentDTO) {
+func (h *ApplyHandler) handleDeleted(components map[string]*dtos.ComponentDTO) {
 	for _, componentDTO := range components {
 		errComponent := h.repository.Delete(context.Background(), *componentDTO.Spec.ID)
 		if errComponent != nil {
@@ -108,7 +67,14 @@ func (h *ApplyHandler) handleDeleted(components []*dtos.ComponentDTO) {
 	}
 }
 
-func (h *ApplyHandler) handleCreated(result, components []*dtos.ComponentDTO) []*dtos.ComponentDTO {
+func (h *ApplyHandler) handleUnchanged(result []*dtos.ComponentDTO, components map[string]*dtos.ComponentDTO) []*dtos.ComponentDTO {
+	for _, componentDTO := range components {
+		result = append(result, componentDTO)
+	}
+	return result
+}
+
+func (h *ApplyHandler) handleCreated(result []*dtos.ComponentDTO, components map[string]*dtos.ComponentDTO) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		component := componentDTOToResource(componentDTO)
 
@@ -125,7 +91,7 @@ func (h *ApplyHandler) handleCreated(result, components []*dtos.ComponentDTO) []
 	return result
 }
 
-func (h *ApplyHandler) handleUpdated(result, components []*dtos.ComponentDTO) []*dtos.ComponentDTO {
+func (h *ApplyHandler) handleUpdated(result []*dtos.ComponentDTO, components map[string]*dtos.ComponentDTO) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		component := componentDTOToResource(componentDTO)
 		errComponent := h.repository.Update(context.Background(), component)

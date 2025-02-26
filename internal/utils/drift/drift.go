@@ -1,44 +1,35 @@
 package drift
 
 func Detect[T any](
-	stateList,
-	configList []*T,
-	getUniqueKey func(*T) string,
+	stateMap, configMap map[string]*T,
 	getID func(*T) string,
 	setID func(*T, string),
 	isEqual func(*T, *T) bool,
-) (created, updated, deleted, unchanged []*T) {
-	var createdList, updatedList, deletedList, unchangedList []*T
+) (created, updated, deleted, unchanged map[string]*T) {
+	createdList := make(map[string]*T)
+	updatedList := make(map[string]*T)
+	deletedList := make(map[string]*T)
+	unchangedList := make(map[string]*T)
 
-	stateListMap := make(map[string]*T)
-	configListMap := make(map[string]*T)
-
-	for _, stateItem := range stateList {
-		stateListMap[getUniqueKey(stateItem)] = stateItem
-	}
-
-	for _, configItem := range configList {
-		configListMap[getUniqueKey(configItem)] = configItem
-	}
-
-	for name, stateItem := range stateListMap {
-		configItem, found := configListMap[name]
+	for key, stateItem := range stateMap {
+		configItem, found := configMap[key]
 		if !found {
-			deletedList = append(deletedList, stateItem)
+			deletedList[key] = stateItem
 			continue
 		}
+
 		setID(configItem, getID(stateItem))
 		if isEqual(stateItem, configItem) {
-			unchangedList = append(unchangedList, configItem)
+			unchangedList[key] = configItem
 			continue
 		}
 		setID(configItem, getID(stateItem))
-		updatedList = append(updatedList, configItem)
+		updatedList[key] = configItem
 	}
 
-	for name, configItem := range configListMap {
-		if _, found := stateListMap[name]; !found {
-			createdList = append(createdList, configItem)
+	for key, configItem := range configMap {
+		if _, found := stateMap[key]; !found {
+			createdList[key] = configItem
 		}
 	}
 
