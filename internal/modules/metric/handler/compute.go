@@ -12,19 +12,19 @@ import (
 	"github.com/motain/fact-collector/internal/utils/yaml"
 )
 
-type TrackHandler struct {
+type ComputeHandler struct {
 	repository      repository.RepositoryInterface
 	factInterpreter factinterpreter.FactInterpreterInterface
 }
 
-func NewTrackHandler(
+func NewComputeHandler(
 	repository repository.RepositoryInterface,
 	factInterpreter factinterpreter.FactInterpreterInterface,
-) *TrackHandler {
-	return &TrackHandler{repository: repository, factInterpreter: factInterpreter}
+) *ComputeHandler {
+	return &ComputeHandler{repository: repository, factInterpreter: factInterpreter}
 }
 
-func (h *TrackHandler) Track(componentType, componentName, metricName string) string {
+func (h *ComputeHandler) Compute(componentType, componentName, metricName string) string {
 
 	stateMetricSource, errMSState := yaml.Parse[dtos.MetricSourceDTO](yaml.State, dtos.GetMetricSourceUniqueKey)
 	if errMSState != nil {

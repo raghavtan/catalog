@@ -1,4 +1,4 @@
-package track
+package compute
 
 import (
 	"fmt"
@@ -10,8 +10,8 @@ func Init() *cobra.Command {
 	var componentType, componentName, metricName string
 
 	cmd := &cobra.Command{
-		Use:   "track",
-		Short: "Track metrics to components",
+		Use:   "compute",
+		Short: "Compute metrics for components",
 		Run: func(cmd *cobra.Command, args []string) {
 			if componentType != "service" && componentType != "cloud-resource" && componentType != "website" && componentType != "application" {
 				fmt.Println("Invalid component type. Accepted values are: service, cloud-resource, website, application")
@@ -19,7 +19,7 @@ func Init() *cobra.Command {
 			}
 			fmt.Printf("Tracking metric '%s' for component '%s' of type '%s'\n", metricName, componentName, componentType)
 			handler := initializeHandler()
-			fmt.Println(handler.Track(componentType, componentName, metricName))
+			fmt.Println(handler.Compute(componentType, componentName, metricName))
 		},
 	}
 

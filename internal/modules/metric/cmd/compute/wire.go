@@ -1,6 +1,6 @@
 //go:build wireinject
 
-package track
+package compute
 
 import (
 	"github.com/google/go-github/v58/github"
@@ -50,10 +50,10 @@ var ProviderSet = wire.NewSet(
 	factinterpreter.NewFactInterpreter,
 	wire.Bind(new(factinterpreter.FactInterpreterInterface), new(*factinterpreter.FactInterpreter)),
 
-	// TrackHandler
-	handler.NewTrackHandler,
+	// ComputeHandler
+	handler.NewComputeHandler,
 )
 
-func initializeHandler() *handler.TrackHandler {
+func initializeHandler() *handler.ComputeHandler {
 	panic(wire.Build(ProviderSet))
 }
