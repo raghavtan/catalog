@@ -21,7 +21,15 @@ func GetComponentID(c *ComponentDTO) string {
 
 func IsEqualLinks(l1, l2 []Link) bool {
 	for i, link := range l1 {
-		if link.Name != l2[i].Name || link.Type != l2[i].Type || link.URL != l2[i].URL {
+		if link.Name != l2[i].Name {
+			return false
+		}
+
+		if link.Type != l2[i].Type {
+			return false
+		}
+
+		if link.URL != l2[i].URL {
 			return false
 		}
 	}
@@ -32,6 +40,7 @@ func IsEqualLabels(l1, l2 []string) bool {
 	if len(l1) != len(l2) {
 		return false
 	}
+
 	for i, label := range l1 {
 		if label != l2[i] {
 			return false

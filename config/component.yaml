@@ -22,7 +22,7 @@ spec:
     - name: Monitoring page
       type: DASHBOARD
       url: "https://grafana.mgm.onefootball.com"
-  labels: ["aws", "service", "foo", "bar"]
+  labels: ["aws", "service", "foo"]
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Component
