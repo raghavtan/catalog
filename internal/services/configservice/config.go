@@ -11,6 +11,7 @@ import (
 
 type ConfigServiceInterface interface {
 	GetGithubOrg() string
+	GetGithubToken() string
 	GetGithubUser() string
 	GetCompassToken() string
 	GetCompassHost() string
@@ -29,21 +30,29 @@ func NewConfigService() *ConfigService {
 }
 
 func (c *ConfigService) GetGithubOrg() string {
-	return os.Getenv("FC_GITHUB_ORG")
+	githubOrg := os.Getenv("GITHUB_ORG")
+	if githubOrg == "" {
+		return "motain"
+	}
+	return githubOrg
+}
+
+func (c *ConfigService) GetGithubToken() string {
+	return os.Getenv("GITHUB_TOKEN")
 }
 
 func (c *ConfigService) GetGithubUser() string {
-	return os.Getenv("FC_GITHUB_USER")
+	return os.Getenv("GITHUB_USER")
 }
 
 func (c *ConfigService) GetCompassToken() string {
-	return os.Getenv("FC_COMPASS_TOKEN")
+	return os.Getenv("COMPASS_TOKEN")
 }
 
 func (c *ConfigService) GetCompassHost() string {
-	return os.Getenv("FC_COMPASS_HOST")
+	return os.Getenv("COMPASS_HOST")
 }
 
 func (c *ConfigService) GetCompassCloudId() string {
-	return os.Getenv("FC_COMPASS_CLOUD_ID")
+	return os.Getenv("COMPASS_CLOUD_ID")
 }

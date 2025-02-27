@@ -21,9 +21,14 @@ func NewGitHubRepositoriesClient(
 	kr keyringservice.KeyringServiceInterface,
 ) *github.RepositoriesService {
 	serviceName := "gh:github.com"
-	token, tokenErr := kr.Get(serviceName, cfg.GetGithubUser())
-	if tokenErr != nil {
-		panic(tokenErr)
+
+	token := cfg.GetGithubToken()
+	if token == "" {
+		var tokenErr error
+		token, tokenErr = kr.Get(serviceName, cfg.GetGithubUser())
+		if tokenErr != nil {
+			panic(tokenErr)
+		}
 	}
 
 	ctx := context.Background()
