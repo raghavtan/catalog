@@ -44,77 +44,15 @@ To ensure all dependencies are correct and match their checksums, run:
 go mod verify
 ```
 
-**Generate Wire Dependencies**
+Achieving Decoupling and Maintainability with DI & IoC
 
-[Wire](https://github.com/google/wire) is a dependency injection tool for Go that eliminates the need for manually wiring dependencies. It generates code that initializes dependencies automatically based on provider functions.
+To build scalable and maintainable software, we aim for loose coupling, where components interact with minimal dependencies on each other. One way to achieve this is through Dependency Injection (DI), a design pattern that shifts the responsibility of creating and managing dependencies from within a class to an external source. Instead of hardcoding dependencies, they are "injected" from the outside, making the system more modular, testable, and easier to modify.
 
-**How Wire Works:**
+Inversion of Control (IoC) takes this idea further by reversing the traditional flow of control. Instead of a class managing its dependencies, an external framework or container takes over, handling object creation and lifecycle. DI is a key implementation of IoC, ensuring that dependencies are managed efficiently and reducing tight coupling between components.
 
-1. Define an Interface for Each Service
+Tools like Wire, a compile-time dependency injection framework for Go, help automate this process by generating code to wire dependencies together, simplifying configuration and improving efficiency.
 
-    Every service that should be injected needs an interface.
-
-    ```go
-    type RepositoryInterface interface {
-        FetchData() string
-    }
-    ```
-
-2. Provide a Concrete Implementation
-
-    A struct implements the interface.
-
-    ```go
-    type Repository struct {
-        config *ConfigService
-    }
-
-    func (r *Repository) FetchData() string {
-        return "data"
-    }
-    ```
-
-3. Bind the Interface to the Implementation
-
-    Wire needs an explicit binding to know which struct fulfills the interface.
-
-    ```go
-    var ProviderSet = wire.NewSet(
-        NewRepository,
-        wire.Bind(new(RepositoryInterface), new(*Repository)),
-    )
-    ```
-
-4. Use Dependency in a Constructor
-
-    Wire ensures dependencies are injected when calling constructors.
-
-    ```go
-    type Handler struct {
-        repo RepositoryInterface
-    }
-
-    func NewHandler(repo RepositoryInterface) *Handler {
-        return &Handler{repo: repo}
-    }
-    ```
-
-5. Generate Dependency Code
-
-    Running the command below will generate the required dependency injection code for the project:
-
-    ```bash
-    wire gen ./internal/app
-    ```
-
-    Wire will build the dependency chain, resolving the correct constructors automatically.
-
-To wire all the subcommands at once you can also run:
-
-```bash
-  make wire-all
-```
-
+For more about how to use wire in this project refer the the [wire page](./docs/wire.md).
 
 ## Configuration
 
@@ -142,38 +80,25 @@ go test ./internal/...
 go test ./tests/...
 ```
 
-## Project Structure
+## Project Architecture Overview
 
-```bash
-fact-collector/
-├── cmd                                 # This is the root of the command
-│   └── root.go                         # All modules are called here
-├── go.mod
-├── go.sum
-├── internal
-│   ├── app                             # Wire related folder
-│   │   ├── wire.go                     # Register here the dependencies
-│   │   └── wire_gen.go                 # Do not edit manually !!!
-│   ├── modules                         # All modules are defined here
-│   │   └── metric                      # metric is a module
-│   │       ├── handler                 # Handlers expose functionalities
-│   │       │   ├── handler.go
-│   │       │   └── handler_test.go
-│   │       └── repository              # Repositories handle data
-│   │           ├── repository.go
-│   │           └── repository_test.go
-│   └── services                        # Services are common resources
-│       ├── configservice
-│       │   ├── config.go
-│       │   └── config_test.go
-│       ├── githubservice
-│       │   └── github.go
-│       └── keyringservice
-│           └── keyring.go
-├── main.go                             # TBR | point to cmd/root instead
-└── tests                               # Functional tests
-    └── cli_test.go
-```
+The project is structured around a root command, which initializes and organizes subcommands. Each subcommand represents a specific module, encapsulating all related logic and functionality.
+Module Structure
+
+A module consists of the following components:
+
+- Commands – The controller layer, responsible for triggering the DI framework, validating input, and calling the appropriate handler.
+- Handlers – The logic layer, orchestrating service calls to retrieve or store data from the source of truth (repository), which in our case is- Compass.
+- Repositories – Abstract interactions with the source of truth, ensuring data consistency and separation of concerns.
+- Resources – Core domain objects representing business entities.
+- DTOs (Data Transfer Objects) – Used for reading and writing definitions, ensuring structured data exchange.
+- Services – Abstractions for external resources commonly used across modules.
+- Utils – Collections of lightweight, self-contained functions that do not interact with third-party services and are simple enough to not require- mocking in tests.
+
+Module Encapsulation & Dependencies
+
+All services and functions within a module should be used only internally. The only resources that other modules may access are DTOs and utils, ensuring a clean and modular architecture with well-defined boundaries.
+
 
 ## Contribution
 
