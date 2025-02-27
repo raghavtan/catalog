@@ -7,45 +7,51 @@ import (
 )
 
 func Expression(expr string) (bool, error) {
-	// Trim spaces
 	expr = strings.TrimSpace(expr)
+	op, err := findOperator(expr)
+	if err != nil {
+		return false, err
+	}
 
-	// Supported operators
+	left, right, err := splitOperands(expr, op)
+	if err != nil {
+		return false, err
+	}
+
+	return evaluate(left, right, op)
+}
+
+func findOperator(expr string) (string, error) {
 	operators := []string{">=", "<=", ">", "<", "==", "!="}
-
-	// Find the operator in the expression
-	var op string
 	for _, o := range operators {
 		if strings.Contains(expr, o) {
-			op = o
-			break
+			return o, nil
 		}
 	}
+	return "", fmt.Errorf("no valid operator found in expression")
+}
 
-	if op == "" {
-		return false, fmt.Errorf("no valid operator found in expression")
-	}
-
-	// Split the expression into left and right operands
+func splitOperands(expr, op string) (float64, float64, error) {
 	parts := strings.Split(expr, op)
 	if len(parts) != 2 {
-		return false, fmt.Errorf("invalid expression format")
+		return 0, 0, fmt.Errorf("invalid expression format")
 	}
 
 	leftStr, rightStr := strings.TrimSpace(parts[0]), strings.TrimSpace(parts[1])
-
-	// Convert to float (supports both int and float inputs)
 	left, err := strconv.ParseFloat(leftStr, 64)
 	if err != nil {
-		return false, fmt.Errorf("invalid left operand: %v", err)
+		return 0, 0, fmt.Errorf("invalid left operand: %v", err)
 	}
 
 	right, err := strconv.ParseFloat(rightStr, 64)
 	if err != nil {
-		return false, fmt.Errorf("invalid right operand: %v", err)
+		return 0, 0, fmt.Errorf("invalid right operand: %v", err)
 	}
 
-	// Evaluate based on the operator
+	return left, right, nil
+}
+
+func evaluate(left, right float64, op string) (bool, error) {
 	switch op {
 	case ">":
 		return left > right, nil

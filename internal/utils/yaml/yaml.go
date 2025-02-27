@@ -133,7 +133,6 @@ func WriteState[T any](data []*T) error {
 	}
 
 	stateFile := fmt.Sprintf(".state/%s.yaml", tKind)
-	// Create the directory if it does not exist
 	dir := filepath.Dir(stateFile)
 	if err := os.MkdirAll(dir, os.ModePerm); err != nil {
 		return err
@@ -146,18 +145,12 @@ func WriteState[T any](data []*T) error {
 		return nil
 	}
 
-	var buffer bytes.Buffer
-	encoder := yaml.NewEncoder(&buffer)
-	for _, item := range data {
-		if err := encoder.Encode(item); err != nil {
-			return err
-		}
-	}
-	if err := encoder.Close(); err != nil {
-		return err
+	buffer, encodeErr := encodeData(data)
+	if encodeErr != nil {
+		return encodeErr
 	}
 
-	return os.WriteFile(fmt.Sprintf(".state/%s.yaml", tKind), buffer.Bytes(), 0644)
+	return os.WriteFile(fmt.Sprintf(".state/%s.yaml", tKind), buffer, 0644)
 }
 
 func getFilePath[T any](defintionType DefinitionType) (string, error) {
@@ -182,4 +175,19 @@ func getFilePath[T any](defintionType DefinitionType) (string, error) {
 	}
 
 	return filePath, nil
+}
+
+func encodeData[T any](data []*T) ([]byte, error) {
+	var buffer bytes.Buffer
+	encoder := yaml.NewEncoder(&buffer)
+	for _, item := range data {
+		if encodeErr := encoder.Encode(item); encodeErr != nil {
+			return nil, encodeErr
+		}
+	}
+	if closeErr := encoder.Close(); closeErr != nil {
+		return nil, closeErr
+	}
+
+	return buffer.Bytes(), nil
 }

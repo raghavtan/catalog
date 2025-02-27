@@ -11,6 +11,19 @@ func Detect[T any](
 	deletedList := make(map[string]*T)
 	unchangedList := make(map[string]*T)
 
+	processStateItems(stateMap, configMap, getID, setID, isEqual, updatedList, deletedList, unchangedList)
+	processConfigItems(stateMap, configMap, createdList)
+
+	return createdList, updatedList, deletedList, unchangedList
+}
+
+func processStateItems[T any](
+	stateMap, configMap map[string]*T,
+	getID func(*T) string,
+	setID func(*T, string),
+	isEqual func(*T, *T) bool,
+	updatedList, deletedList, unchangedList map[string]*T,
+) {
 	for key, stateItem := range stateMap {
 		configItem, found := configMap[key]
 		if !found {
@@ -26,12 +39,15 @@ func Detect[T any](
 		setID(configItem, getID(stateItem))
 		updatedList[key] = configItem
 	}
+}
 
+func processConfigItems[T any](
+	stateMap, configMap map[string]*T,
+	createdList map[string]*T,
+) {
 	for key, configItem := range configMap {
 		if _, found := stateMap[key]; !found {
 			createdList[key] = configItem
 		}
 	}
-
-	return createdList, updatedList, deletedList, unchangedList
 }
