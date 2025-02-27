@@ -130,10 +130,10 @@ func (h *BindHandler) handleBind(
 		APIVersion: "v1",
 		Kind:       "MetricSource",
 		Metadata: dtos.MetricSourceMetadataDTO{
-			Name:          identifier,
-			ComponentType: []string{component.Metadata.ComponentType},
-			Status:        "active",
-			Facts:         msFacts,
+			Name:           identifier,
+			ComponentTypes: []string{component.Metadata.ComponentType},
+			Status:         "active",
+			Facts:          msFacts,
 		},
 		Spec: dtos.MetricSourceSpecDTO{
 			ID:        &id,

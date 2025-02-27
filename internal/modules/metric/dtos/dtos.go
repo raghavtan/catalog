@@ -107,10 +107,10 @@ func GetMetricSourceUniqueKey(m *MetricSourceDTO) string {
 }
 
 type MetricSourceMetadataDTO struct {
-	Name          string         `yaml:"name"`
-	ComponentType []string       `yaml:"componentType"`
-	Status        string         `yaml:"status"`
-	Facts         FactOperations `yaml:"facts"`
+	Name           string         `yaml:"name"`
+	ComponentTypes []string       `yaml:"componentTypes"`
+	Status         string         `yaml:"status"`
+	Facts          FactOperations `yaml:"facts"`
 }
 
 func IsActiveMetricSources(metricSource *MetricSourceDTO) bool {
