@@ -31,3 +31,5 @@ Onefootball catalog search for the following variables:
 - **COMPASS_TOKEN**: The authentication token for performing CRUD operations in Compass.
 - **COMPASS_HOST**: The Compass host domain (without protocol).
 - **COMPASS_CLOUD_ID**: A unique identifier for the Compass organization.
+
+[<- back to index](./../README.md)

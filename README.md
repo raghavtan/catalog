@@ -2,10 +2,7 @@
 
 FC is a Go-based command-line interface (CLI) designed to manage the grading system, featuring an integrated scraper that processes data points either in batches or individually for each component, populating scorecards. It adheres to the Unix principle of idempotency and modularity.
 
-## Features
-
-`TBD`
-
+For a detailed documenation about features and definitions refers the [docs](./docs/index.md).
 
 ## Installation
 

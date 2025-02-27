@@ -13,3 +13,4 @@ To interact with GitHub's APIs, a valid API token is required. This token can be
     When running locally, it's recommended to set the `GITHUB_USER` environment variable.
     This helps access the keyring and retrieve a (hopefully) valid token.
 
+[<- back to index](./index.md)
