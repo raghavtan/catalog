@@ -120,7 +120,7 @@ func TestRepository_Update(t *testing.T) {
 			args: args{
 				ctx: context.TODO(),
 				metric: resources.Metric{
-					ID:          stringPtr("metric-id"),
+					ID:          "metric-id",
 					Name:        "test-metric",
 					Description: "test-description",
 					Format: resources.MetricFormat{
@@ -148,7 +148,7 @@ func TestRepository_Update(t *testing.T) {
 			args: args{
 				ctx: context.TODO(),
 				metric: resources.Metric{
-					ID:          stringPtr("metric-id"),
+					ID:          "metric-id",
 					Name:        "test-metric",
 					Description: "test-description",
 					Format: resources.MetricFormat{
@@ -167,7 +167,7 @@ func TestRepository_Update(t *testing.T) {
 			args: args{
 				ctx: context.TODO(),
 				metric: resources.Metric{
-					ID:          stringPtr("metric-id"),
+					ID:          "metric-id",
 					Name:        "test-metric",
 					Description: "test-description",
 					Format: resources.MetricFormat{

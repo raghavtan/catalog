@@ -1,9 +1,9 @@
-package drift_test
+package drift
 
 import (
+	"fmt"
 	"testing"
 
-	"github.com/motain/fact-collector/internal/utils/drift"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -12,102 +12,121 @@ type testStruct struct {
 	Value string
 }
 
+func getID(item *testStruct) string {
+	return item.ID
+}
+
+func setID(item *testStruct, id string) {
+	item.ID = id
+}
+
+func isEqual(a, b *testStruct) bool {
+	return a.Value == b.Value
+}
+
 func TestDetect(t *testing.T) {
 	tests := []struct {
 		name              string
-		stateList         []*testStruct
-		configList        []*testStruct
-		expectedCreate    []*testStruct
-		expectedUpdate    []*testStruct
-		expectedDelete    []*testStruct
-		expectedUnchanged []*testStruct
+		stateMap          map[string]*testStruct
+		configMap         map[string]*testStruct
+		expectedCreate    map[string]*testStruct
+		expectedUpdate    map[string]*testStruct
+		expectedDelete    map[string]*testStruct
+		expectedUnchanged map[string]*testStruct
 	}{
 		{
 			name: "all unchanged",
-			stateList: []*testStruct{
-				{ID: "1", Value: "a"},
-				{ID: "2", Value: "b"},
+			stateMap: map[string]*testStruct{
+				"1": {ID: "1", Value: "a"},
+				"2": {ID: "2", Value: "b"},
 			},
-			configList: []*testStruct{
-				{ID: "1", Value: "a"},
-				{ID: "2", Value: "b"},
+			configMap: map[string]*testStruct{
+				"1": {ID: "1", Value: "a"},
+				"2": {ID: "2", Value: "b"},
 			},
-			expectedCreate: []*testStruct{},
-			expectedUpdate: []*testStruct{},
-			expectedDelete: []*testStruct{},
-			expectedUnchanged: []*testStruct{
-				{ID: "1", Value: "a"},
-				{ID: "2", Value: "b"},
+			expectedCreate: map[string]*testStruct{},
+			expectedUpdate: map[string]*testStruct{},
+			expectedDelete: map[string]*testStruct{},
+			expectedUnchanged: map[string]*testStruct{
+				"1": {ID: "1", Value: "a"},
+				"2": {ID: "2", Value: "b"},
 			},
 		},
 		{
 			name: "one created, one updated, one deleted",
-			stateList: []*testStruct{
-				{ID: "1", Value: "a"},
-				{ID: "2", Value: "b"},
+			stateMap: map[string]*testStruct{
+				"1": {ID: "1", Value: "a"},
+				"2": {ID: "2", Value: "b"},
 			},
-			configList: []*testStruct{
-				{ID: "1", Value: "a1"},
-				{ID: "3", Value: "c"},
+			configMap: map[string]*testStruct{
+				"1": {ID: "1", Value: "a"},
+				"2": {ID: "2", Value: "c"},
+				"3": {ID: "3", Value: "d"},
 			},
-			expectedCreate: []*testStruct{
-				{ID: "3", Value: "c"},
+			expectedCreate: map[string]*testStruct{
+				"3": {ID: "3", Value: "d"},
 			},
-			expectedUpdate: []*testStruct{
-				{ID: "1", Value: "a1"},
+			expectedUpdate: map[string]*testStruct{
+				"2": {ID: "2", Value: "c"},
 			},
-			expectedDelete: []*testStruct{
-				{ID: "2", Value: "b"},
+			expectedDelete: map[string]*testStruct{},
+			expectedUnchanged: map[string]*testStruct{
+				"1": {ID: "1", Value: "a"},
 			},
-			expectedUnchanged: []*testStruct{},
 		},
 		{
-			name:      "all created",
-			stateList: []*testStruct{},
-			configList: []*testStruct{
-				{ID: "1", Value: "a"},
-				{ID: "2", Value: "b"},
+			name:     "all created",
+			stateMap: map[string]*testStruct{},
+			configMap: map[string]*testStruct{
+				"1": {ID: "1", Value: "a"},
+				"2": {ID: "2", Value: "b"},
 			},
-			expectedCreate: []*testStruct{
-				{ID: "1", Value: "a"},
-				{ID: "2", Value: "b"},
+			expectedCreate: map[string]*testStruct{
+				"1": {ID: "1", Value: "a"},
+				"2": {ID: "2", Value: "b"},
 			},
-			expectedUpdate:    []*testStruct{},
-			expectedDelete:    []*testStruct{},
-			expectedUnchanged: []*testStruct{},
+			expectedUpdate:    map[string]*testStruct{},
+			expectedDelete:    map[string]*testStruct{},
+			expectedUnchanged: map[string]*testStruct{},
 		},
 		{
-			name: "all_deleted",
-			stateList: []*testStruct{
-				{ID: "1", Value: "a"},
-				{ID: "2", Value: "b"},
+			name: "all deleted",
+			stateMap: map[string]*testStruct{
+				"1": {ID: "1", Value: "a"},
+				"2": {ID: "2", Value: "b"},
 			},
-			configList:     []*testStruct{},
-			expectedCreate: []*testStruct{},
-			expectedUpdate: []*testStruct{},
-			expectedDelete: []*testStruct{
-				{ID: "1", Value: "a"},
-				{ID: "2", Value: "b"},
+			configMap:      map[string]*testStruct{},
+			expectedCreate: map[string]*testStruct{},
+			expectedUpdate: map[string]*testStruct{},
+			expectedDelete: map[string]*testStruct{
+				"1": {ID: "1", Value: "a"},
+				"2": {ID: "2", Value: "b"},
 			},
-			expectedUnchanged: []*testStruct{},
+			expectedUnchanged: map[string]*testStruct{},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			created, updated, deleted, unchanged := drift.Detect(
-				tt.stateList,
-				tt.configList,
-				func(t *testStruct) string { return t.ID },
-				func(t *testStruct) string { return t.ID },
-				func(t *testStruct, id string) { t.ID = id },
-				func(t1, t2 *testStruct) bool { return t1.Value == t2.Value },
-			)
+			created, updated, deleted, unchanged := Detect(tt.stateMap, tt.configMap, getID, setID, isEqual)
 
-			assert.ElementsMatch(t, tt.expectedCreate, created)
-			assert.ElementsMatch(t, tt.expectedUpdate, updated)
-			assert.ElementsMatch(t, tt.expectedDelete, deleted)
-			assert.ElementsMatch(t, tt.expectedUnchanged, unchanged)
+			fmt.Printf("created: %v\n", created)
+			fmt.Printf("updated: %v\n", updated)
+			fmt.Printf("deleted: %v\n", deleted)
+			fmt.Printf("unchanged: %v\n", unchanged)
+
+			matchElements(t, "created", tt.expectedCreate, created)
+			matchElements(t, "updated", tt.expectedUpdate, updated)
+			matchElements(t, "deleted", tt.expectedDelete, deleted)
+			matchElements(t, "unchanged", tt.expectedUnchanged, unchanged)
 		})
+	}
+}
+
+func matchElements(t *testing.T, mapName string, expected, actual map[string]*testStruct) {
+	for key, expectedValue := range expected {
+		actualValue, exists := actual[key]
+		assert.True(t, exists, "expected key %s to be in map %s", key, mapName)
+		assert.Equal(t, expectedValue, actualValue, "expected value for key %s to match in %s", key, mapName)
 	}
 }
