@@ -54,6 +54,13 @@ const (
 	RepoPropertiesFact FactType = "repoProperties"
 )
 
+type FactSource string
+
+const (
+	GitHubFactSource  FactSource = "github"
+	JSONAPIFactSource FactSource = "jsonapi"
+)
+
 // Fact defines a struct to handle different facts
 type Fact struct {
 	Source          string   `yaml:"source"`          // Source of the fact (e.g., "github")
@@ -96,7 +103,7 @@ type MetricSourceDTO struct {
 }
 
 func GetMetricSourceUniqueKey(m *MetricSourceDTO) string {
-	return m.Spec.Name
+	return m.Metadata.Name
 }
 
 type MetricSourceMetadataDTO struct {

@@ -84,6 +84,10 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 		return "", err
 	}
 
+	if !response.Compass.CreateComponent.Success {
+		return "", errors.New("failed to create component")
+	}
+
 	return response.Compass.CreateComponent.ComponentDetails.ID, nil
 }
 
@@ -162,6 +166,10 @@ func (r *Repository) Delete(ctx context.Context, id string) error {
 	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
 		log.Printf("Failed to create component: %v", err)
 		return err
+	}
+
+	if !response.Compass.DeleteComponent.Success {
+		return errors.New("failed to delete component")
 	}
 
 	return nil

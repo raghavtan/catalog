@@ -14,12 +14,14 @@ type FactInterpreterInterface interface {
 
 type FactInterpreter struct {
 	githhubFC factcollectors.GithubFactCollectorInterface
+	jsonAPIFC factcollectors.JSONAPIFactCollectorInterface
 }
 
 func NewFactInterpreter(
 	ghfc factcollectors.GithubFactCollectorInterface,
+	jsonAPIFC factcollectors.JSONAPIFactCollectorInterface,
 ) *FactInterpreter {
-	return &FactInterpreter{githhubFC: ghfc}
+	return &FactInterpreter{githhubFC: ghfc, jsonAPIFC: jsonAPIFC}
 }
 
 func (f *FactInterpreter) ProcessFacts(factOperations dtos.FactOperations) (float64, error) {
@@ -66,11 +68,11 @@ func (f *FactInterpreter) processConditionalOperations(factOperations dtos.FactO
 func (f *FactInterpreter) ProcessOperationsAll(facts []*dtos.Fact) (bool, error) {
 	succeed := true
 	for _, fact := range facts {
-		if fact.Source != "github" {
+		if dtos.FactSource(fact.Source) != dtos.GitHubFactSource {
 			continue
 		}
 
-		result, err := f.githhubFC.Check(*fact)
+		result, err := f.check(*fact)
 		if err != nil {
 			return false, fmt.Errorf("error: %v", err)
 		}
@@ -87,11 +89,11 @@ func (f *FactInterpreter) ProcessOperationsAll(facts []*dtos.Fact) (bool, error)
 func (f *FactInterpreter) ProcessOperationsAny(facts []*dtos.Fact) (bool, error) {
 	succeed := facts == nil
 	for _, fact := range facts {
-		if fact.Source != "github" {
+		if dtos.FactSource(fact.Source) != dtos.GitHubFactSource {
 			continue
 		}
 
-		result, err := f.githhubFC.Check(*fact)
+		result, err := f.check(*fact)
 		if err != nil {
 			return false, fmt.Errorf("error: %v", err)
 		}
@@ -106,5 +108,25 @@ func (f *FactInterpreter) ProcessOperationsAny(facts []*dtos.Fact) (bool, error)
 }
 
 func (f *FactInterpreter) processInspectOperation(fact dtos.Fact) (float64, error) {
-	return f.githhubFC.Inspect(fact)
+	if dtos.FactSource(fact.Source) == dtos.GitHubFactSource {
+		return f.githhubFC.Inspect(fact)
+	}
+
+	if dtos.FactType(fact.Source) == dtos.FactType(dtos.JSONAPIFactSource) {
+		return f.jsonAPIFC.Inspect(fact)
+	}
+
+	return 0, fmt.Errorf("error: invalid fact source %s used for inspect", fact.Source)
+}
+
+func (f *FactInterpreter) check(fact dtos.Fact) (bool, error) {
+	if dtos.FactSource(fact.Source) == dtos.GitHubFactSource {
+		return f.githhubFC.Check(fact)
+	}
+
+	if dtos.FactType(fact.Source) == dtos.FactType(dtos.JSONAPIFactSource) {
+		return f.jsonAPIFC.Check(fact)
+	}
+
+	return false, fmt.Errorf("error: invalid fact source %s used for check", fact.Source)
 }

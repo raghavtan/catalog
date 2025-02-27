@@ -80,6 +80,10 @@ func (r *Repository) Create(ctx context.Context, metric resources.Metric) (strin
 		return "", err
 	}
 
+	if !response.Compass.CreateMetricDefinition.Success {
+		return "", errors.New("failed to create metric")
+	}
+
 	return response.Compass.CreateMetricDefinition.CreateMetricDefinition.ID, nil
 }
 
@@ -165,6 +169,10 @@ func (r *Repository) Delete(ctx context.Context, id string) error {
 		return err
 	}
 
+	if !response.Compass.DeleteMetricDefinition.Success {
+		return errors.New("failed to delete metric")
+	}
+
 	return nil
 }
 
@@ -206,6 +214,10 @@ func (r *Repository) CreateMetricSource(ctx context.Context, metricID string, co
 		return "", err
 	}
 
+	if !response.Compass.CreateMetricSource.Success {
+		return "", errors.New("failed to create metric source")
+	}
+
 	return response.Compass.CreateMetricSource.CreateMetricSource.ID, nil
 }
 
@@ -238,6 +250,10 @@ func (r *Repository) DeleteMetricSource(ctx context.Context, metricSourceID stri
 	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
 		log.Printf("Failed to delete metric source: %v", err)
 		return err
+	}
+
+	if !response.Compass.DeleteMetricSource.Success {
+		return errors.New("failed to delete metric source")
 	}
 
 	return nil

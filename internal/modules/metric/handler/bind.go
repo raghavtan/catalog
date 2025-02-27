@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log"
 	"reflect"
@@ -52,7 +53,11 @@ func (h *BindHandler) Bind() string {
 			}
 
 			for _, component := range components {
-				result = h.handleBind(result, metric, component, metricSourceMap)
+				var bindErr error
+				result, bindErr = h.handleBind(result, metric, component, metricSourceMap)
+				if bindErr != nil {
+					fmt.Printf("Failed to bind metric %s to component %s: %v\n", metric.Metadata.Name, component.Metadata.Name, bindErr)
+				}
 			}
 		}
 
@@ -81,7 +86,7 @@ func (*BindHandler) getStateMetricSourceHashedByName() map[string]*dtos.MetricSo
 	stateMetricSource, errState := yaml.ParseFiltered[dtos.MetricSourceDTO](
 		yaml.State,
 		dtos.GetMetricSourceUniqueKey,
-		dtos.IsInactiveMetricSources,
+		dtos.IsActiveMetricSources,
 	)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
@@ -95,7 +100,7 @@ func (h *BindHandler) handleBind(
 	metric *dtos.MetricDTO,
 	component *componentdtos.ComponentDTO,
 	metricSourceMap map[string]*dtos.MetricSourceDTO,
-) []*dtos.MetricSourceDTO {
+) ([]*dtos.MetricSourceDTO, error) {
 	fmt.Printf("Binding metric %s to component %s\n", metric.Spec.Name, component.Metadata.Name)
 
 	identifier := utils.GetMetricSourceItentifier(metric.Metadata.Name, component.Metadata.Name, component.Metadata.ComponentType)
@@ -105,12 +110,15 @@ func (h *BindHandler) handleBind(
 			fmt.Printf("Failed to prepare facts for metric source %s: %v\n", identifier, msFactsErr)
 		}
 		metricSourceMap[identifier].Metadata.Facts = msFacts
-		return append(result, metricSourceMap[identifier])
+		return append(result, metricSourceMap[identifier]), nil
 	}
 
 	id, errBind := h.repository.CreateMetricSource(context.Background(), metric.Spec.ID, *component.Spec.ID, identifier)
 	if errBind != nil {
-		panic(errBind)
+		return nil, errors.Join(
+			fmt.Errorf("failed to create metric source for metric \"%s\", component \"%s\"", metric.Spec.ID, *component.Spec.ID),
+			errBind,
+		)
 	}
 
 	msFacts, msFactsErr := h.prepareSourceMetricFactOperations(metric.Metadata.Facts, *component)
@@ -137,7 +145,7 @@ func (h *BindHandler) handleBind(
 
 	result = append(result, &metricSourceDTO)
 
-	return result
+	return result, nil
 }
 
 func (h *BindHandler) resolveDrifts(preBind map[string]*dtos.MetricSourceDTO, postBind []*dtos.MetricSourceDTO) []*dtos.MetricSourceDTO {

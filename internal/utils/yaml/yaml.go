@@ -74,12 +74,10 @@ func ParseFiltered[T any](defintionType DefinitionType, getKey func(def *T) stri
 
 	mappedDefinition := make(map[string]*T)
 	for _, defintion := range defintions {
-		if !filter(defintion) {
-			continue
+		if filter(defintion) {
+			key := getKey(defintion)
+			mappedDefinition[key] = defintion
 		}
-
-		key := getKey(defintion)
-		mappedDefinition[key] = defintion
 	}
 
 	return mappedDefinition, nil
@@ -89,7 +87,15 @@ func GetKindFromGeneric(typeName string) (string, error) {
 	start := strings.LastIndex(typeName, ".") + 1
 	end := strings.Index(typeName, "DTO")
 
-	if start == -1 || end == -1 || start >= end {
+	if start == -1 {
+		return "", errors.New("could not extract part from type name")
+	}
+
+	if end == -1 {
+		return "", errors.New("could not extract part from type name")
+	}
+
+	if start >= end {
 		return "", errors.New("could not extract part from type name")
 	}
 

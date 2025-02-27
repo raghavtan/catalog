@@ -12,6 +12,7 @@ import (
 	"github.com/motain/fact-collector/internal/services/compassservice"
 	"github.com/motain/fact-collector/internal/services/configservice"
 	"github.com/motain/fact-collector/internal/services/githubservice"
+	"github.com/motain/fact-collector/internal/services/jsonservice"
 	"github.com/motain/fact-collector/internal/services/keyringservice"
 )
 
@@ -36,6 +37,9 @@ var ProviderSet = wire.NewSet(
 	githubservice.NewGitHubRepositoriesService,
 	wire.Bind(new(githubservice.GitHubRepositoriesServiceInterface), new(*githubservice.GitHubRepositoriesService)),
 
+	// JSONService
+	jsonservice.NewJSONService,
+
 	// --- metric module ---
 	// Repository
 	repository.NewRepository,
@@ -45,6 +49,10 @@ var ProviderSet = wire.NewSet(
 	// GithubFactCollector
 	factcollectors.NewGithubFactCollector,
 	wire.Bind(new(factcollectors.GithubFactCollectorInterface), new(*factcollectors.GithubFactCollector)),
+
+	// JSONFactCollector
+	factcollectors.NewJSONAPIFactCollector,
+	wire.Bind(new(factcollectors.JSONAPIFactCollectorInterface), new(*factcollectors.JSONAPIFactCollector)),
 
 	// FactInterpreter
 	factinterpreter.NewFactInterpreter,

@@ -109,6 +109,10 @@ func (r *Repository) Create(ctx context.Context, scorecard resources.Scorecard) 
 		criteriaMap[criterion.Name] = criterion.ID
 	}
 
+	if !response.Compass.CreateScorecard.Success {
+		return "", nil, errors.New("failed to create scorecard")
+	}
+
 	return response.Compass.CreateScorecard.ScorecardDetails.ID, criteriaMap, nil
 }
 
@@ -226,6 +230,10 @@ func (r *Repository) Delete(ctx context.Context, id string) error {
 	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
 		log.Printf("Failed to create scorecard: %v", err)
 		return err
+	}
+
+	if !response.Compass.DeleteScorecard.Success {
+		return errors.New("failed to delete scorecard")
 	}
 
 	return nil
