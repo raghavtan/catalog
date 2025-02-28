@@ -60,14 +60,13 @@ func (h *BindHandler) Bind(stateRootLocation string) {
 				}
 			}
 		}
+	}
 
-		result = h.resolveDrifts(metricSourceMap, result)
+	result = h.resolveDrifts(metricSourceMap, result)
 
-		err := yaml.WriteState[dtos.MetricSourceDTO](result)
-		if err != nil {
-			log.Fatalf("error writing metrics to file: %v", err)
-		}
-
+	err := yaml.WriteState[dtos.MetricSourceDTO](result)
+	if err != nil {
+		log.Fatalf("error writing metrics to file: %v", err)
 	}
 }
 

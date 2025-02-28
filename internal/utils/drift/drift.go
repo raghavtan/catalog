@@ -1,7 +1,5 @@
 package drift
 
-import "fmt"
-
 func Detect[T any](
 	stateMap, configMap map[string]*T,
 	getID func(*T) string,
@@ -43,12 +41,8 @@ func processStateItems[T any](
 	}
 }
 
-func processConfigItems[T any](
-	stateMap, configMap map[string]*T,
-	createdList map[string]*T,
-) {
+func processConfigItems[T any](stateMap, configMap map[string]*T, createdList map[string]*T) {
 	for key, configItem := range configMap {
-		fmt.Printf("Conf key: %v\n", key)
 		if _, found := stateMap[key]; !found {
 			createdList[key] = configItem
 		}
