@@ -14,12 +14,12 @@ import (
 )
 
 type ApplyHandler struct {
-	github     githubservice.GitHubRepositoriesServiceInterface
+	github     githubservice.GitHubServiceInterface
 	repository repository.RepositoryInterface
 }
 
 func NewApplyHandler(
-	gh githubservice.GitHubRepositoriesServiceInterface,
+	gh githubservice.GitHubServiceInterface,
 	repository repository.RepositoryInterface,
 ) *ApplyHandler {
 	return &ApplyHandler{github: gh, repository: repository}

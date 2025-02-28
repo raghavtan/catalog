@@ -14,7 +14,7 @@ func TestGithubFactCollector_checkFileJSONPath(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	mockGithubService := githubservice.NewMockGitHubRepositoriesServiceInterface(ctrl)
+	mockGithubService := githubservice.NewMockGitHubServiceInterface(ctrl)
 	collector := factcollectors.NewGithubFactCollector(mockGithubService)
 
 	tests := []struct {

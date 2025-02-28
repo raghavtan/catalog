@@ -21,10 +21,10 @@ type GithubFactCollectorInterface interface {
 }
 
 type GithubFactCollector struct {
-	github githubservice.GitHubRepositoriesServiceInterface
+	github githubservice.GitHubServiceInterface
 }
 
-func NewGithubFactCollector(github githubservice.GitHubRepositoriesServiceInterface) *GithubFactCollector {
+func NewGithubFactCollector(github githubservice.GitHubServiceInterface) *GithubFactCollector {
 	return &GithubFactCollector{github: github}
 }
 

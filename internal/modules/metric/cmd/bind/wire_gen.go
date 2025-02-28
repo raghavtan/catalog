@@ -22,15 +22,15 @@ func initializeHandler() *handler.BindHandler {
 	configService := configservice.NewConfigService()
 	keyringService := keyringservice.NewKeyringService()
 	gitHubClientInterface := githubservice.NewGitHubClient(configService, keyringService)
-	gitHubRepositoriesService := githubservice.NewGitHubRepositoriesService(gitHubClientInterface)
+	gitHubService := githubservice.NewGitHubService(gitHubClientInterface)
 	graphQLClientInterface := compassservice.NewGraphQLClient(configService)
 	httpClientInterface := compassservice.NewHTTPClient(configService)
 	compassService := compassservice.NewCompassService(configService, graphQLClientInterface, httpClientInterface)
 	repositoryRepository := repository.NewRepository(compassService)
-	bindHandler := handler.NewBindHandler(gitHubRepositoriesService, repositoryRepository)
+	bindHandler := handler.NewBindHandler(gitHubService, repositoryRepository)
 	return bindHandler
 }
 
 // wire.go:
 
-var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewHTTPClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubClient, githubservice.NewGitHubRepositoriesService, wire.Bind(new(githubservice.GitHubRepositoriesServiceInterface), new(*githubservice.GitHubRepositoriesService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewBindHandler)
+var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewHTTPClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubClient, githubservice.NewGitHubService, wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewBindHandler)

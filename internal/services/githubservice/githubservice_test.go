@@ -17,7 +17,7 @@ func TestGetRepoProperties(t *testing.T) {
 	defer ctrl.Finish()
 
 	mockClient := githubservice.NewMockGitHubRepositoriesInterface(ctrl)
-	service := githubservice.NewGitHubRepositoriesService(mockClient)
+	service := githubservice.NewGitHubService(mockClient)
 
 	tests := []struct {
 		name          string
@@ -105,7 +105,7 @@ func TestGetFileContent(t *testing.T) {
 	defer ctrl.Finish()
 
 	mockClient := githubservice.NewMockGitHubRepositoriesInterface(ctrl)
-	service := githubservice.NewGitHubRepositoriesService(mockClient)
+	service := githubservice.NewGitHubService(mockClient)
 
 	tests := []struct {
 		name        string
@@ -168,7 +168,7 @@ func TestGetFileExists(t *testing.T) {
 	defer ctrl.Finish()
 
 	mockClient := githubservice.NewMockGitHubRepositoriesInterface(ctrl)
-	service := githubservice.NewGitHubRepositoriesService(mockClient)
+	service := githubservice.NewGitHubService(mockClient)
 
 	tests := []struct {
 		name        string
@@ -229,7 +229,7 @@ func TestGetRepo(t *testing.T) {
 	defer ctrl.Finish()
 
 	mockClient := githubservice.NewMockGitHubRepositoriesInterface(ctrl)
-	service := githubservice.NewGitHubRepositoriesService(mockClient)
+	service := githubservice.NewGitHubService(mockClient)
 
 	tests := []struct {
 		name        string

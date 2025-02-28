@@ -32,8 +32,8 @@ var ProviderSet = wire.NewSet(
 
 	// Githubservice
 	githubservice.NewGitHubClient,
-	githubservice.NewGitHubRepositoriesService,
-	wire.Bind(new(githubservice.GitHubRepositoriesServiceInterface), new(*githubservice.GitHubRepositoriesService)),
+	githubservice.NewGitHubService,
+	wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)),
 
 	// JSONService
 	jsonservice.NewJSONService,

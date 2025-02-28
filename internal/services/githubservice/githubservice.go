@@ -1,6 +1,6 @@
 package githubservice
 
-//go:generate mockgen -destination=./mock_github_repository_service.go -package=githubservice github.com/motain/fact-collector/internal/services/githubservice GitHubRepositoriesServiceInterface
+//go:generate mockgen -destination=./mock_github_service.go -package=githubservice github.com/motain/fact-collector/internal/services/githubservice GitHubServiceInterface
 
 import (
 	"context"
@@ -10,24 +10,24 @@ import (
 	"github.com/google/go-github/v58/github"
 )
 
-type GitHubRepositoriesServiceInterface interface {
+type GitHubServiceInterface interface {
 	GetRepo(repo string) (*github.Repository, error)
 	GetFileExists(repo, path string) (bool, error)
 	GetFileContent(repo, path string) (string, error)
 	GetRepoProperties(repo string) (map[string]string, error)
 }
 
-type GitHubRepositoriesService struct {
+type GitHubService struct {
 	client GitHubClientInterface
 	owner  string
 }
 
-func NewGitHubRepositoriesService(client GitHubClientInterface) *GitHubRepositoriesService {
-	return &GitHubRepositoriesService{client: client, owner: "motain"}
+func NewGitHubService(client GitHubClientInterface) *GitHubService {
+	return &GitHubService{client: client, owner: "motain"}
 }
 
 // Get repository details
-func (gh *GitHubRepositoriesService) GetRepo(repo string) (*github.Repository, error) {
+func (gh *GitHubService) GetRepo(repo string) (*github.Repository, error) {
 	ctx := context.Background()
 	repository, _, err := gh.client.GetRepo().Get(ctx, gh.owner, repo)
 	if err != nil {
@@ -36,7 +36,7 @@ func (gh *GitHubRepositoriesService) GetRepo(repo string) (*github.Repository, e
 	return repository, nil
 }
 
-func (gh *GitHubRepositoriesService) GetFileExists(repo, path string) (bool, error) {
+func (gh *GitHubService) GetFileExists(repo, path string) (bool, error) {
 	ctx := context.Background()
 	fileContent, _, _, err := gh.client.GetRepo().GetContents(ctx, gh.owner, repo, path, nil)
 	if err != nil {
@@ -50,7 +50,7 @@ func (gh *GitHubRepositoriesService) GetFileExists(repo, path string) (bool, err
 }
 
 // Get file contents
-func (gh *GitHubRepositoriesService) GetFileContent(repo, path string) (string, error) {
+func (gh *GitHubService) GetFileContent(repo, path string) (string, error) {
 	ctx := context.Background()
 	fileContent, _, _, fetchErr := gh.client.GetRepo().GetContents(ctx, gh.owner, repo, path, nil)
 	if fetchErr != nil {
@@ -65,7 +65,7 @@ func (gh *GitHubRepositoriesService) GetFileContent(repo, path string) (string, 
 	return content, nil
 }
 
-func (gh *GitHubRepositoriesService) GetRepoProperties(repo string) (map[string]string, error) {
+func (gh *GitHubService) GetRepoProperties(repo string) (map[string]string, error) {
 	ctx := context.Background()
 
 	repoDetails, _, err := gh.client.GetRepo().Get(ctx, gh.owner, repo)

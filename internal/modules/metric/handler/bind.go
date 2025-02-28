@@ -19,12 +19,12 @@ import (
 )
 
 type BindHandler struct {
-	github     githubservice.GitHubRepositoriesServiceInterface
+	github     githubservice.GitHubServiceInterface
 	repository repository.RepositoryInterface
 }
 
 func NewBindHandler(
-	gh githubservice.GitHubRepositoriesServiceInterface,
+	gh githubservice.GitHubServiceInterface,
 	repository repository.RepositoryInterface,
 ) *BindHandler {
 	return &BindHandler{github: gh, repository: repository}
