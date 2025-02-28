@@ -110,7 +110,7 @@ func WriteState[T any](data []*T) error {
 		return kindErr
 	}
 
-	stateFile := fmt.Sprintf("%s/%s-catalog.yaml", StateLocation, tKind)
+	stateFile := fmt.Sprintf("%s/%s.yaml", StateLocation, tKind)
 	dir := filepath.Dir(stateFile)
 	if err := os.MkdirAll(dir, os.ModePerm); err != nil {
 		return err
@@ -160,7 +160,7 @@ func getFilePath[T any](rootLocation string, recursive bool) (string, error) {
 		return "", kindErr
 	}
 
-	filePath := fmt.Sprintf("%s/%s-catalog.yaml", directory, tKind)
+	filePath := fmt.Sprintf("%s/%s*.yaml", directory, tKind)
 
 	return filePath, nil
 }
