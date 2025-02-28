@@ -61,6 +61,9 @@ metadata:
           jsonPath: base_experience
           repoProperty: ""
           expectedValue: ""
+          auth:
+            header: Authorization
+            tokenEnvVariable: HONEYCOMB_API_KEY
 spec:
     name: metric-test-2
     description: example metric-1 used to test cli
@@ -102,6 +105,9 @@ metadata:
             repoProperty: ""
             expectedValue: ""
             expectedexpectedFormula: "> 50"
+            auth:
+                header: "Authorization"
+                tokenEnvVariable: "HONEYCOMB_API_KEY"
 spec:
     name: metric-test-3
     description: example metric-3 used to test cli

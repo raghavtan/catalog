@@ -33,7 +33,7 @@ func initializeHandler() *handler.ComputeHandler {
 	gitHubRepositoriesService := githubservice.NewGitHubRepositoriesService(repositoriesService)
 	githubFactCollector := factcollectors.NewGithubFactCollector(gitHubRepositoriesService)
 	jsonServiceInterface := jsonservice.NewJSONService(configService)
-	jsonapiFactCollector := factcollectors.NewJSONAPIFactCollector(jsonServiceInterface)
+	jsonapiFactCollector := factcollectors.NewJSONAPIFactCollector(configService, jsonServiceInterface)
 	factInterpreter := factinterpreter.NewFactInterpreter(githubFactCollector, jsonapiFactCollector)
 	computeHandler := handler.NewComputeHandler(repositoryRepository, factInterpreter)
 	return computeHandler

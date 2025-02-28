@@ -10,6 +10,7 @@ import (
 )
 
 type ConfigServiceInterface interface {
+	Get(envVar string) string
 	GetGithubOrg() string
 	GetGithubToken() string
 	GetGithubUser() string
@@ -27,6 +28,10 @@ func NewConfigService() *ConfigService {
 	}
 
 	return &ConfigService{}
+}
+
+func (c *ConfigService) Get(envVar string) string {
+	return os.Getenv(envVar)
 }
 
 func (c *ConfigService) GetGithubOrg() string {

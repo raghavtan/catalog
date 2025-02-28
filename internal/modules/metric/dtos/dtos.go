@@ -62,17 +62,23 @@ const (
 
 // Fact defines a struct to handle different facts
 type Fact struct {
-	Source          string   `yaml:"source"`          // Source of the fact (e.g., "github")
-	URI             string   `yaml:"uri"`             // URI of the fact
-	Name            string   `yaml:"name"`            // Name of the fact
-	Repo            string   `yaml:"repo"`            // Repository name (e.g., "repo")
-	FactType        FactType `yaml:"factType"`        // Type of fact to collect
-	FilePath        string   `yaml:"filePath"`        // File to open/validate fact (if FactType is "fileExists", "fileRegex", or "fileJsonPath")
-	RegexPattern    string   `yaml:"regexPattern"`    // Regex to match file content or response (if FactType is "fileRegex")
-	JSONPath        string   `yaml:"jsonPath"`        // JSONPath to navigate file content or json response (if FactType is "fileJsonPath")
-	RepoProperty    string   `yaml:"repoProperty"`    // Property to explore in the repo (if FactType is "repoProperties")
-	ExpectedValue   string   `yaml:"expectedValue"`   // Expected value (matched against value of  "repoProperty" or "fileJsonPath")
-	ExpectedFormula string   `yaml:"expectedFormula"` // Expected formula (matched against value of  "repoProperty" or "fileJsonPath")
+	Source          string    `yaml:"source"`          // Source of the fact (e.g., "github")
+	URI             string    `yaml:"uri"`             // URI of the fact
+	Name            string    `yaml:"name"`            // Name of the fact
+	Repo            string    `yaml:"repo"`            // Repository name (e.g., "repo")
+	FactType        FactType  `yaml:"factType"`        // Type of fact to collect
+	FilePath        string    `yaml:"filePath"`        // File to open/validate fact (if FactType is "fileExists", "fileRegex", or "fileJsonPath")
+	RegexPattern    string    `yaml:"regexPattern"`    // Regex to match file content or response (if FactType is "fileRegex")
+	JSONPath        string    `yaml:"jsonPath"`        // JSONPath to navigate file content or json response (if FactType is "fileJsonPath")
+	RepoProperty    string    `yaml:"repoProperty"`    // Property to explore in the repo (if FactType is "repoProperties")
+	ExpectedValue   string    `yaml:"expectedValue"`   // Expected value (matched against value of  "repoProperty" or "fileJsonPath")
+	ExpectedFormula string    `yaml:"expectedFormula"` // Expected formula (matched against value of  "repoProperty" or "fileJsonPath")
+	Auth            *FactAuth `yaml:"auth"`            // Auth to use to access the fact when using a URI require authentication
+}
+
+type FactAuth struct {
+	Header           string `yaml:"header"`
+	TokenEnvVariable string `yaml:"tokenEnvVariable"`
 }
 
 type MetricSpec struct {

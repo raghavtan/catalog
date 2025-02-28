@@ -9,6 +9,7 @@ import (
 	"net/http"
 
 	"github.com/motain/fact-collector/internal/modules/metric/dtos"
+	"github.com/motain/fact-collector/internal/services/configservice"
 	"github.com/motain/fact-collector/internal/services/jsonservice"
 	"github.com/motain/fact-collector/internal/utils/eval"
 	"github.com/tidwall/gjson"
@@ -20,11 +21,15 @@ type JSONAPIFactCollectorInterface interface {
 }
 
 type JSONAPIFactCollector struct {
+	config      configservice.ConfigServiceInterface
 	jsonService jsonservice.JSONServiceInterface
 }
 
-func NewJSONAPIFactCollector(jsonService jsonservice.JSONServiceInterface) *JSONAPIFactCollector {
-	return &JSONAPIFactCollector{jsonService: jsonService}
+func NewJSONAPIFactCollector(
+	config configservice.ConfigServiceInterface,
+	jsonService jsonservice.JSONServiceInterface,
+) *JSONAPIFactCollector {
+	return &JSONAPIFactCollector{config: config, jsonService: jsonService}
 }
 
 func (fc *JSONAPIFactCollector) Check(fact dtos.Fact) (bool, error) {
@@ -77,6 +82,11 @@ func (fc *JSONAPIFactCollector) extractData(fact dtos.Fact) ([]byte, error) {
 	req, err := http.NewRequest("GET", fact.URI, nil)
 	if err != nil {
 		return jsonData, fmt.Errorf("failed to create request: %v", err)
+	}
+
+	if fact.Auth != nil {
+		token := fc.config.Get(fact.Auth.TokenEnvVariable)
+		req.Header.Set(fact.Auth.Header, token)
 	}
 
 	resp, doErr := fc.jsonService.Do(req)

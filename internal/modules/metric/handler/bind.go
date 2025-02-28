@@ -285,6 +285,7 @@ func (h *BindHandler) prepareSourceMetricFact(
 		RepoProperty:    fact.RepoProperty,
 		ExpectedValue:   expectedValue,
 		ExpectedFormula: fact.ExpectedFormula,
+		Auth:            fact.Auth,
 	}
 
 	return &processedFact, nil

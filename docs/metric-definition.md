@@ -27,6 +27,9 @@ metadata:
         repoProperty: <string>
         expectedValue: <string>
         expectedFormula: <string>
+        auth:
+          header: <string>
+          tokenEnvVariable: <string>
     any: # Boolean conditions (at least one must be true)
       - source: <string>
         uri: <string>
@@ -40,6 +43,9 @@ metadata:
         repoProperty: <string>
         expectedValue: <string>
         expectedFormula: <string>
+        auth:
+          header: <string>
+          tokenEnvVariable: <string>
     inspect:
       - source: <string>
         uri: <string>
@@ -47,6 +53,9 @@ metadata:
         repo: <string>
         factType: <string>
         jsonPath: <string>
+        auth:
+          header: <string>
+          tokenEnvVariable: <string>
 ```
 
 ### 1. API Version & Kind
@@ -94,11 +103,6 @@ facts:
 - **Type**: `facts` (object)
   - **all** (array) - List of conditions that must all be met.
   - **any** (array) - List of conditions where at least one must be met.
-  - **source** (string) - Data source (e.g., github, jsonapi).
-  - **factType** (string) - Evaluation type (e.g., fileExists, fileJsonPath).
-  - **jsonPath** (string) - JSON key path for value extraction.
-  - **expectedValue** (number) - Value to match when using `jsonPath`, `repoProperty` with `all` or `any`.
-  - **expectedFormula** (string) - Formula to match when using `jsonPath`, `repoProperty` with `all` or `any`.
 
 ### 4. Specification (spec)
 
@@ -162,12 +166,29 @@ JSON API (source: jsonapi)
 | expectedValue   | GitHub, JSON API| Compares a JSON path's value with an expected value.          |
 | expectedFormula | GitHub, JSON API| Compares a JSON path's value using an expected formula.       |
 
+
+---
+
+**JSONAPI Type**
+
+The JsonAPI Type enables making `GET` requests to endpoints that return a JSON response.
+In many cases, when gathering or verifying information about a specific component, the upstream server requires authentication. This collector allows you to configure authentication, with the only supported method being via a custom request header.
+To set up authentication when defining the fact, specify the following options:
+```yaml
+auth:
+  header: Authorization
+  tokenEnvVariable: MY_SECRET_API_KEY
+```
+
+Additionally, ensure an environment variable is set with the name specified in `tokenEnvVariable`. The collector will retrieve this variable's value and include it in the request header.
+
+---
+
 **Placeholders**
 
 In repo and expectedValue, placeholders can be used to dynamically reference values from the component the metric is bound to.
 Format: `${<component-json-path>}`
 The placeholder is replaced with the value of the specified JSON path.
-
 
 ---
 
