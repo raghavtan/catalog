@@ -7,7 +7,6 @@
 package apply
 
 import (
-	"github.com/google/go-github/v58/github"
 	"github.com/google/wire"
 	"github.com/motain/fact-collector/internal/modules/component/handler"
 	"github.com/motain/fact-collector/internal/modules/component/repository"
@@ -22,8 +21,8 @@ import (
 func initializeHandler() *handler.ApplyHandler {
 	configService := configservice.NewConfigService()
 	keyringService := keyringservice.NewKeyringService()
-	repositoriesService := githubservice.NewGitHubRepositoriesClient(configService, keyringService)
-	gitHubRepositoriesService := githubservice.NewGitHubRepositoriesService(repositoriesService)
+	gitHubClientInterface := githubservice.NewGitHubClient(configService, keyringService)
+	gitHubRepositoriesService := githubservice.NewGitHubRepositoriesService(gitHubClientInterface)
 	graphQLClientInterface := compassservice.NewGraphQLClient(configService)
 	httpClientInterface := compassservice.NewHTTPClient(configService)
 	compassService := compassservice.NewCompassService(configService, graphQLClientInterface, httpClientInterface)
@@ -34,4 +33,4 @@ func initializeHandler() *handler.ApplyHandler {
 
 // wire.go:
 
-var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewHTTPClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubRepositoriesClient, wire.Bind(new(githubservice.GitHubRepositoriesInterface), new(*github.RepositoriesService)), githubservice.NewGitHubRepositoriesService, wire.Bind(new(githubservice.GitHubRepositoriesServiceInterface), new(*githubservice.GitHubRepositoriesService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewApplyHandler)
+var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewHTTPClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubClient, githubservice.NewGitHubRepositoriesService, wire.Bind(new(githubservice.GitHubRepositoriesServiceInterface), new(*githubservice.GitHubRepositoriesService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewApplyHandler)

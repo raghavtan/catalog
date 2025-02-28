@@ -3,7 +3,6 @@
 package bind
 
 import (
-	"github.com/google/go-github/v58/github"
 	"github.com/google/wire"
 	"github.com/motain/fact-collector/internal/modules/metric/handler"
 	"github.com/motain/fact-collector/internal/modules/metric/repository"
@@ -29,8 +28,7 @@ var ProviderSet = wire.NewSet(
 	wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)),
 
 	// Githubservice
-	githubservice.NewGitHubRepositoriesClient,
-	wire.Bind(new(githubservice.GitHubRepositoriesInterface), new(*github.RepositoriesService)),
+	githubservice.NewGitHubClient,
 	githubservice.NewGitHubRepositoriesService,
 	wire.Bind(new(githubservice.GitHubRepositoriesServiceInterface), new(*githubservice.GitHubRepositoriesService)),
 

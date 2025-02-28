@@ -18,18 +18,18 @@ type GitHubRepositoriesServiceInterface interface {
 }
 
 type GitHubRepositoriesService struct {
-	client GitHubRepositoriesInterface
+	client GitHubClientInterface
 	owner  string
 }
 
-func NewGitHubRepositoriesService(client GitHubRepositoriesInterface) *GitHubRepositoriesService {
+func NewGitHubRepositoriesService(client GitHubClientInterface) *GitHubRepositoriesService {
 	return &GitHubRepositoriesService{client: client, owner: "motain"}
 }
 
 // Get repository details
 func (gh *GitHubRepositoriesService) GetRepo(repo string) (*github.Repository, error) {
 	ctx := context.Background()
-	repository, _, err := gh.client.Get(ctx, gh.owner, repo)
+	repository, _, err := gh.client.GetRepo().Get(ctx, gh.owner, repo)
 	if err != nil {
 		return nil, fmt.Errorf("failed to fetch repo: %w", err)
 	}
@@ -38,7 +38,7 @@ func (gh *GitHubRepositoriesService) GetRepo(repo string) (*github.Repository, e
 
 func (gh *GitHubRepositoriesService) GetFileExists(repo, path string) (bool, error) {
 	ctx := context.Background()
-	fileContent, _, _, err := gh.client.GetContents(ctx, gh.owner, repo, path, nil)
+	fileContent, _, _, err := gh.client.GetRepo().GetContents(ctx, gh.owner, repo, path, nil)
 	if err != nil {
 		if _, ok := err.(*github.ErrorResponse); ok && err.(*github.ErrorResponse).Response.StatusCode == 404 {
 			return false, nil
@@ -52,7 +52,7 @@ func (gh *GitHubRepositoriesService) GetFileExists(repo, path string) (bool, err
 // Get file contents
 func (gh *GitHubRepositoriesService) GetFileContent(repo, path string) (string, error) {
 	ctx := context.Background()
-	fileContent, _, _, fetchErr := gh.client.GetContents(ctx, gh.owner, repo, path, nil)
+	fileContent, _, _, fetchErr := gh.client.GetRepo().GetContents(ctx, gh.owner, repo, path, nil)
 	if fetchErr != nil {
 		return "", fmt.Errorf("failed to fetch file: %w", fetchErr)
 	}
@@ -68,8 +68,7 @@ func (gh *GitHubRepositoriesService) GetFileContent(repo, path string) (string, 
 func (gh *GitHubRepositoriesService) GetRepoProperties(repo string) (map[string]string, error) {
 	ctx := context.Background()
 
-	// Fetch repository details
-	repoDetails, _, err := gh.client.Get(ctx, gh.owner, repo)
+	repoDetails, _, err := gh.client.GetRepo().Get(ctx, gh.owner, repo)
 	if err != nil {
 		return nil, err
 	}
@@ -83,7 +82,6 @@ func (gh *GitHubRepositoriesService) GetRepoProperties(repo string) (map[string]
 		"License":       "", // Default empty in case there's no license
 	}
 
-	// Handle possible nil License
 	if repoDetails.GetLicense() != nil {
 		properties["License"] = repoDetails.GetLicense().GetName()
 	}

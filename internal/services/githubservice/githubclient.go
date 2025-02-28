@@ -16,10 +16,18 @@ type GitHubRepositoriesInterface interface {
 	GetContents(ctx context.Context, owner, repo, path string, opts *github.RepositoryContentGetOptions) (fileContent *github.RepositoryContent, directoryContent []*github.RepositoryContent, resp *github.Response, err error)
 }
 
-func NewGitHubRepositoriesClient(
+type GitHubClientInterface interface {
+	GetRepo() GitHubRepositoriesInterface
+}
+
+type GitHubClient struct {
+	client *github.Client
+}
+
+func NewGitHubClient(
 	cfg configservice.ConfigServiceInterface,
 	kr keyringservice.KeyringServiceInterface,
-) *github.RepositoriesService {
+) GitHubClientInterface {
 	serviceName := "gh:github.com"
 
 	token := cfg.GetGithubToken()
@@ -35,5 +43,9 @@ func NewGitHubRepositoriesClient(
 	ts := oauth2.StaticTokenSource(&oauth2.Token{AccessToken: token})
 	tc := oauth2.NewClient(ctx, ts)
 
-	return github.NewClient(tc).Repositories
+	return &GitHubClient{client: github.NewClient(tc)}
+}
+
+func (gh *GitHubClient) GetRepo() GitHubRepositoriesInterface {
+	return gh.client.Repositories
 }
