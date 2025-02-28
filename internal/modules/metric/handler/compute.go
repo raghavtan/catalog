@@ -24,9 +24,9 @@ func NewComputeHandler(
 	return &ComputeHandler{repository: repository, factInterpreter: factInterpreter}
 }
 
-func (h *ComputeHandler) Compute(componentType, componentName, metricName string) string {
+func (h *ComputeHandler) Compute(componentType, componentName, metricName string, stateRootLocation string) {
 
-	stateMetricSource, errMSState := yaml.Parse[dtos.MetricSourceDTO](yaml.State, dtos.GetMetricSourceUniqueKey)
+	stateMetricSource, errMSState := yaml.Parse[dtos.MetricSourceDTO](stateRootLocation, false, dtos.GetMetricSourceUniqueKey)
 	if errMSState != nil {
 		log.Fatalf("error: %v", errMSState)
 	}
@@ -50,6 +50,4 @@ func (h *ComputeHandler) Compute(componentType, componentName, metricName string
 		log.Printf("metric source id: %s", *metricSource.Spec.ID)
 		log.Fatalf("error: %v", pushErr)
 	}
-
-	return ""
 }

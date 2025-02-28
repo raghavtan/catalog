@@ -35,7 +35,6 @@ func IsEqualMetric(m1, m2 *MetricDTO) bool {
 		reflect.DeepEqual(m1.Metadata.Labels, m2.Metadata.Labels) &&
 		reflect.DeepEqual(m1.Metadata.ComponentType, m2.Metadata.ComponentType) &&
 		reflect.DeepEqual(m1.Metadata.Facts, m2.Metadata.Facts)
-
 }
 
 type FactOperations struct {

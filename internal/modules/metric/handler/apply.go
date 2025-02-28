@@ -21,15 +21,15 @@ func NewApplyHandler(
 	return &ApplyHandler{repository: repository}
 }
 
-func (h *ApplyHandler) Apply() string {
-	configMetrics, errConfig := yaml.Parse[dtos.MetricDTO](yaml.Config, dtos.GetMetricUniqueKey)
-	if errConfig != nil {
-		log.Fatalf("error: %v", errConfig)
-	}
-
-	stateMetrics, errState := yaml.Parse[dtos.MetricDTO](yaml.State, dtos.GetMetricUniqueKey)
+func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string, recursive bool) {
+	stateMetrics, errState := yaml.Parse[dtos.MetricDTO](stateRootLocation, false, dtos.GetMetricUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
+	}
+
+	configMetrics, errConfig := yaml.Parse[dtos.MetricDTO](configRootLocation, recursive, dtos.GetMetricUniqueKey)
+	if errConfig != nil {
+		log.Fatalf("error: %v", errConfig)
 	}
 
 	created, updated, deleted, unchanged := drift.Detect(
@@ -50,8 +50,6 @@ func (h *ApplyHandler) Apply() string {
 	if err != nil {
 		log.Fatalf("error writing metrics to file: %v", err)
 	}
-
-	return ""
 }
 
 func (h *ApplyHandler) handleDeleted(metrics map[string]*dtos.MetricDTO) {

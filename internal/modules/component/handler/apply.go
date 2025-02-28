@@ -25,13 +25,13 @@ func NewApplyHandler(
 	return &ApplyHandler{github: gh, repository: repository}
 }
 
-func (h *ApplyHandler) Apply() string {
-	configComponents, errConfig := yaml.Parse[dtos.ComponentDTO](yaml.Config, dtos.GetComponentUniqueKey)
+func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string, recursive bool) {
+	configComponents, errConfig := yaml.Parse[dtos.ComponentDTO](configRootLocation, recursive, dtos.GetComponentUniqueKey)
 	if errConfig != nil {
 		log.Fatalf("error: %v", errConfig)
 	}
 
-	stateComponents, errState := yaml.Parse[dtos.ComponentDTO](yaml.State, dtos.GetComponentUniqueKey)
+	stateComponents, errState := yaml.Parse[dtos.ComponentDTO](stateRootLocation, false, dtos.GetComponentUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}
@@ -54,8 +54,6 @@ func (h *ApplyHandler) Apply() string {
 	if err != nil {
 		log.Fatalf("error writing components to file: %v", err)
 	}
-
-	return ""
 }
 
 func (h *ApplyHandler) handleDeleted(components map[string]*dtos.ComponentDTO) {

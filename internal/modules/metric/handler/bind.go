@@ -30,18 +30,18 @@ func NewBindHandler(
 	return &BindHandler{github: gh, repository: repository}
 }
 
-func (h *BindHandler) Bind() string {
-	stateMetrics, errState := yaml.Parse[dtos.MetricDTO](yaml.State, dtos.GetMetricUniqueKey)
+func (h *BindHandler) Bind(stateRootLocation string) {
+	stateMetrics, errState := yaml.Parse[dtos.MetricDTO](stateRootLocation, false, dtos.GetMetricUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}
 
-	stateComponents, errState := yaml.Parse[componentdtos.ComponentDTO](yaml.State, componentdtos.GetComponentUniqueKey)
+	stateComponents, errState := yaml.Parse[componentdtos.ComponentDTO](stateRootLocation, false, componentdtos.GetComponentUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}
 
-	metricSourceMap := h.getStateMetricSourceHashedByName()
+	metricSourceMap := h.getStateMetricSourceHashedByName(stateRootLocation, false)
 	componentMap := h.getStateComponentsGroupedByType(stateComponents)
 
 	result := make([]*dtos.MetricSourceDTO, 0)
@@ -69,8 +69,6 @@ func (h *BindHandler) Bind() string {
 		}
 
 	}
-
-	return ""
 }
 
 func (*BindHandler) getStateComponentsGroupedByType(stateComponents map[string]*componentdtos.ComponentDTO) map[string][]*componentdtos.ComponentDTO {
@@ -82,9 +80,10 @@ func (*BindHandler) getStateComponentsGroupedByType(stateComponents map[string]*
 	return componentMap
 }
 
-func (*BindHandler) getStateMetricSourceHashedByName() map[string]*dtos.MetricSourceDTO {
+func (*BindHandler) getStateMetricSourceHashedByName(rootLocation string, recursive bool) map[string]*dtos.MetricSourceDTO {
 	stateMetricSource, errState := yaml.ParseFiltered[dtos.MetricSourceDTO](
-		yaml.State,
+		rootLocation,
+		recursive,
 		dtos.GetMetricSourceUniqueKey,
 		dtos.IsActiveMetricSources,
 	)

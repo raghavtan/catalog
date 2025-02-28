@@ -10,11 +10,8 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "fact-collector",
-	Short: "🦋 fact collector CLI",
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("fact-collector command")
-	},
+	Use:   "ofc",
+	Short: "⚽ onefootball catalog CLI",
 }
 
 func Execute() {

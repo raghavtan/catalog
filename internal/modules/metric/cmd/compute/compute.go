@@ -3,6 +3,7 @@ package compute
 import (
 	"fmt"
 
+	"github.com/motain/fact-collector/internal/utils/yaml"
 	"github.com/spf13/cobra"
 )
 
@@ -13,13 +14,25 @@ func Init() *cobra.Command {
 		Use:   "compute",
 		Short: "Compute metrics for components",
 		Run: func(cmd *cobra.Command, args []string) {
-			if componentType != "service" && componentType != "cloud-resource" && componentType != "website" && componentType != "application" {
-				fmt.Println("Invalid component type. Accepted values are: service, cloud-resource, website, application")
+			if componentType == "" {
+				fmt.Println("Error: componentType is required")
+				cmd.Help()
 				return
 			}
+			if componentName == "" {
+				fmt.Println("Error: componentName is required")
+				cmd.Help()
+				return
+			}
+			if metricName == "" {
+				fmt.Println("Error: metricName is required")
+				cmd.Help()
+				return
+			}
+
 			fmt.Printf("Tracking metric '%s' for component '%s' of type '%s'\n", metricName, componentName, componentType)
 			handler := initializeHandler()
-			fmt.Println(handler.Compute(componentType, componentName, metricName))
+			handler.Compute(componentType, componentName, metricName, yaml.StateLocation)
 		},
 	}
 

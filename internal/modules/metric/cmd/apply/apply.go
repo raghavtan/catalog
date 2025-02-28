@@ -3,17 +3,30 @@ package apply
 import (
 	"fmt"
 
+	"github.com/motain/fact-collector/internal/utils/yaml"
 	"github.com/spf13/cobra"
 )
 
 func Init() *cobra.Command {
-	return &cobra.Command{
+	var configRootLocation string
+	var recursive bool
+
+	cmd := &cobra.Command{
 		Use:   "apply",
 		Short: "Apply changes to metrics",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("apply metric command")
+			if configRootLocation == "" {
+				fmt.Println("Error: configRootLocation is required")
+				cmd.Help()
+				return
+			}
 			handler := initializeHandler()
-			fmt.Println(handler.Apply())
+			handler.Apply(configRootLocation, yaml.StateLocation, recursive)
 		},
 	}
+
+	cmd.Flags().StringVarP(&configRootLocation, "configRootLocation", "l", "", "Root location of the config")
+	cmd.Flags().BoolVarP(&recursive, "recursive", "r", false, "Apply changes recursively")
+
+	return cmd
 }

@@ -22,13 +22,13 @@ func NewApplyHandler(
 	return &ApplyHandler{repository: repository}
 }
 
-func (h *ApplyHandler) Apply() string {
-	configScorecards, errConfig := yaml.Parse[dtos.ScorecardDTO](yaml.Config, dtos.GetScorecardUniqueKey)
+func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string, recursive bool) {
+	configScorecards, errConfig := yaml.Parse[dtos.ScorecardDTO](configRootLocation, recursive, dtos.GetScorecardUniqueKey)
 	if errConfig != nil {
 		log.Fatalf("error: %v", errConfig)
 	}
 
-	stateMetrics, errMetricState := yaml.Parse[metricdtos.MetricDTO](yaml.State, metricdtos.GetMetricUniqueKey)
+	stateMetrics, errMetricState := yaml.Parse[metricdtos.MetricDTO](stateRootLocation, false, metricdtos.GetMetricUniqueKey)
 	if errMetricState != nil {
 		log.Fatalf("error: %v", errMetricState)
 	}
@@ -39,7 +39,7 @@ func (h *ApplyHandler) Apply() string {
 		}
 	}
 
-	stateScorecards, errState := yaml.Parse[dtos.ScorecardDTO](yaml.State, dtos.GetScorecardUniqueKey)
+	stateScorecards, errState := yaml.Parse[dtos.ScorecardDTO](stateRootLocation, false, dtos.GetScorecardUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}
@@ -62,8 +62,6 @@ func (h *ApplyHandler) Apply() string {
 	if err != nil {
 		log.Fatalf("error writing scorecards to file: %v", err)
 	}
-
-	return ""
 }
 
 func (h *ApplyHandler) handleDeleted(scorecards map[string]*dtos.ScorecardDTO) {
