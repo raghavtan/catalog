@@ -5,6 +5,7 @@ package repository
 import (
 	"context"
 	"errors"
+	"fmt"
 	"log"
 
 	"github.com/motain/fact-collector/internal/modules/component/resources"
@@ -15,6 +16,7 @@ type RepositoryInterface interface {
 	Create(ctx context.Context, component resources.Component) (string, error)
 	Update(ctx context.Context, component resources.Component) error
 	Delete(ctx context.Context, id string) error
+	GetBySlug(slug string) (*resources.Component, error)
 }
 
 type Repository struct {
@@ -71,7 +73,8 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 	var response struct {
 		Compass struct {
 			CreateComponent struct {
-				Success          bool `json:"success"`
+				Success          bool                          `json:"success"`
+				Errors           []compassservice.CompassError `json:"errors"`
 				ComponentDetails struct {
 					ID string `json:"id"`
 				} `json:"componentDetails"`
@@ -84,8 +87,21 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 		return "", err
 	}
 
-	if !response.Compass.CreateComponent.Success {
-		return "", errors.New("failed to create component")
+	if compassservice.HasAlreadyExistsError(response.Compass.CreateComponent.Errors) {
+		remoteComponent, err := r.GetBySlug(component.Slug)
+		if err != nil {
+			return "", err
+		}
+
+		component.ID = remoteComponent.ID
+		updateError := r.Update(ctx, component)
+
+		return *remoteComponent.ID, updateError
+	} else {
+		if !response.Compass.CreateComponent.Success {
+			fmt.Printf("Failed to create component: %v", response.Compass.CreateComponent)
+			return "", errors.New("failed to create component")
+		}
 	}
 
 	return response.Compass.CreateComponent.ComponentDetails.ID, nil
@@ -173,4 +189,41 @@ func (r *Repository) Delete(ctx context.Context, id string) error {
 	}
 
 	return nil
+}
+
+func (r *Repository) GetBySlug(slug string) (*resources.Component, error) {
+	query := `
+		query getComponentBySlug($cloudId: ID!, $slug: String!) {
+			compass {
+				componentByReference(reference: {slug: {slug: $slug, cloudId: $cloudId}}) {
+					... on CompassComponent {
+						id
+					}
+				}
+			}
+		}`
+
+	variables := map[string]interface{}{
+		"cloudId": r.compass.GetCompassCloudId(),
+		"slug":    slug,
+	}
+
+	var response struct {
+		Compass struct {
+			ComponentByReference struct {
+				ID string `json:"id"`
+			} `json:"componentByReference"`
+		} `json:"compass"`
+	}
+
+	if err := r.compass.Run(context.Background(), query, variables, &response); err != nil {
+		log.Printf("Failed to get component by slug: %v", err)
+		return nil, err
+	}
+
+	component := resources.Component{
+		ID: &response.Compass.ComponentByReference.ID,
+	}
+
+	return &component, nil
 }
