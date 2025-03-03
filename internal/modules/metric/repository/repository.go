@@ -67,7 +67,8 @@ func (r *Repository) Create(ctx context.Context, metric resources.Metric) (strin
 	var response struct {
 		Compass struct {
 			CreateMetricDefinition struct {
-				Success                bool `json:"success"`
+				Success                bool                          `json:"success"`
+				Errors                 []compassservice.CompassError `json:"errors"`
 				CreateMetricDefinition struct {
 					ID string `json:"id"`
 				} `json:"createdMetricDefinition"`
@@ -80,8 +81,23 @@ func (r *Repository) Create(ctx context.Context, metric resources.Metric) (strin
 		return "", err
 	}
 
-	if !response.Compass.CreateMetricDefinition.Success {
-		return "", errors.New("failed to create metric")
+	for _, err := range response.Compass.CreateMetricDefinition.Errors {
+		fmt.Printf("Error: %v\n", err.Message)
+	}
+	if compassservice.HasAlreadyExistsError(response.Compass.CreateMetricDefinition.Errors) {
+		remoteMetric, err := r.Search(metric)
+		if err != nil {
+			return "", err
+		}
+
+		metric.ID = remoteMetric.ID
+		updateError := r.Update(ctx, metric)
+
+		return remoteMetric.ID, updateError
+	} else {
+		if !response.Compass.CreateMetricDefinition.Success {
+			return "", errors.New("failed to create metric")
+		}
 	}
 
 	return response.Compass.CreateMetricDefinition.CreateMetricDefinition.ID, nil
@@ -269,4 +285,53 @@ func (r *Repository) Push(ctx context.Context, metricSourceID string, value floa
 	_, errSend := r.compass.SendMetric(requestBody)
 
 	return errSend
+}
+
+func (r *Repository) Search(metric resources.Metric) (*resources.Metric, error) {
+	query := `
+		query searchMetricDefinition($cloudId: ID!) {
+			compass {
+				metricDefinitions(query: {cloudId: $cloudId, first: 100}) {
+					... on CompassMetricDefinitionsConnection {
+						nodes{
+							id
+							name
+						}
+					}
+				}
+			}
+		}`
+
+	variables := map[string]interface{}{
+		"cloudId": r.compass.GetCompassCloudId(),
+		"name":    metric.Name,
+	}
+
+	var response struct {
+		Compass struct {
+			MetricDefinitions struct {
+				Nodes []struct {
+					ID   string `json:"id"`
+					Name string `json:"name"`
+				} `json:"nodes"`
+			} `json:"metricDefinitions"`
+		} `json:"compass"`
+	}
+
+	if err := r.compass.Run(context.Background(), query, variables, &response); err != nil {
+		log.Printf("Failed to search metric: %v", err)
+		return nil, err
+	}
+
+	if len(response.Compass.MetricDefinitions.Nodes) == 0 {
+		return nil, errors.New("metric not found")
+	}
+
+	for _, node := range response.Compass.MetricDefinitions.Nodes {
+		if node.Name == metric.Name {
+			return &resources.Metric{ID: node.ID}, nil
+		}
+	}
+
+	return nil, errors.New("metric not found")
 }

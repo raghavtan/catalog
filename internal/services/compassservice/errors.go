@@ -17,7 +17,7 @@ func HasAlreadyExistsError(errs []CompassError) bool {
 }
 
 func isAlreadyExistsError(err string) bool {
-	matched, _ := regexp.MatchString("^.*already exists.$", err)
+	matched, _ := regexp.MatchString("^.*already exists\\.", err)
 
 	return matched
 }

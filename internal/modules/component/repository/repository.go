@@ -5,7 +5,6 @@ package repository
 import (
 	"context"
 	"errors"
-	"fmt"
 	"log"
 
 	"github.com/motain/fact-collector/internal/modules/component/resources"
@@ -99,7 +98,6 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 		return *remoteComponent.ID, updateError
 	} else {
 		if !response.Compass.CreateComponent.Success {
-			fmt.Printf("Failed to create component: %v", response.Compass.CreateComponent)
 			return "", errors.New("failed to create component")
 		}
 	}
