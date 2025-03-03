@@ -45,7 +45,11 @@ func (fc *GithubFactCollector) Check(fact dtos.Fact) (bool, error) {
 		return fc.checkRepoProperties(fact)
 	}
 
-	return false, nil
+	if fact.FactType == dtos.RepoSearchFact {
+		return fc.checkRepoSearch(fact)
+	}
+
+	return false, errors.New("unsupported fact type")
 }
 
 func (fc *GithubFactCollector) Inspect(fact dtos.Fact) (float64, error) {
@@ -127,6 +131,15 @@ func (fc *GithubFactCollector) checkRepoProperties(fact dtos.Fact) (bool, error)
 	}
 
 	return eval.Expression(fmt.Sprintf("%s %s", value, fact.ExpectedFormula))
+}
+
+func (fc *GithubFactCollector) checkRepoSearch(fact dtos.Fact) (bool, error) {
+	repoSearchResults, repoErr := fc.github.Search(fact.Repo, fact.ReposSearchQuery)
+	if repoErr != nil {
+		return false, repoErr
+	}
+
+	return len(repoSearchResults) != 0, nil
 }
 
 func (fc *GithubFactCollector) extractData(fact dtos.Fact) ([]byte, error) {

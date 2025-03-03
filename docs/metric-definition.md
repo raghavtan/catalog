@@ -25,6 +25,7 @@ metadata:
         regexPattern: <string>
         jsonPath: <string>
         repoProperty: <string>
+        reposSearchQuery: <string>
         expectedValue: <string>
         expectedFormula: <string>
         auth:
@@ -41,6 +42,7 @@ metadata:
         regexPattern: <string>
         jsonPath: <string>
         repoProperty: <string>
+        reposSearchQuery: <string>
         expectedValue: <string>
         expectedFormula: <string>
         auth:
@@ -157,14 +159,15 @@ JSON API (source: jsonapi)
 - The repo field is ignored.
 
 ### Fact Types
-| Fact Type       | Source          | Description                                                   |
-|-----------------|-----------------|---------------------------------------------------------------|
-| fileExists      | GitHub          | Checks if a file exists in the repository.                    |
-| fileRegex       | GitHub          | Checks if a file contains a regex pattern.                    |
-| fileJsonPath    | GitHub, JSON API| Checks if a file or API response contains a JSON path.        |
-| repoProperties  | GitHub          | Checks if a repository has a specific property.               |
-| expectedValue   | GitHub, JSON API| Compares a JSON path's value with an expected value.          |
-| expectedFormula | GitHub, JSON API| Compares a JSON path's value using an expected formula.       |
+| Fact Type        | Source          | Description                                                   |
+|------------------|-----------------|---------------------------------------------------------------|
+| fileExists       | GitHub          | Checks if a file exists in the repository.                    |
+| fileRegex        | GitHub          | Checks if a file contains a regex pattern.                    |
+| fileJsonPath     | GitHub, JSON API| Checks if a file or API response contains a JSON path.        |
+| repoProperties   | GitHub          | Checks if a repository has a specific property.               |
+| reposSearchQuery | GitHub          | Checks if a string exists in a repository.                    |
+| expectedValue    | GitHub, JSON API| Compares a JSON path's value with an expected value.          |
+| expectedFormula  | GitHub, JSON API| Compares a JSON path's value using an expected formula.       |
 
 
 ---

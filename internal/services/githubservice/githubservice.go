@@ -15,6 +15,7 @@ type GitHubServiceInterface interface {
 	GetFileExists(repo, path string) (bool, error)
 	GetFileContent(repo, path string) (string, error)
 	GetRepoProperties(repo string) (map[string]string, error)
+	Search(repo, query string) ([]string, error)
 }
 
 type GitHubService struct {
@@ -87,4 +88,9 @@ func (gh *GitHubService) GetRepoProperties(repo string) (map[string]string, erro
 	}
 
 	return properties, nil
+}
+
+func (gh *GitHubService) Search(repo, query string) ([]string, error) {
+	repoWithOwner := fmt.Sprintf("%s/%s", gh.owner, repo)
+	return gh.client.SearchCode(repoWithOwner, query)
 }

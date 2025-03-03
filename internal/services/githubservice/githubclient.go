@@ -4,6 +4,8 @@ package githubservice
 
 import (
 	"context"
+	"fmt"
+	"io"
 
 	"github.com/google/go-github/v58/github"
 	"github.com/motain/fact-collector/internal/services/configservice"
@@ -18,6 +20,7 @@ type GitHubRepositoriesInterface interface {
 
 type GitHubClientInterface interface {
 	GetRepo() GitHubRepositoriesInterface
+	SearchCode(repo, query string) ([]string, error)
 }
 
 type GitHubClient struct {
@@ -48,4 +51,29 @@ func NewGitHubClient(
 
 func (gh *GitHubClient) GetRepo() GitHubRepositoriesInterface {
 	return gh.client.Repositories
+}
+
+func (gh *GitHubClient) SearchCode(repo, query string) ([]string, error) {
+	q := fmt.Sprintf("repo:%s %s", repo, query)
+	codeResult, res, searchErr := gh.client.Search.Code(context.Background(), q, nil)
+	if searchErr != nil {
+		return nil, searchErr
+	}
+
+	if res.StatusCode != 200 {
+		body, err := io.ReadAll(res.Body)
+		if err != nil {
+			return nil, fmt.Errorf("failed to read response body: %w", err)
+		}
+		defer res.Body.Close()
+
+		return nil, fmt.Errorf("failed to search code: %d. message %s", res.StatusCode, body)
+	}
+
+	result := make([]string, len(codeResult.CodeResults))
+	for i, code := range codeResult.CodeResults {
+		result[i] = code.GetPath()
+	}
+
+	return result, nil
 }

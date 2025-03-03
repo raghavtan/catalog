@@ -273,18 +273,19 @@ func (h *BindHandler) prepareSourceMetricFact(
 	}
 
 	processedFact := dtos.Fact{
-		Name:            fact.Name,
-		Source:          fact.Source,
-		URI:             fact.URI,
-		Repo:            repo,
-		FactType:        fact.FactType,
-		FilePath:        fact.FilePath,
-		RegexPattern:    fact.RegexPattern,
-		JSONPath:        fact.JSONPath,
-		RepoProperty:    fact.RepoProperty,
-		ExpectedValue:   expectedValue,
-		ExpectedFormula: fact.ExpectedFormula,
-		Auth:            fact.Auth,
+		Name:             fact.Name,
+		Source:           fact.Source,
+		URI:              fact.URI,
+		Repo:             repo,
+		FactType:         fact.FactType,
+		FilePath:         fact.FilePath,
+		RegexPattern:     fact.RegexPattern,
+		JSONPath:         fact.JSONPath,
+		RepoProperty:     fact.RepoProperty,
+		ReposSearchQuery: fact.ReposSearchQuery,
+		ExpectedValue:    expectedValue,
+		ExpectedFormula:  fact.ExpectedFormula,
+		Auth:             fact.Auth,
 	}
 
 	return &processedFact, nil

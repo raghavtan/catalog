@@ -33,6 +33,18 @@ metadata:
             jsonPath: envs.OTEL_SERVICE_NAME
             repoProperty: ""
             expectedValue: "${Spec.Name}"
+          - source: "github"
+            uri: ""
+            name: exposes-health-endpoint
+            repo: "${Spec.Name}"
+            branch: ""
+            factType: repoSearch
+            filePath: ""
+            reposSearchQuery: "@app.get('/health')&type=code"
+            regexPattern: ""
+            jsonPath: ""
+            repoProperty: ""
+            expectedValue: ""
 spec:
     name: metric-test-1
     description: example metric-1 used to test cli
