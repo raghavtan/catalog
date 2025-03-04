@@ -25,9 +25,9 @@ func TestGithubFactCollector_checkFileJSONPath(t *testing.T) {
 		expectedError error
 	}{
 		{
-			name: "FileJSONPathFact valid JSON path",
+			name: "JSONPathFact valid JSON path",
 			fact: dtos.Fact{
-				FactType:      dtos.FileJSONPathFact,
+				FactType:      dtos.JSONPathFact,
 				Repo:          "test-repo",
 				FilePath:      "test.json",
 				JSONPath:      "name",
@@ -40,9 +40,9 @@ func TestGithubFactCollector_checkFileJSONPath(t *testing.T) {
 			expectedError: nil,
 		},
 		{
-			name: "FileJSONPathFact invalid JSON path",
+			name: "JSONPathFact invalid JSON path",
 			fact: dtos.Fact{
-				FactType:      dtos.FileJSONPathFact,
+				FactType:      dtos.JSONPathFact,
 				Repo:          "test-repo",
 				FilePath:      "test.json",
 				JSONPath:      "invalid",
@@ -55,9 +55,9 @@ func TestGithubFactCollector_checkFileJSONPath(t *testing.T) {
 			expectedError: errors.New("jsonpath does not exist"),
 		},
 		{
-			name: "FileJSONPathFact unsupported file extension",
+			name: "JSONPathFact unsupported file extension",
 			fact: dtos.Fact{
-				FactType: dtos.FileJSONPathFact,
+				FactType: dtos.JSONPathFact,
 				Repo:     "test-repo",
 				FilePath: "test.txt",
 				JSONPath: "name",
@@ -67,9 +67,9 @@ func TestGithubFactCollector_checkFileJSONPath(t *testing.T) {
 			expectedError: errors.New("unsupported file extension: .txt"),
 		},
 		{
-			name: "FileJSONPathFact valid TOML path",
+			name: "JSONPathFact valid TOML path",
 			fact: dtos.Fact{
-				FactType:      dtos.FileJSONPathFact,
+				FactType:      dtos.JSONPathFact,
 				Repo:          "test-repo",
 				FilePath:      "test.toml",
 				JSONPath:      "name",
@@ -82,9 +82,9 @@ func TestGithubFactCollector_checkFileJSONPath(t *testing.T) {
 			expectedError: nil,
 		},
 		{
-			name: "FileJSONPathFact TOML to JSON transformation error",
+			name: "JSONPathFact TOML to JSON transformation error",
 			fact: dtos.Fact{
-				FactType: dtos.FileJSONPathFact,
+				FactType: dtos.JSONPathFact,
 				Repo:     "test-repo",
 				FilePath: "test.toml",
 				JSONPath: "name",

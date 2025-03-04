@@ -40,14 +40,18 @@ func (h *ComputeHandler) Compute(componentType, componentName, metricName string
 		}
 	}
 
+	if metricSource == nil {
+		log.Fatalf("compute: error: metric source not found")
+	}
+
 	metricValue, processErr := h.factInterpreter.ProcessFacts(metricSource.Metadata.Facts)
 	if processErr != nil {
-		log.Fatalf("error: %v", processErr)
+		log.Fatalf("compute: %v", processErr)
 	}
 
 	pushErr := h.repository.Push(context.Background(), *metricSource.Spec.ID, metricValue, time.Now())
 	if pushErr != nil {
 		log.Printf("metric source id: %s", *metricSource.Spec.ID)
-		log.Fatalf("error: %v", pushErr)
+		log.Fatalf("compute: error: %v", pushErr)
 	}
 }

@@ -27,7 +27,7 @@ metadata:
             name: app-toml-envs-otel-service-name
             repo: "${Spec.Name}"
             branch: ""
-            factType: fileJsonPath
+            factType: jsonPath
             filePath: app.toml
             regexPattern: ""
             jsonPath: envs.OTEL_SERVICE_NAME
@@ -67,7 +67,7 @@ metadata:
           name: pokemon-base-experience
           repo: ""
           branch: ""
-          factType: fileJsonPath
+          factType: jsonPath
           filePath: ""
           regexPattern: ""
           jsonPath: base_experience
@@ -98,7 +98,7 @@ metadata:
             name: pokemon-height
             repo: ""
             branch: ""
-            factType: fileJsonPath
+            factType: jsonPath
             filePath: ""
             regexPattern: ""
             jsonPath: height
@@ -110,7 +110,7 @@ metadata:
             name: pokemon-weight
             repo: ""
             branch: ""
-            factType: fileJsonPath
+            factType: jsonPath
             filePath: ""
             regexPattern: ""
             jsonPath: weight

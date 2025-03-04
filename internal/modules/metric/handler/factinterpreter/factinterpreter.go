@@ -13,15 +13,17 @@ type FactInterpreterInterface interface {
 }
 
 type FactInterpreter struct {
-	githhubFC factcollectors.GithubFactCollectorInterface
-	jsonAPIFC factcollectors.JSONAPIFactCollectorInterface
+	githhubFC   factcollectors.GithubFactCollectorInterface
+	jsonAPIFC   factcollectors.JSONAPIFactCollectorInterface
+	componentFC factcollectors.ComponentFactCollectorInterface
 }
 
 func NewFactInterpreter(
 	ghfc factcollectors.GithubFactCollectorInterface,
 	jsonAPIFC factcollectors.JSONAPIFactCollectorInterface,
+	componentFC factcollectors.ComponentFactCollectorInterface,
 ) *FactInterpreter {
-	return &FactInterpreter{githhubFC: ghfc, jsonAPIFC: jsonAPIFC}
+	return &FactInterpreter{githhubFC: ghfc, jsonAPIFC: jsonAPIFC, componentFC: componentFC}
 }
 
 func (f *FactInterpreter) ProcessFacts(factOperations dtos.FactOperations) (float64, error) {
@@ -51,7 +53,7 @@ func (f *FactInterpreter) ProcessFacts(factOperations dtos.FactOperations) (floa
 func (f *FactInterpreter) processConditionalOperations(factOperations dtos.FactOperations) (float64, error) {
 	operationsAllSucceed, allErr := f.ProcessOperationsAll(factOperations.All)
 	if allErr != nil {
-		return 0, fmt.Errorf("error: %v", allErr)
+		return 0, fmt.Errorf("process operations: %v", allErr)
 	}
 
 	if !operationsAllSucceed {
@@ -60,7 +62,7 @@ func (f *FactInterpreter) processConditionalOperations(factOperations dtos.FactO
 
 	operationsAnySucceed, anyErr := f.ProcessOperationsAny(factOperations.Any)
 	if anyErr != nil {
-		return 0, fmt.Errorf("error: %v", anyErr)
+		return 0, fmt.Errorf("process operations: %v", anyErr)
 	}
 	return transformers.Bool2Float64(operationsAllSucceed && operationsAnySucceed), nil
 }
@@ -68,13 +70,13 @@ func (f *FactInterpreter) processConditionalOperations(factOperations dtos.FactO
 func (f *FactInterpreter) ProcessOperationsAll(facts []*dtos.Fact) (bool, error) {
 	succeed := true
 	for _, fact := range facts {
-		if dtos.FactSource(fact.Source) != dtos.GitHubFactSource {
+		if !isSourceEnabled(dtos.FactSource(fact.Source)) {
 			continue
 		}
 
 		result, err := f.check(*fact)
 		if err != nil {
-			return false, fmt.Errorf("error: %v", err)
+			return false, fmt.Errorf("process operations all: %v", err)
 		}
 
 		if !result {
@@ -87,15 +89,15 @@ func (f *FactInterpreter) ProcessOperationsAll(facts []*dtos.Fact) (bool, error)
 }
 
 func (f *FactInterpreter) ProcessOperationsAny(facts []*dtos.Fact) (bool, error) {
-	succeed := facts == nil
+	succeed := len(facts) == 0
 	for _, fact := range facts {
-		if dtos.FactSource(fact.Source) != dtos.GitHubFactSource {
+		if !isSourceEnabled(dtos.FactSource(fact.Source)) {
 			continue
 		}
 
 		result, err := f.check(*fact)
 		if err != nil {
-			return false, fmt.Errorf("error: %v", err)
+			return false, fmt.Errorf("process operations any: %v", err)
 		}
 
 		if result {
@@ -116,6 +118,10 @@ func (f *FactInterpreter) processInspectOperation(fact dtos.Fact) (float64, erro
 		return f.jsonAPIFC.Inspect(fact)
 	}
 
+	if dtos.FactType(fact.Source) == dtos.FactType(dtos.ComponentFactSource) {
+		return f.componentFC.Inspect(fact)
+	}
+
 	return 0, fmt.Errorf("error: invalid fact source %s used for inspect", fact.Source)
 }
 
@@ -128,5 +134,19 @@ func (f *FactInterpreter) check(fact dtos.Fact) (bool, error) {
 		return f.jsonAPIFC.Check(fact)
 	}
 
-	return false, fmt.Errorf("error: invalid fact source %s used for check", fact.Source)
+	if dtos.FactType(fact.Source) == dtos.FactType(dtos.ComponentFactSource) {
+		return f.componentFC.Check(fact)
+	}
+
+	return false, fmt.Errorf("check: invalid fact source %s used for check", fact.Source)
+}
+
+func isSourceEnabled(item dtos.FactSource) bool {
+	enabledSources := []dtos.FactSource{dtos.GitHubFactSource, dtos.JSONAPIFactSource, dtos.ComponentFactSource}
+	for _, v := range enabledSources {
+		if v == item {
+			return true
+		}
+	}
+	return false
 }

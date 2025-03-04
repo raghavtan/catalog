@@ -49,7 +49,7 @@ type FactType string
 const (
 	FileExistsFact     FactType = "fileExists"
 	FileRegexFact      FactType = "fileRegex"
-	FileJSONPathFact   FactType = "fileJsonPath"
+	JSONPathFact       FactType = "jsonPath"
 	RepoPropertiesFact FactType = "repoProperties"
 	RepoSearchFact     FactType = "repoSearch"
 )
@@ -57,24 +57,26 @@ const (
 type FactSource string
 
 const (
-	GitHubFactSource  FactSource = "github"
-	JSONAPIFactSource FactSource = "jsonapi"
+	GitHubFactSource    FactSource = "github"
+	JSONAPIFactSource   FactSource = "jsonapi"
+	ComponentFactSource FactSource = "component"
 )
 
 // Fact defines a struct to handle different facts
 type Fact struct {
 	Source           string    `yaml:"source"`           // Source of the fact (e.g., "github")
 	URI              string    `yaml:"uri"`              // URI of the fact
+	ComponentName    string    `yaml:"componentName"`    // Component name
 	Name             string    `yaml:"name"`             // Name of the fact
 	Repo             string    `yaml:"repo"`             // Repository name (e.g., "repo")
 	FactType         FactType  `yaml:"factType"`         // Type of fact to collect
-	FilePath         string    `yaml:"filePath"`         // File to open/validate fact (if FactType is "fileExists", "fileRegex", or "fileJsonPath")
+	FilePath         string    `yaml:"filePath"`         // File to open/validate fact (if FactType is "fileExists", "fileRegex", or "jsonPath")
 	RegexPattern     string    `yaml:"regexPattern"`     // Regex to match file content or response (if FactType is "fileRegex")
-	JSONPath         string    `yaml:"jsonPath"`         // JSONPath to navigate file content or json response (if FactType is "fileJsonPath")
+	JSONPath         string    `yaml:"jsonPath"`         // JSONPath to navigate file content or json response (if FactType is "jsonPath")
 	RepoProperty     string    `yaml:"repoProperty"`     // Property to explore in the repo (if FactType is "repoProperties")
 	ReposSearchQuery string    `yaml:"reposSearchQuery"` // Query to search for repositories (if FactType is "repoSearch")
-	ExpectedValue    string    `yaml:"expectedValue"`    // Expected value (matched against value of  "repoProperty" or "fileJsonPath")
-	ExpectedFormula  string    `yaml:"expectedFormula"`  // Expected formula (matched against value of  "repoProperty" or "fileJsonPath")
+	ExpectedValue    string    `yaml:"expectedValue"`    // Expected value (matched against value of  "repoProperty" or "jsonPath")
+	ExpectedFormula  string    `yaml:"expectedFormula"`  // Expected formula (matched against value of  "repoProperty" or "jsonPath")
 	Auth             *FactAuth `yaml:"auth"`             // Auth to use to access the fact when using a URI require authentication
 }
 

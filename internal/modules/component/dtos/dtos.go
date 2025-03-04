@@ -1,10 +1,10 @@
 package dtos
 
 type ComponentDTO struct {
-	APIVersion string   `yaml:"apiVersion"`
-	Kind       string   `yaml:"kind"`
-	Metadata   Metadata `yaml:"metadata"`
-	Spec       Spec     `yaml:"spec"`
+	APIVersion string   `yaml:"apiVersion" json:"apiVersion"`
+	Kind       string   `yaml:"kind" json:"kind"`
+	Metadata   Metadata `yaml:"metadata" json:"metadata"`
+	Spec       Spec     `yaml:"spec" json:"spec"`
 }
 
 func GetComponentUniqueKey(c *ComponentDTO) string {
@@ -60,24 +60,24 @@ func IsEqualComponent(c1, c2 *ComponentDTO) bool {
 }
 
 type Metadata struct {
-	Name          string `yaml:"name"`
-	ComponentType string `yaml:"componentType"`
+	Name          string `yaml:"name" jsonyaml:"name"`
+	ComponentType string `yaml:"componentType" jsonyaml:"componentType"`
 }
 
 type Spec struct {
-	ID            *string  `yaml:"id"`
-	Name          string   `yaml:"name"`
-	Slug          string   `yaml:"slug"`
-	Description   string   `yaml:"description"`
-	ConfigVersion int      `yaml:"configVersion"`
-	TypeID        string   `yaml:"typeId"`
-	OwnerID       string   `yaml:"ownerId"`
-	Links         []Link   `yaml:"links"`
-	Labels        []string `yaml:"labels"`
+	ID            *string  `yaml:"id" json:"id"`
+	Name          string   `yaml:"name" json:"name"`
+	Slug          string   `yaml:"slug" json:"slug"`
+	Description   string   `yaml:"description" json:"description"`
+	ConfigVersion int      `yaml:"configVersion" json:"configVersion"`
+	TypeID        string   `yaml:"typeId" json:"typeId"`
+	OwnerID       string   `yaml:"ownerId" json:"ownerId"`
+	Links         []Link   `yaml:"links" json:"links"`
+	Labels        []string `yaml:"labels" json:"labels"`
 }
 
 type Link struct {
-	Name string `yaml:"name"`
-	Type string `yaml:"type"`
-	URL  string `yaml:"url"`
+	Name string `yaml:"name" json:"name"`
+	Type string `yaml:"type" json:"type"`
+	URL  string `yaml:"url" json:"url"`
 }

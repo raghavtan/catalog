@@ -266,6 +266,11 @@ func (h *BindHandler) prepareSourceMetricFact(
 		fmt.Printf("Failed to replace placeholder for role in fact %s: %v\n", fact.Name, errRepo)
 		return nil, errRepo
 	}
+	componentName, errCompName := h.replaceMetricFactPlaceholder(fact.ComponentName, component)
+	if errCompName != nil {
+		fmt.Printf("Failed to replace placeholder for component name in fact %s: %v\n", fact.Name, errCompName)
+		return nil, errCompName
+	}
 	expectedValue, errExpValue := h.replaceMetricFactPlaceholder(fact.ExpectedValue, component)
 	if errExpValue != nil {
 		fmt.Printf("Failed to replace placeholder for expectedValue in fact %s: %v\n", fact.Name, errExpValue)
@@ -276,6 +281,7 @@ func (h *BindHandler) prepareSourceMetricFact(
 		Name:             fact.Name,
 		Source:           fact.Source,
 		URI:              fact.URI,
+		ComponentName:    componentName,
 		Repo:             repo,
 		FactType:         fact.FactType,
 		FilePath:         fact.FilePath,

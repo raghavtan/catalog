@@ -7,12 +7,12 @@ import (
 	"fmt"
 	"path/filepath"
 	"regexp"
+	"strconv"
 
 	"github.com/motain/fact-collector/internal/modules/metric/dtos"
 	"github.com/motain/fact-collector/internal/services/githubservice"
 	"github.com/motain/fact-collector/internal/utils/eval"
 	"github.com/motain/fact-collector/internal/utils/transformers"
-	"github.com/tidwall/gjson"
 )
 
 type GithubFactCollectorInterface interface {
@@ -37,7 +37,7 @@ func (fc *GithubFactCollector) Check(fact dtos.Fact) (bool, error) {
 		return fc.checkFileRegex(fact)
 	}
 
-	if fact.FactType == dtos.FileJSONPathFact {
+	if fact.FactType == dtos.JSONPathFact {
 		return fc.checkFileJSONPath(fact)
 	}
 
@@ -58,12 +58,17 @@ func (fc *GithubFactCollector) Inspect(fact dtos.Fact) (float64, error) {
 		return 0, extractionErr
 	}
 
-	value := gjson.GetBytes(jsonData, fact.JSONPath)
-	if !value.Exists() {
-		return 0, fmt.Errorf("jsonpath does not exist")
+	value, inspectErr := inspectJson(jsonData, fact)
+	if inspectErr != nil {
+		return 0, inspectErr
 	}
 
-	return value.Float(), nil
+	floatValue, err := strconv.ParseFloat(value, 64)
+	if err != nil {
+		return 0, err
+	}
+
+	return floatValue, nil
 }
 
 func (fc *GithubFactCollector) checkFileExists(fact dtos.Fact) (bool, error) {
@@ -99,9 +104,9 @@ func (fc *GithubFactCollector) checkFileJSONPath(fact dtos.Fact) (bool, error) {
 		return false, extractionErr
 	}
 
-	value := gjson.GetBytes(jsonData, fact.JSONPath)
-	if !value.Exists() {
-		return false, fmt.Errorf("jsonpath does not exist")
+	value, inspectErr := inspectJson(jsonData, fact)
+	if inspectErr != nil {
+		return false, inspectErr
 	}
 
 	if fact.ExpectedValue == "" && fact.ExpectedFormula == "" {
@@ -109,10 +114,15 @@ func (fc *GithubFactCollector) checkFileJSONPath(fact dtos.Fact) (bool, error) {
 	}
 
 	if fact.ExpectedFormula != "" {
-		return eval.Expression(fmt.Sprintf("%s %s", value.String(), fact.ExpectedFormula))
+		return eval.Expression(fmt.Sprintf("%s %s", value, fact.ExpectedFormula))
 	}
 
-	return value.String() == fact.ExpectedValue, nil
+	regexPattern, regexErr := regexp.Compile(fact.ExpectedValue)
+	if regexErr != nil {
+		return false, regexErr
+	}
+
+	return regexPattern.MatchString(value), nil
 }
 
 func (fc *GithubFactCollector) checkRepoProperties(fact dtos.Fact) (bool, error) {

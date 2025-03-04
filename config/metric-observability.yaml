@@ -1,105 +1,110 @@
-# PRODUCTION-READINESS
+# OBSERVABILITY METRICS
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-    name: instrumentation-check
-    labels:
-        grading-system: observability
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        all:
-          - source: "github"
-            name: app-toml-exists
-            repo: "${Spec.Name}"
-            factType: fileExists
-            filePath: app.toml
-          - source: "github"
-            name: app-toml-envs-otel-service-name
-            repo: "${Spec.Name}"
-            factType: fileJsonPath
-            filePath: app.toml
-            jsonPath: envs.OTEL_SERVICE_NAME
-            expectedValue: "${Spec.Name}"
+  name: instrumentation-check
+  labels:
+    grading-system: observability
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    all:
+      - source: github
+        uri: ""
+        name: app-toml-exists
+        repo: "${Spec.Name}"
+        factType: fileExists
+        filePath: app.toml
+        regexPattern: ""
+        jsonPath: ""
+        repoProperty: ""
+        reposSearchQuery: ""
+        expectedValue: ""
+        expectedFormula: ""
+        auth: null
+      - source: github
+        uri: ""
+        name: app-toml-envs-otel-service-name
+        repo: "${Spec.Name}"
+        factType: jsonPath
+        filePath: app.toml
+        regexPattern: ""
+        jsonPath: $..envs..OTEL_SERVICE_NAME
+        repoProperty: ""
+        reposSearchQuery: ""
+        expectedValue: "${Spec.Name}"
+        expectedFormula: ""
+        auth: null
+      - source: "github"
+        name: app-toml-env-otel-exporter-otlp-endpoint
+        repo: "${Spec.Name}"
+        factType: jsonPath
+        filePath: app.toml
+        jsonPath: $..envs..OTEL_EXPORTER_OTLP_ENDPOINT
+        expectedValue: "otel-loadbalancer-internal.otel-loadbalancer.svc.cluster.local."
+      - source: "github"
+        name: app-toml-env-otel-resource-attributes-sampling
+        repo: "${Spec.Name}"
+        factType: jsonPath
+        filePath: app.toml
+        jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
+        expectedValue: "of\\.sample_rate=\\d+.*"
+      - source: "github"
+        name: app-toml-env-otel-resource-attributes-tail-sampling-refinery
+        repo: "${Spec.Name}"
+        factType: jsonPath
+        filePath: app.toml
+        jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
+        expectedValue: "of\\.tail_sampling=refinery"
 spec:
-    name: metric-test-1
-    description: example metric-1 used to test cli
-    format:
-        unit: msg/sec
+  name: instrumentation-check
+  description: "Check if the service is properly instrumented for observability"
+  format:
+    unit: "instrumented"
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-    name: metric-test-2
-    labels:
-        grading-system: production-readiness
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        inspect: # Boolean
-          source: "jsonapi"
-          uri: "https://pokeapi.co/api/v2/pokemon/ditto"
-          name: pokemon-base-experience
-          repo: ""
-          branch: ""
-          factType: fileJsonPath
-          filePath: ""
-          regexPattern: ""
-          jsonPath: base_experience
-          repoProperty: ""
-          expectedValue: ""
-          auth:
-            header: Authorization
-            tokenEnvVariable: HONEYCOMB_API_KEY
+  name: documentation-check
+  labels:
+    grading-system: observability
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    all:
+      - source: component
+        uri: ""
+        name: dashboard-links-exist
+        repo: ""
+        componentName: "${Spec.Name}"
+        factType: jsonPath
+        filePath: ""
+        regexPattern: ""
+        jsonPath: "$.links[?(@.type=='DASHBOARD')].url | length"
+        repoProperty: ""
+        reposSearchQuery: ""
+        expectedValue: ""
+        expectedFormula: ">= 1"
+        auth: null
+      - source: component
+        uri: ""
+        name: overview-link-exists
+        repo: ""
+        componentName: "${Spec.Name}"
+        factType: jsonPath
+        filePath: ""
+        regexPattern: ""
+        jsonPath: "$.links[?(@.type=='DOCUMENT' && @.name=='Overview')].url | length"
+        repoProperty: ""
+        reposSearchQuery: ""
+        expectedValue: ""
+        expectedFormula: "== 1"
+        auth: null
 spec:
-    name: metric-test-2
-    description: example metric-1 used to test cli
-    format:
-        unit: msg/sec
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
-    name: metric-test-3
-    labels:
-        grading-system: production-readiness
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        all: # Boolean
-          - source: "jsonapi"
-            uri: "https://pokeapi.co/api/v2/pokemon/ditto"
-            name: pokemon-height
-            repo: ""
-            branch: ""
-            factType: fileJsonPath
-            filePath: ""
-            regexPattern: ""
-            jsonPath: height
-            repoProperty: ""
-            expectedValue: "3"
-        any:
-          - source: "jsonapi"
-            uri: "https://pokeapi.co/api/v2/pokemon/ditto"
-            name: pokemon-weight
-            repo: ""
-            branch: ""
-            factType: fileJsonPath
-            filePath: ""
-            regexPattern: ""
-            jsonPath: weight
-            repoProperty: ""
-            expectedValue: ""
-            expectedexpectedFormula: "> 50"
-            auth:
-                header: "Authorization"
-                tokenEnvVariable: "HONEYCOMB_API_KEY"
-spec:
-    name: metric-test-3
-    description: example metric-3 used to test cli
-    format:
-        unit: strong enough
+  name: documentation-check
+  description: "Check"
+  format:
+    unit: "documented"

@@ -97,7 +97,7 @@ facts:
   any:
     - source: "jsonapi"
       uri: "https://pokeapi.co/api/v2/pokemon/ditto"
-      factType: fileJsonPath
+      factType: jsonPath
       jsonPath: weight
       expectedFormula: "> 50"
 ```
@@ -163,7 +163,7 @@ JSON API (source: jsonapi)
 |------------------|-----------------|---------------------------------------------------------------|
 | fileExists       | GitHub          | Checks if a file exists in the repository.                    |
 | fileRegex        | GitHub          | Checks if a file contains a regex pattern.                    |
-| fileJsonPath     | GitHub, JSON API| Checks if a file or API response contains a JSON path.        |
+| jsonPath     | GitHub, JSON API| Checks if a file or API response contains a JSON path.        |
 | repoProperties   | GitHub          | Checks if a repository has a specific property.               |
 | reposSearchQuery | GitHub          | Checks if a string exists in a repository.                    |
 | expectedValue    | GitHub, JSON API| Compares a JSON path's value with an expected value.          |

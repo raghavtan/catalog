@@ -7,12 +7,13 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"regexp"
+	"strconv"
 
 	"github.com/motain/fact-collector/internal/modules/metric/dtos"
 	"github.com/motain/fact-collector/internal/services/configservice"
 	"github.com/motain/fact-collector/internal/services/jsonservice"
 	"github.com/motain/fact-collector/internal/utils/eval"
-	"github.com/tidwall/gjson"
 )
 
 type JSONAPIFactCollectorInterface interface {
@@ -33,7 +34,7 @@ func NewJSONAPIFactCollector(
 }
 
 func (fc *JSONAPIFactCollector) Check(fact dtos.Fact) (bool, error) {
-	if fact.FactType != dtos.FileJSONPathFact {
+	if fact.FactType != dtos.JSONPathFact {
 		return false, nil
 	}
 
@@ -42,9 +43,9 @@ func (fc *JSONAPIFactCollector) Check(fact dtos.Fact) (bool, error) {
 		return false, extractionErr
 	}
 
-	value := gjson.GetBytes(jsonData, fact.JSONPath)
-	if !value.Exists() {
-		return false, fmt.Errorf("jsonpath does not exist")
+	value, inspectErr := inspectJson(jsonData, fact)
+	if inspectErr != nil {
+		return false, inspectErr
 	}
 
 	if fact.ExpectedValue == "" && fact.ExpectedFormula == "" {
@@ -52,14 +53,19 @@ func (fc *JSONAPIFactCollector) Check(fact dtos.Fact) (bool, error) {
 	}
 
 	if fact.ExpectedFormula != "" {
-		return eval.Expression(fmt.Sprintf("%s %s", value.String(), fact.ExpectedFormula))
+		return eval.Expression(fmt.Sprintf("%s %s", value, fact.ExpectedFormula))
 	}
 
-	return value.String() == fact.ExpectedValue, nil
+	regexPattern, regexErr := regexp.Compile(fact.ExpectedValue)
+	if regexErr != nil {
+		return false, regexErr
+	}
+
+	return regexPattern.MatchString(value), nil
 }
 
 func (fc *JSONAPIFactCollector) Inspect(fact dtos.Fact) (float64, error) {
-	if fact.FactType != dtos.FileJSONPathFact {
+	if fact.FactType != dtos.JSONPathFact {
 		return 0, nil
 	}
 
@@ -68,12 +74,17 @@ func (fc *JSONAPIFactCollector) Inspect(fact dtos.Fact) (float64, error) {
 		return 0, extractionErr
 	}
 
-	value := gjson.GetBytes(jsonData, fact.JSONPath)
-	if !value.Exists() {
-		return 0, fmt.Errorf("jsonpath does not exist")
+	value, inspectErr := inspectJson(jsonData, fact)
+	if inspectErr != nil {
+		return 0, inspectErr
 	}
 
-	return value.Float(), nil
+	floatValue, err := strconv.ParseFloat(value, 64)
+	if err != nil {
+		return 0, err
+	}
+
+	return floatValue, nil
 }
 
 func (fc *JSONAPIFactCollector) extractData(fact dtos.Fact) ([]byte, error) {
