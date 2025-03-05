@@ -83,7 +83,7 @@ metadata:
         factType: jsonPath
         filePath: ""
         regexPattern: ""
-        jsonPath: "$.links[?(@.type=='DASHBOARD')].url | length"
+        jsonPath: "length($.spec.links[?(@.type=='DASHBOARD')].url)
         repoProperty: ""
         reposSearchQuery: ""
         expectedValue: ""
@@ -97,7 +97,7 @@ metadata:
         factType: jsonPath
         filePath: ""
         regexPattern: ""
-        jsonPath: "$.links[?(@.type=='DOCUMENT' && @.name=='Overview')].url | length"
+        jsonPath: "length($.spec.links[?(@.type=='DOCUMENT' && @.name=='Overview')].url)"
         repoProperty: ""
         reposSearchQuery: ""
         expectedValue: ""

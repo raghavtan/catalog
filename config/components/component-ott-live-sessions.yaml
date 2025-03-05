@@ -1,0 +1,23 @@
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-live-sessions
+    componentType: service
+spec:
+    name: ott-live-sessions
+    slug: svc-ott-live-sessions
+    description: ""
+    configVersion: 1
+    typeId: SERVICE
+    ownerId: ""
+    links:
+        - name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/ott-live-sessions
+        - name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+    labels:
+        - engagement
+        - live-video
+        - ott-live-sessioins

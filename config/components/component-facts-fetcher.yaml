@@ -1,0 +1,23 @@
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: facts-fetcher
+    componentType: service
+spec:
+    name: facts-fetcher
+    slug: svc-facts-fetcher
+    description: ""
+    configVersion: 1
+    typeId: SERVICE
+    ownerId: ""
+    links:
+        - name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/facts-fetcher
+        - name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+    labels:
+        - engagement
+        - matchxp
+        - facts-fetcher

@@ -40,7 +40,7 @@ metadata:
             branch: ""
             factType: repoSearch
             filePath: ""
-            reposSearchQuery: "@app.get('/health')&type=code"
+            reposSearchQuery: "@app.get('/health')"
             regexPattern: ""
             jsonPath: ""
             repoProperty: ""
