@@ -65,15 +65,16 @@ type Metadata struct {
 }
 
 type Spec struct {
-	ID            *string  `yaml:"id" json:"id"`
-	Name          string   `yaml:"name" json:"name"`
-	Slug          string   `yaml:"slug" json:"slug"`
-	Description   string   `yaml:"description" json:"description"`
-	ConfigVersion int      `yaml:"configVersion" json:"configVersion"`
-	TypeID        string   `yaml:"typeId" json:"typeId"`
-	OwnerID       string   `yaml:"ownerId" json:"ownerId"`
-	Links         []Link   `yaml:"links" json:"links"`
-	Labels        []string `yaml:"labels" json:"labels"`
+	ID            *string                     `yaml:"id" json:"id"`
+	Name          string                      `yaml:"name" json:"name"`
+	Slug          string                      `yaml:"slug" json:"slug"`
+	Description   string                      `yaml:"description" json:"description"`
+	ConfigVersion int                         `yaml:"configVersion" json:"configVersion"`
+	TypeID        string                      `yaml:"typeId" json:"typeId"`
+	OwnerID       string                      `yaml:"ownerId" json:"ownerId"`
+	Links         []Link                      `yaml:"links" json:"links"`
+	Labels        []string                    `yaml:"labels" json:"labels"`
+	MetricSources map[string]*MetricSourceDTO `yaml:"metricSources" json:"metricSources"`
 }
 
 type Link struct {

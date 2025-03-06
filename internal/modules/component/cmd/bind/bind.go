@@ -8,7 +8,7 @@ import (
 func Init() *cobra.Command {
 	return &cobra.Command{
 		Use:   "bind",
-		Short: "Bind metrics to components",
+		Short: "Bind components to metrics",
 		Run: func(cmd *cobra.Command, args []string) {
 			handler := initializeHandler()
 			handler.Bind(yaml.StateLocation)

@@ -14,7 +14,7 @@ spec:
     scoringStrategyType: WEIGHT_BASED
     criteria:
         - hasMetricValue:
-            id: 0e9ab3c8-6299-4ea6-b1d5-03f018f7c780
+            id: ""
             weight: 40
             name: instrumentation-check
             metricName: instrumentation-check
@@ -22,7 +22,7 @@ spec:
             comparatorValue: 1
             comparator: EQUALS
         - hasMetricValue:
-            id: 39e603b0-c1b3-485c-a7f3-015e4cb25c6a
+            id: ""
             weight: 60
             name: critical-alerts-slo-check
             metricName: critical-alerts-slo-check

@@ -10,15 +10,15 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/motain/fact-collector/internal/modules/metric/dtos"
 	"github.com/motain/fact-collector/internal/services/configservice"
+	fsdtos "github.com/motain/fact-collector/internal/services/factsystem/dtos"
 	"github.com/motain/fact-collector/internal/services/jsonservice"
 	"github.com/motain/fact-collector/internal/utils/eval"
 )
 
 type JSONAPIFactCollectorInterface interface {
-	Check(fact dtos.Fact) (bool, error)
-	Inspect(fact dtos.Fact) (float64, error)
+	Check(fact fsdtos.Fact) (bool, error)
+	Inspect(fact fsdtos.Fact) (float64, error)
 }
 
 type JSONAPIFactCollector struct {
@@ -33,8 +33,8 @@ func NewJSONAPIFactCollector(
 	return &JSONAPIFactCollector{config: config, jsonService: jsonService}
 }
 
-func (fc *JSONAPIFactCollector) Check(fact dtos.Fact) (bool, error) {
-	if fact.FactType != dtos.JSONPathFact {
+func (fc *JSONAPIFactCollector) Check(fact fsdtos.Fact) (bool, error) {
+	if fact.FactType != fsdtos.JSONPathFact {
 		return false, nil
 	}
 
@@ -64,8 +64,8 @@ func (fc *JSONAPIFactCollector) Check(fact dtos.Fact) (bool, error) {
 	return regexPattern.MatchString(value), nil
 }
 
-func (fc *JSONAPIFactCollector) Inspect(fact dtos.Fact) (float64, error) {
-	if fact.FactType != dtos.JSONPathFact {
+func (fc *JSONAPIFactCollector) Inspect(fact fsdtos.Fact) (float64, error) {
+	if fact.FactType != fsdtos.JSONPathFact {
 		return 0, nil
 	}
 
@@ -87,7 +87,7 @@ func (fc *JSONAPIFactCollector) Inspect(fact dtos.Fact) (float64, error) {
 	return floatValue, nil
 }
 
-func (fc *JSONAPIFactCollector) extractData(fact dtos.Fact) ([]byte, error) {
+func (fc *JSONAPIFactCollector) extractData(fact fsdtos.Fact) ([]byte, error) {
 	var jsonData []byte
 
 	req, err := http.NewRequest("GET", fact.URI, nil)

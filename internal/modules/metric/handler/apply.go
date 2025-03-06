@@ -70,9 +70,9 @@ func (h *ApplyHandler) handleUnchanged(result []*dtos.MetricDTO, metrics map[str
 
 func (h *ApplyHandler) handleCreated(result []*dtos.MetricDTO, metrics map[string]*dtos.MetricDTO) []*dtos.MetricDTO {
 	for _, metricDTO := range metrics {
-		component := metricDTOToResource(metricDTO)
+		metric := metricDTOToResource(metricDTO)
 
-		id, err := h.repository.Create(context.Background(), component)
+		id, err := h.repository.Create(context.Background(), metric)
 		if err != nil {
 			panic(err)
 		}
@@ -86,8 +86,8 @@ func (h *ApplyHandler) handleCreated(result []*dtos.MetricDTO, metrics map[strin
 
 func (h *ApplyHandler) handleUpdated(result []*dtos.MetricDTO, metrics map[string]*dtos.MetricDTO) []*dtos.MetricDTO {
 	for _, metricDTO := range metrics {
-		component := metricDTOToResource(metricDTO)
-		err := h.repository.Update(context.Background(), component)
+		metric := metricDTOToResource(metricDTO)
+		err := h.repository.Update(context.Background(), metric)
 		if err != nil {
 			panic(err)
 		}

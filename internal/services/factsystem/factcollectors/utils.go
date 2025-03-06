@@ -3,11 +3,11 @@ package factcollectors
 import (
 	"fmt"
 
-	"github.com/motain/fact-collector/internal/modules/metric/dtos"
+	fsdtos "github.com/motain/fact-collector/internal/services/factsystem/dtos"
 	"github.com/spyzhov/ajson"
 )
 
-func inspectJson(jsonData []byte, fact dtos.Fact) (string, error) {
+func inspectJson(jsonData []byte, fact fsdtos.Fact) (string, error) {
 	root, unmarshalErr := ajson.Unmarshal(jsonData)
 	if unmarshalErr != nil {
 		return "", unmarshalErr

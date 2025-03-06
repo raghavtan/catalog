@@ -9,14 +9,14 @@ import (
 	"strconv"
 
 	componentdtos "github.com/motain/fact-collector/internal/modules/component/dtos"
-	"github.com/motain/fact-collector/internal/modules/metric/dtos"
+	fsdtos "github.com/motain/fact-collector/internal/services/factsystem/dtos"
 	"github.com/motain/fact-collector/internal/utils/eval"
 	"github.com/motain/fact-collector/internal/utils/yaml"
 )
 
 type ComponentFactCollectorInterface interface {
-	Check(fact dtos.Fact) (bool, error)
-	Inspect(fact dtos.Fact) (float64, error)
+	Check(fact fsdtos.Fact) (bool, error)
+	Inspect(fact fsdtos.Fact) (float64, error)
 }
 
 type ComponentFactCollector struct{}
@@ -25,8 +25,8 @@ func NewComponentFactCollector() *ComponentFactCollector {
 	return &ComponentFactCollector{}
 }
 
-func (fc *ComponentFactCollector) Check(fact dtos.Fact) (bool, error) {
-	if fact.FactType != dtos.JSONPathFact {
+func (fc *ComponentFactCollector) Check(fact fsdtos.Fact) (bool, error) {
+	if fact.FactType != fsdtos.JSONPathFact {
 		return false, nil
 	}
 
@@ -56,7 +56,7 @@ func (fc *ComponentFactCollector) Check(fact dtos.Fact) (bool, error) {
 	return regexPattern.MatchString(value), nil
 }
 
-func (fc *ComponentFactCollector) Inspect(fact dtos.Fact) (float64, error) {
+func (fc *ComponentFactCollector) Inspect(fact fsdtos.Fact) (float64, error) {
 	jsonData, extractionErr := fc.extractData(fact)
 	if extractionErr != nil {
 		return 0, extractionErr
@@ -75,8 +75,8 @@ func (fc *ComponentFactCollector) Inspect(fact dtos.Fact) (float64, error) {
 	return floatValue, nil
 }
 
-func (fc *ComponentFactCollector) extractData(fact dtos.Fact) ([]byte, error) {
-	stateComponents, errState := yaml.Parse[componentdtos.ComponentDTO](yaml.StateLocation, false, componentdtos.GetComponentUniqueKey)
+func (fc *ComponentFactCollector) extractData(fact fsdtos.Fact) ([]byte, error) {
+	stateComponents, errState := yaml.Parse(yaml.StateLocation, false, componentdtos.GetComponentUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}

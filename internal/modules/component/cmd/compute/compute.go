@@ -8,17 +8,12 @@ import (
 )
 
 func Init() *cobra.Command {
-	var componentType, componentName, metricName string
+	var componentName, metricName string
 
 	cmd := &cobra.Command{
 		Use:   "compute",
 		Short: "Compute metrics for components",
 		Run: func(cmd *cobra.Command, args []string) {
-			if componentType == "" {
-				fmt.Println("Error: componentType is required")
-				cmd.Help()
-				return
-			}
 			if componentName == "" {
 				fmt.Println("Error: componentName is required")
 				cmd.Help()
@@ -30,13 +25,12 @@ func Init() *cobra.Command {
 				return
 			}
 
-			fmt.Printf("Tracking metric '%s' for component '%s' of type '%s'\n", metricName, componentName, componentType)
+			fmt.Printf("Tracking metric '%s' for component '%s'\n", metricName, componentName)
 			handler := initializeHandler()
-			handler.Compute(componentType, componentName, metricName, yaml.StateLocation)
+			handler.Compute(componentName, metricName, yaml.StateLocation)
 		},
 	}
 
-	cmd.Flags().StringVarP(&componentType, "type", "t", "", "Type of the component (service, cloud-resource, website, application)")
 	cmd.Flags().StringVarP(&componentName, "component", "c", "", "Name of the component")
 	cmd.Flags().StringVarP(&metricName, "metric", "m", "", "Name of the metric")
 

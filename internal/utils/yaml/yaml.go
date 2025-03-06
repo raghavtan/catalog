@@ -7,6 +7,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strings"
 
 	"github.com/bmatcuk/doublestar/v4"
@@ -85,7 +86,7 @@ func GetKindFromGeneric(typeName string) (string, error) {
 	return strings.ToLower(typeName[start:end]), nil
 }
 
-func parse[T any](globString string) ([]*T, error) {
+func parse[T any](tKind string, globString string) ([]*T, error) {
 	basepath, pattern := doublestar.SplitPattern(globString)
 	matches, globErr := doublestar.Glob(os.DirFS(basepath), pattern)
 	if globErr != nil {
@@ -94,7 +95,7 @@ func parse[T any](globString string) ([]*T, error) {
 
 	var results []*T
 	for _, match := range matches {
-		decodedResults, decodeErr := decodeData[T](basepath + "/" + match)
+		decodedResults, decodeErr := decodeData[T](tKind, basepath+"/"+match)
 		if decodeErr != nil {
 			return nil, decodeErr
 		}
@@ -132,7 +133,12 @@ func WriteState[T any](data []*T) error {
 }
 
 func getDefinitions[T any](rootLocation string, recursive bool) ([]*T, error) {
-	filePath, pathErr := getFilePath[T](rootLocation, recursive)
+	tKind, kindErr := GetKindFromGeneric(fmt.Sprintf("%T", new(T)))
+	if kindErr != nil {
+		return nil, kindErr
+	}
+
+	filePath, pathErr := getFilePath[T](tKind, rootLocation, recursive)
 	if pathErr != nil {
 		return nil, pathErr
 	}
@@ -141,7 +147,7 @@ func getDefinitions[T any](rootLocation string, recursive bool) ([]*T, error) {
 		return nil, nil
 	}
 
-	defintions, parseErr := parse[T](filePath)
+	defintions, parseErr := parse[T](tKind, filePath)
 	if parseErr != nil {
 		return nil, errors.Join(fmt.Errorf("failed to parse files at %s: \"%s\"", rootLocation, filePath), parseErr)
 	}
@@ -149,15 +155,10 @@ func getDefinitions[T any](rootLocation string, recursive bool) ([]*T, error) {
 	return defintions, nil
 }
 
-func getFilePath[T any](rootLocation string, recursive bool) (string, error) {
+func getFilePath[T any](tKind string, rootLocation string, recursive bool) (string, error) {
 	directory := strings.TrimRight(rootLocation, "/")
 	if recursive {
 		directory = fmt.Sprintf("%s/**", directory)
-	}
-
-	tKind, kindErr := GetKindFromGeneric(fmt.Sprintf("%T", new(T)))
-	if kindErr != nil {
-		return "", kindErr
 	}
 
 	filePath := fmt.Sprintf("%s/%s*.yaml", directory, tKind)
@@ -180,7 +181,7 @@ func encodeData[T any](data []*T) ([]byte, error) {
 	return buffer.Bytes(), nil
 }
 
-func decodeData[T any](fileName string) ([]*T, error) {
+func decodeData[T any](tKind string, fileName string) ([]*T, error) {
 	data, readErr := os.ReadFile(fileName)
 	if readErr != nil {
 		return nil, readErr
@@ -198,7 +199,11 @@ func decodeData[T any](fileName string) ([]*T, error) {
 			return nil, decodeErr
 		}
 
-		results = append(results, &result)
+		// Assuming the struct has a field named Kind
+		kindField := reflect.ValueOf(result).FieldByName("Kind")
+		if kindField.IsValid() && strings.EqualFold(kindField.String(), tKind) {
+			results = append(results, &result)
+		}
 	}
 
 	return results, nil

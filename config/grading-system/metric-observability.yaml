@@ -51,7 +51,7 @@ metadata:
     all:
       - name: has-slos
         source: jsonapi
-        URI: "https://api.eu1.honeycomb.io/1/slos/${Metadata.Name}"
+        uri: "https://api.eu1.honeycomb.io/1/slos/${Metadata.Name}"
         auth:
           header: X-Honeycomb-Team
           tokenEnvVariable: HONEYCOMB_API_KEY

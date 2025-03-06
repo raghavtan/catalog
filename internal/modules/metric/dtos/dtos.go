@@ -1,16 +1,20 @@
 package dtos
 
-import "reflect"
+import (
+	"reflect"
+
+	fsdtos "github.com/motain/fact-collector/internal/services/factsystem/dtos"
+)
 
 // MetricDTO is a data transfer object representing a metric definition.
 type MetricDTO struct {
 	APIVersion string `yaml:"apiVersion"`
 	Kind       string `yaml:"kind"`
 	Metadata   struct {
-		Name          string            `yaml:"name"`
-		Labels        map[string]string `yaml:"labels"`
-		ComponentType []string          `yaml:"componentType"`
-		Facts         FactOperations    `yaml:"facts"`
+		Name          string                `yaml:"name"`
+		Labels        map[string]string     `yaml:"labels"`
+		ComponentType []string              `yaml:"componentType"`
+		Facts         fsdtos.FactOperations `yaml:"facts"`
 	} `yaml:"metadata"`
 	Spec MetricSpec `yaml:"spec"`
 }
@@ -32,57 +36,37 @@ func IsEqualMetric(m1, m2 *MetricDTO) bool {
 		m1.Spec.Description == m2.Spec.Description &&
 		reflect.DeepEqual(m1.Spec.Format, m2.Spec.Format) &&
 		m1.Metadata.Name == m2.Metadata.Name &&
-		reflect.DeepEqual(m1.Metadata.Labels, m2.Metadata.Labels) &&
-		reflect.DeepEqual(m1.Metadata.ComponentType, m2.Metadata.ComponentType) &&
-		reflect.DeepEqual(m1.Metadata.Facts, m2.Metadata.Facts)
+		isEqualLabels(m1.Metadata.Labels, m2.Metadata.Labels) &&
+		isEqualComponentTypes(m1.Metadata.ComponentType, m2.Metadata.ComponentType) &&
+		m1.Metadata.Facts.IsEqual(m2.Metadata.Facts)
 }
 
-type FactOperations struct {
-	All     []*Fact `yaml:"all"`
-	Any     []*Fact `yaml:"any"`
-	Inspect *Fact   `yaml:"inspect"`
+func isEqualLabels(l1, l2 map[string]string) bool {
+	if len(l1) != len(l2) {
+		return false
+	}
+
+	for k, v := range l1 {
+		if l2[k] != v {
+			return false
+		}
+	}
+
+	return true
 }
 
-// FactType defines the type of fact to collect
-type FactType string
+func isEqualComponentTypes(c1, c2 []string) bool {
+	if len(c1) != len(c2) {
+		return false
+	}
 
-const (
-	FileExistsFact     FactType = "fileExists"
-	FileRegexFact      FactType = "fileRegex"
-	JSONPathFact       FactType = "jsonPath"
-	RepoPropertiesFact FactType = "repoProperties"
-	RepoSearchFact     FactType = "repoSearch"
-)
+	for i, c := range c1 {
+		if c2[i] != c {
+			return false
+		}
+	}
 
-type FactSource string
-
-const (
-	GitHubFactSource    FactSource = "github"
-	JSONAPIFactSource   FactSource = "jsonapi"
-	ComponentFactSource FactSource = "component"
-)
-
-// Fact defines a struct to handle different facts
-type Fact struct {
-	Source           string    `yaml:"source"`           // Source of the fact (e.g., "github")
-	URI              string    `yaml:"uri"`              // URI of the fact
-	ComponentName    string    `yaml:"componentName"`    // Component name
-	Name             string    `yaml:"name"`             // Name of the fact
-	Repo             string    `yaml:"repo"`             // Repository name (e.g., "repo")
-	FactType         FactType  `yaml:"factType"`         // Type of fact to collect
-	FilePath         string    `yaml:"filePath"`         // File to open/validate fact (if FactType is "fileExists", "fileRegex", or "jsonPath")
-	RegexPattern     string    `yaml:"regexPattern"`     // Regex to match file content or response (if FactType is "fileRegex")
-	JSONPath         string    `yaml:"jsonPath"`         // JSONPath to navigate file content or json response (if FactType is "jsonPath")
-	RepoProperty     string    `yaml:"repoProperty"`     // Property to explore in the repo (if FactType is "repoProperties")
-	ReposSearchQuery string    `yaml:"reposSearchQuery"` // Query to search for repositories (if FactType is "repoSearch")
-	ExpectedValue    string    `yaml:"expectedValue"`    // Expected value (matched against value of  "repoProperty" or "jsonPath")
-	ExpectedFormula  string    `yaml:"expectedFormula"`  // Expected formula (matched against value of  "repoProperty" or "jsonPath")
-	Auth             *FactAuth `yaml:"auth"`             // Auth to use to access the fact when using a URI require authentication
-}
-
-type FactAuth struct {
-	Header           string `yaml:"header"`
-	TokenEnvVariable string `yaml:"tokenEnvVariable"`
+	return true
 }
 
 type MetricSpec struct {
@@ -116,10 +100,10 @@ func GetMetricSourceUniqueKey(m *MetricSourceDTO) string {
 }
 
 type MetricSourceMetadataDTO struct {
-	Name           string         `yaml:"name"`
-	ComponentTypes []string       `yaml:"componentTypes"`
-	Status         string         `yaml:"status"`
-	Facts          FactOperations `yaml:"facts"`
+	Name           string                `yaml:"name"`
+	ComponentTypes []string              `yaml:"componentTypes"`
+	Status         string                `yaml:"status"`
+	Facts          fsdtos.FactOperations `yaml:"facts"`
 }
 
 func IsActiveMetricSources(metricSource *MetricSourceDTO) bool {

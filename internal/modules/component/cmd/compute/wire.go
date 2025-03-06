@@ -4,12 +4,12 @@ package compute
 
 import (
 	"github.com/google/wire"
-	"github.com/motain/fact-collector/internal/modules/metric/handler"
-	"github.com/motain/fact-collector/internal/modules/metric/handler/factcollectors"
-	"github.com/motain/fact-collector/internal/modules/metric/handler/factinterpreter"
-	"github.com/motain/fact-collector/internal/modules/metric/repository"
+	"github.com/motain/fact-collector/internal/modules/component/handler"
+	"github.com/motain/fact-collector/internal/modules/component/repository"
 	"github.com/motain/fact-collector/internal/services/compassservice"
 	"github.com/motain/fact-collector/internal/services/configservice"
+	"github.com/motain/fact-collector/internal/services/factsystem/factcollectors"
+	"github.com/motain/fact-collector/internal/services/factsystem/factinterpreter"
 	"github.com/motain/fact-collector/internal/services/githubservice"
 	"github.com/motain/fact-collector/internal/services/jsonservice"
 	"github.com/motain/fact-collector/internal/services/keyringservice"

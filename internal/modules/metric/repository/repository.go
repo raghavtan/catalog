@@ -7,7 +7,6 @@ import (
 	"errors"
 	"fmt"
 	"log"
-	"time"
 
 	"github.com/motain/fact-collector/internal/modules/metric/resources"
 	"github.com/motain/fact-collector/internal/services/compassservice"
@@ -17,9 +16,6 @@ type RepositoryInterface interface {
 	Create(ctx context.Context, metric resources.Metric) (string, error)
 	Update(ctx context.Context, metric resources.Metric) error
 	Delete(ctx context.Context, id string) error
-	CreateMetricSource(ctx context.Context, metricID string, componentID string, intentifier string) (string, error)
-	DeleteMetricSource(ctx context.Context, metricSourceID string) error
-	Push(ctx context.Context, metricSourceID string, value float64, recordedAt time.Time) error
 }
 
 type Repository struct {
@@ -190,101 +186,6 @@ func (r *Repository) Delete(ctx context.Context, id string) error {
 	}
 
 	return nil
-}
-
-func (r *Repository) CreateMetricSource(ctx context.Context, metricID string, componentID string, intentifier string) (string, error) {
-	query := `
-		mutation createMetricSource($metricId: ID!, $componentId: ID!, $externalId: ID!) {
-			compass {
-				createMetricSource(input: {metricDefinitionId: $metricId, componentId: $componentId, externalMetricSourceId: $externalId}) {
-					success
-					createdMetricSource {
-						id
-					}
-					errors {
-						message
-					}
-				}
-			}
-		}`
-
-	variables := map[string]interface{}{
-		"metricId":    metricID,
-		"componentId": componentID,
-		"externalId":  intentifier,
-	}
-
-	var response struct {
-		Compass struct {
-			CreateMetricSource struct {
-				Success            bool `json:"success"`
-				CreateMetricSource struct {
-					ID string `json:"id"`
-				} `json:"createdMetricSource"`
-			} `json:"createMetricSource"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
-		log.Printf("Failed to create metric source: %v", err)
-		return "", err
-	}
-
-	if !response.Compass.CreateMetricSource.Success {
-		return "", errors.New("failed to create metric source")
-	}
-
-	return response.Compass.CreateMetricSource.CreateMetricSource.ID, nil
-}
-
-func (r *Repository) DeleteMetricSource(ctx context.Context, metricSourceID string) error {
-	query := `
-		mutation deleteMetricSource($id: ID!) {
-			compass {
-				deleteMetricSource(input: {id: $id}) {
-					deletedMetricSourceId
-					errors {
-						message
-					}
-					success
-				}
-			}
-		}`
-
-	variables := map[string]interface{}{
-		"id": metricSourceID,
-	}
-
-	var response struct {
-		Compass struct {
-			DeleteMetricSource struct {
-				Success bool `json:"success"`
-			} `json:"deleteMetricSource"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
-		log.Printf("Failed to delete metric source: %v", err)
-		return err
-	}
-
-	if !response.Compass.DeleteMetricSource.Success {
-		return errors.New("failed to delete metric source")
-	}
-
-	return nil
-}
-
-func (r *Repository) Push(ctx context.Context, metricSourceID string, value float64, recordedAt time.Time) error {
-	requestBody := map[string]string{
-		"metricSourceId": metricSourceID,
-		"value":          fmt.Sprintf("%f", value),
-		"timestamp":      recordedAt.UTC().Format(time.RFC3339),
-	}
-
-	_, errSend := r.compass.SendMetric(requestBody)
-
-	return errSend
 }
 
 func (r *Repository) Search(metric resources.Metric) (*resources.Metric, error) {

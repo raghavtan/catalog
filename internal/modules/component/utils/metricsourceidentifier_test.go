@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/motain/fact-collector/internal/modules/metric/utils"
+	"github.com/motain/fact-collector/internal/modules/component/utils"
 )
 
 func TestGetMetricSourceItentifier(t *testing.T) {
