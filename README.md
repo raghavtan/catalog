@@ -58,12 +58,13 @@ For more about how to use wire in this project refer the the [wire page](./docs/
 
 Usage
 
-`To be defined`
+Before using it locally copy the content of the `of-catalog-env-file` Bitwarden note into a `.env` file in the root of the project.
+You will need to adjust the `GITHUB_USER` entry to match your GitHub user. If you never used the `gh` cli install it and follow the [quickstart](https://docs.github.com/en/github-cli/github-cli/quickstart) to set up your local environemnt.
 
 Example:
 
 ```bash
-go run main.go ...
+go run  go run ./cmd/root.go
 ```
 
 ## Running Tests
