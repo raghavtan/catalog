@@ -33,7 +33,7 @@ metadata:
         filePath: app.toml
         jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
         expectedValue: "of\\.error_sample_rate=\\d+.*"
-Metadata:
+spec:
   name: instrumentation-check
   description: "Check if the service is properly instrumented for observability, having the correct OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES"
   format:
