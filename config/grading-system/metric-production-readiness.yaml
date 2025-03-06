@@ -1,0 +1,51 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+  name: organizational-standards
+  labels:
+    grading-system: production-readiness
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    all:
+      - name: app-toml-catalog-links-runbook
+        source: github
+        repo: "${Metadata.Name}"
+        factType: jsonPath
+        filePath: app.toml
+        jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+        expectedFormula: == 1
+      - name: readme-file-exists
+        source: github
+        repo: "${Metadata.Name}"
+        factType: fileExists
+        filePath: "README.md"
+spec:
+  name: organizational-standards
+  description: "Ensures the component is correctly configured, adheres to best practices, and meets all necessary requirements for secure, stable, and efficient deployment in a production environment."
+  format:
+    unit: "Organizational Standards"
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+  name: deployment-readiness
+  labels:
+    grading-system: production-readiness
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    all:
+      - name: apptoml-file-exists
+        source: github
+        repo: "${Metadata.Name}"
+        factType: fileExists
+        filePath: "app.toml"
+spec:
+  name: deployment-readiness
+  description: "Ensures the component is correctly configured, adheres to best practices, and meets all necessary requirements for secure, stable, and efficient deployment in a production environment."
+  format:
+    unit: "Deployment Readiness"
