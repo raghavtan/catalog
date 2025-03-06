@@ -1,0 +1,40 @@
+# OBSERVABILITY METRICS
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+  name: instrumentation-check
+  labels:
+    grading-system: observability
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    all:
+      - name: app-toml-envs-otel-service-name
+        source: github
+        repo: "${Metadata.Name}"
+        factType: jsonPath
+        filePath: app.toml
+        jsonPath: $..envs..OTEL_SERVICE_NAME
+        expectedValue: "${Metadata.Name}"
+    any:
+      - name: app-toml-env-otel-resource-attributes-sample-rate
+        source: "github"
+        repo: "${Metadata.Name}"
+        factType: jsonPath
+        filePath: app.toml
+        jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
+        expectedValue: "of\\.sample_rate=\\d+.*"
+      - name: app-toml-env-otel-resource-attributes-error-sample-rate
+        source: "github"
+        repo: "${Metadata.Name}"
+        factType: jsonPath
+        filePath: app.toml
+        jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
+        expectedValue: "of\\.error_sample_rate=\\d+.*"
+Metadata:
+  name: instrumentation-check
+  description: "Check if the service is properly instrumented for observability, having the correct OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES"
+  format:
+    unit: "instrumented"
