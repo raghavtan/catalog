@@ -16,8 +16,8 @@ spec:
           url: https://github.com/motain/gam-mrss-generator
         - name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=gam-mrss-generator&var-container=gam-mrss-generator&from=now-1h&to=now
     labels:
+        - gam-mrss-generator
         - reach
         - content
-        - gam-mrss-generator

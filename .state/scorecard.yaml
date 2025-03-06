@@ -1,0 +1,31 @@
+apiVersion: of-catalog/v1alpha1
+kind: Scorecard
+metadata:
+    name: observability
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/76c8553e-7cee-45ec-b360-e72029137f40
+    name: observability
+    description: TBD
+    ownerId: ""
+    state: PUBLISHED
+    componentTypeIds:
+        - SERVICE
+    importance: REQUIRED
+    scoringStrategyType: WEIGHT_BASED
+    criteria:
+        - hasMetricValue:
+            id: 0e9ab3c8-6299-4ea6-b1d5-03f018f7c780
+            weight: 40
+            name: instrumentation-check
+            metricName: instrumentation-check
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/ec651e45-d88f-41e4-b796-ef3edabf8489
+            comparatorValue: 1
+            comparator: EQUALS
+        - hasMetricValue:
+            id: 39e603b0-c1b3-485c-a7f3-015e4cb25c6a
+            weight: 60
+            name: critical-alerts-slo-check
+            metricName: critical-alerts-slo-check
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/e44a9fe3-99a8-42cd-8fd2-01a34b6a5111
+            comparatorValue: 1
+            comparator: EQUALS

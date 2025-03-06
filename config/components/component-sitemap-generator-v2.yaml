@@ -16,8 +16,8 @@ spec:
           url: https://github.com/motain/sitemap-generator-v2
         - name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=sitemap-generator-v2&var-container=sitemap-generator-v2&from=now-1h&to=now
     labels:
-        - sitemap-generator-v2
         - reach
         - consumer-web
+        - sitemap-generator-v2

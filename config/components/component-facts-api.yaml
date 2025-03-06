@@ -16,8 +16,8 @@ spec:
           url: https://github.com/motain/facts-api
         - name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=facts-api&var-container=facts-api&from=now-1h&to=now
     labels:
+        - facts-api
         - engagement
         - matchxp
-        - facts-api

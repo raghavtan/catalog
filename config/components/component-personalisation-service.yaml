@@ -1,0 +1,22 @@
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: personalisation-service
+    componentType: service
+spec:
+    name: personalisation-service
+    slug: svc-personalisation-service
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    links:
+        - name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/personalisation-service
+        - name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=personalisation-service&var-container=personalisation-service&from=now-1h&to=now
+    labels:
+        - engagement
+        - personalisation

@@ -16,7 +16,7 @@ spec:
           url: https://github.com/motain/webserver
         - name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=webserver&var-container=webserver&from=now-1h&to=now
     labels:
-        - consumer-web
         - reach
+        - consumer-web

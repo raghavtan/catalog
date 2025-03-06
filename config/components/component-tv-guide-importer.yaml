@@ -16,8 +16,8 @@ spec:
           url: https://github.com/motain/tv-guide-importer
         - name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=tv-guide-importer&var-container=tv-guide-importer&from=now-1h&to=now
     labels:
-        - sponsorship-integration
         - tv-guide-importer
         - monetization
+        - sponsorship-integration

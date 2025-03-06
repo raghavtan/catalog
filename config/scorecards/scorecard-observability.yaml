@@ -1,0 +1,29 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Scorecard
+metadata:
+    name: observability
+spec:
+  name: observability
+  description: "TBD"
+  ownerId: null
+  state: "PUBLISHED" # DRAFT - PUBLISHED
+  componentTypeIds: ["SERVICE"]
+  importance: REQUIRED
+  scoringStrategyType: "WEIGHT_BASED" # WEIGHT_BASED - POINT_BASED
+  criteria:
+    - hasMetricValue:
+        weight: 40
+        name: instrumentation-check
+        metricName: instrumentation-check
+        comparatorValue: 1
+        comparator: "EQUALS" # EQUALS - GREATER_THAN - LESS_THAN - GREATER_THAN_OR_EQUAL_TO - LESS_THAN_OR_EQUAL_TO
+    - hasMetricValue:
+        weight: 60
+        name: critical-alerts-slo-check
+        metricName: critical-alerts-slo-check
+        comparatorValue: 1
+        comparator: "EQUALS" # EQUALS - GREATER_THAN - LESS_THAN - GREATER_THAN_OR_EQUAL_TO - LESS_THAN_OR_EQUAL_TO
+
+
+

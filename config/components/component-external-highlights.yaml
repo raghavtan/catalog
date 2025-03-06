@@ -16,8 +16,8 @@ spec:
           url: https://github.com/motain/external-highlights
         - name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=external-highlights&var-container=external-highlights&from=now-1h&to=now
     labels:
+        - matchxp
         - external-highlights
         - engagement
-        - matchxp
