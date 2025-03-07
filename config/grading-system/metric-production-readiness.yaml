@@ -15,7 +15,7 @@ metadata:
         repo: "${Metadata.Name}"
         factType: jsonPath
         filePath: app.toml
-        jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+        jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
         expectedFormula: == 1
       - name: readme-file-exists
         source: github

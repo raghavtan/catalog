@@ -132,7 +132,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -289,7 +289,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -447,7 +447,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -605,7 +605,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -762,7 +762,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -919,7 +919,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -1077,7 +1077,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -1234,7 +1234,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -1392,7 +1392,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -1549,7 +1549,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -1706,7 +1706,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -1864,7 +1864,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -2022,7 +2022,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -2180,7 +2180,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -2338,7 +2338,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -2495,7 +2495,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -2652,7 +2652,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -2810,7 +2810,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -2968,7 +2968,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -3125,7 +3125,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -3303,7 +3303,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -3460,7 +3460,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -3617,7 +3617,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -3775,7 +3775,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -3933,7 +3933,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -4091,7 +4091,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -4249,7 +4249,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -4406,7 +4406,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -4563,7 +4563,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -4720,7 +4720,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -4877,7 +4877,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -5035,7 +5035,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -5193,7 +5193,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -5351,7 +5351,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -5509,7 +5509,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -5666,7 +5666,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -5824,7 +5824,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -5982,7 +5982,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -6140,7 +6140,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -6298,7 +6298,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -6455,7 +6455,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -6612,7 +6612,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -6769,7 +6769,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -6926,7 +6926,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -7083,7 +7083,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -7241,7 +7241,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -7399,7 +7399,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -7557,7 +7557,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -7715,7 +7715,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -7873,7 +7873,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -8031,7 +8031,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -8189,7 +8189,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -8347,7 +8347,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -8505,7 +8505,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -8663,7 +8663,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -8821,7 +8821,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -8979,7 +8979,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -9137,7 +9137,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -9295,7 +9295,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -9453,7 +9453,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -9611,7 +9611,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -9769,7 +9769,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -9927,7 +9927,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -10085,7 +10085,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -10243,7 +10243,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -10400,7 +10400,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -10558,7 +10558,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -10693,7 +10693,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -10850,7 +10850,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -11007,7 +11007,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -11165,7 +11165,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -11323,7 +11323,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -11481,7 +11481,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -11638,7 +11638,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -11796,7 +11796,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -11953,7 +11953,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -12111,7 +12111,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -12268,7 +12268,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -12425,7 +12425,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -12582,7 +12582,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -12739,7 +12739,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -12897,7 +12897,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -13055,7 +13055,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -13213,7 +13213,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -13371,7 +13371,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -13529,7 +13529,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -13686,7 +13686,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -13844,7 +13844,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -14001,7 +14001,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -14159,7 +14159,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -14316,7 +14316,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -14473,7 +14473,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -14631,7 +14631,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -14789,7 +14789,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -14946,7 +14946,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -15103,7 +15103,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -15261,7 +15261,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -15419,7 +15419,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -15577,7 +15577,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -15735,7 +15735,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -15892,7 +15892,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -16050,7 +16050,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -16208,7 +16208,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -16365,7 +16365,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -16522,7 +16522,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -16679,7 +16679,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -16837,7 +16837,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -16994,7 +16994,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -17152,7 +17152,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -17310,7 +17310,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -17468,7 +17468,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -17625,7 +17625,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -17783,7 +17783,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -17941,7 +17941,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -18099,7 +18099,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
@@ -18257,7 +18257,7 @@ spec:
                       factType: jsonPath
                       filePath: app.toml
                       regexPattern: ""
-                      jsonPath: lenght($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
+                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
                       repoProperty: ""
                       reposSearchQuery: ""
                       expectedValue: ""
