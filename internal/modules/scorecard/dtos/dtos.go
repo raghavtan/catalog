@@ -11,12 +11,8 @@ func GetScorecardUniqueKey(c *ScorecardDTO) string {
 	return c.Spec.Name
 }
 
-func SetScorecardID(c *ScorecardDTO, id string) {
-	c.Spec.ID = &id
-}
-
-func GetScorecardID(c *ScorecardDTO) string {
-	return *c.Spec.ID
+func FromStateToConfig(state *ScorecardDTO, conf *ScorecardDTO) {
+	conf.Spec.ID = state.Spec.ID
 }
 
 func IsComponentTypeIDsEqual(t1, t2 []string) bool {
@@ -84,12 +80,8 @@ type Criterion struct {
 	HasMetricValue MetricValue `yaml:"hasMetricValue"`
 }
 
-func GetCriterionID(c *Criterion) string {
-	return c.HasMetricValue.ID
-}
-
-func SetCriterionID(c *Criterion, id string) {
-	c.HasMetricValue.ID = id
+func FromStateCriteriaToConfig(state *Criterion, conf *Criterion) {
+	conf.HasMetricValue.ID = state.HasMetricValue.ID
 }
 
 type MetricValue struct {

@@ -14,7 +14,7 @@ import (
 )
 
 type RepositoryInterface interface {
-	Create(ctx context.Context, component resources.Component) (string, error)
+	Create(ctx context.Context, component resources.Component) (resources.Component, error)
 	Update(ctx context.Context, component resources.Component) error
 	Delete(ctx context.Context, id string) error
 	GetBySlug(slug string) (*resources.Component, error)
@@ -34,7 +34,7 @@ func NewRepository(
 	return &Repository{compass: compass}
 }
 
-func (r *Repository) Create(ctx context.Context, component resources.Component) (string, error) {
+func (r *Repository) Create(ctx context.Context, component resources.Component) (resources.Component, error) {
 	query := `
 		mutation createComponent ($cloudId: ID!, $componentDetails: CreateCompassComponentInput!) {
 			compass {
@@ -81,7 +81,16 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 				Success          bool                          `json:"success"`
 				Errors           []compassservice.CompassError `json:"errors"`
 				ComponentDetails struct {
-					ID string `json:"id"`
+					ID            string `json:"id"`
+					MetricSources struct {
+						Nodes []struct {
+							ID               string `json:"id"`
+							MetricDefinition struct {
+								ID   string `json:"id"`
+								Name string `json:"name"`
+							} `json:"metricDefinition"`
+						} `json:"nodes"`
+					} `json:"metricSources"`
 				} `json:"componentDetails"`
 			} `json:"createComponent"`
 		} `json:"compass"`
@@ -89,26 +98,37 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 
 	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
 		log.Printf("Failed to create component: %v", err)
-		return "", err
+		return component, err
 	}
 
 	if compassservice.HasAlreadyExistsError(response.Compass.CreateComponent.Errors) {
 		remoteComponent, err := r.GetBySlug(component.Slug)
 		if err != nil {
-			return "", err
+			return component, err
 		}
 
 		component.ID = remoteComponent.ID
+		component.MetricSources = remoteComponent.MetricSources
 		updateError := r.Update(ctx, component)
 
-		return *remoteComponent.ID, updateError
+		return component, updateError
 	} else {
 		if !response.Compass.CreateComponent.Success {
-			return "", errors.New("failed to create component")
+			return component, errors.New("failed to create component")
 		}
 	}
 
-	return response.Compass.CreateComponent.ComponentDetails.ID, nil
+	metricSources := make(map[string]*resources.MetricSource)
+	for _, node := range response.Compass.CreateComponent.ComponentDetails.MetricSources.Nodes {
+		metricSources[node.MetricDefinition.Name] = &resources.MetricSource{
+			ID:     node.ID,
+			Metric: node.MetricDefinition.ID,
+		}
+	}
+
+	component.ID = response.Compass.CreateComponent.ComponentDetails.ID
+	component.MetricSources = metricSources
+	return component, nil
 }
 
 func (r *Repository) Update(ctx context.Context, component resources.Component) error {
@@ -202,6 +222,16 @@ func (r *Repository) GetBySlug(slug string) (*resources.Component, error) {
 				componentByReference(reference: {slug: {slug: $slug, cloudId: $cloudId}}) {
 					... on CompassComponent {
 						id
+						metricSources {
+							... on CompassComponentMetricSourcesConnection {
+								nodes {
+									id,
+									metricDefinition {
+										name
+									}
+								}
+							}
+						}
 					}
 				}
 			}
@@ -215,7 +245,16 @@ func (r *Repository) GetBySlug(slug string) (*resources.Component, error) {
 	var response struct {
 		Compass struct {
 			ComponentByReference struct {
-				ID string `json:"id"`
+				ID            string `json:"id"`
+				MetricSources struct {
+					Nodes []struct {
+						ID               string `json:"id"`
+						MetricDefinition struct {
+							ID   string `json:"id"`
+							Name string `json:"name"`
+						} `json:"metricDefinition"`
+					} `json:"nodes"`
+				} `json:"metricSources"`
 			} `json:"componentByReference"`
 		} `json:"compass"`
 	}
@@ -225,8 +264,16 @@ func (r *Repository) GetBySlug(slug string) (*resources.Component, error) {
 		return nil, err
 	}
 
+	metricSources := make(map[string]*resources.MetricSource)
+	for _, node := range response.Compass.ComponentByReference.MetricSources.Nodes {
+		metricSources[node.MetricDefinition.Name] = &resources.MetricSource{
+			ID:     node.ID,
+			Metric: node.MetricDefinition.ID,
+		}
+	}
 	component := resources.Component{
-		ID: &response.Compass.ComponentByReference.ID,
+		ID:            response.Compass.ComponentByReference.ID,
+		MetricSources: metricSources,
 	}
 
 	return &component, nil

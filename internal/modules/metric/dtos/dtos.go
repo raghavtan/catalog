@@ -23,12 +23,8 @@ func GetMetricUniqueKey(m *MetricDTO) string {
 	return m.Spec.Name
 }
 
-func SetMetricID(m *MetricDTO, id string) {
-	m.Spec.ID = id
-}
-
-func GetMetricID(m *MetricDTO) string {
-	return m.Spec.ID
+func FromStateToConfig(state *MetricDTO, conf *MetricDTO) {
+	conf.Spec.ID = state.Spec.ID
 }
 
 func IsEqualMetric(m1, m2 *MetricDTO) bool {

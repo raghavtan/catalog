@@ -12,12 +12,8 @@ type testStruct struct {
 	Value string
 }
 
-func getID(item *testStruct) string {
-	return item.ID
-}
-
-func setID(item *testStruct, id string) {
-	item.ID = id
+func fromStateToConfig(state *testStruct, conf *testStruct) {
+	state.ID = conf.ID
 }
 
 func isEqual(a, b *testStruct) bool {
@@ -108,7 +104,7 @@ func TestDetect(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			created, updated, deleted, unchanged := Detect(tt.stateMap, tt.configMap, getID, setID, isEqual)
+			created, updated, deleted, unchanged := Detect(tt.stateMap, tt.configMap, fromStateToConfig, isEqual)
 
 			fmt.Printf("created: %v\n", created)
 			fmt.Printf("updated: %v\n", updated)

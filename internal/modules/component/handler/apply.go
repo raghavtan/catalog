@@ -31,7 +31,7 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 		log.Fatalf("error: %v", errConfig)
 	}
 
-	stateComponents, errState := yaml.Parse[dtos.ComponentDTO](stateRootLocation, false, dtos.GetComponentUniqueKey)
+	stateComponents, errState := yaml.Parse(stateRootLocation, false, dtos.GetComponentUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}
@@ -39,8 +39,7 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 	created, updated, deleted, unchanged := drift.Detect(
 		stateComponents,
 		configComponents,
-		dtos.GetComponentID,
-		dtos.SetComponentID,
+		dtos.FromStateToConfig,
 		dtos.IsEqualComponent,
 	)
 	h.handleDeleted(deleted)
@@ -50,7 +49,7 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 	result = h.handleCreated(result, created)
 	result = h.handleUpdated(result, updated)
 
-	err := yaml.WriteState[dtos.ComponentDTO](result)
+	err := yaml.WriteState(result)
 	if err != nil {
 		log.Fatalf("error writing components to file: %v", err)
 	}
@@ -58,7 +57,7 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 
 func (h *ApplyHandler) handleDeleted(components map[string]*dtos.ComponentDTO) {
 	for _, componentDTO := range components {
-		errComponent := h.repository.Delete(context.Background(), *componentDTO.Spec.ID)
+		errComponent := h.repository.Delete(context.Background(), componentDTO.Spec.ID)
 		if errComponent != nil {
 			panic(errComponent)
 		}
@@ -76,13 +75,20 @@ func (h *ApplyHandler) handleCreated(result []*dtos.ComponentDTO, components map
 	for _, componentDTO := range components {
 		component := componentDTOToResource(componentDTO)
 
-		id, errComponent := h.repository.Create(context.Background(), component)
+		component, errComponent := h.repository.Create(context.Background(), component)
 		if errComponent != nil {
 			panic(errComponent)
 		}
 
-		componentDTO.Spec.ID = &id
+		componentDTO.Spec.ID = component.ID
 		componentDTO.Spec.Slug = component.Slug
+		for metricName, metricSource := range component.MetricSources {
+			componentDTO.Spec.MetricSources[metricName] = &dtos.MetricSourceDTO{
+				ID:     metricSource.ID,
+				Name:   metricSource.Name,
+				Metric: metricSource.Metric,
+			}
+		}
 		result = append(result, componentDTO)
 	}
 
@@ -114,6 +120,7 @@ func componentDTOToResource(componentDTO *dtos.ComponentDTO) resources.Component
 		OwnerID:       componentDTO.Spec.OwnerID,
 		Links:         linksDTOToResource(componentDTO.Spec.Links),
 		Labels:        componentDTO.Spec.Labels,
+		MetricSources: metricSourcesDTOToResource(componentDTO.Spec.MetricSources),
 	}
 }
 
@@ -127,4 +134,16 @@ func linksDTOToResource(linksDTO []dtos.Link) []resources.Link {
 		})
 	}
 	return links
+}
+
+func metricSourcesDTOToResource(metricSourcesDTO map[string]*dtos.MetricSourceDTO) map[string]*resources.MetricSource {
+	metricSources := make(map[string]*resources.MetricSource)
+	for metricName, metricSourceDTO := range metricSourcesDTO {
+		metricSources[metricName] = &resources.MetricSource{
+			ID:     metricSourceDTO.ID,
+			Name:   metricSourceDTO.Name,
+			Metric: metricSourceDTO.Metric,
+		}
+	}
+	return metricSources
 }

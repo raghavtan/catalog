@@ -2,8 +2,7 @@ package drift
 
 func Detect[T any](
 	stateMap, configMap map[string]*T,
-	getID func(*T) string,
-	setID func(*T, string),
+	fromStateToConfig func(state *T, conf *T),
 	isEqual func(*T, *T) bool,
 ) (created, updated, deleted, unchanged map[string]*T) {
 	createdList := make(map[string]*T)
@@ -11,7 +10,7 @@ func Detect[T any](
 	deletedList := make(map[string]*T)
 	unchangedList := make(map[string]*T)
 
-	processStateItems(stateMap, configMap, getID, setID, isEqual, updatedList, deletedList, unchangedList)
+	processStateItems(stateMap, configMap, fromStateToConfig, isEqual, updatedList, deletedList, unchangedList)
 	processConfigItems(stateMap, configMap, createdList)
 
 	return createdList, updatedList, deletedList, unchangedList
@@ -19,8 +18,7 @@ func Detect[T any](
 
 func processStateItems[T any](
 	stateMap, configMap map[string]*T,
-	getID func(*T) string,
-	setID func(*T, string),
+	fromStateToConfig func(state *T, conf *T),
 	isEqual func(*T, *T) bool,
 	updatedList, deletedList, unchangedList map[string]*T,
 ) {
@@ -31,12 +29,12 @@ func processStateItems[T any](
 			continue
 		}
 
-		setID(configItem, getID(stateItem))
+		fromStateToConfig(stateItem, configItem)
 		if isEqual(stateItem, configItem) {
 			unchangedList[key] = configItem
 			continue
 		}
-		setID(configItem, getID(stateItem))
+
 		updatedList[key] = configItem
 	}
 }

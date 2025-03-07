@@ -47,8 +47,7 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 	created, updated, deleted, unchanged := drift.Detect(
 		stateScorecards,
 		configScorecards,
-		dtos.GetScorecardID,
-		dtos.SetScorecardID,
+		dtos.FromStateToConfig,
 		dtos.IsScoreCardEqual,
 	)
 	h.handleDeleted(deleted)
@@ -115,8 +114,7 @@ func (h *ApplyHandler) handleUpdated(
 		created, updated, deleted, _ := drift.Detect(
 			h.mapCriteria(stateScorecard.Spec.Criteria),
 			h.mapCriteria(scorecardDTO.Spec.Criteria),
-			dtos.GetCriterionID,
-			dtos.SetCriterionID,
+			dtos.FromStateCriteriaToConfig,
 			dtos.IsCriterionEqual,
 		)
 

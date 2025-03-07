@@ -112,9 +112,9 @@ func (h *BindHandler) handleBind(component *dtos.ComponentDTO, metric *metricdto
 		return nil
 	}
 
-	id, errBind := h.repository.BindMetric(context.Background(), *component.Spec.ID, metric.Spec.ID, identifier)
+	id, errBind := h.repository.BindMetric(context.Background(), component.Spec.ID, metric.Spec.ID, identifier)
 	if errBind != nil {
-		return fmt.Errorf("failed to create metric source for %s/%s (component/metric): %v\n", componentName, metricName, errBind)
+		return fmt.Errorf("failed to create metric source for %s/%s (component/metric): %v", componentName, metricName, errBind)
 	}
 
 	if component.Spec.MetricSources == nil {

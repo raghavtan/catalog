@@ -35,8 +35,7 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 	created, updated, deleted, unchanged := drift.Detect(
 		stateMetrics,
 		configMetrics,
-		dtos.GetMetricID,
-		dtos.SetMetricID,
+		dtos.FromStateToConfig,
 		dtos.IsEqualMetric,
 	)
 	h.handleDeleted(deleted)

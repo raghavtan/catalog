@@ -11,12 +11,9 @@ func GetComponentUniqueKey(c *ComponentDTO) string {
 	return c.Spec.Name
 }
 
-func SetComponentID(c *ComponentDTO, id string) {
-	c.Spec.ID = &id
-}
-
-func GetComponentID(c *ComponentDTO) string {
-	return *c.Spec.ID
+func FromStateToConfig(state *ComponentDTO, conf *ComponentDTO) {
+	conf.Spec.ID = state.Spec.ID
+	conf.Spec.MetricSources = state.Spec.MetricSources
 }
 
 func IsEqualLinks(l1, l2 []Link) bool {
@@ -65,7 +62,7 @@ type Metadata struct {
 }
 
 type Spec struct {
-	ID            *string                     `yaml:"id" json:"id"`
+	ID            string                      `yaml:"id" json:"id"`
 	Name          string                      `yaml:"name" json:"name"`
 	Slug          string                      `yaml:"slug" json:"slug"`
 	Description   string                      `yaml:"description" json:"description"`
