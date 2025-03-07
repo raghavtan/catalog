@@ -9,6 +9,7 @@ import (
 
 func Init() *cobra.Command {
 	var componentName, metricName string
+	var all bool
 
 	cmd := &cobra.Command{
 		Use:   "compute",
@@ -19,20 +20,20 @@ func Init() *cobra.Command {
 				cmd.Help()
 				return
 			}
-			if metricName == "" {
+			if !all && metricName == "" {
 				fmt.Println("Error: metricName is required")
 				cmd.Help()
 				return
 			}
 
-			fmt.Printf("Tracking metric '%s' for component '%s'\n", metricName, componentName)
 			handler := initializeHandler()
-			handler.Compute(componentName, metricName, yaml.StateLocation)
+			handler.Compute(componentName, all, metricName, yaml.StateLocation)
 		},
 	}
 
 	cmd.Flags().StringVarP(&componentName, "component", "c", "", "Name of the component")
 	cmd.Flags().StringVarP(&metricName, "metric", "m", "", "Name of the metric")
+	cmd.Flags().BoolVarP(&all, "all", "a", false, "Compute all metrics for the component")
 
 	return cmd
 }
