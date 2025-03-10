@@ -13,10 +13,14 @@ help: ## Show this help.
 
 .PHONY: build
 build:
+	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build \
+		-ldflags="-X 'main.Version=${VERSION}'" \
+		-o bin/linux/ofc \
+		./cmd/${*}
 	CGO_ENABLED=0 go build \
 		-ldflags="-X 'main.Version=${VERSION}'" \
-		-o bin/${*} \
-		github.com/motain/of-catalog/${*}
+		-o bin/osx/ofc \
+		./cmd/${*}
 
 .PHONY: lint
 lint:
