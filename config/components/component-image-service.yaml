@@ -7,9 +7,10 @@ spec:
     name: image-service
     slug: svc-image-service
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: engagement
+    squad: personalisation
     links:
         - name: Repository
           type: REPOSITORY

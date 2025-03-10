@@ -7,9 +7,10 @@ spec:
     name: loyalty-service
     slug: svc-loyalty-service
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: monetization
+    squad: loyalty-program
     links:
         - name: Repository
           type: REPOSITORY

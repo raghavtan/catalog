@@ -9,6 +9,8 @@ import (
 	"github.com/motain/fact-collector/internal/modules/component/resources"
 	"github.com/motain/fact-collector/internal/modules/component/utils"
 	"github.com/motain/fact-collector/internal/services/githubservice"
+	"github.com/motain/fact-collector/internal/services/ownerservice"
+	ownerservicedtos "github.com/motain/fact-collector/internal/services/ownerservice/dtos"
 	"github.com/motain/fact-collector/internal/utils/drift"
 	"github.com/motain/fact-collector/internal/utils/yaml"
 )
@@ -16,13 +18,15 @@ import (
 type ApplyHandler struct {
 	github     githubservice.GitHubServiceInterface
 	repository repository.RepositoryInterface
+	owner      ownerservice.OwnerServiceInterface
 }
 
 func NewApplyHandler(
 	gh githubservice.GitHubServiceInterface,
 	repository repository.RepositoryInterface,
+	owner ownerservice.OwnerServiceInterface,
 ) *ApplyHandler {
-	return &ApplyHandler{github: gh, repository: repository}
+	return &ApplyHandler{github: gh, repository: repository, owner: owner}
 }
 
 func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string, recursive bool) {
@@ -66,6 +70,7 @@ func (h *ApplyHandler) handleDeleted(components map[string]*dtos.ComponentDTO) {
 
 func (h *ApplyHandler) handleUnchanged(result []*dtos.ComponentDTO, components map[string]*dtos.ComponentDTO) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
+		componentDTO = h.handleOwner(componentDTO)
 		result = append(result, componentDTO)
 	}
 	return result
@@ -73,6 +78,7 @@ func (h *ApplyHandler) handleUnchanged(result []*dtos.ComponentDTO, components m
 
 func (h *ApplyHandler) handleCreated(result []*dtos.ComponentDTO, components map[string]*dtos.ComponentDTO) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
+		componentDTO = h.handleOwner(componentDTO)
 		component := componentDTOToResource(componentDTO)
 
 		component, errComponent := h.repository.Create(context.Background(), component)
@@ -97,6 +103,7 @@ func (h *ApplyHandler) handleCreated(result []*dtos.ComponentDTO, components map
 
 func (h *ApplyHandler) handleUpdated(result []*dtos.ComponentDTO, components map[string]*dtos.ComponentDTO) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
+		componentDTO = h.handleOwner(componentDTO)
 		component := componentDTOToResource(componentDTO)
 		errComponent := h.repository.Update(context.Background(), component)
 		if errComponent != nil {
@@ -146,4 +153,39 @@ func metricSourcesDTOToResource(metricSourcesDTO map[string]*dtos.MetricSourceDT
 		}
 	}
 	return metricSources
+}
+
+func (h *ApplyHandler) handleOwner(componentDTO *dtos.ComponentDTO) *dtos.ComponentDTO {
+	owner, ownerErr := h.owner.GetOwnerByTribeAndSquad(componentDTO.Spec.Tribe, componentDTO.Spec.Squad)
+	if ownerErr != nil {
+		// If no owner is found, we do not update the component
+		return componentDTO
+	}
+
+	computedLinks := make([]dtos.Link, 0)
+	for _, link := range componentDTO.Spec.Links {
+		if link.Type != "CHAT_CHANNEL" {
+			computedLinks = append(computedLinks, link)
+		}
+	}
+	if owner.SlackChannel != "" {
+		computedLinks = append(computedLinks, h.handleChatLinkFromOwner(owner))
+	}
+
+	componentDTO.Spec.Links = computedLinks
+	componentDTO.Spec.OwnerID = owner.CompassID
+
+	return componentDTO
+}
+
+func (h *ApplyHandler) handleChatLinkFromOwner(owner *ownerservicedtos.Owner) dtos.Link {
+	if owner.DisplayName == "" {
+		owner.DisplayName = "Slack"
+	}
+
+	return dtos.Link{
+		Name: owner.DisplayName,
+		Type: "CHAT_CHANNEL",
+		URL:  owner.SlackChannel,
+	}
 }

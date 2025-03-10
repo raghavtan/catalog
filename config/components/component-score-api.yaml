@@ -7,9 +7,10 @@ spec:
     name: score-api
     slug: svc-score-api
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: engagement
+    squad: matchxp
     links:
         - name: Repository
           type: REPOSITORY
@@ -18,6 +19,6 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=score-api&var-container=score-api&from=now-1h&to=now
     labels:
-        - matchxp
         - score-api
         - engagement
+        - matchxp

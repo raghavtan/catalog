@@ -7,9 +7,10 @@ spec:
     name: users-pii
     slug: svc-users-pii
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: reach
+    squad: fan-activation
     links:
         - name: Repository
           type: REPOSITORY
@@ -18,6 +19,6 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-pii&var-container=users-pii&from=now-1h&to=now
     labels:
+        - reach
         - fan-activation
         - users-pii
-        - reach

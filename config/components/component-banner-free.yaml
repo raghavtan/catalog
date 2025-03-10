@@ -7,9 +7,10 @@ spec:
     name: banner-free
     slug: svc-banner-free
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: monetization
+    squad: media-advertising
     links:
         - name: Repository
           type: REPOSITORY

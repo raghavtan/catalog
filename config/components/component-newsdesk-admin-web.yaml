@@ -7,9 +7,10 @@ spec:
     name: newsdesk-admin-web
     slug: svc-newsdesk-admin-web
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: reach
+    squad: content
     links:
         - name: Repository
           type: REPOSITORY

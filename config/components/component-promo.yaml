@@ -7,9 +7,10 @@ spec:
     name: promo
     slug: svc-promo
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: monetization
+    squad: sponsorship-integration
     links:
         - name: Repository
           type: REPOSITORY

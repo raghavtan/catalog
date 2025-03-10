@@ -7,9 +7,10 @@ spec:
     name: backstage
     slug: svc-backstage
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: platform
+    squad: cloud-runtime
     links:
         - name: Repository
           type: REPOSITORY

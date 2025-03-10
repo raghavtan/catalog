@@ -7,9 +7,10 @@ spec:
     name: experimental-thumbor
     slug: svc-experimental-thumbor
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: platform
+    squad: developer-xp
     links:
         - name: Repository
           type: REPOSITORY

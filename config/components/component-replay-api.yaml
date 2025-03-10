@@ -7,9 +7,10 @@ spec:
     name: replay-api
     slug: svc-replay-api
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: engagement
+    squad: matchxp
     links:
         - name: Repository
           type: REPOSITORY

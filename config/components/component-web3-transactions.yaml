@@ -7,9 +7,10 @@ spec:
     name: web3-transactions
     slug: svc-web3-transactions
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: monetization
+    squad: loyalty-program-squad
     links:
         - name: Repository
           type: REPOSITORY
@@ -18,5 +19,5 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=web3-transactions&var-container=web3-transactions&from=now-1h&to=now
     labels:
-        - monetization
         - loyalty-program-squad
+        - monetization

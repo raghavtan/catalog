@@ -7,9 +7,10 @@ spec:
     name: xpa-mobile-backend
     slug: svc-xpa-mobile-backend
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: engagement
+    squad: matchxp
     links:
         - name: Repository
           type: REPOSITORY
@@ -18,6 +19,6 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-mobile-backend&var-container=xpa-mobile-backend&from=now-1h&to=now
     labels:
-        - engagement
         - matchxp
         - xpa-mobile-backend
+        - engagement

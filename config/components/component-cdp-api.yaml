@@ -7,9 +7,10 @@ spec:
     name: cdp-api
     slug: svc-cdp-api
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: data-platform
+    squad: dacore
     links:
         - name: Repository
           type: REPOSITORY

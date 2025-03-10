@@ -7,9 +7,10 @@ spec:
     name: seasons-cache
     slug: svc-seasons-cache
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: engagement
+    squad: matchxp
     links:
         - name: Repository
           type: REPOSITORY

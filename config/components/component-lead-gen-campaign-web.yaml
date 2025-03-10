@@ -7,9 +7,10 @@ spec:
     name: lead-gen-campaign-web
     slug: svc-lead-gen-campaign-web
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: monetization
+    squad: sponsorship-integration
     links:
         - name: Repository
           type: REPOSITORY

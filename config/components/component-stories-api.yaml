@@ -7,9 +7,10 @@ spec:
     name: stories-api
     slug: svc-stories-api
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: reach
+    squad: fan-activation
     links:
         - name: Repository
           type: REPOSITORY

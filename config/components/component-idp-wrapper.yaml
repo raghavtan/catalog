@@ -7,9 +7,10 @@ spec:
     name: idp-wrapper
     slug: svc-idp-wrapper
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: platform
+    squad: cloud-runtime
     links:
         - name: Repository
           type: REPOSITORY

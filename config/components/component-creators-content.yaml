@@ -7,9 +7,10 @@ spec:
     name: creators-content
     slug: svc-creators-content
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: reach
+    squad: video-platform
     links:
         - name: Repository
           type: REPOSITORY

@@ -7,9 +7,10 @@ spec:
     name: sitemap-generator-v2
     slug: svc-sitemap-generator-v2
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: reach
+    squad: consumer-web
     links:
         - name: Repository
           type: REPOSITORY

@@ -7,9 +7,10 @@ spec:
     name: lead-gen-data-collector-api
     slug: svc-lead-gen-data-collector-api
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: monetization
+    squad: sponsorship-integration
     links:
         - name: Repository
           type: REPOSITORY

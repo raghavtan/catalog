@@ -7,9 +7,10 @@ spec:
     name: facts-fetcher
     slug: svc-facts-fetcher
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: engagement
+    squad: matchxp
     links:
         - name: Repository
           type: REPOSITORY

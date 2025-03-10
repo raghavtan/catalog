@@ -7,9 +7,10 @@ spec:
     name: payments-history
     slug: svc-payments-history
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: engagement
+    squad: live-video
     links:
         - name: Repository
           type: REPOSITORY

@@ -7,9 +7,10 @@ spec:
     name: personalisation-service
     slug: svc-personalisation-service
     description: ""
-    configVersion: 0
     typeId: SERVICE
     ownerId: ""
+    tribe: engagement
+    squad: personalisation
     links:
         - name: Repository
           type: REPOSITORY

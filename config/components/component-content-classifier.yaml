@@ -7,9 +7,10 @@ spec:
     name: content-classifier
     slug: svc-content-classifier
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: engagement
+    squad: personalisation
     links:
         - name: Repository
           type: REPOSITORY

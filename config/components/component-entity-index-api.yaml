@@ -7,9 +7,10 @@ spec:
     name: entity-index-api
     slug: svc-entity-index-api
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: reach
+    squad: consumer-web
     links:
         - name: Repository
           type: REPOSITORY
@@ -18,5 +19,5 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=entity-index-api&var-container=entity-index-api&from=now-1h&to=now
     labels:
-        - consumer-web
         - reach
+        - consumer-web

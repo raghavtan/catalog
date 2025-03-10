@@ -7,9 +7,10 @@ spec:
     name: web-url-redirector
     slug: svc-web-url-redirector
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: reach
+    squad: consumer-web
     links:
         - name: Repository
           type: REPOSITORY

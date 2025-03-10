@@ -7,9 +7,10 @@ spec:
     name: happy-keldysh
     slug: svc-happy-keldysh
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: data-platform
+    squad: dacore
     links:
         - name: Repository
           type: REPOSITORY

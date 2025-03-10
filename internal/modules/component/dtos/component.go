@@ -14,22 +14,26 @@ func GetComponentUniqueKey(c *ComponentDTO) string {
 func FromStateToConfig(state *ComponentDTO, conf *ComponentDTO) {
 	conf.Spec.ID = state.Spec.ID
 	conf.Spec.MetricSources = state.Spec.MetricSources
+	conf.Spec.OwnerID = state.Spec.OwnerID
 }
 
 func IsEqualLinks(l1, l2 []Link) bool {
-	for i, link := range l1 {
-		if link.Name != l2[i].Name {
-			return false
-		}
+	if len(l1) != len(l2) {
+		return false
+	}
 
-		if link.Type != l2[i].Type {
-			return false
-		}
+	linkMap := make(map[Link]bool)
+	for _, link := range l1 {
+		linkMap[link] = true
+	}
 
-		if link.URL != l2[i].URL {
+	// CHAT_CHANNEL is populated when applying. We must not consider diff on it
+	for _, link := range l2 {
+		if link.Type != "CHAT_CHANNEL" && !linkMap[link] {
 			return false
 		}
 	}
+
 	return true
 }
 
@@ -52,7 +56,7 @@ func IsEqualComponent(c1, c2 *ComponentDTO) bool {
 		c1.Spec.ConfigVersion == c2.Spec.ConfigVersion &&
 		c1.Spec.TypeID == c2.Spec.TypeID &&
 		c1.Spec.OwnerID == c2.Spec.OwnerID &&
-		IsEqualLinks(c1.Spec.Links, c2.Spec.Links) &&
+		// IsEqualLinks(c1.Spec.Links, c2.Spec.Links) &&
 		IsEqualLabels(c1.Spec.Labels, c2.Spec.Labels)
 }
 
@@ -72,6 +76,8 @@ type Spec struct {
 	Links         []Link                      `yaml:"links" json:"links"`
 	Labels        []string                    `yaml:"labels" json:"labels"`
 	MetricSources map[string]*MetricSourceDTO `yaml:"metricSources" json:"metricSources"`
+	Tribe         string                      `yaml:"tribe" json:"tribe"`
+	Squad         string                      `yaml:"squad" json:"squad"`
 }
 
 type Link struct {

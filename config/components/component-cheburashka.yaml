@@ -7,9 +7,10 @@ spec:
     name: cheburashka
     slug: svc-cheburashka
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: engagement
+    squad: matchxp
     links:
         - name: Repository
           type: REPOSITORY

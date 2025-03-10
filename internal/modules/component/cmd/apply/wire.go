@@ -10,6 +10,7 @@ import (
 	"github.com/motain/fact-collector/internal/services/configservice"
 	"github.com/motain/fact-collector/internal/services/githubservice"
 	"github.com/motain/fact-collector/internal/services/keyringservice"
+	"github.com/motain/fact-collector/internal/services/ownerservice"
 )
 
 var ProviderSet = wire.NewSet(
@@ -31,6 +32,10 @@ var ProviderSet = wire.NewSet(
 	githubservice.NewGitHubClient,
 	githubservice.NewGitHubService,
 	wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)),
+
+	// OwnerService
+	ownerservice.NewOwnerService,
+	wire.Bind(new(ownerservice.OwnerServiceInterface), new(*ownerservice.OwnerService)),
 
 	// --- component module ---
 	// Repository

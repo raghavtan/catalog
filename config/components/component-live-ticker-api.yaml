@@ -7,9 +7,10 @@ spec:
     name: live-ticker-api
     slug: svc-live-ticker-api
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: engagement
+    squad: matchxp
     links:
         - name: Repository
           type: REPOSITORY

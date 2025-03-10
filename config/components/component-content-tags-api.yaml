@@ -7,9 +7,10 @@ spec:
     name: content-tags-api
     slug: svc-content-tags-api
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: engagement
+    squad: personalisation
     links:
         - name: Repository
           type: REPOSITORY

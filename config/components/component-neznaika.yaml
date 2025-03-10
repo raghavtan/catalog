@@ -7,9 +7,10 @@ spec:
     name: neznaika
     slug: svc-neznaika
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: reach
+    squad: content
     links:
         - name: Repository
           type: REPOSITORY

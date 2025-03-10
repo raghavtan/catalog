@@ -7,9 +7,10 @@ spec:
     name: webserver
     slug: svc-webserver
     description: ""
-    configVersion: 1
     typeId: SERVICE
     ownerId: ""
+    tribe: reach
+    squad: consumer-web
     links:
         - name: Repository
           type: REPOSITORY
