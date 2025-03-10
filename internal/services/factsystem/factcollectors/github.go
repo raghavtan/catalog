@@ -1,6 +1,6 @@
 package factcollectors
 
-//go:generate mockgen -destination=./mock_github_fact_collector.go -package=factcollectors github.com/motain/fact-collector/internal/modules/metric/handler/factcollectors GithubFactCollectorInterface
+//go:generate mockgen -destination=./mock_github_fact_collector.go -package=factcollectors github.com/motain/of-catalog/internal/modules/metric/handler/factcollectors GithubFactCollectorInterface
 
 import (
 	"errors"
@@ -9,10 +9,10 @@ import (
 	"regexp"
 	"strconv"
 
-	fsdtos "github.com/motain/fact-collector/internal/services/factsystem/dtos"
-	"github.com/motain/fact-collector/internal/services/githubservice"
-	"github.com/motain/fact-collector/internal/utils/eval"
-	"github.com/motain/fact-collector/internal/utils/transformers"
+	fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
+	"github.com/motain/of-catalog/internal/services/githubservice"
+	"github.com/motain/of-catalog/internal/utils/eval"
+	"github.com/motain/of-catalog/internal/utils/transformers"
 )
 
 type GithubFactCollectorInterface interface {

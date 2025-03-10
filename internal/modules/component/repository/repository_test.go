@@ -6,9 +6,9 @@ import (
 	"testing"
 
 	gomock "github.com/golang/mock/gomock"
-	"github.com/motain/fact-collector/internal/modules/component/repository"
-	resources "github.com/motain/fact-collector/internal/modules/component/resources"
-	"github.com/motain/fact-collector/internal/services/compassservice"
+	"github.com/motain/of-catalog/internal/modules/component/repository"
+	resources "github.com/motain/of-catalog/internal/modules/component/resources"
+	"github.com/motain/of-catalog/internal/services/compassservice"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/motain/fact-collector/internal/modules/component/dtos"
+	"github.com/motain/of-catalog/internal/modules/component/dtos"
 )
 
 func ReplaceMetricFactPlaceholders(placeholder string, component dtos.ComponentDTO) string {

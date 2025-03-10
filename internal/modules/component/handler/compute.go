@@ -6,10 +6,10 @@ import (
 	"log"
 	"time"
 
-	"github.com/motain/fact-collector/internal/modules/component/dtos"
-	"github.com/motain/fact-collector/internal/modules/component/repository"
-	"github.com/motain/fact-collector/internal/services/factsystem/factinterpreter"
-	"github.com/motain/fact-collector/internal/utils/yaml"
+	"github.com/motain/of-catalog/internal/modules/component/dtos"
+	"github.com/motain/of-catalog/internal/modules/component/repository"
+	"github.com/motain/of-catalog/internal/services/factsystem/factinterpreter"
+	"github.com/motain/of-catalog/internal/utils/yaml"
 )
 
 type ComputeHandler struct {

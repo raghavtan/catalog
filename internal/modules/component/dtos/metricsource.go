@@ -1,6 +1,6 @@
 package dtos
 
-import fsdtos "github.com/motain/fact-collector/internal/services/factsystem/dtos"
+import fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
 
 type MetricSourceStatus string
 

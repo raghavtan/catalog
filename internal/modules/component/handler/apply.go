@@ -4,15 +4,15 @@ import (
 	"context"
 	"log"
 
-	"github.com/motain/fact-collector/internal/modules/component/dtos"
-	"github.com/motain/fact-collector/internal/modules/component/repository"
-	"github.com/motain/fact-collector/internal/modules/component/resources"
-	"github.com/motain/fact-collector/internal/modules/component/utils"
-	"github.com/motain/fact-collector/internal/services/githubservice"
-	"github.com/motain/fact-collector/internal/services/ownerservice"
-	ownerservicedtos "github.com/motain/fact-collector/internal/services/ownerservice/dtos"
-	"github.com/motain/fact-collector/internal/utils/drift"
-	"github.com/motain/fact-collector/internal/utils/yaml"
+	"github.com/motain/of-catalog/internal/modules/component/dtos"
+	"github.com/motain/of-catalog/internal/modules/component/repository"
+	"github.com/motain/of-catalog/internal/modules/component/resources"
+	"github.com/motain/of-catalog/internal/modules/component/utils"
+	"github.com/motain/of-catalog/internal/services/githubservice"
+	"github.com/motain/of-catalog/internal/services/ownerservice"
+	ownerservicedtos "github.com/motain/of-catalog/internal/services/ownerservice/dtos"
+	"github.com/motain/of-catalog/internal/utils/drift"
+	"github.com/motain/of-catalog/internal/utils/yaml"
 )
 
 type ApplyHandler struct {

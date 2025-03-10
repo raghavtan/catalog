@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/motain/fact-collector/internal/modules/scorecard/cmd/apply"
+	"github.com/motain/of-catalog/internal/modules/scorecard/cmd/apply"
 	"github.com/spf13/cobra"
 )
 

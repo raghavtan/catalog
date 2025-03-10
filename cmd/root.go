@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	component "github.com/motain/fact-collector/internal/modules/component/cmd"
-	metric "github.com/motain/fact-collector/internal/modules/metric/cmd"
-	scorecard "github.com/motain/fact-collector/internal/modules/scorecard/cmd"
+	component "github.com/motain/of-catalog/internal/modules/component/cmd"
+	metric "github.com/motain/of-catalog/internal/modules/metric/cmd"
+	scorecard "github.com/motain/of-catalog/internal/modules/scorecard/cmd"
 	"github.com/spf13/cobra"
 )
 

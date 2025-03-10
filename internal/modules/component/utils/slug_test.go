@@ -3,7 +3,7 @@ package utils_test
 import (
 	"testing"
 
-	"github.com/motain/fact-collector/internal/modules/component/utils"
+	"github.com/motain/of-catalog/internal/modules/component/utils"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -1,4 +1,4 @@
-module github.com/motain/fact-collector
+module github.com/motain/of-catalog
 
 go 1.22.4
 

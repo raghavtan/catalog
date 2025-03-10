@@ -8,7 +8,7 @@ import (
 
 	"github.com/golang/mock/gomock"
 	"github.com/google/go-github/v58/github"
-	"github.com/motain/fact-collector/internal/services/githubservice"
+	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/stretchr/testify/assert"
 )
 

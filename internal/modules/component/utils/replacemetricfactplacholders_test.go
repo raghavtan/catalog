@@ -3,7 +3,7 @@ package utils
 import (
 	"testing"
 
-	"github.com/motain/fact-collector/internal/modules/component/dtos"
+	"github.com/motain/of-catalog/internal/modules/component/dtos"
 )
 
 func TestGetFieldByPath(t *testing.T) {

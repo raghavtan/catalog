@@ -16,7 +16,7 @@ build:
 	CGO_ENABLED=0 go build \
 		-ldflags="-X 'main.Version=${VERSION}'" \
 		-o bin/${*} \
-		github.com/motain/fact-collector/${*}
+		github.com/motain/of-catalog/${*}
 
 .PHONY: lint
 lint:

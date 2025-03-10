@@ -3,7 +3,7 @@ package factcollectors
 import (
 	"fmt"
 
-	fsdtos "github.com/motain/fact-collector/internal/services/factsystem/dtos"
+	fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
 	"github.com/spyzhov/ajson"
 )
 

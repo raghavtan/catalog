@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/motain/fact-collector/internal/modules/component/utils"
-	metricdtos "github.com/motain/fact-collector/internal/modules/metric/dtos"
-	fsdtos "github.com/motain/fact-collector/internal/services/factsystem/dtos"
+	"github.com/motain/of-catalog/internal/modules/component/utils"
+	metricdtos "github.com/motain/of-catalog/internal/modules/metric/dtos"
+	fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
 
-	"github.com/motain/fact-collector/internal/modules/component/dtos"
-	"github.com/motain/fact-collector/internal/modules/component/repository"
-	"github.com/motain/fact-collector/internal/services/githubservice"
-	"github.com/motain/fact-collector/internal/utils/yaml"
+	"github.com/motain/of-catalog/internal/modules/component/dtos"
+	"github.com/motain/of-catalog/internal/modules/component/repository"
+	"github.com/motain/of-catalog/internal/services/githubservice"
+	"github.com/motain/of-catalog/internal/utils/yaml"
 )
 
 type BindHandler struct {

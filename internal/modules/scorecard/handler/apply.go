@@ -4,12 +4,12 @@ import (
 	"context"
 	"log"
 
-	metricdtos "github.com/motain/fact-collector/internal/modules/metric/dtos"
-	"github.com/motain/fact-collector/internal/modules/scorecard/dtos"
-	"github.com/motain/fact-collector/internal/modules/scorecard/repository"
-	"github.com/motain/fact-collector/internal/modules/scorecard/resources"
-	"github.com/motain/fact-collector/internal/utils/drift"
-	"github.com/motain/fact-collector/internal/utils/yaml"
+	metricdtos "github.com/motain/of-catalog/internal/modules/metric/dtos"
+	"github.com/motain/of-catalog/internal/modules/scorecard/dtos"
+	"github.com/motain/of-catalog/internal/modules/scorecard/repository"
+	"github.com/motain/of-catalog/internal/modules/scorecard/resources"
+	"github.com/motain/of-catalog/internal/utils/drift"
+	"github.com/motain/of-catalog/internal/utils/yaml"
 )
 
 type ApplyHandler struct {

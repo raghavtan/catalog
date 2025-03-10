@@ -3,7 +3,7 @@ package compute
 import (
 	"fmt"
 
-	"github.com/motain/fact-collector/internal/utils/yaml"
+	"github.com/motain/of-catalog/internal/utils/yaml"
 	"github.com/spf13/cobra"
 )
 

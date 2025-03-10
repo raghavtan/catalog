@@ -7,8 +7,8 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	"github.com/motain/fact-collector/internal/services/githubservice"
-	"github.com/motain/fact-collector/internal/services/ownerservice/dtos"
+	"github.com/motain/of-catalog/internal/services/githubservice"
+	"github.com/motain/of-catalog/internal/services/ownerservice/dtos"
 )
 
 var groups dtos.GroupList

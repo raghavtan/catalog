@@ -1,6 +1,6 @@
 package factcollectors
 
-//go:generate mockgen -destination=./mock_jsonapiFact_fact_collector.go -package=factcollectors github.com/motain/fact-collector/internal/modules/metric/handler/factcollectors JSONAPIFactCollectorInterface
+//go:generate mockgen -destination=./mock_jsonapiFact_fact_collector.go -package=factcollectors github.com/motain/of-catalog/internal/modules/metric/handler/factcollectors JSONAPIFactCollectorInterface
 
 import (
 	"errors"
@@ -10,10 +10,10 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/motain/fact-collector/internal/services/configservice"
-	fsdtos "github.com/motain/fact-collector/internal/services/factsystem/dtos"
-	"github.com/motain/fact-collector/internal/services/jsonservice"
-	"github.com/motain/fact-collector/internal/utils/eval"
+	"github.com/motain/of-catalog/internal/services/configservice"
+	fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
+	"github.com/motain/of-catalog/internal/services/jsonservice"
+	"github.com/motain/of-catalog/internal/utils/eval"
 )
 
 type JSONAPIFactCollectorInterface interface {

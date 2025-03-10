@@ -15,8 +15,8 @@ Ensure you have:
 **Clone the Repository**
 
 ```bash
-git clone https://github.com/example/fact-collector.git
-cd fact-collector
+git clone https://github.com/motain/of-catalog.git
+cd of-catalog
 ```
 
 **Install Dependencies**
@@ -108,7 +108,7 @@ This repository follows a trunk-based development workflow. To contribute:
 1. Clone the repository.
 
     ```
-    git clone https://github.com/motain/fact-collector.git
+    git clone https://github.com/motain/of-catalog.git
     cd go-cli-app
     ```
 

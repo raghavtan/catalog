@@ -1,6 +1,6 @@
 package utils
 
-import "github.com/motain/fact-collector/internal/modules/scorecard/dtos"
+import "github.com/motain/of-catalog/internal/modules/scorecard/dtos"
 
 func DetectDrifts(
 	stateList,

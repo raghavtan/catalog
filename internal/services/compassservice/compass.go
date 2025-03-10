@@ -1,6 +1,6 @@
 package compassservice
 
-//go:generate mockgen -destination=./mock_compass_service.go -package=compassservice github.com/motain/fact-collector/internal/services/compassservice CompassServiceInterface
+//go:generate mockgen -destination=./mock_compass_service.go -package=compassservice github.com/motain/of-catalog/internal/services/compassservice CompassServiceInterface
 
 import (
 	"bytes"
@@ -12,7 +12,7 @@ import (
 	"net/http"
 
 	"github.com/machinebox/graphql"
-	"github.com/motain/fact-collector/internal/services/configservice"
+	"github.com/motain/of-catalog/internal/services/configservice"
 )
 
 type CompassServiceInterface interface {

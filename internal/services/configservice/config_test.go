@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/motain/fact-collector/internal/services/configservice"
+	"github.com/motain/of-catalog/internal/services/configservice"
 	"github.com/stretchr/testify/assert"
 )
 

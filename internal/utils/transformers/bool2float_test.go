@@ -3,7 +3,7 @@ package transformers_test
 import (
 	"testing"
 
-	"github.com/motain/fact-collector/internal/utils/transformers"
+	"github.com/motain/of-catalog/internal/utils/transformers"
 )
 
 func TestBool2Float64(t *testing.T) {

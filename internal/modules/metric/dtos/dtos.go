@@ -3,7 +3,7 @@ package dtos
 import (
 	"reflect"
 
-	fsdtos "github.com/motain/fact-collector/internal/services/factsystem/dtos"
+	fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
 )
 
 // MetricDTO is a data transfer object representing a metric definition.

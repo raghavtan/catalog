@@ -8,11 +8,11 @@ package apply
 
 import (
 	"github.com/google/wire"
-	"github.com/motain/fact-collector/internal/modules/scorecard/handler"
-	"github.com/motain/fact-collector/internal/modules/scorecard/repository"
-	"github.com/motain/fact-collector/internal/services/compassservice"
-	"github.com/motain/fact-collector/internal/services/configservice"
-	"github.com/motain/fact-collector/internal/services/keyringservice"
+	"github.com/motain/of-catalog/internal/modules/scorecard/handler"
+	"github.com/motain/of-catalog/internal/modules/scorecard/repository"
+	"github.com/motain/of-catalog/internal/services/compassservice"
+	"github.com/motain/of-catalog/internal/services/configservice"
+	"github.com/motain/of-catalog/internal/services/keyringservice"
 )
 
 // Injectors from wire.go:

@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/motain/fact-collector/internal/services/keyringservice"
+	"github.com/motain/of-catalog/internal/services/keyringservice"
 	"github.com/stretchr/testify/assert"
 	"github.com/zalando/go-keyring"
 )

@@ -3,7 +3,7 @@ package eval_test
 import (
 	"testing"
 
-	"github.com/motain/fact-collector/internal/utils/eval"
+	"github.com/motain/of-catalog/internal/utils/eval"
 
 	"github.com/stretchr/testify/assert"
 )

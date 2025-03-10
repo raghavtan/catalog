@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/motain/fact-collector/internal/services/configservice"
+	"github.com/motain/of-catalog/internal/services/configservice"
 )
 
 type JSONServiceInterface interface {

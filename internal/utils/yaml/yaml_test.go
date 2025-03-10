@@ -13,7 +13,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"gopkg.in/yaml.v3"
 
-	thisyaml "github.com/motain/fact-collector/internal/utils/yaml"
+	thisyaml "github.com/motain/of-catalog/internal/utils/yaml"
 )
 
 type TestDTO struct {

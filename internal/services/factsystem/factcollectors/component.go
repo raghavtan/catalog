@@ -8,10 +8,10 @@ import (
 	"regexp"
 	"strconv"
 
-	componentdtos "github.com/motain/fact-collector/internal/modules/component/dtos"
-	fsdtos "github.com/motain/fact-collector/internal/services/factsystem/dtos"
-	"github.com/motain/fact-collector/internal/utils/eval"
-	"github.com/motain/fact-collector/internal/utils/yaml"
+	componentdtos "github.com/motain/of-catalog/internal/modules/component/dtos"
+	fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
+	"github.com/motain/of-catalog/internal/utils/eval"
+	"github.com/motain/of-catalog/internal/utils/yaml"
 )
 
 type ComponentFactCollectorInterface interface {

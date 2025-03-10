@@ -3,9 +3,9 @@ package factinterpreter
 import (
 	"fmt"
 
-	fsdtos "github.com/motain/fact-collector/internal/services/factsystem/dtos"
-	"github.com/motain/fact-collector/internal/services/factsystem/factcollectors"
-	"github.com/motain/fact-collector/internal/utils/transformers"
+	fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
+	"github.com/motain/of-catalog/internal/services/factsystem/factcollectors"
+	"github.com/motain/of-catalog/internal/utils/transformers"
 )
 
 type FactInterpreterInterface interface {

@@ -1,6 +1,6 @@
 package repository
 
-//go:generate mockgen -destination=./mock_repository.go -package=repository github.com/motain/fact-collector/internal/modules/component/repository RepositoryInterface
+//go:generate mockgen -destination=./mock_repository.go -package=repository github.com/motain/of-catalog/internal/modules/component/repository RepositoryInterface
 
 import (
 	"context"
@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/motain/fact-collector/internal/modules/scorecard/resources"
-	"github.com/motain/fact-collector/internal/services/compassservice"
+	"github.com/motain/of-catalog/internal/modules/scorecard/resources"
+	"github.com/motain/of-catalog/internal/services/compassservice"
 )
 
 type RepositoryInterface interface {

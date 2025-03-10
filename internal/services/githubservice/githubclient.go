@@ -1,6 +1,6 @@
 package githubservice
 
-//go:generate mockgen -destination=./mock_github_client.go -package=githubservice github.com/motain/fact-collector/internal/services/githubservice GitHubRepositoriesInterface
+//go:generate mockgen -destination=./mock_github_client.go -package=githubservice github.com/motain/of-catalog/internal/services/githubservice GitHubRepositoriesInterface
 
 import (
 	"context"
@@ -8,8 +8,8 @@ import (
 	"io"
 
 	"github.com/google/go-github/v58/github"
-	"github.com/motain/fact-collector/internal/services/configservice"
-	"github.com/motain/fact-collector/internal/services/keyringservice"
+	"github.com/motain/of-catalog/internal/services/configservice"
+	"github.com/motain/of-catalog/internal/services/keyringservice"
 	"golang.org/x/oauth2"
 )
 
