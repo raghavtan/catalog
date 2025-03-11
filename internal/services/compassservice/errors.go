@@ -17,7 +17,23 @@ func HasAlreadyExistsError(errs []CompassError) bool {
 }
 
 func isAlreadyExistsError(err string) bool {
-	matched, _ := regexp.MatchString("^.*already exists\\.", err)
+	matched, _ := regexp.MatchString("^.*already exists", err)
+
+	return matched
+}
+
+func HasNotFoundError(errs []CompassError) bool {
+	for _, err := range errs {
+		if isNotFoundError(err.Message) {
+			return true
+		}
+	}
+
+	return false
+}
+
+func isNotFoundError(err string) bool {
+	matched, _ := regexp.MatchString("^.*not found", err)
 
 	return matched
 }

@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: specialone-slackbot
-    slug: svc-specialone-slackbot
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: live-video
     links:
@@ -19,6 +20,6 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=specialone-slackbot&var-container=specialone-slackbot&from=now-1h&to=now
     labels:
+        - specialone-slackbot
         - engagement
         - live-video
-        - specialone-slackbot

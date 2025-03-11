@@ -2,6 +2,7 @@ package handler
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	"github.com/motain/of-catalog/internal/modules/component/dtos"
@@ -12,6 +13,7 @@ import (
 	"github.com/motain/of-catalog/internal/services/ownerservice"
 	ownerservicedtos "github.com/motain/of-catalog/internal/services/ownerservice/dtos"
 	"github.com/motain/of-catalog/internal/utils/drift"
+	listutils "github.com/motain/of-catalog/internal/utils/list"
 	"github.com/motain/of-catalog/internal/utils/yaml"
 )
 
@@ -50,8 +52,8 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 
 	var result []*dtos.ComponentDTO
 	result = h.handleUnchanged(result, unchanged)
-	result = h.handleCreated(result, created)
-	result = h.handleUpdated(result, updated)
+	result = h.handleCreated(result, created, stateComponents)
+	result = h.handleUpdated(result, updated, stateComponents)
 
 	err := yaml.WriteState(result)
 	if err != nil {
@@ -76,7 +78,11 @@ func (h *ApplyHandler) handleUnchanged(result []*dtos.ComponentDTO, components m
 	return result
 }
 
-func (h *ApplyHandler) handleCreated(result []*dtos.ComponentDTO, components map[string]*dtos.ComponentDTO) []*dtos.ComponentDTO {
+func (h *ApplyHandler) handleCreated(
+	result []*dtos.ComponentDTO,
+	components map[string]*dtos.ComponentDTO,
+	stateComponents map[string]*dtos.ComponentDTO,
+) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		componentDTO = h.handleOwner(componentDTO)
 		component := componentDTOToResource(componentDTO)
@@ -84,6 +90,15 @@ func (h *ApplyHandler) handleCreated(result []*dtos.ComponentDTO, components map
 		component, errComponent := h.repository.Create(context.Background(), component)
 		if errComponent != nil {
 			panic(errComponent)
+		}
+
+		fmt.Printf("Deps: %+v \n", componentDTO.Spec.DependsOn)
+		for _, providerName := range componentDTO.Spec.DependsOn {
+			if provider, exists := stateComponents[providerName]; exists {
+				h.repository.SetDependency(context.Background(), component.ID, provider.Spec.ID)
+			} else {
+				log.Printf("Provider %s not found for component %s", providerName, componentDTO.Spec.Name)
+			}
 		}
 
 		componentDTO.Spec.ID = component.ID
@@ -101,7 +116,11 @@ func (h *ApplyHandler) handleCreated(result []*dtos.ComponentDTO, components map
 	return result
 }
 
-func (h *ApplyHandler) handleUpdated(result []*dtos.ComponentDTO, components map[string]*dtos.ComponentDTO) []*dtos.ComponentDTO {
+func (h *ApplyHandler) handleUpdated(
+	result []*dtos.ComponentDTO,
+	components map[string]*dtos.ComponentDTO,
+	stateComponents map[string]*dtos.ComponentDTO,
+) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		componentDTO = h.handleOwner(componentDTO)
 		component := componentDTOToResource(componentDTO)
@@ -109,6 +128,8 @@ func (h *ApplyHandler) handleUpdated(result []*dtos.ComponentDTO, components map
 		if errComponent != nil {
 			panic(errComponent)
 		}
+
+		h.handleDependencies(componentDTO, stateComponents)
 
 		result = append(result, componentDTO)
 	}
@@ -187,5 +208,35 @@ func (h *ApplyHandler) handleChatLinkFromOwner(owner *ownerservicedtos.Owner) dt
 		Name: owner.DisplayName,
 		Type: "CHAT_CHANNEL",
 		URL:  owner.SlackChannel,
+	}
+}
+
+func (h *ApplyHandler) handleDependencies(
+	componentDTO *dtos.ComponentDTO,
+	stateComponents map[string]*dtos.ComponentDTO,
+) {
+	componentInState := stateComponents[componentDTO.Metadata.Name]
+	for _, providerName := range componentInState.Spec.DependsOn {
+		if !listutils.Contains(componentDTO.Spec.DependsOn, providerName) {
+			err := h.repository.UnSetDependency(context.Background(), componentDTO.Spec.ID, stateComponents[providerName].Spec.ID)
+			if err != nil {
+				fmt.Printf("apply dependencies %s", err)
+			}
+		}
+	}
+
+	for _, providerName := range componentDTO.Spec.DependsOn {
+		if !listutils.Contains(componentInState.Spec.DependsOn, providerName) {
+			stateProvider, exists := stateComponents[providerName]
+			if !exists {
+				log.Printf("Provider %s not found for component %s", providerName, componentDTO.Spec.Name)
+				continue
+			}
+
+			err := h.repository.SetDependency(context.Background(), componentDTO.Spec.ID, stateProvider.Spec.ID)
+			if err != nil {
+				fmt.Printf("apply dependencies %s", err)
+			}
+		}
 	}
 }

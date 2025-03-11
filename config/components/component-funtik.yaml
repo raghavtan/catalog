@@ -5,10 +5,13 @@ metadata:
     componentType: service
 spec:
     name: funtik
-    slug: svc-funtik
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - librarian
+        - score-api
     tribe: reach
     squad: content
     links:

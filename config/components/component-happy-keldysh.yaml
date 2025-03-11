@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: happy-keldysh
-    slug: svc-happy-keldysh
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: data-platform
     squad: dacore
     links:

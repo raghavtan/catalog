@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: cheburashka
-    slug: svc-cheburashka
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: matchxp
     links:

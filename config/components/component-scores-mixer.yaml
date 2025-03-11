@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: scores-mixer
-    slug: svc-scores-mixer
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: matchxp
     links:

@@ -1,10 +1,10 @@
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: creators-content
+    name: clips-search
     componentType: service
 spec:
-    name: creators-content
+    name: clips-search
     slug: ""
     description: ""
     typeId: SERVICE
@@ -15,10 +15,10 @@ spec:
     links:
         - name: Repository
           type: REPOSITORY
-          url: https://github.com/motain/creators-content
+          url: https://github.com/motain/clips-search
         - name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=creators-content&var-container=creators-content&from=now-1h&to=now
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips-search&var-container=clips-search&from=now-1h&to=now
     labels:
         - reach
         - video-platform

@@ -18,6 +18,9 @@ type RepositoryInterface interface {
 	Update(ctx context.Context, component resources.Component) error
 	Delete(ctx context.Context, id string) error
 	GetBySlug(slug string) (*resources.Component, error)
+	// Dependency operations
+	SetDependency(ctx context.Context, dependentId, providerId string) error
+	UnSetDependency(ctx context.Context, dependentId, providerId string) error
 	// MetricSource operations
 	BindMetric(ctx context.Context, componentID string, metricID string, intentifier string) (string, error)
 	UnBindMetric(ctx context.Context, metricSourceID string) error
@@ -198,18 +201,109 @@ func (r *Repository) Delete(ctx context.Context, id string) error {
 	var response struct {
 		Compass struct {
 			DeleteComponent struct {
-				Success bool `json:"success"`
+				Errors  []compassservice.CompassError `json:"errors"`
+				Success bool                          `json:"success"`
 			} `json:"deleteComponent"`
 		} `json:"compass"`
 	}
 
 	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
-		log.Printf("Failed to create component: %v", err)
+		log.Printf("Failed to delete component: %v", err)
 		return err
+	}
+
+	if compassservice.HasNotFoundError(response.Compass.DeleteComponent.Errors) {
+		return nil
 	}
 
 	if !response.Compass.DeleteComponent.Success {
 		return errors.New("failed to delete component")
+	}
+
+	return nil
+}
+
+func (r *Repository) SetDependency(ctx context.Context, dependentId, providerId string) error {
+	query := `
+		mutation createRelationship($dependentId: ID!, $providerId: ID!) {
+			compass {
+				createRelationship(input: {
+					type: DEPENDS_ON,
+					startNodeId: $dependentId,
+					endNodeId: $providerId
+				}) {
+					errors {
+						message
+					}
+					success
+				}
+			}
+		}`
+
+	variables := map[string]interface{}{
+		"dependentId": dependentId,
+		"providerId":  providerId,
+	}
+
+	var response struct {
+		Compass struct {
+			CreateRelationship struct {
+				Errors  []compassservice.CompassError `json:"errors"`
+				Success bool                          `json:"success"`
+			} `json:"createRelationship"`
+		} `json:"compass"`
+	}
+
+	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
+		log.Printf("Failed to create component dependency: %v", err)
+		return err
+	}
+
+	if !response.Compass.CreateRelationship.Success {
+		return errors.New("failed to create component dependency")
+	}
+
+	return nil
+}
+
+func (r *Repository) UnSetDependency(ctx context.Context, dependentId, providerId string) error {
+	query := `
+		mutation deleteRelationship($dependentId: ID!, $providerId: ID!) {
+			compass {
+				deleteRelationship(input: {
+					type: DEPENDS_ON,
+					startNodeId: $dependentId,
+					endNodeId: $providerId
+				}) {
+					errors {
+						message
+					}
+					success
+				}
+			}
+		}`
+
+	variables := map[string]interface{}{
+		"dependentId": dependentId,
+		"providerId":  providerId,
+	}
+
+	var response struct {
+		Compass struct {
+			DeleteRelationship struct {
+				Errors  []compassservice.CompassError `json:"errors"`
+				Success bool                          `json:"success"`
+			} `json:"deleteRelationship"`
+		} `json:"compass"`
+	}
+
+	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
+		log.Printf("Failed to create component dependency: %v", err)
+		return err
+	}
+
+	if !response.Compass.DeleteRelationship.Success {
+		return errors.New("failed to create component dependency")
 	}
 
 	return nil

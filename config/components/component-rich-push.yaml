@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: rich-push
-    slug: svc-rich-push
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: monetization
     squad: sponsorship-integration
     links:

@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: betting-workers
-    slug: svc-betting-workers
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: monetization
     squad: sponsorship-integration
     links:
@@ -19,6 +20,6 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=betting-workers&var-container=betting-workers&from=now-1h&to=now
     labels:
-        - monetization
         - sponsorship-integration
         - betting-workers
+        - monetization

@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: optimistic-joliot
-    slug: svc-optimistic-joliot
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: data-platform
     squad: dacore
     links:

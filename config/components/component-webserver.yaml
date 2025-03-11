@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: webserver
-    slug: svc-webserver
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: reach
     squad: consumer-web
     links:

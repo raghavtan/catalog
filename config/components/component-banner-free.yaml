@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: banner-free
-    slug: svc-banner-free
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: monetization
     squad: media-advertising
     links:

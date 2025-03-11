@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: ott-load-test-proxy
-    slug: svc-ott-load-test-proxy
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: live-video
     links:

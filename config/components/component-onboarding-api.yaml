@@ -5,10 +5,12 @@ metadata:
     componentType: service
 spec:
     name: onboarding-api
-    slug: svc-onboarding-api
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - score-api
     tribe: reach
     squad: fan-activation
     links:
@@ -19,5 +21,5 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=onboarding-api&var-container=onboarding-api&from=now-1h&to=now
     labels:
-        - fan-activation
         - reach
+        - fan-activation

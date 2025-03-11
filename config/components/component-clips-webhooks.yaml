@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: clips-webhooks
-    slug: svc-clips-webhooks
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: personalisation
     links:
@@ -19,6 +20,6 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips-webhooks&var-container=clips-webhooks&from=now-1h&to=now
     labels:
-        - clips-webhooks
         - engagement
         - personalisation
+        - clips-webhooks

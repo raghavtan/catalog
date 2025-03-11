@@ -5,10 +5,13 @@ metadata:
     componentType: service
 spec:
     name: stories-api
-    slug: svc-stories-api
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - personalisation-service
+        - score-api
     tribe: reach
     squad: fan-activation
     links:

@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: facts-api
-    slug: svc-facts-api
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: matchxp
     links:
@@ -19,6 +20,6 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=facts-api&var-container=facts-api&from=now-1h&to=now
     labels:
-        - matchxp
         - facts-api
         - engagement
+        - matchxp

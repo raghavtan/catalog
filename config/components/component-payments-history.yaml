@@ -5,10 +5,12 @@ metadata:
     componentType: service
 spec:
     name: payments-history
-    slug: svc-payments-history
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - watch
     tribe: engagement
     squad: live-video
     links:

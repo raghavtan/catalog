@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: idp-wrapper
-    slug: svc-idp-wrapper
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: platform
     squad: cloud-runtime
     links:
@@ -19,5 +20,5 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=idp-wrapper&var-container=idp-wrapper&from=now-1h&to=now
     labels:
-        - platform
         - cloud-runtime
+        - platform

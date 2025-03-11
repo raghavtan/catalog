@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: editorjs-translator
-    slug: svc-editorjs-translator
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: reach
     squad: content
     links:

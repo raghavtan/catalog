@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: content-tags-api
-    slug: svc-content-tags-api
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: personalisation
     links:

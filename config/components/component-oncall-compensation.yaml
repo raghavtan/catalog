@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: oncall-compensation
-    slug: svc-oncall-compensation
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: platform
     squad: developer-xp
     links:

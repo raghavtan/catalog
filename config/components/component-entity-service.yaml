@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: entity-service
-    slug: svc-entity-service
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: matchxp
     links:
@@ -19,5 +20,5 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=entity-service&var-container=entity-service&from=now-1h&to=now
     labels:
-        - matchxp
         - engagement
+        - matchxp

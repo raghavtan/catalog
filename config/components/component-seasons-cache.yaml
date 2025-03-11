@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: seasons-cache
-    slug: svc-seasons-cache
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: matchxp
     links:

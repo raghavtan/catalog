@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: ott-external-accounts
-    slug: svc-ott-external-accounts
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: ott
     squad: live-video
     links:

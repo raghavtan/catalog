@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: lead-gen-data-collector-api
-    slug: svc-lead-gen-data-collector-api
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: monetization
     squad: sponsorship-integration
     links:

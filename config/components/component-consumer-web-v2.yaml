@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: consumer-web-v2
-    slug: svc-consumer-web-v2
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: reach
     squad: consumer-web
     links:
@@ -19,6 +20,6 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=consumer-web-v2&var-container=consumer-web-v2&from=now-1h&to=now
     labels:
-        - consumer-web
         - consumer-web-v2
         - reach
+        - consumer-web

@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: archive
-    slug: svc-archive
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: matchxp
     links:

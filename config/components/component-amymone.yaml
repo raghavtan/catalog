@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: amymone
-    slug: svc-amymone
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: personalisation
     links:

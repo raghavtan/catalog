@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: analytics-service
-    slug: svc-analytics-service
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: reach
     squad: content
     links:

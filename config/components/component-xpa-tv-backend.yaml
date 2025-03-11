@@ -5,10 +5,20 @@ metadata:
     componentType: service
 spec:
     name: xpa-tv-backend
-    slug: svc-xpa-tv-backend
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - clips
+        - clips-api
+        - users-api
+        - users-auth-api
+        - users-accounts-api
+        - ott-mediation
+        - scores-mixer
+        - watch
+        - score-api
     tribe: engagement
     squad: live-video
     links:
@@ -19,6 +29,6 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-tv-backend&var-container=xpa-tv-backend&from=now-1h&to=now
     labels:
+        - xpa-tv-backend
         - engagement
         - live-video
-        - xpa-tv-backend

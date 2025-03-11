@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: users-gdpr
-    slug: svc-users-gdpr
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: reach
     squad: fan-activation
     links:
@@ -19,6 +20,6 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-gdpr&var-container=users-gdpr&from=now-1h&to=now
     labels:
-        - users-gdpr
         - reach
         - fan-activation
+        - users-gdpr

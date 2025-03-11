@@ -5,10 +5,12 @@ metadata:
     componentType: service
 spec:
     name: tv-guide-api
-    slug: svc-tv-guide-api
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - score-api
     tribe: monetization
     squad: sponsorship-integration
     links:

@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: appstore-connect-iap-api
-    slug: svc-appstore-connect-iap-api
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: live-video
     links:

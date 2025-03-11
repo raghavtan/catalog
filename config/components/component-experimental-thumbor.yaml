@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: experimental-thumbor
-    slug: svc-experimental-thumbor
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: platform
     squad: developer-xp
     links:

@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: mediation-api
-    slug: svc-mediation-api
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: monetization
     squad: media-advertising
     links:

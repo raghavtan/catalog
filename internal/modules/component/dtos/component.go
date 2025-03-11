@@ -73,6 +73,7 @@ type Spec struct {
 	ConfigVersion int                         `yaml:"configVersion" json:"configVersion"`
 	TypeID        string                      `yaml:"typeId" json:"typeId"`
 	OwnerID       string                      `yaml:"ownerId" json:"ownerId"`
+	DependsOn     []string                    `yaml:"dependsOn" json:"dependsOn"`
 	Links         []Link                      `yaml:"links" json:"links"`
 	Labels        []string                    `yaml:"labels" json:"labels"`
 	MetricSources map[string]*MetricSourceDTO `yaml:"metricSources" json:"metricSources"`

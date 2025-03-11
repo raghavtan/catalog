@@ -5,10 +5,13 @@ metadata:
     componentType: service
 spec:
     name: web-payments-backend
-    slug: svc-web-payments-backend
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - watch
+        - users-accounts-api
     tribe: engagement
     squad: live-video
     links:
@@ -19,6 +22,6 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=web-payments-backend&var-container=web-payments-backend&from=now-1h&to=now
     labels:
+        - web-payments-backend
         - engagement
         - live-video
-        - web-payments-backend

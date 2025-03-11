@@ -5,10 +5,12 @@ metadata:
     componentType: service
 spec:
     name: daily-digest
-    slug: svc-daily-digest
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - news
     tribe: reach
     squad: fan-activation
     links:

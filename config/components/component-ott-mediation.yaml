@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: ott-mediation
-    slug: svc-ott-mediation
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: live-video
     links:
@@ -19,6 +20,6 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-mediation&var-container=ott-mediation&from=now-1h&to=now
     labels:
-        - live-video
         - ott-mediation
         - engagement
+        - live-video

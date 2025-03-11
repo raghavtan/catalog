@@ -5,10 +5,12 @@ metadata:
     componentType: service
 spec:
     name: tv-guide-importer
-    slug: svc-tv-guide-importer
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - resolver-api
     tribe: monetization
     squad: sponsorship-integration
     links:

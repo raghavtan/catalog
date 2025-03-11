@@ -5,10 +5,21 @@ metadata:
     componentType: service
 spec:
     name: news
-    slug: svc-news
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - bookmarks
+        - score-api
+        - mediation-api
+        - ott-mediation
+        - librarian
+        - clips
+        - personalisation-service
+        - search-gateway-api
+        - category-tiles
+        - article-service
     tribe: engagement
     squad: personalisation
     links:

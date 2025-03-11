@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: fanmatch-go
-    slug: svc-fanmatch-go
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: monetization
     squad: sponsorship-integration
     links:

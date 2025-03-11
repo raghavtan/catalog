@@ -5,10 +5,16 @@ metadata:
     componentType: service
 spec:
     name: umka
-    slug: svc-umka
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - mediation-api
+        - librarian
+        - apple-news
+        - news
+        - score-api
     tribe: engagement
     squad: personalisation
     links:

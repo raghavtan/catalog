@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: simple-service
-    slug: svc-simple-service
+    slug: ""
     description: Simple-service is a no-nonsense, do-what-it-needs-to-do kind of service. It reads a lot, writes a little, and somehow still manages to act important. If databases had best friends, Simple RDS would be its ride-or-die.
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: platform
     squad: cloud-runtime
     links:

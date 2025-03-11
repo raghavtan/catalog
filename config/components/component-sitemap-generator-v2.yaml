@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: sitemap-generator-v2
-    slug: svc-sitemap-generator-v2
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: reach
     squad: consumer-web
     links:

@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: gam-mrss-generator
-    slug: svc-gam-mrss-generator
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: reach
     squad: content
     links:

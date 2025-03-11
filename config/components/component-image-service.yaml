@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: image-service
-    slug: svc-image-service
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: personalisation
     links:

@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: lead-gen-campaign-manager
-    slug: svc-lead-gen-campaign-manager
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: monetization
     squad: sponsorship-integration
     links:

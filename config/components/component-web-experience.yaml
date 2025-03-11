@@ -5,10 +5,13 @@ metadata:
     componentType: service
 spec:
     name: web-experience
-    slug: svc-web-experience
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - search-gateway-api
+        - userresearch-shiny
     tribe: reach
     squad: consumer-web
     links:

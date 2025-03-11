@@ -5,10 +5,15 @@ metadata:
     componentType: service
 spec:
     name: personalisation-service
-    slug: svc-personalisation-service
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - librarian
+        - mediation-api
+        - news
+        - score-api
     tribe: engagement
     squad: personalisation
     links:

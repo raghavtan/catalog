@@ -5,10 +5,13 @@ metadata:
     componentType: service
 spec:
     name: librarian
-    slug: svc-librarian
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn:
+        - ott-mediation
+        - score-api
     tribe: engagement
     squad: personalisation
     links:

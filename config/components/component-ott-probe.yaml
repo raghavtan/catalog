@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: ott-probe
-    slug: svc-ott-probe
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: engagement
     squad: live-video
     links:

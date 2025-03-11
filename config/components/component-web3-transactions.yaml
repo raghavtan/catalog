@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: web3-transactions
-    slug: svc-web3-transactions
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: monetization
     squad: loyalty-program-squad
     links:

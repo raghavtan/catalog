@@ -5,10 +5,11 @@ metadata:
     componentType: service
 spec:
     name: not-found-server
-    slug: svc-not-found-server
+    slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
+    dependsOn: []
     tribe: platform
     squad: developer-xp
     links:
@@ -19,5 +20,5 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=not-found-server&var-container=not-found-server&from=now-1h&to=now
     labels:
-        - developer-xp
         - platform
+        - developer-xp
