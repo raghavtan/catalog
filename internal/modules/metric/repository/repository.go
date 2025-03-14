@@ -5,9 +5,9 @@ package repository
 import (
 	"context"
 	"errors"
-	"fmt"
 	"log"
 
+	"github.com/motain/of-catalog/internal/modules/metric/repository/dtos"
 	"github.com/motain/of-catalog/internal/modules/metric/resources"
 	"github.com/motain/of-catalog/internal/services/compassservice"
 )
@@ -22,65 +22,21 @@ type Repository struct {
 	compass compassservice.CompassServiceInterface
 }
 
-func NewRepository(
-	compass compassservice.CompassServiceInterface,
-) *Repository {
+func NewRepository(compass compassservice.CompassServiceInterface) *Repository {
 	return &Repository{compass: compass}
 }
 
 func (r *Repository) Create(ctx context.Context, metric resources.Metric) (string, error) {
-	query := `
-		mutation createMetricDefinition ($cloudId: ID!, $name: String!, $description: String!, $unit: String!) {
-			compass {
-				createMetricDefinition(
-					input: {
-						cloudId: $cloudId
-						name: $name
-						description: $description
-						format: {
-							suffix: { suffix: $unit }
-						}
-					}
-				) {
-					success
-					createdMetricDefinition {
-						id
-					}
-					errors {
-						message
-					}
-				}
-			}
-		}`
+	metricDto := dtos.CreateMetricOutput{}
+	query := metricDto.GetQuery()
+	variables := metricDto.SetVariables(r.compass.GetCompassCloudId(), metric)
 
-	variables := map[string]interface{}{
-		"cloudId":     r.compass.GetCompassCloudId(),
-		"name":        metric.Name,
-		"description": metric.Description,
-		"unit":        metric.Format.Unit,
-	}
-
-	var response struct {
-		Compass struct {
-			CreateMetricDefinition struct {
-				Success                bool                          `json:"success"`
-				Errors                 []compassservice.CompassError `json:"errors"`
-				CreateMetricDefinition struct {
-					ID string `json:"id"`
-				} `json:"createdMetricDefinition"`
-			} `json:"createMetricDefinition"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
+	if err := r.compass.Run(ctx, query, variables, &metricDto); err != nil {
 		log.Printf("Failed to create metric: %v", err)
 		return "", err
 	}
 
-	for _, err := range response.Compass.CreateMetricDefinition.Errors {
-		fmt.Printf("Error: %v\n", err.Message)
-	}
-	if compassservice.HasAlreadyExistsError(response.Compass.CreateMetricDefinition.Errors) {
+	if compassservice.HasAlreadyExistsError(metricDto.Compass.CreateMetric.Errors) {
 		remoteMetric, err := r.Search(metric)
 		if err != nil {
 			return "", err
@@ -90,60 +46,26 @@ func (r *Repository) Create(ctx context.Context, metric resources.Metric) (strin
 		updateError := r.Update(ctx, metric)
 
 		return remoteMetric.ID, updateError
-	} else {
-		if !response.Compass.CreateMetricDefinition.Success {
-			return "", errors.New("failed to create metric")
-		}
 	}
 
-	return response.Compass.CreateMetricDefinition.CreateMetricDefinition.ID, nil
+	if !metricDto.IsSuccessful() {
+		return "", errors.New("failed to create metric")
+	}
+
+	return metricDto.Compass.CreateMetric.Definition.ID, nil
 }
 
 func (r *Repository) Update(ctx context.Context, metric resources.Metric) error {
-	query := `
-		mutation updateMetricDefinition ($cloudId: ID!, $id: ID!, $name: String!, $description: String!, $unit: String!) {
-			compass {
-				updateMetricDefinition(
-					input: {
-						id: $id
-						cloudId: $cloudId
-						name: $name
-						description: $description
-						format: {
-							suffix: { suffix: $unit }
-						}
-					}
-				) {
-					success
-					errors {
-						message
-					}
-				}
-			}
-		}`
+	metricDto := dtos.UpdateMetricOutput{}
+	query := metricDto.GetQuery()
+	variables := metricDto.SetVariables(r.compass.GetCompassCloudId(), metric)
 
-	variables := map[string]interface{}{
-		"cloudId":     r.compass.GetCompassCloudId(),
-		"id":          metric.ID,
-		"name":        metric.Name,
-		"description": metric.Description,
-		"unit":        metric.Format.Unit,
-	}
-
-	var response struct {
-		Compass struct {
-			UpdateMetricDefinition struct {
-				Success bool `json:"success"`
-			} `json:"updateMetricDefinition"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
+	if err := r.compass.Run(ctx, query, variables, &metricDto); err != nil {
 		log.Printf("Failed to update metric: %v", err)
 		return err
 	}
 
-	if !response.Compass.UpdateMetricDefinition.Success {
+	if !metricDto.IsSuccessful() {
 		return errors.New("failed to update metric")
 	}
 
@@ -151,37 +73,16 @@ func (r *Repository) Update(ctx context.Context, metric resources.Metric) error 
 }
 
 func (r *Repository) Delete(ctx context.Context, id string) error {
-	query := `
-		mutation deleteMetricDefinition($id: ID!) {
-			compass {
-				deleteMetricDefinition(input: {id: $id}) {
-					deletedMetricDefinitionId
-					errors {
-						message
-					}
-					success
-				}
-			}
-		}`
+	metricDto := dtos.DeleteMetricOutput{}
+	query := metricDto.GetQuery()
+	variables := metricDto.SetVariables(id)
 
-	variables := map[string]interface{}{
-		"id": id,
-	}
-
-	var response struct {
-		Compass struct {
-			DeleteMetricDefinition struct {
-				Success bool `json:"success"`
-			} `json:"deleteMetricDefinition"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
+	if err := r.compass.Run(ctx, query, variables, &metricDto); err != nil {
 		log.Printf("Failed to create metric: %v", err)
 		return err
 	}
 
-	if !response.Compass.DeleteMetricDefinition.Success {
+	if !metricDto.IsSuccessful() {
 		return errors.New("failed to delete metric")
 	}
 
@@ -189,46 +90,20 @@ func (r *Repository) Delete(ctx context.Context, id string) error {
 }
 
 func (r *Repository) Search(metric resources.Metric) (*resources.Metric, error) {
-	query := `
-		query searchMetricDefinition($cloudId: ID!) {
-			compass {
-				metricDefinitions(query: {cloudId: $cloudId, first: 100}) {
-					... on CompassMetricDefinitionsConnection {
-						nodes{
-							id
-							name
-						}
-					}
-				}
-			}
-		}`
+	metricsDto := dtos.SearchMetricsOutput{}
+	query := metricsDto.GetQuery()
+	variables := metricsDto.SetVariables(r.compass.GetCompassCloudId(), metric)
 
-	variables := map[string]interface{}{
-		"cloudId": r.compass.GetCompassCloudId(),
-		"name":    metric.Name,
-	}
-
-	var response struct {
-		Compass struct {
-			MetricDefinitions struct {
-				Nodes []struct {
-					ID   string `json:"id"`
-					Name string `json:"name"`
-				} `json:"nodes"`
-			} `json:"metricDefinitions"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(context.Background(), query, variables, &response); err != nil {
+	if err := r.compass.Run(context.Background(), query, variables, &metricsDto); err != nil {
 		log.Printf("Failed to search metric: %v", err)
 		return nil, err
 	}
 
-	if len(response.Compass.MetricDefinitions.Nodes) == 0 {
+	if !metricsDto.IsSuccessful() {
 		return nil, errors.New("metric not found")
 	}
 
-	for _, node := range response.Compass.MetricDefinitions.Nodes {
+	for _, node := range metricsDto.Compass.Definitions.Nodes {
 		if node.Name == metric.Name {
 			return &resources.Metric{ID: node.ID}, nil
 		}
