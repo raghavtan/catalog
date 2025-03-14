@@ -21,6 +21,10 @@ type RepositoryInterface interface {
 	// Dependency operations
 	SetDependency(ctx context.Context, dependentId, providerId string) error
 	UnSetDependency(ctx context.Context, dependentId, providerId string) error
+	// Documents operations
+	AddDocument(ctx context.Context, componentID string, document resources.Document) (resources.Document, error)
+	UpdateDocument(ctx context.Context, componentID string, document resources.Document) error
+	RemoveDocument(ctx context.Context, componentID, documentID string) error
 	// MetricSource operations
 	BindMetric(ctx context.Context, componentID string, metricID string, intentifier string) (string, error)
 	UnBindMetric(ctx context.Context, metricSourceID string) error
@@ -28,13 +32,14 @@ type RepositoryInterface interface {
 }
 
 type Repository struct {
-	compass compassservice.CompassServiceInterface
+	compass            compassservice.CompassServiceInterface
+	DocumentCategories map[string]string
 }
 
 func NewRepository(
 	compass compassservice.CompassServiceInterface,
 ) *Repository {
-	return &Repository{compass: compass}
+	return &Repository{compass: compass, DocumentCategories: nil}
 }
 
 func (r *Repository) Create(ctx context.Context, component resources.Component) (resources.Component, error) {
@@ -45,6 +50,12 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 					success
 					componentDetails {
 						id
+						links {
+							id
+							type
+							name
+							url
+						}
 					}
 					errors {
 						message
@@ -84,7 +95,13 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 				Success          bool                          `json:"success"`
 				Errors           []compassservice.CompassError `json:"errors"`
 				ComponentDetails struct {
-					ID            string `json:"id"`
+					ID    string `json:"id"`
+					Links []struct {
+						ID   string `json:"id"`
+						Type string `json:"type"`
+						Name string `json:"name"`
+						URL  string `json:"url"`
+					} `json:"links"`
 					MetricSources struct {
 						Nodes []struct {
 							ID               string `json:"id"`
@@ -129,8 +146,19 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 		}
 	}
 
+	createdLinks := make([]resources.Link, len(response.Compass.CreateComponent.ComponentDetails.Links))
+	for i, link := range response.Compass.CreateComponent.ComponentDetails.Links {
+		createdLinks[i] = resources.Link{
+			ID:   link.ID,
+			Type: link.Type,
+			Name: link.Name,
+			URL:  link.URL,
+		}
+	}
 	component.ID = response.Compass.CreateComponent.ComponentDetails.ID
 	component.MetricSources = metricSources
+	component.Links = createdLinks
+
 	return component, nil
 }
 
@@ -373,6 +401,163 @@ func (r *Repository) GetBySlug(slug string) (*resources.Component, error) {
 	return &component, nil
 }
 
+func (r *Repository) AddDocument(ctx context.Context, componentID string, document resources.Document) (resources.Document, error) {
+	r.initDocumentCategories(ctx)
+
+	query := `
+		mutation addDocument($input: CompassAddDocumentInput!) {
+   		compass @optIn(to: "compass-beta") {
+   			addDocument(input: $input) {
+   				success
+ 					errors {
+						message
+					}
+					documentDetails {
+						id
+						title
+						url
+						componentId
+						documentationCategoryId
+					}
+				}
+			}
+		}`
+
+	variables := map[string]interface{}{
+		"input": map[string]interface{}{
+			"componentId":             componentID,
+			"title":                   document.Title,
+			"documentationCategoryId": r.DocumentCategories[document.Type],
+			"url":                     document.URL,
+		},
+	}
+
+	var response struct {
+		Compass struct {
+			AddDocument struct {
+				Success         bool `json:"success"`
+				DocumentDetails struct {
+					ID string `json:"id"`
+				} `json:"documentDetails"`
+			} `json:"addDocument"`
+		} `json:"compass"`
+	}
+
+	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
+		log.Printf("Failed to create document: %v", err)
+		return resources.Document{}, err
+	}
+
+	if !response.Compass.AddDocument.Success {
+		return resources.Document{}, errors.New("failed to create document")
+	}
+
+	return resources.Document{
+		ID:                      response.Compass.AddDocument.DocumentDetails.ID,
+		Title:                   document.Title,
+		Type:                    document.Type,
+		URL:                     document.URL,
+		DocumentationCategoryId: r.DocumentCategories[document.Type],
+	}, nil
+}
+
+func (r *Repository) UpdateDocument(ctx context.Context, componentID string, document resources.Document) error {
+	r.initDocumentCategories(ctx)
+
+	query := `
+	mutation updateDocument($input: CompassUpdateDocumentInput!) {
+		compass @optIn(to: "compass-beta") {
+			updateDocument(input: $input) {
+				success
+				errors {
+					message
+				}
+				documentDetails {
+					id
+					title
+					url
+					componentId
+					documentationCategoryId
+				}
+			}
+		}
+	}`
+
+	variables := map[string]interface{}{
+		"input": map[string]interface{}{
+			"id":                      document.ID,
+			"title":                   document.Title,
+			"documentationCategoryId": r.DocumentCategories[document.Type],
+			"url":                     document.URL,
+		},
+	}
+
+	fmt.Println("-------------")
+	fmt.Printf("Variables: %v", variables)
+	fmt.Println("-------------")
+
+	var response struct {
+		Compass struct {
+			UpdateDocument struct {
+				Success         bool `json:"success"`
+				DocumentDetails struct {
+					ID string `json:"id"`
+				} `json:"documentDetails"`
+			} `json:"updateDocument"`
+		} `json:"compass"`
+	}
+
+	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
+		log.Printf("Failed to update document: %v", err)
+		return err
+	}
+
+	if !response.Compass.UpdateDocument.Success {
+		return errors.New("failed to update link")
+	}
+
+	return nil
+}
+
+func (r *Repository) RemoveDocument(ctx context.Context, componentID, docuemntID string) error {
+	query := `
+		mutation deleteComponentLink($id: ID!) {
+			compass {
+				deleteComponentLink(input: {id: $id}) {
+					deletedMetricSourceId
+					errors {
+						message
+					}
+					success
+				}
+			}
+		}`
+
+	variables := map[string]interface{}{
+		"componentId": componentID,
+		"id":          docuemntID,
+	}
+
+	var response struct {
+		Compass struct {
+			DeleteComponentLink struct {
+				Success bool `json:"success"`
+			} `json:"deleteComponentLink"`
+		} `json:"compass"`
+	}
+
+	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
+		log.Printf("Failed to delete metric source: %v", err)
+		return err
+	}
+
+	if !response.Compass.DeleteComponentLink.Success {
+		return errors.New("failed to delete metric source")
+	}
+
+	return nil
+}
+
 func (r *Repository) BindMetric(ctx context.Context, componentID string, metricID string, intentifier string) (string, error) {
 	query := `
 		mutation createMetricSource($metricId: ID!, $componentId: ID!, $externalId: ID!) {
@@ -466,4 +651,50 @@ func (r *Repository) Push(ctx context.Context, metricSourceID string, value floa
 	_, errSend := r.compass.SendMetric(requestBody)
 
 	return errSend
+}
+
+func (r *Repository) initDocumentCategories(ctx context.Context) error {
+	fmt.Printf("Category ID: %s\n", r.DocumentCategories)
+	if r.DocumentCategories != nil {
+		return nil
+	}
+
+	query := `
+		query documentationCategories {
+			compass {
+				documentationCategories(cloudId: "fca6a80f-888b-4079-82e6-3c2f61c788e2") @optIn(to: "compass-beta")  {
+					... on CompassDocumentationCategoriesConnection {
+						nodes {
+							name
+							id
+							description
+						}
+					}
+				}
+			}
+		}`
+
+	var response struct {
+		Compass struct {
+			DocumentationCategories struct {
+				Nodes []struct {
+					ID   string `json:"id"`
+					Name string `json:"name"`
+				} `json:"nodes"`
+			} `json:"documentationCategories"`
+		} `json:"compass"`
+	}
+
+	if err := r.compass.Run(ctx, query, nil, &response); err != nil {
+		log.Printf("Failed to delete metric source: %v", err)
+		return err
+	}
+
+	categories := make(map[string]string, len(response.Compass.DocumentationCategories.Nodes))
+	for _, category := range response.Compass.DocumentationCategories.Nodes {
+		categories[category.Name] = category.ID
+	}
+	r.DocumentCategories = categories
+
+	return nil
 }

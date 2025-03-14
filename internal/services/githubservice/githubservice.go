@@ -11,6 +11,7 @@ import (
 )
 
 type GitHubServiceInterface interface {
+	GetRepoURL(repo string) string
 	GetRepo(repo string) (*github.Repository, error)
 	GetFileExists(repo, path string) (bool, error)
 	GetFileContent(repo, path string) (string, error)
@@ -25,6 +26,10 @@ type GitHubService struct {
 
 func NewGitHubService(client GitHubClientInterface) *GitHubService {
 	return &GitHubService{client: client, owner: "motain"}
+}
+
+func (gh *GitHubService) GetRepoURL(repo string) string {
+	return fmt.Sprintf("https://github.com/%s/%s", gh.owner, repo)
 }
 
 // Get repository details

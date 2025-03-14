@@ -9,6 +9,7 @@ import (
 	"github.com/motain/of-catalog/internal/modules/component/repository"
 	"github.com/motain/of-catalog/internal/modules/component/resources"
 	"github.com/motain/of-catalog/internal/modules/component/utils"
+	"github.com/motain/of-catalog/internal/services/documentservice"
 	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/services/ownerservice"
 	ownerservicedtos "github.com/motain/of-catalog/internal/services/ownerservice/dtos"
@@ -21,14 +22,16 @@ type ApplyHandler struct {
 	github     githubservice.GitHubServiceInterface
 	repository repository.RepositoryInterface
 	owner      ownerservice.OwnerServiceInterface
+	document   documentservice.DocumentServiceInterface
 }
 
 func NewApplyHandler(
 	gh githubservice.GitHubServiceInterface,
 	repository repository.RepositoryInterface,
 	owner ownerservice.OwnerServiceInterface,
+	document documentservice.DocumentServiceInterface,
 ) *ApplyHandler {
-	return &ApplyHandler{github: gh, repository: repository, owner: owner}
+	return &ApplyHandler{github: gh, repository: repository, owner: owner, document: document}
 }
 
 func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string, recursive bool) {
@@ -51,7 +54,7 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 	h.handleDeleted(deleted)
 
 	var result []*dtos.ComponentDTO
-	result = h.handleUnchanged(result, unchanged)
+	result = h.handleUnchanged(result, unchanged, stateComponents)
 	result = h.handleCreated(result, created, stateComponents)
 	result = h.handleUpdated(result, updated, stateComponents)
 
@@ -70,9 +73,15 @@ func (h *ApplyHandler) handleDeleted(components map[string]*dtos.ComponentDTO) {
 	}
 }
 
-func (h *ApplyHandler) handleUnchanged(result []*dtos.ComponentDTO, components map[string]*dtos.ComponentDTO) []*dtos.ComponentDTO {
+func (h *ApplyHandler) handleUnchanged(
+	result []*dtos.ComponentDTO,
+	components map[string]*dtos.ComponentDTO,
+	stateComponents map[string]*dtos.ComponentDTO,
+) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		componentDTO = h.handleOwner(componentDTO)
+		componentDTO = h.handleDocumenation(componentDTO, stateComponents)
+
 		result = append(result, componentDTO)
 	}
 	return result
@@ -85,6 +94,10 @@ func (h *ApplyHandler) handleCreated(
 ) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		componentDTO = h.handleOwner(componentDTO)
+
+		// Should we call this at creation time?
+		// componentDTO = h.handleDocumenation(componentDTO)
+
 		component := componentDTOToResource(componentDTO)
 
 		component, errComponent := h.repository.Create(context.Background(), component)
@@ -92,7 +105,6 @@ func (h *ApplyHandler) handleCreated(
 			panic(errComponent)
 		}
 
-		fmt.Printf("Deps: %+v \n", componentDTO.Spec.DependsOn)
 		for _, providerName := range componentDTO.Spec.DependsOn {
 			if provider, exists := stateComponents[providerName]; exists {
 				h.repository.SetDependency(context.Background(), component.ID, provider.Spec.ID)
@@ -103,6 +115,21 @@ func (h *ApplyHandler) handleCreated(
 
 		componentDTO.Spec.ID = component.ID
 		componentDTO.Spec.Slug = component.Slug
+
+		createdLinks := make([]dtos.Link, len(component.Links))
+		for i, link := range component.Links {
+			createdLinks[i] = dtos.Link{
+				ID:   link.ID,
+				Name: link.Name,
+				Type: link.Type,
+				URL:  link.URL,
+			}
+		}
+		componentDTO.Spec.Links = createdLinks
+
+		if componentDTO.Spec.MetricSources == nil {
+			componentDTO.Spec.MetricSources = make(map[string]*dtos.MetricSourceDTO)
+		}
 		for metricName, metricSource := range component.MetricSources {
 			componentDTO.Spec.MetricSources[metricName] = &dtos.MetricSourceDTO{
 				ID:     metricSource.ID,
@@ -110,6 +137,12 @@ func (h *ApplyHandler) handleCreated(
 				Metric: metricSource.Metric,
 			}
 		}
+		// At this point dependecies may not be set because we set dependecies after creating the component
+		// But the dependency for this component may not have been create yet.
+		// We set nil and we will update it later when running aplpy again.
+		// Eventually to make it more clear we can create a specific command to set dependencies
+		// We need to think about the best way to handle this
+		componentDTO.Spec.DependsOn = nil
 		result = append(result, componentDTO)
 	}
 
@@ -123,6 +156,8 @@ func (h *ApplyHandler) handleUpdated(
 ) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		componentDTO = h.handleOwner(componentDTO)
+		componentDTO = h.handleDocumenation(componentDTO, stateComponents)
+
 		component := componentDTOToResource(componentDTO)
 		errComponent := h.repository.Update(context.Background(), component)
 		if errComponent != nil {
@@ -211,6 +246,81 @@ func (h *ApplyHandler) handleChatLinkFromOwner(owner *ownerservicedtos.Owner) dt
 	}
 }
 
+func (h *ApplyHandler) handleDocuments(
+	componentDTO *dtos.ComponentDTO,
+	stateComponents map[string]*dtos.ComponentDTO,
+) *dtos.ComponentDTO {
+	resultDocuments := make(map[string]*dtos.Document, 0)
+	componentInState := stateComponents[componentDTO.Metadata.Name]
+
+	mappedStateDocuments := make(map[string]*dtos.Document, len(componentInState.Spec.Documents))
+	for _, document := range componentInState.Spec.Documents {
+		mappedStateDocuments[document.Title] = document
+	}
+
+	mappedComponentDocuments := make(map[string]*dtos.Document, len(componentDTO.Spec.Documents))
+	for _, document := range componentDTO.Spec.Documents {
+		mappedComponentDocuments[document.Title] = document
+	}
+
+	for _, document := range mappedStateDocuments {
+		if _, exists := mappedComponentDocuments[document.Title]; !exists {
+			h.repository.RemoveDocument(context.Background(), componentDTO.Spec.ID, document.ID)
+			continue
+		}
+
+		resultDocuments[document.Title] = document
+	}
+
+	for _, document := range mappedComponentDocuments {
+		if _, exists := mappedStateDocuments[document.Title]; !exists {
+			resourceDocument := resources.Document{
+				Title: document.Title,
+				Type:  document.Type,
+				URL:   document.URL,
+			}
+
+			newDocument, addDocumentErr := h.repository.AddDocument(context.Background(), componentDTO.Spec.ID, resourceDocument)
+			if addDocumentErr != nil {
+				fmt.Printf("apply documents %s", addDocumentErr)
+			}
+
+			document.ID = newDocument.ID
+			document.DocumentationCategoryId = newDocument.DocumentationCategoryId
+			resultDocuments[document.Title] = document
+
+			continue
+		}
+
+		if document.URL != mappedStateDocuments[document.Title].URL {
+			resourceDocument := resources.Document{
+				ID:    mappedStateDocuments[document.Title].ID,
+				Title: document.Title,
+				Type:  document.Type,
+				URL:   document.URL,
+			}
+
+			updateDocumentErr := h.repository.UpdateDocument(context.Background(), componentDTO.Spec.ID, resourceDocument)
+			if updateDocumentErr != nil {
+				fmt.Printf("apply documents %s", updateDocumentErr)
+			}
+
+			document.ID = mappedStateDocuments[document.Title].ID
+			document.DocumentationCategoryId = mappedStateDocuments[document.Title].DocumentationCategoryId
+			resultDocuments[document.Title] = document
+
+			continue
+		}
+	}
+
+	componentDTO.Spec.Documents = make([]*dtos.Document, 0)
+	for _, document := range resultDocuments {
+		componentDTO.Spec.Documents = append(componentDTO.Spec.Documents, document)
+	}
+
+	return componentDTO
+}
+
 func (h *ApplyHandler) handleDependencies(
 	componentDTO *dtos.ComponentDTO,
 	stateComponents map[string]*dtos.ComponentDTO,
@@ -239,4 +349,38 @@ func (h *ApplyHandler) handleDependencies(
 			}
 		}
 	}
+}
+
+func (h *ApplyHandler) handleDocumenation(
+	componentDTO *dtos.ComponentDTO,
+	stateComponents map[string]*dtos.ComponentDTO,
+) *dtos.ComponentDTO {
+	documents, documentErr := h.document.GetDocuments(componentDTO.Spec.Name)
+	if documentErr != nil {
+		// log.Printf("error getting document links for component %s: %v", componentDTO.Spec.Name, documentErr)
+		return componentDTO
+	}
+
+	mappedDocuments := make(map[string]*dtos.Document)
+	for _, doc := range componentDTO.Spec.Documents {
+		mappedDocuments[doc.Title] = doc
+	}
+
+	for documentTitle, documentURL := range documents {
+		mappedDocuments[documentTitle] = &dtos.Document{
+			Title: documentTitle,
+			Type:  "Other",
+			URL:   documentURL,
+		}
+	}
+
+	processedDocuments := make([]*dtos.Document, len(mappedDocuments))
+	i := 0
+	for _, document := range mappedDocuments {
+		processedDocuments[i] = document
+		i++
+	}
+	componentDTO.Spec.Documents = processedDocuments
+
+	return h.handleDocuments(componentDTO, stateComponents)
 }

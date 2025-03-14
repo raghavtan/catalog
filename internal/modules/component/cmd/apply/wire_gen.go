@@ -12,6 +12,7 @@ import (
 	"github.com/motain/of-catalog/internal/modules/component/repository"
 	"github.com/motain/of-catalog/internal/services/compassservice"
 	"github.com/motain/of-catalog/internal/services/configservice"
+	"github.com/motain/of-catalog/internal/services/documentservice"
 	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/services/keyringservice"
 	"github.com/motain/of-catalog/internal/services/ownerservice"
@@ -29,10 +30,11 @@ func initializeHandler() *handler.ApplyHandler {
 	compassService := compassservice.NewCompassService(configService, graphQLClientInterface, httpClientInterface)
 	repositoryRepository := repository.NewRepository(compassService)
 	ownerService := ownerservice.NewOwnerService(gitHubService)
-	applyHandler := handler.NewApplyHandler(gitHubService, repositoryRepository, ownerService)
+	documentService := documentservice.NewDocumentService(gitHubService)
+	applyHandler := handler.NewApplyHandler(gitHubService, repositoryRepository, ownerService, documentService)
 	return applyHandler
 }
 
 // wire.go:
 
-var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewHTTPClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubClient, githubservice.NewGitHubService, wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)), ownerservice.NewOwnerService, wire.Bind(new(ownerservice.OwnerServiceInterface), new(*ownerservice.OwnerService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewApplyHandler)
+var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewHTTPClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubClient, githubservice.NewGitHubService, wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)), ownerservice.NewOwnerService, wire.Bind(new(ownerservice.OwnerServiceInterface), new(*ownerservice.OwnerService)), documentservice.NewDocumentService, wire.Bind(new(documentservice.DocumentServiceInterface), new(*documentservice.DocumentService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewApplyHandler)

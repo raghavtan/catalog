@@ -8,6 +8,7 @@ import (
 	"github.com/motain/of-catalog/internal/modules/component/repository"
 	"github.com/motain/of-catalog/internal/services/compassservice"
 	"github.com/motain/of-catalog/internal/services/configservice"
+	"github.com/motain/of-catalog/internal/services/documentservice"
 	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/services/keyringservice"
 	"github.com/motain/of-catalog/internal/services/ownerservice"
@@ -36,6 +37,10 @@ var ProviderSet = wire.NewSet(
 	// OwnerService
 	ownerservice.NewOwnerService,
 	wire.Bind(new(ownerservice.OwnerServiceInterface), new(*ownerservice.OwnerService)),
+
+	// DocumentService
+	documentservice.NewDocumentService,
+	wire.Bind(new(documentservice.DocumentServiceInterface), new(*documentservice.DocumentService)),
 
 	// --- component module ---
 	// Repository
