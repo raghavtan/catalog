@@ -9,6 +9,7 @@ import (
 	"log"
 	"time"
 
+	"github.com/motain/of-catalog/internal/modules/component/repository/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/resources"
 	"github.com/motain/of-catalog/internal/services/compassservice"
 )
@@ -43,85 +44,16 @@ func NewRepository(
 }
 
 func (r *Repository) Create(ctx context.Context, component resources.Component) (resources.Component, error) {
-	query := `
-		mutation createComponent ($cloudId: ID!, $componentDetails: CreateCompassComponentInput!) {
-			compass {
-				createComponent(cloudId: $cloudId, input: $componentDetails) {
-					success
-					componentDetails {
-						id
-						links {
-							id
-							type
-							name
-							url
-						}
-					}
-					errors {
-						message
-					}
-				}
-			}
-		}`
+	componentDTO := dtos.CreateComponentOutput{}
+	query := componentDTO.GetQuery()
+	variables := componentDTO.SetVariables(r.compass.GetCompassCloudId(), component)
 
-	links := make([]map[string]string, 0)
-	for _, link := range component.Links {
-		links = append(links, map[string]string{
-			"type": link.Type,
-			"name": link.Name,
-			"url":  link.URL,
-		})
-	}
-
-	variables := map[string]interface{}{
-		"cloudId": r.compass.GetCompassCloudId(),
-		"componentDetails": map[string]interface{}{
-			"name":        component.Name,
-			"slug":        component.Slug,
-			"description": component.Description,
-			"typeId":      component.TypeID,
-			"links":       links,
-			"labels":      component.Labels,
-		},
-	}
-
-	if component.OwnerID != "" {
-		variables["componentDetails"].(map[string]interface{})["ownerId"] = component.OwnerID
-	}
-
-	var response struct {
-		Compass struct {
-			CreateComponent struct {
-				Success          bool                          `json:"success"`
-				Errors           []compassservice.CompassError `json:"errors"`
-				ComponentDetails struct {
-					ID    string `json:"id"`
-					Links []struct {
-						ID   string `json:"id"`
-						Type string `json:"type"`
-						Name string `json:"name"`
-						URL  string `json:"url"`
-					} `json:"links"`
-					MetricSources struct {
-						Nodes []struct {
-							ID               string `json:"id"`
-							MetricDefinition struct {
-								ID   string `json:"id"`
-								Name string `json:"name"`
-							} `json:"metricDefinition"`
-						} `json:"nodes"`
-					} `json:"metricSources"`
-				} `json:"componentDetails"`
-			} `json:"createComponent"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
+	if err := r.compass.Run(ctx, query, variables, &componentDTO); err != nil {
 		log.Printf("Failed to create component: %v", err)
 		return component, err
 	}
 
-	if compassservice.HasAlreadyExistsError(response.Compass.CreateComponent.Errors) {
+	if compassservice.HasAlreadyExistsError(componentDTO.Compass.CreateComponent.Errors) {
 		remoteComponent, err := r.GetBySlug(component.Slug)
 		if err != nil {
 			return component, err
@@ -132,22 +64,22 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 		updateError := r.Update(ctx, component)
 
 		return component, updateError
-	} else {
-		if !response.Compass.CreateComponent.Success {
-			return component, errors.New("failed to create component")
-		}
+	}
+
+	if !componentDTO.IsSuccessful() {
+		return component, errors.New("failed to create component")
 	}
 
 	metricSources := make(map[string]*resources.MetricSource)
-	for _, node := range response.Compass.CreateComponent.ComponentDetails.MetricSources.Nodes {
+	for _, node := range componentDTO.Compass.CreateComponent.Details.MetricSources.Nodes {
 		metricSources[node.MetricDefinition.Name] = &resources.MetricSource{
 			ID:     node.ID,
 			Metric: node.MetricDefinition.ID,
 		}
 	}
 
-	createdLinks := make([]resources.Link, len(response.Compass.CreateComponent.ComponentDetails.Links))
-	for i, link := range response.Compass.CreateComponent.ComponentDetails.Links {
+	createdLinks := make([]resources.Link, len(componentDTO.Compass.CreateComponent.Details.Links))
+	for i, link := range componentDTO.Compass.CreateComponent.Details.Links {
 		createdLinks[i] = resources.Link{
 			ID:   link.ID,
 			Type: link.Type,
@@ -155,7 +87,7 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 			URL:  link.URL,
 		}
 	}
-	component.ID = response.Compass.CreateComponent.ComponentDetails.ID
+	component.ID = componentDTO.Compass.CreateComponent.Details.ID
 	component.MetricSources = metricSources
 	component.Links = createdLinks
 
@@ -163,45 +95,16 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 }
 
 func (r *Repository) Update(ctx context.Context, component resources.Component) error {
-	query := `
-		mutation updateComponent ($componentDetails: UpdateCompassComponentInput!) {
-			compass {
-				updateComponent(input: $componentDetails) {
-					success
-					errors {
-						message
-					}
-				}
-			}
-		}`
+	componentDTO := dtos.UpdateComponentOutput{}
+	query := componentDTO.GetQuery()
+	variables := componentDTO.SetVariables(component)
 
-	variables := map[string]interface{}{
-		"cloudId": r.compass.GetCompassCloudId(),
-		"componentDetails": map[string]interface{}{
-			"id":          component.ID,
-			"name":        component.Name,
-			"slug":        component.Slug,
-			"description": component.Description,
-		},
-	}
-
-	if component.OwnerID != "" {
-		variables["componentDetails"].(map[string]interface{})["ownerId"] = component.OwnerID
-	}
-	var response struct {
-		Compass struct {
-			UpdateComponentDefinition struct {
-				Success bool `json:"success"`
-			} `json:"updateComponent"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
+	if err := r.compass.Run(ctx, query, variables, &componentDTO); err != nil {
 		log.Printf("Failed to update component: %v", err)
 		return err
 	}
 
-	if !response.Compass.UpdateComponentDefinition.Success {
+	if !componentDTO.IsSuccessful() {
 		return errors.New("failed to update component")
 	}
 
@@ -209,42 +112,20 @@ func (r *Repository) Update(ctx context.Context, component resources.Component) 
 }
 
 func (r *Repository) Delete(ctx context.Context, id string) error {
-	query := `
-		mutation deleteComponent($id: ID!) {
-			compass {
-				deleteComponent(input: {id: $id}) {
-					deletedComponentId
-					errors {
-						message
-					}
-					success
-				}
-			}
-		}`
+	componentDTO := dtos.DeleteComponentOutput{}
+	query := componentDTO.GetQuery()
+	variables := componentDTO.SetVariables(id)
 
-	variables := map[string]interface{}{
-		"id": id,
-	}
-
-	var response struct {
-		Compass struct {
-			DeleteComponent struct {
-				Errors  []compassservice.CompassError `json:"errors"`
-				Success bool                          `json:"success"`
-			} `json:"deleteComponent"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
+	if err := r.compass.Run(ctx, query, variables, &componentDTO); err != nil {
 		log.Printf("Failed to delete component: %v", err)
 		return err
 	}
 
-	if compassservice.HasNotFoundError(response.Compass.DeleteComponent.Errors) {
+	if compassservice.HasNotFoundError(componentDTO.Compass.DeleteComponent.Errors) {
 		return nil
 	}
 
-	if !response.Compass.DeleteComponent.Success {
+	if !componentDTO.IsSuccessful() {
 		return errors.New("failed to delete component")
 	}
 
@@ -252,42 +133,16 @@ func (r *Repository) Delete(ctx context.Context, id string) error {
 }
 
 func (r *Repository) SetDependency(ctx context.Context, dependentId, providerId string) error {
-	query := `
-		mutation createRelationship($dependentId: ID!, $providerId: ID!) {
-			compass {
-				createRelationship(input: {
-					type: DEPENDS_ON,
-					startNodeId: $dependentId,
-					endNodeId: $providerId
-				}) {
-					errors {
-						message
-					}
-					success
-				}
-			}
-		}`
+	componentDTO := dtos.CreateDependencyOutput{}
+	query := componentDTO.GetQuery()
+	variables := componentDTO.SetVariables(dependentId, providerId)
 
-	variables := map[string]interface{}{
-		"dependentId": dependentId,
-		"providerId":  providerId,
-	}
-
-	var response struct {
-		Compass struct {
-			CreateRelationship struct {
-				Errors  []compassservice.CompassError `json:"errors"`
-				Success bool                          `json:"success"`
-			} `json:"createRelationship"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
-		log.Printf("Failed to create component dependency: %v", err)
+	if err := r.compass.Run(ctx, query, variables, &componentDTO); err != nil {
+		log.Printf("failed to create component dependency: %v", err)
 		return err
 	}
 
-	if !response.Compass.CreateRelationship.Success {
+	if !componentDTO.IsSuccessful() {
 		return errors.New("failed to create component dependency")
 	}
 
@@ -295,106 +150,45 @@ func (r *Repository) SetDependency(ctx context.Context, dependentId, providerId 
 }
 
 func (r *Repository) UnSetDependency(ctx context.Context, dependentId, providerId string) error {
-	query := `
-		mutation deleteRelationship($dependentId: ID!, $providerId: ID!) {
-			compass {
-				deleteRelationship(input: {
-					type: DEPENDS_ON,
-					startNodeId: $dependentId,
-					endNodeId: $providerId
-				}) {
-					errors {
-						message
-					}
-					success
-				}
-			}
-		}`
+	componentDTO := dtos.DeleteDependencyOutput{}
+	query := componentDTO.GetQuery()
+	variables := componentDTO.SetVariables(dependentId, providerId)
 
-	variables := map[string]interface{}{
-		"dependentId": dependentId,
-		"providerId":  providerId,
-	}
-
-	var response struct {
-		Compass struct {
-			DeleteRelationship struct {
-				Errors  []compassservice.CompassError `json:"errors"`
-				Success bool                          `json:"success"`
-			} `json:"deleteRelationship"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
-		log.Printf("Failed to create component dependency: %v", err)
+	if err := r.compass.Run(ctx, query, variables, &componentDTO); err != nil {
+		log.Printf("Failed to delete component dependency: %v", err)
 		return err
 	}
 
-	if !response.Compass.DeleteRelationship.Success {
-		return errors.New("failed to create component dependency")
+	if !componentDTO.IsSuccessful() {
+		return errors.New("failed to delete component dependency")
 	}
 
 	return nil
 }
 
 func (r *Repository) GetBySlug(slug string) (*resources.Component, error) {
-	query := `
-		query getComponentBySlug($cloudId: ID!, $slug: String!) {
-			compass {
-				componentByReference(reference: {slug: {slug: $slug, cloudId: $cloudId}}) {
-					... on CompassComponent {
-						id
-						metricSources {
-							... on CompassComponentMetricSourcesConnection {
-								nodes {
-									id,
-									metricDefinition {
-										name
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}`
+	componentDTO := dtos.ComponentByReferenceOutput{}
+	query := componentDTO.GetQuery()
+	variables := componentDTO.SetVariables(r.compass.GetCompassCloudId(), slug)
 
-	variables := map[string]interface{}{
-		"cloudId": r.compass.GetCompassCloudId(),
-		"slug":    slug,
-	}
-
-	var response struct {
-		Compass struct {
-			ComponentByReference struct {
-				ID            string `json:"id"`
-				MetricSources struct {
-					Nodes []struct {
-						ID               string `json:"id"`
-						MetricDefinition struct {
-							ID   string `json:"id"`
-							Name string `json:"name"`
-						} `json:"metricDefinition"`
-					} `json:"nodes"`
-				} `json:"metricSources"`
-			} `json:"componentByReference"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(context.Background(), query, variables, &response); err != nil {
-		log.Printf("Failed to get component by slug: %v", err)
+	if err := r.compass.Run(context.Background(), query, variables, &componentDTO); err != nil {
+		log.Printf("failed to get component by slug: %v", err)
 		return nil, err
 	}
 
+	if !componentDTO.IsSuccessful() {
+		return nil, errors.New("failed to get component by slug")
+	}
+
 	metricSources := make(map[string]*resources.MetricSource)
-	for _, node := range response.Compass.ComponentByReference.MetricSources.Nodes {
+	for _, node := range componentDTO.Compass.Component.MetricSources.Nodes {
 		metricSources[node.MetricDefinition.Name] = &resources.MetricSource{
 			ID:     node.ID,
 			Metric: node.MetricDefinition.ID,
 		}
 	}
 	component := resources.Component{
-		ID:            response.Compass.ComponentByReference.ID,
+		ID:            componentDTO.Compass.Component.ID,
 		MetricSources: metricSources,
 	}
 
@@ -404,56 +198,26 @@ func (r *Repository) GetBySlug(slug string) (*resources.Component, error) {
 func (r *Repository) AddDocument(ctx context.Context, componentID string, document resources.Document) (resources.Document, error) {
 	r.initDocumentCategories(ctx)
 
-	query := `
-		mutation addDocument($input: CompassAddDocumentInput!) {
-   		compass @optIn(to: "compass-beta") {
-   			addDocument(input: $input) {
-   				success
- 					errors {
-						message
-					}
-					documentDetails {
-						id
-						title
-						url
-						componentId
-						documentationCategoryId
-					}
-				}
-			}
-		}`
+	documentDTO := dtos.CreateDocumentOutput{}
+	query := documentDTO.GetQuery()
+	variables := documentDTO.SetVariables(
+		componentID,
+		document.Title,
+		r.DocumentCategories[document.Type],
+		document.URL,
+	)
 
-	variables := map[string]interface{}{
-		"input": map[string]interface{}{
-			"componentId":             componentID,
-			"title":                   document.Title,
-			"documentationCategoryId": r.DocumentCategories[document.Type],
-			"url":                     document.URL,
-		},
-	}
-
-	var response struct {
-		Compass struct {
-			AddDocument struct {
-				Success         bool `json:"success"`
-				DocumentDetails struct {
-					ID string `json:"id"`
-				} `json:"documentDetails"`
-			} `json:"addDocument"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
+	if err := r.compass.Run(ctx, query, variables, &documentDTO); err != nil {
 		log.Printf("Failed to create document: %v", err)
 		return resources.Document{}, err
 	}
 
-	if !response.Compass.AddDocument.Success {
+	if !documentDTO.IsSuccessful() {
 		return resources.Document{}, errors.New("failed to create document")
 	}
 
 	return resources.Document{
-		ID:                      response.Compass.AddDocument.DocumentDetails.ID,
+		ID:                      documentDTO.Compass.AddDocument.Details.ID,
 		Title:                   document.Title,
 		Type:                    document.Type,
 		URL:                     document.URL,
@@ -464,56 +228,22 @@ func (r *Repository) AddDocument(ctx context.Context, componentID string, docume
 func (r *Repository) UpdateDocument(ctx context.Context, componentID string, document resources.Document) error {
 	r.initDocumentCategories(ctx)
 
-	query := `
-	mutation updateDocument($input: CompassUpdateDocumentInput!) {
-		compass @optIn(to: "compass-beta") {
-			updateDocument(input: $input) {
-				success
-				errors {
-					message
-				}
-				documentDetails {
-					id
-					title
-					url
-					componentId
-					documentationCategoryId
-				}
-			}
-		}
-	}`
+	documentDTO := dtos.UpdateDocumentOutput{}
+	query := documentDTO.GetQuery()
+	variables := documentDTO.SetVariables(
+		document.ID,
+		document.Title,
+		r.DocumentCategories[document.Type],
+		document.URL,
+	)
 
-	variables := map[string]interface{}{
-		"input": map[string]interface{}{
-			"id":                      document.ID,
-			"title":                   document.Title,
-			"documentationCategoryId": r.DocumentCategories[document.Type],
-			"url":                     document.URL,
-		},
-	}
-
-	fmt.Println("-------------")
-	fmt.Printf("Variables: %v", variables)
-	fmt.Println("-------------")
-
-	var response struct {
-		Compass struct {
-			UpdateDocument struct {
-				Success         bool `json:"success"`
-				DocumentDetails struct {
-					ID string `json:"id"`
-				} `json:"documentDetails"`
-			} `json:"updateDocument"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
+	if err := r.compass.Run(ctx, query, variables, &documentDTO); err != nil {
 		log.Printf("Failed to update document: %v", err)
 		return err
 	}
 
-	if !response.Compass.UpdateDocument.Success {
-		return errors.New("failed to update link")
+	if !documentDTO.IsSuccessful() {
+		return errors.New("failed to update document")
 	}
 
 	return nil
