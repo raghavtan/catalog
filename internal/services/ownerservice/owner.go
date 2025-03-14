@@ -87,17 +87,23 @@ func (os *OwnerService) matchesTribeAndSquad(group *dtos.Group, tribe, squad str
 }
 
 func (os *OwnerService) mapGroupToOwner(group *dtos.Group) *dtos.Owner {
-	slackChannel := ""
-	for _, link := range group.Metadata.Links {
-		if link.Title == "Slack" {
-			slackChannel = link.URL
-		}
-	}
+	slackChannel := os.getLinks(group, "slack")
+	projects := os.getLinks(group, "project")
 
 	return &dtos.Owner{
-		CompassID:    group.Spec.ID,
-		Email:        group.Spec.Email,
-		SlackChannel: slackChannel,
-		DisplayName:  group.Spec.Profile.DisplayName,
+		OwnerID:       group.Metadata.Annotations.JiraTeamID,
+		SlackChannels: slackChannel,
+		Projects:      projects,
+		DisplayName:   group.Spec.Profile.DisplayName,
 	}
+}
+
+func (os *OwnerService) getLinks(group *dtos.Group, linkType string) map[string]string {
+	founds := map[string]string{}
+	for _, link := range group.Metadata.Links {
+		if link.Type == linkType {
+			founds[link.Title] = link.URL
+		}
+	}
+	return founds
 }

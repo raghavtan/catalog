@@ -10,20 +10,25 @@ type Group struct {
 }
 
 type Metadata struct {
-	Name        string `yaml:"name"`
-	Description string `yaml:"description"`
-	Links       []Link `yaml:"links"`
+	Name        string              `yaml:"name"`
+	Description string              `yaml:"description"`
+	Links       []Link              `yaml:"links"`
+	Annotations AnnotationsMetadata `yaml:"annotations"`
 }
 
 type Link struct {
 	URL   string `yaml:"url"`
 	Title string `yaml:"title"`
+	Type  string `yaml:"type"`
 	Icon  string `yaml:"icon"`
+}
+
+type AnnotationsMetadata struct {
+	JiraTeamID string `yaml:"jiraTeamID"`
 }
 
 type Spec struct {
 	ID       string   `yaml:"id"`
-	Email    string   `yaml:"email"`
 	Profile  Profile  `yaml:"profile"`
 	Type     string   `yaml:"type"`
 	Parent   string   `yaml:"parent"`
@@ -35,8 +40,8 @@ type Profile struct {
 }
 
 type Owner struct {
-	CompassID    string `yaml:"compassID"`
-	Email        string `yaml:"email"`
-	SlackChannel string `yaml:"slackChannel"`
-	DisplayName  string `yaml:"displayName"`
+	OwnerID       string            `yaml:"ownerID"`
+	SlackChannels map[string]string `yaml:"slackChannel"`
+	Projects      map[string]string `yaml:"projects"`
+	DisplayName   string            `yaml:"displayName"`
 }

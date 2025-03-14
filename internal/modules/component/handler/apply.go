@@ -12,7 +12,6 @@ import (
 	"github.com/motain/of-catalog/internal/services/documentservice"
 	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/services/ownerservice"
-	ownerservicedtos "github.com/motain/of-catalog/internal/services/ownerservice/dtos"
 	"github.com/motain/of-catalog/internal/utils/drift"
 	listutils "github.com/motain/of-catalog/internal/utils/list"
 	"github.com/motain/of-catalog/internal/utils/yaml"
@@ -218,32 +217,35 @@ func (h *ApplyHandler) handleOwner(componentDTO *dtos.ComponentDTO) *dtos.Compon
 		return componentDTO
 	}
 
-	computedLinks := make([]dtos.Link, 0)
+	computedLinks := make(map[string]dtos.Link, 0)
 	for _, link := range componentDTO.Spec.Links {
-		if link.Type != "CHAT_CHANNEL" {
-			computedLinks = append(computedLinks, link)
+		computedLinks[link.Type+link.Name] = link
+	}
+
+	for slackChannelName, slackChannelURL := range owner.SlackChannels {
+		computedLinks["CHAT_CHANNEL"+slackChannelName] = dtos.Link{
+			Name: slackChannelName,
+			Type: "CHAT_CHANNEL",
+			URL:  slackChannelURL,
 		}
 	}
-	if owner.SlackChannel != "" {
-		computedLinks = append(computedLinks, h.handleChatLinkFromOwner(owner))
+
+	for projectName, projectURL := range owner.Projects {
+		computedLinks["PROJECT"+projectName] = dtos.Link{
+			Name: projectName,
+			Type: "PROJECT",
+			URL:  projectURL,
+		}
 	}
 
-	componentDTO.Spec.Links = computedLinks
-	componentDTO.Spec.OwnerID = owner.CompassID
+	links := make([]dtos.Link, 0)
+	for _, link := range computedLinks {
+		links = append(links, link)
+	}
+	componentDTO.Spec.Links = links
+	componentDTO.Spec.OwnerID = owner.OwnerID
 
 	return componentDTO
-}
-
-func (h *ApplyHandler) handleChatLinkFromOwner(owner *ownerservicedtos.Owner) dtos.Link {
-	if owner.DisplayName == "" {
-		owner.DisplayName = "Slack"
-	}
-
-	return dtos.Link{
-		Name: owner.DisplayName,
-		Type: "CHAT_CHANNEL",
-		URL:  owner.SlackChannel,
-	}
 }
 
 func (h *ApplyHandler) handleDocuments(
