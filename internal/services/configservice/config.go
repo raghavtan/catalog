@@ -1,6 +1,6 @@
 package configservice
 
-//go:generate mockgen -destination=./mock_config_service.go -package=configservice github.com/motain/of-catalog/internal/services/configservice ConfigServiceInterface
+//go:generate mockgen -destination=./mock/mock_config_service.go -package=configservice github.com/motain/of-catalog/internal/services/configservice ConfigServiceInterface
 
 import (
 	"log"

@@ -330,7 +330,7 @@ func (h *ApplyHandler) handleDependencies(
 	componentInState := stateComponents[componentDTO.Metadata.Name]
 	for _, providerName := range componentInState.Spec.DependsOn {
 		if !listutils.Contains(componentDTO.Spec.DependsOn, providerName) {
-			err := h.repository.UnSetDependency(context.Background(), componentDTO.Spec.ID, stateComponents[providerName].Spec.ID)
+			err := h.repository.UnsetDependency(context.Background(), componentDTO.Spec.ID, stateComponents[providerName].Spec.ID)
 			if err != nil {
 				fmt.Printf("apply dependencies %s", err)
 			}

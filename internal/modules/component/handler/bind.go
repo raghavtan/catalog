@@ -38,7 +38,7 @@ func (h *BindHandler) Bind(stateRootLocation string) {
 	for _, component := range components {
 		for metricName, metricSource := range component.Spec.MetricSources {
 			if _, exists := metricsMap[component.Metadata.ComponentType][metricName]; !exists {
-				errDelete := h.repository.UnBindMetric(context.Background(), metricSource.ID)
+				errDelete := h.repository.UnbindMetric(context.Background(), metricSource.ID)
 				if errDelete != nil {
 					fmt.Printf("Failed to delete metric source %s: %v\n", metricSource.Name, errDelete)
 				}

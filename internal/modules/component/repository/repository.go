@@ -1,6 +1,6 @@
 package repository
 
-//go:generate mockgen -destination=./mock_repository.go -package=repository github.com/motain/of-catalog/internal/modules/component/repository RepositoryInterface
+//go:generate mockgen -destination=./mock/mock_repository.go -package=repository github.com/motain/of-catalog/internal/modules/component/repository RepositoryInterface
 
 import (
 	"context"
@@ -18,17 +18,17 @@ type RepositoryInterface interface {
 	Create(ctx context.Context, component resources.Component) (resources.Component, error)
 	Update(ctx context.Context, component resources.Component) error
 	Delete(ctx context.Context, id string) error
-	GetBySlug(slug string) (*resources.Component, error)
+	GetBySlug(ctx context.Context, slug string) (*resources.Component, error)
 	// Dependency operations
 	SetDependency(ctx context.Context, dependentId, providerId string) error
-	UnSetDependency(ctx context.Context, dependentId, providerId string) error
+	UnsetDependency(ctx context.Context, dependentId, providerId string) error
 	// Documents operations
 	AddDocument(ctx context.Context, componentID string, document resources.Document) (resources.Document, error)
 	UpdateDocument(ctx context.Context, componentID string, document resources.Document) error
 	RemoveDocument(ctx context.Context, componentID, documentID string) error
 	// MetricSource operations
-	BindMetric(ctx context.Context, componentID string, metricID string, intentifier string) (string, error)
-	UnBindMetric(ctx context.Context, metricSourceID string) error
+	BindMetric(ctx context.Context, componentID string, metricID string, identifier string) (string, error)
+	UnbindMetric(ctx context.Context, metricSourceID string) error
 	Push(ctx context.Context, metricSourceID string, value float64, recordedAt time.Time) error
 }
 
@@ -54,7 +54,7 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 	}
 
 	if compassservice.HasAlreadyExistsError(componentDTO.Compass.CreateComponent.Errors) {
-		remoteComponent, err := r.GetBySlug(component.Slug)
+		remoteComponent, err := r.GetBySlug(ctx, component.Slug)
 		if err != nil {
 			return component, err
 		}
@@ -99,13 +99,9 @@ func (r *Repository) Update(ctx context.Context, component resources.Component) 
 	query := componentDTO.GetQuery()
 	variables := componentDTO.SetVariables(component)
 
-	if err := r.compass.Run(ctx, query, variables, &componentDTO); err != nil {
-		log.Printf("Failed to update component: %v", err)
-		return err
-	}
-
-	if !componentDTO.IsSuccessful() {
-		return errors.New("failed to update component")
+	err := r.run(ctx, query, variables, &componentDTO, componentDTO.IsSuccessful)
+	if err != nil {
+		return fmt.Errorf("failed to update component %s: %v", component.ID, err)
 	}
 
 	return nil
@@ -116,17 +112,9 @@ func (r *Repository) Delete(ctx context.Context, id string) error {
 	query := componentDTO.GetQuery()
 	variables := componentDTO.SetVariables(id)
 
-	if err := r.compass.Run(ctx, query, variables, &componentDTO); err != nil {
-		log.Printf("Failed to delete component: %v", err)
-		return err
-	}
-
-	if compassservice.HasNotFoundError(componentDTO.Compass.DeleteComponent.Errors) {
-		return nil
-	}
-
-	if !componentDTO.IsSuccessful() {
-		return errors.New("failed to delete component")
+	err := r.run(ctx, query, variables, &componentDTO, componentDTO.IsSuccessful)
+	if err != nil {
+		return fmt.Errorf("failed to delete component %s: %v", id, err)
 	}
 
 	return nil
@@ -137,47 +125,35 @@ func (r *Repository) SetDependency(ctx context.Context, dependentId, providerId 
 	query := componentDTO.GetQuery()
 	variables := componentDTO.SetVariables(dependentId, providerId)
 
-	if err := r.compass.Run(ctx, query, variables, &componentDTO); err != nil {
-		log.Printf("failed to create component dependency: %v", err)
-		return err
-	}
-
-	if !componentDTO.IsSuccessful() {
-		return errors.New("failed to create component dependency")
+	err := r.run(ctx, query, variables, &componentDTO, componentDTO.IsSuccessful)
+	if err != nil {
+		return fmt.Errorf("failed to set component dependency %s -> %s: %v", dependentId, providerId, err)
 	}
 
 	return nil
 }
 
-func (r *Repository) UnSetDependency(ctx context.Context, dependentId, providerId string) error {
+func (r *Repository) UnsetDependency(ctx context.Context, dependentId, providerId string) error {
 	componentDTO := dtos.DeleteDependencyOutput{}
 	query := componentDTO.GetQuery()
 	variables := componentDTO.SetVariables(dependentId, providerId)
 
-	if err := r.compass.Run(ctx, query, variables, &componentDTO); err != nil {
-		log.Printf("Failed to delete component dependency: %v", err)
-		return err
-	}
-
-	if !componentDTO.IsSuccessful() {
-		return errors.New("failed to delete component dependency")
+	err := r.run(ctx, query, variables, &componentDTO, componentDTO.IsSuccessful)
+	if err != nil {
+		return fmt.Errorf("failed to unset component dependency %s -> %s: %v", dependentId, providerId, err)
 	}
 
 	return nil
 }
 
-func (r *Repository) GetBySlug(slug string) (*resources.Component, error) {
+func (r *Repository) GetBySlug(ctx context.Context, slug string) (*resources.Component, error) {
 	componentDTO := dtos.ComponentByReferenceOutput{}
 	query := componentDTO.GetQuery()
 	variables := componentDTO.SetVariables(r.compass.GetCompassCloudId(), slug)
 
-	if err := r.compass.Run(context.Background(), query, variables, &componentDTO); err != nil {
-		log.Printf("failed to get component by slug: %v", err)
-		return nil, err
-	}
-
-	if !componentDTO.IsSuccessful() {
-		return nil, errors.New("failed to get component by slug")
+	err := r.run(ctx, query, variables, &componentDTO, componentDTO.IsSuccessful)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get component by slug %s: %v", slug, err)
 	}
 
 	metricSources := make(map[string]*resources.MetricSource)
@@ -207,13 +183,9 @@ func (r *Repository) AddDocument(ctx context.Context, componentID string, docume
 		document.URL,
 	)
 
-	if err := r.compass.Run(ctx, query, variables, &documentDTO); err != nil {
-		log.Printf("Failed to create document: %v", err)
-		return resources.Document{}, err
-	}
-
-	if !documentDTO.IsSuccessful() {
-		return resources.Document{}, errors.New("failed to create document")
+	err := r.run(ctx, query, variables, &documentDTO, documentDTO.IsSuccessful)
+	if err != nil {
+		return resources.Document{}, fmt.Errorf("failed to create document \"%s\" for %s: %v", document.Title, componentID, err)
 	}
 
 	return resources.Document{
@@ -237,18 +209,15 @@ func (r *Repository) UpdateDocument(ctx context.Context, componentID string, doc
 		document.URL,
 	)
 
-	if err := r.compass.Run(ctx, query, variables, &documentDTO); err != nil {
-		log.Printf("Failed to update document: %v", err)
-		return err
-	}
-
-	if !documentDTO.IsSuccessful() {
-		return errors.New("failed to update document")
+	err := r.run(ctx, query, variables, &documentDTO, documentDTO.IsSuccessful)
+	if err != nil {
+		return fmt.Errorf("failed to update document \"%s\" for %s: %v", document.Title, componentID, err)
 	}
 
 	return nil
 }
 
+// @TODO work on this
 func (r *Repository) RemoveDocument(ctx context.Context, componentID, docuemntID string) error {
 	query := `
 		mutation deleteComponentLink($id: ID!) {
@@ -277,7 +246,7 @@ func (r *Repository) RemoveDocument(ctx context.Context, componentID, docuemntID
 	}
 
 	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
-		log.Printf("Failed to delete metric source: %v", err)
+		log.Printf("failed to delete metric source: %v", err)
 		return err
 	}
 
@@ -288,85 +257,50 @@ func (r *Repository) RemoveDocument(ctx context.Context, componentID, docuemntID
 	return nil
 }
 
-func (r *Repository) BindMetric(ctx context.Context, componentID string, metricID string, intentifier string) (string, error) {
-	query := `
-		mutation createMetricSource($metricId: ID!, $componentId: ID!, $externalId: ID!) {
-			compass {
-				createMetricSource(input: {metricDefinitionId: $metricId, componentId: $componentId, externalMetricSourceId: $externalId}) {
-					success
-					createdMetricSource {
-						id
-					}
-					errors {
-						message
-					}
-				}
-			}
-		}`
+func (r *Repository) BindMetric(ctx context.Context, componentID string, metricID string, identifier string) (string, error) {
+	bindMetricDTO := dtos.BindMetricOutput{}
+	query := bindMetricDTO.GetQuery()
+	variables := bindMetricDTO.SetVariables(metricID, componentID, identifier)
 
-	variables := map[string]interface{}{
-		"metricId":    metricID,
-		"componentId": componentID,
-		"externalId":  intentifier,
+	err := r.run(ctx, query, variables, &bindMetricDTO, bindMetricDTO.IsSuccessful)
+	if err != nil {
+		return "", fmt.Errorf("failed to bind component %s to metric %s: %v", componentID, metricID, err)
 	}
 
-	var response struct {
-		Compass struct {
-			CreateMetricSource struct {
-				Success            bool `json:"success"`
-				CreateMetricSource struct {
-					ID string `json:"id"`
-				} `json:"createdMetricSource"`
-			} `json:"createMetricSource"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
-		log.Printf("Failed to create metric source: %v", err)
-		return "", err
-	}
-
-	if !response.Compass.CreateMetricSource.Success {
-		return "", errors.New("failed to create metric source")
-	}
-
-	return response.Compass.CreateMetricSource.CreateMetricSource.ID, nil
+	return bindMetricDTO.Compass.CreateMetricSource.CreateMetricSource.ID, nil
 }
 
-func (r *Repository) UnBindMetric(ctx context.Context, metricSourceID string) error {
-	query := `
-		mutation deleteMetricSource($id: ID!) {
-			compass {
-				deleteMetricSource(input: {id: $id}) {
-					deletedMetricSourceId
-					errors {
-						message
-					}
-					success
-				}
-			}
-		}`
+func (r *Repository) UnbindMetric(ctx context.Context, metricSourceID string) error {
+	unbindMetricDTO := dtos.UnbindMetricOutput{}
+	query := unbindMetricDTO.GetQuery()
+	variables := unbindMetricDTO.SetVariables(metricSourceID)
 
-	variables := map[string]interface{}{
-		"id": metricSourceID,
+	err := r.run(ctx, query, variables, &unbindMetricDTO, unbindMetricDTO.IsSuccessful)
+	if err != nil {
+		return fmt.Errorf("failed to unbind metric source %s: %v", metricSourceID, err)
 	}
 
-	var response struct {
-		Compass struct {
-			DeleteMetricSource struct {
-				Success bool `json:"success"`
-			} `json:"deleteMetricSource"`
-		} `json:"compass"`
+	return nil
+}
+
+func (r *Repository) initDocumentCategories(ctx context.Context) error {
+	if r.DocumentCategories != nil {
+		return nil
 	}
 
-	if err := r.compass.Run(ctx, query, variables, &response); err != nil {
-		log.Printf("Failed to delete metric source: %v", err)
+	documentationCategoriesDTO := dtos.DocumentationCategoriesOutput{}
+	query := documentationCategoriesDTO.GetQuery()
+
+	if err := r.compass.Run(ctx, query, nil, &documentationCategoriesDTO); err != nil {
+		log.Printf("Failed to fetch document categories: %v", err)
 		return err
 	}
 
-	if !response.Compass.DeleteMetricSource.Success {
-		return errors.New("failed to delete metric source")
+	categories := make(map[string]string, len(documentationCategoriesDTO.Compass.DocumentationCategories.Nodes))
+	for _, category := range documentationCategoriesDTO.Compass.DocumentationCategories.Nodes {
+		categories[category.Name] = category.ID
 	}
+	r.DocumentCategories = categories
 
 	return nil
 }
@@ -383,48 +317,15 @@ func (r *Repository) Push(ctx context.Context, metricSourceID string, value floa
 	return errSend
 }
 
-func (r *Repository) initDocumentCategories(ctx context.Context) error {
-	fmt.Printf("Category ID: %s\n", r.DocumentCategories)
-	if r.DocumentCategories != nil {
-		return nil
-	}
-
-	query := `
-		query documentationCategories {
-			compass {
-				documentationCategories(cloudId: "fca6a80f-888b-4079-82e6-3c2f61c788e2") @optIn(to: "compass-beta")  {
-					... on CompassDocumentationCategoriesConnection {
-						nodes {
-							name
-							id
-							description
-						}
-					}
-				}
-			}
-		}`
-
-	var response struct {
-		Compass struct {
-			DocumentationCategories struct {
-				Nodes []struct {
-					ID   string `json:"id"`
-					Name string `json:"name"`
-				} `json:"nodes"`
-			} `json:"documentationCategories"`
-		} `json:"compass"`
-	}
-
-	if err := r.compass.Run(ctx, query, nil, &response); err != nil {
-		log.Printf("Failed to delete metric source: %v", err)
+func (r *Repository) run(ctx context.Context, query string, variables map[string]interface{}, output interface{}, isSuccessful func() bool) error {
+	if err := r.compass.Run(ctx, query, variables, output); err != nil {
+		log.Printf("failed to create metric source: %v", err)
 		return err
 	}
 
-	categories := make(map[string]string, len(response.Compass.DocumentationCategories.Nodes))
-	for _, category := range response.Compass.DocumentationCategories.Nodes {
-		categories[category.Name] = category.ID
+	if !isSuccessful() {
+		return fmt.Errorf("failed to run operation")
 	}
-	r.DocumentCategories = categories
 
 	return nil
 }

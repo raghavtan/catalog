@@ -33,5 +33,10 @@ func (d *DeleteComponentOutput) SetVariables(id string) map[string]interface{} {
 }
 
 func (c *DeleteComponentOutput) IsSuccessful() bool {
+	// Ignoring the error if the component is not found
+	if compassservice.HasNotFoundError(c.Compass.DeleteComponent.Errors) {
+		return true
+	}
+
 	return c.Compass.DeleteComponent.Success
 }

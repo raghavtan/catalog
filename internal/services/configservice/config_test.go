@@ -8,6 +8,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestGet(t *testing.T) {
+	os.Setenv("FOO", "BAR")
+	cfg := configservice.NewConfigService()
+	assert.Equal(t, "BAR", cfg.Get("FOO"))
+}
+
 func TestGetGithubOrg(t *testing.T) {
 	os.Setenv("GITHUB_ORG", "my-org")
 	cfg := configservice.NewConfigService()
@@ -36,4 +42,10 @@ func TestGetCompassCloudId(t *testing.T) {
 	os.Setenv("COMPASS_CLOUD_ID", "123456")
 	cfg := configservice.NewConfigService()
 	assert.Equal(t, "123456", cfg.GetCompassCloudId())
+}
+
+func TestGetGithubToken(t *testing.T) {
+	os.Setenv("GITHUB_TOKEN", "123456")
+	cfg := configservice.NewConfigService()
+	assert.Equal(t, "123456", cfg.GetGithubToken())
 }

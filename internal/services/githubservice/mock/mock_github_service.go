@@ -93,3 +93,32 @@ func (mr *MockGitHubServiceInterfaceMockRecorder) GetRepoProperties(arg0 interfa
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRepoProperties", reflect.TypeOf((*MockGitHubServiceInterface)(nil).GetRepoProperties), arg0)
 }
+
+// GetRepoURL mocks base method.
+func (m *MockGitHubServiceInterface) GetRepoURL(arg0 string) string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetRepoURL", arg0)
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// GetRepoURL indicates an expected call of GetRepoURL.
+func (mr *MockGitHubServiceInterfaceMockRecorder) GetRepoURL(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetRepoURL", reflect.TypeOf((*MockGitHubServiceInterface)(nil).GetRepoURL), arg0)
+}
+
+// Search mocks base method.
+func (m *MockGitHubServiceInterface) Search(arg0, arg1 string) ([]string, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Search", arg0, arg1)
+	ret0, _ := ret[0].([]string)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Search indicates an expected call of Search.
+func (mr *MockGitHubServiceInterfaceMockRecorder) Search(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Search", reflect.TypeOf((*MockGitHubServiceInterface)(nil).Search), arg0, arg1)
+}

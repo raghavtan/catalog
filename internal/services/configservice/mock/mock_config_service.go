@@ -33,6 +33,20 @@ func (m *MockConfigServiceInterface) EXPECT() *MockConfigServiceInterfaceMockRec
 	return m.recorder
 }
 
+// Get mocks base method.
+func (m *MockConfigServiceInterface) Get(arg0 string) string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Get", arg0)
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// Get indicates an expected call of Get.
+func (mr *MockConfigServiceInterfaceMockRecorder) Get(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockConfigServiceInterface)(nil).Get), arg0)
+}
+
 // GetCompassCloudId mocks base method.
 func (m *MockConfigServiceInterface) GetCompassCloudId() string {
 	m.ctrl.T.Helper()
@@ -87,6 +101,20 @@ func (m *MockConfigServiceInterface) GetGithubOrg() string {
 func (mr *MockConfigServiceInterfaceMockRecorder) GetGithubOrg() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetGithubOrg", reflect.TypeOf((*MockConfigServiceInterface)(nil).GetGithubOrg))
+}
+
+// GetGithubToken mocks base method.
+func (m *MockConfigServiceInterface) GetGithubToken() string {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetGithubToken")
+	ret0, _ := ret[0].(string)
+	return ret0
+}
+
+// GetGithubToken indicates an expected call of GetGithubToken.
+func (mr *MockConfigServiceInterfaceMockRecorder) GetGithubToken() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetGithubToken", reflect.TypeOf((*MockConfigServiceInterface)(nil).GetGithubToken))
 }
 
 // GetGithubUser mocks base method.
