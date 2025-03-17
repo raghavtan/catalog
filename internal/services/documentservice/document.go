@@ -74,6 +74,12 @@ func (ds *DocumentService) getRemoteDocument(repo string) (string, error) {
 		return rootFileContent, nil
 	}
 
+	// Fallback to the .of folder
+	ofFileContent, ofFileErr := ds.gitHubService.GetFileContent(repo, ".of/mkdocs.yaml")
+	if ofFileErr == nil {
+		return ofFileContent, nil
+	}
+
 	return "", errors.New("error getting file content from remote repository looking for mkdocs.yaml or docs/mkdocs.yaml")
 }
 
