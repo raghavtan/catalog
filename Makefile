@@ -17,10 +17,6 @@ build:
 		-ldflags="-X 'main.Version=${VERSION}'" \
 		-o bin/linux/ofc \
 		./cmd/${*}
-	CGO_ENABLED=0 go build \
-		-ldflags="-X 'main.Version=${VERSION}'" \
-		-o bin/osx/ofc \
-		./cmd/${*}
 
 .PHONY: lint
 lint:

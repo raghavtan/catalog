@@ -9,7 +9,7 @@ import (
 	"github.com/motain/of-catalog/internal/modules/scorecard/repository"
 	"github.com/motain/of-catalog/internal/modules/scorecard/repository/dtos"
 	"github.com/motain/of-catalog/internal/modules/scorecard/resources"
-	"github.com/motain/of-catalog/internal/services/compassservice"
+	compassservice "github.com/motain/of-catalog/internal/services/compassservice/mocks"
 	"github.com/stretchr/testify/assert"
 )
 

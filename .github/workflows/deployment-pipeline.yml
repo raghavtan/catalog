@@ -1,0 +1,91 @@
+name: Deployment Pipeline
+
+on:
+  push:
+    paths-ignore:
+      - '.of/docs/**'
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: write
+  actions: read
+
+jobs:
+  commit-cycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      version: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: set-up-go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+          go-version-file: "go.mod"
+          cache: true
+
+      - id: code-correctness
+        run: GOPRIVATE=github.com/motain go install "honnef.co/go/tools/cmd/staticcheck@latest" && GOPRIVATE=github.com/motain go list ./...  | grep -v vendor/ | xargs -L1 staticcheck -f stylish -fail all -tests
+
+      - id: unit-tests
+        run: GOPRIVATE=github.com/motain go test -v -race -count=1 -tags unit ./...
+
+
+      - uses: motain/slack-actions/cd/cycle-result@main
+        if: ${{ always() }}
+        with:
+          slack-token: ${{ secrets.CONTINUOUS_DELIVERY_APP_SLACK_TOKEN }}
+          channel: 'p-developer-xp-notifications'
+          steps-context: ${{ toJson(steps) }}
+
+  release-cycle:
+    needs:
+      - commit-cycle
+    if: ${{ needs.commit-cycle.result == 'success' }}
+    runs-on: ubuntu-latest
+    concurrency:
+      group: release-cycle
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          apt-get update && apt-get install curl build-essential make -y
+
+      - id: set-up-go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+          go-version-file: "go.mod"
+          cache: true
+
+      - id: install-project-dependencies
+        run: go mod tidy
+
+      - id: build-artifact
+        run: |
+          make build
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          files: |
+            bin/linux/ofc-linux
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRIVATE_DEPENDENCIES_GITHUB_TOKEN }}
+
+      - uses: motain/slack-actions/cd/cycle-result@main
+        if: ${{ always() }}
+        with:
+          slack-token: ${{ secrets.CONTINUOUS_DELIVERY_APP_SLACK_TOKEN }}
+          channel: 'p-developer-xp-notifications'
+          steps-context: ${{ toJson(steps) }}

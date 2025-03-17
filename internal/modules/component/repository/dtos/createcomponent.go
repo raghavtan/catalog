@@ -5,12 +5,14 @@ import (
 	"github.com/motain/of-catalog/internal/services/compassservice"
 )
 
+type MetricSources struct {
+	Nodes []MetricSource `json:"nodes"`
+}
+
 type Component struct {
-	ID            string `json:"id"`
-	Links         []Link `json:"links"`
-	MetricSources struct {
-		Nodes []MetricSource `json:"nodes"`
-	} `json:"metricSources"`
+	ID            string        `json:"id"`
+	Links         []Link        `json:"links"`
+	MetricSources MetricSources `json:"metricSources"`
 }
 
 type Link struct {
@@ -20,22 +22,27 @@ type Link struct {
 	URL  string `json:"url"`
 }
 
-type MetricSource struct {
-	ID               string `json:"id"`
-	MetricDefinition struct {
-		ID   string `json:"id"`
-		Name string `json:"name"`
-	} `json:"metricDefinition"`
+type MetricDefinition struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
 }
 
+type MetricSource struct {
+	ID               string           `json:"id"`
+	MetricDefinition MetricDefinition `json:"metricDefinition"`
+}
+
+type CompassCreateComponentOutput struct {
+	Success bool                          `json:"success"`
+	Errors  []compassservice.CompassError `json:"errors"`
+	Details Component                     `json:"componentDetails"`
+}
+
+type CompassCreatedComponentOutput struct {
+	CreateComponent CompassCreateComponentOutput `json:"createComponent"`
+}
 type CreateComponentOutput struct {
-	Compass struct {
-		CreateComponent struct {
-			Success bool                          `json:"success"`
-			Errors  []compassservice.CompassError `json:"errors"`
-			Details Component                     `json:"componentDetails"`
-		} `json:"createComponent"`
-	} `json:"compass"`
+	Compass CompassCreatedComponentOutput `json:"compass"`
 }
 
 func (c *CreateComponentOutput) GetQuery() string {

@@ -67,7 +67,7 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 	}
 
 	if !componentDTO.IsSuccessful() {
-		return component, errors.New("failed to create component")
+		return component, fmt.Errorf("failed to create component: %v", componentDTO.Compass.CreateComponent.Errors)
 	}
 
 	metricSources := make(map[string]*resources.MetricSource)

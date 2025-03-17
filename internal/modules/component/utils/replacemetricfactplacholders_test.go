@@ -10,6 +10,7 @@ func TestGetFieldByPath(t *testing.T) {
 	type Nested struct {
 		Field string
 	}
+
 	type TestStruct struct {
 		SimpleField string
 		NestedField Nested
@@ -78,14 +79,6 @@ func TestGetFieldByPath(t *testing.T) {
 	}
 }
 func TestReplaceMetricFactPlaceholders(t *testing.T) {
-	type Nested struct {
-		Field string
-	}
-	type TestStruct struct {
-		SimpleField string
-		NestedField Nested
-	}
-
 	tests := []struct {
 		name        string
 		placeholder string

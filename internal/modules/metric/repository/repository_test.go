@@ -8,7 +8,8 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/motain/of-catalog/internal/modules/metric/repository/dtos"
 	"github.com/motain/of-catalog/internal/modules/metric/resources"
-	"github.com/motain/of-catalog/internal/services/compassservice"
+	compassserviceError "github.com/motain/of-catalog/internal/services/compassservice"
+	compassservice "github.com/motain/of-catalog/internal/services/compassservice/mocks"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -59,7 +60,7 @@ func TestRepository_Create(t *testing.T) {
 				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.CreateMetricOutput) error {
-						output.Compass.CreateMetric.Errors = []compassservice.CompassError{{Message: "already exists"}}
+						output.Compass.CreateMetric.Errors = []compassserviceError.CompassError{{Message: "already exists"}}
 						output.Compass.CreateMetric.Success = false
 						return nil
 					},

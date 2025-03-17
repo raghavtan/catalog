@@ -1,7 +1,6 @@
 package drift
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -105,12 +104,6 @@ func TestDetect(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			created, updated, deleted, unchanged := Detect(tt.stateMap, tt.configMap, fromStateToConfig, isEqual)
-
-			fmt.Printf("created: %v\n", created)
-			fmt.Printf("updated: %v\n", updated)
-			fmt.Printf("deleted: %v\n", deleted)
-			fmt.Printf("unchanged: %v\n", unchanged)
-
 			matchElements(t, "created", tt.expectedCreate, created)
 			matchElements(t, "updated", tt.expectedUpdate, updated)
 			matchElements(t, "deleted", tt.expectedDelete, deleted)

@@ -1,6 +1,6 @@
 package compassservice
 
-//go:generate mockgen -destination=./mock_compass_service.go -package=compassservice github.com/motain/of-catalog/internal/services/compassservice CompassServiceInterface
+//go:generate mockgen -destination=./mocks/mock_compass_service.go -package=compassservice github.com/motain/of-catalog/internal/services/compassservice CompassServiceInterface
 
 import (
 	"bytes"

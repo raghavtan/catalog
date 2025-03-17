@@ -35,13 +35,6 @@ func (h *BindHandler) Bind(stateRootLocation string) {
 
 	metricsMap := h.getMetricsGroupedByCompoentType(stateRootLocation)
 
-	// for metricType, metricCT := range metricsMap {
-	// 	fmt.Printf("Processing metric type %s\n", metricType)
-	// 	for metricName, _ := range metricCT {
-	// 		fmt.Printf("Processing metric %s\n", metricName)
-	// 	}
-	// }
-	// os.Exit(0)
 	for _, component := range components {
 		for metricName, metricSource := range component.Spec.MetricSources {
 			if _, exists := metricsMap[component.Metadata.ComponentType][metricName]; !exists {
@@ -53,8 +46,7 @@ func (h *BindHandler) Bind(stateRootLocation string) {
 		}
 
 		for metricName, metric := range metricsMap[component.Metadata.ComponentType] {
-			var bindErr error
-			bindErr = h.handleBind(component, metric)
+			bindErr := h.handleBind(component, metric)
 			if bindErr != nil {
 				fmt.Printf("Failed to bind metric %s to component %s: %v\n", metricName, component.Metadata.Name, bindErr)
 			}

@@ -9,41 +9,31 @@ import (
 )
 
 func TestGetGithubOrg(t *testing.T) {
-	os.Setenv("FC_GITHUB_ORG", "my-org")
+	os.Setenv("GITHUB_ORG", "my-org")
 	cfg := configservice.NewConfigService()
-
-	org := cfg.GetGithubOrg()
-	assert.Equal(t, "my-org", org)
+	assert.Equal(t, "my-org", cfg.GetGithubOrg())
 }
 
 func TestGetGithubUser(t *testing.T) {
-	os.Setenv("FC_GITHUB_USER", "foo.bar@baz.42")
+	os.Setenv("GITHUB_USER", "foo.bar@baz.42")
 	cfg := configservice.NewConfigService()
-
-	org := cfg.GetGithubUser()
-	assert.Equal(t, "foo.bar@baz.42", org)
+	assert.Equal(t, "foo.bar@baz.42", cfg.GetGithubUser())
 }
 
 func GetCompassToken(t *testing.T) {
-	os.Setenv("FC_COMPASS_TOKEN", "Zm9vLWJhci1iYXotNDIK")
+	os.Setenv("COMPASS_TOKEN", "Zm9vLWJhci1iYXotNDIK")
 	cfg := configservice.NewConfigService()
-
-	org := cfg.GetCompassToken()
-	assert.Equal(t, "Zm9vLWJhci1iYXotNDIK", org)
+	assert.Equal(t, "Zm9vLWJhci1iYXotNDIK", cfg.GetCompassToken())
 }
 
 func TestGetCompassHost(t *testing.T) {
-	os.Setenv("FC_COMPASS_HOST", "https://compass.example.com")
+	os.Setenv("COMPASS_HOST", "https://compass.example.com")
 	cfg := configservice.NewConfigService()
-
-	org := cfg.GetCompassHost()
-	assert.Equal(t, "https://compass.example.com", org)
+	assert.Equal(t, "https://compass.example.com", cfg.GetCompassHost())
 }
 
 func TestGetCompassCloudId(t *testing.T) {
-	os.Setenv("FC_COMPASS_CLOUD_ID", "123456")
+	os.Setenv("COMPASS_CLOUD_ID", "123456")
 	cfg := configservice.NewConfigService()
-
-	org := cfg.GetCompassCloudId()
-	assert.Equal(t, "123456", org)
+	assert.Equal(t, "123456", cfg.GetCompassCloudId())
 }

@@ -2,7 +2,6 @@ package yaml_test
 
 import (
 	"bytes"
-	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -152,10 +151,4 @@ func TestGetKindFromGeneric(t *testing.T) {
 			}
 		})
 	}
-}
-
-type errorWriter struct{}
-
-func (e *errorWriter) Write(p []byte) (n int, err error) {
-	return 0, errors.New("write error")
 }
