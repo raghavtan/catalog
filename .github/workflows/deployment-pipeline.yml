@@ -97,13 +97,13 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            bin/linux/ofc-linux
+            ./bin/linux/ofc
         env:
-          GITHUB_TOKEN: ${{ secrets.PRIVATE_DEPENDENCIES_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS }}
 
-      - uses: motain/slack-actions/cd/cycle-result@main
-        if: ${{ always() }}
-        with:
-          slack-token: ${{ secrets.CONTINUOUS_DELIVERY_APP_SLACK_TOKEN }}
-          channel: 'p-developer-xp-notifications'
-          steps-context: ${{ toJson(steps) }}
+      # - uses: motain/slack-actions/cd/cycle-result@main
+      #   if: ${{ always() }}
+      #   with:
+      #     slack-token: ${{ secrets.CONTINUOUS_DELIVERY_APP_SLACK_TOKEN }}
+      #     channel: 'p-developer-xp-notifications'
+      #     steps-context: ${{ toJson(steps) }}
