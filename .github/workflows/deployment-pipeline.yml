@@ -35,17 +35,22 @@ jobs:
 
       - name: Start Secret Service
         run: |
-          export $(dbus-launch)
-          echo $DBUS_SESSION_BUS_ADDRESS
-          gnome-keyring-daemon --start --components=secrets
-          dbus-update-activation-environment --systemd DISPLAY XAUTHORITY DBUS_SESSION_BUS_ADDRESS
+          eval "$(dbus-launch --sh-syntax)"
 
+          export DBUS_SESSION_BUS_ADDRESS
+          echo "DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS" >> $GITHUB_ENV
 
       - id: code-correctness
-        run: GOPRIVATE=github.com/motain go install "honnef.co/go/tools/cmd/staticcheck@latest" && GOPRIVATE=github.com/motain go list ./...  | grep -v vendor/ | xargs -L1 staticcheck -f stylish -fail all -tests
+        run: |
+          GOPRIVATE=github.com/motain go install "honnef.co/go/tools/cmd/staticcheck@latest" && \
+          GOPRIVATE=github.com/motain go list ./...  | grep -v vendor/ | xargs -L1 staticcheck -f stylish -fail all -tests
 
       - id: unit-tests
-        run: GOPRIVATE=github.com/motain go test -v -race -count=1 -tags unit ./...
+        run: |
+          export $(dbus-launch)
+          export DBUS_SESSION_BUS_ADDRESS
+
+          GOPRIVATE=github.com/motain go test -v -race -count=1 -tags unit ./...
 
 
       - uses: motain/slack-actions/cd/cycle-result@main
@@ -65,9 +70,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: |
-          apt-get update && apt-get install curl build-essential make -y
+      # - name: Install dependencies
+      #   run: |
+      #     apt-get update && apt-get install curl build-essential make -y
 
       - id: set-up-go
         uses: actions/setup-go@v5
