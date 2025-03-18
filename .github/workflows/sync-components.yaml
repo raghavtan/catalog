@@ -8,7 +8,7 @@ on:
       - 'config/components/**'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: components-${{ github.event.ref }}
   cancel-in-progress: true
 
 permissions: write-all
