@@ -11,7 +11,7 @@ spec:
     ownerId: ""
     dependsOn: []
     tribe: platform
-    squad: cloud-runtim
+    squad: cloud-runtime
     links:
         - name: Repository
           type: REPOSITORY
