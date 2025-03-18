@@ -45,7 +45,7 @@ jobs:
         git config user.name 'PaaS user'
 
         git checkout -b "$BRANCH"
-        git add .
+        git add .state
 
         git commit -m "chore(components): [PaaS] update state"
         git push -f origin "$BRANCH"
