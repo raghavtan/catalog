@@ -3,7 +3,10 @@ name: Deployment Pipeline
 on:
   push:
     paths-ignore:
-      - '.of/docs/**'
+      - '.of/**'
+      - 'config/**'
+      - 'docs/**'
+      - '.state/**'
     branches:
       - main
 
