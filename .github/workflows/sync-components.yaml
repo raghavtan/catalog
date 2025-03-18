@@ -15,7 +15,7 @@ concurrency:
 permissions: write-all
 
 jobs:
-  monitor-service:
+  sync-components:
     strategy:
       fail-fast: false
     runs-on: ubuntu-latest
