@@ -20,7 +20,7 @@ spec:
         - search-gateway-api
         - category-tiles
         - article-service
-    tribe: engagement
+    tribe: engagements
     squad: personalisation
     links:
         - name: Repository
