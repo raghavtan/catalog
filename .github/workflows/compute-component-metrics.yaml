@@ -34,7 +34,7 @@ jobs:
         id: generate-matrix
         uses: motain/onefootball-actions/changed-matrix@master
         with:
-          pattern: production/(?P<project>[^/]+)
+          pattern: config/components/(?P<project>[^/]+)\.yaml
 
   monitor-service-from-matrix:
     needs: generate-matrix
