@@ -16,7 +16,7 @@ import (
 
 type RepositoryInterface interface {
 	Create(ctx context.Context, component resources.Component) (resources.Component, error)
-	Update(ctx context.Context, component resources.Component) error
+	Update(ctx context.Context, component resources.Component) (resources.Component, error)
 	Delete(ctx context.Context, id string) error
 	GetBySlug(ctx context.Context, slug string) (*resources.Component, error)
 	// Dependency operations
@@ -61,7 +61,7 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 
 		component.ID = remoteComponent.ID
 		component.MetricSources = remoteComponent.MetricSources
-		updateError := r.Update(ctx, component)
+		component, updateError := r.Update(ctx, component)
 
 		return component, updateError
 	}
@@ -94,17 +94,33 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 	return component, nil
 }
 
-func (r *Repository) Update(ctx context.Context, component resources.Component) error {
+func (r *Repository) Update(ctx context.Context, component resources.Component) (resources.Component, error) {
 	componentDTO := dtos.UpdateComponentOutput{}
 	query := componentDTO.GetQuery()
 	variables := componentDTO.SetVariables(component)
 
-	err := r.run(ctx, query, variables, &componentDTO, componentDTO.IsSuccessful)
-	if err != nil {
-		return fmt.Errorf("failed to update component %s: %v", component.ID, err)
+	if updateErr := r.compass.Run(ctx, query, variables, &componentDTO); updateErr != nil {
+		return resources.Component{}, fmt.Errorf("failed to update component %s: %v", component.ID, updateErr)
 	}
 
-	return nil
+	if compassservice.HasNotFoundError(componentDTO.Compass.UpdateComponent.Errors) {
+		remoteComponent, getBySlugErr := r.GetBySlug(ctx, component.Slug)
+		if getBySlugErr != nil {
+			return resources.Component{}, getBySlugErr
+		}
+
+		component.ID = remoteComponent.ID
+		component.MetricSources = remoteComponent.MetricSources
+		updatedComponent, updateError := r.Update(ctx, component)
+
+		return updatedComponent, updateError
+	}
+
+	if !componentDTO.IsSuccessful() {
+		return resources.Component{}, fmt.Errorf("failed to update component %s: %v", component.ID, componentDTO.Compass.UpdateComponent.Errors)
+	}
+
+	return component, nil
 }
 
 func (r *Repository) Delete(ctx context.Context, id string) error {

@@ -158,9 +158,30 @@ func (h *ApplyHandler) handleUpdated(
 		componentDTO = h.handleDocumenation(componentDTO, stateComponents)
 
 		component := componentDTOToResource(componentDTO)
-		errComponent := h.repository.Update(context.Background(), component)
+		component, errComponent := h.repository.Update(context.Background(), component)
 		if errComponent != nil {
 			panic(errComponent)
+		}
+
+		componentDTO.Spec.ID = component.ID
+		for _, link := range component.Links {
+			componentDTO.Spec.Links = append(componentDTO.Spec.Links, dtos.Link{
+				ID:   link.ID,
+				Name: link.Name,
+				Type: link.Type,
+				URL:  link.URL,
+			})
+		}
+
+		if componentDTO.Spec.MetricSources == nil {
+			componentDTO.Spec.MetricSources = make(map[string]*dtos.MetricSourceDTO)
+		}
+		for metricName, metricSource := range component.MetricSources {
+			componentDTO.Spec.MetricSources[metricName] = &dtos.MetricSourceDTO{
+				ID:     metricSource.ID,
+				Name:   metricSource.Name,
+				Metric: metricSource.Metric,
+			}
 		}
 
 		h.handleDependencies(componentDTO, stateComponents)

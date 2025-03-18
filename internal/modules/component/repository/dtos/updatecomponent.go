@@ -2,12 +2,14 @@ package dtos
 
 import (
 	"github.com/motain/of-catalog/internal/modules/component/resources"
+	"github.com/motain/of-catalog/internal/services/compassservice"
 )
 
 type UpdateComponentOutput struct {
 	Compass struct {
 		UpdateComponent struct {
-			Success bool `json:"success"`
+			Errors  []compassservice.CompassError `json:"errors"`
+			Success bool                          `json:"success"`
 		} `json:"updateComponent"`
 	} `json:"compass"`
 }

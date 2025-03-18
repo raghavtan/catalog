@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: components-${{ github.event.ref }}
+  group: components
   cancel-in-progress: true
 
 permissions: write-all
@@ -35,4 +35,17 @@ jobs:
           $(curl -s -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" "https://api.github.com/repos/motain/of-catalog/releases/latest" | jq -r '.assets[0].url')
           chmod +x ofc
     - run: |
-        ./ofc component apply -l ./config/component
+        ./ofc component apply -l ./config/components
+
+    - name: Commit and push state changes
+      run: |
+        git config user.email 'devops@onefootball.com'
+        git config user.name 'Onefootball Helm Charts'
+
+        git checkout -b "paas/sync-components-${{ github.sha }}"
+        git add .state
+        git commit -m "chore(components): update state"
+        git push origin main
+
+        gh pr create --title "chore(components): update state" --body "PaaS: update components state automation." --base main
+        gh pr merge --squash --delete-branch

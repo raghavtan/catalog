@@ -148,10 +148,11 @@ func TestRepository_Update(t *testing.T) {
 	repo := repository.NewRepository(mockCompass)
 
 	tests := []struct {
-		name          string
-		component     resources.Component
-		mockSetup     func()
-		expectedError error
+		name           string
+		component      resources.Component
+		mockSetup      func()
+		expectedResult resources.Component
+		expectedError  error
 	}{
 		{
 			name: "successfully updates a component",
@@ -167,6 +168,87 @@ func TestRepository_Update(t *testing.T) {
 						return nil
 					},
 				)
+				// mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
+				// mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				// 	func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.ComponentByReferenceOutput) error {
+				// 		output.Compass.Component = dtos.Component{
+				// 			ID: "component-id",
+				// 			MetricSources: dtos.MetricSources{
+				// 				Nodes: []dtos.MetricSource{
+				// 					{
+				// 						ID: "metric-source-id",
+				// 						MetricDefinition: dtos.MetricDefinition{
+				// 							ID:   "metric-id",
+				// 							Name: "metric-name",
+				// 						},
+				// 					},
+				// 				},
+				// 			},
+				// 		}
+				// 		return nil
+				// 	},
+				// )
+			},
+			expectedResult: resources.Component{
+				ID:   "component-id",
+				Slug: "test-slug",
+			},
+			expectedError: nil,
+		},
+		{
+			name: "successfully updates a component when component ID does not match remote one",
+			component: resources.Component{
+				ID:   "component-id",
+				Slug: "test-slug",
+			},
+			mockSetup: func() {
+				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UpdateComponentOutput) error {
+						output.Compass.UpdateComponent.Success = false
+						output.Compass.UpdateComponent.Errors = []compassserviceError.CompassError{
+							{Message: "component not found"},
+						}
+
+						return nil
+					},
+				)
+				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
+				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.ComponentByReferenceOutput) error {
+						output.Compass.Component = dtos.Component{
+							ID: "component-id-1",
+							MetricSources: dtos.MetricSources{
+								Nodes: []dtos.MetricSource{
+									{
+										ID: "metric-source-id",
+										MetricDefinition: dtos.MetricDefinition{
+											ID:   "metric-id",
+											Name: "metric-name",
+										},
+									},
+								},
+							},
+						}
+						return nil
+					},
+				)
+				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UpdateComponentOutput) error {
+						output.Compass.UpdateComponent.Success = true
+
+						return nil
+					},
+				)
+			},
+			expectedResult: resources.Component{
+				ID:   "component-id-1",
+				Slug: "test-slug",
+				MetricSources: map[string]*resources.MetricSource{
+					"metric-name": {
+						ID:     "metric-source-id",
+						Metric: "metric-id",
+					},
+				},
 			},
 			expectedError: nil,
 		},
@@ -179,7 +261,8 @@ func TestRepository_Update(t *testing.T) {
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
-			expectedError: errors.New("failed to update component component-id: compass error"),
+			expectedResult: resources.Component{},
+			expectedError:  errors.New("failed to update component component-id: compass error"),
 		},
 		{
 			name: "fails to update component due to unsuccessful response",
@@ -191,19 +274,24 @@ func TestRepository_Update(t *testing.T) {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UpdateComponentOutput) error {
 						output.Compass.UpdateComponent.Success = false
+						output.Compass.UpdateComponent.Errors = []compassserviceError.CompassError{
+							{Message: "failed to run operation"},
+						}
 
 						return nil
 					},
 				)
 			},
-			expectedError: errors.New("failed to update component component-id: failed to run operation"),
+			expectedResult: resources.Component{},
+			expectedError:  errors.New("failed to update component component-id: [{failed to run operation}]"),
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.mockSetup()
-			err := repo.Update(context.Background(), tt.component)
+			component, err := repo.Update(context.Background(), tt.component)
+			assert.Equal(t, tt.expectedResult, component)
 			assert.Equal(t, tt.expectedError, err)
 		})
 	}

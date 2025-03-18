@@ -33,7 +33,7 @@ func HasNotFoundError(errs []CompassError) bool {
 }
 
 func isNotFoundError(err string) bool {
-	matched, _ := regexp.MatchString("^.*not found", err)
+	matched, _ := regexp.MatchString(".*not found", err)
 
 	return matched
 }
