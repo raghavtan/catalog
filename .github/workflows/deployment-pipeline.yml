@@ -86,14 +86,16 @@ jobs:
 
       - id: build-artifact
         run: |
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+          echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
           make build
 
       - name: Create GitHub Release
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.head_ref }}
-          name: Release ${{ github.ref_name }} -- ${{ github.head_ref }}
+          tag_name: ${{ env.SHORT_SHA }}
+          name: Release ${{ github.ref_name }} -- ${{ env.SHORT_SHA }}
           draft: false
           prerelease: false
           files: |
