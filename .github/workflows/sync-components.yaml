@@ -45,7 +45,7 @@ jobs:
         git checkout -b "paas/sync-components-${{ github.sha }}"
         git add .state
         git commit -m "chore(components): update state"
-        git push origin main
+        git push origin paas/sync-components-${{ github.sha }}
 
         gh pr create --title "chore(components): update state" --body "PaaS: update components state automation." --base main
         gh pr merge --squash --delete-branch
