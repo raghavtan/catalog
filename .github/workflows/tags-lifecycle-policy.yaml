@@ -1,0 +1,27 @@
+name: TagsLifecyclePolicy
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  delete-old-tags:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List and Delete Old Tags
+        run: |
+          KEEP_TAGS=10
+
+          TAGS=$(git ls-remote --tags --sort=-creatordate origin | awk '{print $2}' | cut -d'/' -f3 | tail -n +$((KEEP_TAGS+1)))
+
+          # Delete tags
+          for TAG in $TAGS; do
+            echo "Deleting tag: $TAG"
+            git push --delete origin $TAG
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'config/components/**'
+  workflow_dispatch:
 
 concurrency:
   group: components-${{ github.event.ref }}
@@ -34,4 +35,4 @@ jobs:
           $(curl -s -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" "https://api.github.com/repos/motain/of-catalog/releases/latest" | jq -r '.assets[0].url')
           chmod +x ofc
     - run: |
-        ./ofc component compute apply -l ./config/component
+        ./ofc component apply -l ./config/component
