@@ -6,7 +6,7 @@ metadata:
 spec:
     name: news
     slug: ""
-    description: News public API.
+    description: News public API
     typeId: SERVICE
     ownerId: ""
     dependsOn:
