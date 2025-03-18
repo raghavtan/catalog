@@ -33,9 +33,13 @@ func (ds *DocumentService) GetDocuments(repo string) (map[string]string, error) 
 	}
 
 	repoURL := ds.gitHubService.GetRepoURL(repo)
+	properties, propErr := ds.gitHubService.GetRepoProperties(repo)
+	if propErr != nil {
+		return nil, propErr
+	}
 
 	documentLinks := make(map[string]string)
-	ds.processDocuments(document.Nav, documentLinks, repoURL, "")
+	ds.processDocuments(document.Nav, documentLinks, repoURL, properties["DefaultBranch"], "")
 
 	return documentLinks, nil
 }
@@ -83,7 +87,11 @@ func (ds *DocumentService) getRemoteDocument(repo string) (string, error) {
 	return "", errors.New("error getting file content from remote repository looking for mkdocs.yaml or docs/mkdocs.yaml")
 }
 
-func (ds *DocumentService) processDocuments(docs []dtos.NavItem, documentLinks map[string]string, repoURL, parentName string) {
+func (ds *DocumentService) processDocuments(
+	docs []dtos.NavItem,
+	documentLinks map[string]string,
+	repoURL, defaultBranch, parentName string,
+) {
 	for _, doc := range docs {
 		var title string
 		if parentName == "" {
@@ -93,10 +101,10 @@ func (ds *DocumentService) processDocuments(docs []dtos.NavItem, documentLinks m
 		}
 
 		if len(doc.SubItems) > 0 {
-			ds.processDocuments(doc.SubItems, documentLinks, repoURL, title)
+			ds.processDocuments(doc.SubItems, documentLinks, repoURL, defaultBranch, title)
 			continue
 		}
 
-		documentLinks[title] = fmt.Sprintf("%s/docs/%s", repoURL, doc.File)
+		documentLinks[title] = fmt.Sprintf("%s/blob/%s/docs/%s", repoURL, defaultBranch, doc.File)
 	}
 }
