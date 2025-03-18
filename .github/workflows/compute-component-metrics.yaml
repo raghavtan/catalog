@@ -40,7 +40,6 @@ jobs:
     needs: generate-matrix
     strategy:
       fail-fast: false
-    if: ${{ fromJson(toJSON(needs.generate-matrix.outputs.matrix)) }}
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
