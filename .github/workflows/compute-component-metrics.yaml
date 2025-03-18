@@ -39,6 +39,7 @@ jobs:
   monitor-service-from-matrix:
     needs: generate-matrix
     strategy:
+      matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
       fail-fast: false
     runs-on: ubuntu-latest
     env:
