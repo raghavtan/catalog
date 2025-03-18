@@ -22,18 +22,6 @@ spec:
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
-        - name: '#p-cloud-runtime'
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/CFUCQUA04
-        - name: Backend
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/c/projects/BCD/boards/138
-        - name: Readme
-          type: DOCUMENT
-          url: https://github.com/motain/simple-service/
     labels:
         - platform
         - cloud-runtime
