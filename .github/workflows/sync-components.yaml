@@ -1,0 +1,37 @@
+name: SyncComponents
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'config/**'
+
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+
+permissions: write-all
+
+jobs:
+  monitor-service:
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
+      COMPASS_TOKEN: ${{ secrets.COMPASS_TOKEN}}
+      GITHUB_ORG: motain
+      COMPASS_HOST: onefootball.atlassian.net
+      HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY}}
+    steps:
+    - uses: actions/checkout@v4
+    - run: |
+        curl -J -L \
+          -H "Accept: application/octet-stream" \
+          -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" \
+          -o ofc \
+          $(curl -s -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" "https://api.github.com/repos/motain/of-catalog/releases/latest" | jq -r '.assets[0].url')
+          chmod +x ofc
+    - run: |
+        ./ofc component compute apply -l ./config/component
