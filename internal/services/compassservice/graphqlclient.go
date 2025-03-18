@@ -3,7 +3,6 @@ package compassservice
 import (
 	"context"
 	"fmt"
-	"log"
 
 	"github.com/machinebox/graphql"
 	"github.com/motain/of-catalog/internal/services/configservice"
@@ -18,6 +17,6 @@ func NewGraphQLClient(config configservice.ConfigServiceInterface) GraphQLClient
 	client := graphql.NewClient(gqlUri)
 
 	// Keep this until we properly implement logging
-	client.Log = func(s string) { log.Println(s) }
+	// client.Log = func(s string) { log.Println(s) }
 	return client
 }
