@@ -23,12 +23,16 @@ func NewApplyHandler(
 }
 
 func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string, recursive bool) {
-	configScorecards, errConfig := yaml.Parse[dtos.ScorecardDTO](configRootLocation, recursive, dtos.GetScorecardUniqueKey)
+	parseInput := yaml.ParseInput{
+		RootLocation: configRootLocation,
+		Recursive:    recursive,
+	}
+	configScorecards, errConfig := yaml.Parse(parseInput, dtos.GetScorecardUniqueKey)
 	if errConfig != nil {
 		log.Fatalf("error: %v", errConfig)
 	}
 
-	stateMetrics, errMetricState := yaml.Parse[metricdtos.MetricDTO](stateRootLocation, false, metricdtos.GetMetricUniqueKey)
+	stateMetrics, errMetricState := yaml.Parse(yaml.GetStateInput(stateRootLocation), metricdtos.GetMetricUniqueKey)
 	if errMetricState != nil {
 		log.Fatalf("error: %v", errMetricState)
 	}
@@ -39,7 +43,7 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 		}
 	}
 
-	stateScorecards, errState := yaml.Parse[dtos.ScorecardDTO](stateRootLocation, false, dtos.GetScorecardUniqueKey)
+	stateScorecards, errState := yaml.Parse(yaml.GetStateInput(stateRootLocation), dtos.GetScorecardUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}

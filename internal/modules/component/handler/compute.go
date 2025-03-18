@@ -25,7 +25,7 @@ func NewComputeHandler(
 }
 
 func (h *ComputeHandler) Compute(componentName string, all bool, metricName string, stateRootLocation string) {
-	components, errCState := yaml.Parse(stateRootLocation, false, dtos.GetComponentUniqueKey)
+	components, errCState := yaml.Parse(yaml.GetStateInput(stateRootLocation), dtos.GetComponentUniqueKey)
 	if errCState != nil {
 		log.Fatalf("error: %v", errCState)
 	}

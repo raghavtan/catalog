@@ -34,12 +34,16 @@ func NewApplyHandler(
 }
 
 func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string, recursive bool) {
-	configComponents, errConfig := yaml.Parse[dtos.ComponentDTO](configRootLocation, recursive, dtos.GetComponentUniqueKey)
+	parseInput := yaml.ParseInput{
+		RootLocation: configRootLocation,
+		Recursive:    recursive,
+	}
+	configComponents, errConfig := yaml.Parse(parseInput, dtos.GetComponentUniqueKey)
 	if errConfig != nil {
 		log.Fatalf("error: %v", errConfig)
 	}
 
-	stateComponents, errState := yaml.Parse(stateRootLocation, false, dtos.GetComponentUniqueKey)
+	stateComponents, errState := yaml.Parse(yaml.GetStateInput(stateRootLocation), dtos.GetComponentUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}

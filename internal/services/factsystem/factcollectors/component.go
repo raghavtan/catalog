@@ -76,7 +76,7 @@ func (fc *ComponentFactCollector) Inspect(fact fsdtos.Fact) (float64, error) {
 }
 
 func (fc *ComponentFactCollector) extractData(fact fsdtos.Fact) ([]byte, error) {
-	stateComponents, errState := yaml.Parse(yaml.StateLocation, false, componentdtos.GetComponentUniqueKey)
+	stateComponents, errState := yaml.Parse(yaml.GetStateInput(fact.FilePath), componentdtos.GetComponentUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}

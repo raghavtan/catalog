@@ -28,7 +28,7 @@ func NewBindHandler(
 }
 
 func (h *BindHandler) Bind(stateRootLocation string) {
-	components, errCState := yaml.Parse(stateRootLocation, false, dtos.GetComponentUniqueKey)
+	components, errCState := yaml.Parse(yaml.GetStateInput(stateRootLocation), dtos.GetComponentUniqueKey)
 	if errCState != nil {
 		log.Fatalf("error: %v", errCState)
 	}
@@ -69,7 +69,7 @@ func (h *BindHandler) Bind(stateRootLocation string) {
 func (*BindHandler) getMetricsGroupedByCompoentType(
 	stateRootLocation string,
 ) map[string]map[string]*metricdtos.MetricDTO {
-	metrics, errMState := yaml.Parse(stateRootLocation, false, metricdtos.GetMetricUniqueKey)
+	metrics, errMState := yaml.Parse(yaml.GetStateInput(stateRootLocation), metricdtos.GetMetricUniqueKey)
 	if errMState != nil {
 		log.Fatalf("error: %v", errMState)
 	}

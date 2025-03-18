@@ -16,8 +16,25 @@ import (
 )
 
 type TestDTO struct {
+	APIVersion string `yaml:"apiVersion" json:"apiVersion"`
+	Kind       string `yaml:"kind" json:"kind"`
+	Spec       Spec   `yaml:"spec" json:"spec"`
+}
+
+type Spec struct {
 	Name string `yaml:"name"`
 	Age  int    `yaml:"age"`
+}
+
+func getTestDTO(name string, age int) *TestDTO {
+	return &TestDTO{
+		APIVersion: "v1",
+		Kind:       "test",
+		Spec: Spec{
+			Name: name,
+			Age:  age,
+		},
+	}
 }
 
 func TestWriteState(t *testing.T) {
@@ -31,8 +48,8 @@ func TestWriteState(t *testing.T) {
 		{
 			name: "successful_write",
 			data: []*TestDTO{
-				{Name: "John", Age: 30},
-				{Name: "Jane", Age: 25},
+				getTestDTO("John", 30),
+				getTestDTO("Jane", 25),
 			},
 			setup: func() {
 				os.MkdirAll(".state", os.ModePerm)
@@ -143,6 +160,114 @@ func TestGetKindFromGeneric(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			result, err := thisyaml.GetKindFromGeneric(tt.input)
+			if tt.expectErr {
+				assert.Error(t, err)
+			} else {
+				assert.NoError(t, err)
+				assert.Equal(t, tt.expected, result)
+			}
+		})
+	}
+}
+func TestParse(t *testing.T) {
+	tests := []struct {
+		name       string
+		parseInput thisyaml.ParseInput
+		getKey     func(def *TestDTO) string
+		setup      func()
+		teardown   func()
+		expected   map[string]*TestDTO
+		expectErr  bool
+	}{
+		{
+			name:       "successful_parse_non_recursive",
+			parseInput: thisyaml.ParseInput{RootLocation: ".state", Recursive: false},
+			getKey: func(def *TestDTO) string {
+				return def.Spec.Name
+			},
+			setup: func() {
+				os.MkdirAll(".state", os.ModePerm)
+				data := []*TestDTO{
+					getTestDTO("John", 30),
+					getTestDTO("Jane", 25),
+				}
+				thisyaml.WriteState(data)
+			},
+			teardown: func() {
+				os.RemoveAll(".state")
+			},
+			expected: map[string]*TestDTO{
+				"John": getTestDTO("John", 30),
+				"Jane": getTestDTO("Jane", 25),
+			},
+			expectErr: false,
+		},
+		{
+			name:       "successful_parse_recursive",
+			parseInput: thisyaml.ParseInput{RootLocation: ".state", Recursive: true},
+			getKey: func(def *TestDTO) string {
+				return def.Spec.Name
+			},
+			setup: func() {
+				os.MkdirAll(".state/nested", os.ModePerm)
+				data := []*TestDTO{
+					getTestDTO("Alice", 40),
+					getTestDTO("Bob", 35),
+				}
+				thisyaml.WriteState(data)
+			},
+			teardown: func() {
+				os.RemoveAll(".state")
+			},
+			expected: map[string]*TestDTO{
+				"Alice": getTestDTO("Alice", 40),
+				"Bob":   getTestDTO("Bob", 35),
+			},
+			expectErr: false,
+		},
+		{
+			name:       "no_files_found",
+			parseInput: thisyaml.ParseInput{RootLocation: ".state", Recursive: false},
+			getKey: func(def *TestDTO) string {
+				return def.Spec.Name
+			},
+			setup: func() {
+				os.MkdirAll(".state", os.ModePerm)
+			},
+			teardown: func() {
+				os.RemoveAll(".state")
+			},
+			expected:  map[string]*TestDTO{},
+			expectErr: false,
+		},
+		{
+			name:       "invalid_yaml_file",
+			parseInput: thisyaml.ParseInput{RootLocation: ".state", Recursive: false},
+			getKey: func(def *TestDTO) string {
+				return def.Spec.Name
+			},
+			setup: func() {
+				os.MkdirAll(".state", os.ModePerm)
+				os.WriteFile(".state/testdto.yaml", []byte("invalid_yaml"), 0644)
+			},
+			teardown: func() {
+				os.RemoveAll(".state")
+			},
+			expected:  map[string]*TestDTO{},
+			expectErr: false,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if tt.setup != nil {
+				tt.setup()
+			}
+			if tt.teardown != nil {
+				defer tt.teardown()
+			}
+
+			result, err := thisyaml.Parse(tt.parseInput, tt.getKey)
 			if tt.expectErr {
 				assert.Error(t, err)
 			} else {
