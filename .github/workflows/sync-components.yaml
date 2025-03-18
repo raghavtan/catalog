@@ -39,13 +39,16 @@ jobs:
 
     - name: Commit and push state changes
       run: |
-        git config user.email 'devops@onefootball.com'
-        git config user.name 'Onefootball Helm Charts'
+        BRANCH="paas/sync-components-${{ github.sha }}"
 
-        git checkout -b "paas/sync-components-${{ github.sha }}"
-        git add .state
-        git commit -m "chore(components): update state"
-        git push origin paas/sync-components-${{ github.sha }}
+        git config user.email 'devops@onefootball.com'
+        git config user.name 'PaaS user'
+
+        git checkout -b "$BRANCH"
+        git add .
+
+        git commit -m "chore(components): [PaaS] update state"
+        git push -f origin "$BRANCH"
 
         gh pr create --title "chore(components): update state" --body "PaaS: update components state automation." --base main
         gh pr merge --squash --delete-branch
