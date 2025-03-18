@@ -14,6 +14,11 @@ func TestGet(t *testing.T) {
 	assert.Equal(t, "BAR", cfg.Get("FOO"))
 }
 
+func TestGetDefaultGithubOrg(t *testing.T) {
+	cfg := configservice.NewConfigService()
+	assert.Equal(t, "motain", cfg.GetGithubOrg())
+}
+
 func TestGetGithubOrg(t *testing.T) {
 	os.Setenv("GITHUB_ORG", "my-org")
 	cfg := configservice.NewConfigService()
