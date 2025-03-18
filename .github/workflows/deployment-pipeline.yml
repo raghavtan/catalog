@@ -7,6 +7,8 @@ on:
       - 'config/**'
       - 'docs/**'
       - '.state/**'
+      - '.github/**'
+      - 'Makefile'
     branches:
       - main
 
