@@ -40,7 +40,7 @@ func (ds *DocumentService) GetDocuments(repo string) (map[string]string, error) 
 	}
 
 	documentLinks := make(map[string]string)
-	uriToDocFile := filepath.Join(repoURL, "blob", properties["DefaultBranch"], indexLocation, "docs")
+	uriToDocFile := repoURL + filepath.Join(string(filepath.Separator), "blob", properties["DefaultBranch"], indexLocation, "docs")
 	ds.processDocuments(document.Nav, documentLinks, uriToDocFile, "")
 
 	return documentLinks, nil
@@ -97,6 +97,6 @@ func (ds *DocumentService) processDocuments(docs []dtos.NavItem, documentLinks m
 			continue
 		}
 
-		documentLinks[title] = filepath.Join(uriToDocFile, doc.File)
+		documentLinks[title] = fmt.Sprintf("%s/%s", uriToDocFile, doc.File)
 	}
 }
