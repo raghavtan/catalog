@@ -8,7 +8,7 @@ import (
 )
 
 func Init() *cobra.Command {
-	var configRootLocation string
+	var configRootLocation, componentName string
 	var recursive bool
 
 	cmd := &cobra.Command{
@@ -21,11 +21,12 @@ func Init() *cobra.Command {
 				return
 			}
 			handler := initializeHandler()
-			handler.Apply(configRootLocation, yaml.StateLocation, recursive)
+			handler.Apply(configRootLocation, yaml.StateLocation, recursive, componentName)
 		},
 	}
 
 	cmd.Flags().StringVarP(&configRootLocation, "configRootLocation", "l", "", "Root location of the config")
+	cmd.Flags().StringVarP(&componentName, "component", "c", "", "Name of the component")
 	cmd.Flags().BoolVarP(&recursive, "recursive", "r", false, "Apply changes recursively")
 
 	return cmd

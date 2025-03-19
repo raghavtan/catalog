@@ -33,7 +33,7 @@ func NewApplyHandler(
 	return &ApplyHandler{github: gh, repository: repository, owner: owner, document: document}
 }
 
-func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string, recursive bool) {
+func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string, recursive bool, componentName string) {
 	parseInput := yaml.ParseInput{
 		RootLocation: configRootLocation,
 		Recursive:    recursive,
@@ -48,15 +48,54 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 		log.Fatalf("error: %v", errState)
 	}
 
+	if componentName != "" {
+		h.handleOne(stateComponents, configComponents, componentName)
+		return
+	}
+
+	h.handleAll(stateComponents, configComponents)
+}
+
+func (h *ApplyHandler) handleAll(stateComponents, configComponents map[string]*dtos.ComponentDTO) {
 	created, updated, deleted, unchanged := drift.Detect(
 		stateComponents,
 		configComponents,
 		dtos.FromStateToConfig,
 		dtos.IsEqualComponent,
 	)
-	h.handleDeleted(deleted)
 
 	var result []*dtos.ComponentDTO
+	h.handleDeleted(deleted)
+	result = h.handleUnchanged(result, unchanged, stateComponents)
+	result = h.handleCreated(result, created, stateComponents)
+	result = h.handleUpdated(result, updated, stateComponents)
+
+	err := yaml.WriteState(result)
+	if err != nil {
+		log.Fatalf("error writing components to file: %v", err)
+	}
+}
+
+func (h *ApplyHandler) handleOne(stateComponents, configComponents map[string]*dtos.ComponentDTO, componentName string) {
+	configComponent := configComponents[componentName]
+	stateComponent := stateComponents[componentName]
+
+	result := make([]*dtos.ComponentDTO, 0)
+	for stateComponentName, _ := range stateComponents {
+		if stateComponentName != configComponent.Metadata.Name {
+			result = append(result, configComponent)
+			continue
+		}
+	}
+
+	created, updated, deleted, unchanged := drift.Detect(
+		map[string]*dtos.ComponentDTO{componentName: stateComponent},
+		map[string]*dtos.ComponentDTO{componentName: configComponent},
+		dtos.FromStateToConfig,
+		dtos.IsEqualComponent,
+	)
+
+	h.handleDeleted(deleted)
 	result = h.handleUnchanged(result, unchanged, stateComponents)
 	result = h.handleCreated(result, created, stateComponents)
 	result = h.handleUpdated(result, updated, stateComponents)

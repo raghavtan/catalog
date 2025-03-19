@@ -9,14 +9,32 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: components
-  cancel-in-progress: true
+  group: compute-components-${{ github.head_ref }}
+  cancel-in-progress: false # We need to terminate the sync of the component
 
 permissions: write-all
 
 jobs:
+
+  generate-matrix:
+    if: ${{ github.event_name != 'workflow_dispatch' }}
+    name: Generate job matrices
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.generate-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate matrix
+        id: generate-matrix
+        uses: motain/onefootball-actions/changed-matrix@master
+        with:
+          pattern: config/components/component-(?P<project>[^/]+)\.yaml
+
   sync-components:
+    needs: generate-matrix
     strategy:
+      matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
       fail-fast: false
     runs-on: ubuntu-latest
     env:
@@ -35,7 +53,7 @@ jobs:
           $(curl -s -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" "https://api.github.com/repos/motain/of-catalog/releases/latest" | jq -r '.assets[0].url')
           chmod +x ofc
     - run: |
-        ./ofc component apply -l ./config/components
+        ./ofc component apply -l ./config/components -c ${{ matrix.project }}
 
     - name: Commit and push state changes
       run: |
