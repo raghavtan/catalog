@@ -65,7 +65,7 @@ jobs:
         git checkout -b "$BRANCH"
         git add .state
 
-        git commit -m "chore(components): [PaaS] update state"
+        git commit -m "chore(components): [PaaS] update state for ${{ matrix.project }}"
         git push -f origin "$BRANCH"
 
         gh pr create --title "chore(components): update state" --body "PaaS: update components state automation." --base main
