@@ -1,0 +1,62 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+  name: high-availability
+  labels:
+    grading-system: resiliency
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    any:
+      - name: app-toml-hpa-target-cpu
+        source: github
+        repo: "${Metadata.Name}"
+        factType: jsonPath
+        filePath: app.toml
+        jsonPath: $..service..target_cpu_utilization_percentage 
+        expectedFormula: ">= 20"
+      - name: app-toml-hpa-target-memory
+        source: github
+        repo: "${Metadata.Name}"
+        factType: jsonPath
+        filePath: app.toml
+        jsonPath: $..service..target_memory_utilization_percentage
+        expectedFormula: ">= 20"
+spec:
+  name: high-availability
+  description: "Ensure the component is properly configured to support High Availability, which keeps a system or service running with minimal downtime. This helps maintain continuous operation, even during failures or unexpected issues."
+  format:
+    unit: "High Availability"
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+  name: adaptive-systems
+  labels:
+    grading-system: resiliency
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    any:
+      - name: app-toml-liveness-probe
+        source: github
+        repo: "${Metadata.Name}"
+        factType: jsonPath
+        filePath: app.toml
+        jsonPath: $..service..liveness_probe_http_get_path 
+        expectedValue: "/health"
+      - name: app-toml-readiness-probe
+        source: github
+        repo: "${Metadata.Name}"
+        factType: jsonPath
+        filePath: app.toml
+        jsonPath: $..service..readiness_probe_http_get_path
+        expectedValue: "/ready"
+spec:
+  name: adaptive-systems
+  description: "Ensure the component is properly configured to support Adaptive Systems, which can automatically adjust to changing conditions. This helps maintain optimal performance, efficiency, and reliability without the need for manual intervention."
+  format:
+    unit: "Adaptive Systems"
