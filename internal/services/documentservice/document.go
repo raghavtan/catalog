@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"path/filepath"
 
 	"gopkg.in/yaml.v3"
 
@@ -27,7 +28,7 @@ func NewDocumentService(gitHubService githubservice.GitHubServiceInterface) *Doc
 }
 
 func (ds *DocumentService) GetDocuments(repo string) (map[string]string, error) {
-	document, extractErr := ds.extractData(repo)
+	document, indexLocation, extractErr := ds.extractData(repo)
 	if extractErr != nil {
 		return nil, extractErr
 	}
@@ -39,15 +40,16 @@ func (ds *DocumentService) GetDocuments(repo string) (map[string]string, error) 
 	}
 
 	documentLinks := make(map[string]string)
-	ds.processDocuments(document.Nav, documentLinks, repoURL, properties["DefaultBranch"], "")
+	uriToDocFile := filepath.Join(repoURL, "blob", properties["DefaultBranch"], indexLocation, "docs")
+	ds.processDocuments(document.Nav, documentLinks, uriToDocFile, "")
 
 	return documentLinks, nil
 }
 
-func (ds *DocumentService) extractData(repo string) (dtos.Document, error) {
-	fileContent, fileErr := ds.getRemoteDocument(repo)
+func (ds *DocumentService) extractData(repo string) (dtos.Document, string, error) {
+	fileContent, indexLocation, fileErr := ds.getRemoteDocument(repo)
 	if fileErr != nil {
-		return dtos.Document{}, fileErr
+		return dtos.Document{}, "", fileErr
 	}
 
 	decoder := yaml.NewDecoder(bytes.NewReader([]byte(fileContent)))
@@ -58,53 +60,43 @@ func (ds *DocumentService) extractData(repo string) (dtos.Document, error) {
 			if decodeErr == io.EOF {
 				break
 			}
-			return dtos.Document{}, decodeErr
+			return dtos.Document{}, "", decodeErr
 		}
 	}
 
-	return result, nil
+	return result, indexLocation, nil
 }
 
-func (ds *DocumentService) getRemoteDocument(repo string) (string, error) {
-	// Let's assume the standard is to use the docs folder
-	fileContent, docsFileErr := ds.gitHubService.GetFileContent(repo, "docs/mkdocs.yaml")
-	if docsFileErr == nil {
-		return fileContent, nil
+func (ds *DocumentService) getRemoteDocument(repo string) (string, string, error) {
+	const indexFile = "mkdocs.yaml"
+	possibleIndexLocations := []string{
+		"",     // Let's assume the standard is to use the docs folder
+		"docs", // Fallback to the root folder
+		".of",  // Fallback to the .of folder
 	}
 
-	// Fallback to the root folder
-	rootFileContent, rootFileErr := ds.gitHubService.GetFileContent(repo, "mkdocs.yaml")
-	if rootFileErr == nil {
-		return rootFileContent, nil
+	for _, folder := range possibleIndexLocations {
+		fileContent, fileErr := ds.gitHubService.GetFileContent(repo, filepath.Join(folder, indexFile))
+		if fileErr == nil {
+			return fileContent, folder, nil
+		}
 	}
 
-	// Fallback to the .of folder
-	ofFileContent, ofFileErr := ds.gitHubService.GetFileContent(repo, ".of/mkdocs.yaml")
-	if ofFileErr == nil {
-		return ofFileContent, nil
-	}
-
-	return "", errors.New("error getting file content from remote repository looking for mkdocs.yaml or docs/mkdocs.yaml")
+	return "", "", errors.New("error getting file content from remote repository")
 }
 
-func (ds *DocumentService) processDocuments(
-	docs []dtos.NavItem,
-	documentLinks map[string]string,
-	repoURL, defaultBranch, parentName string,
-) {
+func (ds *DocumentService) processDocuments(docs []dtos.NavItem, documentLinks map[string]string, uriToDocFile, parentName string) {
 	for _, doc := range docs {
-		var title string
-		if parentName == "" {
-			title = doc.Title
-		} else {
+		title := doc.Title
+		if parentName != "" {
 			title = fmt.Sprintf("%s/%s", parentName, doc.Title)
 		}
 
 		if len(doc.SubItems) > 0 {
-			ds.processDocuments(doc.SubItems, documentLinks, repoURL, defaultBranch, title)
+			ds.processDocuments(doc.SubItems, documentLinks, uriToDocFile, title)
 			continue
 		}
 
-		documentLinks[title] = fmt.Sprintf("%s/blob/%s/docs/%s", repoURL, defaultBranch, doc.File)
+		documentLinks[title] = filepath.Join(uriToDocFile, doc.File)
 	}
 }
