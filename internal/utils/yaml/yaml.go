@@ -152,7 +152,8 @@ func getFilePath[T any](tKind string, parseInput ParseInput) (string, error) {
 		directory = fmt.Sprintf("%s/**", directory)
 	}
 
-	return filepath.Join(directory, getKindFileName(tKind)), nil
+	fileString := fmt.Sprintf("%s*", tKind)
+	return filepath.Join(directory, getKindFileName(fileString)), nil
 }
 
 func encodeData[T any](data []*T) ([]byte, error) {

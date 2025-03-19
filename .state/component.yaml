@@ -1,0 +1,4269 @@
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: tv-guide-importer
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7bb590fb-e7f9-47fb-ba56-3b3f01999895
+    name: tv-guide-importer
+    slug: svc-tv-guide-importer
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: c9554694-dcb4-4846-af1f-e6891153ec40
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/tv-guide-importer
+        - id: c22da4aa-6185-43be-88b6-0441d3cfbb60
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=tv-guide-importer&var-container=tv-guide-importer&from=now-1h&to=now
+        - id: 67fc09c3-9c5c-4165-8484-9a3bb2e8ed11
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - tv-guide-importer
+        - monetization
+        - sponsorship-integration
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: live-ticker-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/5d8d9f8e-e503-4ba4-a332-c4e4554fb8ab
+    name: live-ticker-api
+    slug: svc-live-ticker-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 0c29dd40-d75d-48ad-889e-eb4f9f414cb0
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/live-ticker-api
+        - id: 7c4e4663-2eb3-4d35-b563-530f630e3d75
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=live-ticker-api&var-container=live-ticker-api&from=now-1h&to=now
+        - id: ce25b1a7-74f3-4f5d-aa67-18068c679b74
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - live-ticker-api
+        - engagement
+        - matchxp
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: librarian
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c8a83369-7de5-4496-a7b2-fd20ff5b5cc9
+    name: librarian
+    slug: svc-librarian
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 5a0c3c19-ce21-4daa-b42f-272cee64782d
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/librarian
+        - id: 908c8f13-7128-4a96-874e-03562e0a0209
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=librarian&var-container=librarian&from=now-1h&to=now
+        - id: f54fd7c8-82d6-4c40-b622-5d885a26c692
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: vinnipuh
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c3b7cde6-8312-4eeb-98f7-3171b912ba87
+    name: vinnipuh
+    slug: svc-vinnipuh
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: cf59f346-241b-4094-98c2-70de7e549377
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/vinnipuh
+        - id: 69e69e14-50dc-43ac-9ce0-6ec222fed0b2
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=vinnipuh&var-container=vinnipuh&from=now-1h&to=now
+        - id: 3757a147-8958-415c-a12f-77e0d358d62e
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - matchxp
+        - vinnipuh
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: follower-count-publisher
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2648e20d-27c9-4670-a0ce-816fbd3f8c21
+    name: follower-count-publisher
+    slug: svc-follower-count-publisher
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 2c6f851e-ef0f-4ae6-bdc4-343427185e3b
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/follower-count-publisher
+        - id: 7cf4e436-0c39-4381-8ca8-50d7a31ba481
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=follower-count-publisher&var-container=follower-count-publisher&from=now-1h&to=now
+        - id: e7693ae6-cbe0-4aec-b467-38c420aca8aa
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - matchxp
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: users-auth-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/579c4d35-5485-4db7-bec1-b8bcec144239
+    name: users-auth-api
+    slug: svc-users-auth-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: ae190dbe-2da0-4557-a0db-f3481976e1af
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/users-auth-api
+        - id: 399f9114-2f4e-47fa-9f86-3a2182ebf59e
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-auth-api&var-container=users-auth-api&from=now-1h&to=now
+        - id: f181d8dd-dd85-4c83-bcda-fcc194708423
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - fan-activation
+    metricSources: {}
+    tribe: reach
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: sitemap-generator-v2
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b3768a2f-8c0c-4233-adfe-17ff683ba47a
+    name: sitemap-generator-v2
+    slug: svc-sitemap-generator-v2
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 7d9ada9a-3426-4427-aefc-a4a865a335fd
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/sitemap-generator-v2
+        - id: 99dc16aa-f0d9-4419-b530-6cd82c40b3d0
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=sitemap-generator-v2&var-container=sitemap-generator-v2&from=now-1h&to=now
+        - id: 4192ac3c-335b-459b-a8a4-d85e273182b1
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - consumer-web
+        - sitemap-generator-v2
+    metricSources: {}
+    tribe: reach
+    squad: consumer-web
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: article-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/661ba0f2-e2a4-4ff7-9c03-ec3fbb421f41
+    name: article-service
+    slug: svc-article-service
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 5fd1cc80-36d2-4c6b-9976-0d37217290ed
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/article-service
+        - id: f56e50f6-1d64-4196-a6bd-e563e85f3823
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-service&var-container=article-service&from=now-1h&to=now
+        - id: 71bc833c-899b-44eb-bdb2-89aad28ae83b
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - content
+        - article-service
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: lead-gen-campaign-manager
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/0877b8bf-a145-45ae-8997-02f5ed596ade
+    name: lead-gen-campaign-manager
+    slug: svc-lead-gen-campaign-manager
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 8330b9f4-a73f-4576-90e7-0dbf763d6e08
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/lead-gen-campaign-manager
+        - id: fc5c190b-9898-412e-bcbf-275b1dfd7d0e
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=lead-gen-campaign-manager&var-container=lead-gen-campaign-manager&from=now-1h&to=now
+        - id: d4538488-e096-4c58-818e-8d4a7b2c90b8
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - sponsorship-integration
+        - lead-gen-campaign-manager
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: feeditem-algolia-indexer
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/248e948c-98c3-49e9-a69e-2087791fc1c8
+    name: feeditem-algolia-indexer
+    slug: svc-feeditem-algolia-indexer
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 605c56ca-18f6-4ee6-9936-cceedfdfc2eb
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/feeditem-algolia-indexer
+        - id: 991e2f11-b8ab-488d-9a71-334d81c3f25c
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=feeditem-algolia-indexer&var-container=feeditem-algolia-indexer&from=now-1h&to=now
+        - id: 651c70d5-fb4b-4a8e-9d87-8520d3441537
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - content
+        - feeditem-algolia-indexer
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: rss-generator
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/30144995-5d79-47dd-a77f-6f6759d3c4e3
+    name: rss-generator
+    slug: svc-rss-generator
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 6e91494a-e2a3-4624-a251-90cc0ed23c88
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/rss-generator
+        - id: 8dd2ac6e-42e5-4aab-aaa6-7fa921a40caa
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=rss-generator&var-container=rss-generator&from=now-1h&to=now
+        - id: 40648e18-f658-40f0-9576-b91dffcde3b2
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - content
+        - rss-generator
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: payments-history
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/66d8ab23-e8ec-418f-a58a-0383ed5b27a8
+    name: payments-history
+    slug: svc-payments-history
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 6c7f8c93-c178-46c7-9f61-443cf586f305
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/payments-history
+        - id: 08cc44d3-655e-40ed-a8ea-84fe07f2dd9d
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=payments-history&var-container=payments-history&from=now-1h&to=now
+        - id: 0fea1cda-452e-4108-93c5-b599819ca3df
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - live-video
+        - payments-history
+    metricSources: {}
+    tribe: engagement
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: betting-workers
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/80d41405-67ca-4086-a681-7b2afa80d739
+    name: betting-workers
+    slug: svc-betting-workers
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: c8b7e423-45a3-438f-b3e8-2b9fba8a434f
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/betting-workers
+        - id: cde22480-39da-4dba-aa34-8fc0e23e5833
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=betting-workers&var-container=betting-workers&from=now-1h&to=now
+        - id: 19aa0800-113e-4e28-a325-4cb41f78ae66
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - betting-workers
+        - monetization
+        - sponsorship-integration
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: xpa-backend
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7ee4cb55-6ae5-44d5-bdab-134c22658c59
+    name: xpa-backend
+    slug: svc-xpa-backend
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 12d79ce0-fc8d-4a3a-8656-c470169e5726
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/xpa-backend
+        - id: f6268043-dd9f-4f13-b807-45ae94576f99
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-backend&var-container=xpa-backend&from=now-1h&to=now
+        - id: e459e00b-aec4-4595-a144-f9b5ee054eaf
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - matchxp
+        - xpa-backend
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: stories-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e1bd840d-0c5b-4e6e-a989-a105d38a3269
+    name: stories-api
+    slug: svc-stories-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: aeb2c9e0-711d-403e-a3df-51d622ba7288
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/stories-api
+        - id: 403a0b31-091f-4351-b3ca-f25b60a56179
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=stories-api&var-container=stories-api&from=now-1h&to=now
+        - id: 291bbab8-4cbd-4bd9-a84f-9e5c22238397
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - fan-activation
+    metricSources: {}
+    tribe: reach
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: push-notification-center
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/8a73cac0-8253-40b1-91f3-45996ed3c4a2
+    name: push-notification-center
+    slug: svc-push-notification-center
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 5ca4a595-f11b-4c97-b924-97973413b5cc
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/push-notification-center
+        - id: 236983c3-d2fe-4972-b647-1d7698bd250c
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=push-notification-center&var-container=push-notification-center&from=now-1h&to=now
+        - id: 4dcff486-65bd-47c7-94c7-f8ed3e6d4c4c
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - content
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: replay-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d8955028-321d-490d-b499-580d684f23b6
+    name: replay-api
+    slug: svc-replay-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 249ff2db-5d79-4e62-a0ea-53b7671b1095
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/replay-api
+        - id: 3b2f35d1-503c-44d0-8062-871a32632e88
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=replay-api&var-container=replay-api&from=now-1h&to=now
+        - id: 5263808e-9ec0-4102-a663-7029b318b81d
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - replay-api
+        - engagement
+        - matchxp
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: facts-fetcher
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/568be32e-f9a2-46f2-a492-388dc83f4831
+    name: facts-fetcher
+    slug: svc-facts-fetcher
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 247dfd40-facc-4050-b675-3e1670d48365
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/facts-fetcher
+        - id: 93d4c8b4-d804-4e4d-aa6f-0c874cae5e20
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=facts-fetcher&var-container=facts-fetcher&from=now-1h&to=now
+        - id: a1e3f5ad-de9a-4562-9a24-c1315991e652
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - matchxp
+        - facts-fetcher
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: entity-index-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b46c3361-1f6e-4240-878e-1f1a5d76bdbc
+    name: entity-index-api
+    slug: svc-entity-index-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: d19a0982-098d-4ba7-8573-7e7c84711a0f
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/entity-index-api
+        - id: 4dbe3073-904e-4510-8b17-8a540189a33d
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=entity-index-api&var-container=entity-index-api&from=now-1h&to=now
+        - id: 14df9fce-b65d-476e-b30a-3578335b0206
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - consumer-web
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: consumer-web
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: seasons-cache
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2510c3ec-df29-4e6c-91b0-098ad6259155
+    name: seasons-cache
+    slug: svc-seasons-cache
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 2551de60-76b1-49cc-87f8-968771f06884
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/seasons-cache
+        - id: c5aee82c-2ae1-45f3-969d-135209fde06b
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=seasons-cache&var-container=seasons-cache&from=now-1h&to=now
+        - id: ef1b8e79-0979-4cd6-9f30-a1c6b70235c7
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - matchxp
+        - seasons-cache
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: article-intelligence
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/bb8672da-1d0d-4ef1-8f43-42f54d6620ec
+    name: article-intelligence
+    slug: svc-article-intelligence
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: c4cc2bf4-b16c-429f-b6cf-6a67599fcfb0
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/article-intelligence
+        - id: 22518fc5-4a3e-4f6f-b085-e27675e62470
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-intelligence&var-container=article-intelligence&from=now-1h&to=now
+        - id: 51347086-a707-4363-857b-06d912b7cf24
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - content
+        - article-intelligence
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: auth-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/9ffae521-f485-4114-a29e-afcf1ef1720b
+    name: auth-api
+    slug: svc-auth-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 97bed67a-4f0e-461c-b0ce-88c9f7b9cb76
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/auth-api
+        - id: b455b2bf-5e1b-4eeb-81a6-4e6a3dd3d6f7
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=auth-api&var-container=auth-api&from=now-1h&to=now
+        - id: 8ae98ab6-1bff-4a9c-8757-4f46868c5bd0
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - auth-api
+        - reach
+        - content
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: fanmatch-go
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/04b4341b-4488-4d50-8092-14840b69b0d7
+    name: fanmatch-go
+    slug: svc-fanmatch-go
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: cdd52f64-886a-4c90-a5bd-f8e8420671a4
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/fanmatch-go
+        - id: 454723c4-c47e-4ee3-88a5-b4a87f4f94c9
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=fanmatch-go&var-container=fanmatch-go&from=now-1h&to=now
+        - id: 2d683e7b-3138-4b87-87ce-7cdd78ec9192
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - sponsorship-integration
+        - fanmatch-go
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: score-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e7ab598c-fadf-4185-acba-aaa25dd0b1a8
+    name: score-api
+    slug: svc-score-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 0253b20a-14a1-470b-a145-15887a2260f9
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/score-api
+        - id: 8dda1582-26f4-4d2f-beeb-a744dd75d386
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=score-api&var-container=score-api&from=now-1h&to=now
+        - id: 52aaf203-3342-47ef-9233-722811026375
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - matchxp
+        - score-api
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: daily-digest
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f88f7b48-4989-4fef-b7cb-e0a89e9db575
+    name: daily-digest
+    slug: svc-daily-digest
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 2e08503f-bbca-4026-84fe-1a1f3e3bc17e
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/daily-digest
+        - id: 468a045a-32f3-4778-a193-853078eb0833
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=daily-digest&var-container=daily-digest&from=now-1h&to=now
+        - id: 01ee0a84-ac84-4322-a22d-72b63d66033d
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - fan-activation
+    metricSources: {}
+    tribe: reach
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: cloud-runtime-bot
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f282c57f-2c9a-4fbe-8e9c-66b8c072e3c3
+    name: cloud-runtime-bot
+    slug: svc-cloud-runtime-bot
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: efc0ee6a-fb65-4da2-8cbd-a876b89450ac
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/cloud-runtime-bot
+        - id: 6def4606-eaea-421c-bdea-171b8fe445d1
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cloud-runtime-bot&var-container=cloud-runtime-bot&from=now-1h&to=now
+        - id: 18070cc0-2704-40b2-bc18-e733532e2de4
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - cloud-runtime
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: cloud-runtime
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: appstore-connect-iap-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/64c87e9b-4219-422b-86c1-3cd8d1202b0e
+    name: appstore-connect-iap-api
+    slug: svc-appstore-connect-iap-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 660815c6-bf93-4c76-8e56-0f8100d80f2a
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/appstore-connect-iap-api
+        - id: b2674a47-6d1a-4f52-8d7c-2d99ea598335
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=appstore-connect-iap-api&var-container=appstore-connect-iap-api&from=now-1h&to=now
+        - id: 42ebcaca-1904-436d-bc76-2644d28b12f1
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - live-video
+        - appstore-connect-iap-api
+    metricSources: {}
+    tribe: engagement
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: amymone
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/9d2e2be6-17f6-4dba-9235-bd575d8158f1
+    name: amymone
+    slug: svc-amymone
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 5ce643ae-7f38-4fa8-b3f7-3b24f789c868
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/amymone
+        - id: 8d31d936-d637-4962-83fa-be7f686daf7a
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=amymone&var-container=amymone&from=now-1h&to=now
+        - id: fee577b3-a05f-4173-9f8b-486cc606a5bd
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: onboarding-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d28379ae-7c84-4668-a119-496ea00dc115
+    name: onboarding-api
+    slug: svc-onboarding-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: efa0a45a-03be-45a3-8295-77a9ce98a4ba
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/onboarding-api
+        - id: d598152e-f40f-4d06-a16e-af4db885a428
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=onboarding-api&var-container=onboarding-api&from=now-1h&to=now
+        - id: 89ecf2b8-355c-49ab-b91d-fc7d788ef47d
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - fan-activation
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: photobooth
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7f4e079f-7a57-417a-a290-f25e8f195aba
+    name: photobooth
+    slug: svc-photobooth
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: d6eed9fd-0429-448c-9c90-b73f1ce1b7c2
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/photobooth
+        - id: 290f3408-6439-4012-a85f-89e467d53747
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=photobooth&var-container=photobooth&from=now-1h&to=now
+        - id: 2c6f88ae-dd17-45d3-8be7-64bade564226
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - consumer-web
+    metricSources: {}
+    tribe: reach
+    squad: consumer-web
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: facts-importer
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/45f3b30c-85c3-4fbb-9fc5-b5d4dc8d5069
+    name: facts-importer
+    slug: svc-facts-importer
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: f6b32a7a-7d27-498f-bfba-0005d92e9449
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/facts-importer
+        - id: e810061a-fd2a-4ecc-9235-73a2560ab70a
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=facts-importer&var-container=facts-importer&from=now-1h&to=now
+        - id: 358556e8-d70c-4f35-b91d-5ef9acb853ef
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - matchxp
+        - facts-importer
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: newsdesk-admin-web
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/022b818a-a1f3-4871-be67-1b86b2a02b40
+    name: newsdesk-admin-web
+    slug: svc-newsdesk-admin-web
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 1ae268cd-4777-45a0-8e13-2f0bc1a48553
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/newsdesk-admin-web
+        - id: 09188b78-d30f-4905-bccf-d05d21f3b569
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=newsdesk-admin-web&var-container=newsdesk-admin-web&from=now-1h&to=now
+        - id: b03d6411-72c3-4e9f-99c1-9cf59f2bee30
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - content
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: clips-webhooks
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd6e3aa8-c008-4739-9427-2aa89260163f
+    name: clips-webhooks
+    slug: svc-clips-webhooks
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: f3adc412-8bd7-4b39-aec0-9c9e0752ac15
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/clips-webhooks
+        - id: 3f4c7e98-7639-4058-a883-f24b85e95f8c
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips-webhooks&var-container=clips-webhooks&from=now-1h&to=now
+        - id: d8545d2b-720f-4093-b25d-ffe0e5d24431
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - personalisation
+        - clips-webhooks
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: users-accounts-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d2b81953-fa51-48b2-ae69-d53c5bdeacc2
+    name: users-accounts-api
+    slug: svc-users-accounts-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 5433e151-4d9e-4638-907a-0e0991cc09d4
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/users-accounts-api
+        - id: f1f35a3e-2aa2-427d-bd25-f791eb439170
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-accounts-api&var-container=users-accounts-api&from=now-1h&to=now
+        - id: 6bb493a9-6111-4a80-bbb2-0908c1b228ba
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - fan-activation
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: web3-transactions
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/a3280641-3f2b-4985-92f4-b950767bff09
+    name: web3-transactions
+    slug: svc-web3-transactions
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 6c04c7c1-cdb5-438b-ad69-b6891b9ee9e8
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/web3-transactions
+        - id: db502aa0-c89d-43bd-beba-12a02d815657
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=web3-transactions&var-container=web3-transactions&from=now-1h&to=now
+        - id: fa66e23e-160c-4c82-a010-57784d858de9
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - loyalty-program-squad
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: loyalty-program-squad
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: entity-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/64f0ebf1-d019-4a40-a5f9-c9909fa12fff
+    name: entity-service
+    slug: svc-entity-service
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 93fce9b2-4415-404f-adbb-ca0faa1e2710
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/entity-service
+        - id: 1ce3759e-aafc-43bd-8402-0e0e79c63dc3
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=entity-service&var-container=entity-service&from=now-1h&to=now
+        - id: 26867e7b-d43c-4f97-aac8-a8e19495df20
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - matchxp
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: not-found-server
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/9c7190f4-e9e3-4d97-8925-6e83aeb932c2
+    name: not-found-server
+    slug: svc-not-found-server
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: a9502573-7c03-48a7-8220-4c5e9ec82c5f
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/not-found-server
+        - id: 8fc32c24-dd8e-4625-bed9-a8b1b6ee0f22
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=not-found-server&var-container=not-found-server&from=now-1h&to=now
+        - id: 7f440de9-5d21-4e3a-9c66-5a7a60f2ce1d
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - platform
+        - developer-xp
+    metricSources: {}
+    tribe: platform
+    squad: developer-xp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: optimistic-joliot
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/da22eae1-7e83-4bf3-92fe-fb0092e22965
+    name: optimistic-joliot
+    slug: svc-optimistic-joliot
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 1902fdce-db7d-4c6a-8a7d-415b0dc49b0a
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/optimistic-joliot
+        - id: 27376529-810e-4844-8d23-bfc0e71bb5c4
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=optimistic-joliot&var-container=optimistic-joliot&from=now-1h&to=now
+        - id: 5f73eab8-52ce-48ab-8b84-067bbd1d4f08
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - data-platform
+        - dacore
+    metricSources: {}
+    tribe: data-platform
+    squad: dacore
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: kuzya
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/50e778b0-ad49-4cdd-8cd5-7809373dfc3d
+    name: kuzya
+    slug: svc-kuzya
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 460fd594-61d1-4453-ae73-19303aa0587d
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/kuzya
+        - id: 3df7709a-7eb0-466f-a9b2-3af5cc36d7de
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=kuzya&var-container=kuzya&from=now-1h&to=now
+        - id: a7d9f920-a029-4b08-b6c3-8a841ac9bc44
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - kuzya
+        - engagement
+        - matchxp
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: airship-email
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7681d563-7ab1-44d5-a0c2-9638cee0a016
+    name: airship-email
+    slug: svc-airship-email
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 34d5eb0b-2a2b-4074-9817-4e6c66046366
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/airship-email
+        - id: 511c6b59-da91-4bb3-8970-0cac9103f8a4
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=airship-email&var-container=airship-email&from=now-1h&to=now
+        - id: 0012ecf0-52a8-4e3c-ae53-4a117f21960a
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - fan-activation
+        - airship-email
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: banner-free
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e1496330-2c47-4110-89fc-11f247f83d74
+    name: banner-free
+    slug: svc-banner-free
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 9808f649-aab4-4aa2-8327-08b6926c5184
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/banner-free
+        - id: a31fe0c9-ae2a-42da-84bd-4e7fc668b20e
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=banner-free&var-container=banner-free&from=now-1h&to=now
+        - id: 31ed32a9-bc6a-44c7-bf00-9e0301d84c2c
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - media-advertising
+        - banner-free
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: media-advertising
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: clips-search
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c7b3ca3b-6ca3-46a0-90b3-e6962ae891ef
+    name: clips-search
+    slug: svc-clips-search
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: f586d6ed-f1fa-4408-b72f-62ba6799b0ea
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/clips-search
+        - id: 2224cdf8-27c0-4f88-81d3-637c5bd71756
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips-search&var-container=clips-search&from=now-1h&to=now
+        - id: 6bb32508-1060-443f-b8c3-192988dc4fb1
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - video-platform
+    metricSources: {}
+    tribe: reach
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: geoip
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c05e76e0-69ee-4912-bfa9-1ed53f36727d
+    name: geoip
+    slug: svc-geoip
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 465b9c0a-2697-4019-b846-4cbb2d8e98a7
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/geoip
+        - id: eb29dae8-afa1-41e1-8f05-03acdb2261c8
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=geoip&var-container=geoip&from=now-1h&to=now
+        - id: 55d179aa-2537-4909-b944-460afd2c6324
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - geoip
+        - monetization
+        - sponsorship-integration
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: relevance-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/eb0f3768-191b-4d04-a4df-93e820997ea1
+    name: relevance-service
+    slug: svc-relevance-service
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: adfbb867-76e0-4d6b-9a97-d0aa027272b2
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/relevance-service
+        - id: a8286713-fb6c-428c-a786-ed11aa818641
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=relevance-service&var-container=relevance-service&from=now-1h&to=now
+        - id: 4d9f9acf-3b73-4253-931c-627a3efcde18
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: category-tiles
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/bd4cdcbb-9e47-48a4-9334-91d68d6acfa6
+    name: category-tiles
+    slug: svc-category-tiles
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 7bb1e433-5cde-4b5c-9d6c-3f0d038f9d1a
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/category-tiles
+        - id: 5e1be00e-02d3-4236-a673-2f0346c6467f
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=category-tiles&var-container=category-tiles&from=now-1h&to=now
+        - id: aecff889-b9df-47b6-8bf8-90b198dc860d
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: users-gdpr
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e75e7c2a-302a-45b6-98fc-ad977c97d475
+    name: users-gdpr
+    slug: svc-users-gdpr
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: d0b9ff26-18b7-49ce-9efb-a781bb469bc4
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/users-gdpr
+        - id: 16861b13-58be-4b1b-ab91-4c4854b9b50e
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-gdpr&var-container=users-gdpr&from=now-1h&to=now
+        - id: 05a19f1a-28c3-4bad-a0fd-f27185a5412c
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - fan-activation
+        - users-gdpr
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-external-accounts
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/0c4398d2-cc1e-4ede-bd42-694589f9a57d
+    name: ott-external-accounts
+    slug: svc-ott-external-accounts
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: d16a80c5-1645-445a-a75e-3be0ee6a9f1f
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/ott-external-accounts
+        - id: 52020636-f2e9-49ea-8d35-23c132a9f95e
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-external-accounts&var-container=ott-external-accounts&from=now-1h&to=now
+        - id: b1da0ebd-6687-4681-b834-41789fb8f2de
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - ott
+        - live-video
+    metricSources: {}
+    tribe: ott
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: xpa-mobile-backend
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c30e0a5e-fed5-46ee-9ed2-692fa6153727
+    name: xpa-mobile-backend
+    slug: svc-xpa-mobile-backend
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: bf6c6b84-7f1d-41b1-9f05-3a6fb6f9d46e
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/xpa-mobile-backend
+        - id: defe2e30-9a6e-4c6c-95a9-0fa6a4722ae9
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-mobile-backend&var-container=xpa-mobile-backend&from=now-1h&to=now
+        - id: 03526f27-3a6e-4551-8cfd-f8839a842b0b
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - xpa-mobile-backend
+        - engagement
+        - matchxp
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: mediation-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f3d53bff-943e-4f01-88c1-bb167f029145
+    name: mediation-api
+    slug: svc-mediation-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 4c76793d-dfca-4b32-a41d-23530173f594
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/mediation-api
+        - id: 15adb738-c9d3-4582-a05f-12ebf160da59
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=mediation-api&var-container=mediation-api&from=now-1h&to=now
+        - id: 7071159c-bdc8-4d85-8f62-b91f1b45c282
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - mediation-api
+        - monetization
+        - media-advertising
+    metricSources: {}
+    tribe: monetization
+    squad: media-advertising
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: neznaika
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/296065ac-b4e2-455f-a30b-9a39cda8cdb5
+    name: neznaika
+    slug: svc-neznaika
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: c5c26ba9-318a-4f9c-8736-619a2a6de7a7
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/neznaika
+        - id: fc086ba0-589a-4e33-8e03-ffce6c433d68
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=neznaika&var-container=neznaika&from=now-1h&to=now
+        - id: c5f836ab-1783-408e-b0e3-9c171384b9f2
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - content
+        - neznaika
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-mediation
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/5db4f257-16ac-4efa-8f19-445c7061f2b3
+    name: ott-mediation
+    slug: svc-ott-mediation
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 100a5beb-2f16-4928-ad9e-e54985821e33
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/ott-mediation
+        - id: be45fa45-de5b-483b-8009-780d951a2560
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-mediation&var-container=ott-mediation&from=now-1h&to=now
+        - id: 26f18935-db8b-49a0-a9ff-2ace9a642ab4
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - ott-mediation
+        - engagement
+        - live-video
+    metricSources: {}
+    tribe: engagement
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: xpa-tv-backend
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/a3888a60-69a3-4b93-8835-24ee492cfa3d
+    name: xpa-tv-backend
+    slug: svc-xpa-tv-backend
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 94079f9c-c42d-4b4f-8f92-37363dd18076
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/xpa-tv-backend
+        - id: a8308f1f-0325-47ac-85ee-8d20598351c6
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-tv-backend&var-container=xpa-tv-backend&from=now-1h&to=now
+        - id: 19d3549f-864c-4eec-b655-d9caa56a7db6
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - xpa-tv-backend
+        - engagement
+        - live-video
+    metricSources: {}
+    tribe: engagement
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: image-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/725d8dba-88b4-4917-a01b-845fc7ee60c0
+    name: image-service
+    slug: svc-image-service
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: b8f980dd-0cbd-4c66-baad-1516a27cdb95
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/image-service
+        - id: 4751f698-c542-4163-921d-6a972dd58e92
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=image-service&var-container=image-service&from=now-1h&to=now
+        - id: b7943c8a-812f-47f1-a36a-7827b38b873f
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: cheburashka
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2db57fe7-a488-44e8-bd0c-06568843779f
+    name: cheburashka
+    slug: svc-cheburashka
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: f21e110a-e4ae-4021-87c8-cd1304a4f530
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/cheburashka
+        - id: d096201f-f401-455a-ad9d-0a805f2834f5
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cheburashka&var-container=cheburashka&from=now-1h&to=now
+        - id: ac30ed0d-9903-42eb-a746-bf266d7869d9
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - cheburashka
+        - engagement
+        - matchxp
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: archive
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2ec13921-15eb-4196-94b0-1ac05ecaf53d
+    name: archive
+    slug: svc-archive
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: f570b3e0-f03a-436b-8f3f-77ea66414c57
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/archive
+        - id: fbc92367-6725-4ee5-a610-17dc985b9a21
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=archive&var-container=archive&from=now-1h&to=now
+        - id: da1e00bc-95ca-4928-b3da-99f620a5da6a
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - matchxp
+        - archive
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: creators-content
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f36e5638-865b-4bba-9e14-9160de5d126d
+    name: creators-content
+    slug: svc-creators-content
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 70cf3957-50c3-4a12-bc80-3db94c821a04
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/creators-content
+        - id: 783e804f-beb3-4e94-924a-e8fb8df13801
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=creators-content&var-container=creators-content&from=now-1h&to=now
+        - id: af6c82e2-17eb-4fe1-8f0f-3add14075d0c
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - video-platform
+    metricSources: {}
+    tribe: reach
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: search-gateway-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f73dea15-1108-474a-8abe-692c0af7f8a8
+    name: search-gateway-api
+    slug: svc-search-gateway-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: a40d9fd4-3a29-4707-872d-d78c062b6a69
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/search-gateway-api
+        - id: 9332fdb7-c50b-4363-b6ad-fd30c7f95e30
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=search-gateway-api&var-container=search-gateway-api&from=now-1h&to=now
+        - id: 5ef7bdbe-ea8a-4643-a822-108fcae97781
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: tv-guide-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f378f008-b614-4d92-bf38-60bb8c2c9bc4
+    name: tv-guide-api
+    slug: svc-tv-guide-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 3d8a24bb-a741-41c4-ba3d-8b3c3e970ca3
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/tv-guide-api
+        - id: a884e758-2367-4de6-bc20-c85716eab62a
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=tv-guide-api&var-container=tv-guide-api&from=now-1h&to=now
+        - id: dd2f8daf-b4aa-4daf-9819-2cb5dcf41ffa
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - monetization
+        - sponsorship-integration
+        - tv-guide-api
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: quiz-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/6eae029b-2918-4e46-83c3-cf20280f70b2
+    name: quiz-api
+    slug: svc-quiz-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: ffae0444-22b2-4885-9743-0469aacd35da
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/quiz-api
+        - id: 583ea04d-3c89-40b7-950b-40a723a30b6b
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=quiz-api&var-container=quiz-api&from=now-1h&to=now
+        - id: 51c4166c-d691-4624-b163-4dccd135d761
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - monetization
+        - sponsorship-integration
+        - quiz-api
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: web-url-redirector
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e4f6ec63-905e-4680-af88-55904c45df40
+    name: web-url-redirector
+    slug: svc-web-url-redirector
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: f2f01efc-7726-49de-a780-b6129a1657ec
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/web-url-redirector
+        - id: e4ebf677-e954-4014-a6d8-7aa426ea1a10
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=web-url-redirector&var-container=web-url-redirector&from=now-1h&to=now
+        - id: 2daae0da-6737-4b41-90a9-3308a6d50f7b
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - consumer-web
+    metricSources: {}
+    tribe: reach
+    squad: consumer-web
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: lead-gen-campaign-manager-web
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/5d4dc3a1-6a69-4ae4-8e1b-78809d318890
+    name: lead-gen-campaign-manager-web
+    slug: svc-lead-gen-campaign-manager-web
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 0b848526-490f-486b-bbfb-71abba29ee34
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/lead-gen-campaign-manager-web
+        - id: 3a6e9910-98c9-4477-9257-63028795fc6d
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=lead-gen-campaign-manager-web&var-container=lead-gen-campaign-manager-web&from=now-1h&to=now
+        - id: fa04499f-8b03-48c0-87f5-7260963a5c54
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - lead-gen-campaign-manager-web
+        - monetization
+        - sponsorship-integration
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: funtik
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/40c1a7c6-a6d6-4c36-b19b-ba39ad1c66b9
+    name: funtik
+    slug: svc-funtik
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: e74a6562-7524-4929-982b-231362bfc82a
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/funtik
+        - id: 540a9dd3-e40d-4f8f-a01a-88b789d7f168
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=funtik&var-container=funtik&from=now-1h&to=now
+        - id: c076700b-df0c-4950-908c-4301bfb96d67
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - content
+        - funtik
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ws-receiver
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c05d39da-5a4b-4d65-a637-29f332541428
+    name: ws-receiver
+    slug: svc-ws-receiver
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 197e78ad-4281-4295-8148-ece8f291e102
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/ws-receiver
+        - id: a2457f1a-fc50-44b9-abfd-0fadb63ad9a0
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ws-receiver&var-container=ws-receiver&from=now-1h&to=now
+        - id: 70d714b7-d8be-4393-b1a5-a6069dd1a0ce
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - matchxp
+        - ws-receiver
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: editorjs-translator
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c7d97d88-b435-49a2-987e-1359ba1a78c0
+    name: editorjs-translator
+    slug: svc-editorjs-translator
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 01d80a0f-aac5-4faa-a652-4ce966996e71
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/editorjs-translator
+        - id: 78b851db-4c47-4ac7-ba0d-24efbd6bfcc5
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=editorjs-translator&var-container=editorjs-translator&from=now-1h&to=now
+        - id: 1685e48e-cb34-4bb5-8d76-01d0390ab37a
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - content
+        - editorjs-translator
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: betting-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7f1bc514-883c-4cb5-a898-3cb8df7dfb7d
+    name: betting-api
+    slug: svc-betting-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 732e89f7-d719-4211-8a5d-80a559068840
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/betting-api
+        - id: c6b40156-ac89-455d-9963-9aac758e9a62
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=betting-api&var-container=betting-api&from=now-1h&to=now
+        - id: 3a8df3f5-4912-4cea-9cd7-f880b8248a18
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - sponsorship-integration
+        - betting-api
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: news
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f6a2a669-fbb9-4547-bf5d-e3e09e722c22
+    name: news
+    slug: svc-news
+    description: News public API.
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 23cd8dd5-a61f-4b9c-a16e-6e8ab6b33f94
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/news
+        - id: 92239e38-a0a7-4b8b-9cd4-2833270a5866
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=news&var-container=news&from=now-1h&to=now
+        - id: 3c931086-7847-4602-8fbf-9274adab6c01
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-live-sessions
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c9d7566c-be98-4144-ab78-f70c5cf02f44
+    name: ott-live-sessions
+    slug: svc-ott-live-sessions
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: ff5369c8-3821-4433-b239-bedf355ec79b
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/ott-live-sessions
+        - id: 5cf9b73a-57ac-4a30-8b3d-e913ae1aab29
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-live-sessions&var-container=ott-live-sessions&from=now-1h&to=now
+        - id: 8162223c-52cf-47d8-9ebc-e4378c840fdc
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - live-video
+        - ott-live-sessioins
+    metricSources: {}
+    tribe: engagement
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: resolver-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2fe98606-b08a-4672-a3d4-a906f5fc529e
+    name: resolver-api
+    slug: svc-resolver-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 895f6a82-7d43-453e-8c99-a3dc7b297d48
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/resolver-api
+        - id: efdf29ba-8966-47f4-a1ed-d24b9c7b6dc7
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=resolver-api&var-container=resolver-api&from=now-1h&to=now
+        - id: bf1c1459-c9a9-4a07-81cb-65d7b93fb73d
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - resolver-api
+        - engagement
+        - matchxp
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: scores-mixer
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef9b874e-51c1-458d-98a4-182c23bf7b9c
+    name: scores-mixer
+    slug: svc-scores-mixer
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 07dadf65-d589-4011-842b-a3c3d23979e9
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/scores-mixer
+        - id: 62247ba8-f922-4f14-8336-1eb946966c8a
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=scores-mixer&var-container=scores-mixer&from=now-1h&to=now
+        - id: 6890f0d9-8ff6-4b37-aee6-c7c78f1389b6
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - matchxp
+        - scores-mixer
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: gam-mrss-generator
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/fbc10cb7-b3e1-4fe8-9349-47b8e78e8cae
+    name: gam-mrss-generator
+    slug: svc-gam-mrss-generator
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: eb42c3d1-adb1-48c6-a0f2-86b29957732d
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/gam-mrss-generator
+        - id: 4c908f51-73e2-44fd-8c91-4d7c11bfdca2
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=gam-mrss-generator&var-container=gam-mrss-generator&from=now-1h&to=now
+        - id: 617d8b17-3432-4306-b0d3-25e7b1c408dd
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - gam-mrss-generator
+        - reach
+        - content
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: polls-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/eddbd548-ae84-48ca-a608-3e9e2a69e6b8
+    name: polls-api
+    slug: svc-polls-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 2095470a-ae70-442f-aea1-70cbfc57b9a7
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/polls-api
+        - id: 7c8d3eb6-e4cf-40a7-bbb4-791a134dc26f
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=polls-api&var-container=polls-api&from=now-1h&to=now
+        - id: c060cbe9-d219-47da-8bed-44ca50dd568d
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - fan-activation
+        - polls-api
+    metricSources: {}
+    tribe: reach
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: backstage
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/76104968-63fc-498e-b374-f2b3df2b24f6
+    name: backstage
+    slug: svc-backstage
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 30cede0a-ab0d-4697-9322-0e2bd7a94bec
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/backstage
+        - id: 76149b23-5a24-4bb6-b6d5-26de39312bac
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=backstage&var-container=backstage&from=now-1h&to=now
+        - id: f14ec903-b54b-4cea-a9a5-af81d39139ad
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - platform
+        - cloud-runtime
+    metricSources: {}
+    tribe: platform
+    squad: cloud-runtime
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: personalisation-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/637e437c-4fc7-4786-b669-3f259fa7c97c
+    name: personalisation-service
+    slug: svc-personalisation-service
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: bcd3b16a-4eb2-417c-bc89-7026a4c2727a
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/personalisation-service
+        - id: 2779cb88-0b35-4b09-860e-66aaefc9d13e
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=personalisation-service&var-container=personalisation-service&from=now-1h&to=now
+        - id: 456770bb-17a1-424e-b043-6eb931df4bb3
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - personalisation
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: bookmarks
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/99c8d39d-84c3-4973-b287-a58f243d82da
+    name: bookmarks
+    slug: svc-bookmarks
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: feb3dee9-fb13-482e-bb10-3007419a4c80
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/bookmarks
+        - id: 71717604-f366-4bfc-9699-718f262bf513
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=bookmarks&var-container=bookmarks&from=now-1h&to=now
+        - id: c20baf69-50d3-497a-a9dd-abae93fba1c9
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: content-tags-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/12548282-0056-470c-9055-7002fbdcf602
+    name: content-tags-api
+    slug: svc-content-tags-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 754fdc68-0952-413b-9ed8-927bd9d6763e
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/content-tags-api
+        - id: e182f875-ca00-4591-b249-171e3c3c457e
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-tags-api&var-container=content-tags-api&from=now-1h&to=now
+        - id: 631ceb6b-875a-4326-8760-1df035aa812c
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: content-recommender
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/8458231a-1932-45d9-a08d-a99b4165f995
+    name: content-recommender
+    slug: svc-content-recommender
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: d9241710-daee-43cd-b6ae-2ad0df989789
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/content-recommender
+        - id: 5da9d826-b020-468d-94fb-23bda02ffe15
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-recommender&var-container=content-recommender&from=now-1h&to=now
+        - id: e8493e78-17ab-4056-8cfd-ee89eb8db793
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: live-ticker-importer
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/70952a24-ec82-4fc2-925f-e3c2f7cb3aa3
+    name: live-ticker-importer
+    slug: svc-live-ticker-importer
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: eb2750e0-85fc-467f-b2d4-96c30f94c744
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/live-ticker-importer
+        - id: 5d85b20f-7660-4e6a-b507-500d94f6be0f
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=live-ticker-importer&var-container=live-ticker-importer&from=now-1h&to=now
+        - id: 2741acba-56e7-4448-9ba5-8f404eaf8c38
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - matchxp
+        - live-ticker-importer
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: idp-wrapper
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c8fe5d35-641d-4aff-afc6-8595e9014a06
+    name: idp-wrapper
+    slug: svc-idp-wrapper
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: e53fa77a-d869-45c3-a8b9-8f70cd8b392e
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/idp-wrapper
+        - id: 587fe23c-5220-4940-8564-96d2947e02ce
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=idp-wrapper&var-container=idp-wrapper&from=now-1h&to=now
+        - id: eab74741-d91e-4391-96bf-8e3c4dc5beec
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - cloud-runtime
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: cloud-runtime
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: clips-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef765846-b4d1-4ed0-b07d-6e4c32350b25
+    name: clips-api
+    slug: svc-clips-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 2d36f3cb-998b-4d07-a72b-46d0f5aa2a53
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/clips-api
+        - id: 9472c58c-5c1d-4908-935a-7324eda94b52
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips-api&var-container=clips-api&from=now-1h&to=now
+        - id: e64fd4a1-f28d-44f4-8d55-9ecc6cae546f
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - video-platform
+        - clips-api
+    metricSources: {}
+    tribe: reach
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: entity-resolution
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c4da7e9c-40d2-44bb-be39-e2c25761b3e3
+    name: entity-resolution
+    slug: svc-entity-resolution
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: a104e20a-89c3-4552-93a8-352b7a4d8829
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/entity-resolution
+        - id: d77a7802-24df-47f8-8015-e90fdd3afee1
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=entity-resolution&var-container=entity-resolution&from=now-1h&to=now
+        - id: 46282df5-795e-47b0-b7fe-20dc0eda48a6
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - matchxp
+        - entity-resolution
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: campaign-manager
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/cbdbf80e-16f5-4822-b8ea-377f72e517f2
+    name: campaign-manager
+    slug: svc-campaign-manager
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: a2a856bf-42f2-4357-a819-f523fb82206f
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/campaign-manager
+        - id: 9e5650e5-e92d-44a5-98a6-944a0b9cc28e
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=campaign-manager&var-container=campaign-manager&from=now-1h&to=now
+        - id: 542e9bcc-f522-4bc1-8be5-050a3e448eae
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - monetization
+        - sponsorship-integration
+        - campaign-manager
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: specialone-slackbot
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/a5bf32a0-6606-4d47-bd83-3e93782cd056
+    name: specialone-slackbot
+    slug: svc-specialone-slackbot
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 8dc6ca54-60cd-4f5b-96b3-331fe9f6d603
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/specialone-slackbot
+        - id: 66126863-b33c-4e15-b0b3-ac9c0487c18b
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=specialone-slackbot&var-container=specialone-slackbot&from=now-1h&to=now
+        - id: 96f109a8-30b5-413f-a9e0-522e7fa01ccf
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - live-video
+        - specialone-slackbot
+    metricSources: {}
+    tribe: engagement
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: users-pii
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/1d25165b-dc1f-4720-b639-938a424b1d42
+    name: users-pii
+    slug: svc-users-pii
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/users-pii
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-pii&var-container=users-pii&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - fan-activation
+        - users-pii
+        - reach
+    metricSources:
+        Build success rate:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/bbe7ffa1-ee5b-4bbe-8d8b-f866298ed732
+            name: ""
+            metric: ""
+            facts:
+                all: []
+                any: []
+                inspect: null
+        Build time:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1a25b0ea-95eb-415e-83f8-7091e8f3fec3
+            name: ""
+            metric: ""
+            facts:
+                all: []
+                any: []
+                inspect: null
+        Mean time to resolve:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ab637137-b30c-4970-9ac9-a94611b98a81
+            name: ""
+            metric: ""
+            facts:
+                all: []
+                any: []
+                inspect: null
+        Recent incidents:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1813df0f-0e4b-420b-8f1d-2755b04705dd
+            name: ""
+            metric: ""
+            facts:
+                all: []
+                any: []
+                inspect: null
+    tribe: reach
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/0c3315ff-6ac5-45c3-9af3-de29580ae412
+    name: ott-api
+    slug: svc-ott-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 3989559a-7c38-4432-b7b7-5ecfc56e1768
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/ott-api
+        - id: 7cf7ada5-b55a-4c3b-83c0-d7d35b128221
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-api&var-container=ott-api&from=now-1h&to=now
+        - id: 1a5ba04b-aae0-4619-af52-54dbe2707a22
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - ott-api
+        - engagement
+        - live-video
+    metricSources: {}
+    tribe: engagement
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: watch
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7510aec4-27cc-4b62-8cdb-98f849e8ce31
+    name: watch
+    slug: svc-watch
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: aca85995-fdb3-4cd2-a4b7-5a0822370432
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/watch
+        - id: d009a31a-7357-421d-9236-6496d38a1b6e
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=watch&var-container=watch&from=now-1h&to=now
+        - id: 58c9919f-70c9-4417-a26d-b5700f345318
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - live-video
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: consumer-web-v3
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/674e7b1d-a997-49d8-a6b7-78898689c202
+    name: consumer-web-v3
+    slug: svc-consumer-web-v3
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 37a07d7c-040b-491d-b7c2-f4e3515bc123
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/consumer-web-v3
+        - id: f3720e11-fb49-4ec5-9315-ff641d5a22d2
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=consumer-web-v3&var-container=consumer-web-v3&from=now-1h&to=now
+        - id: f494708c-034f-4d3d-8354-d5846c3ff8ac
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - consumer-web
+    metricSources: {}
+    tribe: reach
+    squad: consumer-web
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: network-admin-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/0a150d07-b232-4be5-868a-8639625df323
+    name: network-admin-api
+    slug: svc-network-admin-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 9cae6c52-f2f5-46de-b0d7-5c9526a6c8d0
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/network-admin-api
+        - id: 6713330d-213b-471a-8cf8-1454d4815a2e
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=network-admin-api&var-container=network-admin-api&from=now-1h&to=now
+        - id: 2904658a-2332-479c-9eeb-4a72ea67e7a3
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - content
+        - network-admin-api
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: gitleaks-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e648e5d2-ffc6-427b-b32b-5c0153cf18e3
+    name: gitleaks-api
+    slug: svc-gitleaks-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: a1523256-8fb7-4d57-92b2-21173470e100
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/gitleaks-api
+        - id: 2aec131d-6a39-4f84-bfd4-e68d7f3ac839
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=gitleaks-api&var-container=gitleaks-api&from=now-1h&to=now
+        - id: afd8c34b-9224-4205-a4e3-d8c6b2b7ce04
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - platform
+        - developer-xp
+    metricSources: {}
+    tribe: platform
+    squad: developer-xp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: emelya
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/985a82c1-f06f-4517-aec8-0f24c5959b1e
+    name: emelya
+    slug: svc-emelya
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 6b44a023-e607-4dbc-857a-e2bc1b4cd3eb
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/emelya
+        - id: c4f37781-c2e0-4fd2-b644-9e4e6004237b
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=emelya&var-container=emelya&from=now-1h&to=now
+        - id: e40393dd-4160-4a0f-a716-bb9a914bccab
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - matchxp
+        - emelya
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: experimental-thumbor
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/34b14244-2e37-490e-a5b8-fa08d57f2a03
+    name: experimental-thumbor
+    slug: svc-experimental-thumbor
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: a212644a-2320-4bb0-b57a-4ec104e48b47
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/experimental-thumbor
+        - id: 0ab06df1-83c5-4a94-9c1a-10b7f80b6466
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=experimental-thumbor&var-container=experimental-thumbor&from=now-1h&to=now
+        - id: 8d1cc6d3-2ba4-452a-8eac-8d586684be73
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - platform
+        - developer-xp
+    metricSources: {}
+    tribe: platform
+    squad: developer-xp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: consumer-web-v2
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/a2d824a4-13c0-4793-b19d-3b988c1d884b
+    name: consumer-web-v2
+    slug: svc-consumer-web-v2
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: f049479b-a5a2-475b-b829-0c9cdfc2019a
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/consumer-web-v2
+        - id: 6d126064-d679-4294-99bc-5ae2c3b8c7b3
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=consumer-web-v2&var-container=consumer-web-v2&from=now-1h&to=now
+        - id: 78aa9183-cd4d-41d8-b206-7273caf8e09d
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - consumer-web-v2
+        - reach
+        - consumer-web
+    metricSources: {}
+    tribe: reach
+    squad: consumer-web
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: clips
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/23935b4e-8733-4703-8d2c-eef91e983c35
+    name: clips
+    slug: svc-clips
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: cf7c720c-5db4-440b-b1f5-c3bad3755472
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/clips
+        - id: ba284721-153a-4c57-a088-a183de3ca716
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips&var-container=clips&from=now-1h&to=now
+        - id: e57029c9-f5e1-4ffc-86a1-ed66a1c5ccb8
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - video-platform
+        - clips
+    metricSources: {}
+    tribe: reach
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: image-uploader
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/dc09ae52-4e56-48f1-9055-9044e7dec8ef
+    name: image-uploader
+    slug: svc-image-uploader
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 028c6a6a-f8ec-4487-8adb-90f6735df19b
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/image-uploader
+        - id: 89c9a9b7-ef54-44a1-a94b-b50dd35ccdb7
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=image-uploader&var-container=image-uploader&from=now-1h&to=now
+        - id: eabdca0f-4f53-4f03-a05a-633f1f412385
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - image-uploader
+        - monetization
+        - sponsorship-integration
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: push
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f2952300-e49f-44bc-af8a-a11982296623
+    name: push
+    slug: svc-push
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: c6807a6f-ab7b-435e-8089-f489ecb2fac4
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/push
+        - id: b506250f-7394-4c15-9711-a4fb1d2450ed
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=push&var-container=push&from=now-1h&to=now
+        - id: 731de813-c01c-4a1e-a2cd-96906d75085d
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - matchxp
+        - push
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: umka
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/48fe5e08-a901-4835-bd8a-c87f845beff7
+    name: umka
+    slug: svc-umka
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: b1e0983a-b779-4c17-bc9b-d1a3d2c01485
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/umka
+        - id: fc599b42-25c6-4a80-a37e-08bf1a342285
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=umka&var-container=umka&from=now-1h&to=now
+        - id: 6c748203-36db-44e2-84df-756808e366fe
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: webhook-receiver
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/1b569b16-beab-4706-9ff6-e4bfc902f494
+    name: webhook-receiver
+    slug: svc-webhook-receiver
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 7401fc9e-4687-493d-9e3c-f08fcb623816
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/webhook-receiver
+        - id: ab90f525-5777-4555-b664-2421ca83f4f8
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=webhook-receiver&var-container=webhook-receiver&from=now-1h&to=now
+        - id: aecdaa22-fc58-458c-9ec9-4077a5ab635b
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - webhook-receiver
+        - engagement
+        - matchxp
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: web-payments-backend
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/857101b7-a8ea-402f-821f-21c37cc78d50
+    name: web-payments-backend
+    slug: svc-web-payments-backend
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 05bb95af-4805-4ba6-a041-37e2933acd39
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/web-payments-backend
+        - id: 8fd80f41-729b-4bf7-9ed8-f3b3a8d4b1a0
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=web-payments-backend&var-container=web-payments-backend&from=now-1h&to=now
+        - id: 341c7279-ec9b-40cd-a0e1-3205ee3a612f
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - live-video
+        - web-payments-backend
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: promo
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d8f2b380-a5a9-415e-86d8-39d8d443705f
+    name: promo
+    slug: svc-promo
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: fd770b84-71d5-49e3-88fa-b868cb766f2f
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/promo
+        - id: 5a525613-b375-49e5-85f0-d36480b6e35e
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=promo&var-container=promo&from=now-1h&to=now
+        - id: 11bb10d3-9520-4915-b643-e897d718e4b4
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - monetization
+        - sponsorship-integration
+        - promo
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: cdp-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/9040be19-71fb-4fff-8069-31b936e44aa3
+    name: cdp-api
+    slug: svc-cdp-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 269dbac2-a508-43aa-b51e-1747d7fad40b
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/cdp-api
+        - id: 77a0791d-1467-4115-953a-4b46f44d864a
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cdp-api&var-container=cdp-api&from=now-1h&to=now
+        - id: 409cb03f-23c4-4312-91b7-87028c5acf0e
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - data-platform
+        - dacore
+    metricSources: {}
+    tribe: data-platform
+    squad: dacore
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: loyalty-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/8bf622ff-5b54-4c99-96e6-5a62e098c14c
+    name: loyalty-service
+    slug: svc-loyalty-service
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 1795e972-b4bc-471e-bebe-9a4869e0a448
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/loyalty-service
+        - id: f25b2995-050c-4059-bc23-8ee58dc8db35
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=loyalty-service&var-container=loyalty-service&from=now-1h&to=now
+        - id: 3aa6b427-7c1f-4511-bf4a-ee433547b7e3
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - monetization
+        - loyalty-program
+    metricSources: {}
+    tribe: monetization
+    squad: loyalty-program
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: prometheus-exporter
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/a0cac0fc-5671-48ca-a1d3-44a2650ea61d
+    name: prometheus-exporter
+    slug: svc-prometheus-exporter
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 02a778a4-cba1-4430-aa33-ac56000881fc
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/prometheus-exporter
+        - id: b35ed2b2-2328-48b2-b618-4f2c23e8fe29
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=prometheus-exporter&var-container=prometheus-exporter&from=now-1h&to=now
+        - id: 1ab7f30a-9696-44a7-889f-2230089f3b57
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - platform
+        - cloud-runtime
+    metricSources: {}
+    tribe: platform
+    squad: cloud-runtime
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: simple-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/3a761981-564b-46de-909d-6a106656eff9
+    name: simple-service
+    slug: svc-simple-service
+    description: Simple-service is a no-nonsense, do-what-it-needs-to-do kind of service. It reads a lot, writes a little, and somehow still manages to act important. If databases had best friends, Simple RDS would be its ride-or-die.
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 9eb83747-5b00-4073-a028-a8355ef782ec
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/simple-service
+        - id: 7e4202cf-43a9-41c0-80ae-8ca3fcdf8f44
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+        - id: c3d62084-dd5b-4fbe-8d28-e9b9d48da52e
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - platform
+        - cloud-runtime
+    metricSources: {}
+    tribe: platform
+    squad: cloud-runtime
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: creators-network
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7235f460-e13b-41ea-b14c-42a57c28d228
+    name: creators-network
+    slug: svc-creators-network
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 19b6d8ac-e69d-44dd-b4f4-6204500fcb48
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/creators-network
+        - id: 85c2925d-4e10-4ea8-8d38-7bee2aa9f22f
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=creators-network&var-container=creators-network&from=now-1h&to=now
+        - id: 599113f4-4cf3-4a3b-a25b-377b90921f84
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - content
+        - creators-network
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: happy-keldysh
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/878825f8-a619-4b9c-b886-9e7ec53369fc
+    name: happy-keldysh
+    slug: svc-happy-keldysh
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 91dfa7e1-10d2-4566-860a-6248f83ae320
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/happy-keldysh
+        - id: 62951def-edc8-4364-ba0b-b4e77a8e56bc
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=happy-keldysh&var-container=happy-keldysh&from=now-1h&to=now
+        - id: 78c9b0b6-11cf-4aa6-b380-a6a944c731d2
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - dacore
+        - data-platform
+    metricSources: {}
+    tribe: data-platform
+    squad: dacore
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-probe
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d3289a22-e490-4b13-aac2-ca5d0b3337fd
+    name: ott-probe
+    slug: svc-ott-probe
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: dcf4083a-61ed-43fd-b272-65af0afb5527
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/ott-probe
+        - id: add8b65b-83b2-4108-8004-6ecdf82c7e94
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-probe&var-container=ott-probe&from=now-1h&to=now
+        - id: 8672f8f5-5b4c-42af-ab76-f99bfb05ebdc
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - live-video
+        - ott-probe
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: oncall-compensation
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/9a618fa7-8be9-4132-8a7b-a7765548bdf4
+    name: oncall-compensation
+    slug: svc-oncall-compensation
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: f6a02c6a-ea87-4207-ade2-4da16942b47c
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/oncall-compensation
+        - id: 749f8470-29ed-4ab3-9342-480d9a660043
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=oncall-compensation&var-container=oncall-compensation&from=now-1h&to=now
+        - id: 38a210db-b2d9-4909-81d9-5a7cebdc6d9f
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - platform
+        - developer-xp
+    metricSources: {}
+    tribe: platform
+    squad: developer-xp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: competition-sorting-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b9fc9d1f-6937-498c-b2e8-6533ace413e0
+    name: competition-sorting-api
+    slug: svc-competition-sorting-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 85096800-c9f7-437a-b7c5-53b577c4ea8b
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/competition-sorting-api
+        - id: 770b2391-3cf1-46b2-86a9-51d27d6f9ee5
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=competition-sorting-api&var-container=competition-sorting-api&from=now-1h&to=now
+        - id: 1fb4f391-6180-4593-a499-49644f04c8ff
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - competition-sorting-api
+        - engagement
+        - matchxp
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: external-highlights
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/27522778-e845-44c9-8983-1f035f000b8d
+    name: external-highlights
+    slug: svc-external-highlights
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 2f6d4bfe-cdb7-47a4-9ab3-5474380eee83
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/external-highlights
+        - id: 85080b1f-4608-4b6a-8e46-7718e24594bd
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=external-highlights&var-container=external-highlights&from=now-1h&to=now
+        - id: 18ec82d3-8974-414e-8c90-318ad7b8f3af
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - engagement
+        - matchxp
+        - external-highlights
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: streaming-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/38c1a9a2-58a3-4f0b-8305-5bac76a283df
+    name: streaming-service
+    slug: svc-streaming-service
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 2d1ad0af-5082-4b2a-8883-ec963364f5de
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/streaming-service
+        - id: e270a6bc-2127-4387-bee8-07432bd75f82
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=streaming-service&var-container=streaming-service&from=now-1h&to=now
+        - id: 7116b84d-1ceb-4ec5-9a93-35a94bc079d8
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - live-video
+        - streaming-service
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: analytics-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f3f24f49-5b56-4e55-9743-a994132ed363
+    name: analytics-service
+    slug: svc-analytics-service
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 81b56eb0-42a8-4580-9648-7ea0ee7dccf5
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/analytics-service
+        - id: 4424921c-3083-4233-8e93-c527dc045446
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=analytics-service&var-container=analytics-service&from=now-1h&to=now
+        - id: d93c1f35-1c00-4335-bdc3-63196cab6e4a
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - creators-network
+        - reach
+        - content
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: rich-push
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c796e605-3d75-46df-85e1-02cfd7516ca2
+    name: rich-push
+    slug: svc-rich-push
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: fcd4f6ee-2679-4f8a-9764-0ba7f1ed4869
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/rich-push
+        - id: 31430ef2-08e0-4db4-a270-f01446fd9899
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=rich-push&var-container=rich-push&from=now-1h&to=now
+        - id: 6438807e-2140-4a64-91c7-9e242ac73081
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - monetization
+        - sponsorship-integration
+        - rich-push
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: web-experience
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e316bb73-bd3e-46b4-b1a6-3c3b999980d2
+    name: web-experience
+    slug: svc-web-experience
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 2631d1ff-e296-4a2e-995d-158d8ad727b7
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/web-experience
+        - id: 86baf129-9d41-403f-8265-71b7b9ff609b
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=web-experience&var-container=web-experience&from=now-1h&to=now
+        - id: e507d5f2-ffc3-4650-ab67-e620287def3d
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - consumer-web
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: consumer-web
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: webserver
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/20f28093-00fa-4dda-a5e9-db6d1e7171e8
+    name: webserver
+    slug: svc-webserver
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: c8e15da5-dd38-48dd-9d54-79a979f35bee
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/webserver
+        - id: fd0481d5-a48a-4d3b-921e-440de4b98c18
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=webserver&var-container=webserver&from=now-1h&to=now
+        - id: 94812873-ddde-4fb0-8e8a-53082f29320a
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - consumer-web
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: consumer-web
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-load-test-proxy
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e3e7e34b-f5b8-4211-845c-3a6d9ba19c31
+    name: ott-load-test-proxy
+    slug: svc-ott-load-test-proxy
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 0f9420ab-8c90-4970-b0bd-bbfb87f09b7a
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/ott-load-test-proxy
+        - id: 74c844ed-c771-4049-9303-5b2d37622a4a
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-load-test-proxy&var-container=ott-load-test-proxy&from=now-1h&to=now
+        - id: 58579a13-b7f4-4d5c-890d-a65a0147170a
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - live-video
+        - ott-load-test-proxy
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: facts-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/8b420fa5-2bc2-4ca5-8178-9d522d319d1f
+    name: facts-api
+    slug: svc-facts-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: fc51ca7f-f0df-4adf-8959-2f5bd8eea399
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/facts-api
+        - id: d5f77561-f279-40b9-8050-aad9ed8b77a0
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=facts-api&var-container=facts-api&from=now-1h&to=now
+        - id: 36bd2065-17d4-41b5-9745-4cb912bf8e12
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - matchxp
+        - facts-api
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: lead-gen-campaign-web
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c2ddb695-19de-4509-89d8-6298d8768f7d
+    name: lead-gen-campaign-web
+    slug: svc-lead-gen-campaign-web
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: ba9d9d1f-10e4-4627-931b-f8131f90a922
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/lead-gen-campaign-web
+        - id: e22f3325-d1e3-4613-a201-b17b20ff3ea2
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=lead-gen-campaign-web&var-container=lead-gen-campaign-web&from=now-1h&to=now
+        - id: 16c4ac6e-f734-41a1-9aa4-14dd5c226313
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - lead-gen-campaign-web
+        - monetization
+        - sponsorship-integration
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: lead-gen-data-collector-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/859f9a75-a9ea-437a-8b06-401a98777376
+    name: lead-gen-data-collector-api
+    slug: svc-lead-gen-data-collector-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 51944fe2-5a74-4b17-938c-41cf0bd4dfda
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/lead-gen-data-collector-api
+        - id: 1587dffc-9c7a-47be-b3e9-04972198ed04
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=lead-gen-data-collector-api&var-container=lead-gen-data-collector-api&from=now-1h&to=now
+        - id: 2cbc6811-1c53-43f2-9b74-3533b3fe2ce0
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - monetization
+        - sponsorship-integration
+        - lead-gen-data-collector-api
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: content-classifier
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/aaa68c65-2243-4fbe-b292-eaee776782ac
+    name: content-classifier
+    slug: svc-content-classifier
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 259e151f-cd7b-4eaa-99aa-7e5dfea2d126
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/content-classifier
+        - id: 6c936059-c424-4e4e-bae2-ff62791c83e8
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-classifier&var-container=content-classifier&from=now-1h&to=now
+        - id: 3b4aab83-7e7d-4b1b-be82-a4a0c1557b43
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - personalisation
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: article-translator
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/4a68b439-e979-4a47-8b6b-05817688a8a0
+    name: article-translator
+    slug: svc-article-translator
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    links:
+        - id: 37c22b86-6bee-47aa-b029-131d4ee8f9c1
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/article-translator
+        - id: 7ba32aaf-ef65-4f93-a3c9-b4802d83f228
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-translator&var-container=article-translator&from=now-1h&to=now
+        - id: 96161df2-3e38-47d4-8f1c-5db0971a567b
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - reach
+        - content
+        - article-translator
+    metricSources: {}
+    tribe: reach
+    squad: content
