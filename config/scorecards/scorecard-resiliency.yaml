@@ -5,8 +5,8 @@ metadata:
     name: resiliency
 spec:
   name: resiliency
-  description: "TBD"
-  ownerId: null
+  description: "Guidelines to ensure that the service is ready for production. For details: https://onefootball.atlassian.net/wiki/spaces/CORE/pages/4908056637/Resiliency+Grading+System"
+  ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
   state: "PUBLISHED" # DRAFT - PUBLISHED
   componentTypeIds: ["SERVICE"]
   importance: REQUIRED

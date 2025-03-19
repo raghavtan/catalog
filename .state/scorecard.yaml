@@ -3,10 +3,10 @@ kind: Scorecard
 metadata:
     name: observability
 spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/76c8553e-7cee-45ec-b360-e72029137f40
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/8deac7cc-d061-4fb3-9b6b-dfd7142bb54e
     name: observability
-    description: TBD
-    ownerId: ""
+    description: 'Guidelines to ensure that the service is observable. For details: https://onefootball.atlassian.net/wiki/spaces/CORE/pages/4853530681/Observability+Grading+System'
+    ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
     state: PUBLISHED
     componentTypeIds:
         - SERVICE
@@ -18,7 +18,7 @@ spec:
             weight: 40
             name: instrumentation-check
             metricName: instrumentation-check
-            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/ec651e45-d88f-41e4-b796-ef3edabf8489
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             comparatorValue: 1
             comparator: EQUALS
         - hasMetricValue:
@@ -26,6 +26,70 @@ spec:
             weight: 60
             name: critical-alerts-slo-check
             metricName: critical-alerts-slo-check
-            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/e44a9fe3-99a8-42cd-8fd2-01a34b6a5111
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
+            comparatorValue: 1
+            comparator: EQUALS
+---
+apiVersion: of-catalog/v1alpha1
+kind: Scorecard
+metadata:
+    name: production-readiness
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/16289f2b-be8a-4aa2-a462-d996e3d32b73
+    name: production-readiness
+    description: 'Guidelines to ensure that the service is ready for production. For details: https://onefootball.atlassian.net/wiki/spaces/CORE/pages/4908318721/Production+Readiness+Grading+system'
+    ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
+    state: PUBLISHED
+    componentTypeIds:
+        - SERVICE
+    importance: REQUIRED
+    scoringStrategyType: WEIGHT_BASED
+    criteria:
+        - hasMetricValue:
+            id: ""
+            weight: 50
+            name: organizational-standards
+            metricName: organizational-standards
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
+            comparatorValue: 1
+            comparator: EQUALS
+        - hasMetricValue:
+            id: ""
+            weight: 50
+            name: deployment-readiness
+            metricName: deployment-readiness
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
+            comparatorValue: 1
+            comparator: EQUALS
+---
+apiVersion: of-catalog/v1alpha1
+kind: Scorecard
+metadata:
+    name: resiliency
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c9f4302-6a3e-4a87-a1d4-86339177c8e9
+    name: resiliency
+    description: 'Guidelines to ensure that the service is ready for production. For details: https://onefootball.atlassian.net/wiki/spaces/CORE/pages/4908056637/Resiliency+Grading+System'
+    ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
+    state: PUBLISHED
+    componentTypeIds:
+        - SERVICE
+    importance: REQUIRED
+    scoringStrategyType: WEIGHT_BASED
+    criteria:
+        - hasMetricValue:
+            id: ""
+            weight: 50
+            name: high-availability
+            metricName: high-availability
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
+            comparatorValue: 1
+            comparator: EQUALS
+        - hasMetricValue:
+            id: ""
+            weight: 50
+            name: adaptive-systems
+            metricName: adaptive-systems
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             comparatorValue: 1
             comparator: EQUALS
