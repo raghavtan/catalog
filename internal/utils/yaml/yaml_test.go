@@ -254,7 +254,7 @@ func TestParse(t *testing.T) {
 				os.RemoveAll(".state")
 			},
 			expected:  map[string]*TestDTO{},
-			expectErr: false,
+			expectErr: true,
 		},
 	}
 
