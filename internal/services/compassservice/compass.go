@@ -9,17 +9,26 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"mime/multipart"
 	"net/http"
+	"strings"
 
 	"github.com/machinebox/graphql"
+	"github.com/motain/of-catalog/internal/services/compassservice/dtos"
 	"github.com/motain/of-catalog/internal/services/configservice"
 )
 
 type CompassServiceInterface interface {
 	Run(ctx context.Context, query string, variables map[string]interface{}, response interface{}) error
 	SendMetric(body map[string]string) (string, error)
+	SendAPISpecifications(input dtos.APISpecificationsInput) (string, error)
 	GetCompassCloudId() string
 }
+
+const (
+	metricsV1Endpoint  = "/gateway/api/compass/v1/metrics"
+	apiSpecsV1Endpoint = "/gateway/api/compass/v1/component/:componentId/api_specs"
+)
 
 type CompassService struct {
 	gqlClient  GraphQLClientInterface
@@ -62,11 +71,41 @@ func (c *CompassService) SendMetric(body map[string]string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("failed to marshal body: %v", err)
 	}
-	req, err := http.NewRequest("POST", "/gateway/api/compass/v1/metrics", bytes.NewBuffer(jsonBody))
+
+	req, err := http.NewRequest(http.MethodPost, metricsV1Endpoint, bytes.NewBuffer(jsonBody))
 	if err != nil {
 		return "", fmt.Errorf("failed to create request: %v", err)
 	}
 
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Content-Type", "application/json")
+	return c.do(req)
+}
+
+func (c *CompassService) SendAPISpecifications(input dtos.APISpecificationsInput) (string, error) {
+	endpoint := strings.Replace(apiSpecsV1Endpoint, ":componentId", input.ComponentID, 1)
+
+	body, contentType, buildBodyErr := c.buildMultiPartBody(input)
+	if buildBodyErr != nil {
+		return "", fmt.Errorf("failed to build multipart body: %w", buildBodyErr)
+	}
+
+	req, requestErr := http.NewRequest(http.MethodPut, endpoint, body)
+	if requestErr != nil {
+		return "", fmt.Errorf("failed to create request: %w", requestErr)
+	}
+
+	req.Header.Set("Content-Type", contentType)
+	req.Header.Set("Accept", "application/json")
+
+	return c.do(req)
+}
+
+func (c *CompassService) GetCompassCloudId() string {
+	return c.cloudId
+}
+
+func (c *CompassService) do(req *http.Request) (string, error) {
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
 		return "", fmt.Errorf("failed to send request: %v", err)
@@ -89,6 +128,24 @@ func (c *CompassService) SendMetric(body map[string]string) (string, error) {
 	return string(respBody), nil
 }
 
-func (c *CompassService) GetCompassCloudId() string {
-	return c.cloudId
+func (c *CompassService) buildMultiPartBody(input dtos.APISpecificationsInput) (*bytes.Buffer, string, error) {
+	body := &bytes.Buffer{}
+	writer := multipart.NewWriter(body)
+
+	part, createFormFileErr := writer.CreateFormFile("file", input.FileName)
+	if createFormFileErr != nil {
+		return body, "", fmt.Errorf("failed to create form file: %w", createFormFileErr)
+	}
+
+	_, writeErr := part.Write([]byte(input.ApiSpecs))
+	if writeErr != nil {
+		return body, "", fmt.Errorf("failed to write to form file: %w", writeErr)
+	}
+
+	closeWriterErr := writer.Close()
+	if closeWriterErr != nil {
+		return body, "", fmt.Errorf("failed to close writer: %w", closeWriterErr)
+	}
+
+	return body, writer.FormDataContentType(), nil
 }

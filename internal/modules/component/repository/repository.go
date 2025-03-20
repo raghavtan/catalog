@@ -7,11 +7,13 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"strings"
 	"time"
 
 	"github.com/motain/of-catalog/internal/modules/component/repository/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/resources"
 	"github.com/motain/of-catalog/internal/services/compassservice"
+	compassdtos "github.com/motain/of-catalog/internal/services/compassservice/dtos"
 )
 
 type RepositoryInterface interface {
@@ -29,6 +31,9 @@ type RepositoryInterface interface {
 	// MetricSource operations
 	BindMetric(ctx context.Context, componentID string, metricID string, identifier string) (string, error)
 	UnbindMetric(ctx context.Context, metricSourceID string) error
+	// API Specications operations
+	SetAPISpecifications(ctx context.Context, componentID, apiSpecs, apiSpecsFile string) error
+	// Push metric value
 	Push(ctx context.Context, metricSourceID string, value float64, recordedAt time.Time) error
 }
 
@@ -299,6 +304,33 @@ func (r *Repository) UnbindMetric(ctx context.Context, metricSourceID string) er
 	return nil
 }
 
+func (r *Repository) Push(ctx context.Context, metricSourceID string, value float64, recordedAt time.Time) error {
+	requestBody := map[string]string{
+		"metricSourceId": metricSourceID,
+		"value":          fmt.Sprintf("%f", value),
+		"timestamp":      recordedAt.UTC().Format(time.RFC3339),
+	}
+
+	_, errSend := r.compass.SendMetric(requestBody)
+
+	return errSend
+}
+
+func (r *Repository) SetAPISpecifications(ctx context.Context, componentID, apiSpecs, apiSpecsFile string) error {
+	lastSlashIndex := strings.LastIndex(componentID, "/")
+	if lastSlashIndex == -1 {
+		return errors.New("invalid componentID format")
+	}
+
+	input := compassdtos.APISpecificationsInput{
+		ComponentID: componentID[lastSlashIndex+1:],
+		ApiSpecs:    apiSpecs,
+		FileName:    apiSpecsFile,
+	}
+	_, errSend := r.compass.SendAPISpecifications(input)
+	return errSend
+}
+
 func (r *Repository) initDocumentCategories(ctx context.Context) error {
 	if r.DocumentCategories != nil {
 		return nil
@@ -319,18 +351,6 @@ func (r *Repository) initDocumentCategories(ctx context.Context) error {
 	r.DocumentCategories = categories
 
 	return nil
-}
-
-func (r *Repository) Push(ctx context.Context, metricSourceID string, value float64, recordedAt time.Time) error {
-	requestBody := map[string]string{
-		"metricSourceId": metricSourceID,
-		"value":          fmt.Sprintf("%f", value),
-		"timestamp":      recordedAt.UTC().Format(time.RFC3339),
-	}
-
-	_, errSend := r.compass.SendMetric(requestBody)
-
-	return errSend
 }
 
 func (r *Repository) run(ctx context.Context, query string, variables map[string]interface{}, output interface{}, isSuccessful func() bool) error {

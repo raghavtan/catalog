@@ -70,8 +70,9 @@ func (ds *DocumentService) extractData(repo string) (dtos.Document, string, erro
 func (ds *DocumentService) getRemoteDocument(repo string) (string, string, error) {
 	const indexFile = "mkdocs.yaml"
 	possibleIndexLocations := []string{
-		"",     // Let's assume the standard is to use the docs folder
-		"docs", // Fallback to the root folder
+		"",     // Let's assume the standard is to use the root folder
+		"docs", // Fallback to the docs folder
+		"doc",  // Fallback to the doc folder
 		".of",  // Fallback to the .of folder
 	}
 

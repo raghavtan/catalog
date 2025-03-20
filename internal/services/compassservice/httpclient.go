@@ -1,5 +1,7 @@
 package compassservice
 
+//go:generate mockgen -destination=./mocks/mock_http_client.go -package=compassservice github.com/motain/of-catalog/internal/services/compassservice HTTPClientInterface
+
 import (
 	"net/http"
 	"strings"
@@ -44,8 +46,6 @@ func (c *CompassTransport) RoundTrip(req *http.Request) (*http.Response, error) 
 
 	req.Host = c.Host
 	req.Header.Set("Authorization", "Basic "+c.AuthToken)
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("Content-Type", "application/json")
 
 	return c.Transport.RoundTrip(req)
 }

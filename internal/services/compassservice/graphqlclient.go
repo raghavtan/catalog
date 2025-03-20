@@ -1,5 +1,7 @@
 package compassservice
 
+//go:generate mockgen -destination=./mocks/mock_graphql_client.go -package=compassservice github.com/motain/of-catalog/internal/services/compassservice GraphQLClientInterface
+
 import (
 	"context"
 	"fmt"
