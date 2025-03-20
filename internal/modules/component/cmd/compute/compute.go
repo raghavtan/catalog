@@ -3,6 +3,7 @@ package compute
 import (
 	"fmt"
 
+	"github.com/motain/of-catalog/internal/utils/commandcontext"
 	"github.com/motain/of-catalog/internal/utils/yaml"
 	"github.com/spf13/cobra"
 )
@@ -27,7 +28,8 @@ func Init() *cobra.Command {
 			}
 
 			handler := initializeHandler()
-			handler.Compute(componentName, all, metricName, yaml.StateLocation)
+			ctx := commandcontext.Init()
+			handler.Compute(ctx, componentName, all, metricName, yaml.StateLocation)
 		},
 	}
 

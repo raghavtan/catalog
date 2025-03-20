@@ -24,7 +24,7 @@ func NewComputeHandler(
 	return &ComputeHandler{repository: repository, factInterpreter: factInterpreter}
 }
 
-func (h *ComputeHandler) Compute(componentName string, all bool, metricName string, stateRootLocation string) {
+func (h *ComputeHandler) Compute(ctx context.Context, componentName string, all bool, metricName string, stateRootLocation string) {
 	components, errCState := yaml.Parse(yaml.GetStateInput(stateRootLocation), dtos.GetComponentUniqueKey)
 	if errCState != nil {
 		log.Fatalf("error: %v", errCState)
@@ -37,7 +37,7 @@ func (h *ComputeHandler) Compute(componentName string, all bool, metricName stri
 
 	if !all {
 		fmt.Printf("Tracking metric '%s' for component '%s'\n", metricName, componentName)
-		computeErr := h.computeMetric(component, metricName)
+		computeErr := h.computeMetric(ctx, component, metricName)
 		if computeErr != nil {
 			log.Fatalf("compute: %v", computeErr)
 		}
@@ -46,14 +46,14 @@ func (h *ComputeHandler) Compute(componentName string, all bool, metricName stri
 
 	for metricName := range component.Spec.MetricSources {
 		fmt.Printf("Tracking metric '%s' for component '%s'\n", metricName, componentName)
-		computeErr := h.computeMetric(component, metricName)
+		computeErr := h.computeMetric(ctx, component, metricName)
 		if computeErr != nil {
 			log.Printf("compute metric %s: %v", metricName, computeErr)
 		}
 	}
 }
 
-func (h *ComputeHandler) computeMetric(component *dtos.ComponentDTO, metricName string) error {
+func (h *ComputeHandler) computeMetric(ctx context.Context, component *dtos.ComponentDTO, metricName string) error {
 	metricSource, msExists := component.Spec.MetricSources[metricName]
 	if !msExists {
 		return fmt.Errorf("error: metric source not found for metric %s", metricName)
@@ -64,7 +64,7 @@ func (h *ComputeHandler) computeMetric(component *dtos.ComponentDTO, metricName 
 		return fmt.Errorf("%v", processErr)
 	}
 
-	pushErr := h.repository.Push(context.Background(), metricSource.ID, metricValue, time.Now())
+	pushErr := h.repository.Push(ctx, metricSource.ID, metricValue, time.Now())
 	if pushErr != nil {
 		return fmt.Errorf("error: %v", pushErr)
 	}
