@@ -8,6 +8,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"sort"
 	"strings"
 
 	"github.com/bmatcuk/doublestar/v4"
@@ -94,6 +95,25 @@ func parse[T any](tKind, globString string) ([]*T, error) {
 		results = append(results, decodedResults...)
 	}
 	return results, nil
+}
+
+func SortResults[T any](result []*T, getKey KeyExtractor[T]) []*T {
+	componentsName := make([]string, 0, len(result))
+	componentsMap := make(map[string]*T)
+	for _, component := range result {
+		key := getKey(component)
+		componentsMap[key] = component
+		componentsName = append(componentsName, key)
+	}
+	sort.Strings(componentsName)
+
+	uniqueSortedComponentsName := make([]*T, 0, len(componentsName))
+	for i, componentName := range componentsName {
+		if i == 0 || componentName != componentsName[i-1] {
+			uniqueSortedComponentsName = append(uniqueSortedComponentsName, componentsMap[componentName])
+		}
+	}
+	return uniqueSortedComponentsName
 }
 
 func WriteState[T any](data []*T) error {

@@ -78,7 +78,7 @@ func (h *ApplyHandler) handleAll(stateComponents, configComponents map[string]*d
 	result = h.handleCreated(result, created, stateComponents)
 	result = h.handleUpdated(result, updated, stateComponents)
 
-	err := yaml.WriteState(result)
+	err := yaml.WriteState(yaml.SortResults(result, dtos.GetComponentUniqueKey))
 	if err != nil {
 		log.Fatalf("error writing components to file: %v", err)
 	}
@@ -108,7 +108,7 @@ func (h *ApplyHandler) handleOne(stateComponents, configComponents map[string]*d
 	result = h.handleCreated(result, created, stateComponents)
 	result = h.handleUpdated(result, updated, stateComponents)
 
-	err := yaml.WriteState(result)
+	err := yaml.WriteState(yaml.SortResults(result, dtos.GetComponentUniqueKey))
 	if err != nil {
 		log.Fatalf("error writing components to file: %v", err)
 	}

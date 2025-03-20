@@ -277,3 +277,86 @@ func TestParse(t *testing.T) {
 		})
 	}
 }
+func TestSortResults(t *testing.T) {
+	tests := []struct {
+		name     string
+		input    []*TestDTO
+		getKey   func(def *TestDTO) string
+		expected []*TestDTO
+	}{
+		{
+			name: "sort_by_name",
+			input: []*TestDTO{
+				getTestDTO("Charlie", 40),
+				getTestDTO("Alice", 30),
+				getTestDTO("Bob", 25),
+			},
+			getKey: func(def *TestDTO) string {
+				return def.Spec.Name
+			},
+			expected: []*TestDTO{
+				getTestDTO("Alice", 30),
+				getTestDTO("Bob", 25),
+				getTestDTO("Charlie", 40),
+			},
+		},
+		{
+			name: "already_sorted",
+			input: []*TestDTO{
+				getTestDTO("Alice", 30),
+				getTestDTO("Bob", 25),
+				getTestDTO("Charlie", 40),
+			},
+			getKey: func(def *TestDTO) string {
+				return def.Spec.Name
+			},
+			expected: []*TestDTO{
+				getTestDTO("Alice", 30),
+				getTestDTO("Bob", 25),
+				getTestDTO("Charlie", 40),
+			},
+		},
+		{
+			name:  "empty_input",
+			input: []*TestDTO{},
+			getKey: func(def *TestDTO) string {
+				return def.Spec.Name
+			},
+			expected: []*TestDTO{},
+		},
+		{
+			name: "single_element",
+			input: []*TestDTO{
+				getTestDTO("Alice", 30),
+			},
+			getKey: func(def *TestDTO) string {
+				return def.Spec.Name
+			},
+			expected: []*TestDTO{
+				getTestDTO("Alice", 30),
+			},
+		},
+		{
+			name: "duplicate_keys",
+			input: []*TestDTO{
+				getTestDTO("Alice", 25),
+				getTestDTO("Alice", 30),
+				getTestDTO("Bob", 40),
+			},
+			getKey: func(def *TestDTO) string {
+				return def.Spec.Name
+			},
+			expected: []*TestDTO{
+				getTestDTO("Alice", 30),
+				getTestDTO("Bob", 40),
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := thisyaml.SortResults(tt.input, tt.getKey)
+			assert.Equal(t, tt.expected, result)
+		})
+	}
+}
