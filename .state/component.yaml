@@ -14,6 +14,10 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: r-activation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CK9LTN6DR
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/airship-email
@@ -25,10 +29,6 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: r-activation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/CK9LTN6DR
     documents: []
     labels:
         - fan-activation
@@ -505,6 +505,10 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/analytics-service
+        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=analytics-service&var-container=analytics-service&from=now-1h&to=now
@@ -516,10 +520,6 @@ spec:
           name: r-source
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/analytics-service
     documents: []
     labels:
         - creators-network
@@ -1238,14 +1238,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-intelligence&var-container=article-intelligence&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
           name: r-source
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C055TBZP1B9
@@ -1253,6 +1245,14 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/article-intelligence
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-intelligence&var-container=article-intelligence&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents: []
     labels:
         - article-intelligence
@@ -1482,6 +1482,14 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/article-service
@@ -1497,11 +1505,19 @@ spec:
           name: r-source
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C055TBZP1B9
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/article-service
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-service&var-container=article-service&from=now-1h&to=now
     documents: []
     labels:
-        - article-service
         - reach
         - content
+        - article-service
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/39cfb98c-3f51-4d3e-adc5-b863089ee0a3
@@ -1509,58 +1525,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: article-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: article-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/f3e7a128-7dca-4e93-b993-05df5e694d92
             name: critical-alerts-slo-check-svc-article-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/article-service
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -1568,21 +1540,7 @@ spec:
             name: deployment-readiness-svc-article-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: article-service
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -1591,120 +1549,22 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: article-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: article-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4f7d47eb-ecea-48c9-9834-383e0b708968
             name: instrumentation-check-svc-article-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: article-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: article-service
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: article-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: article-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a6fcb1e5-2524-49c0-a0a6-66a00db5338c
             name: organizational-standards-svc-article-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: article-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: article-service
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
     tribe: reach
@@ -1726,6 +1586,14 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/article-translator
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-translator&var-container=article-translator&from=now-1h&to=now
+        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -1741,11 +1609,19 @@ spec:
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-translator&var-container=article-translator&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
     documents: []
     labels:
+        - article-translator
         - reach
         - content
-        - article-translator
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d3bff458-07da-46ed-97fa-1c3e4ef68275
@@ -1753,58 +1629,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: article-translator
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: article-translator
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3cf25a94-b85c-4392-bdda-59573e256889
             name: critical-alerts-slo-check-svc-article-translator
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/article-translator
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -1812,21 +1644,7 @@ spec:
             name: deployment-readiness-svc-article-translator
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: article-translator
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -1835,120 +1653,22 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: article-translator
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: article-translator
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/8cedd035-1759-4283-897f-9c098fbbdcea
             name: instrumentation-check-svc-article-translator
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: article-translator
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: article-translator
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: article-translator
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: article-translator
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/c02064b6-cbe2-4097-b2c0-2452b15409a8
             name: organizational-standards-svc-article-translator
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: article-translator
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: article-translator
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
     tribe: reach
@@ -1970,10 +1690,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/auth-api
@@ -1985,6 +1701,10 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
     documents: []
     labels:
         - auth-api
@@ -2214,14 +1934,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: p-cloud-runtime
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/CFUCQUA04
-        - id: ""
-          name: Cloud Runtime
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/backstage
@@ -2233,6 +1945,14 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: p-cloud-runtime
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CFUCQUA04
+        - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
     documents: []
     labels:
         - platform
@@ -2713,11 +2433,23 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/betting-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=betting-api&var-container=betting-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents: []
     labels:
+        - monetization
         - sponsorship-integration
         - betting-api
-        - monetization
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4da56027-b0c6-4109-849b-df7cbc6a57cd
@@ -2725,58 +2457,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: betting-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: betting-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6343d9b7-0873-4773-aa5e-57fb0df7b198
             name: critical-alerts-slo-check-svc-betting-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/betting-api
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -2784,21 +2472,7 @@ spec:
             name: deployment-readiness-svc-betting-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: betting-api
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -2807,120 +2481,22 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: betting-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: betting-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/49538d7f-029d-4307-9f88-3aac14aca41c
             name: instrumentation-check-svc-betting-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: betting-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: betting-api
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: betting-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: betting-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a6abfcea-ed96-4aee-b7be-eeb7575532d9
             name: organizational-standards-svc-betting-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: betting-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: betting-api
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
     tribe: monetization
@@ -3182,6 +2758,14 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/bookmarks
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=bookmarks&var-container=bookmarks&from=now-1h&to=now
+        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -3193,14 +2777,6 @@ spec:
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/bookmarks
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=bookmarks&var-container=bookmarks&from=now-1h&to=now
     documents: []
     labels:
         - engagement
@@ -3680,6 +3256,14 @@ spec:
         - stories-api
     links:
         - id: ""
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: ""
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/category-tiles
@@ -3691,14 +3275,6 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: ""
-          name: Personalisation
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
     documents: []
     labels:
         - engagement
@@ -3927,6 +3503,10 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/cdp-api
+        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cdp-api&var-container=cdp-api&from=now-1h&to=now
@@ -3938,10 +3518,6 @@ spec:
           name: pe-dacore
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C04NG20NVPW
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/cdp-api
     documents: []
     labels:
         - data-platform
@@ -4430,16 +4006,16 @@ spec:
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/2f9a16a8-1ac2-4fa6-b0bb-472bb96d7053
-          title: Home
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/clips/blob/main/.of/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d4176ea2-5924-4845-8e5c-4b4321e67051
           title: Live clips deals configuration
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/clips/blob/main/.of/docs/live-clips-deals-configuration.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/2f9a16a8-1ac2-4fa6-b0bb-472bb96d7053
+          title: Home
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/clips/blob/main/.of/docs/index.md
     labels:
         - reach
         - video-platform
@@ -4906,9 +4482,45 @@ spec:
     description: ""
     configVersion: 0
     typeId: SERVICE
-    ownerId: ""
+    ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
     dependsOn: []
     links:
+        - id: ""
+          name: video-platform-team
+          type: CHAT_CHANNEL
+          url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
+        - id: ""
+          name: Video Platform
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PN/boards/267
+        - id: ""
+          name: Video Platform Support
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/clips-search
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips-search&var-container=clips-search&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: video-platform-team
+          type: CHAT_CHANNEL
+          url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
+        - id: ""
+          name: Video Platform
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PN/boards/267
+        - id: ""
+          name: Video Platform Support
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
         - id: ""
           name: Repository
           type: REPOSITORY
@@ -4928,7 +4540,7 @@ spec:
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/clips-search/blob/main/docs/index.md
     labels:
-        - reach
+        - ott
         - video-platform
     metricSources:
         adaptive-systems:
@@ -4937,58 +4549,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: clips-search
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: clips-search
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/de52044c-fe19-4e05-b3c1-86ab6c6a9450
             name: critical-alerts-slo-check-svc-clips-search
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/clips-search
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -4996,21 +4564,7 @@ spec:
             name: deployment-readiness-svc-clips-search
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: clips-search
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -5019,123 +4573,25 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: clips-search
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: clips-search
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0acc8167-bd05-4bd0-936a-f0f6a0aeae26
             name: instrumentation-check-svc-clips-search
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: clips-search
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: clips-search
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: clips-search
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: clips-search
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/77a528a6-8223-4a77-8144-88a1e1c49736
             name: organizational-standards-svc-clips-search
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: clips-search
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: clips-search
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
-    tribe: reach
+    tribe: ott
     squad: video-platform
 ---
 apiVersion: of-catalog/v1alpha1
@@ -5154,10 +4610,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Personalisation
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/clips-webhooks
@@ -5173,6 +4625,10 @@ spec:
           name: e-personalisation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: ""
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
     documents: []
     labels:
         - personalisation
@@ -5402,10 +4858,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
           name: p-cloud-runtime
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CFUCQUA04
@@ -5421,6 +4873,10 @@ spec:
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cloud-runtime-bot&var-container=cloud-runtime-bot&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents: []
     labels:
         - cloud-runtime
@@ -6142,14 +5598,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/consumer-web-v3
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=consumer-web-v3&var-container=consumer-web-v3&from=now-1h&to=now
-        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -6157,6 +5605,14 @@ spec:
           name: r-consumer-web
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C93MHM7QE
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/consumer-web-v3
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=consumer-web-v3&var-container=consumer-web-v3&from=now-1h&to=now
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/9e981ac6-d68a-4cce-ad1c-e208d44c8e7c
           title: Readme
@@ -6390,6 +5846,14 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: ""
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
@@ -6401,14 +5865,6 @@ spec:
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-classifier&var-container=content-classifier&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/b0e5ac38-40df-4243-9711-cbf825491ee3
           title: Content Tags API
@@ -6662,14 +6118,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: ""
-          name: Personalisation
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/content-recommender
@@ -6681,6 +6129,14 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: ""
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/fbec9066-6486-49c5-a34c-f71e2d588ed2
           title: Readme
@@ -6914,6 +6370,14 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/content-tags-api
+        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-tags-api&var-container=content-tags-api&from=now-1h&to=now
@@ -6925,14 +6389,6 @@ spec:
           name: e-personalisation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: ""
-          name: Personalisation
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/content-tags-api
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/0ff4fa5a-95a7-496d-b299-c2c865435639
           title: Readme
@@ -7425,11 +6881,27 @@ spec:
           name: r-source
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C055TBZP1B9
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/creators-network
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=creators-network&var-container=creators-network&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
     documents: []
     labels:
+        - creators-network
         - reach
         - content
-        - creators-network
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6cbe6279-afc6-4836-a71d-980a23604c6f
@@ -7437,58 +6909,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: creators-network
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: creators-network
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d7f9aff0-348b-407c-b10e-329cef92f536
             name: critical-alerts-slo-check-svc-creators-network
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/creators-network
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -7496,21 +6924,7 @@ spec:
             name: deployment-readiness-svc-creators-network
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: creators-network
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -7519,120 +6933,22 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: creators-network
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: creators-network
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/c19125c1-3d53-4d4b-a88f-35073c7d2717
             name: instrumentation-check-svc-creators-network
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: creators-network
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: creators-network
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: creators-network
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: creators-network
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/bb5ad16f-07b1-447f-9889-6849c6ddd62d
             name: organizational-standards-svc-creators-network
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: creators-network
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: creators-network
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
     tribe: reach
@@ -7904,14 +7220,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/editorjs-translator
@@ -7919,6 +7227,14 @@ spec:
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=editorjs-translator&var-container=editorjs-translator&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
     documents: []
     labels:
         - content
@@ -8148,14 +7464,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/emelya
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=emelya&var-container=emelya&from=now-1h&to=now
-        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -8163,6 +7471,14 @@ spec:
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/emelya
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=emelya&var-container=emelya&from=now-1h&to=now
     documents: []
     labels:
         - matchxp
@@ -8394,14 +7710,6 @@ spec:
         - score-one-proxy
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/entity-index-api
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=entity-index-api&var-container=entity-index-api&from=now-1h&to=now
-        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -8409,6 +7717,14 @@ spec:
           name: r-consumer-web
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C93MHM7QE
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/entity-index-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=entity-index-api&var-container=entity-index-api&from=now-1h&to=now
     documents: []
     labels:
         - consumer-web
@@ -8881,10 +8197,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/entity-service
-        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=entity-service&var-container=entity-service&from=now-1h&to=now
@@ -8896,6 +8208,10 @@ spec:
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/entity-service
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/8b6453a2-ce62-4d36-9abf-c2aba911a99f
           title: Readme
@@ -9625,10 +8941,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/facts-api
@@ -9640,6 +8952,10 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
     documents: []
     labels:
         - matchxp
@@ -9869,10 +9185,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/facts-fetcher
@@ -9884,6 +9196,10 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
     documents: []
     labels:
         - matchxp
@@ -11091,14 +10407,6 @@ spec:
         - score-api
     links:
         - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/funtik
@@ -11106,6 +10414,14 @@ spec:
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=funtik&var-container=funtik&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
     documents: []
     labels:
         - reach
@@ -11335,6 +10651,10 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/gam-mrss-generator
@@ -11346,10 +10666,6 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
     documents: []
     labels:
         - gam-mrss-generator
@@ -11819,14 +11135,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Developer Experience
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/gitleaks-api
-        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=gitleaks-api&var-container=gitleaks-api&from=now-1h&to=now
@@ -11838,6 +11146,14 @@ spec:
           name: p-developer-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C04NMNZC89L
+        - id: ""
+          name: Developer Experience
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/gitleaks-api
     documents: []
     labels:
         - platform
@@ -12314,6 +11630,10 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/idp-wrapper
+        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=idp-wrapper&var-container=idp-wrapper&from=now-1h&to=now
@@ -12329,10 +11649,6 @@ spec:
           name: Cloud Runtime
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/idp-wrapper
     documents: []
     labels:
         - cloud-runtime
@@ -12561,6 +11877,14 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/image-service
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=image-service&var-container=image-service&from=now-1h&to=now
+        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -12572,14 +11896,6 @@ spec:
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/image-service
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=image-service&var-container=image-service&from=now-1h&to=now
     documents: []
     labels:
         - engagement
@@ -14254,6 +13570,14 @@ spec:
         - score-api
     links:
         - id: ""
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: ""
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/librarian
@@ -14265,14 +13589,6 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: ""
-          name: Personalisation
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/5697f9fb-c859-4b11-be12-ddfe7026489b
           title: Service
@@ -14521,10 +13837,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/live-ticker-api
@@ -14536,6 +13848,10 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
     documents: []
     labels:
         - live-ticker-api
@@ -14765,10 +14081,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/live-ticker-importer
@@ -14780,6 +14092,10 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
     documents: []
     labels:
         - matchxp
@@ -15742,6 +15058,10 @@ spec:
         - article-service
     links:
         - id: ""
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/news
@@ -15757,16 +15077,7 @@ spec:
           name: e-personalisation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: ""
-          name: Personalisation
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/89cedfa6-b8fb-4855-b108-192a1fbe14f0
-          title: Feature flags
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/news/blob/master/.of/docs/feature-flags.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/c9dcb387-0384-411f-880f-77cbc186222c
           title: Home
           type: Other
@@ -15777,6 +15088,11 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/news/blob/master/.of/docs/parameters.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/89cedfa6-b8fb-4855-b108-192a1fbe14f0
+          title: Feature flags
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/news/blob/master/.of/docs/feature-flags.md
     labels:
         - engagement
         - personalisation
@@ -16740,6 +16056,10 @@ spec:
         - score-api
     links:
         - id: ""
+          name: r-activation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CK9LTN6DR
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/onboarding-api
@@ -16751,10 +16071,6 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: r-activation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/CK9LTN6DR
     documents: []
     labels:
         - fan-activation
@@ -16983,14 +16299,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: p-developer-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C04NMNZC89L
-        - id: ""
-          name: Developer Experience
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/oncall-compensation
@@ -17002,6 +16310,14 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: p-developer-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C04NMNZC89L
+        - id: ""
+          name: Developer Experience
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
     documents: []
     labels:
         - platform
@@ -17490,11 +16806,23 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/ott-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-api&var-container=ott-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents: []
     labels:
-        - ott-api
         - engagement
         - live-video
+        - ott-api
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/34cb4267-7d9f-43c0-a14a-621ec7d57215
@@ -17502,58 +16830,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: ott-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: ott-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/252a76e4-f536-4cff-bad1-8bd0c359f035
             name: critical-alerts-slo-check-svc-ott-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/ott-api
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -17561,21 +16845,7 @@ spec:
             name: deployment-readiness-svc-ott-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: ott-api
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -17584,120 +16854,22 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: ott-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: ott-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/c7fa069c-b64d-4c29-b0c2-f7e0e9104039
             name: instrumentation-check-svc-ott-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: ott-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ott-api
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: ott-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: ott-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1ce792ba-65a3-45a5-8255-ce9e13768cd3
             name: organizational-standards-svc-ott-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: ott-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: ott-api
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
     tribe: engagement
@@ -19207,7 +18379,42 @@ spec:
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/personalisation-service
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=personalisation-service&var-container=personalisation-service&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: ""
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
     documents:
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/82be3bf6-1fef-4f97-b27f-bc329784946e
+          title: Article Unpublished Worker
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/article-unpublished-worker.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/693c2e9c-9d0f-4524-ae18-eea1414b19b7
+          title: Video Published Worker
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/video-published-worker.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/2033a3f3-0594-4157-a5aa-1402c2ce9626
+          title: Video Unpublished Worker
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/video-unpublished-worker.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/134882cf-db68-4960-aa5f-fddaa70d169e
           title: Home
           type: Other
@@ -19233,24 +18440,9 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/personalisation-service/blob/main/.of/docs/article-classified-worker.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/82be3bf6-1fef-4f97-b27f-bc329784946e
-          title: Article Unpublished Worker
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/article-unpublished-worker.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/693c2e9c-9d0f-4524-ae18-eea1414b19b7
-          title: Video Published Worker
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/video-published-worker.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/2033a3f3-0594-4157-a5aa-1402c2ce9626
-          title: Video Unpublished Worker
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/video-unpublished-worker.md
     labels:
-        - personalisation
         - engagement
+        - personalisation
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/025839f4-bd5d-4dc6-b34b-f4e773675214
@@ -19258,58 +18450,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: personalisation-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: personalisation-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/bae38924-15fb-4334-b476-126919ece1e4
             name: critical-alerts-slo-check-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/personalisation-service
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -19317,21 +18465,7 @@ spec:
             name: deployment-readiness-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: personalisation-service
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -19340,120 +18474,22 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: personalisation-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: personalisation-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0e4fb6a8-d64d-4796-a2d2-4624a8740c7c
             name: instrumentation-check-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: personalisation-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: personalisation-service
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: personalisation-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: personalisation-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6d309def-78a2-4f93-8604-65175c270431
             name: organizational-standards-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: personalisation-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: personalisation-service
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
     tribe: engagement
@@ -19475,6 +18511,10 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/photobooth
+        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=photobooth&var-container=photobooth&from=now-1h&to=now
@@ -19486,10 +18526,6 @@ spec:
           name: r-consumer-web
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C93MHM7QE
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/photobooth
     documents: []
     labels:
         - reach
@@ -19719,10 +18755,6 @@ spec:
         - score-api
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/polls-api
-        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=polls-api&var-container=polls-api&from=now-1h&to=now
@@ -19734,6 +18766,10 @@ spec:
           name: r-activation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CK9LTN6DR
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/polls-api
     documents: []
     labels:
         - reach
@@ -19963,14 +18999,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=prometheus-exporter&var-container=prometheus-exporter&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
           name: p-cloud-runtime
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CFUCQUA04
@@ -19982,6 +19010,14 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/prometheus-exporter
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=prometheus-exporter&var-container=prometheus-exporter&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents: []
     labels:
         - platform
@@ -20455,6 +19491,10 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/push
@@ -20466,10 +19506,6 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
     documents: []
     labels:
         - matchxp
@@ -21207,11 +20243,6 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d42a4a49-9e80-4845-a854-add5d5786b04
-          title: Home
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/relevance-service/blob/main/.of/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/7cf196a9-acb8-46b4-98e0-b64b8bd9ceca
           title: Articles Scoring
           type: Other
@@ -21227,6 +20258,11 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/relevance-service/blob/main/.of/docs/articles-scoring-ml.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d42a4a49-9e80-4845-a854-add5d5786b04
+          title: Home
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/relevance-service/blob/main/.of/docs/index.md
     labels:
         - engagement
         - personalisation
@@ -22182,14 +21218,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/rss-generator
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=rss-generator&var-container=rss-generator&from=now-1h&to=now
-        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -22197,6 +21225,14 @@ spec:
           name: r-source
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C055TBZP1B9
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/rss-generator
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=rss-generator&var-container=rss-generator&from=now-1h&to=now
     documents: []
     labels:
         - reach
@@ -22441,11 +21477,27 @@ spec:
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/score-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=score-api&var-container=score-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
     documents: []
     labels:
-        - engagement
         - matchxp
         - score-api
+        - engagement
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/98d38fdd-7286-4422-b5b0-3caec8a36dbd
@@ -22453,58 +21505,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: score-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: score-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9cbfccbf-9187-43ae-abad-4550612c8426
             name: critical-alerts-slo-check-svc-score-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/score-api
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -22512,21 +21520,7 @@ spec:
             name: deployment-readiness-svc-score-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: score-api
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -22535,120 +21529,22 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: score-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: score-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/c4796023-fc99-4a4d-acb8-b5a7666060a4
             name: instrumentation-check-svc-score-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: score-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: score-api
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: score-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: score-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/19e71693-d924-4f03-9491-b1f071f1f288
             name: organizational-standards-svc-score-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: score-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: score-api
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
     tribe: engagement
@@ -22670,6 +21566,10 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/scores-mixer
@@ -22681,10 +21581,6 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
     documents: []
     labels:
         - scores-mixer
@@ -22914,10 +21810,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=search-gateway-api&var-container=search-gateway-api&from=now-1h&to=now
-        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -22933,6 +21825,10 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/search-gateway-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=search-gateway-api&var-container=search-gateway-api&from=now-1h&to=now
     documents: []
     labels:
         - engagement
@@ -23161,14 +22057,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/seasons-cache
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=seasons-cache&var-container=seasons-cache&from=now-1h&to=now
-        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -23176,6 +22064,14 @@ spec:
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/seasons-cache
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=seasons-cache&var-container=seasons-cache&from=now-1h&to=now
     documents: []
     labels:
         - matchxp
@@ -23405,6 +22301,10 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/simple-service
+        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
@@ -23420,10 +22320,6 @@ spec:
           name: Cloud Runtime
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/simple-service
     documents: []
     labels:
         - platform
@@ -24403,6 +23299,11 @@ spec:
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/c9e021ed-ff1a-4ac1-826e-bae81b895a65
+          title: Home
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/streaming-service/blob/main/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/422174b2-265b-4733-938a-1d0ed92cd801
           title: Overview
           type: Other
@@ -24418,11 +23319,6 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/streaming-service/blob/main/docs/bitmovin.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/c9e021ed-ff1a-4ac1-826e-bae81b895a65
-          title: Home
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/streaming-service/blob/main/docs/index.md
     labels:
         - live-video
         - streaming-service
@@ -25873,14 +24769,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-gdpr&var-container=users-gdpr&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
           name: r-activation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CK9LTN6DR
@@ -25888,6 +24776,14 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/users-gdpr
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-gdpr&var-container=users-gdpr&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents: []
     labels:
         - fan-activation
@@ -26117,14 +25013,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/users-pii
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-pii&var-container=users-pii&from=now-1h&to=now
-        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -26132,6 +25020,14 @@ spec:
           name: r-activation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CK9LTN6DR
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/users-pii
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-pii&var-container=users-pii&from=now-1h&to=now
     documents: []
     labels:
         - fan-activation
@@ -26621,57 +25517,69 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/watch
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=watch&var-container=watch&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/fd7ba8e6-66e6-4f29-a203-06727dcc398f
           title: Content Ingest/Flows/Push Notifications
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_push_notifications.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/0d29dcbe-f6bb-4f84-8166-440595d2cf18
-          title: Content Ingest/Flows/Stores Cleanup
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_stores_cleanup.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/7df9bc7f-1dfd-4765-bc89-3b8b16ad72a2
-          title: Content Ingest/Architecture
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/architecture.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/50b9c39b-70d5-4024-9fec-1ed3e3a288e6
-          title: Content Ingest/Flows/Alert Partners
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_alert_partners.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/1bdf91ec-f242-4528-a436-6ad487b6aa42
-          title: Content Ingest/Flows/Stream Health Check
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_stream_health_check.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/23ab8b6e-826d-49fc-823d-b7903ac3605f
-          title: Content Ingest/Flows/Product Activation
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_product_activation.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/b61b5599-06fe-4bfd-8639-098eb9824ed9
-          title: Home
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/2dd0c03f-1601-4585-b6ca-278acd3aa892
           title: Glossary
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/watch/blob/main/docs/glossary.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/13468fc2-1d15-4e03-9a06-5d3b47b87449
-          title: Content Ingest/Content Importers/Norwegian League
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/0d29dcbe-f6bb-4f84-8166-440595d2cf18
+          title: Content Ingest/Flows/Stores Cleanup
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/ingest_norwegian_league.md
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_stores_cleanup.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/b61b5599-06fe-4bfd-8639-098eb9824ed9
+          title: Home
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/index.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/7df9bc7f-1dfd-4765-bc89-3b8b16ad72a2
+          title: Content Ingest/Architecture
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/architecture.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/1bdf91ec-f242-4528-a436-6ad487b6aa42
+          title: Content Ingest/Flows/Stream Health Check
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_stream_health_check.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/75b1d587-247f-4ec7-80b4-a575e7e06cac
           title: Content Ingest/Flows/Sales Disable
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_sales_disable.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/50b9c39b-70d5-4024-9fec-1ed3e3a288e6
+          title: Content Ingest/Flows/Alert Partners
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_alert_partners.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/23ab8b6e-826d-49fc-823d-b7903ac3605f
+          title: Content Ingest/Flows/Product Activation
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_product_activation.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/13468fc2-1d15-4e03-9a06-5d3b47b87449
+          title: Content Ingest/Content Importers/Norwegian League
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/ingest_norwegian_league.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/04c6e94c-6b5d-4c09-a5e5-0c6cb1ddec1d
           title: Content Distribution/Architecture
           type: Other
@@ -26688,8 +25596,8 @@ spec:
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/watch/blob/main/docs/content-ingest/ingest_generic.md
     labels:
-        - live-video
         - engagement
+        - live-video
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/42f18a4b-db26-46ba-94e8-c84a63939eca
@@ -26697,58 +25605,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: watch
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: watch
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/25a520d3-072b-4b4b-87a3-fdc49957830a
             name: critical-alerts-slo-check-svc-watch
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/watch
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -26756,21 +25620,7 @@ spec:
             name: deployment-readiness-svc-watch
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: watch
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -26779,120 +25629,22 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: watch
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: watch
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d4984709-d985-49ff-a465-7755e63bcfe7
             name: instrumentation-check-svc-watch
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: watch
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: watch
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: watch
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: watch
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/97654673-cf44-45eb-a98e-9141cbdf2b5f
             name: organizational-standards-svc-watch
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: watch
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: watch
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
     tribe: engagement
@@ -26916,6 +25668,10 @@ spec:
         - userresearch-shiny
     links:
         - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
           name: r-consumer-web
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C93MHM7QE
@@ -26931,6 +25687,18 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: r-consumer-web
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C93MHM7QE
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/web-experience
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=web-experience&var-container=web-experience&from=now-1h&to=now
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/083265af-3251-40be-9aaf-fb1884f400cd
           title: Home
@@ -26938,8 +25706,8 @@ spec:
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/web-experience/blob/master/.of/docs/index.md
     labels:
-        - consumer-web
         - reach
+        - consumer-web
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/37dee676-b8f3-4832-abb6-a903cb97834a
@@ -26947,58 +25715,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: web-experience
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: web-experience
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/54e0559c-7137-44de-ac75-4f701bd2b455
             name: critical-alerts-slo-check-svc-web-experience
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/web-experience
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -27006,21 +25730,7 @@ spec:
             name: deployment-readiness-svc-web-experience
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: web-experience
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -27029,120 +25739,22 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: web-experience
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: web-experience
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/74476123-6d74-43a6-a4e0-6719832222ac
             name: instrumentation-check-svc-web-experience
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: web-experience
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: web-experience
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: web-experience
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: web-experience
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0c82d996-87f2-4b10-997e-4eb84d0bbd79
             name: organizational-standards-svc-web-experience
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: web-experience
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: web-experience
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
     tribe: reach
@@ -27411,14 +26023,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/web-url-redirector
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=web-url-redirector&var-container=web-url-redirector&from=now-1h&to=now
-        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -27426,6 +26030,14 @@ spec:
           name: r-consumer-web
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C93MHM7QE
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/web-url-redirector
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=web-url-redirector&var-container=web-url-redirector&from=now-1h&to=now
     documents: []
     labels:
         - reach
@@ -27893,6 +26505,10 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=webhook-receiver&var-container=webhook-receiver&from=now-1h&to=now
+        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -27904,10 +26520,6 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/webhook-receiver
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=webhook-receiver&var-container=webhook-receiver&from=now-1h&to=now
     documents: []
     labels:
         - webhook-receiver
@@ -28380,14 +26992,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/ws-receiver
@@ -28395,6 +26999,14 @@ spec:
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ws-receiver&var-container=ws-receiver&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
     documents: []
     labels:
         - engagement
@@ -28632,10 +27244,6 @@ spec:
         - ott-mediation
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/xpa-backend
-        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-backend&var-container=xpa-backend&from=now-1h&to=now
@@ -28647,6 +27255,10 @@ spec:
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/xpa-backend
     documents: []
     labels:
         - matchxp
