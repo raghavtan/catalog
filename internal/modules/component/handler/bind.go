@@ -27,7 +27,7 @@ func NewBindHandler(
 	return &BindHandler{github: gh, repository: repository}
 }
 
-func (h *BindHandler) Bind(stateRootLocation string) {
+func (h *BindHandler) Bind(ctx context.Context, stateRootLocation string) {
 	components, errCState := yaml.Parse(yaml.GetStateInput(stateRootLocation), dtos.GetComponentUniqueKey)
 	if errCState != nil {
 		log.Fatalf("error: %v", errCState)
@@ -38,7 +38,7 @@ func (h *BindHandler) Bind(stateRootLocation string) {
 	for _, component := range components {
 		for metricName, metricSource := range component.Spec.MetricSources {
 			if _, exists := metricsMap[component.Metadata.ComponentType][metricName]; !exists {
-				errDelete := h.repository.UnbindMetric(context.Background(), metricSource.ID)
+				errDelete := h.repository.UnbindMetric(ctx, metricSource.ID)
 				if errDelete != nil {
 					fmt.Printf("Failed to delete metric source %s: %v\n", metricSource.Name, errDelete)
 				}
@@ -46,7 +46,7 @@ func (h *BindHandler) Bind(stateRootLocation string) {
 		}
 
 		for metricName, metric := range metricsMap[component.Metadata.ComponentType] {
-			bindErr := h.handleBind(component, metric)
+			bindErr := h.handleBind(ctx, component, metric)
 			if bindErr != nil {
 				fmt.Printf("Failed to bind metric %s to component %s: %v\n", metricName, component.Metadata.Name, bindErr)
 			}
@@ -60,7 +60,7 @@ func (h *BindHandler) Bind(stateRootLocation string) {
 		i += 1
 	}
 
-	err := yaml.WriteState[dtos.ComponentDTO](state)
+	err := yaml.WriteState(state)
 	if err != nil {
 		log.Fatalf("error writing metrics to file: %v", err)
 	}
@@ -87,7 +87,7 @@ func (*BindHandler) getMetricsGroupedByCompoentType(
 	return metricsMap
 }
 
-func (h *BindHandler) handleBind(component *dtos.ComponentDTO, metric *metricdtos.MetricDTO) error {
+func (h *BindHandler) handleBind(ctx context.Context, component *dtos.ComponentDTO, metric *metricdtos.MetricDTO) error {
 	fmt.Printf("Binding component %s to metric %s\n", component.Metadata.Name, metric.Metadata.Name)
 
 	metricName := metric.Metadata.Name
@@ -104,7 +104,7 @@ func (h *BindHandler) handleBind(component *dtos.ComponentDTO, metric *metricdto
 		return nil
 	}
 
-	id, errBind := h.repository.BindMetric(context.Background(), component.Spec.ID, metric.Spec.ID, identifier)
+	id, errBind := h.repository.BindMetric(ctx, component.Spec.ID, metric.Spec.ID, identifier)
 	if errBind != nil {
 		return fmt.Errorf("failed to create metric source for %s/%s (component/metric): %v", componentName, metricName, errBind)
 	}

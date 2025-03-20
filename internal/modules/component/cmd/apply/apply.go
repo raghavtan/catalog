@@ -22,9 +22,8 @@ func Init() *cobra.Command {
 				return
 			}
 
-			ctx := commandcontext.Init()
-
 			handler := initializeHandler()
+			ctx := commandcontext.Init()
 			handler.Apply(ctx, configRootLocation, yaml.StateLocation, recursive, componentName)
 		},
 	}
