@@ -20,8 +20,8 @@ import (
 
 type CompassServiceInterface interface {
 	Run(ctx context.Context, query string, variables map[string]interface{}, response interface{}) error
-	SendMetric(body map[string]string) (string, error)
-	SendAPISpecifications(input dtos.APISpecificationsInput) (string, error)
+	SendMetric(ctx context.Context, body map[string]string) (string, error)
+	SendAPISpecifications(ctx context.Context, input dtos.APISpecificationsInput) (string, error)
 	GetCompassCloudId() string
 }
 
@@ -66,13 +66,13 @@ func (c *CompassService) Run(ctx context.Context, query string, variables map[st
 	return nil
 }
 
-func (c *CompassService) SendMetric(body map[string]string) (string, error) {
+func (c *CompassService) SendMetric(ctx context.Context, body map[string]string) (string, error) {
 	jsonBody, err := json.Marshal(body)
 	if err != nil {
 		return "", fmt.Errorf("failed to marshal body: %v", err)
 	}
 
-	req, err := http.NewRequest(http.MethodPost, metricsV1Endpoint, bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, metricsV1Endpoint, bytes.NewBuffer(jsonBody))
 	if err != nil {
 		return "", fmt.Errorf("failed to create request: %v", err)
 	}
@@ -82,7 +82,7 @@ func (c *CompassService) SendMetric(body map[string]string) (string, error) {
 	return c.do(req)
 }
 
-func (c *CompassService) SendAPISpecifications(input dtos.APISpecificationsInput) (string, error) {
+func (c *CompassService) SendAPISpecifications(ctx context.Context, input dtos.APISpecificationsInput) (string, error) {
 	endpoint := strings.Replace(apiSpecsV1Endpoint, ":componentId", input.ComponentID, 1)
 
 	body, contentType, buildBodyErr := c.buildMultiPartBody(input)
@@ -90,7 +90,7 @@ func (c *CompassService) SendAPISpecifications(input dtos.APISpecificationsInput
 		return "", fmt.Errorf("failed to build multipart body: %w", buildBodyErr)
 	}
 
-	req, requestErr := http.NewRequest(http.MethodPut, endpoint, body)
+	req, requestErr := http.NewRequestWithContext(ctx, http.MethodPut, endpoint, body)
 	if requestErr != nil {
 		return "", fmt.Errorf("failed to create request: %w", requestErr)
 	}

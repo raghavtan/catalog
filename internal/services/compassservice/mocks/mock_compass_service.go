@@ -64,31 +64,31 @@ func (mr *MockCompassServiceInterfaceMockRecorder) Run(arg0, arg1, arg2, arg3 in
 }
 
 // SendAPISpecifications mocks base method.
-func (m *MockCompassServiceInterface) SendAPISpecifications(arg0 dtos.APISpecificationsInput) (string, error) {
+func (m *MockCompassServiceInterface) SendAPISpecifications(arg0 context.Context, arg1 dtos.APISpecificationsInput) (string, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "SendAPISpecifications", arg0)
+	ret := m.ctrl.Call(m, "SendAPISpecifications", arg0, arg1)
 	ret0, _ := ret[0].(string)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // SendAPISpecifications indicates an expected call of SendAPISpecifications.
-func (mr *MockCompassServiceInterfaceMockRecorder) SendAPISpecifications(arg0 interface{}) *gomock.Call {
+func (mr *MockCompassServiceInterfaceMockRecorder) SendAPISpecifications(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SendAPISpecifications", reflect.TypeOf((*MockCompassServiceInterface)(nil).SendAPISpecifications), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SendAPISpecifications", reflect.TypeOf((*MockCompassServiceInterface)(nil).SendAPISpecifications), arg0, arg1)
 }
 
 // SendMetric mocks base method.
-func (m *MockCompassServiceInterface) SendMetric(arg0 map[string]string) (string, error) {
+func (m *MockCompassServiceInterface) SendMetric(arg0 context.Context, arg1 map[string]string) (string, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "SendMetric", arg0)
+	ret := m.ctrl.Call(m, "SendMetric", arg0, arg1)
 	ret0, _ := ret[0].(string)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // SendMetric indicates an expected call of SendMetric.
-func (mr *MockCompassServiceInterfaceMockRecorder) SendMetric(arg0 interface{}) *gomock.Call {
+func (mr *MockCompassServiceInterfaceMockRecorder) SendMetric(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SendMetric", reflect.TypeOf((*MockCompassServiceInterface)(nil).SendMetric), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SendMetric", reflect.TypeOf((*MockCompassServiceInterface)(nil).SendMetric), arg0, arg1)
 }

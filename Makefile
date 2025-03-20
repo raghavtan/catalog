@@ -30,14 +30,6 @@ test:
 test/coverage: test
 	$(GO) tool cover -func=coverage.out | awk '/^[^total]/ {print $NF}' | awk -F'%' '{sum+=$1; if(min==""){min=$1}; if($1>max){max=$1}; if($1<min){min=$1}; count++} END {print "Average:", sum/count "%"; print "Max:", max "%"; print "Min:", min "%"}'
 
-.PHONY: trivy-docker
-trivy-docker: build ## Builds a docker image for trivy vulnerability checks.
-	docker build --no-cache -t trivy-test:test .
-
-.PHONY: trivy
-trivy: trivy-docker ## Runs trivy vulnerability checks
-	trivy image trivy-test:test
-
 .PHONY: vendor
 vendor: ## Vendor the dependencies.
 	$(GO) mod tidy && $(GO) mod vendor && $(GO) mod verify

@@ -3,6 +3,7 @@ package factcollectors
 //go:generate mockgen -destination=./mocks/mock_jsonapiFact_fact_collector.go -package=factcollectors github.com/motain/of-catalog/internal/services/factsystem/factcollectors JSONAPIFactCollectorInterface
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"io"
@@ -17,8 +18,8 @@ import (
 )
 
 type JSONAPIFactCollectorInterface interface {
-	Check(fact fsdtos.Fact) (bool, error)
-	Inspect(fact fsdtos.Fact) (float64, error)
+	Check(ctx context.Context, fact fsdtos.Fact) (bool, error)
+	Inspect(ctx context.Context, fact fsdtos.Fact) (float64, error)
 }
 
 type JSONAPIFactCollector struct {
@@ -33,12 +34,12 @@ func NewJSONAPIFactCollector(
 	return &JSONAPIFactCollector{config: config, jsonService: jsonService}
 }
 
-func (fc *JSONAPIFactCollector) Check(fact fsdtos.Fact) (bool, error) {
+func (fc *JSONAPIFactCollector) Check(ctx context.Context, fact fsdtos.Fact) (bool, error) {
 	if fact.FactType != fsdtos.JSONPathFact {
 		return false, nil
 	}
 
-	jsonData, extractionErr := fc.extractData(fact)
+	jsonData, extractionErr := fc.extractData(ctx, fact)
 	if extractionErr != nil {
 		return false, extractionErr
 	}
@@ -64,12 +65,12 @@ func (fc *JSONAPIFactCollector) Check(fact fsdtos.Fact) (bool, error) {
 	return regexPattern.MatchString(value), nil
 }
 
-func (fc *JSONAPIFactCollector) Inspect(fact fsdtos.Fact) (float64, error) {
+func (fc *JSONAPIFactCollector) Inspect(ctx context.Context, fact fsdtos.Fact) (float64, error) {
 	if fact.FactType != fsdtos.JSONPathFact {
 		return 0, nil
 	}
 
-	jsonData, extractionErr := fc.extractData(fact)
+	jsonData, extractionErr := fc.extractData(ctx, fact)
 	if extractionErr != nil {
 		return 0, extractionErr
 	}
@@ -87,10 +88,10 @@ func (fc *JSONAPIFactCollector) Inspect(fact fsdtos.Fact) (float64, error) {
 	return floatValue, nil
 }
 
-func (fc *JSONAPIFactCollector) extractData(fact fsdtos.Fact) ([]byte, error) {
+func (fc *JSONAPIFactCollector) extractData(ctx context.Context, fact fsdtos.Fact) ([]byte, error) {
 	var jsonData []byte
 
-	req, err := http.NewRequest("GET", fact.URI, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, fact.URI, nil)
 	if err != nil {
 		return jsonData, fmt.Errorf("failed to create request: %v", err)
 	}

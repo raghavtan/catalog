@@ -16,6 +16,7 @@ type RepositoryInterface interface {
 	Create(ctx context.Context, metric resources.Metric) (string, error)
 	Update(ctx context.Context, metric resources.Metric) error
 	Delete(ctx context.Context, id string) error
+	Search(ctx context.Context, metric resources.Metric) (*resources.Metric, error)
 }
 
 type Repository struct {
@@ -37,7 +38,7 @@ func (r *Repository) Create(ctx context.Context, metric resources.Metric) (strin
 	}
 
 	if compassservice.HasAlreadyExistsError(metricDto.Compass.CreateMetric.Errors) {
-		remoteMetric, err := r.Search(metric)
+		remoteMetric, err := r.Search(ctx, metric)
 		if err != nil {
 			return "", err
 		}
@@ -89,12 +90,12 @@ func (r *Repository) Delete(ctx context.Context, id string) error {
 	return nil
 }
 
-func (r *Repository) Search(metric resources.Metric) (*resources.Metric, error) {
+func (r *Repository) Search(ctx context.Context, metric resources.Metric) (*resources.Metric, error) {
 	metricsDto := dtos.SearchMetricsOutput{}
 	query := metricsDto.GetQuery()
 	variables := metricsDto.SetVariables(r.compass.GetCompassCloudId(), metric)
 
-	if err := r.compass.Run(context.Background(), query, variables, &metricsDto); err != nil {
+	if err := r.compass.Run(ctx, query, variables, &metricsDto); err != nil {
 		log.Printf("Failed to search metric: %v", err)
 		return nil, err
 	}

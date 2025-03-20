@@ -311,7 +311,7 @@ func (r *Repository) Push(ctx context.Context, metricSourceID string, value floa
 		"timestamp":      recordedAt.UTC().Format(time.RFC3339),
 	}
 
-	_, errSend := r.compass.SendMetric(requestBody)
+	_, errSend := r.compass.SendMetric(ctx, requestBody)
 
 	return errSend
 }
@@ -327,7 +327,7 @@ func (r *Repository) SetAPISpecifications(ctx context.Context, componentID, apiS
 		ApiSpecs:    apiSpecs,
 		FileName:    apiSpecsFile,
 	}
-	_, errSend := r.compass.SendAPISpecifications(input)
+	_, errSend := r.compass.SendAPISpecifications(ctx, input)
 	return errSend
 }
 

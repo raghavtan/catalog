@@ -64,6 +64,21 @@ func (mr *MockRepositoryInterfaceMockRecorder) Delete(arg0, arg1 interface{}) *g
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Delete", reflect.TypeOf((*MockRepositoryInterface)(nil).Delete), arg0, arg1)
 }
 
+// Search mocks base method.
+func (m *MockRepositoryInterface) Search(arg0 context.Context, arg1 resources.Metric) (*resources.Metric, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Search", arg0, arg1)
+	ret0, _ := ret[0].(*resources.Metric)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Search indicates an expected call of Search.
+func (mr *MockRepositoryInterfaceMockRecorder) Search(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Search", reflect.TypeOf((*MockRepositoryInterface)(nil).Search), arg0, arg1)
+}
+
 // Update mocks base method.
 func (m *MockRepositoryInterface) Update(arg0 context.Context, arg1 resources.Metric) error {
 	m.ctrl.T.Helper()

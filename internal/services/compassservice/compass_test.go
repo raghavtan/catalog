@@ -180,7 +180,7 @@ func TestCompassService_SendMetric(t *testing.T) {
 
 			service := compassservice.NewCompassService(mockConfigService, mockGqlClient, mockHttpClient)
 
-			resp, err := service.SendMetric(tt.args.body)
+			resp, err := service.SendMetric(context.TODO(), tt.args.body)
 
 			if tt.expectedError != nil {
 				assert.EqualError(t, err, tt.expectedError.Error())
@@ -284,7 +284,7 @@ func TestCompassService_SendAPISpecifications(t *testing.T) {
 
 			service := compassservice.NewCompassService(mockConfigService, mockGqlClient, mockHttpClient)
 
-			resp, err := service.SendAPISpecifications(tt.args.input)
+			resp, err := service.SendAPISpecifications(context.TODO(), tt.args.input)
 
 			if tt.expectedError != nil {
 				assert.EqualError(t, err, tt.expectedError.Error())

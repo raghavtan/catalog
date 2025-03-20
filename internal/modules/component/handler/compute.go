@@ -59,7 +59,7 @@ func (h *ComputeHandler) computeMetric(ctx context.Context, component *dtos.Comp
 		return fmt.Errorf("error: metric source not found for metric %s", metricName)
 	}
 
-	metricValue, processErr := h.factInterpreter.ProcessFacts(metricSource.Facts)
+	metricValue, processErr := h.factInterpreter.ProcessFacts(ctx, metricSource.Facts)
 	if processErr != nil {
 		return fmt.Errorf("%v", processErr)
 	}

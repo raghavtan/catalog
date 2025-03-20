@@ -957,7 +957,7 @@ func TestRepository_Push(t *testing.T) {
 			value:          42.5,
 			recordedAt:     time.Now(),
 			mockSetup: func() {
-				mockCompass.EXPECT().SendMetric(gomock.Any()).Return("", nil)
+				mockCompass.EXPECT().SendMetric(gomock.Any(), gomock.Any()).Return("", nil)
 			},
 			expectedError: nil,
 		},
@@ -967,7 +967,7 @@ func TestRepository_Push(t *testing.T) {
 			value:          42.5,
 			recordedAt:     time.Now(),
 			mockSetup: func() {
-				mockCompass.EXPECT().SendMetric(gomock.Any()).Return("", errors.New("compass error"))
+				mockCompass.EXPECT().SendMetric(gomock.Any(), gomock.Any()).Return("", errors.New("compass error"))
 			},
 			expectedError: errors.New("compass error"),
 		},
