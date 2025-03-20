@@ -96,18 +96,18 @@ func (mr *MockRepositoryInterfaceMockRecorder) Delete(arg0, arg1 interface{}) *g
 }
 
 // GetBySlug mocks base method.
-func (m *MockRepositoryInterface) GetBySlug(arg0 string) (*resources.Component, error) {
+func (m *MockRepositoryInterface) GetBySlug(arg0 context.Context, arg1 string) (*resources.Component, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetBySlug", arg0)
+	ret := m.ctrl.Call(m, "GetBySlug", arg0, arg1)
 	ret0, _ := ret[0].(*resources.Component)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetBySlug indicates an expected call of GetBySlug.
-func (mr *MockRepositoryInterfaceMockRecorder) GetBySlug(arg0 interface{}) *gomock.Call {
+func (mr *MockRepositoryInterfaceMockRecorder) GetBySlug(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBySlug", reflect.TypeOf((*MockRepositoryInterface)(nil).GetBySlug), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBySlug", reflect.TypeOf((*MockRepositoryInterface)(nil).GetBySlug), arg0, arg1)
 }
 
 // Push mocks base method.
@@ -136,6 +136,20 @@ func (m *MockRepositoryInterface) RemoveDocument(arg0 context.Context, arg1, arg
 func (mr *MockRepositoryInterfaceMockRecorder) RemoveDocument(arg0, arg1, arg2 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemoveDocument", reflect.TypeOf((*MockRepositoryInterface)(nil).RemoveDocument), arg0, arg1, arg2)
+}
+
+// SetAPISpecifications mocks base method.
+func (m *MockRepositoryInterface) SetAPISpecifications(arg0 context.Context, arg1, arg2, arg3 string) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "SetAPISpecifications", arg0, arg1, arg2, arg3)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// SetAPISpecifications indicates an expected call of SetAPISpecifications.
+func (mr *MockRepositoryInterfaceMockRecorder) SetAPISpecifications(arg0, arg1, arg2, arg3 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetAPISpecifications", reflect.TypeOf((*MockRepositoryInterface)(nil).SetAPISpecifications), arg0, arg1, arg2, arg3)
 }
 
 // SetDependency mocks base method.
@@ -181,11 +195,12 @@ func (mr *MockRepositoryInterfaceMockRecorder) UnsetDependency(arg0, arg1, arg2 
 }
 
 // Update mocks base method.
-func (m *MockRepositoryInterface) Update(arg0 context.Context, arg1 resources.Component) error {
+func (m *MockRepositoryInterface) Update(arg0 context.Context, arg1 resources.Component) (resources.Component, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Update", arg0, arg1)
-	ret0, _ := ret[0].(error)
-	return ret0
+	ret0, _ := ret[0].(resources.Component)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
 }
 
 // Update indicates an expected call of Update.

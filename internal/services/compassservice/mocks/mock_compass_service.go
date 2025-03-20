@@ -9,6 +9,7 @@ import (
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
+	dtos "github.com/motain/of-catalog/internal/services/compassservice/dtos"
 )
 
 // MockCompassServiceInterface is a mock of CompassServiceInterface interface.
@@ -60,6 +61,21 @@ func (m *MockCompassServiceInterface) Run(arg0 context.Context, arg1 string, arg
 func (mr *MockCompassServiceInterfaceMockRecorder) Run(arg0, arg1, arg2, arg3 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Run", reflect.TypeOf((*MockCompassServiceInterface)(nil).Run), arg0, arg1, arg2, arg3)
+}
+
+// SendAPISpecifications mocks base method.
+func (m *MockCompassServiceInterface) SendAPISpecifications(arg0 dtos.APISpecificationsInput) (string, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "SendAPISpecifications", arg0)
+	ret0, _ := ret[0].(string)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// SendAPISpecifications indicates an expected call of SendAPISpecifications.
+func (mr *MockCompassServiceInterfaceMockRecorder) SendAPISpecifications(arg0 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SendAPISpecifications", reflect.TypeOf((*MockCompassServiceInterface)(nil).SendAPISpecifications), arg0)
 }
 
 // SendMetric mocks base method.
