@@ -1,6 +1,6 @@
 package factcollectors
 
-//go:generate mockgen -destination=./mock/mock_github_fact_collector.go -package=factcollectors github.com/motain/of-catalog/internal/services/factsystem/factcollectors GithubFactCollectorInterface
+//go:generate mockgen -destination=./mocks/mock_github_fact_collector.go -package=factcollectors github.com/motain/of-catalog/internal/services/factsystem/factcollectors GithubFactCollectorInterface
 
 import (
 	"errors"

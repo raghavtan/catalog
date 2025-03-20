@@ -1,6 +1,6 @@
 package repository
 
-//go:generate mockgen -destination=./mock/mock_repository.go -package=repository github.com/motain/of-catalog/internal/modules/scorecard/repository RepositoryInterface
+//go:generate mockgen -destination=./mocks/mock_repository.go -package=repository github.com/motain/of-catalog/internal/modules/scorecard/repository RepositoryInterface
 
 import (
 	"context"

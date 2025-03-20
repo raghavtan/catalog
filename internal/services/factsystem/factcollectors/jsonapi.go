@@ -1,6 +1,6 @@
 package factcollectors
 
-//go:generate mockgen -destination=./mock/mock_jsonapiFact_fact_collector.go -package=factcollectors github.com/motain/of-catalog/internal/services/factsystem/factcollectors JSONAPIFactCollectorInterface
+//go:generate mockgen -destination=./mocks/mock_jsonapiFact_fact_collector.go -package=factcollectors github.com/motain/of-catalog/internal/services/factsystem/factcollectors JSONAPIFactCollectorInterface
 
 import (
 	"errors"

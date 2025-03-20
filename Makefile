@@ -24,15 +24,11 @@ lint:
 
 .PHONY: test
 test:
-	$(GO) test -v -race -coverprofile=coverage.out -count=1 -tags unit ./... | grep -v vendor/
+	GOPRIVATE=github.com/motain $(GO) test -v -race -count=1 -tags unit ./... -cover -coverprofile=coverage.out | grep -v vendor/
 
-.PHONY: test/coverage
+.PHONY: coverage/func
 test/coverage: test
-	$(GO) tool cover -html=coverage.out
-
-.PHONY: test/functional
-test/functional:
-	$(GO) test -v -p=1 -count=1 -coverprofile=coverage.out -tags functional ./... | grep -v vendor/
+	$(GO) tool cover -func=coverage.out | awk '/^[^total]/ {print $NF}' | awk -F'%' '{sum+=$1; if(min==""){min=$1}; if($1>max){max=$1}; if($1<min){min=$1}; count++} END {print "Average:", sum/count "%"; print "Max:", max "%"; print "Min:", min "%"}'
 
 .PHONY: trivy-docker
 trivy-docker: build ## Builds a docker image for trivy vulnerability checks.
