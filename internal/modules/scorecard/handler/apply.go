@@ -22,7 +22,7 @@ func NewApplyHandler(
 	return &ApplyHandler{repository: repository}
 }
 
-func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string, recursive bool) {
+func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, stateRootLocation string, recursive bool) {
 	parseInput := yaml.ParseInput{
 		RootLocation: configRootLocation,
 		Recursive:    recursive,
@@ -54,29 +54,29 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 		dtos.FromStateToConfig,
 		dtos.IsScoreCardEqual,
 	)
-	h.handleDeleted(deleted)
 
 	result := make([]*dtos.ScorecardDTO, 0)
-	result = h.handleUnchanged(result, unchanged)
-	result = h.handleCreated(result, created)
-	result = h.handleUpdated(result, updated, stateScorecards)
+	h.handleDeleted(ctx, deleted)
+	result = h.handleUnchanged(ctx, result, unchanged)
+	result = h.handleCreated(ctx, result, created)
+	result = h.handleUpdated(ctx, result, updated, stateScorecards)
 
-	err := yaml.WriteState[dtos.ScorecardDTO](result)
+	err := yaml.WriteState(result)
 	if err != nil {
 		log.Fatalf("error writing scorecards to file: %v", err)
 	}
 }
 
-func (h *ApplyHandler) handleDeleted(scorecards map[string]*dtos.ScorecardDTO) {
+func (h *ApplyHandler) handleDeleted(ctx context.Context, scorecards map[string]*dtos.ScorecardDTO) {
 	for _, scorecardDTO := range scorecards {
-		errScorecard := h.repository.Delete(context.Background(), *scorecardDTO.Spec.ID)
+		errScorecard := h.repository.Delete(ctx, *scorecardDTO.Spec.ID)
 		if errScorecard != nil {
 			panic(errScorecard)
 		}
 	}
 }
 
-func (h *ApplyHandler) handleUnchanged(result []*dtos.ScorecardDTO, scorecards map[string]*dtos.ScorecardDTO) []*dtos.ScorecardDTO {
+func (h *ApplyHandler) handleUnchanged(ctx context.Context, result []*dtos.ScorecardDTO, scorecards map[string]*dtos.ScorecardDTO) []*dtos.ScorecardDTO {
 	for _, scorecardDTO := range scorecards {
 		result = append(result, scorecardDTO)
 	}
@@ -84,11 +84,11 @@ func (h *ApplyHandler) handleUnchanged(result []*dtos.ScorecardDTO, scorecards m
 	return result
 }
 
-func (h *ApplyHandler) handleCreated(result []*dtos.ScorecardDTO, scorecards map[string]*dtos.ScorecardDTO) []*dtos.ScorecardDTO {
+func (h *ApplyHandler) handleCreated(ctx context.Context, result []*dtos.ScorecardDTO, scorecards map[string]*dtos.ScorecardDTO) []*dtos.ScorecardDTO {
 	for _, scorecardDTO := range scorecards {
 		scorecard := h.scorecardDTOToResource(scorecardDTO)
 
-		id, criteriaMap, errScorecard := h.repository.Create(context.Background(), scorecard)
+		id, criteriaMap, errScorecard := h.repository.Create(ctx, scorecard)
 		if errScorecard != nil {
 			panic(errScorecard)
 		}
@@ -104,6 +104,7 @@ func (h *ApplyHandler) handleCreated(result []*dtos.ScorecardDTO, scorecards map
 }
 
 func (h *ApplyHandler) handleUpdated(
+	ctx context.Context,
 	result []*dtos.ScorecardDTO,
 	scorecards map[string]*dtos.ScorecardDTO,
 	stateScorecards map[string]*dtos.ScorecardDTO,
@@ -131,7 +132,7 @@ func (h *ApplyHandler) handleUpdated(
 
 		scorecard := h.scorecardDTOToResource(scorecardDTO)
 		errScorecard := h.repository.Update(
-			context.Background(),
+			ctx,
 			scorecard,
 			h.criteriaDTOToResource(created),
 			h.criteriaDTOToResource(updated),
