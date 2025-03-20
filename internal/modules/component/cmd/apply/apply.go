@@ -3,6 +3,7 @@ package apply
 import (
 	"fmt"
 
+	"github.com/motain/of-catalog/internal/utils/commandcontext"
 	"github.com/motain/of-catalog/internal/utils/yaml"
 	"github.com/spf13/cobra"
 )
@@ -20,8 +21,11 @@ func Init() *cobra.Command {
 				cmd.Help()
 				return
 			}
+
+			ctx := commandcontext.Init()
+
 			handler := initializeHandler()
-			handler.Apply(configRootLocation, yaml.StateLocation, recursive, componentName)
+			handler.Apply(ctx, configRootLocation, yaml.StateLocation, recursive, componentName)
 		},
 	}
 

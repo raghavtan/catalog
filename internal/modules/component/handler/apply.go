@@ -35,7 +35,7 @@ func NewApplyHandler(
 	return &ApplyHandler{github: gh, repository: repository, owner: owner, document: document}
 }
 
-func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string, recursive bool, componentName string) {
+func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, stateRootLocation string, recursive bool, componentName string) {
 	parseInput := yaml.ParseInput{
 		RootLocation: configRootLocation,
 		Recursive:    recursive,
@@ -51,7 +51,7 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 	}
 
 	if componentName == "" {
-		h.handleAll(stateComponents, configComponents)
+		h.handleAll(ctx, stateComponents, configComponents)
 		return
 	}
 
@@ -61,10 +61,10 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 		log.Fatalf("component %s not found", componentName)
 	}
 
-	h.handleOne(stateComponents, configComponents, componentName)
+	h.handleOne(ctx, stateComponents, configComponents, componentName)
 }
 
-func (h *ApplyHandler) handleAll(stateComponents, configComponents map[string]*dtos.ComponentDTO) {
+func (h *ApplyHandler) handleAll(ctx context.Context, stateComponents, configComponents map[string]*dtos.ComponentDTO) {
 	created, updated, deleted, unchanged := drift.Detect(
 		stateComponents,
 		configComponents,
@@ -73,10 +73,10 @@ func (h *ApplyHandler) handleAll(stateComponents, configComponents map[string]*d
 	)
 
 	var result []*dtos.ComponentDTO
-	h.handleDeleted(deleted)
-	result = h.handleUnchanged(result, unchanged, stateComponents)
-	result = h.handleCreated(result, created, stateComponents)
-	result = h.handleUpdated(result, updated, stateComponents)
+	h.handleDeleted(ctx, deleted)
+	result = h.handleUnchanged(ctx, result, unchanged, stateComponents)
+	result = h.handleCreated(ctx, result, created, stateComponents)
+	result = h.handleUpdated(ctx, result, updated, stateComponents)
 
 	err := yaml.WriteState(yaml.SortResults(result, dtos.GetComponentUniqueKey))
 	if err != nil {
@@ -84,7 +84,7 @@ func (h *ApplyHandler) handleAll(stateComponents, configComponents map[string]*d
 	}
 }
 
-func (h *ApplyHandler) handleOne(stateComponents, configComponents map[string]*dtos.ComponentDTO, componentName string) {
+func (h *ApplyHandler) handleOne(ctx context.Context, stateComponents, configComponents map[string]*dtos.ComponentDTO, componentName string) {
 	configComponent := configComponents[componentName]
 	stateComponent := stateComponents[componentName]
 
@@ -103,10 +103,10 @@ func (h *ApplyHandler) handleOne(stateComponents, configComponents map[string]*d
 		dtos.IsEqualComponent,
 	)
 
-	h.handleDeleted(deleted)
-	result = h.handleUnchanged(result, unchanged, stateComponents)
-	result = h.handleCreated(result, created, stateComponents)
-	result = h.handleUpdated(result, updated, stateComponents)
+	h.handleDeleted(ctx, deleted)
+	result = h.handleUnchanged(ctx, result, unchanged, stateComponents)
+	result = h.handleCreated(ctx, result, created, stateComponents)
+	result = h.handleUpdated(ctx, result, updated, stateComponents)
 
 	err := yaml.WriteState(yaml.SortResults(result, dtos.GetComponentUniqueKey))
 	if err != nil {
@@ -114,9 +114,9 @@ func (h *ApplyHandler) handleOne(stateComponents, configComponents map[string]*d
 	}
 }
 
-func (h *ApplyHandler) handleDeleted(components map[string]*dtos.ComponentDTO) {
+func (h *ApplyHandler) handleDeleted(ctx context.Context, components map[string]*dtos.ComponentDTO) {
 	for _, componentDTO := range components {
-		errComponent := h.repository.Delete(context.Background(), componentDTO.Spec.ID)
+		errComponent := h.repository.Delete(ctx, componentDTO.Spec.ID)
 		if errComponent != nil {
 			panic(errComponent)
 		}
@@ -124,22 +124,24 @@ func (h *ApplyHandler) handleDeleted(components map[string]*dtos.ComponentDTO) {
 }
 
 func (h *ApplyHandler) handleUnchanged(
+	ctx context.Context,
 	result []*dtos.ComponentDTO,
 	components map[string]*dtos.ComponentDTO,
 	stateComponents map[string]*dtos.ComponentDTO,
 ) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		componentDTO = h.handleOwner(componentDTO)
-		componentDTO = h.handleDocumenation(componentDTO, stateComponents)
+		componentDTO = h.handleDocumenation(ctx, componentDTO, stateComponents)
 
 		result = append(result, componentDTO)
 
-		h.handleAPISpecification(componentDTO)
+		h.handleAPISpecification(ctx, componentDTO)
 	}
 	return result
 }
 
 func (h *ApplyHandler) handleCreated(
+	ctx context.Context,
 	result []*dtos.ComponentDTO,
 	components map[string]*dtos.ComponentDTO,
 	stateComponents map[string]*dtos.ComponentDTO,
@@ -152,14 +154,14 @@ func (h *ApplyHandler) handleCreated(
 
 		component := componentDTOToResource(componentDTO)
 
-		component, errComponent := h.repository.Create(context.Background(), component)
+		component, errComponent := h.repository.Create(ctx, component)
 		if errComponent != nil {
 			panic(errComponent)
 		}
 
 		for _, providerName := range componentDTO.Spec.DependsOn {
 			if provider, exists := stateComponents[providerName]; exists {
-				h.repository.SetDependency(context.Background(), component.ID, provider.Spec.ID)
+				h.repository.SetDependency(ctx, component.ID, provider.Spec.ID)
 			} else {
 				log.Printf("Provider %s not found for component %s", providerName, componentDTO.Spec.Name)
 			}
@@ -197,23 +199,24 @@ func (h *ApplyHandler) handleCreated(
 		componentDTO.Spec.DependsOn = nil
 		result = append(result, componentDTO)
 
-		h.handleAPISpecification(componentDTO)
+		h.handleAPISpecification(ctx, componentDTO)
 	}
 
 	return result
 }
 
 func (h *ApplyHandler) handleUpdated(
+	ctx context.Context,
 	result []*dtos.ComponentDTO,
 	components map[string]*dtos.ComponentDTO,
 	stateComponents map[string]*dtos.ComponentDTO,
 ) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		componentDTO = h.handleOwner(componentDTO)
-		componentDTO = h.handleDocumenation(componentDTO, stateComponents)
+		componentDTO = h.handleDocumenation(ctx, componentDTO, stateComponents)
 
 		component := componentDTOToResource(componentDTO)
-		component, errComponent := h.repository.Update(context.Background(), component)
+		component, errComponent := h.repository.Update(ctx, component)
 		if errComponent != nil {
 			panic(errComponent)
 		}
@@ -239,11 +242,11 @@ func (h *ApplyHandler) handleUpdated(
 			}
 		}
 
-		h.handleDependencies(componentDTO, stateComponents)
+		h.handleDependencies(ctx, componentDTO, stateComponents)
 
 		result = append(result, componentDTO)
 
-		h.handleAPISpecification(componentDTO)
+		h.handleAPISpecification(ctx, componentDTO)
 	}
 
 	return result
@@ -327,6 +330,7 @@ func (h *ApplyHandler) handleOwner(componentDTO *dtos.ComponentDTO) *dtos.Compon
 }
 
 func (h *ApplyHandler) handleDocuments(
+	ctx context.Context,
 	componentDTO *dtos.ComponentDTO,
 	stateComponents map[string]*dtos.ComponentDTO,
 ) *dtos.ComponentDTO {
@@ -345,7 +349,7 @@ func (h *ApplyHandler) handleDocuments(
 
 	for _, document := range mappedStateDocuments {
 		if _, exists := mappedComponentDocuments[document.Title]; !exists {
-			h.repository.RemoveDocument(context.Background(), componentDTO.Spec.ID, document.ID)
+			h.repository.RemoveDocument(ctx, componentDTO.Spec.ID, document.ID)
 			continue
 		}
 
@@ -360,7 +364,7 @@ func (h *ApplyHandler) handleDocuments(
 				URL:   document.URL,
 			}
 
-			newDocument, addDocumentErr := h.repository.AddDocument(context.Background(), componentDTO.Spec.ID, resourceDocument)
+			newDocument, addDocumentErr := h.repository.AddDocument(ctx, componentDTO.Spec.ID, resourceDocument)
 			if addDocumentErr != nil {
 				fmt.Printf("apply documents %s", addDocumentErr)
 			}
@@ -380,7 +384,7 @@ func (h *ApplyHandler) handleDocuments(
 				URL:   document.URL,
 			}
 
-			updateDocumentErr := h.repository.UpdateDocument(context.Background(), componentDTO.Spec.ID, resourceDocument)
+			updateDocumentErr := h.repository.UpdateDocument(ctx, componentDTO.Spec.ID, resourceDocument)
 			if updateDocumentErr != nil {
 				fmt.Printf("apply documents %s", updateDocumentErr)
 			}
@@ -402,13 +406,14 @@ func (h *ApplyHandler) handleDocuments(
 }
 
 func (h *ApplyHandler) handleDependencies(
+	ctx context.Context,
 	componentDTO *dtos.ComponentDTO,
 	stateComponents map[string]*dtos.ComponentDTO,
 ) {
 	componentInState := stateComponents[componentDTO.Metadata.Name]
 	for _, providerName := range componentInState.Spec.DependsOn {
 		if !listutils.Contains(componentDTO.Spec.DependsOn, providerName) {
-			err := h.repository.UnsetDependency(context.Background(), componentDTO.Spec.ID, stateComponents[providerName].Spec.ID)
+			err := h.repository.UnsetDependency(ctx, componentDTO.Spec.ID, stateComponents[providerName].Spec.ID)
 			if err != nil {
 				fmt.Printf("apply dependencies %s", err)
 			}
@@ -423,7 +428,7 @@ func (h *ApplyHandler) handleDependencies(
 				continue
 			}
 
-			err := h.repository.SetDependency(context.Background(), componentDTO.Spec.ID, stateProvider.Spec.ID)
+			err := h.repository.SetDependency(ctx, componentDTO.Spec.ID, stateProvider.Spec.ID)
 			if err != nil {
 				fmt.Printf("apply dependencies %s", err)
 			}
@@ -432,6 +437,7 @@ func (h *ApplyHandler) handleDependencies(
 }
 
 func (h *ApplyHandler) handleDocumenation(
+	ctx context.Context,
 	componentDTO *dtos.ComponentDTO,
 	stateComponents map[string]*dtos.ComponentDTO,
 ) *dtos.ComponentDTO {
@@ -461,16 +467,16 @@ func (h *ApplyHandler) handleDocumenation(
 	}
 	componentDTO.Spec.Documents = processedDocuments
 
-	return h.handleDocuments(componentDTO, stateComponents)
+	return h.handleDocuments(ctx, componentDTO, stateComponents)
 }
 
-func (h *ApplyHandler) handleAPISpecification(componentDTO *dtos.ComponentDTO) {
+func (h *ApplyHandler) handleAPISpecification(ctx context.Context, componentDTO *dtos.ComponentDTO) {
 	apiSpecs, apiSpecsFile, documentErr := h.getRemoteAPISpecifications(componentDTO.Spec.Name)
 	if documentErr != nil {
 		return
 	}
 
-	err := h.repository.SetAPISpecifications(context.Background(), componentDTO.Spec.ID, apiSpecs, apiSpecsFile)
+	err := h.repository.SetAPISpecifications(ctx, componentDTO.Spec.ID, apiSpecs, apiSpecsFile)
 	if err != nil {
 		fmt.Printf("apply api specifications error: %s", err)
 	}
