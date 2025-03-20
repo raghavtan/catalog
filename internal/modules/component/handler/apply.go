@@ -2,8 +2,10 @@ package handler
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log"
+	"path/filepath"
 
 	"github.com/motain/of-catalog/internal/modules/component/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/repository"
@@ -48,12 +50,18 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 		log.Fatalf("error: %v", errState)
 	}
 
-	if componentName != "" {
-		h.handleOne(stateComponents, configComponents, componentName)
+	if componentName == "" {
+		h.handleAll(stateComponents, configComponents)
 		return
 	}
 
-	h.handleAll(stateComponents, configComponents)
+	_, existsInState := stateComponents[componentName]
+	_, existsInConfig := configComponents[componentName]
+	if !existsInConfig && !existsInState {
+		log.Fatalf("component %s not found", componentName)
+	}
+
+	h.handleOne(stateComponents, configComponents, componentName)
 }
 
 func (h *ApplyHandler) handleAll(stateComponents, configComponents map[string]*dtos.ComponentDTO) {
@@ -81,9 +89,9 @@ func (h *ApplyHandler) handleOne(stateComponents, configComponents map[string]*d
 	stateComponent := stateComponents[componentName]
 
 	result := make([]*dtos.ComponentDTO, 0)
-	for stateComponentName, _ := range stateComponents {
-		if stateComponentName != configComponent.Metadata.Name {
-			result = append(result, configComponent)
+	for stateComponentName, stateComponent := range stateComponents {
+		if stateComponentName != componentName {
+			result = append(result, stateComponent)
 			continue
 		}
 	}
@@ -125,6 +133,8 @@ func (h *ApplyHandler) handleUnchanged(
 		componentDTO = h.handleDocumenation(componentDTO, stateComponents)
 
 		result = append(result, componentDTO)
+
+		h.handleAPISpecification(componentDTO)
 	}
 	return result
 }
@@ -186,6 +196,8 @@ func (h *ApplyHandler) handleCreated(
 		// We need to think about the best way to handle this
 		componentDTO.Spec.DependsOn = nil
 		result = append(result, componentDTO)
+
+		h.handleAPISpecification(componentDTO)
 	}
 
 	return result
@@ -230,6 +242,8 @@ func (h *ApplyHandler) handleUpdated(
 		h.handleDependencies(componentDTO, stateComponents)
 
 		result = append(result, componentDTO)
+
+		h.handleAPISpecification(componentDTO)
 	}
 
 	return result
@@ -423,7 +437,6 @@ func (h *ApplyHandler) handleDocumenation(
 ) *dtos.ComponentDTO {
 	documents, documentErr := h.document.GetDocuments(componentDTO.Spec.Name)
 	if documentErr != nil {
-		// log.Printf("error getting document links for component %s: %v", componentDTO.Spec.Name, documentErr)
 		return componentDTO
 	}
 
@@ -449,4 +462,46 @@ func (h *ApplyHandler) handleDocumenation(
 	componentDTO.Spec.Documents = processedDocuments
 
 	return h.handleDocuments(componentDTO, stateComponents)
+}
+
+func (h *ApplyHandler) handleAPISpecification(componentDTO *dtos.ComponentDTO) {
+	apiSpecs, apiSpecsFile, documentErr := h.getRemoteAPISpecifications(componentDTO.Spec.Name)
+	if documentErr != nil {
+		return
+	}
+
+	err := h.repository.SetAPISpecifications(context.Background(), componentDTO.Spec.ID, apiSpecs, apiSpecsFile)
+	if err != nil {
+		fmt.Printf("apply api specifications error: %s", err)
+	}
+}
+
+func (h *ApplyHandler) getRemoteAPISpecifications(repo string) (string, string, error) {
+	possibleLocations := []string{
+		"",        // Let's assume the standard is to use the root folder
+		"docs",    // Fallback to the docs folder
+		"doc",     // Fallback to the doc folder
+		".of",     // Fallback to the .of folder
+		"openapi", // Fallback to the openapi folder
+	}
+	possibleFileNames := []string{
+		"openapi.yaml",
+		"openapi.yml",
+		"openapi.json",
+		"swagger.yaml",
+		"swagger.yml",
+		"swagger.json",
+	}
+
+	for _, folder := range possibleLocations {
+		for _, fileName := range possibleFileNames {
+			location := filepath.Join(folder, fileName)
+			fileContent, fileErr := h.github.GetFileContent(repo, location)
+			if fileErr == nil {
+				return fileContent, location, nil
+			}
+		}
+	}
+
+	return "", "", errors.New("no API specification found")
 }
