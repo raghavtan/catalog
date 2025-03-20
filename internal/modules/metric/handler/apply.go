@@ -21,7 +21,7 @@ func NewApplyHandler(
 	return &ApplyHandler{repository: repository}
 }
 
-func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string, recursive bool) {
+func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, stateRootLocation string, recursive bool) {
 	stateMetrics, errState := yaml.Parse(yaml.GetStateInput(stateRootLocation), dtos.GetMetricUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
@@ -42,12 +42,12 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 		dtos.FromStateToConfig,
 		dtos.IsEqualMetric,
 	)
-	h.handleDeleted(deleted)
 
 	var result []*dtos.MetricDTO
-	result = h.handleUnchanged(result, unchanged)
-	result = h.handleCreated(result, created)
-	result = h.handleUpdated(result, updated)
+	h.handleDeleted(ctx, deleted)
+	result = h.handleUnchanged(ctx, result, unchanged)
+	result = h.handleCreated(ctx, result, created)
+	result = h.handleUpdated(ctx, result, updated)
 
 	err := yaml.WriteState(result)
 	if err != nil {
@@ -55,27 +55,27 @@ func (h *ApplyHandler) Apply(configRootLocation string, stateRootLocation string
 	}
 }
 
-func (h *ApplyHandler) handleDeleted(metrics map[string]*dtos.MetricDTO) {
+func (h *ApplyHandler) handleDeleted(ctx context.Context, metrics map[string]*dtos.MetricDTO) {
 	for _, metricDTO := range metrics {
-		err := h.repository.Delete(context.Background(), metricDTO.Spec.ID)
+		err := h.repository.Delete(ctx, metricDTO.Spec.ID)
 		if err != nil {
 			panic(err)
 		}
 	}
 }
 
-func (h *ApplyHandler) handleUnchanged(result []*dtos.MetricDTO, metrics map[string]*dtos.MetricDTO) []*dtos.MetricDTO {
+func (h *ApplyHandler) handleUnchanged(ctx context.Context, result []*dtos.MetricDTO, metrics map[string]*dtos.MetricDTO) []*dtos.MetricDTO {
 	for _, metricDTO := range metrics {
 		result = append(result, metricDTO)
 	}
 	return result
 }
 
-func (h *ApplyHandler) handleCreated(result []*dtos.MetricDTO, metrics map[string]*dtos.MetricDTO) []*dtos.MetricDTO {
+func (h *ApplyHandler) handleCreated(ctx context.Context, result []*dtos.MetricDTO, metrics map[string]*dtos.MetricDTO) []*dtos.MetricDTO {
 	for _, metricDTO := range metrics {
 		metric := metricDTOToResource(metricDTO)
 
-		id, err := h.repository.Create(context.Background(), metric)
+		id, err := h.repository.Create(ctx, metric)
 		if err != nil {
 			panic(err)
 		}
@@ -87,10 +87,10 @@ func (h *ApplyHandler) handleCreated(result []*dtos.MetricDTO, metrics map[strin
 	return result
 }
 
-func (h *ApplyHandler) handleUpdated(result []*dtos.MetricDTO, metrics map[string]*dtos.MetricDTO) []*dtos.MetricDTO {
+func (h *ApplyHandler) handleUpdated(ctx context.Context, result []*dtos.MetricDTO, metrics map[string]*dtos.MetricDTO) []*dtos.MetricDTO {
 	for _, metricDTO := range metrics {
 		metric := metricDTOToResource(metricDTO)
-		err := h.repository.Update(context.Background(), metric)
+		err := h.repository.Update(ctx, metric)
 		if err != nil {
 			panic(err)
 		}
