@@ -4,9 +4,11 @@ package repository
 
 import (
 	"context"
-	"errors"
+	"fmt"
 	"log"
+	"strings"
 
+	"github.com/motain/of-catalog/internal/interfaces/repositoryinterfaces"
 	"github.com/motain/of-catalog/internal/modules/scorecard/repository/dtos"
 	"github.com/motain/of-catalog/internal/modules/scorecard/resources"
 	"github.com/motain/of-catalog/internal/services/compassservice"
@@ -33,20 +35,13 @@ func NewRepository(compass compassservice.CompassServiceInterface) *Repository {
 }
 
 func (r *Repository) Create(ctx context.Context, scorecard resources.Scorecard) (string, map[string]string, error) {
-	scoreCardDto := dtos.CreateScorecardOutput{}
-	query := scoreCardDto.GetQuery()
-	variables := scoreCardDto.SetVariables(r.compass.GetCompassCloudId(), scorecard)
-
-	if err := r.compass.Run(ctx, query, variables, &scoreCardDto); err != nil {
-		log.Printf("Failed to create scorecard: %v", err)
-		return "", nil, err
+	input := &dtos.CreateScorecardInput{CompassCloudID: r.compass.GetCompassCloudId(), Scorecard: scorecard}
+	output := &dtos.CreateScorecardOutput{}
+	if runErr := r.run(ctx, input, output, nil); runErr != nil {
+		return "", nil, fmt.Errorf("Create error for %s: %s", *scorecard.ID, runErr)
 	}
 
-	if !scoreCardDto.IsSuccessful() {
-		return "", nil, errors.New("failed to create scorecard")
-	}
-
-	scorecardDetails := scoreCardDto.Compass.CreateScorecard.Scorecard
+	scorecardDetails := output.Compass.CreateScorecard.Scorecard
 	criteriaMap := make(map[string]string, len(scorecardDetails.Criteria))
 	for _, criterion := range scorecardDetails.Criteria {
 		criteriaMap[criterion.Name] = criterion.ID
@@ -62,34 +57,50 @@ func (r *Repository) Update(
 	updateCriteria []*resources.Criterion,
 	deleteCriteria []string,
 ) error {
-	scoreCardDto := dtos.UpdateScorecard{}
-	query := scoreCardDto.GetQuery()
-	variables := scoreCardDto.SetVariables(scorecard, createCriteria, updateCriteria, deleteCriteria)
-
-	if err := r.compass.Run(ctx, query, variables, &scoreCardDto); err != nil {
-		log.Printf("Failed to update scorecard: %v", err)
-		return err
+	input := &dtos.UpdateScorecardInput{
+		Scorecard:      scorecard,
+		CreateCriteria: createCriteria,
+		UpdateCriteria: updateCriteria,
+		DeleteCriteria: deleteCriteria,
 	}
-
-	if !scoreCardDto.IsSuccessful() {
-		return errors.New("failed to update scorecard")
+	output := &dtos.UpdateScorecardOutput{}
+	if runErr := r.run(ctx, input, output, nil); runErr != nil {
+		return fmt.Errorf("Update error for %s: %s", *scorecard.ID, runErr)
 	}
-
 	return nil
 }
 
 func (r *Repository) Delete(ctx context.Context, id string) error {
-	scoreCardDto := dtos.DeleteScorecard{}
-	query := scoreCardDto.GetQuery()
-	variables := scoreCardDto.SetVariables(id)
+	input := &dtos.DeleteScorecardInput{ScorecardID: id}
+	output := &dtos.DeleteScorecardOutput{}
+	if runErr := r.run(ctx, input, output, nil); runErr != nil {
+		return fmt.Errorf("Delete error for %s: %s", id, runErr)
+	}
+	return nil
+}
 
-	if err := r.compass.Run(ctx, query, variables, &scoreCardDto); err != nil {
-		log.Printf("failed to delete scorecard: %v", err)
-		return err
+func (r *Repository) run(
+	ctx context.Context,
+	input repositoryinterfaces.InputDTOInterface,
+	output repositoryinterfaces.OutputDTOInterface,
+	preValidationFunc repositoryinterfaces.ValidationFunc,
+) error {
+	query := input.GetQuery()
+	operation := strings.TrimSpace(query[:strings.Index(query, "(")])
+
+	if runErr := r.compass.Run(ctx, query, input.SetVariables(), output); runErr != nil {
+		log.Printf("failed to run %s: %v", operation, runErr)
+		return runErr
 	}
 
-	if !scoreCardDto.IsSuccessful() {
-		return errors.New("failed to delete scorecard")
+	if preValidationFunc != nil {
+		if runErr := preValidationFunc(); runErr != nil {
+			return runErr
+		}
+	}
+
+	if !output.IsSuccessful() {
+		return fmt.Errorf("failed to execute %s: %v", operation, output.GetErrors())
 	}
 
 	return nil

@@ -1,14 +1,16 @@
 package dtos
 
-type DeleteScorecard struct {
-	Compass struct {
-		DeleteScorecard struct {
-			Success bool `json:"success"`
-		} `json:"deleteScorecard"`
-	} `json:"compass"`
+import "github.com/motain/of-catalog/internal/services/compassservice"
+
+/*************
+ * INPUT DTO *
+ *************/
+
+type DeleteScorecardInput struct {
+	ScorecardID string
 }
 
-func (d *DeleteScorecard) GetQuery() string {
+func (dto *DeleteScorecardInput) GetQuery() string {
 	return `
 		mutation deleteScorecard($scorecardId: ID!) {
 			compass {
@@ -23,12 +25,33 @@ func (d *DeleteScorecard) GetQuery() string {
 		}`
 }
 
-func (d *DeleteScorecard) SetVariables(scorecardId string) map[string]interface{} {
+func (dto *DeleteScorecardInput) SetVariables() map[string]interface{} {
 	return map[string]interface{}{
-		"scorecardId": scorecardId,
+		"scorecardId": dto.ScorecardID,
 	}
 }
 
-func (c *DeleteScorecard) IsSuccessful() bool {
-	return c.Compass.DeleteScorecard.Success
+/**************
+ * OUTPUT DTO *
+ **************/
+
+type DeleteScorecardOutput struct {
+	Compass struct {
+		DeleteScorecardOutput struct {
+			Errors  []compassservice.CompassError `json:"errors"`
+			Success bool                          `json:"success"`
+		} `json:"DeleteScorecardOutput"`
+	} `json:"compass"`
+}
+
+func (dto *DeleteScorecardOutput) IsSuccessful() bool {
+	return dto.Compass.DeleteScorecardOutput.Success
+}
+
+func (dto *DeleteScorecardOutput) GetErrors() []string {
+	errors := make([]string, len(dto.Compass.DeleteScorecardOutput.Errors))
+	for i, err := range dto.Compass.DeleteScorecardOutput.Errors {
+		errors[i] = err.Message
+	}
+	return errors
 }

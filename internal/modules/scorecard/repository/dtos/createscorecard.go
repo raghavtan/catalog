@@ -4,28 +4,18 @@ import (
 	"fmt"
 
 	"github.com/motain/of-catalog/internal/modules/scorecard/resources"
+	"github.com/motain/of-catalog/internal/services/compassservice"
 )
 
-type ScorecardDetails struct {
-	ID       string      `json:"id"`
-	Criteria []Criterion `json:"criterias"`
+/*************
+ * INPUT DTO *
+ *************/
+type CreateScorecardInput struct {
+	CompassCloudID string
+	Scorecard      resources.Scorecard
 }
 
-type Criterion struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
-}
-
-type CreateScorecardOutput struct {
-	Compass struct {
-		CreateScorecard struct {
-			Success   bool             `json:"success"`
-			Scorecard ScorecardDetails `json:"scorecardDetails"`
-		} `json:"createScorecard"`
-	} `json:"compass"`
-}
-
-func (c *CreateScorecardOutput) GetQuery() string {
+func (dto *CreateScorecardInput) GetQuery() string {
 	return `
 		mutation createScorecard ($cloudId: ID!, $scorecardDetails: CreateCompassScorecardInput!) {
 			compass {
@@ -46,9 +36,9 @@ func (c *CreateScorecardOutput) GetQuery() string {
 		}`
 }
 
-func (c *CreateScorecardOutput) SetVariables(compassCloudIdD string, scorecard resources.Scorecard) map[string]interface{} {
-	criteria := make([]map[string]map[string]string, len(scorecard.Criteria))
-	for i, criterion := range scorecard.Criteria {
+func (dto *CreateScorecardInput) SetVariables() map[string]interface{} {
+	criteria := make([]map[string]map[string]string, len(dto.Scorecard.Criteria))
+	for i, criterion := range dto.Scorecard.Criteria {
 		criteria[i] = make(map[string]map[string]string)
 		criteria[i]["hasMetricValue"] = make(map[string]string)
 		criteria[i]["hasMetricValue"] = map[string]string{
@@ -61,25 +51,56 @@ func (c *CreateScorecardOutput) SetVariables(compassCloudIdD string, scorecard r
 	}
 
 	variables := map[string]interface{}{
-		"cloudId": compassCloudIdD,
+		"cloudId": dto.CompassCloudID,
 		"scorecardDetails": map[string]interface{}{
-			"name":                scorecard.Name,
-			"description":         scorecard.Description,
-			"state":               scorecard.State,
-			"componentTypeIds":    scorecard.ComponentTypeIDs,
-			"importance":          scorecard.Importance,
-			"scoringStrategyType": scorecard.ScoringStrategyType,
+			"name":                dto.Scorecard.Name,
+			"description":         dto.Scorecard.Description,
+			"state":               dto.Scorecard.State,
+			"componentTypeIds":    dto.Scorecard.ComponentTypeIDs,
+			"importance":          dto.Scorecard.Importance,
+			"scoringStrategyType": dto.Scorecard.ScoringStrategyType,
 			"criterias":           criteria,
 		},
 	}
 
-	if scorecard.OwnerID != "" {
-		variables["scorecardDetails"].(map[string]interface{})["ownerId"] = scorecard.OwnerID
+	if dto.Scorecard.OwnerID != "" {
+		variables["scorecardDetails"].(map[string]interface{})["ownerId"] = dto.Scorecard.OwnerID
 	}
 
 	return variables
 }
 
-func (c *CreateScorecardOutput) IsSuccessful() bool {
-	return c.Compass.CreateScorecard.Success
+/**************
+ * OUTPUT DTO *
+ **************/
+type ScorecardDetails struct {
+	ID       string      `json:"id"`
+	Criteria []Criterion `json:"criterias"`
+}
+
+type Criterion struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
+type CreateScorecardOutput struct {
+	Compass struct {
+		CreateScorecard struct {
+			Errors    []compassservice.CompassError `json:"errors"`
+			Success   bool                          `json:"success"`
+			Scorecard ScorecardDetails              `json:"scorecardDetails"`
+		} `json:"createScorecard"`
+	} `json:"compass"`
+}
+
+func (dto *CreateScorecardOutput) IsSuccessful() bool {
+	return dto.Compass.CreateScorecard.Success
+}
+
+func (dto *CreateScorecardOutput) GetErrors() []string {
+	errors := make([]string, len(dto.Compass.CreateScorecard.Errors))
+	for i, err := range dto.Compass.CreateScorecard.Errors {
+		errors[i] = err.Message
+	}
+	return errors
 }

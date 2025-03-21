@@ -4,17 +4,21 @@ import (
 	"fmt"
 
 	"github.com/motain/of-catalog/internal/modules/scorecard/resources"
+	"github.com/motain/of-catalog/internal/services/compassservice"
 )
 
-type UpdateScorecard struct {
-	Compass struct {
-		UpdateScorecard struct {
-			Success bool `json:"success"`
-		} `json:"updateScorecard"`
-	} `json:"compass"`
+/*************
+ * INPUT DTO *
+ *************/
+
+type UpdateScorecardInput struct {
+	Scorecard      resources.Scorecard
+	CreateCriteria []*resources.Criterion
+	UpdateCriteria []*resources.Criterion
+	DeleteCriteria []string
 }
 
-func (u *UpdateScorecard) GetQuery() string {
+func (dto *UpdateScorecardInput) GetQuery() string {
 	return `
 		mutation updateScorecard ($scorecardId: ID! $scorecardDetails: UpdateCompassScorecardInput!) {
 			compass {
@@ -28,14 +32,9 @@ func (u *UpdateScorecard) GetQuery() string {
 		}`
 }
 
-func (u *UpdateScorecard) SetVariables(
-	scorecard resources.Scorecard,
-	createCriteria []*resources.Criterion,
-	updateCriteria []*resources.Criterion,
-	deleteCriteria []string,
-) map[string]interface{} {
-	criteriaToAdd := make([]map[string]map[string]string, len(createCriteria))
-	for i, criterion := range createCriteria {
+func (dto *UpdateScorecardInput) SetVariables() map[string]interface{} {
+	criteriaToAdd := make([]map[string]map[string]string, len(dto.CreateCriteria))
+	for i, criterion := range dto.CreateCriteria {
 		criteriaToAdd[i] = make(map[string]map[string]string)
 		criteriaToAdd[i]["hasMetricValue"] = make(map[string]string)
 		criteriaToAdd[i]["hasMetricValue"] = map[string]string{
@@ -47,8 +46,8 @@ func (u *UpdateScorecard) SetVariables(
 		}
 	}
 
-	criteriaToUpdate := make([]map[string]map[string]string, len(updateCriteria))
-	for i, criterion := range updateCriteria {
+	criteriaToUpdate := make([]map[string]map[string]string, len(dto.UpdateCriteria))
+	for i, criterion := range dto.UpdateCriteria {
 		criteriaToUpdate[i] = make(map[string]map[string]string)
 		criteriaToUpdate[i]["hasMetricValue"] = make(map[string]string)
 		criteriaToUpdate[i]["hasMetricValue"] = map[string]string{
@@ -62,27 +61,47 @@ func (u *UpdateScorecard) SetVariables(
 	}
 
 	variables := map[string]interface{}{
-		"scorecardId": scorecard.ID,
+		"scorecardId": dto.Scorecard.ID,
 		"scorecardDetails": map[string]interface{}{
-			"name":                scorecard.Name,
-			"description":         scorecard.Description,
-			"state":               scorecard.State,
-			"componentTypeIds":    scorecard.ComponentTypeIDs,
-			"importance":          scorecard.Importance,
-			"scoringStrategyType": scorecard.ScoringStrategyType,
+			"name":                dto.Scorecard.Name,
+			"description":         dto.Scorecard.Description,
+			"state":               dto.Scorecard.State,
+			"componentTypeIds":    dto.Scorecard.ComponentTypeIDs,
+			"importance":          dto.Scorecard.Importance,
+			"scoringStrategyType": dto.Scorecard.ScoringStrategyType,
 			"createCriteria":      criteriaToAdd,
 			"updateCriteria":      criteriaToUpdate,
-			"deleteCriteria":      deleteCriteria,
+			"deleteCriteria":      dto.DeleteCriteria,
 		},
 	}
 
-	if scorecard.OwnerID != "" {
-		variables["scorecardDetails"].(map[string]interface{})["ownerId"] = scorecard.OwnerID
+	if dto.Scorecard.OwnerID != "" {
+		variables["scorecardDetails"].(map[string]interface{})["ownerId"] = dto.Scorecard.OwnerID
 	}
 
 	return variables
 }
 
-func (c *UpdateScorecard) IsSuccessful() bool {
-	return c.Compass.UpdateScorecard.Success
+/**************
+ * OUTPUT DTO *
+ **************/
+type UpdateScorecardOutput struct {
+	Compass struct {
+		UpdateScorecardOutput struct {
+			Errors  []compassservice.CompassError `json:"errors"`
+			Success bool                          `json:"success"`
+		} `json:"updateScorecard"`
+	} `json:"compass"`
+}
+
+func (dto *UpdateScorecardOutput) IsSuccessful() bool {
+	return dto.Compass.UpdateScorecardOutput.Success
+}
+
+func (dto *UpdateScorecardOutput) GetErrors() []string {
+	errors := make([]string, len(dto.Compass.UpdateScorecardOutput.Errors))
+	for i, err := range dto.Compass.UpdateScorecardOutput.Errors {
+		errors[i] = err.Message
+	}
+	return errors
 }
