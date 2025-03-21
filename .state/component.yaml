@@ -21650,6 +21650,10 @@ spec:
     dependsOn: []
     links:
         - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=search-gateway-api&var-container=search-gateway-api&from=now-1h&to=now
+        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -21669,10 +21673,26 @@ spec:
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=search-gateway-api&var-container=search-gateway-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: ""
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/search-gateway-api
     documents: []
     labels:
-        - engagement
         - personalisation
+        - engagement
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/fbec91f0-6131-48d9-8fa5-19264299a15e
@@ -21680,58 +21700,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: search-gateway-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: search-gateway-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/02e14693-eca9-4839-982b-cb7419171d8d
             name: critical-alerts-slo-check-svc-search-gateway-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/search-gateway-api
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -21739,21 +21715,7 @@ spec:
             name: deployment-readiness-svc-search-gateway-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: search-gateway-api
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -21762,120 +21724,22 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: search-gateway-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: search-gateway-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/04405618-f13e-4acd-a621-79be59285010
             name: instrumentation-check-svc-search-gateway-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: search-gateway-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: search-gateway-api
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: search-gateway-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: search-gateway-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5265f86a-7d2f-4b79-8fc7-6392c9c8e77f
             name: organizational-standards-svc-search-gateway-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: search-gateway-api
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: search-gateway-api
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
     tribe: engagement
