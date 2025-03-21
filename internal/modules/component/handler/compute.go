@@ -8,6 +8,7 @@ import (
 
 	"github.com/motain/of-catalog/internal/modules/component/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/repository"
+	"github.com/motain/of-catalog/internal/modules/component/resources"
 	"github.com/motain/of-catalog/internal/services/factsystem/factinterpreter"
 	"github.com/motain/of-catalog/internal/utils/yaml"
 )
@@ -64,10 +65,19 @@ func (h *ComputeHandler) computeMetric(ctx context.Context, component *dtos.Comp
 		return fmt.Errorf("%v", processErr)
 	}
 
-	pushErr := h.repository.Push(ctx, metricSource.ID, metricValue, time.Now())
+	pushErr := h.repository.Push(ctx, MetricSourceDTOToResource(metricSource), metricValue, time.Now())
 	if pushErr != nil {
 		return fmt.Errorf("error: %v", pushErr)
 	}
 
 	return nil
+}
+
+func MetricSourceDTOToResource(metricSource *dtos.MetricSourceDTO) resources.MetricSource {
+	return resources.MetricSource{
+		ID:     metricSource.ID,
+		Name:   metricSource.Name,
+		Metric: metricSource.Metric,
+		Facts:  metricSource.Facts,
+	}
 }

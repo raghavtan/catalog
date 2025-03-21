@@ -116,7 +116,7 @@ func (h *ApplyHandler) handleOne(ctx context.Context, stateComponents, configCom
 
 func (h *ApplyHandler) handleDeleted(ctx context.Context, components map[string]*dtos.ComponentDTO) {
 	for _, componentDTO := range components {
-		errComponent := h.repository.Delete(ctx, componentDTO.Spec.ID)
+		errComponent := h.repository.Delete(ctx, componentDTOToResource(componentDTO))
 		if errComponent != nil {
 			panic(errComponent)
 		}
@@ -161,7 +161,7 @@ func (h *ApplyHandler) handleCreated(
 
 		for _, providerName := range componentDTO.Spec.DependsOn {
 			if provider, exists := stateComponents[providerName]; exists {
-				h.repository.SetDependency(ctx, component.ID, provider.Spec.ID)
+				h.repository.SetDependency(ctx, component, componentDTOToResource(provider))
 			} else {
 				log.Printf("Provider %s not found for component %s", providerName, componentDTO.Spec.Name)
 			}
@@ -349,7 +349,12 @@ func (h *ApplyHandler) handleDocuments(
 
 	for _, document := range mappedStateDocuments {
 		if _, exists := mappedComponentDocuments[document.Title]; !exists {
-			h.repository.RemoveDocument(ctx, componentDTO.Spec.ID, document.ID)
+			documentResource := resources.Document{
+				Title: document.Title,
+				Type:  document.Type,
+				URL:   document.URL,
+			}
+			h.repository.RemoveDocument(ctx, componentDTOToResource(componentDTO), documentResource)
 			continue
 		}
 
@@ -358,13 +363,13 @@ func (h *ApplyHandler) handleDocuments(
 
 	for _, document := range mappedComponentDocuments {
 		if _, exists := mappedStateDocuments[document.Title]; !exists {
-			resourceDocument := resources.Document{
+			documentResource := resources.Document{
 				Title: document.Title,
 				Type:  document.Type,
 				URL:   document.URL,
 			}
 
-			newDocument, addDocumentErr := h.repository.AddDocument(ctx, componentDTO.Spec.ID, resourceDocument)
+			newDocument, addDocumentErr := h.repository.AddDocument(ctx, componentDTOToResource(componentDTO), documentResource)
 			if addDocumentErr != nil {
 				fmt.Printf("apply documents %s", addDocumentErr)
 			}
@@ -377,14 +382,14 @@ func (h *ApplyHandler) handleDocuments(
 		}
 
 		if document.URL != mappedStateDocuments[document.Title].URL {
-			resourceDocument := resources.Document{
+			documentResource := resources.Document{
 				ID:    mappedStateDocuments[document.Title].ID,
 				Title: document.Title,
 				Type:  document.Type,
 				URL:   document.URL,
 			}
 
-			updateDocumentErr := h.repository.UpdateDocument(ctx, componentDTO.Spec.ID, resourceDocument)
+			updateDocumentErr := h.repository.UpdateDocument(ctx, componentDTOToResource(componentDTO), documentResource)
 			if updateDocumentErr != nil {
 				fmt.Printf("apply documents %s", updateDocumentErr)
 			}
@@ -413,7 +418,7 @@ func (h *ApplyHandler) handleDependencies(
 	componentInState := stateComponents[componentDTO.Metadata.Name]
 	for _, providerName := range componentInState.Spec.DependsOn {
 		if !listutils.Contains(componentDTO.Spec.DependsOn, providerName) {
-			err := h.repository.UnsetDependency(ctx, componentDTO.Spec.ID, stateComponents[providerName].Spec.ID)
+			err := h.repository.UnsetDependency(ctx, componentDTOToResource(componentDTO), componentDTOToResource(stateComponents[providerName]))
 			if err != nil {
 				fmt.Printf("apply dependencies %s", err)
 			}
@@ -428,7 +433,7 @@ func (h *ApplyHandler) handleDependencies(
 				continue
 			}
 
-			err := h.repository.SetDependency(ctx, componentDTO.Spec.ID, stateProvider.Spec.ID)
+			err := h.repository.SetDependency(ctx, componentDTOToResource(componentDTO), componentDTOToResource(stateProvider))
 			if err != nil {
 				fmt.Printf("apply dependencies %s", err)
 			}
@@ -476,7 +481,7 @@ func (h *ApplyHandler) handleAPISpecification(ctx context.Context, componentDTO 
 		return
 	}
 
-	err := h.repository.SetAPISpecifications(ctx, componentDTO.Spec.ID, apiSpecs, apiSpecsFile)
+	err := h.repository.SetAPISpecifications(ctx, componentDTOToResource(componentDTO), apiSpecs, apiSpecsFile)
 	if err != nil {
 		fmt.Printf("apply api specifications error: %s", err)
 	}

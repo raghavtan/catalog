@@ -38,7 +38,7 @@ func (h *BindHandler) Bind(ctx context.Context, stateRootLocation string) {
 	for _, component := range components {
 		for metricName, metricSource := range component.Spec.MetricSources {
 			if _, exists := metricsMap[component.Metadata.ComponentType][metricName]; !exists {
-				errDelete := h.repository.UnbindMetric(ctx, metricSource.ID)
+				errDelete := h.repository.UnbindMetric(ctx, MetricSourceDTOToResource(metricSource))
 				if errDelete != nil {
 					fmt.Printf("Failed to delete metric source %s: %v\n", metricSource.Name, errDelete)
 				}
@@ -104,7 +104,7 @@ func (h *BindHandler) handleBind(ctx context.Context, component *dtos.ComponentD
 		return nil
 	}
 
-	id, errBind := h.repository.BindMetric(ctx, component.Spec.ID, metric.Spec.ID, identifier)
+	id, errBind := h.repository.BindMetric(ctx, componentDTOToResource(component), metric.Spec.ID, identifier)
 	if errBind != nil {
 		return fmt.Errorf("failed to create metric source for %s/%s (component/metric): %v", componentName, metricName, errBind)
 	}

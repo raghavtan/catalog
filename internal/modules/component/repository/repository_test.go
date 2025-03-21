@@ -133,7 +133,6 @@ func TestRepository_Create(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.mockSetup()
 			got, err := repo.Create(context.Background(), tt.component)
-			// assert.True(t, reflect.DeepEqual(tt.expectedResult, got), "expected: %+v, got: %+v", tt.expectedResult, got)
 			assert.Equal(t, tt.expectedResult, got)
 			assert.Equal(t, tt.expectedError, err)
 		})
@@ -168,26 +167,6 @@ func TestRepository_Update(t *testing.T) {
 						return nil
 					},
 				)
-				// mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
-				// mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
-				// 	func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.ComponentByReferenceOutput) error {
-				// 		output.Compass.Component = dtos.Component{
-				// 			ID: "component-id",
-				// 			MetricSources: dtos.MetricSources{
-				// 				Nodes: []dtos.MetricSource{
-				// 					{
-				// 						ID: "metric-source-id",
-				// 						MetricDefinition: dtos.MetricDefinition{
-				// 							ID:   "metric-id",
-				// 							Name: "metric-name",
-				// 						},
-				// 					},
-				// 				},
-				// 			},
-				// 		}
-				// 		return nil
-				// 	},
-				// )
 			},
 			expectedResult: resources.Component{
 				ID:   "component-id",
@@ -306,13 +285,13 @@ func TestRepository_Delete(t *testing.T) {
 
 	tests := []struct {
 		name          string
-		componentID   string
+		component     resources.Component
 		mockSetup     func()
 		expectedError error
 	}{
 		{
-			name:        "successfully deletes a component",
-			componentID: "component-id",
+			name:      "successfully deletes a component",
+			component: resources.Component{ID: "component-id"},
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DeleteComponentOutput) error {
@@ -324,16 +303,16 @@ func TestRepository_Delete(t *testing.T) {
 			expectedError: nil,
 		},
 		{
-			name:        "fails to delete component due to compass error",
-			componentID: "component-id",
+			name:      "fails to delete component due to compass error",
+			component: resources.Component{ID: "component-id"},
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedError: errors.New("Delete component error for component-id: compass error"),
 		},
 		{
-			name:        "fails to delete component due to unsuccessful response",
-			componentID: "component-id",
+			name:      "fails to delete component due to unsuccessful response",
+			component: resources.Component{ID: "component-id"},
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DeleteComponentOutput) error {
@@ -348,8 +327,8 @@ func TestRepository_Delete(t *testing.T) {
 			expectedError: errors.New("Delete component error for component-id: failed to execute mutation deleteComponent: [failed to execute mutation deleteComponent]"),
 		},
 		{
-			name:        "component not found, no error returned",
-			componentID: "component-id",
+			name:      "component not found, no error returned",
+			component: resources.Component{ID: "component-id"},
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DeleteComponentOutput) error {
@@ -367,7 +346,7 @@ func TestRepository_Delete(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.mockSetup()
-			err := repo.Delete(context.Background(), tt.componentID)
+			err := repo.Delete(context.Background(), tt.component)
 			assert.Equal(t, tt.expectedError, err)
 		})
 	}
@@ -381,15 +360,15 @@ func TestRepository_SetDependency(t *testing.T) {
 
 	tests := []struct {
 		name          string
-		dependentId   string
-		providerId    string
+		dependent     resources.Component
+		provider      resources.Component
 		mockSetup     func()
 		expectedError error
 	}{
 		{
-			name:        "successfully sets a dependency",
-			dependentId: "dependent-id",
-			providerId:  "provider-id",
+			name:      "successfully sets a dependency",
+			dependent: resources.Component{ID: "dependent-id"},
+			provider:  resources.Component{ID: "provider-id"},
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.CreateDependencyOutput) error {
@@ -401,18 +380,18 @@ func TestRepository_SetDependency(t *testing.T) {
 			expectedError: nil,
 		},
 		{
-			name:        "fails to set dependency due to compass error",
-			dependentId: "dependent-id",
-			providerId:  "provider-id",
+			name:      "fails to set dependency due to compass error",
+			dependent: resources.Component{ID: "dependent-id"},
+			provider:  resources.Component{ID: "provider-id"},
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedError: errors.New("SetDependency error for dependent-id: compass error"),
 		},
 		{
-			name:        "fails to set dependency due to unsuccessful response",
-			dependentId: "dependent-id",
-			providerId:  "provider-id",
+			name:      "fails to set dependency due to unsuccessful response",
+			dependent: resources.Component{ID: "dependent-id"},
+			provider:  resources.Component{ID: "provider-id"},
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.CreateDependencyOutput) error {
@@ -431,7 +410,7 @@ func TestRepository_SetDependency(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.mockSetup()
-			err := repo.SetDependency(context.Background(), tt.dependentId, tt.providerId)
+			err := repo.SetDependency(context.Background(), tt.dependent, tt.provider)
 			assert.Equal(t, tt.expectedError, err)
 		})
 	}
@@ -446,15 +425,15 @@ func TestRepository_UnsetDependency(t *testing.T) {
 
 	tests := []struct {
 		name          string
-		dependentId   string
-		providerId    string
+		dependent     resources.Component
+		provider      resources.Component
 		mockSetup     func()
 		expectedError error
 	}{
 		{
-			name:        "successfully unsets a dependency",
-			dependentId: "dependent-id",
-			providerId:  "provider-id",
+			name:      "successfully unsets a dependency",
+			dependent: resources.Component{ID: "dependent-id"},
+			provider:  resources.Component{ID: "provider-id"},
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DeleteDependencyOutput) error {
@@ -466,18 +445,18 @@ func TestRepository_UnsetDependency(t *testing.T) {
 			expectedError: nil,
 		},
 		{
-			name:        "fails to unset dependency due to compass error",
-			dependentId: "dependent-id",
-			providerId:  "provider-id",
+			name:      "fails to unset dependency due to compass error",
+			dependent: resources.Component{ID: "dependent-id"},
+			provider:  resources.Component{ID: "provider-id"},
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedError: errors.New("UnsetDependency dependency error for dependent-id: compass error"),
 		},
 		{
-			name:        "fails to unset dependency due to unsuccessful response",
-			dependentId: "dependent-id",
-			providerId:  "provider-id",
+			name:      "fails to unset dependency due to unsuccessful response",
+			dependent: resources.Component{ID: "dependent-id"},
+			provider:  resources.Component{ID: "provider-id"},
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DeleteDependencyOutput) error {
@@ -496,7 +475,7 @@ func TestRepository_UnsetDependency(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.mockSetup()
-			err := repo.UnsetDependency(context.Background(), tt.dependentId, tt.providerId)
+			err := repo.UnsetDependency(context.Background(), tt.dependent, tt.provider)
 			assert.Equal(t, tt.expectedError, err)
 		})
 	}
@@ -511,14 +490,14 @@ func TestRepository_GetBySlug(t *testing.T) {
 
 	tests := []struct {
 		name           string
-		slug           string
+		component      resources.Component
 		mockSetup      func()
 		expectedResult *resources.Component
 		expectedError  error
 	}{
 		{
-			name: "successfully retrieves a component by slug",
-			slug: "test-slug",
+			name:      "successfully retrieves a component by slug",
+			component: resources.Component{Slug: "test-slug"},
 			mockSetup: func() {
 				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
@@ -553,8 +532,8 @@ func TestRepository_GetBySlug(t *testing.T) {
 			expectedError: nil,
 		},
 		{
-			name: "fails to retrieve component due to compass error",
-			slug: "test-slug",
+			name:      "fails to retrieve component due to compass error",
+			component: resources.Component{Slug: "test-slug"},
 			mockSetup: func() {
 				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
@@ -563,8 +542,8 @@ func TestRepository_GetBySlug(t *testing.T) {
 			expectedError:  errors.New("GetBySlug error for test-slug: compass error"),
 		},
 		{
-			name: "fails to retrieve component due to unsuccessful response",
-			slug: "test-slug",
+			name:      "fails to retrieve component due to unsuccessful response",
+			component: resources.Component{Slug: "test-slug"},
 			mockSetup: func() {
 				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
@@ -582,7 +561,7 @@ func TestRepository_GetBySlug(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.mockSetup()
-			got, err := repo.GetBySlug(context.Background(), tt.slug)
+			got, err := repo.GetBySlug(context.Background(), tt.component)
 			assert.Equal(t, tt.expectedResult, got)
 			assert.Equal(t, tt.expectedError, err)
 		})
@@ -598,15 +577,15 @@ func TestRepository_AddDocument(t *testing.T) {
 
 	tests := []struct {
 		name           string
-		componentID    string
+		component      resources.Component
 		document       resources.Document
 		mockSetup      func()
 		expectedResult resources.Document
 		expectedError  error
 	}{
 		{
-			name:        "successfully adds a document with setting DocumentCategories",
-			componentID: "component-id",
+			name:      "successfully adds a document with setting DocumentCategories",
+			component: resources.Component{ID: "component-id"},
 			document: resources.Document{
 				Title: "Test Document",
 				Type:  "type-1",
@@ -649,8 +628,8 @@ func TestRepository_AddDocument(t *testing.T) {
 			expectedError: nil,
 		},
 		{
-			name:        "fails to add a document because fails to set DocumentCategories",
-			componentID: "component-id",
+			name:      "fails to add a document because fails to set DocumentCategories",
+			component: resources.Component{ID: "component-id"},
 			document: resources.Document{
 				Title: "Test Document",
 				Type:  "type-1",
@@ -663,8 +642,8 @@ func TestRepository_AddDocument(t *testing.T) {
 			expectedError:  errors.New("AddDocument error for component-id/Test Document: compass error"),
 		},
 		{
-			name:        "successfully adds a document",
-			componentID: "component-id",
+			name:      "successfully adds a document",
+			component: resources.Component{ID: "component-id"},
 			document: resources.Document{
 				Title: "Test Document",
 				Type:  "type-1",
@@ -690,8 +669,8 @@ func TestRepository_AddDocument(t *testing.T) {
 			expectedError: nil,
 		},
 		{
-			name:        "fails to add document due to compass error",
-			componentID: "component-id",
+			name:      "fails to add document due to compass error",
+			component: resources.Component{ID: "component-id"},
 			document: resources.Document{
 				Title: "Test Document",
 				Type:  "type-1",
@@ -705,8 +684,8 @@ func TestRepository_AddDocument(t *testing.T) {
 			expectedError:  errors.New("AddDocument error for component-id/Test Document: compass error"),
 		},
 		{
-			name:        "fails to add document due to unsuccessful response",
-			componentID: "component-id",
+			name:      "fails to add document due to unsuccessful response",
+			component: resources.Component{ID: "component-id"},
 			document: resources.Document{
 				Title: "Test Document",
 				Type:  "type-1",
@@ -732,7 +711,7 @@ func TestRepository_AddDocument(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.mockSetup()
-			got, err := repo.AddDocument(context.Background(), tt.componentID, tt.document)
+			got, err := repo.AddDocument(context.Background(), tt.component, tt.document)
 			assert.Equal(t, tt.expectedResult, got)
 			assert.Equal(t, tt.expectedError, err)
 		})
@@ -748,14 +727,14 @@ func TestRepository_UpdateDocument(t *testing.T) {
 
 	tests := []struct {
 		name          string
-		componentID   string
+		component     resources.Component
 		document      resources.Document
 		mockSetup     func()
 		expectedError error
 	}{
 		{
-			name:        "successfully updates a document",
-			componentID: "component-id",
+			name:      "successfully updates a document",
+			component: resources.Component{ID: "component-id"},
 			document: resources.Document{
 				ID:    "document-id",
 				Title: "Updated Document",
@@ -774,8 +753,8 @@ func TestRepository_UpdateDocument(t *testing.T) {
 			expectedError: nil,
 		},
 		{
-			name:        "fails to update document due to compass error",
-			componentID: "component-id",
+			name:      "fails to update document due to compass error",
+			component: resources.Component{ID: "component-id"},
 			document: resources.Document{
 				ID:    "document-id",
 				Title: "Updated Document",
@@ -789,8 +768,8 @@ func TestRepository_UpdateDocument(t *testing.T) {
 			expectedError: errors.New("UpdateDocument error for component-id/Updated Document: compass error"),
 		},
 		{
-			name:        "fails to update document due to unsuccessful response",
-			componentID: "component-id",
+			name:      "fails to update document due to unsuccessful response",
+			component: resources.Component{ID: "component-id"},
 			document: resources.Document{
 				ID:    "document-id",
 				Title: "Updated Document",
@@ -816,7 +795,7 @@ func TestRepository_UpdateDocument(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.mockSetup()
-			err := repo.UpdateDocument(context.Background(), tt.componentID, tt.document)
+			err := repo.UpdateDocument(context.Background(), tt.component, tt.document)
 			assert.Equal(t, tt.expectedError, err)
 		})
 	}
@@ -831,7 +810,7 @@ func TestRepository_BindMetric(t *testing.T) {
 
 	tests := []struct {
 		name           string
-		componentID    string
+		component      resources.Component
 		metricID       string
 		identifier     string
 		mockSetup      func()
@@ -839,10 +818,10 @@ func TestRepository_BindMetric(t *testing.T) {
 		expectedError  error
 	}{
 		{
-			name:        "successfully binds a metric",
-			componentID: "component-id",
-			metricID:    "metric-id",
-			identifier:  "identifier",
+			name:       "successfully binds a metric",
+			component:  resources.Component{ID: "component-id"},
+			metricID:   "metric-id",
+			identifier: "identifier",
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.BindMetricOutput) error {
@@ -856,10 +835,10 @@ func TestRepository_BindMetric(t *testing.T) {
 			expectedError:  nil,
 		},
 		{
-			name:        "fails to bind metric due to compass error",
-			componentID: "component-id",
-			metricID:    "metric-id",
-			identifier:  "identifier",
+			name:       "fails to bind metric due to compass error",
+			component:  resources.Component{ID: "component-id"},
+			metricID:   "metric-id",
+			identifier: "identifier",
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
@@ -867,10 +846,10 @@ func TestRepository_BindMetric(t *testing.T) {
 			expectedError:  errors.New("BindMetric error for component-id/metric-id: compass error"),
 		},
 		{
-			name:        "fails to bind metric due to unsuccessful response",
-			componentID: "component-id",
-			metricID:    "metric-id",
-			identifier:  "identifier",
+			name:       "fails to bind metric due to unsuccessful response",
+			component:  resources.Component{ID: "component-id"},
+			metricID:   "metric-id",
+			identifier: "identifier",
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.BindMetricOutput) error {
@@ -890,7 +869,7 @@ func TestRepository_BindMetric(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.mockSetup()
-			got, err := repo.BindMetric(context.Background(), tt.componentID, tt.metricID, tt.identifier)
+			got, err := repo.BindMetric(context.Background(), tt.component, tt.metricID, tt.identifier)
 			assert.Equal(t, tt.expectedResult, got)
 			assert.Equal(t, tt.expectedError, err)
 		})
@@ -905,14 +884,14 @@ func TestRepository_UnbindMetric(t *testing.T) {
 	repo := repository.NewRepository(mockCompass)
 
 	tests := []struct {
-		name           string
-		metricSourceID string
-		mockSetup      func()
-		expectedError  error
+		name          string
+		metricSource  resources.MetricSource
+		mockSetup     func()
+		expectedError error
 	}{
 		{
-			name:           "successfully unbinds a metric",
-			metricSourceID: "metric-source-id",
+			name:         "successfully unbinds a metric",
+			metricSource: resources.MetricSource{ID: "metric-source-id"},
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UnbindMetricOutput) error {
@@ -924,16 +903,16 @@ func TestRepository_UnbindMetric(t *testing.T) {
 			expectedError: nil,
 		},
 		{
-			name:           "fails to unbind metric due to compass error",
-			metricSourceID: "metric-source-id",
+			name:         "fails to unbind metric due to compass error",
+			metricSource: resources.MetricSource{ID: "metric-source-id"},
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedError: errors.New("UnbindMetric error for metric-source-id: compass error"),
 		},
 		{
-			name:           "fails to unbind metric due to unsuccessful response",
-			metricSourceID: "metric-source-id",
+			name:         "fails to unbind metric due to unsuccessful response",
+			metricSource: resources.MetricSource{ID: "metric-source-id"},
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UnbindMetricOutput) error {
@@ -952,7 +931,7 @@ func TestRepository_UnbindMetric(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.mockSetup()
-			err := repo.UnbindMetric(context.Background(), tt.metricSourceID)
+			err := repo.UnbindMetric(context.Background(), tt.metricSource)
 			assert.Equal(t, tt.expectedError, err)
 		})
 	}
@@ -966,28 +945,28 @@ func TestRepository_Push(t *testing.T) {
 	repo := repository.NewRepository(mockCompass)
 
 	tests := []struct {
-		name           string
-		metricSourceID string
-		value          float64
-		recordedAt     time.Time
-		mockSetup      func()
-		expectedError  error
+		name          string
+		metricSource  resources.MetricSource
+		value         float64
+		recordedAt    time.Time
+		mockSetup     func()
+		expectedError error
 	}{
 		{
-			name:           "successfully pushes a metric",
-			metricSourceID: "metric-source-id",
-			value:          42.5,
-			recordedAt:     time.Now(),
+			name:         "successfully pushes a metric",
+			metricSource: resources.MetricSource{ID: "metric-source-id"},
+			value:        42.5,
+			recordedAt:   time.Now(),
 			mockSetup: func() {
 				mockCompass.EXPECT().SendMetric(gomock.Any(), gomock.Any()).Return("", nil)
 			},
 			expectedError: nil,
 		},
 		{
-			name:           "fails to push metric due to compass error",
-			metricSourceID: "metric-source-id",
-			value:          42.5,
-			recordedAt:     time.Now(),
+			name:         "fails to push metric due to compass error",
+			metricSource: resources.MetricSource{ID: "metric-source-id"},
+			value:        42.5,
+			recordedAt:   time.Now(),
 			mockSetup: func() {
 				mockCompass.EXPECT().SendMetric(gomock.Any(), gomock.Any()).Return("", errors.New("compass error"))
 			},
@@ -998,7 +977,7 @@ func TestRepository_Push(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.mockSetup()
-			err := repo.Push(context.Background(), tt.metricSourceID, tt.value, tt.recordedAt)
+			err := repo.Push(context.Background(), tt.metricSource, tt.value, tt.recordedAt)
 			assert.Equal(t, tt.expectedError, err)
 		})
 	}

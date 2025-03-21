@@ -20,22 +20,22 @@ import (
 type RepositoryInterface interface {
 	Create(ctx context.Context, component resources.Component) (resources.Component, error)
 	Update(ctx context.Context, component resources.Component) (resources.Component, error)
-	Delete(ctx context.Context, id string) error
-	GetBySlug(ctx context.Context, slug string) (*resources.Component, error)
+	Delete(ctx context.Context, component resources.Component) error
+	GetBySlug(ctx context.Context, component resources.Component) (*resources.Component, error)
 	// Dependency operations
-	SetDependency(ctx context.Context, dependentId, providerId string) error
-	UnsetDependency(ctx context.Context, dependentId, providerId string) error
+	SetDependency(ctx context.Context, dependent, provider resources.Component) error
+	UnsetDependency(ctx context.Context, dependent, provider resources.Component) error
 	// Documents operations
-	AddDocument(ctx context.Context, componentID string, document resources.Document) (resources.Document, error)
-	UpdateDocument(ctx context.Context, componentID string, document resources.Document) error
-	RemoveDocument(ctx context.Context, componentID, documentID string) error
+	AddDocument(ctx context.Context, component resources.Component, document resources.Document) (resources.Document, error)
+	UpdateDocument(ctx context.Context, component resources.Component, document resources.Document) error
+	RemoveDocument(ctx context.Context, component resources.Component, document resources.Document) error
 	// MetricSource operations
-	BindMetric(ctx context.Context, componentID string, metricID string, identifier string) (string, error)
-	UnbindMetric(ctx context.Context, metricSourceID string) error
+	BindMetric(ctx context.Context, component resources.Component, metricID string, identifier string) (string, error)
+	UnbindMetric(ctx context.Context, metricSource resources.MetricSource) error
 	// API Specications operations
-	SetAPISpecifications(ctx context.Context, componentID, apiSpecs, apiSpecsFile string) error
+	SetAPISpecifications(ctx context.Context, component resources.Component, apiSpecs, apiSpecsFile string) error
 	// Push metric value
-	Push(ctx context.Context, metricSourceID string, value float64, recordedAt time.Time) error
+	Push(ctx context.Context, metricSource resources.MetricSource, value float64, recordedAt time.Time) error
 }
 
 type Repository struct {
@@ -62,7 +62,7 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 			return nil
 		}
 
-		remoteComponent, runErr := r.GetBySlug(ctx, component.Slug)
+		remoteComponent, runErr := r.GetBySlug(ctx, component)
 		if runErr != nil {
 			return runErr
 		}
@@ -123,7 +123,7 @@ func (r *Repository) Update(ctx context.Context, component resources.Component) 
 			return nil
 		}
 
-		remoteComponent, getBySlugErr := r.GetBySlug(ctx, component.Slug)
+		remoteComponent, getBySlugErr := r.GetBySlug(ctx, component)
 		if getBySlugErr != nil {
 			return getBySlugErr
 		}
@@ -149,39 +149,39 @@ func (r *Repository) Update(ctx context.Context, component resources.Component) 
 	return component, nil
 }
 
-func (r *Repository) Delete(ctx context.Context, id string) error {
-	input := &dtos.DeleteComponentInput{ComponentID: id}
+func (r *Repository) Delete(ctx context.Context, component resources.Component) error {
+	input := &dtos.DeleteComponentInput{ComponentID: component.ID}
 	output := &dtos.DeleteComponentOutput{}
 	if runErr := r.run(ctx, input, output, nil); runErr != nil {
-		return fmt.Errorf("Delete component error for %s: %s", id, runErr)
+		return fmt.Errorf("Delete component error for %s: %s", component.ID, runErr)
 	}
 	return nil
 }
 
-func (r *Repository) SetDependency(ctx context.Context, dependentId, providerId string) error {
-	input := &dtos.CreateDependencyInput{DependentId: dependentId, ProviderId: providerId}
+func (r *Repository) SetDependency(ctx context.Context, dependent, provider resources.Component) error {
+	input := &dtos.CreateDependencyInput{DependentId: dependent.ID, ProviderId: provider.ID}
 	output := &dtos.CreateDependencyOutput{}
 	if runErr := r.run(ctx, input, output, nil); runErr != nil {
-		return fmt.Errorf("SetDependency error for %s: %s", dependentId, runErr)
+		return fmt.Errorf("SetDependency error for %s: %s", dependent.ID, runErr)
 	}
 	return nil
 }
 
-func (r *Repository) UnsetDependency(ctx context.Context, dependentId, providerId string) error {
-	input := &dtos.DeleteDependencyInput{DependentId: dependentId, ProviderId: providerId}
+func (r *Repository) UnsetDependency(ctx context.Context, dependent, provider resources.Component) error {
+	input := &dtos.DeleteDependencyInput{DependentId: dependent.ID, ProviderId: provider.ID}
 	output := &dtos.DeleteDependencyOutput{}
 	if runErr := r.run(ctx, input, output, nil); runErr != nil {
-		return fmt.Errorf("UnsetDependency dependency error for %s: %s", dependentId, runErr)
+		return fmt.Errorf("UnsetDependency dependency error for %s: %s", dependent.ID, runErr)
 	}
 	return nil
 }
 
-func (r *Repository) GetBySlug(ctx context.Context, slug string) (*resources.Component, error) {
-	input := &dtos.ComponentByReferenceInput{CompassCloudID: r.compass.GetCompassCloudId(), Slug: slug}
+func (r *Repository) GetBySlug(ctx context.Context, component resources.Component) (*resources.Component, error) {
+	input := &dtos.ComponentByReferenceInput{CompassCloudID: r.compass.GetCompassCloudId(), Slug: component.Slug}
 	output := &dtos.ComponentByReferenceOutput{}
 	runErr := r.run(ctx, input, output, nil)
 	if runErr != nil {
-		return nil, fmt.Errorf("GetBySlug error for %s: %s", slug, runErr)
+		return nil, fmt.Errorf("GetBySlug error for %s: %s", component.Slug, runErr)
 	}
 
 	metricSources := make(map[string]*resources.MetricSource)
@@ -192,26 +192,26 @@ func (r *Repository) GetBySlug(ctx context.Context, slug string) (*resources.Com
 		}
 	}
 
-	component := resources.Component{
+	found := resources.Component{
 		ID:            output.Compass.Component.ID,
 		MetricSources: metricSources,
 	}
 
-	return &component, nil
+	return &found, nil
 }
 
-func (r *Repository) AddDocument(ctx context.Context, componentID string, document resources.Document) (resources.Document, error) {
+func (r *Repository) AddDocument(ctx context.Context, component resources.Component, document resources.Document) (resources.Document, error) {
 	r.initDocumentCategories(ctx)
 
 	input := &dtos.CreateDocumentInput{
-		ComponentID: componentID,
+		ComponentID: component.ID,
 		Document:    resources.Document{Title: document.Title, URL: document.URL},
 		CategoryID:  r.DocumentCategories[document.Type],
 	}
 	output := &dtos.CreateDocumentOutput{}
 	runErr := r.run(ctx, input, output, nil)
 	if runErr != nil {
-		return resources.Document{}, fmt.Errorf("AddDocument error for %s/%s: %s", componentID, document.Title, runErr)
+		return resources.Document{}, fmt.Errorf("AddDocument error for %s/%s: %s", component.ID, document.Title, runErr)
 	}
 
 	doc := resources.Document{
@@ -224,7 +224,7 @@ func (r *Repository) AddDocument(ctx context.Context, componentID string, docume
 	return doc, nil
 }
 
-func (r *Repository) UpdateDocument(ctx context.Context, componentID string, document resources.Document) error {
+func (r *Repository) UpdateDocument(ctx context.Context, component resources.Component, document resources.Document) error {
 	r.initDocumentCategories(ctx)
 
 	input := &dtos.UpdateDocumentInput{
@@ -233,13 +233,13 @@ func (r *Repository) UpdateDocument(ctx context.Context, componentID string, doc
 	}
 	output := &dtos.UpdateDocumentOutput{}
 	if runErr := r.run(ctx, input, output, nil); runErr != nil {
-		return fmt.Errorf("UpdateDocument error for %s/%s: %s", componentID, document.Title, runErr)
+		return fmt.Errorf("UpdateDocument error for %s/%s: %s", component.ID, document.Title, runErr)
 	}
 	return nil
 }
 
 // @TODO work on this
-func (r *Repository) RemoveDocument(ctx context.Context, componentID, docuemntID string) error {
+func (r *Repository) RemoveDocument(ctx context.Context, component resources.Component, document resources.Document) error {
 	query := `
 		mutation deleteComponentLink($id: ID!) {
 			compass {
@@ -254,8 +254,8 @@ func (r *Repository) RemoveDocument(ctx context.Context, componentID, docuemntID
 		}`
 
 	variables := map[string]interface{}{
-		"componentId": componentID,
-		"id":          docuemntID,
+		"componentId": component.ID,
+		"id":          document.ID,
 	}
 
 	var response struct {
@@ -277,33 +277,33 @@ func (r *Repository) RemoveDocument(ctx context.Context, componentID, docuemntID
 	return nil
 }
 
-func (r *Repository) BindMetric(ctx context.Context, componentID string, metricID string, identifier string) (string, error) {
+func (r *Repository) BindMetric(ctx context.Context, component resources.Component, metricID string, identifier string) (string, error) {
 	input := &dtos.BindMetricInput{
-		ComponentID: componentID,
+		ComponentID: component.ID,
 		MetricID:    metricID,
 		Identifier:  identifier,
 	}
 	output := &dtos.BindMetricOutput{}
 	runErr := r.run(ctx, input, output, nil)
 	if runErr != nil {
-		return "", fmt.Errorf("BindMetric error for %s/%s: %s", componentID, metricID, runErr)
+		return "", fmt.Errorf("BindMetric error for %s/%s: %s", component.ID, metricID, runErr)
 	}
 
 	return output.Compass.CreateMetricSource.CreateMetricSource.ID, nil
 }
 
-func (r *Repository) UnbindMetric(ctx context.Context, metricSourceID string) error {
-	input := &dtos.UnbindMetricInput{MetricID: metricSourceID}
+func (r *Repository) UnbindMetric(ctx context.Context, metricSource resources.MetricSource) error {
+	input := &dtos.UnbindMetricInput{MetricID: metricSource.ID}
 	output := &dtos.UnbindMetricOutput{}
 	if runErr := r.run(ctx, input, output, nil); runErr != nil {
-		return fmt.Errorf("UnbindMetric error for %s: %s", metricSourceID, runErr)
+		return fmt.Errorf("UnbindMetric error for %s: %s", metricSource.ID, runErr)
 	}
 	return nil
 }
 
-func (r *Repository) Push(ctx context.Context, metricSourceID string, value float64, recordedAt time.Time) error {
+func (r *Repository) Push(ctx context.Context, metricSource resources.MetricSource, value float64, recordedAt time.Time) error {
 	requestBody := map[string]string{
-		"metricSourceId": metricSourceID,
+		"metricSourceId": metricSource.ID,
 		"value":          fmt.Sprintf("%f", value),
 		"timestamp":      recordedAt.UTC().Format(time.RFC3339),
 	}
@@ -313,14 +313,14 @@ func (r *Repository) Push(ctx context.Context, metricSourceID string, value floa
 	return errSend
 }
 
-func (r *Repository) SetAPISpecifications(ctx context.Context, componentID, apiSpecs, apiSpecsFile string) error {
-	lastSlashIndex := strings.LastIndex(componentID, "/")
+func (r *Repository) SetAPISpecifications(ctx context.Context, component resources.Component, apiSpecs, apiSpecsFile string) error {
+	lastSlashIndex := strings.LastIndex(component.ID, "/")
 	if lastSlashIndex == -1 {
-		return errors.New("invalid componentID format")
+		return errors.New("invalid component.ID format")
 	}
 
 	input := compassdtos.APISpecificationsInput{
-		ComponentID: componentID[lastSlashIndex+1:],
+		ComponentID: component.ID[lastSlashIndex+1:],
 		ApiSpecs:    apiSpecs,
 		FileName:    apiSpecsFile,
 	}

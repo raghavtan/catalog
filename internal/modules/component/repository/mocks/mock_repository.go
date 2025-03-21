@@ -37,7 +37,7 @@ func (m *MockRepositoryInterface) EXPECT() *MockRepositoryInterfaceMockRecorder 
 }
 
 // AddDocument mocks base method.
-func (m *MockRepositoryInterface) AddDocument(arg0 context.Context, arg1 string, arg2 resources.Document) (resources.Document, error) {
+func (m *MockRepositoryInterface) AddDocument(arg0 context.Context, arg1 resources.Component, arg2 resources.Document) (resources.Document, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "AddDocument", arg0, arg1, arg2)
 	ret0, _ := ret[0].(resources.Document)
@@ -52,7 +52,7 @@ func (mr *MockRepositoryInterfaceMockRecorder) AddDocument(arg0, arg1, arg2 inte
 }
 
 // BindMetric mocks base method.
-func (m *MockRepositoryInterface) BindMetric(arg0 context.Context, arg1, arg2, arg3 string) (string, error) {
+func (m *MockRepositoryInterface) BindMetric(arg0 context.Context, arg1 resources.Component, arg2, arg3 string) (string, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "BindMetric", arg0, arg1, arg2, arg3)
 	ret0, _ := ret[0].(string)
@@ -82,7 +82,7 @@ func (mr *MockRepositoryInterfaceMockRecorder) Create(arg0, arg1 interface{}) *g
 }
 
 // Delete mocks base method.
-func (m *MockRepositoryInterface) Delete(arg0 context.Context, arg1 string) error {
+func (m *MockRepositoryInterface) Delete(arg0 context.Context, arg1 resources.Component) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Delete", arg0, arg1)
 	ret0, _ := ret[0].(error)
@@ -96,7 +96,7 @@ func (mr *MockRepositoryInterfaceMockRecorder) Delete(arg0, arg1 interface{}) *g
 }
 
 // GetBySlug mocks base method.
-func (m *MockRepositoryInterface) GetBySlug(arg0 context.Context, arg1 string) (*resources.Component, error) {
+func (m *MockRepositoryInterface) GetBySlug(arg0 context.Context, arg1 resources.Component) (*resources.Component, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetBySlug", arg0, arg1)
 	ret0, _ := ret[0].(*resources.Component)
@@ -111,7 +111,7 @@ func (mr *MockRepositoryInterfaceMockRecorder) GetBySlug(arg0, arg1 interface{})
 }
 
 // Push mocks base method.
-func (m *MockRepositoryInterface) Push(arg0 context.Context, arg1 string, arg2 float64, arg3 time.Time) error {
+func (m *MockRepositoryInterface) Push(arg0 context.Context, arg1 resources.MetricSource, arg2 float64, arg3 time.Time) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Push", arg0, arg1, arg2, arg3)
 	ret0, _ := ret[0].(error)
@@ -125,7 +125,7 @@ func (mr *MockRepositoryInterfaceMockRecorder) Push(arg0, arg1, arg2, arg3 inter
 }
 
 // RemoveDocument mocks base method.
-func (m *MockRepositoryInterface) RemoveDocument(arg0 context.Context, arg1, arg2 string) error {
+func (m *MockRepositoryInterface) RemoveDocument(arg0 context.Context, arg1 resources.Component, arg2 resources.Document) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "RemoveDocument", arg0, arg1, arg2)
 	ret0, _ := ret[0].(error)
@@ -139,7 +139,7 @@ func (mr *MockRepositoryInterfaceMockRecorder) RemoveDocument(arg0, arg1, arg2 i
 }
 
 // SetAPISpecifications mocks base method.
-func (m *MockRepositoryInterface) SetAPISpecifications(arg0 context.Context, arg1, arg2, arg3 string) error {
+func (m *MockRepositoryInterface) SetAPISpecifications(arg0 context.Context, arg1 resources.Component, arg2, arg3 string) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "SetAPISpecifications", arg0, arg1, arg2, arg3)
 	ret0, _ := ret[0].(error)
@@ -153,7 +153,7 @@ func (mr *MockRepositoryInterfaceMockRecorder) SetAPISpecifications(arg0, arg1, 
 }
 
 // SetDependency mocks base method.
-func (m *MockRepositoryInterface) SetDependency(arg0 context.Context, arg1, arg2 string) error {
+func (m *MockRepositoryInterface) SetDependency(arg0 context.Context, arg1, arg2 resources.Component) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "SetDependency", arg0, arg1, arg2)
 	ret0, _ := ret[0].(error)
@@ -167,7 +167,7 @@ func (mr *MockRepositoryInterfaceMockRecorder) SetDependency(arg0, arg1, arg2 in
 }
 
 // UnbindMetric mocks base method.
-func (m *MockRepositoryInterface) UnbindMetric(arg0 context.Context, arg1 string) error {
+func (m *MockRepositoryInterface) UnbindMetric(arg0 context.Context, arg1 resources.MetricSource) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UnbindMetric", arg0, arg1)
 	ret0, _ := ret[0].(error)
@@ -181,7 +181,7 @@ func (mr *MockRepositoryInterfaceMockRecorder) UnbindMetric(arg0, arg1 interface
 }
 
 // UnsetDependency mocks base method.
-func (m *MockRepositoryInterface) UnsetDependency(arg0 context.Context, arg1, arg2 string) error {
+func (m *MockRepositoryInterface) UnsetDependency(arg0 context.Context, arg1, arg2 resources.Component) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UnsetDependency", arg0, arg1, arg2)
 	ret0, _ := ret[0].(error)
@@ -210,7 +210,7 @@ func (mr *MockRepositoryInterfaceMockRecorder) Update(arg0, arg1 interface{}) *g
 }
 
 // UpdateDocument mocks base method.
-func (m *MockRepositoryInterface) UpdateDocument(arg0 context.Context, arg1 string, arg2 resources.Document) error {
+func (m *MockRepositoryInterface) UpdateDocument(arg0 context.Context, arg1 resources.Component, arg2 resources.Document) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UpdateDocument", arg0, arg1, arg2)
 	ret0, _ := ret[0].(error)

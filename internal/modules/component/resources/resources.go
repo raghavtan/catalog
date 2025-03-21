@@ -1,5 +1,7 @@
 package resources
 
+import fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
+
 type Component struct {
 	ID            string
 	Name          string
@@ -34,4 +36,5 @@ type MetricSource struct {
 	ID     string
 	Name   string
 	Metric string
+	Facts  fsdtos.FactOperations `yaml:"facts"`
 }
