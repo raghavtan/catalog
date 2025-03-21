@@ -4,15 +4,15 @@ import (
 	"github.com/motain/of-catalog/internal/modules/metric/resources"
 )
 
-type SearchMetricsOutput struct {
-	Compass struct {
-		Definitions struct {
-			Nodes []Metric `json:"nodes"`
-		} `json:"metricDefinitions"`
-	} `json:"compass"`
+/*************
+ * INPUT DTO *
+ *************/
+type SearchMetricsInput struct {
+	CompassCloudID string
+	Metric         resources.Metric
 }
 
-func (c *SearchMetricsOutput) GetQuery() string {
+func (dto *SearchMetricsInput) GetQuery() string {
 	return `
 		query searchMetricDefinition($cloudId: ID!) {
 			compass {
@@ -28,13 +28,29 @@ func (c *SearchMetricsOutput) GetQuery() string {
 		}`
 }
 
-func (c *SearchMetricsOutput) SetVariables(compassCloudIdD string, metric resources.Metric) map[string]interface{} {
+func (dto *SearchMetricsInput) SetVariables() map[string]interface{} {
 	return map[string]interface{}{
-		"cloudId": compassCloudIdD,
-		"name":    metric.Name,
+		"cloudId": dto.CompassCloudID,
+		"name":    dto.Metric.Name,
 	}
+}
+
+/**************
+ * OUTPUT DTO *
+ **************/
+
+type SearchMetricsOutput struct {
+	Compass struct {
+		Definitions struct {
+			Nodes []Metric `json:"nodes"`
+		} `json:"metricDefinitions"`
+	} `json:"compass"`
 }
 
 func (c *SearchMetricsOutput) IsSuccessful() bool {
 	return c.Compass.Definitions.Nodes != nil
+}
+
+func (dto *SearchMetricsOutput) GetErrors() []string {
+	return nil
 }

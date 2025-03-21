@@ -4,9 +4,11 @@ package repository
 
 import (
 	"context"
-	"errors"
+	"fmt"
 	"log"
+	"strings"
 
+	"github.com/motain/of-catalog/internal/interfaces/repositoryinterfaces"
 	"github.com/motain/of-catalog/internal/modules/metric/repository/dtos"
 	"github.com/motain/of-catalog/internal/modules/metric/resources"
 	"github.com/motain/of-catalog/internal/services/compassservice"
@@ -28,87 +30,103 @@ func NewRepository(compass compassservice.CompassServiceInterface) *Repository {
 }
 
 func (r *Repository) Create(ctx context.Context, metric resources.Metric) (string, error) {
-	metricDto := dtos.CreateMetricOutput{}
-	query := metricDto.GetQuery()
-	variables := metricDto.SetVariables(r.compass.GetCompassCloudId(), metric)
+	input := &dtos.CreateMetricInput{Metric: metric}
+	output := &dtos.CreateMetricOutput{}
 
-	if err := r.compass.Run(ctx, query, variables, &metricDto); err != nil {
-		log.Printf("Failed to create metric: %v", err)
-		return "", err
-	}
+	// This function is executed before the validation of the operation
+	// That is before checking if the operation was successful
+	// If the metric already exists, it searches for the metric in the remote service
+	// and updates the local metric with the remote metric ID
+	// and clears the errors
+	preValidationFunc := func() error {
+		if !compassservice.HasAlreadyExistsError(output.Compass.CreateMetric.Errors) {
+			return nil
+		}
 
-	if compassservice.HasAlreadyExistsError(metricDto.Compass.CreateMetric.Errors) {
 		remoteMetric, err := r.Search(ctx, metric)
 		if err != nil {
-			return "", err
+			return err
 		}
 
 		metric.ID = remoteMetric.ID
 		updateError := r.Update(ctx, metric)
+		if updateError != nil {
+			return updateError
+		}
 
-		return remoteMetric.ID, updateError
+		output.Compass.CreateMetric.Definition.ID = remoteMetric.ID
+		output.Compass.CreateMetric.Errors = nil
+		output.Compass.CreateMetric.Success = true
+
+		return nil
 	}
 
-	if !metricDto.IsSuccessful() {
-		return "", errors.New("failed to create metric")
+	runErr := r.run(ctx, input, output, preValidationFunc)
+	if runErr != nil {
+		return "", fmt.Errorf("Create error for %s: %s", metric, runErr)
 	}
 
-	return metricDto.Compass.CreateMetric.Definition.ID, nil
+	return output.Compass.CreateMetric.Definition.ID, nil
 }
 
 func (r *Repository) Update(ctx context.Context, metric resources.Metric) error {
-	metricDto := dtos.UpdateMetricOutput{}
-	query := metricDto.GetQuery()
-	variables := metricDto.SetVariables(r.compass.GetCompassCloudId(), metric)
-
-	if err := r.compass.Run(ctx, query, variables, &metricDto); err != nil {
-		log.Printf("Failed to update metric: %v", err)
-		return err
+	input := &dtos.UpdateMetricInput{CompassCloudID: r.compass.GetCompassCloudId(), Metric: metric}
+	output := &dtos.UpdateMetricOutput{}
+	if runErr := r.run(ctx, input, output, nil); runErr != nil {
+		return fmt.Errorf("Update error for %s: %s", metric, runErr)
 	}
-
-	if !metricDto.IsSuccessful() {
-		return errors.New("failed to update metric")
-	}
-
 	return nil
 }
 
 func (r *Repository) Delete(ctx context.Context, id string) error {
-	metricDto := dtos.DeleteMetricOutput{}
-	query := metricDto.GetQuery()
-	variables := metricDto.SetVariables(id)
-
-	if err := r.compass.Run(ctx, query, variables, &metricDto); err != nil {
-		log.Printf("Failed to create metric: %v", err)
-		return err
+	input := &dtos.DeleteMetricInput{MetricID: id}
+	output := &dtos.DeleteMetricOutput{}
+	if runErr := r.run(ctx, input, output, nil); runErr != nil {
+		return fmt.Errorf("Delete error for %s: %s", id, runErr)
 	}
-
-	if !metricDto.IsSuccessful() {
-		return errors.New("failed to delete metric")
-	}
-
 	return nil
 }
 
 func (r *Repository) Search(ctx context.Context, metric resources.Metric) (*resources.Metric, error) {
-	metricsDto := dtos.SearchMetricsOutput{}
-	query := metricsDto.GetQuery()
-	variables := metricsDto.SetVariables(r.compass.GetCompassCloudId(), metric)
-
-	if err := r.compass.Run(ctx, query, variables, &metricsDto); err != nil {
-		log.Printf("Failed to search metric: %v", err)
-		return nil, err
+	input := &dtos.SearchMetricsInput{Metric: metric}
+	output := &dtos.SearchMetricsOutput{}
+	runErr := r.run(ctx, input, output, nil)
+	if runErr != nil {
+		return nil, fmt.Errorf("Search error for %s: %s", metric.Name, runErr)
 	}
 
-	if !metricsDto.IsSuccessful() {
-		return nil, errors.New("metric not found")
-	}
-
-	for _, node := range metricsDto.Compass.Definitions.Nodes {
+	for _, node := range output.Compass.Definitions.Nodes {
 		if node.Name == metric.Name {
 			return &resources.Metric{ID: node.ID}, nil
 		}
 	}
 
-	return nil, errors.New("metric not found")
+	return nil, fmt.Errorf("Search error for %s: %s", metric.Name, "metric not found")
+}
+
+func (r *Repository) run(
+	ctx context.Context,
+	input repositoryinterfaces.InputDTOInterface,
+	output repositoryinterfaces.OutputDTOInterface,
+	preValidationFunc repositoryinterfaces.ValidationFunc,
+) error {
+	query := input.GetQuery()
+	operation := strings.TrimSpace(query[:strings.Index(query, "(")])
+
+	if runErr := r.compass.Run(ctx, query, input.SetVariables(), output); runErr != nil {
+		log.Printf("failed to run %s: %v", operation, runErr)
+		return runErr
+	}
+
+	if preValidationFunc != nil {
+		if runErr := preValidationFunc(); runErr != nil {
+			return runErr
+		}
+	}
+
+	if !output.IsSuccessful() {
+		return fmt.Errorf("failed to execute %s: %v", operation, output.GetErrors())
+	}
+
+	return nil
 }

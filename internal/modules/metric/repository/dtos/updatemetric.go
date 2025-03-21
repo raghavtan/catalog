@@ -2,17 +2,18 @@ package dtos
 
 import (
 	"github.com/motain/of-catalog/internal/modules/metric/resources"
+	"github.com/motain/of-catalog/internal/services/compassservice"
 )
 
-type UpdateMetricOutput struct {
-	Compass struct {
-		UpdateMetric struct {
-			Success bool `json:"success"`
-		} `json:"updateMetricDefinition"`
-	} `json:"compass"`
+/*************
+ * INPUT DTO *
+ *************/
+type UpdateMetricInput struct {
+	CompassCloudID string
+	Metric         resources.Metric
 }
 
-func (u *UpdateMetricOutput) GetQuery() string {
+func (dto *UpdateMetricInput) GetQuery() string {
 	return `
 		mutation updateMetricDefinition ($cloudId: ID!, $id: ID!, $name: String!, $description: String!, $unit: String!) {
 			compass {
@@ -36,16 +37,37 @@ func (u *UpdateMetricOutput) GetQuery() string {
 		}`
 }
 
-func (u *UpdateMetricOutput) SetVariables(compassCloudIdD string, metric resources.Metric) map[string]interface{} {
+func (dto *UpdateMetricInput) SetVariables() map[string]interface{} {
 	return map[string]interface{}{
-		"cloudId":     compassCloudIdD,
-		"id":          metric.ID,
-		"name":        metric.Name,
-		"description": metric.Description,
-		"unit":        metric.Format.Unit,
+		"cloudId":     dto.CompassCloudID,
+		"id":          dto.Metric.ID,
+		"name":        dto.Metric.Name,
+		"description": dto.Metric.Description,
+		"unit":        dto.Metric.Format.Unit,
 	}
 }
 
-func (c *UpdateMetricOutput) IsSuccessful() bool {
-	return c.Compass.UpdateMetric.Success
+/**************
+ * OUTPUT DTO *
+ **************/
+
+type UpdateMetricOutput struct {
+	Compass struct {
+		UpdateMetric struct {
+			Errors  []compassservice.CompassError `json:"errors"`
+			Success bool                          `json:"success"`
+		} `json:"updateMetricDefinition"`
+	} `json:"compass"`
+}
+
+func (dto *UpdateMetricOutput) IsSuccessful() bool {
+	return dto.Compass.UpdateMetric.Success
+}
+
+func (dto *UpdateMetricOutput) GetErrors() []string {
+	errors := make([]string, len(dto.Compass.UpdateMetric.Errors))
+	for i, err := range dto.Compass.UpdateMetric.Errors {
+		errors[i] = err.Message
+	}
+	return errors
 }

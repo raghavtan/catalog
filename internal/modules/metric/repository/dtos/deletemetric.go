@@ -1,14 +1,16 @@
 package dtos
 
-type DeleteMetricOutput struct {
-	Compass struct {
-		DeleteMetric struct {
-			Success bool `json:"success"`
-		} `json:"deleteMetricDefinition"`
-	} `json:"compass"`
+import "github.com/motain/of-catalog/internal/services/compassservice"
+
+/*************
+ * INPUT DTO *
+ *************/
+type DeleteMetricInput struct {
+	CompassCloudID string
+	MetricID       string
 }
 
-func (d *DeleteMetricOutput) GetQuery() string {
+func (dto *DeleteMetricInput) GetQuery() string {
 	return `
 		mutation deleteMetric($scorecardId: ID!) {
 			compass {
@@ -23,12 +25,33 @@ func (d *DeleteMetricOutput) GetQuery() string {
 		}`
 }
 
-func (d *DeleteMetricOutput) SetVariables(id string) map[string]interface{} {
+func (dto *DeleteMetricInput) SetVariables() map[string]interface{} {
 	return map[string]interface{}{
-		"id": id,
+		"id": dto.MetricID,
 	}
 }
 
-func (c *DeleteMetricOutput) IsSuccessful() bool {
-	return c.Compass.DeleteMetric.Success
+/**************
+ * OUTPUT DTO *
+ **************/
+
+type DeleteMetricOutput struct {
+	Compass struct {
+		DeleteMetric struct {
+			Errors  []compassservice.CompassError `json:"errors"`
+			Success bool                          `json:"success"`
+		} `json:"deleteMetricDefinition"`
+	} `json:"compass"`
+}
+
+func (dto *DeleteMetricOutput) IsSuccessful() bool {
+	return dto.Compass.DeleteMetric.Success
+}
+
+func (dto *DeleteMetricOutput) GetErrors() []string {
+	errors := make([]string, len(dto.Compass.DeleteMetric.Errors))
+	for i, err := range dto.Compass.DeleteMetric.Errors {
+		errors[i] = err.Message
+	}
+	return errors
 }
