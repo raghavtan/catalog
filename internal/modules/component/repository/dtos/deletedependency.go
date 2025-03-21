@@ -4,16 +4,15 @@ import (
 	"github.com/motain/of-catalog/internal/services/compassservice"
 )
 
-type DeleteDependencyOutput struct {
-	Compass struct {
-		DeleteDependency struct {
-			Errors  []compassservice.CompassError `json:"errors"`
-			Success bool                          `json:"success"`
-		} `json:"deleteRelationship"`
-	} `json:"compass"`
+/*************
+ * INPUT DTO *
+ *************/
+type DeleteDependencyInput struct {
+	DependentId string
+	ProviderId  string
 }
 
-func (c *DeleteDependencyOutput) GetQuery() string {
+func (dto *DeleteDependencyInput) GetQuery() string {
 	return `
 		mutation deleteRelationship($dependentId: ID!, $providerId: ID!) {
 			compass {
@@ -31,13 +30,34 @@ func (c *DeleteDependencyOutput) GetQuery() string {
 		}`
 }
 
-func (c *DeleteDependencyOutput) SetVariables(dependentId, providerId string) map[string]interface{} {
+func (dto *DeleteDependencyInput) SetVariables() map[string]interface{} {
 	return map[string]interface{}{
-		"dependentId": dependentId,
-		"providerId":  providerId,
+		"dependentId": dto.DependentId,
+		"providerId":  dto.ProviderId,
 	}
 }
 
-func (c *DeleteDependencyOutput) IsSuccessful() bool {
-	return c.Compass.DeleteDependency.Success
+/**************
+ * OUTPUT DTO *
+ **************/
+
+type DeleteDependencyOutput struct {
+	Compass struct {
+		DeleteDependency struct {
+			Errors  []compassservice.CompassError `json:"errors"`
+			Success bool                          `json:"success"`
+		} `json:"deleteRelationship"`
+	} `json:"compass"`
+}
+
+func (dto *DeleteDependencyOutput) IsSuccessful() bool {
+	return dto.Compass.DeleteDependency.Success
+}
+
+func (dto *DeleteDependencyOutput) GetErrors() []string {
+	errors := make([]string, len(dto.Compass.DeleteDependency.Errors))
+	for i, err := range dto.Compass.DeleteDependency.Errors {
+		errors[i] = err.Message
+	}
+	return errors
 }

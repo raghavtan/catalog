@@ -1,15 +1,19 @@
 package dtos
 
-type UpdateDocumentOutput struct {
-	Compass struct {
-		UpdateDocument struct {
-			Success bool     `json:"success"`
-			Details Document `json:"documentDetails"`
-		} `json:"updateDocument"`
-	} `json:"compass"`
+import (
+	"github.com/motain/of-catalog/internal/modules/component/resources"
+	"github.com/motain/of-catalog/internal/services/compassservice"
+)
+
+/*************
+ * INPUT DTO *
+ *************/
+type UpdateDocumentInput struct {
+	Document   resources.Document
+	CategoryID string
 }
 
-func (c *UpdateDocumentOutput) GetQuery() string {
+func (dto *UpdateDocumentInput) GetQuery() string {
 	return `
 		mutation updateDocument($input: CompassUpdateDocumentInput!) {
 		compass @optIn(to: "compass-beta") {
@@ -30,17 +34,39 @@ func (c *UpdateDocumentOutput) GetQuery() string {
 	}`
 }
 
-func (c *UpdateDocumentOutput) SetVariables(documentID, title, categoryID, url string) map[string]interface{} {
+func (dto *UpdateDocumentInput) SetVariables() map[string]interface{} {
 	return map[string]interface{}{
 		"input": map[string]interface{}{
-			"id":                      documentID,
-			"title":                   title,
-			"documentationCategoryId": categoryID,
-			"url":                     url,
+			"id":                      dto.Document.ID,
+			"title":                   dto.Document.Title,
+			"documentationCategoryId": dto.CategoryID,
+			"url":                     dto.Document.URL,
 		},
 	}
 }
 
-func (c *UpdateDocumentOutput) IsSuccessful() bool {
-	return c.Compass.UpdateDocument.Success
+/**************
+ * OUTPUT DTO *
+ **************/
+
+type UpdateDocumentOutput struct {
+	Compass struct {
+		UpdateDocument struct {
+			Errors  []compassservice.CompassError `json:"errors"`
+			Success bool                          `json:"success"`
+			Details Document                      `json:"documentDetails"`
+		} `json:"updateDocument"`
+	} `json:"compass"`
+}
+
+func (dto *UpdateDocumentOutput) IsSuccessful() bool {
+	return dto.Compass.UpdateDocument.Success
+}
+
+func (dto *UpdateDocumentOutput) GetErrors() []string {
+	errors := make([]string, len(dto.Compass.UpdateDocument.Errors))
+	for i, err := range dto.Compass.UpdateDocument.Errors {
+		errors[i] = err.Message
+	}
+	return errors
 }

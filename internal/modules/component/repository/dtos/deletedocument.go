@@ -1,15 +1,18 @@
 package dtos
 
-type DeleteDocumentOutput struct {
-	Compass struct {
-		DeleteDocument struct {
-			Success bool     `json:"success"`
-			Details Document `json:"documentDetails"`
-		} `json:"addDocument"`
-	} `json:"compass"`
+import "github.com/motain/of-catalog/internal/services/compassservice"
+
+/*************
+ * INPUT DTO *
+ *************/
+type DeleteDocumentInput struct {
+	ComponentID string
+	Title       string
+	CategoryID  string
+	URL         string
 }
 
-func (c *DeleteDocumentOutput) GetQuery() string {
+func (dto *DeleteDocumentInput) GetQuery() string {
 	return `
 		mutation addDocument($input: CompassAddDocumentInput!) {
    		compass @optIn(to: "compass-beta") {
@@ -30,17 +33,39 @@ func (c *DeleteDocumentOutput) GetQuery() string {
 		}`
 }
 
-func (c *DeleteDocumentOutput) SetVariables(componentID, title, categoryID, url string) map[string]interface{} {
+func (dto *DeleteDocumentInput) SetVariables() map[string]interface{} {
 	return map[string]interface{}{
 		"input": map[string]interface{}{
-			"componentId":             componentID,
-			"title":                   title,
-			"documentationCategoryId": categoryID,
-			"url":                     url,
+			"componentId":             dto.ComponentID,
+			"title":                   dto.Title,
+			"documentationCategoryId": dto.CategoryID,
+			"url":                     dto.URL,
 		},
 	}
 }
 
-func (c *DeleteDocumentOutput) IsSuccessful() bool {
-	return c.Compass.DeleteDocument.Success
+/**************
+ * OUTPUT DTO *
+ **************/
+
+type DeleteDocumentOutput struct {
+	Compass struct {
+		DeleteDocument struct {
+			Errors  []compassservice.CompassError `json:"errors"`
+			Success bool                          `json:"success"`
+			Details Document                      `json:"documentDetails"`
+		} `json:"addDocument"`
+	} `json:"compass"`
+}
+
+func (dto *DeleteDocumentOutput) IsSuccessful() bool {
+	return dto.Compass.DeleteDocument.Success
+}
+
+func (dto *DeleteDocumentOutput) GetErrors() []string {
+	errors := make([]string, len(dto.Compass.DeleteDocument.Errors))
+	for i, err := range dto.Compass.DeleteDocument.Errors {
+		errors[i] = err.Message
+	}
+	return errors
 }

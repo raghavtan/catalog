@@ -5,6 +5,70 @@ import (
 	"github.com/motain/of-catalog/internal/services/compassservice"
 )
 
+/*************
+ * INPUT DTO *
+ *************/
+type CreateComponentInput struct {
+	CompassCloudID string
+	Component      resources.Component
+}
+
+func (dto *CreateComponentInput) GetQuery() string {
+	return `
+		mutation createComponent ($cloudId: ID!, $componentDetails: CreateCompassComponentInput!) {
+			compass {
+				createComponent(cloudId: $cloudId, input: $componentDetails) {
+					success
+					componentDetails {
+						id
+						links {
+							id
+							type
+							name
+							url
+						}
+					}
+					errors {
+						message
+					}
+				}
+			}
+		}`
+}
+
+func (dto *CreateComponentInput) SetVariables() map[string]interface{} {
+	links := make([]map[string]string, 0)
+	for _, link := range dto.Component.Links {
+		links = append(links, map[string]string{
+			"type": link.Type,
+			"name": link.Name,
+			"url":  link.URL,
+		})
+	}
+
+	variables := map[string]interface{}{
+		"cloudId": dto.CompassCloudID,
+		"componentDetails": map[string]interface{}{
+			"name":        dto.Component.Name,
+			"slug":        dto.Component.Slug,
+			"description": dto.Component.Description,
+			"typeId":      dto.Component.TypeID,
+			"links":       links,
+			"labels":      dto.Component.Labels,
+		},
+	}
+
+	if dto.Component.OwnerID != "" {
+		variables["componentDetails"].(map[string]interface{})["ownerId"] = dto.Component.OwnerID
+	}
+
+	return variables
+}
+
+/**************
+ * OUTPUT DTO *
+ **************/
+
 type MetricSources struct {
 	Nodes []MetricSource `json:"nodes"`
 }
@@ -45,58 +109,14 @@ type CreateComponentOutput struct {
 	Compass CompassCreatedComponentOutput `json:"compass"`
 }
 
-func (c *CreateComponentOutput) GetQuery() string {
-	return `
-		mutation createComponent ($cloudId: ID!, $componentDetails: CreateCompassComponentInput!) {
-			compass {
-				createComponent(cloudId: $cloudId, input: $componentDetails) {
-					success
-					componentDetails {
-						id
-						links {
-							id
-							type
-							name
-							url
-						}
-					}
-					errors {
-						message
-					}
-				}
-			}
-		}`
+func (dto *CreateComponentOutput) IsSuccessful() bool {
+	return dto.Compass.CreateComponent.Success
 }
 
-func (c *CreateComponentOutput) SetVariables(compassCloudIdD string, component resources.Component) map[string]interface{} {
-	links := make([]map[string]string, 0)
-	for _, link := range component.Links {
-		links = append(links, map[string]string{
-			"type": link.Type,
-			"name": link.Name,
-			"url":  link.URL,
-		})
+func (dto *CreateComponentOutput) GetErrors() []string {
+	errors := make([]string, len(dto.Compass.CreateComponent.Errors))
+	for i, err := range dto.Compass.CreateComponent.Errors {
+		errors[i] = err.Message
 	}
-
-	variables := map[string]interface{}{
-		"cloudId": compassCloudIdD,
-		"componentDetails": map[string]interface{}{
-			"name":        component.Name,
-			"slug":        component.Slug,
-			"description": component.Description,
-			"typeId":      component.TypeID,
-			"links":       links,
-			"labels":      component.Labels,
-		},
-	}
-
-	if component.OwnerID != "" {
-		variables["componentDetails"].(map[string]interface{})["ownerId"] = component.OwnerID
-	}
-
-	return variables
-}
-
-func (c *CreateComponentOutput) IsSuccessful() bool {
-	return c.Compass.CreateComponent.Success
+	return errors
 }

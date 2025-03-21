@@ -5,16 +5,14 @@ import (
 	"github.com/motain/of-catalog/internal/services/compassservice"
 )
 
-type UpdateComponentOutput struct {
-	Compass struct {
-		UpdateComponent struct {
-			Errors  []compassservice.CompassError `json:"errors"`
-			Success bool                          `json:"success"`
-		} `json:"updateComponent"`
-	} `json:"compass"`
+/*************
+ * INPUT DTO *
+ *************/
+type UpdateComponentInput struct {
+	Component resources.Component
 }
 
-func (u *UpdateComponentOutput) GetQuery() string {
+func (dto *UpdateComponentInput) GetQuery() string {
 	return `
 		mutation updateComponent ($componentDetails: UpdateCompassComponentInput!) {
 			compass {
@@ -28,23 +26,44 @@ func (u *UpdateComponentOutput) GetQuery() string {
 		}`
 }
 
-func (u *UpdateComponentOutput) SetVariables(component resources.Component) map[string]interface{} {
+func (dto *UpdateComponentInput) SetVariables() map[string]interface{} {
 	variables := map[string]interface{}{
 		"componentDetails": map[string]interface{}{
-			"id":          component.ID,
-			"name":        component.Name,
-			"slug":        component.Slug,
-			"description": component.Description,
+			"id":          dto.Component.ID,
+			"name":        dto.Component.Name,
+			"slug":        dto.Component.Slug,
+			"description": dto.Component.Description,
 		},
 	}
 
-	if component.OwnerID != "" {
-		variables["componentDetails"].(map[string]interface{})["ownerId"] = component.OwnerID
+	if dto.Component.OwnerID != "" {
+		variables["componentDetails"].(map[string]interface{})["ownerId"] = dto.Component.OwnerID
 	}
 
 	return variables
 }
 
-func (c *UpdateComponentOutput) IsSuccessful() bool {
-	return c.Compass.UpdateComponent.Success
+/**************
+ * OUTPUT DTO *
+ **************/
+
+type UpdateComponentOutput struct {
+	Compass struct {
+		UpdateComponent struct {
+			Errors  []compassservice.CompassError `json:"errors"`
+			Success bool                          `json:"success"`
+		} `json:"updateComponent"`
+	} `json:"compass"`
+}
+
+func (dto *UpdateComponentOutput) IsSuccessful() bool {
+	return dto.Compass.UpdateComponent.Success
+}
+
+func (dto *UpdateComponentOutput) GetErrors() []string {
+	errors := make([]string, len(dto.Compass.UpdateComponent.Errors))
+	for i, err := range dto.Compass.UpdateComponent.Errors {
+		errors[i] = err.Message
+	}
+	return errors
 }

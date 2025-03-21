@@ -1,17 +1,13 @@
 package dtos
 
-type DocumentationCategoriesOutput struct {
-	Compass struct {
-		DocumentationCategories struct {
-			Nodes []struct {
-				ID   string `json:"id"`
-				Name string `json:"name"`
-			} `json:"nodes"`
-		} `json:"documentationCategories"`
-	} `json:"compass"`
+/*************
+ * INPUT DTO *
+ *************/
+type DocumentationCategoriesInput struct {
+	CompassCloudID string
 }
 
-func (c *DocumentationCategoriesOutput) GetQuery() string {
+func (dto *DocumentationCategoriesInput) GetQuery() string {
 	return `
 		query documentationCategories {
 			compass {
@@ -28,10 +24,31 @@ func (c *DocumentationCategoriesOutput) GetQuery() string {
 		}`
 }
 
-func (c *DocumentationCategoriesOutput) SetVariables(metricID, componentID, identifier string) map[string]interface{} {
-	return map[string]interface{}{}
+func (dto *DocumentationCategoriesInput) SetVariables() map[string]interface{} {
+	return map[string]interface{}{
+		"cloudId": dto.CompassCloudID,
+	}
 }
 
-func (c *DocumentationCategoriesOutput) IsSuccessful() bool {
-	return c.Compass.DocumentationCategories.Nodes != nil
+/**************
+ * OUTPUT DTO *
+ **************/
+
+type DocumentationCategoriesOutput struct {
+	Compass struct {
+		DocumentationCategories struct {
+			Nodes []struct {
+				ID   string `json:"id"`
+				Name string `json:"name"`
+			} `json:"nodes"`
+		} `json:"documentationCategories"`
+	} `json:"compass"`
+}
+
+func (dto *DocumentationCategoriesOutput) IsSuccessful() bool {
+	return dto.Compass.DocumentationCategories.Nodes != nil
+}
+
+func (dto *DocumentationCategoriesOutput) GetErrors() []string {
+	return nil
 }

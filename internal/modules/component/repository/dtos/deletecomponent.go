@@ -2,16 +2,14 @@ package dtos
 
 import "github.com/motain/of-catalog/internal/services/compassservice"
 
-type DeleteComponentOutput struct {
-	Compass struct {
-		DeleteComponent struct {
-			Errors  []compassservice.CompassError `json:"errors"`
-			Success bool                          `json:"success"`
-		} `json:"deleteComponent"`
-	} `json:"compass"`
+/*************
+ * INPUT DTO *
+ *************/
+type DeleteComponentInput struct {
+	ComponentID string
 }
 
-func (d *DeleteComponentOutput) GetQuery() string {
+func (dto *DeleteComponentInput) GetQuery() string {
 	return `
 		mutation deleteComponent($id: ID!) {
 			compass {
@@ -26,17 +24,38 @@ func (d *DeleteComponentOutput) GetQuery() string {
 		}`
 }
 
-func (d *DeleteComponentOutput) SetVariables(id string) map[string]interface{} {
+func (dto *DeleteComponentInput) SetVariables() map[string]interface{} {
 	return map[string]interface{}{
-		"id": id,
+		"id": dto.ComponentID,
 	}
 }
 
-func (c *DeleteComponentOutput) IsSuccessful() bool {
+/**************
+ * OUTPUT DTO *
+ **************/
+
+type DeleteComponentOutput struct {
+	Compass struct {
+		DeleteComponent struct {
+			Errors  []compassservice.CompassError `json:"errors"`
+			Success bool                          `json:"success"`
+		} `json:"deleteComponent"`
+	} `json:"compass"`
+}
+
+func (dto *DeleteComponentOutput) IsSuccessful() bool {
 	// Ignoring the error if the component is not found
-	if compassservice.HasNotFoundError(c.Compass.DeleteComponent.Errors) {
+	if compassservice.HasNotFoundError(dto.Compass.DeleteComponent.Errors) {
 		return true
 	}
 
-	return c.Compass.DeleteComponent.Success
+	return dto.Compass.DeleteComponent.Success
+}
+
+func (dto *DeleteComponentOutput) GetErrors() []string {
+	errors := make([]string, len(dto.Compass.DeleteComponent.Errors))
+	for i, err := range dto.Compass.DeleteComponent.Errors {
+		errors[i] = err.Message
+	}
+	return errors
 }

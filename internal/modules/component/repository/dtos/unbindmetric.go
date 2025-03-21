@@ -1,14 +1,15 @@
 package dtos
 
-type UnbindMetricOutput struct {
-	Compass struct {
-		DeleteMetricSource struct {
-			Success bool `json:"success"`
-		} `json:"deleteMetricSource"`
-	} `json:"compass"`
+import "github.com/motain/of-catalog/internal/services/compassservice"
+
+/*************
+ * INPUT DTO *
+ *************/
+type UnbindMetricInput struct {
+	MetricID string
 }
 
-func (c *UnbindMetricOutput) GetQuery() string {
+func (dto *UnbindMetricInput) GetQuery() string {
 	return `
 		mutation deleteMetricSource($id: ID!) {
 			compass {
@@ -23,12 +24,33 @@ func (c *UnbindMetricOutput) GetQuery() string {
 		}`
 }
 
-func (c *UnbindMetricOutput) SetVariables(id string) map[string]interface{} {
+func (dto *UnbindMetricInput) SetVariables() map[string]interface{} {
 	return map[string]interface{}{
-		"id": id,
+		"id": dto.MetricID,
 	}
 }
 
-func (c *UnbindMetricOutput) IsSuccessful() bool {
-	return c.Compass.DeleteMetricSource.Success
+/**************
+ * OUTPUT DTO *
+ **************/
+
+type UnbindMetricOutput struct {
+	Compass struct {
+		DeleteMetricSource struct {
+			Errors  []compassservice.CompassError `json:"errors"`
+			Success bool                          `json:"success"`
+		} `json:"deleteMetricSource"`
+	} `json:"compass"`
+}
+
+func (dto *UnbindMetricOutput) IsSuccessful() bool {
+	return dto.Compass.DeleteMetricSource.Success
+}
+
+func (dto *UnbindMetricOutput) GetErrors() []string {
+	errors := make([]string, len(dto.Compass.DeleteMetricSource.Errors))
+	for i, err := range dto.Compass.DeleteMetricSource.Errors {
+		errors[i] = err.Message
+	}
+	return errors
 }

@@ -1,12 +1,14 @@
 package dtos
 
-type ComponentByReferenceOutput struct {
-	Compass struct {
-		Component Component `json:"componentByReference"`
-	} `json:"compass"`
+/*************
+ * INPUT DTO *
+ *************/
+type ComponentByReferenceInput struct {
+	CompassCloudID string
+	Slug           string
 }
 
-func (c *ComponentByReferenceOutput) GetQuery() string {
+func (dto *ComponentByReferenceInput) GetQuery() string {
 	return `
 		query getComponentBySlug($cloudId: ID!, $slug: String!) {
 			compass {
@@ -29,13 +31,27 @@ func (c *ComponentByReferenceOutput) GetQuery() string {
 		}`
 }
 
-func (c *ComponentByReferenceOutput) SetVariables(compassCloudIdD, slug string) map[string]interface{} {
+func (dto *ComponentByReferenceInput) SetVariables() map[string]interface{} {
 	return map[string]interface{}{
-		"cloudId": compassCloudIdD,
-		"slug":    slug,
+		"cloudId": dto.CompassCloudID,
+		"slug":    dto.Slug,
 	}
 }
 
-func (c *ComponentByReferenceOutput) IsSuccessful() bool {
-	return c.Compass.Component.ID != ""
+/**************
+ * OUTPUT DTO *
+ **************/
+
+type ComponentByReferenceOutput struct {
+	Compass struct {
+		Component Component `json:"componentByReference"`
+	} `json:"compass"`
+}
+
+func (dto *ComponentByReferenceOutput) IsSuccessful() bool {
+	return dto.Compass.Component.ID != ""
+}
+
+func (dto *ComponentByReferenceOutput) GetErrors() []string {
+	return nil
 }

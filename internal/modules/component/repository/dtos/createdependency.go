@@ -4,16 +4,15 @@ import (
 	"github.com/motain/of-catalog/internal/services/compassservice"
 )
 
-type CreateDependencyOutput struct {
-	Compass struct {
-		CreateDependency struct {
-			Errors  []compassservice.CompassError `json:"errors"`
-			Success bool                          `json:"success"`
-		} `json:"createRelationship"`
-	} `json:"compass"`
+/*************
+ * INPUT DTO *
+ *************/
+type CreateDependencyInput struct {
+	DependentId string
+	ProviderId  string
 }
 
-func (c *CreateDependencyOutput) GetQuery() string {
+func (dto *CreateDependencyInput) GetQuery() string {
 	return `
 		mutation createRelationship($dependentId: ID!, $providerId: ID!) {
 			compass {
@@ -31,13 +30,34 @@ func (c *CreateDependencyOutput) GetQuery() string {
 		}`
 }
 
-func (c *CreateDependencyOutput) SetVariables(dependentId, providerId string) map[string]interface{} {
+func (dto *CreateDependencyInput) SetVariables() map[string]interface{} {
 	return map[string]interface{}{
-		"dependentId": dependentId,
-		"providerId":  providerId,
+		"dependentId": dto.DependentId,
+		"providerId":  dto.ProviderId,
 	}
 }
 
-func (c *CreateDependencyOutput) IsSuccessful() bool {
-	return c.Compass.CreateDependency.Success
+/**************
+ * OUTPUT DTO *
+ **************/
+
+type CreateDependencyOutput struct {
+	Compass struct {
+		CreateDependency struct {
+			Errors  []compassservice.CompassError `json:"errors"`
+			Success bool                          `json:"success"`
+		} `json:"createRelationship"`
+	} `json:"compass"`
+}
+
+func (dto *CreateDependencyOutput) IsSuccessful() bool {
+	return dto.Compass.CreateDependency.Success
+}
+
+func (dto *CreateDependencyOutput) GetErrors() []string {
+	errors := make([]string, len(dto.Compass.CreateDependency.Errors))
+	for i, err := range dto.Compass.CreateDependency.Errors {
+		errors[i] = err.Message
+	}
+	return errors
 }

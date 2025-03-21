@@ -92,7 +92,7 @@ func TestRepository_Create(t *testing.T) {
 		},
 		{
 			name:      "fails to create component due to compass error",
-			component: resources.Component{},
+			component: resources.Component{Name: "test-slug"},
 			mockSetup: func() {
 				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
@@ -102,7 +102,7 @@ func TestRepository_Create(t *testing.T) {
 				)
 			},
 			expectedResult: resources.Component{},
-			expectedError:  errors.New("compass error"),
+			expectedError:  errors.New("Create component error for test-slug: compass error"),
 		},
 		{
 			name:      "fails to create component due to unsuccessful response",
@@ -125,7 +125,7 @@ func TestRepository_Create(t *testing.T) {
 				)
 			},
 			expectedResult: resources.Component{},
-			expectedError:  errors.New("failed to create component: [{error message}]"),
+			expectedError:  errors.New("Create component error for : failed to execute mutation createComponent: [error message]"),
 		},
 	}
 
@@ -262,7 +262,7 @@ func TestRepository_Update(t *testing.T) {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedResult: resources.Component{},
-			expectedError:  errors.New("failed to update component component-id: compass error"),
+			expectedError:  errors.New("Update component error for : compass error"),
 		},
 		{
 			name: "fails to update component due to unsuccessful response",
@@ -283,7 +283,7 @@ func TestRepository_Update(t *testing.T) {
 				)
 			},
 			expectedResult: resources.Component{},
-			expectedError:  errors.New("failed to update component component-id: [{failed to run operation}]"),
+			expectedError:  errors.New("Update component error for : failed to execute mutation updateComponent: [failed to run operation]"),
 		},
 	}
 
@@ -329,7 +329,7 @@ func TestRepository_Delete(t *testing.T) {
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
-			expectedError: errors.New("failed to delete component component-id: compass error"),
+			expectedError: errors.New("Delete component error for component-id: compass error"),
 		},
 		{
 			name:        "fails to delete component due to unsuccessful response",
@@ -338,11 +338,14 @@ func TestRepository_Delete(t *testing.T) {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DeleteComponentOutput) error {
 						output.Compass.DeleteComponent.Success = false
+						output.Compass.DeleteComponent.Errors = []compassserviceError.CompassError{
+							{Message: "failed to execute mutation deleteComponent"},
+						}
 						return nil
 					},
 				)
 			},
-			expectedError: errors.New("failed to delete component component-id: failed to run operation"),
+			expectedError: errors.New("Delete component error for component-id: failed to execute mutation deleteComponent: [failed to execute mutation deleteComponent]"),
 		},
 		{
 			name:        "component not found, no error returned",
@@ -404,7 +407,7 @@ func TestRepository_SetDependency(t *testing.T) {
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
-			expectedError: errors.New("failed to set component dependency dependent-id -> provider-id: compass error"),
+			expectedError: errors.New("SetDependency error for dependent-id: compass error"),
 		},
 		{
 			name:        "fails to set dependency due to unsuccessful response",
@@ -414,11 +417,14 @@ func TestRepository_SetDependency(t *testing.T) {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.CreateDependencyOutput) error {
 						output.Compass.CreateDependency.Success = false
+						output.Compass.CreateDependency.Errors = []compassserviceError.CompassError{
+							{Message: "failed to execute mutation createRelationship"},
+						}
 						return nil
 					},
 				)
 			},
-			expectedError: errors.New("failed to set component dependency dependent-id -> provider-id: failed to run operation"),
+			expectedError: errors.New("SetDependency error for dependent-id: failed to execute mutation createRelationship: [failed to execute mutation createRelationship]"),
 		},
 	}
 
@@ -466,7 +472,7 @@ func TestRepository_UnsetDependency(t *testing.T) {
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
-			expectedError: errors.New("failed to unset component dependency dependent-id -> provider-id: compass error"),
+			expectedError: errors.New("UnsetDependency dependency error for dependent-id: compass error"),
 		},
 		{
 			name:        "fails to unset dependency due to unsuccessful response",
@@ -476,11 +482,14 @@ func TestRepository_UnsetDependency(t *testing.T) {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DeleteDependencyOutput) error {
 						output.Compass.DeleteDependency.Success = false
+						output.Compass.DeleteDependency.Errors = []compassserviceError.CompassError{
+							{Message: "failed to execute mutation deleteRelationship"},
+						}
 						return nil
 					},
 				)
 			},
-			expectedError: errors.New("failed to unset component dependency dependent-id -> provider-id: failed to run operation"),
+			expectedError: errors.New("UnsetDependency dependency error for dependent-id: failed to execute mutation deleteRelationship: [failed to execute mutation deleteRelationship]"),
 		},
 	}
 
@@ -551,7 +560,7 @@ func TestRepository_GetBySlug(t *testing.T) {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedResult: nil,
-			expectedError:  errors.New("failed to get component by slug test-slug: compass error"),
+			expectedError:  errors.New("GetBySlug error for test-slug: compass error"),
 		},
 		{
 			name: "fails to retrieve component due to unsuccessful response",
@@ -566,7 +575,7 @@ func TestRepository_GetBySlug(t *testing.T) {
 				)
 			},
 			expectedResult: nil,
-			expectedError:  errors.New("failed to get component by slug test-slug: failed to run operation"),
+			expectedError:  errors.New("GetBySlug error for test-slug: failed to execute query getComponentBySlug: []"),
 		},
 	}
 
@@ -604,6 +613,7 @@ func TestRepository_AddDocument(t *testing.T) {
 				URL:   "http://example.com",
 			},
 			mockSetup: func() {
+				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DocumentationCategoriesOutput) error {
 						documentCategory := struct {
@@ -650,7 +660,7 @@ func TestRepository_AddDocument(t *testing.T) {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedResult: resources.Document{},
-			expectedError:  errors.New("failed to create document \"Test Document\" for component-id: compass error"),
+			expectedError:  errors.New("AddDocument error for component-id/Test Document: compass error"),
 		},
 		{
 			name:        "successfully adds a document",
@@ -692,7 +702,7 @@ func TestRepository_AddDocument(t *testing.T) {
 				repo.DocumentCategories = map[string]string{"type-1": "category-id-1"}
 			},
 			expectedResult: resources.Document{},
-			expectedError:  errors.New("failed to create document \"Test Document\" for component-id: compass error"),
+			expectedError:  errors.New("AddDocument error for component-id/Test Document: compass error"),
 		},
 		{
 			name:        "fails to add document due to unsuccessful response",
@@ -706,13 +716,16 @@ func TestRepository_AddDocument(t *testing.T) {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.CreateDocumentOutput) error {
 						output.Compass.AddDocument.Success = false
+						output.Compass.AddDocument.Errors = []compassserviceError.CompassError{
+							{Message: "failed to execute mutation addDocument"},
+						}
 						return nil
 					},
 				)
 				repo.DocumentCategories = map[string]string{"type-1": "category-id-1"}
 			},
 			expectedResult: resources.Document{},
-			expectedError:  errors.New("failed to create document \"Test Document\" for component-id: failed to run operation"),
+			expectedError:  errors.New("AddDocument error for component-id/Test Document: failed to execute mutation addDocument: [failed to execute mutation addDocument]"),
 		},
 	}
 
@@ -773,7 +786,7 @@ func TestRepository_UpdateDocument(t *testing.T) {
 				repo.DocumentCategories = map[string]string{"type-1": "category-id-1"}
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
-			expectedError: errors.New("failed to update document \"Updated Document\" for component-id: compass error"),
+			expectedError: errors.New("UpdateDocument error for component-id/Updated Document: compass error"),
 		},
 		{
 			name:        "fails to update document due to unsuccessful response",
@@ -789,11 +802,14 @@ func TestRepository_UpdateDocument(t *testing.T) {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UpdateDocumentOutput) error {
 						output.Compass.UpdateDocument.Success = false
+						output.Compass.UpdateDocument.Errors = []compassserviceError.CompassError{
+							{Message: "failed to execute mutation updateDocument"},
+						}
 						return nil
 					},
 				)
 			},
-			expectedError: errors.New("failed to update document \"Updated Document\" for component-id: failed to run operation"),
+			expectedError: errors.New("UpdateDocument error for component-id/Updated Document: failed to execute mutation updateDocument: [failed to execute mutation updateDocument]"),
 		},
 	}
 
@@ -848,7 +864,7 @@ func TestRepository_BindMetric(t *testing.T) {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedResult: "",
-			expectedError:  errors.New("failed to bind component component-id to metric metric-id: compass error"),
+			expectedError:  errors.New("BindMetric error for component-id/metric-id: compass error"),
 		},
 		{
 			name:        "fails to bind metric due to unsuccessful response",
@@ -859,12 +875,15 @@ func TestRepository_BindMetric(t *testing.T) {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.BindMetricOutput) error {
 						output.Compass.CreateMetricSource.Success = false
+						output.Compass.CreateMetricSource.Errors = []compassserviceError.CompassError{
+							{Message: "failed to execute mutation createMetricSource"},
+						}
 						return nil
 					},
 				)
 			},
 			expectedResult: "",
-			expectedError:  errors.New("failed to bind component component-id to metric metric-id: failed to run operation"),
+			expectedError:  errors.New("BindMetric error for component-id/metric-id: failed to execute mutation createMetricSource: [failed to execute mutation createMetricSource]"),
 		},
 	}
 
@@ -910,7 +929,7 @@ func TestRepository_UnbindMetric(t *testing.T) {
 			mockSetup: func() {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
-			expectedError: errors.New("failed to unbind metric source metric-source-id: compass error"),
+			expectedError: errors.New("UnbindMetric error for metric-source-id: compass error"),
 		},
 		{
 			name:           "fails to unbind metric due to unsuccessful response",
@@ -919,11 +938,14 @@ func TestRepository_UnbindMetric(t *testing.T) {
 				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UnbindMetricOutput) error {
 						output.Compass.DeleteMetricSource.Success = false
+						output.Compass.DeleteMetricSource.Errors = []compassserviceError.CompassError{
+							{Message: "failed to run operation"},
+						}
 						return nil
 					},
 				)
 			},
-			expectedError: errors.New("failed to unbind metric source metric-source-id: failed to run operation"),
+			expectedError: errors.New("UnbindMetric error for metric-source-id: failed to execute mutation deleteMetricSource: [failed to run operation]"),
 		},
 	}
 
