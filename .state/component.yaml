@@ -14274,41 +14274,45 @@ apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
     name: loyalty-service
-    componentType: cloud-resource
+    componentType: service
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2d3a26e9-295b-4e3c-8fa6-6191d9a5080f
     name: loyalty-service
     slug: ""
-    description: RDS cluster used by loyalty-service.
+    description: ""
     configVersion: 0
-    typeId: CLOUD_RESOURCE
+    typeId: SERVICE
     ownerId: ""
     dependsOn: []
     links:
         - id: ""
           name: Repository
           type: REPOSITORY
-          url: https://github.com/motain/iac/blob/master/production/applications/loyalty-service
+          url: https://github.com/motain/loyalty-service
         - id: ""
           name: Monitoring page
           type: DASHBOARD
-          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=loyalty-service;is-cluster=true;tab=monitoring
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=loyalty-service&var-container=loyalty-service&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
         - id: ""
           name: Repository
           type: REPOSITORY
-          url: https://github.com/motain/iac/blob/master/production/applications/loyalty-service
+          url: https://github.com/motain/loyalty-service
         - id: ""
           name: Monitoring page
           type: DASHBOARD
-          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=loyalty-service;is-cluster=true;tab=monitoring
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=loyalty-service&var-container=loyalty-service&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents: []
     labels:
-        - aws
-        - rds
-        - monetization
         - loyalty-program
-        - loyalty-service
-        - aurora-postgresql
+        - monetization
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/60e479ab-4bc7-41e4-b775-49d4315106b4
@@ -14358,8 +14362,8 @@ spec:
                 all: []
                 any: []
                 inspect: null
-    tribe: ""
-    squad: ""
+    tribe: monetization
+    squad: loyalty-program
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Component
