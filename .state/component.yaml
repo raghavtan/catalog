@@ -22023,10 +22023,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/search-gateway-api
-        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=search-gateway-api&var-container=search-gateway-api&from=now-1h&to=now
@@ -22042,6 +22038,10 @@ spec:
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/search-gateway-api
     documents: []
     labels:
         - personalisation
