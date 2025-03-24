@@ -1,0 +1,24 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: appstore-connect-iap-api-prod
+    componentType: cloud-resource
+spec:
+  name: 'appstore-connect-iap-api-prod'
+  description: RDS cluster used by appstore-connect-iap-api.
+  typeId: CLOUD_RESOURCE
+  fields:
+    tier: 4
+    isMonorepoProject: true
+  links:
+    - name: Repository
+      type: REPOSITORY
+      url: "https://github.com/motain/iac/blob/master/production/applications/appstore-connect-iap-api"
+    - name: Monitoring page
+      type: DASHBOARD
+      url: "https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=appstore-connect-iap-api-prod;is-cluster=true;tab=monitoring"
+  relationships: {}
+  labels: ["aws", "rds", "engagement", "live-video", "appstore-connect-iap-api", "aurora-mysql"]
+  customFields: null
+

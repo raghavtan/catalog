@@ -1,0 +1,24 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: watch
+    componentType: cloud-resource
+spec:
+  name: 'watch'
+  description: RDS cluster used by watch.
+  typeId: CLOUD_RESOURCE
+  fields:
+    tier: 4
+    isMonorepoProject: true
+  links:
+    - name: Repository
+      type: REPOSITORY
+      url: "https://github.com/motain/iac/blob/master/production/applications/watch/rds"
+    - name: Monitoring page
+      type: DASHBOARD
+      url: "https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=watch;is-cluster=true;tab=monitoring"
+  relationships: {}
+  labels: ["aws", "rds", "engagement", "live-video", "watch", "aurora-mysql"]
+  customFields: null
+
