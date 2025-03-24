@@ -12,9 +12,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: d49e7140-94df-48ee-8472-c8e48e28cf68
           name: Repository
@@ -50,7 +47,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: r-activation
@@ -295,7 +291,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -543,9 +538,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: bd087aff-3f28-4821-bf63-d51c0c28ac36
           name: Repository
@@ -580,7 +572,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -825,7 +816,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -1071,9 +1061,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 53e31b7e-c1ac-45cb-a83c-53433828d88c
           name: Repository
@@ -1109,7 +1096,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -1354,7 +1340,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -1390,9 +1375,9 @@ spec:
           url: https://onefootball.slack.com/archives/C055TBZP1B9
     documents: []
     labels:
+        - article-intelligence
         - reach
         - content
-        - article-intelligence
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/01e859cf-b088-4c01-a361-1a7b87d20faa
@@ -1459,7 +1444,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: r-source
@@ -1548,7 +1532,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -1653,7 +1636,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -1898,7 +1880,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -2146,7 +2127,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -2387,9 +2367,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 11b5a41a-9b91-4062-aee5-a959f240b929
           name: Repository
@@ -2426,7 +2403,6 @@ spec:
     ownerId: ""
     dependsOn:
         - mediation-api
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -2523,9 +2499,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 9bff25db-25e4-41e2-acf9-3506addaa10c
           name: Repository
@@ -2561,7 +2534,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -2802,7 +2774,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -3050,9 +3021,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: ""
           name: Repository
@@ -3155,7 +3123,6 @@ spec:
         - watch
         - users-accounts-api
         - stories-api
-    fields: {}
     links:
         - id: ""
           name: e-personalisation
@@ -3403,7 +3370,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -3647,7 +3613,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -3892,9 +3857,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: ""
           name: Repository
@@ -3998,7 +3960,6 @@ spec:
     dependsOn:
         - clips
         - ott-mediation
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -4239,7 +4200,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: video-platform-team
@@ -4364,7 +4324,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -4613,7 +4572,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: p-cloud-runtime
@@ -4861,9 +4819,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 2693947c-9ad0-4f72-a3c9-e52749b15a23
           name: Repository
@@ -4899,7 +4854,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -5149,7 +5103,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -5394,7 +5347,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -5643,7 +5595,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -5916,9 +5867,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 7c38b019-477e-4797-a386-e7eeffa1308a
           name: Repository
@@ -5954,7 +5902,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -6207,7 +6154,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Personalisation
@@ -6460,7 +6406,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -6705,7 +6650,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -6812,7 +6756,6 @@ spec:
     dependsOn:
         - apple-news
         - news
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -7061,7 +7004,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -7306,7 +7248,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -7553,7 +7494,6 @@ spec:
     dependsOn:
         - cheburashka
         - score-one-proxy
-    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -7797,7 +7737,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -8042,7 +7981,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -8291,7 +8229,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -8539,7 +8476,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -8789,9 +8725,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: d593ef25-5b3b-4ed1-b407-062ed5952917
           name: Repository
@@ -8827,7 +8760,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -9072,7 +9004,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -9317,7 +9248,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: e-matchxp
@@ -9562,9 +9492,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: fbcf31d9-c63a-4dd6-bc96-56917d8ca370
           name: Repository
@@ -9600,7 +9527,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -9841,7 +9767,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -10086,7 +10011,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -10337,7 +10261,6 @@ spec:
     dependsOn:
         - librarian
         - score-api
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -10582,7 +10505,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: r-source
@@ -10827,7 +10749,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -11068,7 +10989,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -11316,7 +11236,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -11565,7 +11484,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -11813,7 +11731,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -12061,7 +11978,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -12302,7 +12218,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -12547,7 +12462,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -12788,7 +12702,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -13029,7 +12942,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -13270,7 +13182,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -13511,9 +13422,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: b5ef44aa-0d58-49a3-83af-9ac8990d8a12
           name: Repository
@@ -13551,7 +13459,6 @@ spec:
     dependsOn:
         - ott-mediation
         - score-api
-    fields: {}
     links:
         - id: ""
           name: e-personalisation
@@ -13819,7 +13726,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -14064,7 +13970,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -14309,9 +14214,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 3034ec87-6d51-4512-85a4-036630bf7103
           name: Repository
@@ -14347,9 +14249,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 2948a5c0-8655-42cb-91c0-9bc32e7a58f6
           name: Repository
@@ -14385,9 +14284,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: ""
           name: Repository
@@ -14479,9 +14375,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: ""
           name: Repository
@@ -14517,7 +14410,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -14758,9 +14650,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 475ad613-f358-4807-a930-00ba915555a8
           name: Repository
@@ -14795,9 +14684,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 1ff7fe7a-cebb-4e14-84ea-dbc06c10e087
           name: Repository
@@ -14832,7 +14718,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: r-source
@@ -15087,7 +14972,6 @@ spec:
         - search-gateway-api
         - category-tiles
         - article-service
-    fields: {}
     links:
         - id: ""
           name: Personalisation
@@ -15350,7 +15234,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -15594,9 +15477,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 512d2ced-f271-4bc7-843a-54fe9f41ba33
           name: Repository
@@ -15633,7 +15513,6 @@ spec:
     ownerId: ""
     dependsOn:
         - funtik
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -15878,7 +15757,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -16127,7 +16005,6 @@ spec:
     ownerId: ""
     dependsOn:
         - score-api
-    fields: {}
     links:
         - id: ""
           name: r-activation
@@ -16371,9 +16248,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: f9910b15-ad06-4a68-be62-c21fa41bc5d7
           name: Repository
@@ -16409,7 +16283,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -16657,7 +16530,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -16907,7 +16779,6 @@ spec:
     ownerId: ""
     dependsOn:
         - auth-api
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -17004,7 +16875,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -17257,9 +17127,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: cd44d465-5c41-418c-8f5a-c5a3aeff0f60
           name: Repository
@@ -17295,7 +17162,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -17536,7 +17402,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -17782,7 +17647,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -18023,9 +17887,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 65cd1109-86c0-4f1d-b67d-5777cc3ff2a0
           name: Repository
@@ -18061,7 +17922,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -18303,7 +18163,6 @@ spec:
     ownerId: ""
     dependsOn:
         - watch
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -18555,7 +18414,6 @@ spec:
         - apple-news
         - news
         - score-api
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -18687,7 +18545,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -18932,7 +18789,6 @@ spec:
     ownerId: ""
     dependsOn:
         - score-api
-    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -19177,7 +19033,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: p-cloud-runtime
@@ -19425,7 +19280,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -19671,9 +19525,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 6f9ff8a0-cb0f-4e09-b61c-de555e3a657c
           name: Repository
@@ -19709,7 +19560,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: e-matchxp
@@ -19954,7 +19804,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -20198,7 +20047,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -20444,9 +20292,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: f1f8eb34-4d97-4d52-931b-e84875cbc8d2
           name: Repository
@@ -20482,7 +20327,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -20750,9 +20594,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 7a3f0f03-8e46-4399-ac7b-c45c0db81c8d
           name: Repository
@@ -20788,7 +20629,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -21033,7 +20873,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -21278,9 +21117,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: c2cd1d11-1477-4cdc-b4f8-6ba80d7150f5
           name: Repository
@@ -21315,7 +21151,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -21556,7 +21391,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -21801,9 +21635,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 17a8367e-6092-41a5-bd13-cedfda16ec9a
           name: Repository
@@ -21838,7 +21669,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -21943,7 +21773,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: e-matchxp
@@ -22188,7 +22017,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -22280,7 +22108,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -22525,7 +22352,6 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -22773,7 +22599,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -23018,7 +22843,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -23266,7 +23090,6 @@ spec:
     dependsOn:
         - personalisation-service
         - score-api
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -23515,7 +23338,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -23776,9 +23598,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 2a6fc79c-325e-4dae-9606-fe7145870398
           name: Repository
@@ -23815,7 +23634,6 @@ spec:
     ownerId: ""
     dependsOn:
         - score-api
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -24057,7 +23875,6 @@ spec:
     ownerId: ""
     dependsOn:
         - resolver-api
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -24298,9 +24115,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 3f8f2add-5081-4fe8-a709-c3543f7190d5
           name: Repository
@@ -24341,7 +24155,6 @@ spec:
         - apple-news
         - news
         - score-api
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -24589,7 +24402,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -24833,9 +24645,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: 4f2da459-d9cd-4dce-a1b4-3948ede47dde
           name: Repository
@@ -24873,7 +24682,6 @@ spec:
     dependsOn:
         - users-accounts-api
         - users-api
-    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -25117,9 +24925,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: b319f91f-fb5f-45bd-80d8-13b7209641f4
           name: Repository
@@ -25155,7 +24960,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: r-activation
@@ -25400,9 +25204,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: ""
           name: Repository
@@ -25494,7 +25295,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -25739,9 +25539,6 @@ spec:
     typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
-    fields:
-        isMonorepoProject: true
-        tier: 4
     links:
         - id: ""
           name: Repository
@@ -25900,7 +25697,6 @@ spec:
     dependsOn:
         - search-gateway-api
         - userresearch-shiny
-    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -26011,7 +25807,6 @@ spec:
     dependsOn:
         - watch
         - users-accounts-api
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -26257,7 +26052,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -26501,7 +26295,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -26741,7 +26534,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -26986,7 +26778,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -27230,7 +27021,6 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    fields: {}
     links:
         - id: ""
           name: Repository
@@ -27483,7 +27273,6 @@ spec:
         - users-accounts-api
         - clips
         - ott-mediation
-    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -27729,7 +27518,6 @@ spec:
     ownerId: ""
     dependsOn:
         - clips-api
-    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -27983,7 +27771,6 @@ spec:
         - scores-mixer
         - watch
         - score-api
-    fields: {}
     links:
         - id: ""
           name: Repository
