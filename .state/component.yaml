@@ -1534,18 +1534,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-translator&var-container=article-translator&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/article-translator
@@ -1565,11 +1553,23 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/article-translator
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-translator&var-container=article-translator&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
     documents: []
     labels:
+        - reach
         - content
         - article-translator
-        - reach
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d3bff458-07da-46ed-97fa-1c3e4ef68275
