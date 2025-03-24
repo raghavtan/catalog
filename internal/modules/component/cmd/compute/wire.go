@@ -52,10 +52,6 @@ var ProviderSet = wire.NewSet(
 	factcollectors.NewJSONAPIFactCollector,
 	wire.Bind(new(factcollectors.JSONAPIFactCollectorInterface), new(*factcollectors.JSONAPIFactCollector)),
 
-	// ComponentFactCollector
-	factcollectors.NewComponentFactCollector,
-	wire.Bind(new(factcollectors.ComponentFactCollectorInterface), new(*factcollectors.ComponentFactCollector)),
-
 	// FactInterpreter
 	factinterpreter.NewFactInterpreter,
 	wire.Bind(new(factinterpreter.FactInterpreterInterface), new(*factinterpreter.FactInterpreter)),

@@ -14,17 +14,15 @@ type FactInterpreterInterface interface {
 }
 
 type FactInterpreter struct {
-	githhubFC   factcollectors.GithubFactCollectorInterface
-	jsonAPIFC   factcollectors.JSONAPIFactCollectorInterface
-	componentFC factcollectors.ComponentFactCollectorInterface
+	githhubFC factcollectors.GithubFactCollectorInterface
+	jsonAPIFC factcollectors.JSONAPIFactCollectorInterface
 }
 
 func NewFactInterpreter(
 	ghfc factcollectors.GithubFactCollectorInterface,
 	jsonAPIFC factcollectors.JSONAPIFactCollectorInterface,
-	componentFC factcollectors.ComponentFactCollectorInterface,
 ) *FactInterpreter {
-	return &FactInterpreter{githhubFC: ghfc, jsonAPIFC: jsonAPIFC, componentFC: componentFC}
+	return &FactInterpreter{githhubFC: ghfc, jsonAPIFC: jsonAPIFC}
 }
 
 func (f *FactInterpreter) ProcessFacts(ctx context.Context, factOperations fsdtos.FactOperations) (float64, error) {
