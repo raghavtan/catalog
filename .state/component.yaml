@@ -1375,9 +1375,9 @@ spec:
           url: https://onefootball.slack.com/archives/C055TBZP1B9
     documents: []
     labels:
-        - article-intelligence
         - reach
         - content
+        - article-intelligence
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/01e859cf-b088-4c01-a361-1a7b87d20faa
