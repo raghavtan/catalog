@@ -10,6 +10,7 @@ type Component struct {
 	ConfigVersion int
 	TypeID        string
 	OwnerID       string
+	Fields        map[string]interface{}
 	Links         []Link
 	Documents     []Document
 	Labels        []string

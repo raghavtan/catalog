@@ -86,8 +86,6 @@ func (h *ApplyHandler) handleAll(ctx context.Context, stateComponents, configCom
 
 func (h *ApplyHandler) handleOne(ctx context.Context, stateComponents, configComponents map[string]*dtos.ComponentDTO, componentName string) {
 	configComponent := configComponents[componentName]
-	stateComponent := stateComponents[componentName]
-
 	result := make([]*dtos.ComponentDTO, 0)
 	for stateComponentName, stateComponent := range stateComponents {
 		if stateComponentName != componentName {
@@ -96,8 +94,13 @@ func (h *ApplyHandler) handleOne(ctx context.Context, stateComponents, configCom
 		}
 	}
 
+	stateMap := make(map[string]*dtos.ComponentDTO)
+	if stateComponents[componentName] != nil {
+		stateMap[componentName] = stateComponents[componentName]
+	}
+
 	created, updated, deleted, unchanged := drift.Detect(
-		map[string]*dtos.ComponentDTO{componentName: stateComponent},
+		stateMap,
 		map[string]*dtos.ComponentDTO{componentName: configComponent},
 		dtos.FromStateToConfig,
 		dtos.IsEqualComponent,
@@ -261,6 +264,7 @@ func componentDTOToResource(componentDTO *dtos.ComponentDTO) resources.Component
 		ConfigVersion: componentDTO.Spec.ConfigVersion,
 		TypeID:        componentDTO.Spec.TypeID,
 		OwnerID:       componentDTO.Spec.OwnerID,
+		Fields:        componentDTO.Spec.Fields,
 		Links:         linksDTOToResource(componentDTO.Spec.Links),
 		Labels:        componentDTO.Spec.Labels,
 		MetricSources: metricSourcesDTOToResource(componentDTO.Spec.MetricSources),

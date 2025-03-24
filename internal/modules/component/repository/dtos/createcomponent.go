@@ -1,6 +1,8 @@
 package dtos
 
 import (
+	"fmt"
+
 	"github.com/motain/of-catalog/internal/modules/component/resources"
 	"github.com/motain/of-catalog/internal/services/compassservice"
 )
@@ -46,6 +48,26 @@ func (dto *CreateComponentInput) SetVariables() map[string]interface{} {
 		})
 	}
 
+	fields := make([]map[string]interface{}, 0, len(dto.Component.Fields))
+	for k, v := range dto.Component.Fields {
+		var valueObj map[string]interface{}
+		switch v.(type) {
+		case bool:
+			valueObj = map[string]interface{}{
+				"boolean": map[string]bool{"booleanValue": v.(bool)},
+			}
+		default:
+			valueObj = map[string]interface{}{
+				"enum": map[string][]string{"value": {fmt.Sprintf("%v", v)}},
+			}
+		}
+
+		fields = append(fields, map[string]interface{}{
+			"definition": "compass:" + k,
+			"value":      valueObj,
+		})
+	}
+
 	variables := map[string]interface{}{
 		"cloudId": dto.CompassCloudID,
 		"componentDetails": map[string]interface{}{
@@ -53,6 +75,7 @@ func (dto *CreateComponentInput) SetVariables() map[string]interface{} {
 			"slug":        dto.Component.Slug,
 			"description": dto.Component.Description,
 			"typeId":      dto.Component.TypeID,
+			"fields":      fields,
 			"links":       links,
 			"labels":      dto.Component.Labels,
 		},

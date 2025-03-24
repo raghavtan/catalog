@@ -1,6 +1,44 @@
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: ads-api
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f0107e2b-abaf-4dec-aa8f-1eb78bf1fca9
+    name: ads-api
+    slug: cr-ads-api
+    description: RDS cluster used by mediation-api.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: d49e7140-94df-48ee-8472-c8e48e28cf68
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/mediation-api/rds
+        - id: 12bdf455-929e-4b21-817c-ad68fc2eeaf0
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=ads-api;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - monetization
+        - media-advertising
+        - mediation-api
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: airship-email
     componentType: service
 spec:
@@ -12,6 +50,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: r-activation
@@ -256,6 +295,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -492,6 +532,43 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: amymone-aurora-mysql8
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ed894d16-9282-4789-b0c5-57cb36922685
+    name: amymone-aurora-mysql8
+    slug: cr-amymone-aurora-mysql8
+    description: ""
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: bd087aff-3f28-4821-bf63-d51c0c28ac36
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/amymone/rds
+        - id: de227b2f-ca70-4750-bfb4-00e202b2dfdf
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=amymone-aurora-mysql8;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - engagement
+        - personalisation
+        - aurora-mysql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: analytics-service
     componentType: service
 spec:
@@ -503,6 +580,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -747,6 +825,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -981,6 +1060,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: appstore-connect-iap-api-prod
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ea87cb84-fdda-4c5d-96c7-ca36ba48ae7c
+    name: appstore-connect-iap-api-prod
+    slug: cr-appstore-connect-iap-api-prod
+    description: RDS cluster used by appstore-connect-iap-api.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 53e31b7e-c1ac-45cb-a83c-53433828d88c
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/appstore-connect-iap-api
+        - id: 34489ada-26c6-4718-a834-c67dd1fb887b
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=appstore-connect-iap-api-prod;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - engagement
+        - live-video
+        - appstore-connect-iap-api
+        - aurora-mysql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: archive
     componentType: service
 spec:
@@ -992,6 +1109,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -1236,6 +1354,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -1340,6 +1459,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: r-source
@@ -1428,6 +1548,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -1532,6 +1653,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -1776,6 +1898,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -2023,6 +2146,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -2252,6 +2376,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: banner-free-tf
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/4fa09e7e-bda1-4720-87c5-632c1d218dc0
+    name: banner-free-tf
+    slug: cr-banner-free-tf
+    description: RDS cluster used by banner-free.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 11b5a41a-9b91-4062-aee5-a959f240b929
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/banner-free/rds
+        - id: e761ef4c-b65a-4154-8a7c-56503b4cfb38
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=banner-free-tf;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - monetization
+        - media-advertising
+        - banner-free
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: betting-api
     componentType: service
 spec:
@@ -2264,6 +2426,7 @@ spec:
     ownerId: ""
     dependsOn:
         - mediation-api
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -2349,6 +2512,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: betting-prod
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/0b2d5e19-7b49-4b99-9bd6-9e93e67c6b58
+    name: betting-prod
+    slug: cr-betting-prod
+    description: RDS cluster used by betting-api.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 9bff25db-25e4-41e2-acf9-3506addaa10c
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/betting-api/rds
+        - id: 3fcd3746-6b0d-466c-b498-49517a911020
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=betting-prod;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - monetization
+        - sponsorship-integration
+        - betting-api
+        - aurora-mysql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: betting-workers
     componentType: service
 spec:
@@ -2360,6 +2561,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -2600,6 +2802,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -2837,29 +3040,36 @@ apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
     name: campaign-manager
-    componentType: service
+    componentType: cloud-resource
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/4dc0243f-d5d6-4f09-aafa-273c4bd895ed
     name: campaign-manager
     slug: ""
-    description: ""
+    description: RDS cluster used by campaign-manager.
     configVersion: 0
-    typeId: SERVICE
+    typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
     links:
         - id: ""
           name: Repository
           type: REPOSITORY
-          url: https://github.com/motain/campaign-manager
+          url: https://github.com/motain/iac/blob/master/production/applications/campaign-manager/rds
         - id: ""
           name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=campaign-manager&var-container=campaign-manager&from=now-1h&to=now
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=campaign-manager;is-cluster=true;tab=monitoring
         - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/campaign-manager/rds
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=campaign-manager;is-cluster=true;tab=monitoring
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/1508c262-1842-4ad2-8b18-2c5cd97de1e2
           title: Readme
@@ -2867,9 +3077,12 @@ spec:
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/campaign-manager/blob/main/docs/index.md
     labels:
+        - aws
+        - rds
         - monetization
         - sponsorship-integration
         - campaign-manager
+        - aurora-postgresql
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a37f247f-f806-4e70-aad4-1b3b6df7ac97
@@ -2877,58 +3090,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: campaign-manager
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: campaign-manager
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d3c521fe-5788-4f09-a9ea-cb31573a8c2c
             name: critical-alerts-slo-check-svc-campaign-manager
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/campaign-manager
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -2936,21 +3105,7 @@ spec:
             name: deployment-readiness-svc-campaign-manager
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: campaign-manager
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -2959,124 +3114,26 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: campaign-manager
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: campaign-manager
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ff7f904f-021a-4d55-9216-58f5d05f2103
             name: instrumentation-check-svc-campaign-manager
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: campaign-manager
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: campaign-manager
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: campaign-manager
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: campaign-manager
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/f1785baa-88bf-4655-a9bf-f441a38f2149
             name: organizational-standards-svc-campaign-manager
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: campaign-manager
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: campaign-manager
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
-    tribe: monetization
-    squad: sponsorship-integration
+    tribe: ""
+    squad: ""
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Component
@@ -3098,6 +3155,7 @@ spec:
         - watch
         - users-accounts-api
         - stories-api
+    fields: {}
     links:
         - id: ""
           name: e-personalisation
@@ -3345,6 +3403,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -3588,6 +3647,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -3822,33 +3882,36 @@ apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
     name: clips
-    componentType: service
+    componentType: cloud-resource
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7c4839a3-207b-4d40-bb83-d0939263b159
     name: clips
     slug: ""
-    description: ""
+    description: RDS cluster used by clips.
     configVersion: 0
-    typeId: SERVICE
+    typeId: CLOUD_RESOURCE
     ownerId: ""
-    dependsOn:
-        - librarian
-        - funtik
-        - creators-network
-        - score-api
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
     links:
         - id: ""
           name: Repository
           type: REPOSITORY
-          url: https://github.com/motain/clips
+          url: https://github.com/motain/iac/blob/master/production/applications/clips/rds
         - id: ""
           name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips&var-container=clips&from=now-1h&to=now
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=clips;is-cluster=true;tab=monitoring
         - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/clips/rds
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=clips;is-cluster=true;tab=monitoring
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d4176ea2-5924-4845-8e5c-4b4321e67051
           title: Live clips deals configuration
@@ -3861,9 +3924,12 @@ spec:
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/clips/blob/main/.of/docs/index.md
     labels:
+        - aws
+        - rds
         - reach
         - video-platform
         - clips
+        - aurora-mysql
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3ef8c503-116d-4234-8264-2746c0a1eee6
@@ -3871,58 +3937,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: clips
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: clips
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ccc5ad8f-8d5e-47f7-a114-fa28f84222ec
             name: critical-alerts-slo-check-svc-clips
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/clips
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -3930,21 +3952,7 @@ spec:
             name: deployment-readiness-svc-clips
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: clips
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -3953,124 +3961,26 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: clips
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: clips
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5e94f290-d54e-4f8a-b439-ed6d43832e89
             name: instrumentation-check-svc-clips
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: clips
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: clips
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: clips
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: clips
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9598f470-9344-4983-80d1-db498dbda98b
             name: organizational-standards-svc-clips
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: clips
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: clips
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
-    tribe: reach
-    squad: video-platform
+    tribe: ""
+    squad: ""
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Component
@@ -4088,6 +3998,7 @@ spec:
     dependsOn:
         - clips
         - ott-mediation
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -4328,6 +4239,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: video-platform-team
@@ -4452,6 +4364,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -4700,6 +4613,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: p-cloud-runtime
@@ -4936,6 +4850,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: cms-prod
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d4d7eb56-ee9d-4611-8dbe-7f25592dcd7d
+    name: cms-prod
+    slug: cr-cms-prod
+    description: RDS cluster used by cms.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 2693947c-9ad0-4f72-a3c9-e52749b15a23
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/cms/rds
+        - id: 7f680760-0a44-48be-9736-33686cdf7f9e
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=cms-prod;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - engagement
+        - personalisation
+        - cms
+        - aurora-mysql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: competition-sorting-api
     componentType: service
 spec:
@@ -4947,6 +4899,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -5196,6 +5149,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -5440,6 +5394,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -5688,6 +5643,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -5949,6 +5905,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: content-classifier-tf
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f8e7a54f-9574-4bee-a4a4-1b7009b24550
+    name: content-classifier-tf
+    slug: cr-content-classifier-tf
+    description: RDS cluster used by content-classifier.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 7c38b019-477e-4797-a386-e7eeffa1308a
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/content-classifier
+        - id: eee66c65-345e-4fb2-a613-d000b5b51f3d
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=content-classifier-tf;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - engagement
+        - personalisation
+        - content-classifier
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: content-recommender
     componentType: service
 spec:
@@ -5960,6 +5954,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -6212,6 +6207,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Personalisation
@@ -6464,6 +6460,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -6708,6 +6705,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -6814,6 +6812,7 @@ spec:
     dependsOn:
         - apple-news
         - news
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -7062,6 +7061,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -7306,6 +7306,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -7552,6 +7553,7 @@ spec:
     dependsOn:
         - cheburashka
         - score-one-proxy
+    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -7795,6 +7797,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -8039,6 +8042,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -8287,6 +8291,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -8534,6 +8539,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -8772,6 +8778,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: facts
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b8abee41-a973-415b-aa7c-748ec4bd3980
+    name: facts
+    slug: cr-facts
+    description: RDS cluster used by facts.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: d593ef25-5b3b-4ed1-b407-062ed5952917
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/facts/rds
+        - id: 75f17e24-217b-44a4-80d3-ce5746d77ee7
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=facts;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - engagement
+        - matchxp
+        - facts
+        - aurora-mysql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: facts-api
     componentType: service
 spec:
@@ -8783,6 +8827,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -9027,6 +9072,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -9271,6 +9317,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: e-matchxp
@@ -9504,6 +9551,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: fanmatch
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f1c9bbb5-c02e-4d46-b64b-7b4a1324da3e
+    name: fanmatch
+    slug: cr-fanmatch
+    description: RDS cluster used by fanmatch.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: fbcf31d9-c63a-4dd6-bc96-56917d8ca370
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/fanmatch/rds
+        - id: dbeeaa97-c4dc-4e1e-9d83-91d46adea465
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=fanmatch;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - monetization
+        - sponsorship-integration
+        - fanmatch
+        - aurora-mysql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: fanmatch-go
     componentType: service
 spec:
@@ -9515,6 +9600,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -9755,6 +9841,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -9999,6 +10086,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -10249,6 +10337,7 @@ spec:
     dependsOn:
         - librarian
         - score-api
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -10493,6 +10582,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: r-source
@@ -10737,6 +10827,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -10977,6 +11068,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -11224,6 +11316,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -11472,6 +11565,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -11719,6 +11813,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -11966,6 +12061,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -12206,6 +12302,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -12450,6 +12547,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -12690,6 +12788,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -12930,6 +13029,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -13170,6 +13270,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -13399,6 +13500,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: lead-gen-prod
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b6f15b0b-30ad-465b-8c9f-ea6e5e11f16d
+    name: lead-gen-prod
+    slug: cr-lead-gen-prod
+    description: RDS cluster used by lead-gen-data-collector.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: b5ef44aa-0d58-49a3-83af-9ac8990d8a12
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/lead-gen-prod/rds
+        - id: 30a96e85-3848-46c4-910f-13564f5b7a9d
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=lead-gen-prod;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - monetization
+        - sponsorship-integration
+        - lead-gen-data-collector
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: librarian
     componentType: service
 spec:
@@ -13412,6 +13551,7 @@ spec:
     dependsOn:
         - ott-mediation
         - score-api
+    fields: {}
     links:
         - id: ""
           name: e-personalisation
@@ -13679,6 +13819,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -13923,6 +14064,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -14156,34 +14298,121 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: live-ticker-tf
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7b282186-809c-4201-b097-14661308e422
+    name: live-ticker-tf
+    slug: cr-live-ticker-tf
+    description: RDS cluster used by live-ticker.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 3034ec87-6d51-4512-85a4-036630bf7103
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/live-ticker-system/rds
+        - id: d3ad1cfb-52de-4961-bad0-750d63b1ee3c
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=live-ticker-tf;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - engagement
+        - matchxp
+        - live-ticker
+        - aurora-mysql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: loyalty-event-store
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/6a7fba8e-e620-4b5d-9000-d2b887c292c6
+    name: loyalty-event-store
+    slug: cr-loyalty-event-store
+    description: RDS cluster used by loyalty-service.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 2948a5c0-8655-42cb-91c0-9bc32e7a58f6
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/loyalty-service
+        - id: 2f3a521b-b730-47d7-aa50-db9355a59f72
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=loyalty-event-store;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - monetization
+        - loyalty-program
+        - loyalty-service
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: loyalty-service
-    componentType: service
+    componentType: cloud-resource
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2d3a26e9-295b-4e3c-8fa6-6191d9a5080f
     name: loyalty-service
     slug: ""
-    description: ""
+    description: RDS cluster used by loyalty-service.
     configVersion: 0
-    typeId: SERVICE
+    typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
     links:
         - id: ""
           name: Repository
           type: REPOSITORY
-          url: https://github.com/motain/loyalty-service
+          url: https://github.com/motain/iac/blob/master/production/applications/loyalty-service
         - id: ""
           name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=loyalty-service&var-container=loyalty-service&from=now-1h&to=now
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=loyalty-service;is-cluster=true;tab=monitoring
         - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/loyalty-service
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=loyalty-service;is-cluster=true;tab=monitoring
     documents: []
     labels:
+        - aws
+        - rds
         - monetization
         - loyalty-program
+        - loyalty-service
+        - aurora-postgresql
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/60e479ab-4bc7-41e4-b775-49d4315106b4
@@ -14191,58 +14420,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: loyalty-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: loyalty-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/399929ac-5deb-4066-be81-7be5df6dc7f0
             name: critical-alerts-slo-check-svc-loyalty-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/loyalty-service
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -14250,21 +14435,7 @@ spec:
             name: deployment-readiness-svc-loyalty-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: loyalty-service
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -14273,124 +14444,64 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: loyalty-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: loyalty-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/950b8d30-a7b9-48e3-82f2-fbabbb36ab2b
             name: instrumentation-check-svc-loyalty-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: loyalty-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: loyalty-service
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: loyalty-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: loyalty-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1e6b2776-0bde-4410-a60d-be79fbdc479f
             name: organizational-standards-svc-loyalty-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: loyalty-service
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: loyalty-service
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
-    tribe: monetization
-    squad: loyalty-program
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: loyalty-settings
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/980bc145-de4f-462e-a26b-9056524c70f5
+    name: loyalty-settings
+    slug: ""
+    description: RDS cluster used by loyalty-service.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/loyalty-service
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=loyalty-settings;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - monetization
+        - loyalty-program
+        - loyalty-service
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Component
@@ -14406,6 +14517,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -14635,6 +14747,80 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: meltano-airflow
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/9acb56b7-01a1-4f8e-a785-e82c61a3c6ff
+    name: meltano-airflow
+    slug: cr-meltano-airflow
+    description: ""
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 475ad613-f358-4807-a930-00ba915555a8
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/meltano/rds
+        - id: 988f49bb-5c63-4d4a-8bde-e558f81690dd
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=meltano-airflow;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - data-platform
+        - dacore
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: metabase-cluster
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/acb5e465-4aed-419c-9958-d591e49aeb0f
+    name: metabase-cluster
+    slug: cr-metabase-cluster
+    description: ""
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 1ff7fe7a-cebb-4e14-84ea-dbc06c10e087
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/metabase/rds
+        - id: 35ff28c2-77fc-4b10-bb21-a77149a48fae
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=metabase-cluster;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - data-platform
+        - dacore
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: network-admin-api
     componentType: service
 spec:
@@ -14646,6 +14832,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: r-source
@@ -14900,6 +15087,7 @@ spec:
         - search-gateway-api
         - category-tiles
         - article-service
+    fields: {}
     links:
         - id: ""
           name: Personalisation
@@ -15162,6 +15350,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -15394,6 +15583,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: newsroom-auth-cluster
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/5fbcd61c-0d14-4340-9420-f71179fe1f6c
+    name: newsroom-auth-cluster
+    slug: cr-newsroom-auth-cluster
+    description: RDS cluster used by newsroom-auth.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 512d2ced-f271-4bc7-843a-54fe9f41ba33
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/newsroom-auth/rds
+        - id: e1ecef71-a252-40af-a82e-88c1d1036999
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=newsroom-auth-cluster;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - reach
+        - content
+        - newsroom-auth
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: neznaika
     componentType: service
 spec:
@@ -15406,6 +15633,7 @@ spec:
     ownerId: ""
     dependsOn:
         - funtik
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -15650,6 +15878,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -15898,6 +16127,7 @@ spec:
     ownerId: ""
     dependsOn:
         - score-api
+    fields: {}
     links:
         - id: ""
           name: r-activation
@@ -16130,6 +16360,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: onboarding-api-tf-13
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/a8d332e7-3d6a-4002-ace9-47865c9feeab
+    name: onboarding-api-tf-13
+    slug: cr-onboarding-api-tf-13
+    description: RDS cluster used by onboarding.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: f9910b15-ad06-4a68-be62-c21fa41bc5d7
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/onboarding-api/rds
+        - id: e40b4d17-9944-464a-91b8-98c883b66669
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=onboarding-api-tf-13;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - reach
+        - fan-activation
+        - onboarding
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: oncall-compensation
     componentType: service
 spec:
@@ -16141,6 +16409,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -16388,6 +16657,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -16637,6 +16907,7 @@ spec:
     ownerId: ""
     dependsOn:
         - auth-api
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -16733,6 +17004,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -16974,6 +17246,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: ott-external-accounts-tf
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/78f6b89f-d63a-454c-80bd-50b42156a2f1
+    name: ott-external-accounts-tf
+    slug: cr-ott-external-accounts-tf
+    description: RDS cluster used by ott-external-accounts.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: cd44d465-5c41-418c-8f5a-c5a3aeff0f60
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/ott-external-accounts/rds
+        - id: 16c72ad4-ca05-4880-91c1-bb4985be23e3
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=ott-external-accounts-tf;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - engagement
+        - live-video
+        - ott-external-accounts
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: ott-live-sessions
     componentType: service
 spec:
@@ -16985,6 +17295,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -17225,6 +17536,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -17470,6 +17782,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -17699,6 +18012,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: ott-mediation-tf
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/8218f14e-ac6d-4691-8585-0ed2811940d7
+    name: ott-mediation-tf
+    slug: cr-ott-mediation-tf
+    description: RDS cluster used by ott-mediation.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 65cd1109-86c0-4f1d-b67d-5777cc3ff2a0
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/ott_mediation/rds
+        - id: c518052d-113f-4e8d-90fc-542760ced14d
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=ott-mediation-tf;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - engagement
+        - live-video
+        - ott-mediation
+        - aurora-mysql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: ott-probe
     componentType: service
 spec:
@@ -17710,6 +18061,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -17951,6 +18303,7 @@ spec:
     ownerId: ""
     dependsOn:
         - watch
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -18202,6 +18555,7 @@ spec:
         - apple-news
         - news
         - score-api
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -18333,6 +18687,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -18577,6 +18932,7 @@ spec:
     ownerId: ""
     dependsOn:
         - score-api
+    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -18821,6 +19177,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: p-cloud-runtime
@@ -19068,6 +19425,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -19302,6 +19660,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: promo-cluster
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/58dc2dc4-e64d-4dab-ba32-987959a0c3d2
+    name: promo-cluster
+    slug: cr-promo-cluster
+    description: RDS cluster used by promo.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 6f9ff8a0-cb0f-4e09-b61c-de555e3a657c
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/promo/rds
+        - id: a4019de5-b299-4680-812f-d76b3caeabe9
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=promo-cluster;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - monetization
+        - sponsorship-integration
+        - promo
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: push
     componentType: service
 spec:
@@ -19313,6 +19709,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: e-matchxp
@@ -19557,6 +19954,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -19800,6 +20198,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -20034,6 +20433,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: quiz-cluster
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/0486dc44-764a-47f8-8c1e-18019a604570
+    name: quiz-cluster
+    slug: cr-quiz-cluster
+    description: RDS cluster used by quiz-api.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: f1f8eb34-4d97-4d52-931b-e84875cbc8d2
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/quiz-api/rds
+        - id: b4021fe7-d532-4342-afa9-ad88996b07bc
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=quiz-cluster;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - monetization
+        - sponsorship-integration
+        - quiz-api
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: relevance-service
     componentType: service
 spec:
@@ -20045,6 +20482,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -20301,6 +20739,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: relevance-service-tf
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f00ac900-5208-475c-9968-beedf72d488c
+    name: relevance-service-tf
+    slug: cr-relevance-service-tf
+    description: RDS cluster used by relevance-service.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 7a3f0f03-8e46-4399-ac7b-c45c0db81c8d
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/relevance-service
+        - id: 36b3eaf7-85d0-4e54-8b9b-dea685f9e98a
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=relevance-service-tf;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - engagement
+        - personalisation
+        - relevance-service
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: replay-api
     componentType: service
 spec:
@@ -20312,6 +20788,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -20556,6 +21033,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -20789,6 +21267,43 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: retool
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e2360dfa-2245-41cc-98ba-9fab7a38eead
+    name: retool
+    slug: cr-retool
+    description: ""
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: c2cd1d11-1477-4cdc-b4f8-6ba80d7150f5
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/retool
+        - id: 403e6f69-6092-4230-9565-2774b40723ce
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=retool;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - engagement
+        - personalisation
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: rich-push
     componentType: service
 spec:
@@ -20800,6 +21315,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -21040,6 +21556,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -21273,6 +21790,43 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: score
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/830c1e96-2836-4eb2-9200-432c7acaa140
+    name: score
+    slug: cr-score
+    description: ""
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 17a8367e-6092-41a5-bd13-cedfda16ec9a
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/score-api/rds
+        - id: 6c395e45-0d41-408d-8739-dd4868666253
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=score;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - engagement
+        - matchxp
+        - aurora-mysql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: score-api
     componentType: service
 spec:
@@ -21284,6 +21838,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -21388,6 +21943,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: e-matchxp
@@ -21632,6 +22188,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -21723,6 +22280,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -21967,6 +22525,7 @@ spec:
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -22214,6 +22773,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -22458,6 +23018,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -22705,6 +23266,7 @@ spec:
     dependsOn:
         - personalisation-service
         - score-api
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -22953,6 +23515,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -23202,6 +23765,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: streaming-service-tf
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b60bde1e-059b-47e6-9738-5156dcdcd4e2
+    name: streaming-service-tf
+    slug: cr-streaming-service-tf
+    description: RDS cluster used by streaming-service.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 2a6fc79c-325e-4dae-9606-fe7145870398
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/streaming-service/rds
+        - id: aa29f894-e2b7-4a38-b48d-2c43e975ab51
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=streaming-service-tf;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - engagement
+        - live-video
+        - streaming-service
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: tv-guide-api
     componentType: service
 spec:
@@ -23214,6 +23815,7 @@ spec:
     ownerId: ""
     dependsOn:
         - score-api
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -23455,6 +24057,7 @@ spec:
     ownerId: ""
     dependsOn:
         - resolver-api
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -23684,6 +24287,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: tvguide
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/41a7a64c-2c98-4df5-8f6a-36317bdd579e
+    name: tvguide
+    slug: cr-tvguide
+    description: RDS cluster used by tv-guide-api.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 3f8f2add-5081-4fe8-a709-c3543f7190d5
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/tvguide/rds
+        - id: fab1b463-c187-41f1-a393-5f5bb74051c1
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=tvguide;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - monetization
+        - sponsorship-integration
+        - tv-guide-api
+        - aurora-mysql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: umka
     componentType: service
 spec:
@@ -23700,6 +24341,7 @@ spec:
         - apple-news
         - news
         - score-api
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -23947,6 +24589,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -24179,6 +24822,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: users-accounts-tf
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/aead2805-68fa-44e5-b3ed-14ae00aa8d56
+    name: users-accounts-tf
+    slug: cr-users-accounts-tf
+    description: RDS cluster used by users-accounts-pi.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: 4f2da459-d9cd-4dce-a1b4-3948ede47dde
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/users-accounts-api/rds
+        - id: c2795a76-de38-48fb-861a-0e1be8213a0a
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=users-accounts-tf;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - reach
+        - fan-activation
+        - users-accounts-pi
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: users-auth-api
     componentType: service
 spec:
@@ -24192,6 +24873,7 @@ spec:
     dependsOn:
         - users-accounts-api
         - users-api
+    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -24424,6 +25106,44 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: users-auth-tf
+    componentType: cloud-resource
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d4b243e0-19e9-4f06-8414-12db3f4cdbce
+    name: users-auth-tf
+    slug: cr-users-auth-tf
+    description: RDS cluster used by users-auth-api.
+    configVersion: 0
+    typeId: CLOUD_RESOURCE
+    ownerId: ""
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
+    links:
+        - id: b319f91f-fb5f-45bd-80d8-13b7209641f4
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/users-auth-api/rds
+        - id: c4686c9c-5542-4337-a624-d83c71ff628d
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=users-auth-tf;is-cluster=true;tab=monitoring
+    documents: []
+    labels:
+        - aws
+        - rds
+        - reach
+        - fan-activation
+        - users-auth-api
+        - aurora-postgresql
+    metricSources: {}
+    tribe: ""
+    squad: ""
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: users-gdpr
     componentType: service
 spec:
@@ -24435,6 +25155,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: r-activation
@@ -24669,38 +25390,44 @@ apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
     name: users-pii
-    componentType: service
+    componentType: cloud-resource
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6c14ff0-f84a-40a3-9cef-2c190ff8d6a0
     name: users-pii
     slug: ""
-    description: ""
+    description: RDS cluster used by users-pii.
     configVersion: 0
-    typeId: SERVICE
+    typeId: CLOUD_RESOURCE
     ownerId: ""
     dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
     links:
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: r-activation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/CK9LTN6DR
         - id: ""
           name: Repository
           type: REPOSITORY
-          url: https://github.com/motain/users-pii
+          url: https://github.com/motain/iac/blob/master/production/applications/users-pii/rds
         - id: ""
           name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-pii&var-container=users-pii&from=now-1h&to=now
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=users-pii;is-cluster=true;tab=monitoring
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/iac/blob/master/production/applications/users-pii/rds
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=users-pii;is-cluster=true;tab=monitoring
     documents: []
     labels:
+        - aws
+        - rds
+        - reach
         - fan-activation
         - users-pii
-        - reach
+        - aurora-postgresql
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/892df8c0-1ed0-495b-bea1-f573c456196e
@@ -24708,58 +25435,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: users-pii
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: users-pii
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/f36e872b-ccff-4cf5-8b08-29499ae7a92d
             name: critical-alerts-slo-check-svc-users-pii
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/users-pii
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -24767,21 +25450,7 @@ spec:
             name: deployment-readiness-svc-users-pii
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: users-pii
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -24790,124 +25459,26 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: users-pii
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: users-pii
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/406c75fc-435c-403a-81a1-225af08fc6e3
             name: instrumentation-check-svc-users-pii
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: users-pii
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: users-pii
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: users-pii
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: users-pii
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7bfa22e5-42f5-4c7e-8bc3-d60c527ac8b6
             name: organizational-standards-svc-users-pii
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: users-pii
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: users-pii
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
-    tribe: reach
-    squad: fan-activation
+    tribe: ""
+    squad: ""
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Component
@@ -24923,6 +25494,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -25157,67 +25729,72 @@ apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
     name: watch
-    componentType: service
+    componentType: cloud-resource
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/098dd38c-f3fd-4001-a562-7f2d12c9859f
     name: watch
     slug: ""
-    description: ""
+    description: RDS cluster used by watch.
     configVersion: 0
-    typeId: SERVICE
+    typeId: CLOUD_RESOURCE
     ownerId: ""
-    dependsOn:
-        - ott-mediation
-        - score-api
-        - ott-external-accounts
-        - users-pii
-        - users-accounts-api
+    dependsOn: []
+    fields:
+        isMonorepoProject: true
+        tier: 4
     links:
         - id: ""
           name: Repository
           type: REPOSITORY
-          url: https://github.com/motain/watch
+          url: https://github.com/motain/iac/blob/master/production/applications/watch/rds
         - id: ""
           name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=watch&var-container=watch&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=watch;is-cluster=true;tab=monitoring
         - id: ""
           name: Repository
           type: REPOSITORY
-          url: https://github.com/motain/watch
+          url: https://github.com/motain/iac/blob/master/production/applications/watch/rds
         - id: ""
           name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=watch&var-container=watch&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+          url: https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=watch;is-cluster=true;tab=monitoring
     documents:
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/04c6e94c-6b5d-4c09-a5e5-0c6cb1ddec1d
+          title: Content Distribution/Architecture
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-distribution/architecture.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/cadb23e8-5619-44c3-8294-87e63561fc35
+          title: Content Ingest/Content Importers/Generic
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/ingest_generic.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/fd7ba8e6-66e6-4f29-a203-06727dcc398f
           title: Content Ingest/Flows/Push Notifications
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_push_notifications.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/2dd0c03f-1601-4585-b6ca-278acd3aa892
-          title: Glossary
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/glossary.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/0d29dcbe-f6bb-4f84-8166-440595d2cf18
-          title: Content Ingest/Flows/Stores Cleanup
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_stores_cleanup.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/b61b5599-06fe-4bfd-8639-098eb9824ed9
           title: Home
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/watch/blob/main/docs/index.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/23ab8b6e-826d-49fc-823d-b7903ac3605f
+          title: Content Ingest/Flows/Product Activation
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_product_activation.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d8598c1a-033e-43a4-859e-2de604470570
+          title: Content Ingest/Flows/Match State Updater
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_match_state_updater.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/0d29dcbe-f6bb-4f84-8166-440595d2cf18
+          title: Content Ingest/Flows/Stores Cleanup
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_stores_cleanup.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/7df9bc7f-1dfd-4765-bc89-3b8b16ad72a2
           title: Content Ingest/Architecture
           type: Other
@@ -25233,39 +25810,28 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_sales_disable.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/50b9c39b-70d5-4024-9fec-1ed3e3a288e6
-          title: Content Ingest/Flows/Alert Partners
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_alert_partners.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/23ab8b6e-826d-49fc-823d-b7903ac3605f
-          title: Content Ingest/Flows/Product Activation
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_product_activation.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/13468fc2-1d15-4e03-9a06-5d3b47b87449
           title: Content Ingest/Content Importers/Norwegian League
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/watch/blob/main/docs/content-ingest/ingest_norwegian_league.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/04c6e94c-6b5d-4c09-a5e5-0c6cb1ddec1d
-          title: Content Distribution/Architecture
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/2dd0c03f-1601-4585-b6ca-278acd3aa892
+          title: Glossary
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-distribution/architecture.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d8598c1a-033e-43a4-859e-2de604470570
-          title: Content Ingest/Flows/Match State Updater
+          url: https://github.com/motain/watch/blob/main/docs/glossary.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/50b9c39b-70d5-4024-9fec-1ed3e3a288e6
+          title: Content Ingest/Flows/Alert Partners
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_match_state_updater.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/cadb23e8-5619-44c3-8294-87e63561fc35
-          title: Content Ingest/Content Importers/Generic
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/ingest_generic.md
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_alert_partners.md
     labels:
+        - aws
+        - rds
         - engagement
         - live-video
+        - watch
+        - aurora-mysql
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/42f18a4b-db26-46ba-94e8-c84a63939eca
@@ -25315,8 +25881,8 @@ spec:
                 all: []
                 any: []
                 inspect: null
-    tribe: engagement
-    squad: live-video
+    tribe: ""
+    squad: ""
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Component
@@ -25334,6 +25900,7 @@ spec:
     dependsOn:
         - search-gateway-api
         - userresearch-shiny
+    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -25444,6 +26011,7 @@ spec:
     dependsOn:
         - watch
         - users-accounts-api
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -25689,6 +26257,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -25932,6 +26501,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -26171,6 +26741,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -26415,6 +26986,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -26658,6 +27230,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
+    fields: {}
     links:
         - id: ""
           name: Repository
@@ -26910,6 +27483,7 @@ spec:
         - users-accounts-api
         - clips
         - ott-mediation
+    fields: {}
     links:
         - id: ""
           name: Monitoring page
@@ -27155,6 +27729,7 @@ spec:
     ownerId: ""
     dependsOn:
         - clips-api
+    fields: {}
     links:
         - id: ""
           name: OnCall
@@ -27408,6 +27983,7 @@ spec:
         - scores-mixer
         - watch
         - score-api
+    fields: {}
     links:
         - id: ""
           name: Repository

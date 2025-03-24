@@ -4,14 +4,14 @@ import "strings"
 
 func GetSlug(name, componentType string) string {
 	var shortType string
-	switch strings.ToLower(componentType) {
-	case "service":
+	switch strings.ToUpper(componentType) {
+	case "SERVICE":
 		shortType = "svc"
-	case "cloud-resource":
+	case "CLOUD_RESOURCE":
 		shortType = "cr"
-	case "website":
+	case "WEBSITE":
 		shortType = "web"
-	case "application":
+	case "APPLICATION":
 		shortType = "app"
 	default:
 		shortType = "unknown"

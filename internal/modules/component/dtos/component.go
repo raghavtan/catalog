@@ -63,6 +63,19 @@ func IsEqualDependsOn(d1, d2 []string) bool {
 	return true
 }
 
+func IsEqualFields(f1, f2 map[string]interface{}) bool {
+	if len(f1) != len(f2) {
+		return false
+	}
+
+	for k, v := range f1 {
+		if f2[k] != v {
+			return false
+		}
+	}
+	return true
+}
+
 func IsEqualComponent(c1, c2 *ComponentDTO) bool {
 	return c1.Spec.Name == c2.Spec.Name &&
 		c1.Spec.Description == c2.Spec.Description &&
@@ -71,7 +84,8 @@ func IsEqualComponent(c1, c2 *ComponentDTO) bool {
 		c1.Spec.OwnerID == c2.Spec.OwnerID &&
 		// IsEqualLinks(c1.Spec.Links, c2.Spec.Links) &&
 		IsEqualLabels(c1.Spec.Labels, c2.Spec.Labels) &&
-		IsEqualDependsOn(c1.Spec.DependsOn, c2.Spec.DependsOn)
+		IsEqualDependsOn(c1.Spec.DependsOn, c2.Spec.DependsOn) &&
+		IsEqualFields(c1.Spec.Fields, c2.Spec.Fields)
 }
 
 type Metadata struct {
@@ -88,6 +102,7 @@ type Spec struct {
 	TypeID        string                      `yaml:"typeId" json:"typeId"`
 	OwnerID       string                      `yaml:"ownerId" json:"ownerId"`
 	DependsOn     []string                    `yaml:"dependsOn" json:"dependsOn"`
+	Fields        map[string]interface{}      `yaml:"fields" json:"fields"`
 	Links         []Link                      `yaml:"links" json:"links"`
 	Documents     []*Document                 `yaml:"documents" json:"documents"`
 	Labels        []string                    `yaml:"labels" json:"labels"`
