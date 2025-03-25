@@ -14295,8 +14295,8 @@ spec:
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents: []
     labels:
-        - loyalty-program
         - monetization
+        - loyalty-program
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/60e479ab-4bc7-41e4-b775-49d4315106b4
