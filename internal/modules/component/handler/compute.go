@@ -9,20 +9,20 @@ import (
 	"github.com/motain/of-catalog/internal/modules/component/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/repository"
 	"github.com/motain/of-catalog/internal/modules/component/resources"
-	"github.com/motain/of-catalog/internal/services/factsystem/factinterpreter"
+	"github.com/motain/of-catalog/internal/services/factsystem/processor"
 	"github.com/motain/of-catalog/internal/utils/yaml"
 )
 
 type ComputeHandler struct {
-	repository      repository.RepositoryInterface
-	factInterpreter factinterpreter.FactInterpreterInterface
+	repository    repository.RepositoryInterface
+	factProcessor processor.ProcessorInterface
 }
 
 func NewComputeHandler(
 	repository repository.RepositoryInterface,
-	factInterpreter factinterpreter.FactInterpreterInterface,
+	factProcessor processor.ProcessorInterface,
 ) *ComputeHandler {
-	return &ComputeHandler{repository: repository, factInterpreter: factInterpreter}
+	return &ComputeHandler{repository: repository, factProcessor: factProcessor}
 }
 
 func (h *ComputeHandler) Compute(ctx context.Context, componentName string, all bool, metricName string, stateRootLocation string) {
@@ -60,7 +60,7 @@ func (h *ComputeHandler) computeMetric(ctx context.Context, component *dtos.Comp
 		return fmt.Errorf("error: metric source not found for metric %s", metricName)
 	}
 
-	metricValue, processErr := h.factInterpreter.ProcessFacts(ctx, metricSource.Facts)
+	metricValue, processErr := h.factProcessor.Process(ctx, metricSource.Facts)
 	if processErr != nil {
 		return fmt.Errorf("%v", processErr)
 	}

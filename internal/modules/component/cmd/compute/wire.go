@@ -8,8 +8,10 @@ import (
 	"github.com/motain/of-catalog/internal/modules/component/repository"
 	"github.com/motain/of-catalog/internal/services/compassservice"
 	"github.com/motain/of-catalog/internal/services/configservice"
-	"github.com/motain/of-catalog/internal/services/factsystem/factcollectors"
-	"github.com/motain/of-catalog/internal/services/factsystem/factinterpreter"
+	"github.com/motain/of-catalog/internal/services/factsystem/aggregators"
+	"github.com/motain/of-catalog/internal/services/factsystem/extractors"
+	"github.com/motain/of-catalog/internal/services/factsystem/processor"
+	"github.com/motain/of-catalog/internal/services/factsystem/validators"
 	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/services/jsonservice"
 	"github.com/motain/of-catalog/internal/services/keyringservice"
@@ -42,19 +44,18 @@ var ProviderSet = wire.NewSet(
 	// Repository
 	repository.NewRepository,
 	wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)),
+	// Fact System
+	aggregators.NewAggregator,
+	wire.Bind(new(aggregators.AggregatorInterface), new(*aggregators.Aggregator)),
 
-	// FactColletors
-	// GithubFactCollector
-	factcollectors.NewGithubFactCollector,
-	wire.Bind(new(factcollectors.GithubFactCollectorInterface), new(*factcollectors.GithubFactCollector)),
+	extractors.NewExtractor,
+	wire.Bind(new(extractors.ExtractorInterface), new(*extractors.Extractor)),
 
-	// JSONFactCollector
-	factcollectors.NewJSONAPIFactCollector,
-	wire.Bind(new(factcollectors.JSONAPIFactCollectorInterface), new(*factcollectors.JSONAPIFactCollector)),
+	validators.NewValidator,
+	wire.Bind(new(validators.ValidatorInterface), new(*validators.Validator)),
 
-	// FactInterpreter
-	factinterpreter.NewFactInterpreter,
-	wire.Bind(new(factinterpreter.FactInterpreterInterface), new(*factinterpreter.FactInterpreter)),
+	processor.NewProcessor,
+	wire.Bind(new(processor.ProcessorInterface), new(*processor.Processor)),
 
 	// ComputeHandler
 	handler.NewComputeHandler,

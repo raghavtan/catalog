@@ -51,10 +51,10 @@ func (dto *CreateComponentInput) SetVariables() map[string]interface{} {
 	fields := make([]map[string]interface{}, 0, len(dto.Component.Fields))
 	for k, v := range dto.Component.Fields {
 		var valueObj map[string]interface{}
-		switch v.(type) {
+		switch v := v.(type) {
 		case bool:
 			valueObj = map[string]interface{}{
-				"boolean": map[string]bool{"booleanValue": v.(bool)},
+				"boolean": map[string]bool{"booleanValue": v},
 			}
 		default:
 			valueObj = map[string]interface{}{

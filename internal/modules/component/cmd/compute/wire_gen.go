@@ -12,8 +12,10 @@ import (
 	"github.com/motain/of-catalog/internal/modules/component/repository"
 	"github.com/motain/of-catalog/internal/services/compassservice"
 	"github.com/motain/of-catalog/internal/services/configservice"
-	"github.com/motain/of-catalog/internal/services/factsystem/factcollectors"
-	"github.com/motain/of-catalog/internal/services/factsystem/factinterpreter"
+	"github.com/motain/of-catalog/internal/services/factsystem/aggregators"
+	"github.com/motain/of-catalog/internal/services/factsystem/extractors"
+	"github.com/motain/of-catalog/internal/services/factsystem/processor"
+	"github.com/motain/of-catalog/internal/services/factsystem/validators"
 	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/services/jsonservice"
 	"github.com/motain/of-catalog/internal/services/keyringservice"
@@ -27,17 +29,18 @@ func initializeHandler() *handler.ComputeHandler {
 	httpClientInterface := compassservice.NewHTTPClient(configService)
 	compassService := compassservice.NewCompassService(configService, graphQLClientInterface, httpClientInterface)
 	repositoryRepository := repository.NewRepository(compassService)
+	aggregator := aggregators.NewAggregator()
+	validator := validators.NewValidator()
+	jsonServiceInterface := jsonservice.NewJSONService(configService)
 	keyringService := keyringservice.NewKeyringService()
 	gitHubClientInterface := githubservice.NewGitHubClient(configService, keyringService)
 	gitHubService := githubservice.NewGitHubService(gitHubClientInterface)
-	githubFactCollector := factcollectors.NewGithubFactCollector(gitHubService)
-	jsonServiceInterface := jsonservice.NewJSONService(configService)
-	jsonapiFactCollector := factcollectors.NewJSONAPIFactCollector(configService, jsonServiceInterface)
-	factInterpreter := factinterpreter.NewFactInterpreter(githubFactCollector, jsonapiFactCollector)
-	computeHandler := handler.NewComputeHandler(repositoryRepository, factInterpreter)
+	extractor := extractors.NewExtractor(configService, jsonServiceInterface, gitHubService)
+	processorProcessor := processor.NewProcessor(aggregator, validator, extractor)
+	computeHandler := handler.NewComputeHandler(repositoryRepository, processorProcessor)
 	return computeHandler
 }
 
 // wire.go:
 
-var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewHTTPClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubClient, githubservice.NewGitHubService, wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)), jsonservice.NewJSONService, repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), factcollectors.NewGithubFactCollector, wire.Bind(new(factcollectors.GithubFactCollectorInterface), new(*factcollectors.GithubFactCollector)), factcollectors.NewJSONAPIFactCollector, wire.Bind(new(factcollectors.JSONAPIFactCollectorInterface), new(*factcollectors.JSONAPIFactCollector)), factinterpreter.NewFactInterpreter, wire.Bind(new(factinterpreter.FactInterpreterInterface), new(*factinterpreter.FactInterpreter)), handler.NewComputeHandler)
+var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewHTTPClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubClient, githubservice.NewGitHubService, wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)), jsonservice.NewJSONService, repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), aggregators.NewAggregator, wire.Bind(new(aggregators.AggregatorInterface), new(*aggregators.Aggregator)), extractors.NewExtractor, wire.Bind(new(extractors.ExtractorInterface), new(*extractors.Extractor)), validators.NewValidator, wire.Bind(new(validators.ValidatorInterface), new(*validators.Validator)), processor.NewProcessor, wire.Bind(new(processor.ProcessorInterface), new(*processor.Processor)), handler.NewComputeHandler)

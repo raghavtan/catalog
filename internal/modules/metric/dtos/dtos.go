@@ -11,10 +11,10 @@ type MetricDTO struct {
 	APIVersion string `yaml:"apiVersion"`
 	Kind       string `yaml:"kind"`
 	Metadata   struct {
-		Name          string                `yaml:"name"`
-		Labels        map[string]string     `yaml:"labels"`
-		ComponentType []string              `yaml:"componentType"`
-		Facts         fsdtos.FactOperations `yaml:"facts"`
+		Name          string            `yaml:"name"`
+		Labels        map[string]string `yaml:"labels"`
+		ComponentType []string          `yaml:"componentType"`
+		Facts         []*fsdtos.Task    `yaml:"facts"`
 	} `yaml:"metadata"`
 	Spec MetricSpec `yaml:"spec"`
 }
@@ -33,8 +33,7 @@ func IsEqualMetric(m1, m2 *MetricDTO) bool {
 		reflect.DeepEqual(m1.Spec.Format, m2.Spec.Format) &&
 		m1.Metadata.Name == m2.Metadata.Name &&
 		isEqualLabels(m1.Metadata.Labels, m2.Metadata.Labels) &&
-		isEqualComponentTypes(m1.Metadata.ComponentType, m2.Metadata.ComponentType) &&
-		m1.Metadata.Facts.IsEqual(m2.Metadata.Facts)
+		isEqualComponentTypes(m1.Metadata.ComponentType, m2.Metadata.ComponentType)
 }
 
 func isEqualLabels(l1, l2 map[string]string) bool {

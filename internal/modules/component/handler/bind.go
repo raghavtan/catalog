@@ -93,13 +93,10 @@ func (h *BindHandler) handleBind(ctx context.Context, component *dtos.ComponentD
 	metricName := metric.Metadata.Name
 	componentName := component.Metadata.Name
 	identifier := utils.GetMetricSourceItentifier(metricName, componentName, component.Metadata.ComponentType)
-	msFactOperations, msFactsErr := h.prepareSourceMetricFactOperations(metric.Metadata.Facts, *component)
-	if msFactsErr != nil {
-		fmt.Printf("Failed to prepare facts for %s/%s (component/metric): %v\n", componentName, metricName, msFactsErr)
-	}
+	tasks := h.prepareSourceMetricFacts(metric.Metadata.Facts, *component)
 
 	if _, exists := component.Spec.MetricSources[metricName]; exists {
-		component.Spec.MetricSources[metricName].Facts = msFactOperations
+		component.Spec.MetricSources[metricName].Facts = tasks
 		component.Spec.MetricSources[metricName].Name = identifier
 		return nil
 	}
@@ -117,44 +114,22 @@ func (h *BindHandler) handleBind(ctx context.Context, component *dtos.ComponentD
 		ID:     id,
 		Name:   identifier,
 		Metric: metric.Spec.ID,
-		Facts:  msFactOperations,
+		Facts:  tasks,
 	}
 
 	return nil
 }
 
-func (h *BindHandler) prepareSourceMetricFactOperations(
-	factOperations fsdtos.FactOperations,
-	component dtos.ComponentDTO,
-) (fsdtos.FactOperations, error) {
-	operatorAll, errAll := h.prepareSourceMetricFacts(factOperations.All, component)
-	if errAll != nil {
-		return fsdtos.FactOperations{}, errAll
+func (h *BindHandler) prepareSourceMetricFacts(tasks []*fsdtos.Task, component dtos.ComponentDTO) []*fsdtos.Task {
+	processedFacts := make([]*fsdtos.Task, len(tasks))
+	for i, task := range tasks {
+		processedFacts[i] = h.prepareSourceMetricFact(task, component)
 	}
-
-	operatorAny, errAny := h.prepareSourceMetricFacts(factOperations.Any, component)
-	if errAny != nil {
-		return fsdtos.FactOperations{}, errAny
-	}
-
-	return fsdtos.FactOperations{
-		All:     operatorAll,
-		Any:     operatorAny,
-		Inspect: h.prepareSourceMetricFact(factOperations.Inspect, component),
-	}, nil
+	return processedFacts
 }
 
-func (h *BindHandler) prepareSourceMetricFacts(facts []*fsdtos.Fact, component dtos.ComponentDTO) ([]*fsdtos.Fact, error) {
-	msFacts := make([]*fsdtos.Fact, len(facts))
-	for i, fact := range facts {
-		msFacts[i] = h.prepareSourceMetricFact(fact, component)
-	}
-
-	return msFacts, nil
-}
-
-func (h *BindHandler) prepareSourceMetricFact(fact *fsdtos.Fact, component dtos.ComponentDTO) *fsdtos.Fact {
-	if fact == nil {
+func (h *BindHandler) prepareSourceMetricFact(task *fsdtos.Task, component dtos.ComponentDTO) *fsdtos.Task {
+	if task == nil {
 		return nil
 	}
 
@@ -165,21 +140,28 @@ func (h *BindHandler) prepareSourceMetricFact(fact *fsdtos.Fact, component dtos.
 	// 	fmt.Printf("Fact URI: %s\n", parsed)
 	// }
 
-	processedFact := fsdtos.Fact{
-		Name:             fact.Name,
-		Source:           fact.Source,
-		URI:              utils.ReplaceMetricFactPlaceholders(fact.URI, component),
-		ComponentName:    utils.ReplaceMetricFactPlaceholders(fact.ComponentName, component),
-		Repo:             utils.ReplaceMetricFactPlaceholders(fact.Repo, component),
-		FactType:         fact.FactType,
-		FilePath:         fact.FilePath,
-		RegexPattern:     fact.RegexPattern,
-		JSONPath:         fact.JSONPath,
-		RepoProperty:     fact.RepoProperty,
-		ReposSearchQuery: fact.ReposSearchQuery,
-		ExpectedValue:    utils.ReplaceMetricFactPlaceholders(fact.ExpectedValue, component),
-		ExpectedFormula:  fact.ExpectedFormula,
-		Auth:             fact.Auth,
+	processedFact := fsdtos.Task{
+		ID:     task.ID,
+		Name:   task.Name,
+		Source: task.Source,
+		URI:    utils.ReplaceMetricFactPlaceholders(task.URI, component),
+		Auth:   task.Auth,
+		// ComponentName: utils.ReplaceMetricFactPlaceholders(task.ComponentName, component),
+		Repo:      utils.ReplaceMetricFactPlaceholders(task.Repo, component),
+		Type:      task.Type,
+		FilePath:  task.FilePath,
+		JSONPath:  task.JSONPath,
+		Rule:      task.Rule,
+		Pattern:   utils.ReplaceMetricFactPlaceholders(task.Pattern, component),
+		DependsOn: task.DependsOn,
+
+		// Are these still worth it?
+		// RegexPattern:     task.RegexPattern,
+		// RepoProperty:     task.RepoProperty,
+		// ReposSearchQuery: task.ReposSearchQuery,
+
+		// I need to reintegrate this !!
+		// ExpectedFormula:  task.ExpectedFormula,
 	}
 
 	return &processedFact

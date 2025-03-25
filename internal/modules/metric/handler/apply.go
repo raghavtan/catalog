@@ -35,7 +35,12 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 	if errConfig != nil {
 		log.Fatalf("error: %v", errConfig)
 	}
-
+	// jsonData, err := json.MarshalIndent(configMetrics, "", "  ")
+	// if err != nil {
+	// 	log.Fatalf("error converting configMetrics to JSON: %v", err)
+	// }
+	// fmt.Println(string(jsonData))
+	// os.Exit(1)
 	created, updated, deleted, unchanged := drift.Detect(
 		stateMetrics,
 		configMetrics,

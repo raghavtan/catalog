@@ -37,5 +37,5 @@ type MetricSource struct {
 	ID     string
 	Name   string
 	Metric string
-	Facts  fsdtos.FactOperations `yaml:"facts"`
+	Facts  []*fsdtos.Task
 }

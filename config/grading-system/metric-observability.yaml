@@ -10,29 +10,29 @@ metadata:
     - service
     - cloud-resource
   facts:
-    all:
-      - name: app-toml-envs-otel-service-name
+      - id: app-toml-envs-otel-service-name
+        name: app.toml defines OTEL_SERVICE_NAME
         source: github
         repo: "${Metadata.Name}"
         factType: jsonPath
         filePath: app.toml
         jsonPath: $..envs..OTEL_SERVICE_NAME
-        expectedValue: "${Metadata.Name}"
-    any:
-      - name: app-toml-env-otel-resource-attributes-sample-rate
-        source: "github"
-        repo: "${Metadata.Name}"
-        factType: jsonPath
-        filePath: app.toml
-        jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-        expectedValue: "of\\.sample_rate=\\d+.*"
-      - name: app-toml-env-otel-resource-attributes-error-sample-rate
-        source: "github"
-        repo: "${Metadata.Name}"
-        factType: jsonPath
-        filePath: app.toml
-        jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-        expectedValue: "of\\.error_sample_rate=\\d+.*"
+        # expectedValue: "${Metadata.Name}"
+    # any:
+    #   - name: app-toml-env-otel-resource-attributes-sample-rate
+    #     source: "github"
+    #     repo: "${Metadata.Name}"
+    #     factType: jsonPath
+    #     filePath: app.toml
+    #     jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
+    #     expectedValue: "of\\.sample_rate=\\d+.*"
+    #   - name: app-toml-env-otel-resource-attributes-error-sample-rate
+    #     source: "github"
+    #     repo: "${Metadata.Name}"
+    #     factType: jsonPath
+    #     filePath: app.toml
+    #     jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
+    #     expectedValue: "of\\.error_sample_rate=\\d+.*"
 spec:
   name: instrumentation-check
   description: "Verifies that the component is set up to record relevant telemetry (metrics or traces)."

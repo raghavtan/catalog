@@ -1,0 +1,87 @@
+# OBSERVABILITY METRICS
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+  name: test
+  labels:
+    grading-system: observability
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    - id: read-otel-service-name-from-apptoml
+      name: Read OTEL_SERVICE_NAME from app.toml
+      type: extract
+      source: github
+      jsonPath: $..envs..OTEL_SERVICE_NAME
+      auth: null
+      repo: ${Metadata.Name}
+      filePath: app.toml
+    - id: "validate-otel_service_name-matches-component-name"
+      name: validate OTEL_SERVICE_NAME matches component name
+      type: validate
+      rule: "regex_match"
+      pattern: ^${Metadata.Name}$
+      dependsOn: ["read-otel-service-name-from-apptoml"]
+spec:
+  name: test
+  description: "Verifies that the component is set up to record relevant telemetry (metrics or traces)."
+  format:
+    unit: "Test"
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+  name: test
+  labels:
+    grading-system: observability
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    - id: fetch-slos
+      name: Fetch SLOs
+      type: extract
+      dependsOn: []
+      uri: "https://api.eu1.honeycomb.io/1/slos/${Metadata.Name}"
+      source: "jsonapi"
+      auth:
+        header: X-Honeycomb-Team
+        tokenVar: HONEYCOMB_API_KEY
+      jsonPath: $..id
+    - id: fetch-alerts-for-slos
+      name: Fetch alerts for SLOs
+      type: extract
+      dependsOn:
+        - fetch-slos
+      uri: "https://api.eu1.honeycomb.io/1/burn_alerts/${Metadata.Name}?slo_id=:slo_id"
+      source: "jsonapi"
+      auth:
+        header: X-Honeycomb-Team
+        tokenVar: HONEYCOMB_API_KEY
+      jsonPath: $.id
+    - id: count-slos
+      name: Count SLOs
+      type: aggregate
+      dependsOn:
+        - fetch-slos
+      method: "count"
+    - id: count-alerts-for-slos
+      name: Count Alerts
+      type: aggregate
+      dependsOn:
+        - fetch-alerts-for-slos
+      method: "count"
+    - id: validate-alerts-for-slos
+      name: Validate that counts match
+      type: validate
+      dependsOn:
+        - count-slos
+        - count-alerts-for-slos
+      rule: "deps_match"
+spec:
+  name: test
+  description: "Verifies that the component is set up to record relevant telemetry (metrics or traces)."
+  format:
+    unit: "Test"

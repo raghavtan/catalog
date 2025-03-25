@@ -30,7 +30,7 @@ func NewRepository(compass compassservice.CompassServiceInterface) *Repository {
 }
 
 func (r *Repository) Create(ctx context.Context, metric resources.Metric) (string, error) {
-	input := &dtos.CreateMetricInput{Metric: metric}
+	input := &dtos.CreateMetricInput{CompassCloudID: r.compass.GetCompassCloudId(), Metric: metric}
 	output := &dtos.CreateMetricOutput{}
 
 	// This function is executed before the validation of the operation
