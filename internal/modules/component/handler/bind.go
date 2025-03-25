@@ -92,7 +92,7 @@ func (h *BindHandler) handleBind(ctx context.Context, component *dtos.ComponentD
 
 	metricName := metric.Metadata.Name
 	componentName := component.Metadata.Name
-	identifier := utils.GetMetricSourceItentifier(metricName, componentName, component.Metadata.ComponentType)
+	identifier := utils.GetMetricSourceIdentifier(metricName, componentName, component.Metadata.ComponentType)
 	tasks := h.prepareSourceMetricFacts(metric.Metadata.Facts, *component)
 
 	if _, exists := component.Spec.MetricSources[metricName]; exists {

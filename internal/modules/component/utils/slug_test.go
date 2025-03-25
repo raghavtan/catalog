@@ -15,12 +15,12 @@ func TestGetSlug(t *testing.T) {
 		expected      string
 	}{
 		{"my-service", "service", "svc-my-service"},
-		{"my-cloud-resource", "cloud-resource", "cr-my-cloud-resource"},
+		{"my-cloud-resource", "cloud-resource", "unknown-my-cloud-resource"},
 		{"my-website", "website", "web-my-website"},
 		{"my-application", "application", "app-my-application"},
 		{"my-unknown", "unknown-type", "unknown-my-unknown"},
 		{"my-service", "SERVICE", "svc-my-service"},
-		{"my-cloud-resource", "CLOUD-RESOURCE", "cr-my-cloud-resource"},
+		{"my-cloud-resource-upper_case", "CLOUD_RESOURCE", "cr-my-cloud-resource-upper_case"},
 		{"my-website", "WEBSITE", "web-my-website"},
 		{"my-application", "APPLICATION", "app-my-application"},
 		{"my-unknown", "UNKNOWN-TYPE", "unknown-my-unknown"},
