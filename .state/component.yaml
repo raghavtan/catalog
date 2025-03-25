@@ -27505,6 +27505,10 @@ spec:
         - clips-api
     links:
         - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-mobile-backend&var-container=xpa-mobile-backend&from=now-1h&to=now
+        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -27520,11 +27524,23 @@ spec:
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-mobile-backend&var-container=xpa-mobile-backend&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/xpa-mobile-backend
     documents: []
     labels:
-        - xpa-mobile-backend
         - engagement
         - matchxp
+        - xpa-mobile-backend
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0752ac84-a768-448f-82d6-d9164b2a3e09
@@ -27532,58 +27548,14 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c8584d7-f606-437b-9854-02208be6d03f
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-liveness-probe
-                      repo: xpa-mobile-backend
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..liveness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /health
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-readiness-probe
-                      repo: xpa-mobile-backend
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..readiness_probe_http_get_path
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: /ready
-                      expectedFormula: ""
-                      auth: null
+                any: []
                 inspect: null
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/99cb894b-d081-4592-b64d-ba70321d5f0f
             name: critical-alerts-slo-check-svc-xpa-mobile-backend
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/11840027-916d-4c9c-9548-2d499927c61f
             facts:
-                all:
-                    - source: jsonapi
-                      uri: https://api.eu1.honeycomb.io/1/slos/xpa-mobile-backend
-                      componentName: ""
-                      name: has-slos
-                      repo: ""
-                      factType: jsonPath
-                      filePath: ""
-                      regexPattern: ""
-                      jsonPath: length($.)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 1'
-                      auth:
-                        header: X-Honeycomb-Team
-                        tokenEnvVariable: HONEYCOMB_API_KEY
+                all: []
                 any: []
                 inspect: null
         deployment-readiness:
@@ -27591,21 +27563,7 @@ spec:
             name: deployment-readiness-svc-xpa-mobile-backend
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd578a1d-7337-4dcf-95cf-865c71ab3328
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: apptoml-file-exists
-                      repo: xpa-mobile-backend
-                      factType: fileExists
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
         high-availability:
@@ -27614,120 +27572,22 @@ spec:
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/037e1065-a621-4be2-8ea5-c11409fce886
             facts:
                 all: []
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-cpu
-                      repo: xpa-mobile-backend
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_cpu_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-hpa-target-memory
-                      repo: xpa-mobile-backend
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..service..target_memory_utilization_percentage
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: '>= 20'
-                      auth: null
+                any: []
                 inspect: null
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3b66487d-5455-4a21-9f72-6116b14bfdb8
             name: instrumentation-check-svc-xpa-mobile-backend
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/187e47eb-c4b9-4672-b675-b31902850cc4
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-envs-otel-service-name
-                      repo: xpa-mobile-backend
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_SERVICE_NAME
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: xpa-mobile-backend
-                      expectedFormula: ""
-                      auth: null
-                any:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-sample-rate
-                      repo: xpa-mobile-backend
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-env-otel-resource-attributes-error-sample-rate
-                      repo: xpa-mobile-backend
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: of\.error_sample_rate=\d+.*
-                      expectedFormula: ""
-                      auth: null
+                all: []
+                any: []
                 inspect: null
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/8ea1f32a-b072-4fb9-a533-1166585a5884
             name: organizational-standards-svc-xpa-mobile-backend
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c1d8832-e60d-48b0-9217-60807c75571f
             facts:
-                all:
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: app-toml-catalog-links-runbook
-                      repo: xpa-mobile-backend
-                      factType: jsonPath
-                      filePath: app.toml
-                      regexPattern: ""
-                      jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: == 1
-                      auth: null
-                    - source: github
-                      uri: ""
-                      componentName: ""
-                      name: readme-file-exists
-                      repo: xpa-mobile-backend
-                      factType: fileExists
-                      filePath: README.md
-                      regexPattern: ""
-                      jsonPath: ""
-                      repoProperty: ""
-                      reposSearchQuery: ""
-                      expectedValue: ""
-                      expectedFormula: ""
-                      auth: null
+                all: []
                 any: []
                 inspect: null
     tribe: engagement
