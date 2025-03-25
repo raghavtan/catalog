@@ -1446,10 +1446,6 @@ spec:
     dependsOn: []
     links:
         - id: ""
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/article-service
@@ -1461,6 +1457,10 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
     documents: []
     labels:
         - reach
