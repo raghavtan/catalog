@@ -1,6 +1,6 @@
 package extractors
 
-//go:generate mockgen -destination=./mocks/mock_jsonapiFact_fact_extractor.go -package=extractor github.com/motain/of-catalog/internal/services/factsystem/extractor ExtractorInterface
+//go:generate mockgen -destination=./mocks/mock_extractor.go -package=extractors github.com/motain/of-catalog/internal/services/factsystem/extractors ExtractorInterface
 
 import (
 	"context"
