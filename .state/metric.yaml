@@ -1,102 +1,6 @@
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-    name: instrumentation-check
-    labels:
-        grading-system: observability
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        - id: read-otel-service-name-from-apptoml
-          name: Read OTEL_SERVICE_NAME from app.toml
-          type: extract
-          source: github
-          jsonPath: .envs | if type == "array" then .[] | .id else .production[] | .OTEL_SERVICE_NAME end
-          repo: ${Metadata.Name}
-          filePath: app.toml
-        - id: validate-otel-service-name-matches-component-name
-          name: validate OTEL_SERVICE_NAME matches component name
-          type: validate
-          dependsOn:
-            - read-otel-service-name-from-apptoml
-          rule: regex_match
-          pattern: ^${Metadata.Name}$
-        - id: read-otel-resource-attributes-from-apptoml
-          name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
-          type: extract
-          source: github
-          jsonPath: .envs | if type == "array" then .[] | .id else .production[] | .OTEL_RESOURCE_ATTRIBUTES end
-          repo: ${Metadata.Name}
-          filePath: app.toml
-        - id: validate-otel-resource-attributes-sample-rate
-          name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
-          type: validate
-          dependsOn:
-            - read-otel-resource-attributes-from-apptoml
-          rule: regex_match
-          pattern: of\.sample_rate=\d+.*
-        - id: validate-otel-resource-attributes-one-sample-rate
-          name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
-          type: validate
-          dependsOn:
-            - read-otel-resource-attributes-from-apptoml
-          rule: regex_match
-          pattern: of\.error_sample_rate=\d+.*
-        - id: either-sample-rate-or-error-sample-rate
-          name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
-          type: aggregate
-          dependsOn:
-            - validate-otel-resource-attributes-sample-rate
-            - validate-otel-resource-attributes-error-sample-rate
-          rule: or
-        - id: either-sample-rate-or-error-sample-rate
-          name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
-          type: aggregate
-          dependsOn:
-            - validate-otel-service-name-matches-component-name
-            - validate-otel-resource-attributes-one-sample-rate
-          rule: and
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/7c84617b-b850-4b2c-a8d1-0d3cde1d28c1
-    name: instrumentation-check
-    description: Verifies that the component is set up to record relevant telemetry (metrics or traces).
-    format:
-        unit: Instrumentation Check
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
-    name: observability-documentation
-    labels:
-        grading-system: observability
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        - id: extract-observability-md
-          name: Extract observability.md
-          type: extract
-          source: github
-          repo: ${Metadata.Name}
-          filePath: docs/observability.md
-        - id: observability-md-is-not-empty
-          name: Validate that observability.md is not empty
-          type: validate
-          dependsOn:
-            - extract-observability-md
-          rule: regex_match
-          pattern: ^\S.*$
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0ab028f7-40f9-4fbf-844c-4910a2e50b86
-    name: observability-documentation
-    description: Verifies SLOs definitions are documented.
-    format:
-        unit: Observability Documentation
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
     name: critical-alerts-slo-check
     labels:
         grading-system: observability
@@ -208,3 +112,199 @@ spec:
     description: Checks if at least one critical performance or reliability metric is actively monitored and triggers an alert (e.g., SLO or metric threshold).
     format:
         unit: Critical Alerts/SLO Check
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: instrumentation-check
+    labels:
+        grading-system: observability
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: read-otel-service-name-from-apptoml
+          name: Read OTEL_SERVICE_NAME from app.toml
+          type: extract
+          source: github
+          jsonPath: .envs | if type == "array" then .[] | .id else .production[] | .OTEL_SERVICE_NAME end
+          repo: ${Metadata.Name}
+          filePath: app.toml
+        - id: validate-otel-service-name-matches-component-name
+          name: validate OTEL_SERVICE_NAME matches component name
+          type: validate
+          dependsOn:
+            - read-otel-service-name-from-apptoml
+          rule: regex_match
+          pattern: ^${Metadata.Name}$
+        - id: read-otel-resource-attributes-from-apptoml
+          name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
+          type: extract
+          source: github
+          jsonPath: .envs | if type == "array" then .[] | .id else .production[] | .OTEL_RESOURCE_ATTRIBUTES end
+          repo: ${Metadata.Name}
+          filePath: app.toml
+        - id: validate-otel-resource-attributes-sample-rate
+          name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
+          type: validate
+          dependsOn:
+            - read-otel-resource-attributes-from-apptoml
+          rule: regex_match
+          pattern: of\.sample_rate=\d+.*
+        - id: validate-otel-resource-attributes-one-sample-rate
+          name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
+          type: validate
+          dependsOn:
+            - read-otel-resource-attributes-from-apptoml
+          rule: regex_match
+          pattern: of\.error_sample_rate=\d+.*
+        - id: either-sample-rate-or-error-sample-rate
+          name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
+          type: aggregate
+          dependsOn:
+            - validate-otel-resource-attributes-sample-rate
+            - validate-otel-resource-attributes-error-sample-rate
+          rule: or
+        - id: either-sample-rate-or-error-sample-rate
+          name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
+          type: aggregate
+          dependsOn:
+            - validate-otel-service-name-matches-component-name
+            - validate-otel-resource-attributes-one-sample-rate
+          rule: and
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/7c84617b-b850-4b2c-a8d1-0d3cde1d28c1
+    name: instrumentation-check
+    description: Verifies that the component is set up to record relevant telemetry (metrics or traces).
+    format:
+        unit: Instrumentation Check
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: observability-documentation
+    labels:
+        grading-system: observability
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: extract-observability-md
+          name: Extract observability.md
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          filePath: docs/observability.md
+        - id: observability-md-is-not-empty
+          name: Validate that observability.md is not empty
+          type: validate
+          dependsOn:
+            - extract-observability-md
+          rule: regex_match
+          pattern: ^\S.*$
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0ab028f7-40f9-4fbf-844c-4910a2e50b86
+    name: observability-documentation
+    description: Verifies SLOs definitions are documented.
+    format:
+        unit: Observability Documentation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: organizational-standards
+    labels:
+        grading-system: production-readiness
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: readme-file
+          name: Check if the README.md file exists
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          filePath: README.md
+        - id: readme-file-exists
+          name: Validate that file README.md exists
+          type: validate
+          dependsOn:
+            - readme-file
+          rule: regex_match
+          pattern: ^\S.*$
+        - id: docs-readme-file
+          name: Check if the docs/README.md file exists
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          filePath: docs/README.md
+        - id: docs-readme-file-exists
+          name: Validate that file README.md exists
+          type: validate
+          dependsOn:
+            - docs-readme-file
+          rule: regex_match
+          pattern: ^\S.*$
+        - id: docs-index-file
+          name: Check if the docs/index.md file exists
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          filePath: docs/index.md
+        - id: docs-index-file-exists
+          name: Validate that file README.md exists
+          type: validate
+          dependsOn:
+            - docs-index-file
+          rule: regex_match
+          pattern: ^\S.*$
+        - id: aggregate-readme-exists
+          name: Check if repo has documentation
+          type: aggregate
+          dependsOn:
+            - docs-index-file-exists
+            - docs-readme-file-exists
+            - readme-file-exists
+          rule: or
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1a256f6c-9392-4989-8dbb-aa0f5d27d21b
+    name: organizational-standards
+    description: Ensures the component aligns with defined organizational standards, including coding guidelines and compliance requirements
+    format:
+        unit: Organizational Standards
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: deployment-readiness
+    labels:
+        grading-system: production-readiness
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: deployment-readiness-replicas-service-production
+          name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          filePath: app.toml
+        - id: deployment-readiness-replicas-service
+          name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          filePath: app.toml
+        - id: aggregate-replicas
+          name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+          type: aggregate
+          dependsOn:
+            - deployment-readiness-replicas-service-production
+            - deployment-readiness-replicas-service
+          rule: or
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/534fac90-3f8f-4fe5-acf1-dd0cde1c4d67
+    name: deployment-readiness
+    description: Ensures the component is correctly configured, adheres to best practices, and meets all necessary requirements for secure, stable, and efficient deployment in a production environment.
+    format:
+        unit: Deployment Standards

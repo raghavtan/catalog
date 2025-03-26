@@ -126,6 +126,30 @@ spec:
                     - count-slos
                     - count-alerts-for-slos
                   rule: deps_match
+        deployment-readiness:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/799082b8-cee0-467a-9a93-7765826e8fdf
+            name: deployment-readiness-svc-airship-email
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/534fac90-3f8f-4fe5-acf1-dd0cde1c4d67
+            facts:
+                - id: deployment-readiness-replicas-service-production
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  repo: airship-email
+                  filePath: app.toml
+                - id: deployment-readiness-replicas-service
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  repo: airship-email
+                  filePath: app.toml
+                - id: aggregate-replicas
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: aggregate
+                  dependsOn:
+                    - deployment-readiness-replicas-service-production
+                    - deployment-readiness-replicas-service
+                  method: or
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9a2f891-9fd3-4f11-ae4c-8b4761d3f12d
             name: instrumentation-check-svc-airship-email
@@ -179,7 +203,7 @@ spec:
                   dependsOn:
                     - validate-otel-service-name-matches-component-name
                     - validate-otel-resource-attributes-one-sample-rate
-                  rule: and
+                  method: and
         observability-documentation:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5844ad30-56fa-4321-bbda-2b5c06ff8f90
             name: observability-documentation-svc-airship-email
@@ -198,5 +222,57 @@ spec:
                     - extract-observability-md
                   rule: regex_match
                   pattern: ^\S.*$
+        organizational-standards:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9365e63f-6349-4793-a338-e73f647cf93c
+            name: organizational-standards-svc-airship-email
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1a256f6c-9392-4989-8dbb-aa0f5d27d21b
+            facts:
+                - id: readme-file
+                  name: Check if the README.md file exists
+                  type: extract
+                  source: github
+                  repo: airship-email
+                  filePath: README.md
+                - id: readme-file-exists
+                  name: Validate that file README.md exists
+                  type: validate
+                  dependsOn:
+                    - readme-file
+                  rule: regex_match
+                  pattern: ^\S.*$
+                - id: docs-readme-file
+                  name: Check if the docs/README.md file exists
+                  type: extract
+                  source: github
+                  repo: airship-email
+                  filePath: docs/README.md
+                - id: docs-readme-file-exists
+                  name: Validate that file README.md exists
+                  type: validate
+                  dependsOn:
+                    - docs-readme-file
+                  rule: regex_match
+                  pattern: ^\S.*$
+                - id: docs-index-file
+                  name: Check if the docs/index.md file exists
+                  type: extract
+                  source: github
+                  repo: airship-email
+                  filePath: docs/index.md
+                - id: docs-index-file-exists
+                  name: Validate that file README.md exists
+                  type: validate
+                  dependsOn:
+                    - docs-index-file
+                  rule: regex_match
+                  pattern: ^\S.*$
+                - id: aggregate-readme-exists
+                  name: Check if repo has documentation
+                  type: aggregate
+                  dependsOn:
+                    - docs-index-file-exists
+                    - docs-readme-file-exists
+                    - readme-file-exists
+                  method: or
     tribe: reach
     squad: fan-activation
