@@ -25,6 +25,11 @@ func InspectExtractedData(JSONPath string, jsonData []byte) (interface{}, error)
 		if !ok {
 			break
 		}
+
+		if err, ok := v.(error); ok {
+			return nil, err
+		}
+
 		res = append(res, v.(string))
 	}
 

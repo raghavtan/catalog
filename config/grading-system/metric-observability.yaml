@@ -15,7 +15,7 @@ metadata:
       name: Read OTEL_SERVICE_NAME from app.toml
       type: extract
       source: github
-      jsonPath: $..envs..OTEL_SERVICE_NAME
+      jsonPath: .envs | if type == "array" then .[] | .id else .production[] | .OTEL_SERVICE_NAME end
       auth: null
       repo: ${Metadata.Name}
       filePath: app.toml
@@ -30,7 +30,7 @@ metadata:
       name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
       type: extract
       source: github
-      jsonPath: $..envs..OTEL_SERVICE_NAME
+      jsonPath: .envs | if type == "array" then .[] | .id else .production[] | .OTEL_RESOURCE_ATTRIBUTES end
       auth: null
       repo: ${Metadata.Name}
       filePath: app.toml
@@ -70,6 +70,38 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
+  name: observability-documentation
+  labels:
+    grading-system: observability
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    # Validate that the observability.md file exists in the docs folder and that contains the SLOs definitions
+    - id: extract-observability-md
+      name: Extract observability.md
+      type: extract
+      source: github
+      auth: null
+      repo: ${Metadata.Name}
+      filePath: docs/observability.md
+    # Aggregate the OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES facts
+    - id: observability-md-is-not-empty
+      name: Validate that observability.md is not empty
+      type: validate
+      rule: "regex_match"
+      pattern: ^\S.*$
+      dependsOn:
+        - extract-observability-md
+spec:
+  name: observability-documentation
+  description: "Verifies SLOs definitions are documented."
+  format:
+    unit: "Observability Documentation"
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
   name: critical-alerts-slo-check
   labels:
     grading-system: observability
@@ -86,7 +118,7 @@ metadata:
       auth:
         header: X-Honeycomb-Team
         tokenVar: HONEYCOMB_API_KEY
-      jsonPath: $..id
+      jsonPath: .[].id
     # Extract Alerts for each SLO from Honeycomb
     - id: fetch-alerts-for-slos
       name: Fetch alerts for SLOs
@@ -98,7 +130,7 @@ metadata:
       auth:
         header: X-Honeycomb-Team
         tokenVar: HONEYCOMB_API_KEY
-      jsonPath: $.id
+      jsonPath: .id
     # Validate that the counts of SLOs and Alerts match
     - id: count-slos
       name: Count SLOs
@@ -134,7 +166,6 @@ metadata:
   componentType:
     - service
   facts:
-facts:
     # Extract SLOs from Honeycomb
     - id: fetch-slos
       name: Fetch SLOs
@@ -184,7 +215,7 @@ facts:
         - validate-each-target-is-not-empty-string
       method: and
 spec:
-  name: critical-alerts-slo-check
+  name: alert-routing-and-notifications
   description: "Checks if at least one critical performance or reliability metric is actively monitored and triggers an alert (e.g., SLO or metric threshold)."
   format:
     unit: "Critical Alerts/SLO Check"

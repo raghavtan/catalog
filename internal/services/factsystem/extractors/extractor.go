@@ -108,6 +108,10 @@ func (ex *Extractor) processData(ctx context.Context, task *dtos.Task, dependenc
 		return nil, fmt.Errorf("failed to process request for source %s: %v", task.Source, dataErr)
 	}
 
+	if task.JSONPath == "" {
+		return jsonData, nil
+	}
+
 	return utils.InspectExtractedData(task.JSONPath, jsonData)
 }
 
