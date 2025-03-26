@@ -24,3 +24,5 @@ tools/
 .env
 
 bin
+
+.idea/**
