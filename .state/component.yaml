@@ -36,17 +36,106 @@ spec:
         - airship-email
         - reach
     metricSources:
-        test:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6c5502a-79fc-427a-bd5f-398cc58c94f5
-            name: test-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/fcd0e6b2-b2d1-44ef-8c08-c057fcffcea2
+        # test:
+        #     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6c5502a-79fc-427a-bd5f-398cc58c94f5
+        #     name: test-svc-airship-email
+        #     metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/fcd0e6b2-b2d1-44ef-8c08-c057fcffcea2
+        #     facts:
+        #         - id: fetch-slos
+        #           name: Fetch SLOs
+        #           type: extract
+        #           source: jsonapi
+        #           uri: https://api.eu1.honeycomb.io/1/slos/personalisation-service
+        #           jsonPath: .[].id
+        #           auth:
+        #             header: X-Honeycomb-Team
+        #             tokenVar: HONEYCOMB_API_KEY
+        #         - id: fetch-alerts-for-slos
+        #           name: Fetch alerts for SLOs
+        #           type: extract
+        #           dependsOn:
+        #             - fetch-slos
+        #           source: jsonapi
+        #           uri: https://api.eu1.honeycomb.io/1/burn_alerts/airship-email?slo_id=:slo_id
+        #           jsonPath: .[] | .id
+        #           auth:
+        #             header: X-Honeycomb-Team
+        #             tokenVar: HONEYCOMB_API_KEY
+        #         - id: count-slos
+        #           name: Count SLOs
+        #           type: aggregate
+        #           dependsOn:
+        #             - fetch-slos
+        #         - id: count-alerts-for-slos
+        #           name: Count Alerts
+        #           type: aggregate
+        #           dependsOn:
+        #             - fetch-alerts-for-slos
+        #         - id: validate-alerts-for-slos
+        #           name: Validate that counts match
+        #           type: validate
+        #           dependsOn:
+        #             - count-slos
+        #             - count-alerts-for-slos
+        #           rule: deps_match
+        # test2:
+        #     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4e87c93e-e689-423f-abd9-8a3c7ebb621d
+        #     name: test2-svc-airship-email
+        #     metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/edd63e44-484f-4c43-ba3d-9e749da40045
+        #     facts:
+        #         - id: read-otel-service-name-from-apptoml
+        #           name: Read OTEL_SERVICE_NAME from app.toml
+        #           type: extract
+        #           source: github
+        #           jsonPath: .envs | if type == "array" then .[] | .id else .production[] | .OTEL_SERVICE_NAME end
+        #           repo: airship-email
+        #           filePath: app.toml
+        #         - id: validate-otel-service-name-matches-component-name
+        #           name: validate OTEL_SERVICE_NAME matches component name
+        #           type: validate
+        #           dependsOn:
+        #             - read-otel-service-name-from-apptoml
+        #           rule: regex_match
+        #           pattern: ^airship-email$
+        #         - id: read-otel-resource-attributes-from-apptoml
+        #           name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
+        #           type: extract
+        #           source: github
+        #           jsonPath: .envs | if type == "array" then .[] | .id else .production[] | .OTEL_RESOURCE_ATTRIBUTES end
+        #           repo: airship-email
+        #           filePath: app.toml
+        #         - id: validate-otel-resource-attributes-sample-rate
+        #           name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
+        #           type: validate
+        #           dependsOn:
+        #             - read-otel-resource-attributes-from-apptoml
+        #           rule: regex_match
+        #           pattern: of\.sample_rate=\d+.*
+        #         - id: validate-otel-resource-attributes-error-sample-rate
+        #           name: validate OTEL_RESOURCE_ATTRIBUTES defines error sample rate
+        #           type: validate
+        #           dependsOn:
+        #             - read-otel-resource-attributes-from-apptoml
+        #           rule: regex_match
+        #           pattern: of\.error_sample_rate=\d+.*
+        #         - id: either-sample-rate-or-error-sample-rate
+        #           name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
+        #           type: aggregate
+        #           dependsOn:
+        #             - validate-otel-resource-attributes-sample-rate
+        #             - validate-otel-resource-attributes-error-sample-rate
+        #           rule: or
+        test3:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/b3ebecbc-7a70-4fc2-8b4c-88a1c234b477
+            name: test3-svc-personalisation-service
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a36507fc-8508-434b-898b-126bea3eb948
             facts:
                 - id: fetch-slos
                   name: Fetch SLOs
                   type: extract
                   source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/slos/airship-email
-                  jsonPath: $..id
+                  uri: https://api.eu1.honeycomb.io/1/slos/personalisation-service
+                  jsonPath: .[].id
                   auth:
                     header: X-Honeycomb-Team
                     tokenVar: HONEYCOMB_API_KEY
@@ -56,27 +145,34 @@ spec:
                   dependsOn:
                     - fetch-slos
                   source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/airship-email?slo_id=:slo_id
-                  jsonPath: $.id
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/personalisation-service?slo_id=:slo_id
+                  jsonPath: .[].id
                   auth:
                     header: X-Honeycomb-Team
                     tokenVar: HONEYCOMB_API_KEY
-                - id: count-slos
-                  name: Count SLOs
-                  type: aggregate
-                  dependsOn:
-                    - fetch-slos
-                - id: count-alerts-for-slos
-                  name: Count Alerts
-                  type: aggregate
+                - id: fetch-recipients-for-alerts
+                  name: Fetch recipients for Alerts
+                  type: extract
                   dependsOn:
                     - fetch-alerts-for-slos
-                - id: validate-alerts-for-slos
-                  name: Validate that counts match
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/personalisation-service/:alert_id
+                  jsonPath: .recipients[].target
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                - id: validate-each-target-is-not-empty-string
+                  name: Validate that each target is not an empty string
                   type: validate
                   dependsOn:
-                    - count-slos
-                    - count-alerts-for-slos
-                  rule: deps_match
+                    - fetch-recipients-for-alerts
+                  rule: regex_match
+                  pattern: ^\S.*$
+                - id: validate-all-targets-are-not-empty-strings
+                  name: Validate that all targets are not empty strings
+                  type: aggregate
+                  dependsOn:
+                    - validate-each-target-is-not-empty-string
+                  method: and
     tribe: reach
     squad: fan-activation

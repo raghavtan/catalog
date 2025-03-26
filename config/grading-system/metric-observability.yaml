@@ -10,29 +10,57 @@ metadata:
     - service
     - cloud-resource
   facts:
-      - id: app-toml-envs-otel-service-name
-        name: app.toml defines OTEL_SERVICE_NAME
-        source: github
-        repo: "${Metadata.Name}"
-        factType: jsonPath
-        filePath: app.toml
-        jsonPath: $..envs..OTEL_SERVICE_NAME
-        # expectedValue: "${Metadata.Name}"
-    # any:
-    #   - name: app-toml-env-otel-resource-attributes-sample-rate
-    #     source: "github"
-    #     repo: "${Metadata.Name}"
-    #     factType: jsonPath
-    #     filePath: app.toml
-    #     jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-    #     expectedValue: "of\\.sample_rate=\\d+.*"
-    #   - name: app-toml-env-otel-resource-attributes-error-sample-rate
-    #     source: "github"
-    #     repo: "${Metadata.Name}"
-    #     factType: jsonPath
-    #     filePath: app.toml
-    #     jsonPath: $..envs..OTEL_RESOURCE_ATTRIBUTES
-    #     expectedValue: "of\\.error_sample_rate=\\d+.*"
+    # Validate that the OTEL_SERVICE_NAME in app.toml matches the component name
+    - id: read-otel-service-name-from-apptoml
+      name: Read OTEL_SERVICE_NAME from app.toml
+      type: extract
+      source: github
+      jsonPath: $..envs..OTEL_SERVICE_NAME
+      auth: null
+      repo: ${Metadata.Name}
+      filePath: app.toml
+    - id: "validate-otel-service-name-matches-component-name"
+      name: validate OTEL_SERVICE_NAME matches component name
+      type: validate
+      rule: "regex_match"
+      pattern: ^${Metadata.Name}$
+      dependsOn: ["read-otel-service-name-from-apptoml"]
+    # Validate that the OTEL_RESOURCE_ATTRIBUTES in app.toml contains either of.sample_rate or of.error_sample_rate
+    - id: read-otel-resource-attributes-from-apptoml
+      name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
+      type: extract
+      source: github
+      jsonPath: $..envs..OTEL_SERVICE_NAME
+      auth: null
+      repo: ${Metadata.Name}
+      filePath: app.toml
+    - id: "validate-otel-resource-attributes-sample-rate"
+      name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
+      type: validate
+      rule: "regex_match"
+      pattern: "of\\.sample_rate=\\d+.*"
+      dependsOn: ["read-otel-resource-attributes-from-apptoml"]
+    - id: "validate-otel-resource-attributes-one-sample-rate"
+      name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
+      type: validate
+      rule: "regex_match"
+      pattern: "of\\.error_sample_rate=\\d+.*"
+      dependsOn: ["read-otel-resource-attributes-from-apptoml"]
+    - id: either-sample-rate-or-error-sample-rate
+      name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
+      type: aggregate
+      dependsOn:
+        - validate-otel-resource-attributes-sample-rate
+        - validate-otel-resource-attributes-error-sample-rate
+      rule: "or"
+    # Aggregate the OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES facts
+    - id: either-sample-rate-or-error-sample-rate
+      name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
+      type: aggregate
+      dependsOn:
+        - validate-otel-service-name-matches-component-name
+        - validate-otel-resource-attributes-one-sample-rate
+      rule: "and"
 spec:
   name: instrumentation-check
   description: "Verifies that the component is set up to record relevant telemetry (metrics or traces)."
@@ -48,16 +76,113 @@ metadata:
   componentType:
     - service
   facts:
-    all:
-      - name: has-slos
-        source: jsonapi
-        uri: "https://api.eu1.honeycomb.io/1/slos/${Metadata.Name}"
-        auth:
-          header: X-Honeycomb-Team
-          tokenEnvVariable: HONEYCOMB_API_KEY
-        factType: jsonPath
-        jsonPath: length($.)
-        expectedFormula: ">= 1"
+    # Extract SLOs from Honeycomb
+    - id: fetch-slos
+      name: Fetch SLOs
+      type: extract
+      dependsOn: []
+      uri: "https://api.eu1.honeycomb.io/1/slos/${Metadata.Name}"
+      source: "jsonapi"
+      auth:
+        header: X-Honeycomb-Team
+        tokenVar: HONEYCOMB_API_KEY
+      jsonPath: $..id
+    # Extract Alerts for each SLO from Honeycomb
+    - id: fetch-alerts-for-slos
+      name: Fetch alerts for SLOs
+      type: extract
+      dependsOn:
+        - fetch-slos
+      uri: "https://api.eu1.honeycomb.io/1/burn_alerts/${Metadata.Name}?slo_id=:slo_id"
+      source: "jsonapi"
+      auth:
+        header: X-Honeycomb-Team
+        tokenVar: HONEYCOMB_API_KEY
+      jsonPath: $.id
+    # Validate that the counts of SLOs and Alerts match
+    - id: count-slos
+      name: Count SLOs
+      type: aggregate
+      dependsOn:
+        - fetch-slos
+      method: "count"
+    - id: count-alerts-for-slos
+      name: Count Alerts
+      type: aggregate
+      dependsOn:
+        - fetch-alerts-for-slos
+      method: "count"
+    - id: validate-alerts-for-slos
+      name: Validate that counts match
+      type: validate
+      dependsOn:
+        - count-slos
+        - count-alerts-for-slos
+      rule: "deps_match"
+spec:
+  name: critical-alerts-slo-check
+  description: "Checks if at least one critical performance or reliability metric is actively monitored and triggers an alert (e.g., SLO or metric threshold)."
+  format:
+    unit: "Critical Alerts/SLO Check"
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+  name: alert-routing-and-notifications
+  labels:
+    grading-system: observability
+  componentType:
+    - service
+  facts:
+facts:
+    # Extract SLOs from Honeycomb
+    - id: fetch-slos
+      name: Fetch SLOs
+      type: extract
+      source: jsonapi
+      uri: https://api.eu1.honeycomb.io/1/slos/${Metadata.Name}
+      jsonPath: .[].id
+      auth:
+        header: X-Honeycomb-Team
+        tokenVar: HONEYCOMB_API_KEY
+    # Extract Alerts for each SLO from Honeycomb
+    - id: fetch-alerts-for-slos
+      name: Fetch alerts for SLOs
+      type: extract
+      dependsOn:
+        - fetch-slos
+      source: jsonapi
+      uri: https://api.eu1.honeycomb.io/1/burn_alerts/${Metadata.Name}?slo_id=:slo_id
+      jsonPath: .[].id
+      auth:
+        header: X-Honeycomb-Team
+        tokenVar: HONEYCOMB_API_KEY
+    # Extract recipients for each Alert
+    - id: fetch-recipients-for-alerts
+      name: Fetch recipients for Alerts
+      type: extract
+      dependsOn:
+        - fetch-alerts-for-slos
+      source: jsonapi
+      uri: https://api.eu1.honeycomb.io/1/burn_alerts/${Metadata.Name}/:alert_id
+      jsonPath: .recipients[].target
+      auth:
+        header: X-Honeycomb-Team
+        tokenVar: HONEYCOMB_API_KEY
+    # Validate targets are not an empty strings
+    - id: validate-each-target-is-not-empty-string
+      name: Validate that each target is not an empty string
+      type: validate
+      dependsOn:
+        - fetch-recipients-for-alerts
+      rule: regex_match
+      pattern: ^\S.*$
+    - id: validate-all-targets-are-not-empty-strings
+      name: Validate that all targets are not empty strings
+      type: aggregate
+      dependsOn:
+        - validate-each-target-is-not-empty-string
+      method: and
 spec:
   name: critical-alerts-slo-check
   description: "Checks if at least one critical performance or reliability metric is actively monitored and triggers an alert (e.g., SLO or metric threshold)."

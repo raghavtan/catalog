@@ -65,7 +65,7 @@ func (p *Processor) Process(ctx context.Context, tasks []*dtos.Task) (float64, e
 	return transformers.Interface2Float64(result)
 }
 
-func (p *Processor) execute(ctx context.Context, task *dtos.Task, wg *sync.WaitGroup, result *interface{}) error {
+func (p *Processor) execute(ctx context.Context, task *dtos.Task, wg *sync.WaitGroup, result *interface{}) {
 	defer wg.Done()
 	defer close(task.DoneCh)
 
@@ -78,20 +78,20 @@ func (p *Processor) execute(ctx context.Context, task *dtos.Task, wg *sync.WaitG
 	case dtos.ExtractType:
 		extractErr := p.handleExtract(ctx, task)
 		if extractErr != nil {
-			return fmt.Errorf("%s: error extracting data: %v", task.ID, extractErr)
+			fmt.Printf("%s: error extracting data: %v\n", task.ID, extractErr)
 		}
 	case dtos.ValidateType:
 		validationErr := p.handleValidate(task)
 		if validationErr != nil {
-			return fmt.Errorf("%s: error validating data: %v", task.ID, validationErr)
+			fmt.Printf("%s: error validating data: %v\n", task.ID, validationErr)
 		}
 	case dtos.AggregateType:
 		aggregateErr := p.handleAggregate(ctx, task)
 		if aggregateErr != nil {
-			return fmt.Errorf("%s: error aggregating data: %v", task.ID, aggregateErr)
+			fmt.Printf("%s: error aggregating data: %v\n", task.ID, aggregateErr)
 		}
 	default:
-		return fmt.Errorf("%s: unknown task type: %s", task.ID, task.Type)
+		fmt.Printf("%s: unknown task type: %s\n", task.ID, task.Type)
 	}
 
 	p.Mu.Lock()
@@ -99,8 +99,6 @@ func (p *Processor) execute(ctx context.Context, task *dtos.Task, wg *sync.WaitG
 
 	*result = task.Result
 	task.DoneCh <- dtos.TaskResult{Result: task.ID}
-
-	return nil
 }
 
 func (p *Processor) handleExtract(ctx context.Context, task *dtos.Task) error {

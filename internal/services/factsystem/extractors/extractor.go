@@ -58,7 +58,7 @@ func (ex *Extractor) Extract(ctx context.Context, task *dtos.Task, deps []*dtos.
 		return ex.handleMultipleResults(ctx, task, values)
 	}
 
-	return nil
+	return errors.New("dependency result is not a string or a string array")
 }
 
 func (ex *Extractor) handleSingleResult(ctx context.Context, task *dtos.Task, dependencyResult string) error {
@@ -66,19 +66,27 @@ func (ex *Extractor) handleSingleResult(ctx context.Context, task *dtos.Task, de
 	if processErr != nil {
 		return fmt.Errorf("failed to process request: %v", processErr)
 	}
-
 	task.Result = result
 	return nil
 }
 
 func (ex *Extractor) handleMultipleResults(ctx context.Context, task *dtos.Task, dependencyResults []string) error {
-	results := make([]interface{}, len(dependencyResults))
-	for i, value := range dependencyResults {
+	results := make([]string, 0)
+	for _, value := range dependencyResults {
 		result, processErr := ex.processData(ctx, task, value)
 		if processErr != nil {
 			return fmt.Errorf("failed to process request: %v", processErr)
 		}
-		results[i] = result
+
+		if values, ok := result.([]string); ok {
+			results = append(results, values...)
+			continue
+		}
+
+		if value, ok := result.(string); ok {
+			results = append(results, value)
+			continue
+		}
 	}
 
 	task.Result = results
@@ -86,15 +94,13 @@ func (ex *Extractor) handleMultipleResults(ctx context.Context, task *dtos.Task,
 }
 
 func (ex *Extractor) processData(ctx context.Context, task *dtos.Task, dependencyResult string) (interface{}, error) {
-	unquotedResult, _ := strconv.Unquote(dependencyResult) //nolint: errcheck
-
 	var jsonData []byte
 	var dataErr error
 	switch dtos.TaskSource(task.Source) {
 	case dtos.GitHubTaskSource:
-		jsonData, dataErr = ex.processGithub(task, unquotedResult)
+		jsonData, dataErr = ex.processGithub(task, unquoted(dependencyResult))
 	case dtos.JSONAPITaskSource:
-		jsonData, dataErr = ex.processJSONAPI(ctx, task, unquotedResult)
+		jsonData, dataErr = ex.processJSONAPI(ctx, task, unquoted(dependencyResult))
 	default:
 		return nil, fmt.Errorf("no data extracted, unknown source %s", task.Source)
 	}
@@ -106,7 +112,7 @@ func (ex *Extractor) processData(ctx context.Context, task *dtos.Task, dependenc
 }
 
 func (fe *Extractor) processGithub(task *dtos.Task, result string) ([]byte, error) {
-	extractFilePath := utils.ReplacePlaceholder(task.URI, result)
+	extractFilePath := utils.ReplacePlaceholder(task.FilePath, result)
 	fileContent, fileErr := fe.github.GetFileContent(task.Repo, extractFilePath)
 	if fileErr != nil {
 		return nil, fileErr
@@ -156,4 +162,13 @@ func (ex *Extractor) processJSONAPI(ctx context.Context, task *dtos.Task, result
 	}
 
 	return jsonData, nil
+}
+
+func unquoted(toUnquote string) string {
+	unquoted, unQuoteErr := strconv.Unquote(toUnquote) //nolint: errcheck
+	if unQuoteErr != nil {
+		unquoted = toUnquote
+	}
+
+	return unquoted
 }

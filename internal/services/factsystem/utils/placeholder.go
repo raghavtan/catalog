@@ -1,6 +1,8 @@
 package utils
 
-import "regexp"
+import (
+	"regexp"
+)
 
 const placeholderPattern = `:[a-zA-Z_]+`
 

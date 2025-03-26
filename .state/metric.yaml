@@ -1,6 +1,65 @@
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
+    name: test2
+    labels:
+        grading-system: observability
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: read-otel-service-name-from-apptoml
+          name: Read OTEL_SERVICE_NAME from app.toml
+          type: extract
+          source: github
+          jsonPath: $..envs..OTEL_SERVICE_NAME
+          repo: ${Metadata.Name}
+          filePath: app.toml
+        - id: validate-otel-service-name-matches-component-name
+          name: validate OTEL_SERVICE_NAME matches component name
+          type: validate
+          dependsOn:
+            - read-otel-service-name-from-apptoml
+          rule: regex_match
+          pattern: ^${Metadata.Name}$
+        - id: read-otel-resource-attributes-from-apptoml
+          name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
+          type: extract
+          source: github
+          jsonPath: $..envs..OTEL_SERVICE_NAME
+          repo: ${Metadata.Name}
+          filePath: app.toml
+        - id: validate-otel-resource-attributes-sample-rate
+          name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
+          type: validate
+          dependsOn:
+            - read-otel-resource-attributes-from-apptoml
+          rule: regex_match
+          pattern: of\.sample_rate=\d+.*
+        - id: validate-otel-resource-attributes-error-sample-rate
+          name: validate OTEL_RESOURCE_ATTRIBUTES defines error sample rate
+          type: validate
+          dependsOn:
+            - read-otel-resource-attributes-from-apptoml
+          rule: regex_match
+          pattern: of\.error_sample_rate=\d+.*
+        - id: either-sample-rate-or-error-sample-rate
+          name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
+          type: aggregate
+          dependsOn:
+            - validate-otel-resource-attributes-sample-rate
+            - validate-otel-resource-attributes-error-sample-rate
+          rule: or
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/edd63e44-484f-4c43-ba3d-9e749da40045
+    name: test2
+    description: test2
+    format:
+        unit: true/false
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
     name: test
     labels:
         grading-system: observability
@@ -53,3 +112,50 @@ spec:
     description: Verifies that the component is set up to record relevant telemetry (metrics or traces).
     format:
         unit: Test
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: test3
+    labels:
+        grading-system: observability
+    componentType:
+        - service
+    facts:
+        - id: fetch-slos
+          name: Fetch SLOs
+          type: extract
+          source: jsonapi
+          uri: https://api.eu1.honeycomb.io/1/slos/${Metadata.Name}
+          jsonPath: $..id
+          auth:
+            header: X-Honeycomb-Team
+            tokenVar: HONEYCOMB_API_KEY
+        - id: fetch-alerts-for-slos
+          name: Fetch alerts for SLOs
+          type: extract
+          dependsOn:
+            - fetch-slos
+          source: jsonapi
+          uri: https://api.eu1.honeycomb.io/1/burn_alerts/${Metadata.Name}?slo_id=:slo_id
+          jsonPath: $.id
+          auth:
+            header: X-Honeycomb-Team
+            tokenVar: HONEYCOMB_API_KEY
+        - id: fetch-recipients-for-alerts
+          name: Fetch recipients for Alerts
+          type: extract
+          dependsOn:
+            - fetch-slos
+          source: jsonapi
+          uri: https://api.eu1.honeycomb.io/1/burn_alerts/${Metadata.Name}/:alert_id
+          jsonPath: $.recipients.target
+          auth:
+            header: X-Honeycomb-Team
+            tokenVar: HONEYCOMB_API_KEY
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a36507fc-8508-434b-898b-126bea3eb948
+    name: test3
+    description: "3"
+    format:
+        unit: "3"

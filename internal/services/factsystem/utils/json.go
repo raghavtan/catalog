@@ -1,35 +1,32 @@
 package utils
 
 import (
-	"fmt"
+	"encoding/json"
+	"log"
 
-	"github.com/spyzhov/ajson"
+	"github.com/itchyny/gojq"
 )
 
 func InspectExtractedData(JSONPath string, jsonData []byte) (interface{}, error) {
-	root, unmarshalErr := ajson.Unmarshal(jsonData)
-	if unmarshalErr != nil {
-		return nil, unmarshalErr
+	query, parseQueryErr := gojq.Parse(JSONPath)
+	if parseQueryErr != nil {
+		return nil, parseQueryErr
 	}
 
-	node, evalErr := ajson.Eval(root, JSONPath)
-	if evalErr != nil {
-		return nil, fmt.Errorf("error parsing jsonpath: %v", evalErr)
+	var data interface{}
+	if err := json.Unmarshal([]byte(jsonData), &data); err != nil {
+		log.Fatal(err)
 	}
 
-	nodeValue, vslueErr := node.Value()
-	if vslueErr != nil {
-		return nil, fmt.Errorf("error parsing jsonpath value: %v", vslueErr)
-	}
-
-	if resSlice, ok := nodeValue.([]*ajson.Node); ok {
-		result := make([]string, len(resSlice))
-		for i, node := range resSlice {
-			result[i] = node.String()
+	res := make([]string, 0)
+	iter := query.Run(data)
+	for {
+		v, ok := iter.Next()
+		if !ok {
+			break
 		}
-
-		return result, nil
+		res = append(res, v.(string))
 	}
 
-	return nodeValue, nil
+	return res, nil
 }
