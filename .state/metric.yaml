@@ -14,21 +14,21 @@ metadata:
           source: github
           repo: ${Metadata.Name}
           filePath: README.md
-          rule: "notempty"
+          rule: notempty
         - id: docs-readme-file
           name: Check if the docs/README.md file exists
           type: extract
           source: github
           repo: ${Metadata.Name}
           filePath: docs/README.md
-          rule: "notempty"
+          rule: notempty
         - id: docs-index-file
           name: Check if the docs/index.md file exists
           type: extract
           source: github
           repo: ${Metadata.Name}
           filePath: docs/index.md
-          rule: "notempty"
+          rule: notempty
         - id: aggregate-readme-exists
           name: Check if repo has documentation
           type: aggregate
@@ -128,7 +128,7 @@ metadata:
           source: github
           repo: ${Metadata.Name}
           filePath: docs/observability.md
-          rule: "notempty"
+          rule: notempty
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0122f58a-5866-4f17-b985-113afe2be877
     name: observability-documentation
@@ -295,3 +295,79 @@ spec:
     description: Ensures the component is correctly configured, adheres to best practices, and meets all necessary requirements for secure, stable, and efficient deployment in a production environment.
     format:
         unit: Deployment Standards
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: high-availability
+    labels:
+        grading-system: resiliency
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: app-toml-hpa-target-cpu
+          type: extract
+          source: github
+          jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: app-toml-hpa-target-memory
+          type: extract
+          source: github
+          jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: cpu-and-memory-hpa-are-set
+          name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+          type: aggregate
+          dependsOn:
+            - app-toml-hpa-target-cpu
+            - app-toml-hpa-target-memory
+          method: or
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/fb4e5265-0109-452b-b33d-9d2790f6afec
+    name: high-availability
+    description: Ensure the component is properly configured to support High Availability, which keeps a system or service running with minimal downtime. This helps maintain continuous operation, even during failures or unexpected issues.
+    format:
+        unit: High Availability
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: adaptive-systems
+    labels:
+        grading-system: resiliency
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: app-toml-replicas-min
+          type: extract
+          source: github
+          jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: app-toml-replicas-max-gt-replicas-min
+          type: extract
+          source: github
+          jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: cpu-and-memory-hpa-are-set
+          name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+          type: aggregate
+          dependsOn:
+            - app-toml-replicas-min
+            - app-toml-replicas-max-gt-replicas-min
+          method: and
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/773597ed-dd38-4acf-b543-528f2f1a5227
+    name: adaptive-systems
+    description: Ensure the component is properly configured to support Adaptive Systems, which can automatically adjust to changing conditions. This helps maintain optimal performance, efficiency, and reliability without the need for manual intervention.
+    format:
+        unit: Adaptive Systems

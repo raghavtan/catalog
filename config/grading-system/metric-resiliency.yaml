@@ -9,21 +9,29 @@ metadata:
     - service
     - cloud-resource
   facts:
-    any:
-      - name: app-toml-hpa-target-cpu
-        source: github
-        repo: "${Metadata.Name}"
-        factType: jsonPath
-        filePath: app.toml
-        jsonPath: $..service..target_cpu_utilization_percentage 
-        expectedFormula: ">= 20"
-      - name: app-toml-hpa-target-memory
-        source: github
-        repo: "${Metadata.Name}"
-        factType: jsonPath
-        filePath: app.toml
-        jsonPath: $..service..target_memory_utilization_percentage
-        expectedFormula: ">= 20"
+    - id: app-toml-hpa-target-cpu
+      type: extract
+      source: github
+      jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
+      rule: "jsonpath"
+      auth: null
+      repo: ${Metadata.Name}
+      filePath: app.toml
+    - id: app-toml-hpa-target-memory
+      type: extract
+      source: github
+      jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
+      rule: "jsonpath"
+      auth: null
+      repo: ${Metadata.Name}
+      filePath: app.toml
+    - id: cpu-and-memory-hpa-are-set
+      name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+      type: aggregate
+      dependsOn:
+        - app-toml-hpa-target-cpu
+        - app-toml-hpa-target-memory
+      method: "or"
 spec:
   name: high-availability
   description: "Ensure the component is properly configured to support High Availability, which keeps a system or service running with minimal downtime. This helps maintain continuous operation, even during failures or unexpected issues."
@@ -40,21 +48,29 @@ metadata:
     - service
     - cloud-resource
   facts:
-    any:
-      - name: app-toml-liveness-probe
-        source: github
-        repo: "${Metadata.Name}"
-        factType: jsonPath
-        filePath: app.toml
-        jsonPath: $..service..liveness_probe_http_get_path 
-        expectedValue: "/health"
-      - name: app-toml-readiness-probe
-        source: github
-        repo: "${Metadata.Name}"
-        factType: jsonPath
-        filePath: app.toml
-        jsonPath: $..service..readiness_probe_http_get_path
-        expectedValue: "/ready"
+    - id: app-toml-replicas-min
+      type: extract
+      source: github
+      jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
+      rule: "jsonpath"
+      auth: null
+      repo: ${Metadata.Name}
+      filePath: app.toml
+    - id: app-toml-replicas-max-gt-replicas-min
+      type: extract
+      source: github
+      jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
+      rule: "jsonpath"
+      auth: null
+      repo: ${Metadata.Name}
+      filePath: app.toml
+    - id: cpu-and-memory-hpa-are-set
+      name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+      type: aggregate
+      dependsOn:
+        - app-toml-replicas-min
+        - app-toml-replicas-max-gt-replicas-min
+      method: "and"
 spec:
   name: adaptive-systems
   description: "Ensure the component is properly configured to support Adaptive Systems, which can automatically adjust to changing conditions. This helps maintain optimal performance, efficiency, and reliability without the need for manual intervention."

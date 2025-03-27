@@ -39,6 +39,32 @@ spec:
         - engagement
         - personalisation
     metricSources:
+        adaptive-systems:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0eb01911-986a-45da-acfa-79c97b79f7d7
+            name: adaptive-systems-svc-personalisation-service
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/773597ed-dd38-4acf-b543-528f2f1a5227
+            facts:
+                - id: app-toml-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
+                  repo: personalisation-service
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-replicas-max-gt-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
+                  repo: personalisation-service
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-replicas-min
+                    - app-toml-replicas-max-gt-replicas-min
+                  method: and
         alert-routing-and-notifications:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/17ccdaf4-39d6-4615-8d28-e3eb71b25d97
             name: alert-routing-and-notifications-svc-personalisation-service
@@ -165,6 +191,32 @@ spec:
                     - deployment-readiness-replicas-service-production
                     - deployment-readiness-replicas-service
                   method: or
+        high-availability:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/c4556ffd-431d-4b82-8af8-384163b12b82
+            name: high-availability-svc-personalisation-service
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/fb4e5265-0109-452b-b33d-9d2790f6afec
+            facts:
+                - id: app-toml-hpa-target-cpu
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
+                  repo: personalisation-service
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-hpa-target-memory
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
+                  repo: personalisation-service
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-hpa-target-cpu
+                    - app-toml-hpa-target-memory
+                  method: or
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/918aee29-3dd9-420c-bf74-2393faec400d
             name: instrumentation-check-svc-personalisation-service
@@ -232,7 +284,7 @@ spec:
                   source: github
                   repo: personalisation-service
                   filePath: docs/observability.md
-                  rule: "notempty"
+                  rule: notempty
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4ebfd974-548b-45b0-9e8a-456d21e52bf3
             name: organizational-standards-svc-personalisation-service
@@ -244,21 +296,21 @@ spec:
                   source: github
                   repo: personalisation-service
                   filePath: README.md
-                  rule: "notempty"
+                  rule: notempty
                 - id: docs-readme-file
                   name: Check if the docs/README.md file exists
                   type: extract
                   source: github
                   repo: personalisation-service
                   filePath: docs/README.md
-                  rule: "notempty"
+                  rule: notempty
                 - id: docs-index-file
                   name: Check if the docs/index.md file exists
                   type: extract
                   source: github
                   repo: personalisation-service
                   filePath: docs/index.md
-                  rule: "notempty"
+                  rule: notempty
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
                   type: aggregate
@@ -308,6 +360,32 @@ spec:
         - airship-email
         - reach
     metricSources:
+        adaptive-systems:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9c62c7c7-5ea3-46fe-b35a-d1d56a5783e6
+            name: adaptive-systems-svc-airship-email
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/773597ed-dd38-4acf-b543-528f2f1a5227
+            facts:
+                - id: app-toml-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-replicas-max-gt-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-replicas-min
+                    - app-toml-replicas-max-gt-replicas-min
+                  method: and
         alert-routing-and-notifications:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d1301849-7da2-478a-9045-30900bf8a279
             name: alert-routing-and-notifications-svc-airship-email
@@ -346,6 +424,7 @@ spec:
                   auth:
                     header: X-Honeycomb-Team
                     tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
                 - id: validate-each-target-is-not-empty-string
                   name: Validate that each target is not an empty string
                   type: validate
@@ -433,6 +512,32 @@ spec:
                     - deployment-readiness-replicas-service-production
                     - deployment-readiness-replicas-service
                   method: or
+        high-availability:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/05b869f2-35cf-4bea-9a21-9e6f1819d05d
+            name: high-availability-svc-airship-email
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/fb4e5265-0109-452b-b33d-9d2790f6afec
+            facts:
+                - id: app-toml-hpa-target-cpu
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-hpa-target-memory
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-hpa-target-cpu
+                    - app-toml-hpa-target-memory
+                  method: or
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a42decb4-ffed-416e-9f9c-7a5947b74b82
             name: instrumentation-check-svc-airship-email
@@ -500,7 +605,7 @@ spec:
                   source: github
                   repo: airship-email
                   filePath: docs/observability.md
-                  rule: "notempty"
+                  rule: notempty
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/2da01507-096f-4c2d-a4df-668e48b2497d
             name: organizational-standards-svc-airship-email
@@ -512,21 +617,21 @@ spec:
                   source: github
                   repo: airship-email
                   filePath: README.md
-                  rule: "notempty"
+                  rule: notempty
                 - id: docs-readme-file
                   name: Check if the docs/README.md file exists
                   type: extract
                   source: github
                   repo: airship-email
                   filePath: docs/README.md
-                  rule: "notempty"
+                  rule: notempty
                 - id: docs-index-file
                   name: Check if the docs/index.md file exists
                   type: extract
                   source: github
                   repo: airship-email
                   filePath: docs/index.md
-                  rule: "notempty"
+                  rule: notempty
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
                   type: aggregate

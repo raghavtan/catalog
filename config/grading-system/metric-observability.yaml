@@ -16,6 +16,7 @@ metadata:
       type: extract
       source: github
       jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
+      rule: "jsonpath"
       auth: null
       repo: ${Metadata.Name}
       filePath: app.toml
@@ -31,6 +32,7 @@ metadata:
       type: extract
       source: github
       jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
+      rule: "jsonpath"
       auth: null
       repo: ${Metadata.Name}
       filePath: app.toml
@@ -85,14 +87,7 @@ metadata:
       auth: null
       repo: ${Metadata.Name}
       filePath: docs/observability.md
-    # Aggregate the OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES facts
-    - id: observability-md-is-not-empty
-      name: Validate that observability.md is not empty
-      type: validate
-      rule: "regex_match"
-      pattern: ^\S.*$
-      dependsOn:
-        - extract-observability-md
+      rule: "notempty"
 spec:
   name: observability-documentation
   description: "Verifies SLOs definitions are documented."
@@ -119,6 +114,7 @@ metadata:
         header: X-Honeycomb-Team
         tokenVar: HONEYCOMB_API_KEY
       jsonPath: .[].id
+      rule: "jsonpath"
     # Extract Alerts for each SLO from Honeycomb
     - id: fetch-alerts-for-slos
       name: Fetch alerts for SLOs
@@ -130,7 +126,8 @@ metadata:
       auth:
         header: X-Honeycomb-Team
         tokenVar: HONEYCOMB_API_KEY
-      jsonPath: .id
+      jsonPath: .[].id
+      rule: "jsonpath"
     # Validate that the counts of SLOs and Alerts match
     - id: count-slos
       name: Count SLOs
@@ -173,6 +170,7 @@ metadata:
       source: jsonapi
       uri: https://api.eu1.honeycomb.io/1/slos/${Metadata.Name}
       jsonPath: .[].id
+      rule: "jsonpath"
       auth:
         header: X-Honeycomb-Team
         tokenVar: HONEYCOMB_API_KEY
@@ -185,6 +183,7 @@ metadata:
       source: jsonapi
       uri: https://api.eu1.honeycomb.io/1/burn_alerts/${Metadata.Name}?slo_id=:slo_id
       jsonPath: .[].id
+      rule: "jsonpath"
       auth:
         header: X-Honeycomb-Team
         tokenVar: HONEYCOMB_API_KEY
@@ -197,6 +196,7 @@ metadata:
       source: jsonapi
       uri: https://api.eu1.honeycomb.io/1/burn_alerts/${Metadata.Name}/:alert_id
       jsonPath: .recipients[].target
+      rule: "jsonpath"
       auth:
         header: X-Honeycomb-Team
         tokenVar: HONEYCOMB_API_KEY

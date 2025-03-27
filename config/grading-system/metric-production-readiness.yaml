@@ -2,50 +2,83 @@
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-  name: organizational-standards
+  name: deployment-readiness
   labels:
     grading-system: production-readiness
   componentType:
     - service
     - cloud-resource
   facts:
-    all:
-      - name: app-toml-catalog-links-runbook
-        source: github
-        repo: "${Metadata.Name}"
-        factType: jsonPath
-        filePath: app.toml
-        jsonPath: length($..catalog.links[?(@.type == 'DOCUMENT' && @.name == 'runbook')].url)
-        expectedFormula: == 1
-      - name: readme-file-exists
-        source: github
-        repo: "${Metadata.Name}"
-        factType: fileExists
-        filePath: "README.md"
+    - id: deployment-readiness-replicas-service-production
+      name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+      source: github
+      repo: "${Metadata.Name}"
+      type: extract
+      filePath: "app.toml"
+      jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
+      rule: "jsonpath"
+    - id: deployment-readiness-replicas-service
+      name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+      source: github
+      repo: "${Metadata.Name}"
+      type: extract
+      filePath: "app.toml"
+      jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
+      rule: "jsonpath"
+    - id: aggregate-replicas
+      name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+      type: aggregate
+      dependsOn:
+        - deployment-readiness-replicas-service-production
+        - deployment-readiness-replicas-service
+      method: "or"
 spec:
-  name: organizational-standards
+  name: deployment-readiness
   description: "Ensures the component is correctly configured, adheres to best practices, and meets all necessary requirements for secure, stable, and efficient deployment in a production environment."
   format:
-    unit: "Organizational Standards"
+    unit: "Deployment Standards"
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-  name: deployment-readiness
+  name: organizational-standards
   labels:
     grading-system: production-readiness
   componentType:
     - service
     - cloud-resource
   facts:
-    all:
-      - name: apptoml-file-exists
-        source: github
-        repo: "${Metadata.Name}"
-        factType: fileExists
-        filePath: "app.toml"
+    - id: readme-file
+      name: Check if the README.md file exists
+      source: github
+      repo: "${Metadata.Name}"
+      type: extract
+      filePath: "README.md"
+      rule: "notempty"
+    - id: docs-readme-file
+      name: Check if the docs/README.md file exists
+      source: github
+      repo: "${Metadata.Name}"
+      type: extract
+      filePath: "docs/README.md"
+      rule: "notempty"
+    - id: docs-index-file
+      name: Check if the docs/index.md file exists
+      source: github
+      repo: "${Metadata.Name}"
+      type: extract
+      filePath: "docs/index.md"
+      rule: "notempty"
+    - id: aggregate-readme-exists
+      name: Check if repo has documentation
+      type: aggregate
+      dependsOn:
+        - docs-index-file-exists
+        - docs-readme-file-exists
+        - readme-file-exists
+      method: "or"
 spec:
-  name: deployment-readiness
-  description: "Ensures the component is correctly configured, adheres to best practices, and meets all necessary requirements for secure, stable, and efficient deployment in a production environment."
+  name: organizational-standards
+  description: "Ensures the component aligns with defined organizational standards, including coding guidelines and compliance requirements"
   format:
-    unit: "Deployment Readiness"
+    unit: "Organizational Standards"
