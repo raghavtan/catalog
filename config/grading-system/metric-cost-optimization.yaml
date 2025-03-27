@@ -1,55 +1,45 @@
-# ---
-# apiVersion: of-catalog/v1alpha1
-# kind: Metric
-# metadata:
-#   name: allocation-efficiency
-#   labels:
-#     grading-system: cost-optimization
-#   componentType:
-#     - service
-#   facts:
-#     all:
-#       - name: app-toml-cpu-request
-#         source: "github"
-#         repo: "${Metadata.Name}"
-#         factType: jsonPath
-#         filePath: app.toml
-#         jsonPath: $..service..cpu_requests
-#         expectedValue: "\b\d+Mi?\b|\b\d+m\b"
-#       - name: app-toml-cpu-request
-#         source: "github"
-#         repo: "${Metadata.Name}"
-#         factType: jsonPath
-#         filePath: app.toml
-#         jsonPath: $..service..cpu_requests
-#         expectedValue: "\b\d+Mi?\b|\b\d+m\b"
-# spec:
-#   name: allocation-efficiency
-#   description: "Verifies if the component has defined resource allocations in an efficient way."
-#   format:
-#     unit: "Allocation Efficiency"
-# ---
-# apiVersion: of-catalog/v1alpha1
-# kind: Metric
-# metadata:
-#   name: critical-alerts-slo-check
-#   labels:
-#     grading-system: cost-optimization
-#   componentType:
-#     - service
-#   facts:
-#     all:
-#       - name: has-slos
-#         source: jsonapi
-#         URI: "https://api.eu1.honeycomb.io/1/slos/${Metadata.Name}"
-#         auth:
-#           header: X-Honeycomb-Team
-#           tokenEnvVariable: HONEYCOMB_API_KEY
-#         factType: jsonPath
-#         jsonPath: length($.)
-#         expectedFormula: ">= 1"
-# spec:
-#   name: critical-alerts-slo-check
-#   description: "Checks if at least one critical performance or reliability metric is actively monitored and triggers an alert (e.g., SLO or metric threshold)."
-#   format:
-#     unit: "Critical Alerts/SLO Check"
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+  name: allocation-efficiency
+  labels:
+    grading-system: cost-optimization
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    - id: check-app-toml-resource-request
+      name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+      source: github
+      repo: "${Metadata.Name}"
+      type: extract
+      filePath: "app.toml"
+      jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
+    - id: check-app-toml-cpu-limits
+      name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+      source: github
+      repo: "${Metadata.Name}"
+      type: extract
+      filePath: "app.toml"
+      jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
+    - id: check-app-toml-cpu-limits
+      name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+      source: github
+      repo: "${Metadata.Name}"
+      type: extract
+      filePath: "app.toml"
+      jsonPath: .service.memory_limits // .service.production.memory_limits | .==null
+    - id: aggregate-resource-requests
+      name: check resource requests and limits
+      type: aggregate
+      dependsOn:
+        - check-app-toml-resource-request
+        - check-app-toml-cpu-limits
+        - check-app-toml-memory-limits
+      method: "and"
+spec:
+  name: allocation-efficiency
+  description: "Verifies if the component has defined resource allocations in an efficient way"
+  format:
+    unit: "Allocation Efficiency"

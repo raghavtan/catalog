@@ -1,0 +1,20 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Scorecard
+metadata:
+    name: cost-optimization
+spec:
+  name: cost-optimization
+  description: "Guidelines to ensure that the service is ready for cost Optimized. https://onefootball.atlassian.net/wiki/spaces/CORE/pages/4908154881/Cost+Optimization+Grading+system"
+  ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
+  state: "PUBLISHED" # DRAFT - PUBLISHED
+  componentTypeIds: ["SERVICE"]
+  importance: REQUIRED
+  scoringStrategyType: "WEIGHT_BASED" # WEIGHT_BASED - POINT_BASED
+  criteria:
+    - hasMetricValue:
+        weight: 100
+        name: allocation-efficiency
+        metricName: allocation-efficiency
+        comparatorValue: 1
+        comparator: "EQUALS" # EQUALS - GREATER_THAN - LESS_THAN - GREATER_THAN_OR_EQUAL_TO - LESS_THAN_OR_EQUAL_TO
