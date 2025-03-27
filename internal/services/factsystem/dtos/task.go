@@ -43,6 +43,10 @@ type TaskAuth struct {
 	TokenVar string `yaml:"tokenVar,omitempty" json:"tokenVar,omitempty"`
 }
 
+type TaskResult struct {
+	Result string // Result of the task
+}
+
 type Task struct {
 	ID        string   `yaml:"id,omitempty" json:"id,omitempty"`
 	Name      string   `yaml:"name,omitempty" json:"name,omitempty"`
@@ -74,6 +78,36 @@ type Task struct {
 	DoneCh       chan TaskResult `yaml:"-" json:"-"` // Channel to signal task completion
 }
 
-type TaskResult struct {
-	Result string // Result of the task
+func (t1 *Task) IsEqual(t2 *Task) bool {
+	if t2 == nil {
+		return false
+	}
+
+	return t1.ID == t2.ID &&
+		t1.Name == t2.Name &&
+		t1.Type == t2.Type &&
+		t1.Source == t2.Source &&
+		t1.URI == t2.URI &&
+		t1.JSONPath == t2.JSONPath &&
+		t1.Auth == t2.Auth &&
+		t1.Repo == t2.Repo &&
+		t1.FilePath == t2.FilePath &&
+		t1.Rule == t2.Rule &&
+		t1.Pattern == t2.Pattern &&
+		t1.Method == t2.Method &&
+		t1.Result == t2.Result &&
+		t1.IsDependsOnEquals(t2.DependsOn)
+}
+
+func (t1 *Task) IsDependsOnEquals(dependsOn []string) bool {
+	if len(t1.DependsOn) != len(dependsOn) {
+		return false
+	}
+	for i := 0; i < len(t1.DependsOn); i++ {
+		if t1.DependsOn[i] != dependsOn[i] {
+			return false
+		}
+	}
+
+	return true
 }

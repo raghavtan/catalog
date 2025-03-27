@@ -33,7 +33,8 @@ func IsEqualMetric(m1, m2 *MetricDTO) bool {
 		reflect.DeepEqual(m1.Spec.Format, m2.Spec.Format) &&
 		m1.Metadata.Name == m2.Metadata.Name &&
 		isEqualLabels(m1.Metadata.Labels, m2.Metadata.Labels) &&
-		isEqualComponentTypes(m1.Metadata.ComponentType, m2.Metadata.ComponentType)
+		isEqualComponentTypes(m1.Metadata.ComponentType, m2.Metadata.ComponentType) &&
+		isEqualFacts(m1.Metadata.Facts, m2.Metadata.Facts)
 }
 
 func isEqualLabels(l1, l2 map[string]string) bool {
@@ -57,6 +58,20 @@ func isEqualComponentTypes(c1, c2 []string) bool {
 
 	for i, c := range c1 {
 		if c2[i] != c {
+			return false
+		}
+	}
+
+	return true
+}
+
+func isEqualFacts(f1, f2 []*fsdtos.Task) bool {
+	if len(f1) != len(f2) {
+		return false
+	}
+
+	for i, f := range f1 {
+		if !f.IsEqual(f2[i]) {
 			return false
 		}
 	}
