@@ -162,7 +162,7 @@ metadata:
             - fetch-slos
           source: jsonapi
           uri: https://api.eu1.honeycomb.io/1/burn_alerts/${Metadata.Name}?slo_id=:slo_id
-          jsonPath: .id
+          jsonPath: .[].id
           auth:
             header: X-Honeycomb-Team
             tokenVar: HONEYCOMB_API_KEY
@@ -236,7 +236,13 @@ metadata:
             header: X-Honeycomb-Team
             tokenVar: HONEYCOMB_API_KEY
           rule: jsonpath
-          rule: "notempty"
+        - id: validate-each-target-is-not-empty-string
+          name: Validate that each target is not an empty string
+          type: validate
+          dependsOn:
+            - fetch-recipients-for-alerts
+          rule: regex_match
+          pattern: ^\S.*$
         - id: validate-all-targets-are-not-empty-strings
           name: Validate that all targets are not empty strings
           type: aggregate

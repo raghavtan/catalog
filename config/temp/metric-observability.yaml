@@ -126,7 +126,7 @@ metadata:
       auth:
         header: X-Honeycomb-Team
         tokenVar: HONEYCOMB_API_KEY
-      jsonPath: .id
+      jsonPath: .[].id
       rule: "jsonpath"
     # Validate that the counts of SLOs and Alerts match
     - id: count-slos

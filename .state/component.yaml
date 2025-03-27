@@ -78,6 +78,13 @@ spec:
                     header: X-Honeycomb-Team
                     tokenVar: HONEYCOMB_API_KEY
                   rule: jsonpath
+                - id: validate-each-target-is-not-empty-string
+                  name: Validate that each target is not an empty string
+                  type: validate
+                  dependsOn:
+                    - fetch-recipients-for-alerts
+                  rule: regex_match
+                  pattern: ^\S.*$
                 - id: validate-all-targets-are-not-empty-strings
                   name: Validate that all targets are not empty strings
                   type: aggregate
@@ -106,7 +113,7 @@ spec:
                     - fetch-slos
                   source: jsonapi
                   uri: https://api.eu1.honeycomb.io/1/burn_alerts/personalisation-service?slo_id=:slo_id
-                  jsonPath: .id
+                  jsonPath: .[].id
                   auth:
                     header: X-Honeycomb-Team
                     tokenVar: HONEYCOMB_API_KEY
@@ -374,7 +381,7 @@ spec:
                     - fetch-slos
                   source: jsonapi
                   uri: https://api.eu1.honeycomb.io/1/burn_alerts/airship-email?slo_id=:slo_id
-                  jsonPath: .id
+                  jsonPath: .[].id
                   auth:
                     header: X-Honeycomb-Team
                     tokenVar: HONEYCOMB_API_KEY
