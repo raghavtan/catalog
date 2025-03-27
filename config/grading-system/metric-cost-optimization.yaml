@@ -15,21 +15,24 @@ metadata:
       repo: "${Metadata.Name}"
       type: extract
       filePath: "app.toml"
+      rule: "jsonpath"
       jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
     - id: check-app-toml-cpu-limits
-      name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+      name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
       source: github
       repo: "${Metadata.Name}"
       type: extract
       filePath: "app.toml"
       jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
-    - id: check-app-toml-cpu-limits
-      name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+      rule: "jsonpath"
+    - id: check-app-toml-memory-limits
+      name: Check if  memory limits are defined in app.toml under [service] or [service.production]
       source: github
       repo: "${Metadata.Name}"
       type: extract
       filePath: "app.toml"
       jsonPath: .service.memory_limits // .service.production.memory_limits | .==null
+      rule: "jsonpath"
     - id: aggregate-resource-requests
       name: check resource requests and limits
       type: aggregate

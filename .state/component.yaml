@@ -1,365 +1,10 @@
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: airship-email
-    componentType: service
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d4861cf6-612e-4f2e-9a59-643614ea0684
-    name: airship-email
-    slug: svc-airship-email
-    description: ""
-    configVersion: 0
-    typeId: SERVICE
-    ownerId: ""
-    dependsOn: []
-    fields: {}
-    links:
-        - id: 9acce2da-db43-48b0-be49-f5661cdb78bf
-          name: r-activation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/CK9LTN6DR
-        - id: 539afa9f-105c-4504-9970-44dbe2f9e33f
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/airship-email
-        - id: 3bb99653-89c1-4550-a573-68f1ac238217
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=airship-email&var-container=airship-email&from=now-1h&to=now
-        - id: cb8424bf-8ef2-4c20-8883-50c382ef84fb
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-    documents: []
-    labels:
-        - fan-activation
-        - airship-email
-        - reach
-    metricSources:
-        adaptive-systems:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9c62c7c7-5ea3-46fe-b35a-d1d56a5783e6
-            name: adaptive-systems-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/773597ed-dd38-4acf-b543-528f2f1a5227
-            facts:
-                - id: app-toml-replicas-min
-                  type: extract
-                  source: github
-                  jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
-                  repo: airship-email
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: app-toml-replicas-max-gt-replicas-min
-                  type: extract
-                  source: github
-                  jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
-                  repo: airship-email
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: cpu-and-memory-hpa-are-set
-                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-                  type: aggregate
-                  dependsOn:
-                    - app-toml-replicas-min
-                    - app-toml-replicas-max-gt-replicas-min
-                  method: and
-        alert-routing-and-notifications:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d1301849-7da2-478a-9045-30900bf8a279
-            name: alert-routing-and-notifications-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/16163373-3aed-4b24-92c1-8a912f772a4c
-            facts:
-                - id: fetch-slos
-                  name: Fetch SLOs
-                  type: extract
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/slos/airship-email
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-alerts-for-slos
-                  name: Fetch alerts for SLOs
-                  type: extract
-                  dependsOn:
-                    - fetch-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/airship-email?slo_id=:slo_id
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-recipients-for-alerts
-                  name: Fetch recipients for Alerts
-                  type: extract
-                  dependsOn:
-                    - fetch-alerts-for-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/airship-email/:alert_id
-                  jsonPath: .recipients[].target
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: validate-each-target-is-not-empty-string
-                  name: Validate that each target is not an empty string
-                  type: validate
-                  dependsOn:
-                    - fetch-recipients-for-alerts
-                  rule: regex_match
-                  pattern: ^\S.*$
-                - id: validate-all-targets-are-not-empty-strings
-                  name: Validate that all targets are not empty strings
-                  type: aggregate
-                  dependsOn:
-                    - validate-each-target-is-not-empty-string
-                  method: and
-        allocation-efficiency:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6ed3659c-b56a-498f-8c12-5b4ae786359e
-            name: allocation-efficiency-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0055ee87-6c59-4ebe-b167-67cb1bbe93f1
-            facts:
-                - id: check-app-toml-resource-request
-                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
-                  repo: airship-email
-                  filePath: app.toml
-                - id: check-app-toml-cpu-limits
-                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
-                  repo: airship-email
-                  filePath: app.toml
-                - id: check-app-toml-cpu-limits
-                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: .service.memory_limits // .service.production.memory_limits | .==null
-                  repo: airship-email
-                  filePath: app.toml
-                - id: aggregate-resource-requests
-                  name: check resource requests and limits
-                  type: aggregate
-                  dependsOn:
-                    - check-app-toml-resource-request
-                    - check-app-toml-cpu-limits
-                    - check-app-toml-memory-limits
-                  method: and
-        critical-alerts-slo-check:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5e0534aa-5a5e-49a4-a8ec-f5402e2e90ed
-            name: critical-alerts-slo-check-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/114c0f3b-fb1b-4753-ba6b-fbda5231462c
-            facts:
-                - id: fetch-slos
-                  name: Fetch SLOs
-                  type: extract
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/slos/airship-email
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-alerts-for-slos
-                  name: Fetch alerts for SLOs
-                  type: extract
-                  dependsOn:
-                    - fetch-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/airship-email?slo_id=:slo_id
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: count-slos
-                  name: Count SLOs
-                  type: aggregate
-                  dependsOn:
-                    - fetch-slos
-                  method: count
-                - id: count-alerts-for-slos
-                  name: Count Alerts
-                  type: aggregate
-                  dependsOn:
-                    - fetch-alerts-for-slos
-                  method: count
-                - id: validate-alerts-for-slos
-                  name: Validate that counts match
-                  type: validate
-                  dependsOn:
-                    - count-slos
-                    - count-alerts-for-slos
-                  rule: deps_match
-        deployment-readiness:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7bd655dc-2015-4044-96b8-c382442ec250
-            name: deployment-readiness-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/8ee4abb9-c8ce-468d-a367-58b18a522150
-            facts:
-                - id: deployment-readiness-replicas-service-production
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: extract
-                  source: github
-                  jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
-                  repo: airship-email
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: deployment-readiness-replicas-service
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: extract
-                  source: github
-                  jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
-                  repo: airship-email
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: aggregate-replicas
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: aggregate
-                  dependsOn:
-                    - deployment-readiness-replicas-service-production
-                    - deployment-readiness-replicas-service
-                  method: or
-        high-availability:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/05b869f2-35cf-4bea-9a21-9e6f1819d05d
-            name: high-availability-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/fb4e5265-0109-452b-b33d-9d2790f6afec
-            facts:
-                - id: app-toml-hpa-target-cpu
-                  type: extract
-                  source: github
-                  jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
-                  repo: airship-email
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: app-toml-hpa-target-memory
-                  type: extract
-                  source: github
-                  jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
-                  repo: airship-email
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: cpu-and-memory-hpa-are-set
-                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-                  type: aggregate
-                  dependsOn:
-                    - app-toml-hpa-target-cpu
-                    - app-toml-hpa-target-memory
-                  method: or
-        instrumentation-check:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a42decb4-ffed-416e-9f9c-7a5947b74b82
-            name: instrumentation-check-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/bffb5752-1a33-4ae3-8664-1ac391af2ad9
-            facts:
-                - id: read-otel-service-name-from-apptoml
-                  name: Read OTEL_SERVICE_NAME from app.toml
-                  type: extract
-                  source: github
-                  jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
-                  repo: airship-email
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: validate-otel-service-name-matches-component-name
-                  name: validate OTEL_SERVICE_NAME matches component name
-                  type: validate
-                  dependsOn:
-                    - read-otel-service-name-from-apptoml
-                  rule: regex_match
-                  pattern: ^airship-email$
-                - id: read-otel-resource-attributes-from-apptoml
-                  name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
-                  type: extract
-                  source: github
-                  jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
-                  repo: airship-email
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: validate-otel-resource-attributes-sample-rate
-                  name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
-                  type: validate
-                  dependsOn:
-                    - read-otel-resource-attributes-from-apptoml
-                  rule: regex_match
-                  pattern: of\.sample_rate=\d+.*
-                - id: validate-otel-resource-attributes-one-sample-rate
-                  name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
-                  type: validate
-                  dependsOn:
-                    - read-otel-resource-attributes-from-apptoml
-                  rule: regex_match
-                  pattern: of\.error_sample_rate=\d+.*
-                - id: either-sample-rate-or-error-sample-rate
-                  name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
-                  type: aggregate
-                  dependsOn:
-                    - validate-otel-resource-attributes-sample-rate
-                    - validate-otel-resource-attributes-error-sample-rate
-                  method: or
-                - id: either-sample-rate-or-error-sample-rate
-                  name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
-                  type: aggregate
-                  dependsOn:
-                    - validate-otel-service-name-matches-component-name
-                    - validate-otel-resource-attributes-one-sample-rate
-                  method: and
-        observability-documentation:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7dd15626-f247-4151-9633-af68d1a9b3ba
-            name: observability-documentation-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0122f58a-5866-4f17-b985-113afe2be877
-            facts:
-                - id: extract-observability-md
-                  name: Extract observability.md
-                  type: extract
-                  source: github
-                  repo: airship-email
-                  filePath: docs/observability.md
-                  rule: notempty
-        organizational-standards:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/2da01507-096f-4c2d-a4df-668e48b2497d
-            name: organizational-standards-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/119c849a-e4be-4b67-beb5-1327dede1694
-            facts:
-                - id: readme-file
-                  name: Check if the README.md file exists
-                  type: extract
-                  source: github
-                  repo: airship-email
-                  filePath: README.md
-                  rule: notempty
-                - id: docs-readme-file
-                  name: Check if the docs/README.md file exists
-                  type: extract
-                  source: github
-                  repo: airship-email
-                  filePath: docs/README.md
-                  rule: notempty
-                - id: docs-index-file
-                  name: Check if the docs/index.md file exists
-                  type: extract
-                  source: github
-                  repo: airship-email
-                  filePath: docs/index.md
-                  rule: notempty
-                - id: aggregate-readme-exists
-                  name: Check if repo has documentation
-                  type: aggregate
-                  dependsOn:
-                    - docs-index-file-exists
-                    - docs-readme-file-exists
-                    - readme-file-exists
-                  method: or
-    tribe: reach
-    squad: fan-activation
----
-apiVersion: of-catalog/v1alpha1
-kind: Component
-metadata:
     name: personalisation-service
     componentType: service
 spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c9db425d-95f1-445d-bb34-cb99103d64d1
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/1a3fc7bd-6f6f-470a-b24c-b4c71b352adb
     name: personalisation-service
     slug: svc-personalisation-service
     description: ""
@@ -369,23 +14,23 @@ spec:
     dependsOn: []
     fields: {}
     links:
-        - id: a837c127-20dc-4774-85a4-b127c2291a1c
+        - id: 63457d70-67c8-4be7-a12b-e88bea56d027
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/personalisation-service
-        - id: 56e953ff-1d00-4dd0-8b7c-240b60051898
+        - id: 368d458c-0359-442d-8d18-397a425715e6
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=personalisation-service&var-container=personalisation-service&from=now-1h&to=now
-        - id: b16a501e-54a0-4785-94c1-22bd41b08c13
+        - id: c5a188cc-e62c-4ae9-b6e3-ebd59ce303d1
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 2f7621c0-e153-4666-addb-79d57e038fdf
+        - id: fa36893f-0734-4315-ad00-45918cd45e00
           name: e-personalisation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: 16921c16-ea49-41ca-8acb-3047b2794083
+        - id: 2acc57dd-5d3f-4651-b028-96abf430ceb0
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
@@ -395,9 +40,9 @@ spec:
         - personalisation
     metricSources:
         adaptive-systems:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0eb01911-986a-45da-acfa-79c97b79f7d7
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d67f935f-1d10-4467-9e9e-61dfd3dfcc5a
             name: adaptive-systems-svc-personalisation-service
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/773597ed-dd38-4acf-b543-528f2f1a5227
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0f72a9b2-c7f2-4eff-b905-1e715c3a8810
             facts:
                 - id: app-toml-replicas-min
                   type: extract
@@ -421,9 +66,9 @@ spec:
                     - app-toml-replicas-max-gt-replicas-min
                   method: and
         alert-routing-and-notifications:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/17ccdaf4-39d6-4615-8d28-e3eb71b25d97
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ea2bc3af-2963-4e2a-b5cf-599552935c65
             name: alert-routing-and-notifications-svc-personalisation-service
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/16163373-3aed-4b24-92c1-8a912f772a4c
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/9a068e9d-a760-4928-a092-e626128aeeb0
             facts:
                 - id: fetch-slos
                   name: Fetch SLOs
@@ -473,9 +118,9 @@ spec:
                     - validate-each-target-is-not-empty-string
                   method: and
         allocation-efficiency:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/97193360-5cf2-44a9-ab25-e8ea79cd92b1
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/192ce081-8733-4415-8482-abf4614edcf1
             name: allocation-efficiency-svc-personalisation-service
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0055ee87-6c59-4ebe-b167-67cb1bbe93f1
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/223be0f4-d7bb-4254-9529-e77aa497e798
             facts:
                 - id: check-app-toml-resource-request
                   name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
@@ -484,20 +129,23 @@ spec:
                   jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
                   repo: personalisation-service
                   filePath: app.toml
+                  rule: jsonpath
                 - id: check-app-toml-cpu-limits
-                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+                  name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
                   type: extract
                   source: github
                   jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
                   repo: personalisation-service
                   filePath: app.toml
-                - id: check-app-toml-cpu-limits
-                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+                  rule: jsonpath
+                - id: check-app-toml-memory-limits
+                  name: Check if  memory limits are defined in app.toml under [service] or [service.production]
                   type: extract
                   source: github
                   jsonPath: .service.memory_limits // .service.production.memory_limits | .==null
                   repo: personalisation-service
                   filePath: app.toml
+                  rule: jsonpath
                 - id: aggregate-resource-requests
                   name: check resource requests and limits
                   type: aggregate
@@ -507,9 +155,9 @@ spec:
                     - check-app-toml-memory-limits
                   method: and
         critical-alerts-slo-check:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ce4ffe1c-dff0-45f2-90fa-c755d83d1a59
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0a67f527-f353-41fd-acc2-e0e53d5df66b
             name: critical-alerts-slo-check-svc-personalisation-service
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/114c0f3b-fb1b-4753-ba6b-fbda5231462c
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a2523e39-c11a-4449-8465-f41613881b22
             facts:
                 - id: fetch-slos
                   name: Fetch SLOs
@@ -553,9 +201,9 @@ spec:
                     - count-alerts-for-slos
                   rule: deps_match
         deployment-readiness:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5560f21b-308f-4f74-a6c6-109e1636eb50
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/817560f9-f411-4c5e-aef0-645d6851dc6b
             name: deployment-readiness-svc-personalisation-service
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/8ee4abb9-c8ce-468d-a367-58b18a522150
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef2ef7b8-cc47-4f67-84d3-ba9bebef1ba8
             facts:
                 - id: deployment-readiness-replicas-service-production
                   name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
@@ -581,9 +229,9 @@ spec:
                     - deployment-readiness-replicas-service
                   method: or
         high-availability:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/c4556ffd-431d-4b82-8af8-384163b12b82
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0afff362-a189-40f0-8a82-de5bcaec09c9
             name: high-availability-svc-personalisation-service
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/fb4e5265-0109-452b-b33d-9d2790f6afec
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/739d09e9-de03-426c-b82e-15e7aeb385b4
             facts:
                 - id: app-toml-hpa-target-cpu
                   type: extract
@@ -607,9 +255,9 @@ spec:
                     - app-toml-hpa-target-memory
                   method: or
         instrumentation-check:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/918aee29-3dd9-420c-bf74-2393faec400d
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7ffbaba3-eb7e-4eda-b6fc-dd5c74eec1aa
             name: instrumentation-check-svc-personalisation-service
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/bffb5752-1a33-4ae3-8664-1ac391af2ad9
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/71dfd551-e995-4092-ab06-e2718e75641e
             facts:
                 - id: read-otel-service-name-from-apptoml
                   name: Read OTEL_SERVICE_NAME from app.toml
@@ -663,9 +311,9 @@ spec:
                     - validate-otel-resource-attributes-one-sample-rate
                   method: and
         observability-documentation:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6b49a69c-f0f9-4442-a488-c2b2deb789a4
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3a3103d4-f3dc-4360-8d9b-53b469563162
             name: observability-documentation-svc-personalisation-service
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0122f58a-5866-4f17-b985-113afe2be877
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/c5f96c3d-6845-4155-9576-62f86725b07f
             facts:
                 - id: extract-observability-md
                   name: Extract observability.md
@@ -675,9 +323,9 @@ spec:
                   filePath: docs/observability.md
                   rule: notempty
         organizational-standards:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4ebfd974-548b-45b0-9e8a-456d21e52bf3
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6c446c06-73d7-4c3f-812a-4eb45fb44640
             name: organizational-standards-svc-personalisation-service
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/119c849a-e4be-4b67-beb5-1327dede1694
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/005d1bf2-7188-4682-861b-a1f8bb7043ed
             facts:
                 - id: readme-file
                   name: Check if the README.md file exists
@@ -710,3 +358,361 @@ spec:
                   method: or
     tribe: engagement
     squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: airship-email
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/fd7b30f8-62b6-4982-87a5-38765c3d6add
+    name: airship-email
+    slug: svc-airship-email
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    fields: {}
+    links:
+        - id: b6ecfe83-b6b5-418c-aec5-c0cfee4e765a
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=airship-email&var-container=airship-email&from=now-1h&to=now
+        - id: be521b69-3c02-420f-90e3-d3bb04c733b4
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 5d5744be-4406-4679-83e9-22dd3e8affe5
+          name: r-activation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CK9LTN6DR
+        - id: 0f972d56-f5af-4fa7-8dde-cf0abf4a8e1f
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/airship-email
+    documents: []
+    labels:
+        - fan-activation
+        - airship-email
+        - reach
+    metricSources:
+        adaptive-systems:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ca77068e-8206-4a90-8a60-9afc52fc8561
+            name: adaptive-systems-svc-airship-email
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0f72a9b2-c7f2-4eff-b905-1e715c3a8810
+            facts:
+                - id: app-toml-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-replicas-max-gt-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-replicas-min
+                    - app-toml-replicas-max-gt-replicas-min
+                  method: and
+        alert-routing-and-notifications:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/49c7e57b-7543-4a58-bbf8-ca60cb476a78
+            name: alert-routing-and-notifications-svc-airship-email
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/9a068e9d-a760-4928-a092-e626128aeeb0
+            facts:
+                - id: fetch-slos
+                  name: Fetch SLOs
+                  type: extract
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/slos/airship-email
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-alerts-for-slos
+                  name: Fetch alerts for SLOs
+                  type: extract
+                  dependsOn:
+                    - fetch-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/airship-email?slo_id=:slo_id
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-recipients-for-alerts
+                  name: Fetch recipients for Alerts
+                  type: extract
+                  dependsOn:
+                    - fetch-alerts-for-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/airship-email/:alert_id
+                  jsonPath: .recipients[].target
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: validate-each-target-is-not-empty-string
+                  name: Validate that each target is not an empty string
+                  type: validate
+                  dependsOn:
+                    - fetch-recipients-for-alerts
+                  rule: regex_match
+                  pattern: ^\S.*$
+                - id: validate-all-targets-are-not-empty-strings
+                  name: Validate that all targets are not empty strings
+                  type: aggregate
+                  dependsOn:
+                    - validate-each-target-is-not-empty-string
+                  method: and
+        allocation-efficiency:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a9c953ce-5ec0-4e7a-bcbd-0356562f72dd
+            name: allocation-efficiency-svc-airship-email
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/223be0f4-d7bb-4254-9529-e77aa497e798
+            facts:
+                - id: check-app-toml-resource-request
+                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: check-app-toml-cpu-limits
+                  name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: check-app-toml-memory-limits
+                  name: Check if  memory limits are defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: .service.memory_limits // .service.production.memory_limits | .==null
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: aggregate-resource-requests
+                  name: check resource requests and limits
+                  type: aggregate
+                  dependsOn:
+                    - check-app-toml-resource-request
+                    - check-app-toml-cpu-limits
+                    - check-app-toml-memory-limits
+                  method: and
+        critical-alerts-slo-check:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ad1ced14-4868-4675-bea4-a45af11182d9
+            name: critical-alerts-slo-check-svc-airship-email
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a2523e39-c11a-4449-8465-f41613881b22
+            facts:
+                - id: fetch-slos
+                  name: Fetch SLOs
+                  type: extract
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/slos/airship-email
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-alerts-for-slos
+                  name: Fetch alerts for SLOs
+                  type: extract
+                  dependsOn:
+                    - fetch-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/airship-email?slo_id=:slo_id
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: count-slos
+                  name: Count SLOs
+                  type: aggregate
+                  dependsOn:
+                    - fetch-slos
+                  method: count
+                - id: count-alerts-for-slos
+                  name: Count Alerts
+                  type: aggregate
+                  dependsOn:
+                    - fetch-alerts-for-slos
+                  method: count
+                - id: validate-alerts-for-slos
+                  name: Validate that counts match
+                  type: validate
+                  dependsOn:
+                    - count-slos
+                    - count-alerts-for-slos
+                  rule: deps_match
+        deployment-readiness:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/e501d3da-1fa1-4337-ae52-c0e012a3fbe1
+            name: deployment-readiness-svc-airship-email
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef2ef7b8-cc47-4f67-84d3-ba9bebef1ba8
+            facts:
+                - id: deployment-readiness-replicas-service-production
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: deployment-readiness-replicas-service
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: aggregate-replicas
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: aggregate
+                  dependsOn:
+                    - deployment-readiness-replicas-service-production
+                    - deployment-readiness-replicas-service
+                  method: or
+        high-availability:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3da2e4f4-c2ec-44b9-b9eb-ae2963c520e0
+            name: high-availability-svc-airship-email
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/739d09e9-de03-426c-b82e-15e7aeb385b4
+            facts:
+                - id: app-toml-hpa-target-cpu
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-hpa-target-memory
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-hpa-target-cpu
+                    - app-toml-hpa-target-memory
+                  method: or
+        instrumentation-check:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef9ab761-b4ef-42a0-b9a7-17bcbb0310ca
+            name: instrumentation-check-svc-airship-email
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/71dfd551-e995-4092-ab06-e2718e75641e
+            facts:
+                - id: read-otel-service-name-from-apptoml
+                  name: Read OTEL_SERVICE_NAME from app.toml
+                  type: extract
+                  source: github
+                  jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: validate-otel-service-name-matches-component-name
+                  name: validate OTEL_SERVICE_NAME matches component name
+                  type: validate
+                  dependsOn:
+                    - read-otel-service-name-from-apptoml
+                  rule: regex_match
+                  pattern: ^airship-email$
+                - id: read-otel-resource-attributes-from-apptoml
+                  name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
+                  type: extract
+                  source: github
+                  jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
+                  repo: airship-email
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: validate-otel-resource-attributes-sample-rate
+                  name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
+                  type: validate
+                  dependsOn:
+                    - read-otel-resource-attributes-from-apptoml
+                  rule: regex_match
+                  pattern: of\.sample_rate=\d+.*
+                - id: validate-otel-resource-attributes-one-sample-rate
+                  name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
+                  type: validate
+                  dependsOn:
+                    - read-otel-resource-attributes-from-apptoml
+                  rule: regex_match
+                  pattern: of\.error_sample_rate=\d+.*
+                - id: either-sample-rate-or-error-sample-rate
+                  name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
+                  type: aggregate
+                  dependsOn:
+                    - validate-otel-resource-attributes-sample-rate
+                    - validate-otel-resource-attributes-error-sample-rate
+                  method: or
+                - id: either-sample-rate-or-error-sample-rate
+                  name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
+                  type: aggregate
+                  dependsOn:
+                    - validate-otel-service-name-matches-component-name
+                    - validate-otel-resource-attributes-one-sample-rate
+                  method: and
+        observability-documentation:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/07a439bf-2f6f-4c49-857d-39af3606c565
+            name: observability-documentation-svc-airship-email
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/c5f96c3d-6845-4155-9576-62f86725b07f
+            facts:
+                - id: extract-observability-md
+                  name: Extract observability.md
+                  type: extract
+                  source: github
+                  repo: airship-email
+                  filePath: docs/observability.md
+                  rule: notempty
+        organizational-standards:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/cfecab42-e491-4b5b-96ad-17cba93fcb39
+            name: organizational-standards-svc-airship-email
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/005d1bf2-7188-4682-861b-a1f8bb7043ed
+            facts:
+                - id: readme-file
+                  name: Check if the README.md file exists
+                  type: extract
+                  source: github
+                  repo: airship-email
+                  filePath: README.md
+                  rule: notempty
+                - id: docs-readme-file
+                  name: Check if the docs/README.md file exists
+                  type: extract
+                  source: github
+                  repo: airship-email
+                  filePath: docs/README.md
+                  rule: notempty
+                - id: docs-index-file
+                  name: Check if the docs/index.md file exists
+                  type: extract
+                  source: github
+                  repo: airship-email
+                  filePath: docs/index.md
+                  rule: notempty
+                - id: aggregate-readme-exists
+                  name: Check if repo has documentation
+                  type: aggregate
+                  dependsOn:
+                    - docs-index-file-exists
+                    - docs-readme-file-exists
+                    - readme-file-exists
+                  method: or
+    tribe: reach
+    squad: fan-activation
