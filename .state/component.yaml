@@ -1,12 +1,277 @@
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
+    name: personalisation-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c9db425d-95f1-445d-bb34-cb99103d64d1
+    name: personalisation-service
+    slug: svc-personalisation-service
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
+    dependsOn: []
+    fields: {}
+    links:
+        - id: a837c127-20dc-4774-85a4-b127c2291a1c
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/personalisation-service
+        - id: 56e953ff-1d00-4dd0-8b7c-240b60051898
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=personalisation-service&var-container=personalisation-service&from=now-1h&to=now
+        - id: b16a501e-54a0-4785-94c1-22bd41b08c13
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 2f7621c0-e153-4666-addb-79d57e038fdf
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: 16921c16-ea49-41ca-8acb-3047b2794083
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources:
+        alert-routing-and-notifications:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/17ccdaf4-39d6-4615-8d28-e3eb71b25d97
+            name: alert-routing-and-notifications-svc-personalisation-service
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/16163373-3aed-4b24-92c1-8a912f772a4c
+            facts:
+                - id: fetch-slos
+                  name: Fetch SLOs
+                  type: extract
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/slos/personalisation-service
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-alerts-for-slos
+                  name: Fetch alerts for SLOs
+                  type: extract
+                  dependsOn:
+                    - fetch-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/personalisation-service?slo_id=:slo_id
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-recipients-for-alerts
+                  name: Fetch recipients for Alerts
+                  type: extract
+                  dependsOn:
+                    - fetch-alerts-for-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/personalisation-service/:alert_id
+                  jsonPath: .recipients[].target
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: validate-all-targets-are-not-empty-strings
+                  name: Validate that all targets are not empty strings
+                  type: aggregate
+                  dependsOn:
+                    - validate-each-target-is-not-empty-string
+                  method: and
+        critical-alerts-slo-check:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ce4ffe1c-dff0-45f2-90fa-c755d83d1a59
+            name: critical-alerts-slo-check-svc-personalisation-service
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/114c0f3b-fb1b-4753-ba6b-fbda5231462c
+            facts:
+                - id: fetch-slos
+                  name: Fetch SLOs
+                  type: extract
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/slos/personalisation-service
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-alerts-for-slos
+                  name: Fetch alerts for SLOs
+                  type: extract
+                  dependsOn:
+                    - fetch-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/personalisation-service?slo_id=:slo_id
+                  jsonPath: .id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: count-slos
+                  name: Count SLOs
+                  type: aggregate
+                  dependsOn:
+                    - fetch-slos
+                  method: count
+                - id: count-alerts-for-slos
+                  name: Count Alerts
+                  type: aggregate
+                  dependsOn:
+                    - fetch-alerts-for-slos
+                  method: count
+                - id: validate-alerts-for-slos
+                  name: Validate that counts match
+                  type: validate
+                  dependsOn:
+                    - count-slos
+                    - count-alerts-for-slos
+                  rule: deps_match
+        deployment-readiness:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5560f21b-308f-4f74-a6c6-109e1636eb50
+            name: deployment-readiness-svc-personalisation-service
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/8ee4abb9-c8ce-468d-a367-58b18a522150
+            facts:
+                - id: deployment-readiness-replicas-service-production
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
+                  repo: personalisation-service
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: deployment-readiness-replicas-service
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
+                  repo: personalisation-service
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: aggregate-replicas
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: aggregate
+                  dependsOn:
+                    - deployment-readiness-replicas-service-production
+                    - deployment-readiness-replicas-service
+                  method: or
+        instrumentation-check:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/918aee29-3dd9-420c-bf74-2393faec400d
+            name: instrumentation-check-svc-personalisation-service
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/bffb5752-1a33-4ae3-8664-1ac391af2ad9
+            facts:
+                - id: read-otel-service-name-from-apptoml
+                  name: Read OTEL_SERVICE_NAME from app.toml
+                  type: extract
+                  source: github
+                  jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
+                  repo: personalisation-service
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: validate-otel-service-name-matches-component-name
+                  name: validate OTEL_SERVICE_NAME matches component name
+                  type: validate
+                  dependsOn:
+                    - read-otel-service-name-from-apptoml
+                  rule: regex_match
+                  pattern: ^personalisation-service$
+                - id: read-otel-resource-attributes-from-apptoml
+                  name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
+                  type: extract
+                  source: github
+                  jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
+                  repo: personalisation-service
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: validate-otel-resource-attributes-sample-rate
+                  name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
+                  type: validate
+                  dependsOn:
+                    - read-otel-resource-attributes-from-apptoml
+                  rule: regex_match
+                  pattern: of\.sample_rate=\d+.*
+                - id: validate-otel-resource-attributes-one-sample-rate
+                  name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
+                  type: validate
+                  dependsOn:
+                    - read-otel-resource-attributes-from-apptoml
+                  rule: regex_match
+                  pattern: of\.error_sample_rate=\d+.*
+                - id: either-sample-rate-or-error-sample-rate
+                  name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
+                  type: aggregate
+                  dependsOn:
+                    - validate-otel-resource-attributes-sample-rate
+                    - validate-otel-resource-attributes-error-sample-rate
+                  method: or
+                - id: either-sample-rate-or-error-sample-rate
+                  name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
+                  type: aggregate
+                  dependsOn:
+                    - validate-otel-service-name-matches-component-name
+                    - validate-otel-resource-attributes-one-sample-rate
+                  method: and
+        observability-documentation:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6b49a69c-f0f9-4442-a488-c2b2deb789a4
+            name: observability-documentation-svc-personalisation-service
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0122f58a-5866-4f17-b985-113afe2be877
+            facts:
+                - id: extract-observability-md
+                  name: Extract observability.md
+                  type: extract
+                  source: github
+                  repo: personalisation-service
+                  filePath: docs/observability.md
+                  rule: "notempty"
+        organizational-standards:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4ebfd974-548b-45b0-9e8a-456d21e52bf3
+            name: organizational-standards-svc-personalisation-service
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/119c849a-e4be-4b67-beb5-1327dede1694
+            facts:
+                - id: readme-file
+                  name: Check if the README.md file exists
+                  type: extract
+                  source: github
+                  repo: personalisation-service
+                  filePath: README.md
+                  rule: "notempty"
+                - id: docs-readme-file
+                  name: Check if the docs/README.md file exists
+                  type: extract
+                  source: github
+                  repo: personalisation-service
+                  filePath: docs/README.md
+                  rule: "notempty"
+                - id: docs-index-file
+                  name: Check if the docs/index.md file exists
+                  type: extract
+                  source: github
+                  repo: personalisation-service
+                  filePath: docs/index.md
+                  rule: "notempty"
+                - id: aggregate-readme-exists
+                  name: Check if repo has documentation
+                  type: aggregate
+                  dependsOn:
+                    - docs-index-file-exists
+                    - docs-readme-file-exists
+                    - readme-file-exists
+                  method: or
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
     name: airship-email
     componentType: service
 spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/08aeaa51-4663-4ddc-b227-8748b600737b
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d4861cf6-612e-4f2e-9a59-643614ea0684
     name: airship-email
-    slug: ""
+    slug: svc-airship-email
     description: ""
     configVersion: 0
     typeId: SERVICE
@@ -14,22 +279,22 @@ spec:
     dependsOn: []
     fields: {}
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/airship-email
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=airship-email&var-container=airship-email&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
+        - id: 9acce2da-db43-48b0-be49-f5661cdb78bf
           name: r-activation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CK9LTN6DR
+        - id: 539afa9f-105c-4504-9970-44dbe2f9e33f
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/airship-email
+        - id: 3bb99653-89c1-4550-a573-68f1ac238217
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=airship-email&var-container=airship-email&from=now-1h&to=now
+        - id: cb8424bf-8ef2-4c20-8883-50c382ef84fb
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents: []
     labels:
         - fan-activation
@@ -37,9 +302,9 @@ spec:
         - reach
     metricSources:
         alert-routing-and-notifications:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9e2d2ba8-8e45-4ee3-8c3b-da1129344dbc
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d1301849-7da2-478a-9045-30900bf8a279
             name: alert-routing-and-notifications-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/075ae30c-3992-4de4-86b2-f33aff2bcb2a
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/16163373-3aed-4b24-92c1-8a912f772a4c
             facts:
                 - id: fetch-slos
                   name: Fetch SLOs
@@ -50,6 +315,7 @@ spec:
                   auth:
                     header: X-Honeycomb-Team
                     tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
                 - id: fetch-alerts-for-slos
                   name: Fetch alerts for SLOs
                   type: extract
@@ -61,6 +327,7 @@ spec:
                   auth:
                     header: X-Honeycomb-Team
                     tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
                 - id: fetch-recipients-for-alerts
                   name: Fetch recipients for Alerts
                   type: extract
@@ -84,10 +351,11 @@ spec:
                   type: aggregate
                   dependsOn:
                     - validate-each-target-is-not-empty-string
+                  method: and
         critical-alerts-slo-check:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/b9dd35bd-f178-413d-af32-a48386636878
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5e0534aa-5a5e-49a4-a8ec-f5402e2e90ed
             name: critical-alerts-slo-check-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/668e9c44-9839-4843-96cb-d0285c7eb13c
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/114c0f3b-fb1b-4753-ba6b-fbda5231462c
             facts:
                 - id: fetch-slos
                   name: Fetch SLOs
@@ -98,6 +366,7 @@ spec:
                   auth:
                     header: X-Honeycomb-Team
                     tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
                 - id: fetch-alerts-for-slos
                   name: Fetch alerts for SLOs
                   type: extract
@@ -109,16 +378,19 @@ spec:
                   auth:
                     header: X-Honeycomb-Team
                     tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
                 - id: count-slos
                   name: Count SLOs
                   type: aggregate
                   dependsOn:
                     - fetch-slos
+                  method: count
                 - id: count-alerts-for-slos
                   name: Count Alerts
                   type: aggregate
                   dependsOn:
                     - fetch-alerts-for-slos
+                  method: count
                 - id: validate-alerts-for-slos
                   name: Validate that counts match
                   type: validate
@@ -127,22 +399,26 @@ spec:
                     - count-alerts-for-slos
                   rule: deps_match
         deployment-readiness:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/799082b8-cee0-467a-9a93-7765826e8fdf
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7bd655dc-2015-4044-96b8-c382442ec250
             name: deployment-readiness-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/534fac90-3f8f-4fe5-acf1-dd0cde1c4d67
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/8ee4abb9-c8ce-468d-a367-58b18a522150
             facts:
                 - id: deployment-readiness-replicas-service-production
                   name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
                   type: extract
                   source: github
+                  jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
                   repo: airship-email
                   filePath: app.toml
+                  rule: jsonpath
                 - id: deployment-readiness-replicas-service
                   name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
                   type: extract
                   source: github
+                  jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
                   repo: airship-email
                   filePath: app.toml
+                  rule: jsonpath
                 - id: aggregate-replicas
                   name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
                   type: aggregate
@@ -151,17 +427,18 @@ spec:
                     - deployment-readiness-replicas-service
                   method: or
         instrumentation-check:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9a2f891-9fd3-4f11-ae4c-8b4761d3f12d
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a42decb4-ffed-416e-9f9c-7a5947b74b82
             name: instrumentation-check-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/7c84617b-b850-4b2c-a8d1-0d3cde1d28c1
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/bffb5752-1a33-4ae3-8664-1ac391af2ad9
             facts:
                 - id: read-otel-service-name-from-apptoml
                   name: Read OTEL_SERVICE_NAME from app.toml
                   type: extract
                   source: github
-                  jsonPath: .envs | if type == "array" then .[] | .id else .production[] | .OTEL_SERVICE_NAME end
+                  jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
                   repo: airship-email
                   filePath: app.toml
+                  rule: jsonpath
                 - id: validate-otel-service-name-matches-component-name
                   name: validate OTEL_SERVICE_NAME matches component name
                   type: validate
@@ -173,9 +450,10 @@ spec:
                   name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
                   type: extract
                   source: github
-                  jsonPath: .envs | if type == "array" then .[] | .id else .production[] | .OTEL_RESOURCE_ATTRIBUTES end
+                  jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
                   repo: airship-email
                   filePath: app.toml
+                  rule: jsonpath
                 - id: validate-otel-resource-attributes-sample-rate
                   name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
                   type: validate
@@ -196,7 +474,7 @@ spec:
                   dependsOn:
                     - validate-otel-resource-attributes-sample-rate
                     - validate-otel-resource-attributes-error-sample-rate
-                  rule: or
+                  method: or
                 - id: either-sample-rate-or-error-sample-rate
                   name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
                   type: aggregate
@@ -205,9 +483,9 @@ spec:
                     - validate-otel-resource-attributes-one-sample-rate
                   method: and
         observability-documentation:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5844ad30-56fa-4321-bbda-2b5c06ff8f90
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7dd15626-f247-4151-9633-af68d1a9b3ba
             name: observability-documentation-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0ab028f7-40f9-4fbf-844c-4910a2e50b86
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0122f58a-5866-4f17-b985-113afe2be877
             facts:
                 - id: extract-observability-md
                   name: Extract observability.md
@@ -215,17 +493,11 @@ spec:
                   source: github
                   repo: airship-email
                   filePath: docs/observability.md
-                - id: observability-md-is-not-empty
-                  name: Validate that observability.md is not empty
-                  type: validate
-                  dependsOn:
-                    - extract-observability-md
-                  rule: regex_match
-                  pattern: ^\S.*$
+                  rule: "notempty"
         organizational-standards:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9365e63f-6349-4793-a338-e73f647cf93c
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/2da01507-096f-4c2d-a4df-668e48b2497d
             name: organizational-standards-svc-airship-email
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1a256f6c-9392-4989-8dbb-aa0f5d27d21b
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/119c849a-e4be-4b67-beb5-1327dede1694
             facts:
                 - id: readme-file
                   name: Check if the README.md file exists
@@ -233,39 +505,21 @@ spec:
                   source: github
                   repo: airship-email
                   filePath: README.md
-                - id: readme-file-exists
-                  name: Validate that file README.md exists
-                  type: validate
-                  dependsOn:
-                    - readme-file
-                  rule: regex_match
-                  pattern: ^\S.*$
+                  rule: "notempty"
                 - id: docs-readme-file
                   name: Check if the docs/README.md file exists
                   type: extract
                   source: github
                   repo: airship-email
                   filePath: docs/README.md
-                - id: docs-readme-file-exists
-                  name: Validate that file README.md exists
-                  type: validate
-                  dependsOn:
-                    - docs-readme-file
-                  rule: regex_match
-                  pattern: ^\S.*$
+                  rule: "notempty"
                 - id: docs-index-file
                   name: Check if the docs/index.md file exists
                   type: extract
                   source: github
                   repo: airship-email
                   filePath: docs/index.md
-                - id: docs-index-file-exists
-                  name: Validate that file README.md exists
-                  type: validate
-                  dependsOn:
-                    - docs-index-file
-                  rule: regex_match
-                  pattern: ^\S.*$
+                  rule: "notempty"
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
                   type: aggregate

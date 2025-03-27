@@ -3,6 +3,7 @@ package utils
 import (
 	"encoding/json"
 	"log"
+	"regexp"
 
 	"github.com/itchyny/gojq"
 )
@@ -18,7 +19,7 @@ func InspectExtractedData(JSONPath string, jsonData []byte) (interface{}, error)
 		log.Fatal(err)
 	}
 
-	res := make([]string, 0)
+	res := make([]interface{}, 0)
 	iter := query.Run(data)
 	for {
 		v, ok := iter.Next()
@@ -30,8 +31,17 @@ func InspectExtractedData(JSONPath string, jsonData []byte) (interface{}, error)
 			return nil, err
 		}
 
-		res = append(res, v.(string))
+		res = append(res, v)
 	}
 
 	return res, nil
+}
+
+func InspectExtractedDataWithRegex(pattern string, jsonData []byte) (interface{}, error) {
+	regexPattern, regexErr := regexp.Compile(pattern)
+	if regexErr != nil {
+		return false, regexErr
+	}
+
+	return regexPattern.FindAll(jsonData, -1), nil
 }

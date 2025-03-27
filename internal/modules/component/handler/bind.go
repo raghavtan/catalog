@@ -154,6 +154,7 @@ func (h *BindHandler) prepareSourceMetricFact(task *fsdtos.Task, component dtos.
 		Rule:      task.Rule,
 		Pattern:   utils.ReplaceMetricFactPlaceholders(task.Pattern, component),
 		DependsOn: task.DependsOn,
+		Method:    task.Method,
 
 		// Are these still worth it?
 		// RegexPattern:     task.RegexPattern,

@@ -9,6 +9,7 @@ import (
 	"io"
 	"net/http"
 	"path/filepath"
+	"regexp"
 	"strconv"
 
 	"github.com/motain/of-catalog/internal/services/configservice"
@@ -50,12 +51,28 @@ func (ex *Extractor) Extract(ctx context.Context, task *dtos.Task, deps []*dtos.
 		return errors.New("dependency result not provided")
 	}
 
-	if value, ok := deps[0].Result.(string); ok {
-		return ex.handleSingleResult(ctx, task, value)
+	if values, ok := deps[0].Result.([]interface{}); ok {
+		if len(values) == 0 {
+			return errors.New("dependency result not provided")
+		}
+
+		stringValues := make([]string, len(values))
+		for i, value := range values {
+			stringValues[i] = fmt.Sprintf("%v", value)
+		}
+		return ex.handleMultipleResults(ctx, task, stringValues)
 	}
 
 	if values, ok := deps[0].Result.([]string); ok {
+		if len(values) == 0 {
+			return errors.New("dependency result not provided")
+		}
+
 		return ex.handleMultipleResults(ctx, task, values)
+	}
+
+	if value, ok := deps[0].Result.(interface{}); ok {
+		return ex.handleSingleResult(ctx, task, fmt.Sprintf("%v", value))
 	}
 
 	return errors.New("dependency result is not a string or a string array")
@@ -64,7 +81,7 @@ func (ex *Extractor) Extract(ctx context.Context, task *dtos.Task, deps []*dtos.
 func (ex *Extractor) handleSingleResult(ctx context.Context, task *dtos.Task, dependencyResult string) error {
 	result, processErr := ex.processData(ctx, task, dependencyResult)
 	if processErr != nil {
-		return fmt.Errorf("failed to process request: %v", processErr)
+		return fmt.Errorf("single result handler failed to process request: %v", processErr)
 	}
 	task.Result = result
 	return nil
@@ -75,7 +92,14 @@ func (ex *Extractor) handleMultipleResults(ctx context.Context, task *dtos.Task,
 	for _, value := range dependencyResults {
 		result, processErr := ex.processData(ctx, task, value)
 		if processErr != nil {
-			return fmt.Errorf("failed to process request: %v", processErr)
+			return fmt.Errorf("multiple results handler failed to process request: %v", processErr)
+		}
+
+		if values, ok := result.([]interface{}); ok {
+			for _, v := range values {
+				results = append(results, fmt.Sprintf("%v", v))
+			}
+			continue
 		}
 
 		if values, ok := result.([]string); ok {
@@ -108,18 +132,29 @@ func (ex *Extractor) processData(ctx context.Context, task *dtos.Task, dependenc
 		return nil, fmt.Errorf("failed to process request for source %s: %v", task.Source, dataErr)
 	}
 
-	if task.JSONPath == "" {
+	switch dtos.TaskRule(task.Rule) {
+	case dtos.JSONPathRule:
+		return utils.InspectExtractedData(task.JSONPath, jsonData)
+	case dtos.NotEmptyRule:
+		return jsonData != nil, nil
+	default:
 		return jsonData, nil
 	}
-
-	return utils.InspectExtractedData(task.JSONPath, jsonData)
 }
 
 func (fe *Extractor) processGithub(task *dtos.Task, result string) ([]byte, error) {
 	extractFilePath := utils.ReplacePlaceholder(task.FilePath, result)
 	fileContent, fileErr := fe.github.GetFileContent(task.Repo, extractFilePath)
 	if fileErr != nil {
+		re := regexp.MustCompile(`404 Not Found`)
+		if re.MatchString(fileErr.Error()) {
+			return nil, nil
+		}
 		return nil, fileErr
+	}
+
+	if dtos.TaskRule(task.Rule) != dtos.JSONPathRule {
+		return []byte(fileContent), nil
 	}
 
 	fileExtension := filepath.Ext(task.FilePath)

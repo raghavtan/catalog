@@ -51,6 +51,3 @@ wire-all:
 
 generate:
 	$(GO) generate ./...
-
-
-

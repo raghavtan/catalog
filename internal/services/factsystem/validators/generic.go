@@ -38,7 +38,7 @@ func (fc *Validator) Check(task *dtos.Task, deps []*dtos.Task) error {
 		return errors.New("dependency result not provided")
 	}
 
-	if values, isStringSlice := dep.Result.([]string); isStringSlice {
+	if values, isStringSlice := dep.Result.([]interface{}); isStringSlice {
 		err := fc.validateList(task, values)
 		if err != nil {
 			return err
@@ -66,7 +66,7 @@ func (fc *Validator) validateDepsRelations(task *dtos.Task, deps []*dtos.Task) e
 	}
 }
 
-func (fc *Validator) validateList(task *dtos.Task, list []string) error {
+func (fc *Validator) validateList(task *dtos.Task, list []interface{}) error {
 	switch dtos.TaskRule(task.Rule) {
 	case dtos.UniqueRule:
 		return fc.validateUnique(task, list)
@@ -75,8 +75,8 @@ func (fc *Validator) validateList(task *dtos.Task, list []string) error {
 	}
 }
 
-func (fc *Validator) validateUnique(task *dtos.Task, list []string) error {
-	uniqueMap := make(map[string]bool)
+func (fc *Validator) validateUnique(task *dtos.Task, list []interface{}) error {
+	uniqueMap := make(map[interface{}]bool)
 	for _, v := range list {
 		if _, ok := uniqueMap[v]; ok {
 			task.Result = false
@@ -89,7 +89,7 @@ func (fc *Validator) validateUnique(task *dtos.Task, list []string) error {
 	return nil
 }
 
-func (fc *Validator) validateEach(task *dtos.Task, list []string) error {
+func (fc *Validator) validateEach(task *dtos.Task, list []interface{}) error {
 	res := make([]bool, len(list))
 	for i, v := range list {
 		ok, err := fc.validate(task, v)

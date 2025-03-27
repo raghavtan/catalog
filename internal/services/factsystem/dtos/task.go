@@ -11,6 +11,11 @@ const (
 type TaskRule string
 
 const (
+	// Extraction rules
+	JSONPathRule TaskRule = "jsonpath"
+	NotEmptyRule TaskRule = "notempty"
+
+	// Validation rules
 	DepsMatchRule  TaskRule = "deps_match"
 	UniqueRule     TaskRule = "unique"
 	RegexMatchRule TaskRule = "regex_match"

@@ -15,7 +15,7 @@ metadata:
       name: Read OTEL_SERVICE_NAME from app.toml
       type: extract
       source: github
-      jsonPath: .envs | if type == "array" then .[] | .id else .production[] | .OTEL_SERVICE_NAME end
+      jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
       auth: null
       repo: ${Metadata.Name}
       filePath: app.toml
@@ -30,7 +30,7 @@ metadata:
       name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
       type: extract
       source: github
-      jsonPath: .envs | if type == "array" then .[] | .id else .production[] | .OTEL_RESOURCE_ATTRIBUTES end
+      jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
       auth: null
       repo: ${Metadata.Name}
       filePath: app.toml
@@ -52,7 +52,7 @@ metadata:
       dependsOn:
         - validate-otel-resource-attributes-sample-rate
         - validate-otel-resource-attributes-error-sample-rate
-      rule: "or"
+      method: "or"
     # Aggregate the OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES facts
     - id: either-sample-rate-or-error-sample-rate
       name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
@@ -60,7 +60,7 @@ metadata:
       dependsOn:
         - validate-otel-service-name-matches-component-name
         - validate-otel-resource-attributes-one-sample-rate
-      rule: "and"
+      method: "and"
 spec:
   name: instrumentation-check
   description: "Verifies that the component is set up to record relevant telemetry (metrics or traces)."

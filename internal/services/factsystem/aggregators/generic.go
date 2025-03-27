@@ -90,6 +90,10 @@ func (ag *Aggregator) sum(results interface{}) (float64, error) {
 }
 
 func (ag *Aggregator) and(results interface{}) (bool, error) {
+	if value, ok := results.(bool); ok {
+		return value, nil
+	}
+
 	values, castErr := utils.ToSlice[bool](results)
 	if castErr != nil {
 		return false, fmt.Errorf("combineResult error for method \"and\": %s", castErr)
@@ -104,6 +108,10 @@ func (ag *Aggregator) and(results interface{}) (bool, error) {
 }
 
 func (ag *Aggregator) or(results interface{}) (bool, error) {
+	if value, ok := results.(bool); ok {
+		return value, nil
+	}
+
 	values, castErr := utils.ToSlice[bool](results)
 	if castErr != nil {
 		return false, fmt.Errorf("combineResult error for method \"or\": %s", castErr)

@@ -15,14 +15,16 @@ metadata:
       repo: "${Metadata.Name}"
       type: extract
       filePath: "app.toml"
-      jsonpath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
+      jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
+      rule: "jsonpath"
     - id: deployment-readiness-replicas-service
       name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
       source: github
       repo: "${Metadata.Name}"
       type: extract
       filePath: "app.toml"
-      jsonpath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
+      jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
+      rule: "jsonpath"
     - id: aggregate-replicas
       name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
       type: aggregate
@@ -52,39 +54,21 @@ metadata:
       repo: "${Metadata.Name}"
       type: extract
       filePath: "README.md"
-    - id: readme-file-exists
-      name: Validate that file README.md exists
-      type: validate
-      rule: "regex_match"
-      pattern: ^\S.*$
-      dependsOn:
-        - readme-file
+      rule: "notempty"
     - id: docs-readme-file
       name: Check if the docs/README.md file exists
       source: github
       repo: "${Metadata.Name}"
       type: extract
       filePath: "docs/README.md"
-    - id: docs-readme-file-exists
-      name: Validate that file README.md exists
-      type: validate
-      rule: "regex_match"
-      pattern: ^\S.*$
-      dependsOn:
-        - docs-readme-file
+      rule: "notempty"
     - id: docs-index-file
       name: Check if the docs/index.md file exists
       source: github
       repo: "${Metadata.Name}"
       type: extract
       filePath: "docs/index.md"
-    - id: docs-index-file-exists
-      name: Validate that file README.md exists
-      type: validate
-      rule: "regex_match"
-      pattern: ^\S.*$
-      dependsOn:
-        - docs-index-file
+      rule: "notempty"
     - id: aggregate-readme-exists
       name: Check if repo has documentation
       type: aggregate
