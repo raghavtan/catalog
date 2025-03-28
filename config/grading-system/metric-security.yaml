@@ -13,7 +13,8 @@ metadata:
       name: Check if Trivy is used in CI/CD pipeline
       type: extract
       source: github
-      searchString: "motain/onefootball-actions/security@master"
+      repo: "${Metadata.Name}"
+      searchString: "motain/onefootball-actions/security"
       rule: "search"
 spec:
   name: security-as-pipeline

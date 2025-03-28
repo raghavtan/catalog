@@ -98,6 +98,7 @@ func (t1 *Task) IsEqual(t2 *Task) bool {
 		t1.Pattern == t2.Pattern &&
 		t1.Method == t2.Method &&
 		t1.Result == t2.Result &&
+		t1.SearchString == t2.SearchString &&
 		t1.IsDependsOnEquals(t2.DependsOn)
 }
 
