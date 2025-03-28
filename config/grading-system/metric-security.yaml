@@ -21,3 +21,29 @@ spec:
   description: "Ensure We have early detection security alerts at CI/CD stage before going live with production deployment."
   format:
     unit: "Security as Pipeline"
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+  name: vulnerability-management
+  labels:
+    grading-system: security
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    - id: service-vulnerabilities-prometheus
+      name: Get summary of vulnerabilities for services from Prometheus reports
+      type: extract
+      source: prometheus
+      rule: "fetch-prometheus-reports"
+    - id: infrastructure-vulnerabilities-aws
+      name: Get vulnerabilities for infrastructure from AWS Security Hub (sec account) (v2)
+      type: extract
+      source: aws-security-hub
+      rule: "fetch-aws-vulnerabilities"
+spec:
+  name: vulnerability-management
+  description: "Resource (in focus) should be able to enforce condition to stay at latest patch when severity/bugs are found and also remediation options in place when threats are discovered. This will focus specifically on state of the software codebase."
+  format:
+    unit: "Vulnerability Management"

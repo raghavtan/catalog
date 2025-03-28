@@ -17,6 +17,7 @@ type ConfigServiceInterface interface {
 	GetCompassToken() string
 	GetCompassHost() string
 	GetCompassCloudId() string
+	GetPrometheusURL() string
 }
 
 type ConfigService struct{}
@@ -60,4 +61,7 @@ func (c *ConfigService) GetCompassHost() string {
 
 func (c *ConfigService) GetCompassCloudId() string {
 	return os.Getenv("COMPASS_CLOUD_ID")
+}
+func (c *ConfigService) GetPrometheusURL() string {
+	return os.Getenv("PROMETHEUS_URL")
 }

@@ -15,6 +15,7 @@ import (
 	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/services/jsonservice"
 	"github.com/motain/of-catalog/internal/services/keyringservice"
+	"github.com/motain/of-catalog/internal/services/prometheusservice"
 )
 
 var ProviderSet = wire.NewSet(
@@ -40,6 +41,8 @@ var ProviderSet = wire.NewSet(
 	// JSONService
 	jsonservice.NewJSONService,
 
+	prometheusservice.NewPrometheusService,
+	wire.Bind(new(prometheusservice.PrometheusServiceInterface), new(*prometheusservice.PrometheusService)),
 	// --- metric module ---
 	// Repository
 	repository.NewRepository,
