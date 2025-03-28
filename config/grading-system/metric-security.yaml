@@ -1,0 +1,22 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+  name: security-as-pipeline
+  labels:
+    grading-system: security
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    - id: trivy-exists-in-ci
+      name: Check if Trivy is used in CI/CD pipeline
+      type: extract
+      source: github
+      searchString: "motain/onefootball-actions/security@master"
+      rule: "search"
+spec:
+  name: security-as-pipeline
+  description: "Ensure We have early detection security alerts at CI/CD stage before going live with production deployment."
+  format:
+    unit: "Security as Pipeline"

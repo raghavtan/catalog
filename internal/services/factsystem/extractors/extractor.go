@@ -122,6 +122,13 @@ func (ex *Extractor) processData(ctx context.Context, task *dtos.Task, dependenc
 	var dataErr error
 	switch dtos.TaskSource(task.Source) {
 	case dtos.GitHubTaskSource:
+		if task.Rule == string(dtos.SearchRule) {
+			searchListResult, searchErr := ex.github.Search(task.Repo, task.SearchString)
+			if searchErr != nil {
+				return nil, fmt.Errorf("failed to process github Search request for source for string %s %s: %v", task.SearchString, task.Source, searchErr)
+			}
+			return len(searchListResult) != 0, nil
+		}
 		jsonData, dataErr = ex.processGithub(task, unquoted(dependencyResult))
 	case dtos.JSONAPITaskSource:
 		jsonData, dataErr = ex.processJSONAPI(ctx, task, unquoted(dependencyResult))

@@ -14,6 +14,7 @@ const (
 	// Extraction rules
 	JSONPathRule TaskRule = "jsonpath"
 	NotEmptyRule TaskRule = "notempty"
+	SearchRule   TaskRule = "search"
 
 	// Validation rules
 	DepsMatchRule  TaskRule = "deps_match"
@@ -57,9 +58,10 @@ type Task struct {
 	Source string `yaml:"source,omitempty" json:"source,omitempty"`
 
 	// Extract related fields for REST API calls
-	URI      string    `yaml:"uri,omitempty" json:"uri,omitempty"`
-	JSONPath string    `yaml:"jsonPath,omitempty" json:"jsonPath,omitempty"`
-	Auth     *TaskAuth `yaml:"auth,omitempty" json:"auth,omitempty"`
+	URI          string    `yaml:"uri,omitempty" json:"uri,omitempty"`
+	JSONPath     string    `yaml:"jsonPath,omitempty" json:"jsonPath,omitempty"`
+	Auth         *TaskAuth `yaml:"auth,omitempty" json:"auth,omitempty"`
+	SearchString string    `yaml:"searchString,omitempty" json:"searchString,omitempty"`
 
 	// Extract related fields for GitHub API calls
 	Repo     string `yaml:"repo,omitempty" json:"repo,omitempty"`
