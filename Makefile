@@ -31,7 +31,8 @@ stest:
 	@C=$${C:-""}; \
 	C=$${C%/}; \
 	echo "Running tests in C: ./$$C/..."; \
-	GOPRIVATE=github.com/motain $(GO) test -race -count=1 -tags unit ./$$C/... -cover -coverprofile=coverage.out | grep -v vendor/ | grep -v /vendor/ | grep -v /tools/ | grep -v /mocks | grep -v /wire_gen.go
+	GOPRIVATE=github.com/motain $(GO) test -race -count=1 -tags unit ./$$C/... -cover -coverprofile=coverage.out | grep -v vendor/ | grep -v /vendor/ | grep -v /tools/ | grep -v /mocks/ | grep -v /wire_gen.go && \
+	cat coverage.out | grep -v "mocks" | grep -v "_gen.go" > cover.out
 
 .PHONY: coverage/func
 test/coverage: test
