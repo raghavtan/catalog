@@ -11,19 +11,19 @@ import (
 	"github.com/motain/of-catalog/internal/services/ownerservice/dtos"
 )
 
-var groups dtos.GroupList
-
 type OwnerServiceInterface interface {
 	GetOwnerByTribeAndSquad(tribe, squad string) (*dtos.Owner, error)
 }
 
 type OwnerService struct {
 	gitHubService githubservice.GitHubServiceInterface
+	groups        dtos.GroupList
 }
 
 func NewOwnerService(gitHubService githubservice.GitHubServiceInterface) *OwnerService {
 	return &OwnerService{
 		gitHubService: gitHubService,
+		groups:        nil,
 	}
 }
 
@@ -45,8 +45,8 @@ func (os *OwnerService) GetOwnerByTribeAndSquad(tribe, squad string) (*dtos.Owne
 func (os *OwnerService) extractData() (dtos.GroupList, error) {
 	// Cacbe the groups to avoid multiple requests.
 	// The cache is valid for one execution of the command.
-	if groups != nil {
-		return groups, nil
+	if os.groups != nil {
+		return os.groups, nil
 	}
 
 	fileContent, fileErr := os.gitHubService.GetFileContent("of-org", "main.yaml")
@@ -68,7 +68,7 @@ func (os *OwnerService) extractData() (dtos.GroupList, error) {
 		results = append(results, &result)
 	}
 
-	groups = results
+	os.groups = results
 	return results, nil
 }
 

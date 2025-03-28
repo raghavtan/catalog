@@ -20,17 +20,18 @@ build:
 
 .PHONY: lint
 lint:
-	$(GO) install "honnef.co/go/tools/cmd/staticcheck@latest" && $(GO) list -tags functional,unit ./...  | grep -v vendor/ | xargs -L1 staticcheck -tags functional,unit -f stylish -fail all -tests
+	$(GO) install "honnef.co/go/tools/cmd/staticcheck@latest" && $(GO) list -tags functional,unit ./...  | grep -v vendor/ | grep -v /vendor/ | grep -v /tools/ | grep -v /mocks | grep -v /wire_gen.go | xargs -L1 staticcheck -tags functional,unit -f stylish -fail all -tests
 
 .PHONY: test
 test:
-	GOPRIVATE=github.com/motain $(GO) test -v -race -count=1 -tags unit ./... -cover -coverprofile=coverage.out | grep -v vendor/
+	GOPRIVATE=github.com/motain $(GO) test -v -race -count=1 -tags unit ./... -cover -coverprofile=coverage.out | grep -v vendor/ | grep -v /vendor/ | grep -v /tools/ | grep -v /mocks | grep -v /wire_gen.go
 
-.PHONY: slimtest
-slimtest:
-	@CONTEXT=$${CONTEXT:-./...}; \
-	echo "Running tests in context: $$CONTEXT"; \
-	GOPRIVATE=github.com/motain $(GO) test -race -count=1 -tags unit $$CONTEXT -cover -coverprofile=coverage.out | grep -v vendor/
+.PHONY: stest
+stest:
+	@C=$${C:-""}; \
+	C=$${C%/}; \
+	echo "Running tests in C: ./$$C/..."; \
+	GOPRIVATE=github.com/motain $(GO) test -race -count=1 -tags unit ./$$C/... -cover -coverprofile=coverage.out | grep -v vendor/ | grep -v /vendor/ | grep -v /tools/ | grep -v /mocks | grep -v /wire_gen.go
 
 .PHONY: coverage/func
 test/coverage: test
