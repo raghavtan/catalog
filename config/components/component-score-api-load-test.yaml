@@ -1,0 +1,28 @@
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: score-api-load-test
+    componentType: service
+spec:
+    name: score-api-load-test
+    slug: ""
+    description: ""
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    tribe: engagement
+    squad: matchxp
+    links:
+        - name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/score-api-load-test
+        - name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=score-api-load-test&var-container=score-api-load-test&from=now-1h&to=now
+        - name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    labels:
+        - engagement
+        - matchxp
+        - score-api-load-test
