@@ -26,6 +26,12 @@ lint:
 test:
 	GOPRIVATE=github.com/motain $(GO) test -v -race -count=1 -tags unit ./... -cover -coverprofile=coverage.out | grep -v vendor/
 
+.PHONY: test-slim
+test-slim:
+	@CONTEXT?=./...; \
+	echo "Running tests in context: $$CONTEXT"; \
+	GOPRIVATE=github.com/motain $(GO) test -race -count=1 -tags unit $$CONTEXT -cover -coverprofile=coverage.out | grep -v vendor/
+
 .PHONY: coverage/func
 test/coverage: test
 	$(GO) tool cover -func=coverage.out | awk '/^[^total]/ {print $NF}' | awk -F'%' '{sum+=$1; if(min==""){min=$1}; if($1>max){max=$1}; if($1<min){min=$1}; count++} END {print "Average:", sum/count "%"; print "Max:", max "%"; print "Min:", min "%"}'
