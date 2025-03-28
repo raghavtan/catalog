@@ -28,7 +28,7 @@ test:
 
 .PHONY: test-slim
 test-slim:
-	@CONTEXT?=./...; \
+	@CONTEXT=$${CONTEXT:-./...}; \
 	echo "Running tests in context: $$CONTEXT"; \
 	GOPRIVATE=github.com/motain $(GO) test -race -count=1 -tags unit $$CONTEXT -cover -coverprofile=coverage.out | grep -v vendor/
 
