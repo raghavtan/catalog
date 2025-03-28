@@ -26,8 +26,8 @@ lint:
 test:
 	GOPRIVATE=github.com/motain $(GO) test -v -race -count=1 -tags unit ./... -cover -coverprofile=coverage.out | grep -v vendor/
 
-.PHONY: test-slim
-test-slim:
+.PHONY: slimtest
+slimtest:
 	@CONTEXT=$${CONTEXT:-./...}; \
 	echo "Running tests in context: $$CONTEXT"; \
 	GOPRIVATE=github.com/motain $(GO) test -race -count=1 -tags unit $$CONTEXT -cover -coverprofile=coverage.out | grep -v vendor/
