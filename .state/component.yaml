@@ -34862,18 +34862,6 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: ""
-          name: Personalisation
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/personalisation-service
@@ -34901,352 +34889,114 @@ spec:
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=personalisation-service&var-container=personalisation-service&from=now-1h&to=now
-    documents: []
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: ""
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+    documents:
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/3052102e-c1d3-4b50-a173-187bebbb357d
+          title: Home
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/index.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/8ca25b29-a05c-4d64-8bb8-6fb1d03d04f1
+          title: Tabs
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/tabs.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/66972ed3-ce14-4028-aee3-fec128dd0e07
+          title: Personalisation API
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/personalisation-api.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/8c32dea5-75e2-4a79-9999-aff51890b865
+          title: Article Sourced Worker
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/article-sourced-worker.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/318390cf-09f6-4889-bfc9-f88a5a777475
+          title: Article Classified Worker
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/article-classified-worker.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ee92dc76-322a-4eb8-b3a1-7a877a6d84e6
+          title: Article Unpublished Worker
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/article-unpublished-worker.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ab675cb3-725a-4dc0-a61f-f69a0055e06a
+          title: Video Published Worker
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/video-published-worker.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a04ca7b1-2c2d-426f-8006-169a1ace1501
+          title: Video Unpublished Worker
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/video-unpublished-worker.md
     labels:
-        - engagement
+        - fan-experience
         - personalisation
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6e02169d-0770-46a4-a627-a1d24772cff2
             name: adaptive-systems-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0f72a9b2-c7f2-4eff-b905-1e715c3a8810
-            facts:
-                - id: app-toml-replicas-min
-                  type: extract
-                  source: github
-                  jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
-                  repo: personalisation-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: app-toml-replicas-max-gt-replicas-min
-                  type: extract
-                  source: github
-                  jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
-                  repo: personalisation-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: cpu-and-memory-hpa-are-set
-                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-                  type: aggregate
-                  dependsOn:
-                    - app-toml-replicas-min
-                    - app-toml-replicas-max-gt-replicas-min
-                  method: and
+            facts: []
         alert-routing-and-notifications:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/b29a77b4-dc2b-45ff-a0b6-541d3b8094af
             name: alert-routing-and-notifications-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/9a068e9d-a760-4928-a092-e626128aeeb0
-            facts:
-                - id: fetch-slos
-                  name: Fetch SLOs
-                  type: extract
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/slos/personalisation-service
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-alerts-for-slos
-                  name: Fetch alerts for SLOs
-                  type: extract
-                  dependsOn:
-                    - fetch-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/personalisation-service?slo_id=:slo_id
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-recipients-for-alerts
-                  name: Fetch recipients for Alerts
-                  type: extract
-                  dependsOn:
-                    - fetch-alerts-for-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/personalisation-service/:alert_id
-                  jsonPath: .recipients[].target
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: validate-each-target-is-not-empty-string
-                  name: Validate that each target is not an empty string
-                  type: validate
-                  dependsOn:
-                    - fetch-recipients-for-alerts
-                  rule: regex_match
-                  pattern: ^\S.*$
-                - id: validate-all-targets-are-not-empty-strings
-                  name: Validate that all targets are not empty strings
-                  type: aggregate
-                  dependsOn:
-                    - validate-each-target-is-not-empty-string
-                  method: and
+            facts: []
         allocation-efficiency:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/80e92a42-3e82-44ed-bd9c-29816ed3afff
             name: allocation-efficiency-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/223be0f4-d7bb-4254-9529-e77aa497e798
-            facts:
-                - id: check-app-toml-resource-request
-                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
-                  repo: personalisation-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: check-app-toml-cpu-limits
-                  name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
-                  repo: personalisation-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: check-app-toml-memory-limits
-                  name: Check if  memory limits are defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: .service.memory_limits // .service.production.memory_limits | .==null
-                  repo: personalisation-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: aggregate-resource-requests
-                  name: check resource requests and limits
-                  type: aggregate
-                  dependsOn:
-                    - check-app-toml-resource-request
-                    - check-app-toml-cpu-limits
-                    - check-app-toml-memory-limits
-                  method: and
+            facts: []
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4aff44c1-ce59-46c1-a117-d5fc0e0af0aa
             name: critical-alerts-slo-check-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a2523e39-c11a-4449-8465-f41613881b22
-            facts:
-                - id: fetch-slos
-                  name: Fetch SLOs
-                  type: extract
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/slos/personalisation-service
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-alerts-for-slos
-                  name: Fetch alerts for SLOs
-                  type: extract
-                  dependsOn:
-                    - fetch-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/personalisation-service?slo_id=:slo_id
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: count-slos
-                  name: Count SLOs
-                  type: aggregate
-                  dependsOn:
-                    - fetch-slos
-                  method: count
-                - id: count-alerts-for-slos
-                  name: Count Alerts
-                  type: aggregate
-                  dependsOn:
-                    - fetch-alerts-for-slos
-                  method: count
-                - id: validate-alerts-for-slos
-                  name: Validate that counts match
-                  type: validate
-                  dependsOn:
-                    - count-slos
-                    - count-alerts-for-slos
-                  rule: deps_match
+            facts: []
         deployment-readiness:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/55fb793f-d033-4181-8dee-d902c00fc756
             name: deployment-readiness-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef2ef7b8-cc47-4f67-84d3-ba9bebef1ba8
-            facts:
-                - id: deployment-readiness-replicas-service-production
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: extract
-                  source: github
-                  jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
-                  repo: personalisation-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: deployment-readiness-replicas-service
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: extract
-                  source: github
-                  jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
-                  repo: personalisation-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: aggregate-replicas
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: aggregate
-                  dependsOn:
-                    - deployment-readiness-replicas-service-production
-                    - deployment-readiness-replicas-service
-                  method: or
+            facts: []
         high-availability:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/e167978c-b46e-45ff-9fe2-8cb2d2789231
             name: high-availability-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/739d09e9-de03-426c-b82e-15e7aeb385b4
-            facts:
-                - id: app-toml-hpa-target-cpu
-                  type: extract
-                  source: github
-                  jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
-                  repo: personalisation-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: app-toml-hpa-target-memory
-                  type: extract
-                  source: github
-                  jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
-                  repo: personalisation-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: cpu-and-memory-hpa-are-set
-                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-                  type: aggregate
-                  dependsOn:
-                    - app-toml-hpa-target-cpu
-                    - app-toml-hpa-target-memory
-                  method: or
+            facts: []
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/87a3b5cf-9d92-4021-aa86-d458bf28499f
             name: instrumentation-check-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/71dfd551-e995-4092-ab06-e2718e75641e
-            facts:
-                - id: read-otel-service-name-from-apptoml
-                  name: Read OTEL_SERVICE_NAME from app.toml
-                  type: extract
-                  source: github
-                  jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
-                  repo: personalisation-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: validate-otel-service-name-matches-component-name
-                  name: validate OTEL_SERVICE_NAME matches component name
-                  type: validate
-                  dependsOn:
-                    - read-otel-service-name-from-apptoml
-                  rule: regex_match
-                  pattern: ^personalisation-service$
-                - id: read-otel-resource-attributes-from-apptoml
-                  name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
-                  type: extract
-                  source: github
-                  jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
-                  repo: personalisation-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: validate-otel-resource-attributes-sample-rate
-                  name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
-                  type: validate
-                  dependsOn:
-                    - read-otel-resource-attributes-from-apptoml
-                  rule: regex_match
-                  pattern: of\.sample_rate=\d+.*
-                - id: validate-otel-resource-attributes-one-sample-rate
-                  name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
-                  type: validate
-                  dependsOn:
-                    - read-otel-resource-attributes-from-apptoml
-                  rule: regex_match
-                  pattern: of\.error_sample_rate=\d+.*
-                - id: either-sample-rate-or-error-sample-rate
-                  name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
-                  type: aggregate
-                  dependsOn:
-                    - validate-otel-resource-attributes-sample-rate
-                    - validate-otel-resource-attributes-error-sample-rate
-                  method: or
-                - id: either-sample-rate-or-error-sample-rate
-                  name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
-                  type: aggregate
-                  dependsOn:
-                    - validate-otel-service-name-matches-component-name
-                    - validate-otel-resource-attributes-one-sample-rate
-                  method: and
+            facts: []
         observability-documentation:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/2fef3dfc-fb82-4a1f-a273-bcb0a7d450c0
             name: observability-documentation-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/c5f96c3d-6845-4155-9576-62f86725b07f
-            facts:
-                - id: extract-observability-md
-                  name: Extract observability.md
-                  type: extract
-                  source: github
-                  repo: personalisation-service
-                  filePath: docs/observability.md
-                  rule: notempty
+            facts: []
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/91702871-f3df-42e2-b44a-6f2cc598d7f9
             name: organizational-standards-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/005d1bf2-7188-4682-861b-a1f8bb7043ed
-            facts:
-                - id: readme-file
-                  name: Check if the README.md file exists
-                  type: extract
-                  source: github
-                  repo: personalisation-service
-                  filePath: README.md
-                  rule: notempty
-                - id: docs-readme-file
-                  name: Check if the docs/README.md file exists
-                  type: extract
-                  source: github
-                  repo: personalisation-service
-                  filePath: docs/README.md
-                  rule: notempty
-                - id: docs-index-file
-                  name: Check if the docs/index.md file exists
-                  type: extract
-                  source: github
-                  repo: personalisation-service
-                  filePath: docs/index.md
-                  rule: notempty
-                - id: paas-onboarded
-                  name: Check if the service is using PaaS
-                  type: extract
-                  source: github
-                  rule: search
-                - id: aggregate-readme-exists
-                  name: Check if repo has documentation
-                  type: aggregate
-                  dependsOn:
-                    - docs-index-file-exists
-                    - docs-readme-file-exists
-                    - readme-file-exists
-                  method: or
-                - id: aggregate
-                  name: Check if repo follows organizational standards
-                  type: aggregate
-                  dependsOn:
-                    - aggregate-readme-exists
-                    - paas-onboarded
-                  method: and
+            facts: []
         security-as-pipeline:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/58cdec0b-919a-4933-b6aa-333a86c142d7
             name: security-as-pipeline-svc-personalisation-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/295e70fa-9359-4a0f-9188-6f7b6a0dbd7e
-            facts:
-                - id: trivy-exists-in-ci
-                  name: Check if Trivy is used in CI/CD pipeline
-                  type: extract
-                  source: github
-                  repo: personalisation-service
-                  rule: search
-    tribe: engagement
+            facts: []
+    tribe: fan-experience
     squad: personalisation
 ---
 apiVersion: of-catalog/v1alpha1
