@@ -10,7 +10,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    tribe: engagement
+    tribe: fan-experience
     squad: matchxp
     links:
         - name: Repository
@@ -25,4 +25,4 @@ spec:
     labels:
         - matchxp
         - xpa-mobile-backend-load-test
-        - engagement
+        - fan-experience
