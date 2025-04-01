@@ -50448,10 +50448,6 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: r-consumer-web
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C93MHM7QE
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/webserver
@@ -50479,10 +50475,14 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: r-consumer-web
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C93MHM7QE
     documents: []
     labels:
-        - reach
         - consumer-web
+        - reach
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c033457-01aa-4caa-9c76-e0e9b2ab5078
