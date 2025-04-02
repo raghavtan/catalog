@@ -10,6 +10,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.65
 	github.com/aws/aws-sdk-go-v2/service/sts v1.33.17
 	github.com/bmatcuk/doublestar/v4 v4.8.1
+	github.com/golang/mock v1.6.0
 	github.com/google/go-github/v58 v58.0.0
 	github.com/google/wire v0.6.0
 	github.com/itchyny/gojq v0.12.17
@@ -40,7 +41,6 @@ require (
 	github.com/danieljoos/wincred v1.2.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
-	github.com/golang/mock v1.6.0 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/itchyny/timefmt-go v0.1.6 // indirect

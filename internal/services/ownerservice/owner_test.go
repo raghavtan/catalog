@@ -4,11 +4,11 @@ import (
 	"errors"
 	"testing"
 
+	"github.com/golang/mock/gomock"
 	githubservice "github.com/motain/of-catalog/internal/services/githubservice/mocks"
 	"github.com/motain/of-catalog/internal/services/ownerservice"
 	"github.com/motain/of-catalog/internal/services/ownerservice/dtos"
 	"github.com/stretchr/testify/assert"
-	"go.uber.org/mock/gomock"
 )
 
 var ofOrgMainYAML = `
