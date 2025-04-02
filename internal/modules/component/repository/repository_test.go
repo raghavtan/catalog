@@ -6,13 +6,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/golang/mock/gomock"
 	"github.com/motain/of-catalog/internal/modules/component/repository"
 	"github.com/motain/of-catalog/internal/modules/component/repository/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/resources"
 	compassserviceError "github.com/motain/of-catalog/internal/services/compassservice"
 	compassservice "github.com/motain/of-catalog/internal/services/compassservice/mocks"
 	"github.com/stretchr/testify/assert"
-	gomock "go.uber.org/mock/gomock"
 )
 
 func TestRepository_Create(t *testing.T) {
@@ -57,7 +57,7 @@ func TestRepository_Create(t *testing.T) {
 			component: resources.Component{Slug: "test-slug"},
 			mockSetup: func() {
 				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.CreateComponentOutput) error {
 						output.Compass = dtos.CompassCreatedComponentOutput{
 							CreateComponent: dtos.CompassCreateComponentOutput{
@@ -95,7 +95,7 @@ func TestRepository_Create(t *testing.T) {
 			component: resources.Component{Name: "test-slug"},
 			mockSetup: func() {
 				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.CreateComponentOutput) error {
 						return errors.New("compass error")
 					},
@@ -109,7 +109,7 @@ func TestRepository_Create(t *testing.T) {
 			component: resources.Component{},
 			mockSetup: func() {
 				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.CreateComponentOutput) error {
 						output.Compass = dtos.CompassCreatedComponentOutput{
 							CreateComponent: dtos.CompassCreateComponentOutput{
@@ -160,7 +160,7 @@ func TestRepository_Update(t *testing.T) {
 				Slug: "test-slug",
 			},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UpdateComponentOutput) error {
 						output.Compass.UpdateComponent.Success = true
 
@@ -181,7 +181,7 @@ func TestRepository_Update(t *testing.T) {
 				Slug: "test-slug",
 			},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UpdateComponentOutput) error {
 						output.Compass.UpdateComponent.Success = false
 						output.Compass.UpdateComponent.Errors = []compassserviceError.CompassError{
@@ -192,7 +192,7 @@ func TestRepository_Update(t *testing.T) {
 					},
 				)
 				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.ComponentByReferenceOutput) error {
 						output.Compass.Component = dtos.Component{
 							ID: "component-id-1",
@@ -211,7 +211,7 @@ func TestRepository_Update(t *testing.T) {
 						return nil
 					},
 				)
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UpdateComponentOutput) error {
 						output.Compass.UpdateComponent.Success = true
 
@@ -238,7 +238,7 @@ func TestRepository_Update(t *testing.T) {
 				Slug: "test-slug",
 			},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedResult: resources.Component{},
 			expectedError:  errors.New("Update component error for : compass error"),
@@ -250,7 +250,7 @@ func TestRepository_Update(t *testing.T) {
 				Slug: "test-slug",
 			},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UpdateComponentOutput) error {
 						output.Compass.UpdateComponent.Success = false
 						output.Compass.UpdateComponent.Errors = []compassserviceError.CompassError{
@@ -293,7 +293,7 @@ func TestRepository_Delete(t *testing.T) {
 			name:      "successfully deletes a component",
 			component: resources.Component{ID: "component-id"},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DeleteComponentOutput) error {
 						output.Compass.DeleteComponent.Success = true
 						return nil
@@ -306,7 +306,7 @@ func TestRepository_Delete(t *testing.T) {
 			name:      "fails to delete component due to compass error",
 			component: resources.Component{ID: "component-id"},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedError: errors.New("Delete component error for component-id: compass error"),
 		},
@@ -314,7 +314,7 @@ func TestRepository_Delete(t *testing.T) {
 			name:      "fails to delete component due to unsuccessful response",
 			component: resources.Component{ID: "component-id"},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DeleteComponentOutput) error {
 						output.Compass.DeleteComponent.Success = false
 						output.Compass.DeleteComponent.Errors = []compassserviceError.CompassError{
@@ -330,7 +330,7 @@ func TestRepository_Delete(t *testing.T) {
 			name:      "component not found, no error returned",
 			component: resources.Component{ID: "component-id"},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DeleteComponentOutput) error {
 						output.Compass.DeleteComponent.Errors = []compassserviceError.CompassError{
 							{Message: "not found"},
@@ -370,7 +370,7 @@ func TestRepository_SetDependency(t *testing.T) {
 			dependent: resources.Component{ID: "dependent-id"},
 			provider:  resources.Component{ID: "provider-id"},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.CreateDependencyOutput) error {
 						output.Compass.CreateDependency.Success = true
 						return nil
@@ -384,7 +384,7 @@ func TestRepository_SetDependency(t *testing.T) {
 			dependent: resources.Component{ID: "dependent-id"},
 			provider:  resources.Component{ID: "provider-id"},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedError: errors.New("SetDependency error for dependent-id: compass error"),
 		},
@@ -393,7 +393,7 @@ func TestRepository_SetDependency(t *testing.T) {
 			dependent: resources.Component{ID: "dependent-id"},
 			provider:  resources.Component{ID: "provider-id"},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.CreateDependencyOutput) error {
 						output.Compass.CreateDependency.Success = false
 						output.Compass.CreateDependency.Errors = []compassserviceError.CompassError{
@@ -435,7 +435,7 @@ func TestRepository_UnsetDependency(t *testing.T) {
 			dependent: resources.Component{ID: "dependent-id"},
 			provider:  resources.Component{ID: "provider-id"},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DeleteDependencyOutput) error {
 						output.Compass.DeleteDependency.Success = true
 						return nil
@@ -449,7 +449,7 @@ func TestRepository_UnsetDependency(t *testing.T) {
 			dependent: resources.Component{ID: "dependent-id"},
 			provider:  resources.Component{ID: "provider-id"},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedError: errors.New("UnsetDependency dependency error for dependent-id: compass error"),
 		},
@@ -458,7 +458,7 @@ func TestRepository_UnsetDependency(t *testing.T) {
 			dependent: resources.Component{ID: "dependent-id"},
 			provider:  resources.Component{ID: "provider-id"},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DeleteDependencyOutput) error {
 						output.Compass.DeleteDependency.Success = false
 						output.Compass.DeleteDependency.Errors = []compassserviceError.CompassError{
@@ -500,7 +500,7 @@ func TestRepository_GetBySlug(t *testing.T) {
 			component: resources.Component{Slug: "test-slug"},
 			mockSetup: func() {
 				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.ComponentByReferenceOutput) error {
 						output.Compass.Component = dtos.Component{
 							ID: "component-id",
@@ -536,7 +536,7 @@ func TestRepository_GetBySlug(t *testing.T) {
 			component: resources.Component{Slug: "test-slug"},
 			mockSetup: func() {
 				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedResult: nil,
 			expectedError:  errors.New("GetBySlug error for test-slug: compass error"),
@@ -546,7 +546,7 @@ func TestRepository_GetBySlug(t *testing.T) {
 			component: resources.Component{Slug: "test-slug"},
 			mockSetup: func() {
 				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.ComponentByReferenceOutput) error {
 						output.Compass.Component = dtos.Component{}
 						return nil
@@ -593,7 +593,7 @@ func TestRepository_AddDocument(t *testing.T) {
 			},
 			mockSetup: func() {
 				mockCompass.EXPECT().GetCompassCloudId().Return("cloud-id")
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.DocumentationCategoriesOutput) error {
 						documentCategory := struct {
 							ID   string `json:"id"`
@@ -609,7 +609,7 @@ func TestRepository_AddDocument(t *testing.T) {
 						return nil
 					},
 				)
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.CreateDocumentOutput) error {
 						repo.DocumentCategories = map[string]string{"type-1": "category-id-1"}
 						output.Compass.AddDocument.Details.ID = "document-id"
@@ -636,7 +636,7 @@ func TestRepository_AddDocument(t *testing.T) {
 				URL:   "http://example.com",
 			},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedResult: resources.Document{},
 			expectedError:  errors.New("AddDocument error for component-id/Test Document: compass error"),
@@ -650,7 +650,7 @@ func TestRepository_AddDocument(t *testing.T) {
 				URL:   "http://example.com",
 			},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.CreateDocumentOutput) error {
 						output.Compass.AddDocument.Details.ID = "document-id"
 						output.Compass.AddDocument.Success = true
@@ -677,7 +677,7 @@ func TestRepository_AddDocument(t *testing.T) {
 				URL:   "http://example.com",
 			},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 				repo.DocumentCategories = map[string]string{"type-1": "category-id-1"}
 			},
 			expectedResult: resources.Document{},
@@ -692,7 +692,7 @@ func TestRepository_AddDocument(t *testing.T) {
 				URL:   "http://example.com",
 			},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.CreateDocumentOutput) error {
 						output.Compass.AddDocument.Success = false
 						output.Compass.AddDocument.Errors = []compassserviceError.CompassError{
@@ -743,7 +743,7 @@ func TestRepository_UpdateDocument(t *testing.T) {
 			},
 			mockSetup: func() {
 				repo.DocumentCategories = map[string]string{"type-1": "category-id-1"}
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UpdateDocumentOutput) error {
 						output.Compass.UpdateDocument.Success = true
 						return nil
@@ -763,7 +763,7 @@ func TestRepository_UpdateDocument(t *testing.T) {
 			},
 			mockSetup: func() {
 				repo.DocumentCategories = map[string]string{"type-1": "category-id-1"}
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedError: errors.New("UpdateDocument error for component-id/Updated Document: compass error"),
 		},
@@ -778,7 +778,7 @@ func TestRepository_UpdateDocument(t *testing.T) {
 			},
 			mockSetup: func() {
 				repo.DocumentCategories = map[string]string{"type-1": "category-id-1"}
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UpdateDocumentOutput) error {
 						output.Compass.UpdateDocument.Success = false
 						output.Compass.UpdateDocument.Errors = []compassserviceError.CompassError{
@@ -823,7 +823,7 @@ func TestRepository_BindMetric(t *testing.T) {
 			metricID:   "metric-id",
 			identifier: "identifier",
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.BindMetricOutput) error {
 						output.Compass.CreateMetricSource.CreateMetricSource.ID = "metric-source-id"
 						output.Compass.CreateMetricSource.Success = true
@@ -840,7 +840,7 @@ func TestRepository_BindMetric(t *testing.T) {
 			metricID:   "metric-id",
 			identifier: "identifier",
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedResult: "",
 			expectedError:  errors.New("BindMetric error for component-id/metric-id: compass error"),
@@ -851,7 +851,7 @@ func TestRepository_BindMetric(t *testing.T) {
 			metricID:   "metric-id",
 			identifier: "identifier",
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.BindMetricOutput) error {
 						output.Compass.CreateMetricSource.Success = false
 						output.Compass.CreateMetricSource.Errors = []compassserviceError.CompassError{
@@ -893,7 +893,7 @@ func TestRepository_UnbindMetric(t *testing.T) {
 			name:         "successfully unbinds a metric",
 			metricSource: resources.MetricSource{ID: "metric-source-id"},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UnbindMetricOutput) error {
 						output.Compass.DeleteMetricSource.Success = true
 						return nil
@@ -906,7 +906,7 @@ func TestRepository_UnbindMetric(t *testing.T) {
 			name:         "fails to unbind metric due to compass error",
 			metricSource: resources.MetricSource{ID: "metric-source-id"},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("compass error"))
 			},
 			expectedError: errors.New("UnbindMetric error for metric-source-id: compass error"),
 		},
@@ -914,7 +914,7 @@ func TestRepository_UnbindMetric(t *testing.T) {
 			name:         "fails to unbind metric due to unsuccessful response",
 			metricSource: resources.MetricSource{ID: "metric-source-id"},
 			mockSetup: func() {
-				mockCompass.EXPECT().Run(gomock.Any(), gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
 					func(ctx context.Context, query string, variables map[string]interface{}, output *dtos.UnbindMetricOutput) error {
 						output.Compass.DeleteMetricSource.Success = false
 						output.Compass.DeleteMetricSource.Errors = []compassserviceError.CompassError{
