@@ -16,7 +16,7 @@ func Interface2Float64(result interface{}) (float64, error) {
 		return String2Float64(v)
 	default:
 		fmt.Printf("unexpected result type: %T\n", v)
-		fmt.Printf("result: %v\n", v)
+		fmt.Printf("result: %s\n", v)
 		return 0, fmt.Errorf("unexpected result type: %T", v)
 	}
 }

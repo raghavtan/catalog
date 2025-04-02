@@ -13,8 +13,14 @@ spec:
   scoringStrategyType: "WEIGHT_BASED" # WEIGHT_BASED - POINT_BASED
   criteria:
     - hasMetricValue:
-        weight: 100
+        weight: 50
         name: security-as-pipeline
         metricName: security-as-pipeline
         comparatorValue: 1
         comparator: "EQUALS" # EQUALS - GREATER_THAN - LESS_THAN - GREATER_THAN_OR_EQUAL_TO - LESS_THAN_OR_EQUAL_TO
+    - hasMetricValue:
+        weight: 50
+        name: vulnerability-management
+        metricName: vulnerability-management
+        comparatorValue: 1
+        comparator: "LESS_THAN" # EQUALS - GREATER_THAN - LESS_THAN - GREATER_THAN_OR_EQUAL_TO - LESS_THAN_OR_EQUAL_TO

@@ -18,6 +18,8 @@ type ConfigServiceInterface interface {
 	GetCompassHost() string
 	GetCompassCloudId() string
 	GetPrometheusURL() string
+	GetAWSRegion() string
+	GetAWSRole() string
 }
 
 type ConfigService struct{}
@@ -62,6 +64,17 @@ func (c *ConfigService) GetCompassHost() string {
 func (c *ConfigService) GetCompassCloudId() string {
 	return os.Getenv("COMPASS_CLOUD_ID")
 }
+
 func (c *ConfigService) GetPrometheusURL() string {
 	return os.Getenv("PROMETHEUS_URL")
 }
+
+func (c *ConfigService) GetAWSRegion() string {
+	awsRegion := os.Getenv("AWS_REGION")
+	if awsRegion == "" {
+		return "eu-west-1"
+	}
+	return awsRegion
+}
+
+func (c *ConfigService) GetAWSRole() string { return os.Getenv("AWS_ROLE") }

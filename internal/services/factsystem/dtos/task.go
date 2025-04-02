@@ -28,6 +28,7 @@ type TaskSource string
 const (
 	GitHubTaskSource  TaskSource = "github"
 	JSONAPITaskSource TaskSource = "jsonapi"
+	PrometheusTaskSource TaskSource = "prometheus"
 )
 
 type TaskMethod string
@@ -62,6 +63,7 @@ type Task struct {
 	JSONPath     string    `yaml:"jsonPath,omitempty" json:"jsonPath,omitempty"`
 	Auth         *TaskAuth `yaml:"auth,omitempty" json:"auth,omitempty"`
 	SearchString string    `yaml:"searchString,omitempty" json:"searchString,omitempty"`
+	PrometheusQuery string `yaml:"prometheusQuery,omitempty" json:"prometheusQuery,omitempty"`
 
 	// Extract related fields for GitHub API calls
 	Repo     string `yaml:"repo,omitempty" json:"repo,omitempty"`
@@ -99,6 +101,7 @@ func (t1 *Task) IsEqual(t2 *Task) bool {
 		t1.Method == t2.Method &&
 		t1.Result == t2.Result &&
 		t1.SearchString == t2.SearchString &&
+		t1.PrometheusQuery == t2.PrometheusQuery &&
 		t1.IsDependsOnEquals(t2.DependsOn)
 }
 

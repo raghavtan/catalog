@@ -38,11 +38,14 @@ var ProviderSet = wire.NewSet(
 	githubservice.NewGitHubService,
 	wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)),
 
+	// Prometheusservice
+	prometheusservice.NewPrometheusService,
+	prometheusservice.NewPrometheusClient,
+	wire.Bind(new(prometheusservice.PrometheusServiceInterface), new(*prometheusservice.PrometheusService)),
+
 	// JSONService
 	jsonservice.NewJSONService,
 
-	prometheusservice.NewPrometheusService,
-	wire.Bind(new(prometheusservice.PrometheusServiceInterface), new(*prometheusservice.PrometheusService)),
 	// --- metric module ---
 	// Repository
 	repository.NewRepository,

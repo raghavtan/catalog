@@ -151,9 +151,17 @@ spec:
     criteria:
         - hasMetricValue:
             id: bbf5759d-26d2-4e3b-89bd-190a32da2ae1
-            weight: 100
+            weight: 50
             name: security-as-pipeline
             metricName: security-as-pipeline
             metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/295e70fa-9359-4a0f-9188-6f7b6a0dbd7e
             comparatorValue: 1
             comparator: EQUALS
+        - hasMetricValue:
+            id: ""
+            weight: 50
+            name: vulnerability-management
+            metricName: vulnerability-management
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c7562aa-6b71-4deb-911f-eebac354ee3e
+            comparatorValue: 1
+            comparator: LESS_THAN

@@ -8,12 +8,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/golang/mock/gomock"
 	"github.com/motain/of-catalog/internal/services/compassservice"
 	"github.com/motain/of-catalog/internal/services/compassservice/dtos"
 	mocks "github.com/motain/of-catalog/internal/services/compassservice/mocks"
 	configservicemocks "github.com/motain/of-catalog/internal/services/configservice/mocks"
 	"github.com/stretchr/testify/assert"
+	"go.uber.org/mock/gomock"
 )
 
 func TestCompassService_Run(t *testing.T) {

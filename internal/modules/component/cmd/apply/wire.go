@@ -12,6 +12,7 @@ import (
 	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/services/keyringservice"
 	"github.com/motain/of-catalog/internal/services/ownerservice"
+	"github.com/motain/of-catalog/internal/services/prometheusservice"
 )
 
 var ProviderSet = wire.NewSet(
@@ -33,6 +34,11 @@ var ProviderSet = wire.NewSet(
 	githubservice.NewGitHubClient,
 	githubservice.NewGitHubService,
 	wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)),
+
+	// Prometheusservice
+	prometheusservice.NewPrometheusService,
+	prometheusservice.NewPrometheusClient,
+	wire.Bind(new(prometheusservice.PrometheusServiceInterface), new(*prometheusservice.PrometheusService)),
 
 	// OwnerService
 	ownerservice.NewOwnerService,

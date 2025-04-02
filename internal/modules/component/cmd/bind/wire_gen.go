@@ -14,6 +14,7 @@ import (
 	"github.com/motain/of-catalog/internal/services/configservice"
 	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/services/keyringservice"
+	"github.com/motain/of-catalog/internal/services/prometheusservice"
 )
 
 // Injectors from wire.go:
@@ -33,4 +34,4 @@ func initializeHandler() *handler.BindHandler {
 
 // wire.go:
 
-var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewHTTPClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubClient, githubservice.NewGitHubService, wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewBindHandler)
+var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewHTTPClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubClient, githubservice.NewGitHubService, wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)), prometheusservice.NewPrometheusService, prometheusservice.NewPrometheusClient, wire.Bind(new(prometheusservice.PrometheusServiceInterface), new(*prometheusservice.PrometheusService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewBindHandler)

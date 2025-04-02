@@ -6,13 +6,13 @@ import (
 	"testing"
 	"time"
 
-	gomock "github.com/golang/mock/gomock"
 	"github.com/motain/of-catalog/internal/modules/component/repository"
 	"github.com/motain/of-catalog/internal/modules/component/repository/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/resources"
 	compassserviceError "github.com/motain/of-catalog/internal/services/compassservice"
 	compassservice "github.com/motain/of-catalog/internal/services/compassservice/mocks"
 	"github.com/stretchr/testify/assert"
+	gomock "go.uber.org/mock/gomock"
 )
 
 func TestRepository_Create(t *testing.T) {

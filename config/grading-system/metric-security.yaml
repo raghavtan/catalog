@@ -36,12 +36,14 @@ metadata:
       name: Get summary of vulnerabilities for services from Prometheus reports
       type: extract
       source: prometheus
-      rule: "fetch-prometheus-reports"
-    - id: infrastructure-vulnerabilities-aws
-      name: Get vulnerabilities for infrastructure from AWS Security Hub (sec account) (v2)
-      type: extract
-      source: aws-security-hub
-      rule: "fetch-aws-vulnerabilities"
+      prometheusQuery: "sum(trivy_image_vulnerabilities{namespace=\"${Metadata.Name}\", severity=\"Critical\" })"
+    - id: aggregate-vulnerabilities-prometheus
+      name: Get summary of vulnerabilities for all services from Prometheus reports
+      type: aggregate
+      dependsOn:
+        - service-vulnerabilities-prometheus
+      method: "sum"
+
 spec:
   name: vulnerability-management
   description: "Resource (in focus) should be able to enforce condition to stay at latest patch when severity/bugs are found and also remediation options in place when threats are discovered. This will focus specifically on state of the software codebase."

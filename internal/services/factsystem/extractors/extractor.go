@@ -4,20 +4,21 @@ package extractors
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
-	"net/http"
-	"path/filepath"
-	"regexp"
-	"strconv"
-
 	"github.com/motain/of-catalog/internal/services/configservice"
 	"github.com/motain/of-catalog/internal/services/factsystem/dtos"
 	"github.com/motain/of-catalog/internal/services/factsystem/utils"
 	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/services/jsonservice"
+	"github.com/motain/of-catalog/internal/services/prometheusservice"
 	"github.com/motain/of-catalog/internal/utils/transformers"
+	"io"
+	"net/http"
+	"path/filepath"
+	"regexp"
+	"strconv"
 )
 
 type ExtractorInterface interface {
@@ -25,17 +26,19 @@ type ExtractorInterface interface {
 }
 
 type Extractor struct {
-	config      configservice.ConfigServiceInterface
-	jsonService jsonservice.JSONServiceInterface
-	github      githubservice.GitHubServiceInterface
+	config            configservice.ConfigServiceInterface
+	jsonService       jsonservice.JSONServiceInterface
+	github            githubservice.GitHubServiceInterface
+	prometheusService prometheusservice.PrometheusServiceInterface
 }
 
 func NewExtractor(
 	config configservice.ConfigServiceInterface,
 	jsonService jsonservice.JSONServiceInterface,
 	github githubservice.GitHubServiceInterface,
+	prometheusService prometheusservice.PrometheusServiceInterface,
 ) *Extractor {
-	return &Extractor{config: config, jsonService: jsonService, github: github}
+	return &Extractor{config: config, jsonService: jsonService, github: github, prometheusService: prometheusService}
 }
 
 func (ex *Extractor) Extract(ctx context.Context, task *dtos.Task, deps []*dtos.Task) error {
@@ -132,6 +135,8 @@ func (ex *Extractor) processData(ctx context.Context, task *dtos.Task, dependenc
 		jsonData, dataErr = ex.processGithub(task, unquoted(dependencyResult))
 	case dtos.JSONAPITaskSource:
 		jsonData, dataErr = ex.processJSONAPI(ctx, task, unquoted(dependencyResult))
+	case dtos.PrometheusTaskSource:
+		jsonData, dataErr = ex.queryPrometheus(task, unquoted(dependencyResult))
 	default:
 		return nil, fmt.Errorf("no data extracted, unknown source %s", task.Source)
 	}
@@ -149,9 +154,9 @@ func (ex *Extractor) processData(ctx context.Context, task *dtos.Task, dependenc
 	}
 }
 
-func (fe *Extractor) processGithub(task *dtos.Task, result string) ([]byte, error) {
+func (ex *Extractor) processGithub(task *dtos.Task, result string) ([]byte, error) {
 	extractFilePath := utils.ReplacePlaceholder(task.FilePath, result)
-	fileContent, fileErr := fe.github.GetFileContent(task.Repo, extractFilePath)
+	fileContent, fileErr := ex.github.GetFileContent(task.Repo, extractFilePath)
 	if fileErr != nil {
 		re := regexp.MustCompile(`404 Not Found`)
 		if re.MatchString(fileErr.Error()) {
@@ -177,11 +182,7 @@ func (fe *Extractor) processGithub(task *dtos.Task, result string) ([]byte, erro
 		return jsonData, nil
 	}
 
-	if fileExtension == ".json" {
-		return []byte(fileContent), nil
-	}
-
-	return nil, fmt.Errorf("unsupported file extension: %s", fileExtension)
+	return []byte(fileContent), nil
 }
 
 func (ex *Extractor) processJSONAPI(ctx context.Context, task *dtos.Task, result string) ([]byte, error) {
@@ -201,7 +202,12 @@ func (ex *Extractor) processJSONAPI(ctx context.Context, task *dtos.Task, result
 		return nil, fileErr
 	}
 
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+			fmt.Printf("failed to close response body: %v", err)
+		}
+	}(resp.Body)
 	jsonData, readErr := io.ReadAll(resp.Body)
 	if readErr != nil {
 		return nil, fmt.Errorf("failed to read response body: %v", readErr)
@@ -217,4 +223,14 @@ func unquoted(toUnquote string) string {
 	}
 
 	return unquoted
+}
+
+func (ex *Extractor) queryPrometheus(task *dtos.Task, result string) ([]byte, error) {
+	prometheusQuery := utils.ReplacePlaceholder(task.PrometheusQuery, result)
+	response, err := ex.prometheusService.InstantQuery(prometheusQuery)
+	if err != nil {
+		return nil, fmt.Errorf("failed to query prometheus: %v", err)
+	}
+
+	return json.Marshal(response)
 }

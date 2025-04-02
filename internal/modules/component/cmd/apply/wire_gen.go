@@ -16,6 +16,7 @@ import (
 	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/services/keyringservice"
 	"github.com/motain/of-catalog/internal/services/ownerservice"
+	"github.com/motain/of-catalog/internal/services/prometheusservice"
 )
 
 // Injectors from wire.go:
@@ -37,4 +38,4 @@ func initializeHandler() *handler.ApplyHandler {
 
 // wire.go:
 
-var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewHTTPClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubClient, githubservice.NewGitHubService, wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)), ownerservice.NewOwnerService, wire.Bind(new(ownerservice.OwnerServiceInterface), new(*ownerservice.OwnerService)), documentservice.NewDocumentService, wire.Bind(new(documentservice.DocumentServiceInterface), new(*documentservice.DocumentService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewApplyHandler)
+var ProviderSet = wire.NewSet(keyringservice.NewKeyringService, wire.Bind(new(keyringservice.KeyringServiceInterface), new(*keyringservice.KeyringService)), configservice.NewConfigService, wire.Bind(new(configservice.ConfigServiceInterface), new(*configservice.ConfigService)), compassservice.NewGraphQLClient, compassservice.NewHTTPClient, compassservice.NewCompassService, wire.Bind(new(compassservice.CompassServiceInterface), new(*compassservice.CompassService)), githubservice.NewGitHubClient, githubservice.NewGitHubService, wire.Bind(new(githubservice.GitHubServiceInterface), new(*githubservice.GitHubService)), prometheusservice.NewPrometheusService, prometheusservice.NewPrometheusClient, wire.Bind(new(prometheusservice.PrometheusServiceInterface), new(*prometheusservice.PrometheusService)), ownerservice.NewOwnerService, wire.Bind(new(ownerservice.OwnerServiceInterface), new(*ownerservice.OwnerService)), documentservice.NewDocumentService, wire.Bind(new(documentservice.DocumentServiceInterface), new(*documentservice.DocumentService)), repository.NewRepository, wire.Bind(new(repository.RepositoryInterface), new(*repository.Repository)), handler.NewApplyHandler)
