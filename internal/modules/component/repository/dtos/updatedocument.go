@@ -3,12 +3,14 @@ package dtos
 import (
 	"github.com/motain/of-catalog/internal/modules/component/resources"
 	"github.com/motain/of-catalog/internal/services/compassservice"
+	compassdtos "github.com/motain/of-catalog/internal/services/compassservice/dtos"
 )
 
 /*************
  * INPUT DTO *
  *************/
 type UpdateDocumentInput struct {
+	compassdtos.InputDTO
 	Document   resources.Document
 	CategoryID string
 }

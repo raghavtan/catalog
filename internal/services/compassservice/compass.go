@@ -18,8 +18,20 @@ import (
 	"github.com/motain/of-catalog/internal/services/configservice"
 )
 
+type InputDTOInterface interface {
+	GetQuery() string
+	GetPreValidationFunc() dtos.ValidationFunc
+	SetVariables() map[string]interface{}
+}
+
+type OutputDTOInterface interface {
+	IsSuccessful() bool
+	GetErrors() []string
+}
+
 type CompassServiceInterface interface {
 	Run(ctx context.Context, query string, variables map[string]interface{}, response interface{}) error
+	RunWithDTOs(ctx context.Context, input InputDTOInterface, output OutputDTOInterface) error
 	SendMetric(ctx context.Context, body map[string]string) (string, error)
 	SendAPISpecifications(ctx context.Context, input dtos.APISpecificationsInput) (string, error)
 	GetCompassCloudId() string
@@ -61,6 +73,29 @@ func (c *CompassService) Run(ctx context.Context, query string, variables map[st
 	if err := c.gqlClient.Run(ctx, req, response); err != nil {
 		log.Printf("Failed to execute query: %v", err)
 		return err
+	}
+
+	return nil
+}
+
+func (c *CompassService) RunWithDTOs(ctx context.Context, input InputDTOInterface, output OutputDTOInterface) error {
+	query := input.GetQuery()
+	operation := strings.TrimSpace(query[:strings.Index(query, "(")])
+
+	if runErr := c.Run(ctx, query, input.SetVariables(), output); runErr != nil {
+		log.Printf("failed to run %s: %v", operation, runErr)
+		return runErr
+	}
+
+	preValidationFunc := input.GetPreValidationFunc()
+	if preValidationFunc != nil {
+		if runErr := preValidationFunc(); runErr != nil {
+			return runErr
+		}
+	}
+
+	if !output.IsSuccessful() {
+		return fmt.Errorf("failed to execute %s: %v", operation, output.GetErrors())
 	}
 
 	return nil

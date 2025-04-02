@@ -1,12 +1,16 @@
 package dtos
 
-import "github.com/motain/of-catalog/internal/services/compassservice"
+import (
+	"github.com/motain/of-catalog/internal/services/compassservice"
+	compassdtos "github.com/motain/of-catalog/internal/services/compassservice/dtos"
+)
 
 /*************
  * INPUT DTO *
  *************/
 
 type DeleteScorecardInput struct {
+	compassdtos.InputDTO
 	ScorecardID string
 }
 

@@ -5,12 +5,14 @@ import (
 
 	"github.com/motain/of-catalog/internal/modules/component/resources"
 	"github.com/motain/of-catalog/internal/services/compassservice"
+	compassdtos "github.com/motain/of-catalog/internal/services/compassservice/dtos"
 )
 
 /*************
  * INPUT DTO *
  *************/
 type CreateComponentInput struct {
+	compassdtos.InputDTO
 	CompassCloudID string
 	Component      resources.Component
 }

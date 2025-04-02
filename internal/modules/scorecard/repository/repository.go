@@ -5,10 +5,7 @@ package repository
 import (
 	"context"
 	"fmt"
-	"log"
-	"strings"
 
-	"github.com/motain/of-catalog/internal/interfaces/repositoryinterfaces"
 	"github.com/motain/of-catalog/internal/modules/scorecard/repository/dtos"
 	"github.com/motain/of-catalog/internal/modules/scorecard/resources"
 	"github.com/motain/of-catalog/internal/services/compassservice"
@@ -37,7 +34,7 @@ func NewRepository(compass compassservice.CompassServiceInterface) *Repository {
 func (r *Repository) Create(ctx context.Context, scorecard resources.Scorecard) (string, map[string]string, error) {
 	input := &dtos.CreateScorecardInput{CompassCloudID: r.compass.GetCompassCloudId(), Scorecard: scorecard}
 	output := &dtos.CreateScorecardOutput{}
-	if runErr := r.run(ctx, input, output, nil); runErr != nil {
+	if runErr := r.compass.RunWithDTOs(ctx, input, output); runErr != nil {
 		return "", nil, fmt.Errorf("Create error for %s: %s", *scorecard.ID, runErr)
 	}
 
@@ -64,7 +61,7 @@ func (r *Repository) Update(
 		DeleteCriteria: deleteCriteria,
 	}
 	output := &dtos.UpdateScorecardOutput{}
-	if runErr := r.run(ctx, input, output, nil); runErr != nil {
+	if runErr := r.compass.RunWithDTOs(ctx, input, output); runErr != nil {
 		return fmt.Errorf("Update error for %s: %s", *scorecard.ID, runErr)
 	}
 	return nil
@@ -73,35 +70,8 @@ func (r *Repository) Update(
 func (r *Repository) Delete(ctx context.Context, id string) error {
 	input := &dtos.DeleteScorecardInput{ScorecardID: id}
 	output := &dtos.DeleteScorecardOutput{}
-	if runErr := r.run(ctx, input, output, nil); runErr != nil {
+	if runErr := r.compass.RunWithDTOs(ctx, input, output); runErr != nil {
 		return fmt.Errorf("Delete error for %s: %s", id, runErr)
 	}
-	return nil
-}
-
-func (r *Repository) run(
-	ctx context.Context,
-	input repositoryinterfaces.InputDTOInterface,
-	output repositoryinterfaces.OutputDTOInterface,
-	preValidationFunc repositoryinterfaces.ValidationFunc,
-) error {
-	query := input.GetQuery()
-	operation := strings.TrimSpace(query[:strings.Index(query, "(")])
-
-	if runErr := r.compass.Run(ctx, query, input.SetVariables(), output); runErr != nil {
-		log.Printf("failed to run %s: %v", operation, runErr)
-		return runErr
-	}
-
-	if preValidationFunc != nil {
-		if runErr := preValidationFunc(); runErr != nil {
-			return runErr
-		}
-	}
-
-	if !output.IsSuccessful() {
-		return fmt.Errorf("failed to execute %s: %v", operation, output.GetErrors())
-	}
-
 	return nil
 }

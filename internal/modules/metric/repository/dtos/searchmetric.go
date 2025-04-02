@@ -2,12 +2,14 @@ package dtos
 
 import (
 	"github.com/motain/of-catalog/internal/modules/metric/resources"
+	compassdtos "github.com/motain/of-catalog/internal/services/compassservice/dtos"
 )
 
 /*************
  * INPUT DTO *
  *************/
 type SearchMetricsInput struct {
+	compassdtos.InputDTO
 	CompassCloudID string
 	Metric         resources.Metric
 }

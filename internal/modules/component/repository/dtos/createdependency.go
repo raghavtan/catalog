@@ -2,12 +2,14 @@ package dtos
 
 import (
 	"github.com/motain/of-catalog/internal/services/compassservice"
+	compassdtos "github.com/motain/of-catalog/internal/services/compassservice/dtos"
 )
 
 /*************
  * INPUT DTO *
  *************/
 type CreateDependencyInput struct {
+	compassdtos.InputDTO
 	DependentId string
 	ProviderId  string
 }

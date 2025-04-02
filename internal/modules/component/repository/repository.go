@@ -10,7 +10,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/motain/of-catalog/internal/interfaces/repositoryinterfaces"
 	"github.com/motain/of-catalog/internal/modules/component/repository/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/resources"
 	"github.com/motain/of-catalog/internal/services/compassservice"
@@ -57,7 +56,7 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 	// That is before checking if the operation was successful
 	// If the component already exists, it updates the component, sets the ID and metric sources
 	// and clears the errors
-	preValidationFunc := func() error {
+	input.PreValidationFunc = func() error {
 		if !compassservice.HasAlreadyExistsError(output.Compass.CreateComponent.Errors) {
 			return nil
 		}
@@ -81,7 +80,7 @@ func (r *Repository) Create(ctx context.Context, component resources.Component) 
 		return nil
 	}
 
-	runErr := r.run(ctx, input, output, preValidationFunc)
+	runErr := r.compass.RunWithDTOs(ctx, input, output)
 	if runErr != nil {
 		return resources.Component{}, fmt.Errorf("Create component error for %s: %s", component.Name, runErr)
 	}
@@ -118,7 +117,7 @@ func (r *Repository) Update(ctx context.Context, component resources.Component) 
 	// That is before checking if the operation was successful
 	// If the component does not exist, it searches the component by slug, sets the ID and metric sources
 	// and clears the errors
-	preValidationFunc := func() error {
+	input.PreValidationFunc = func() error {
 		if !compassservice.HasNotFoundError(output.Compass.UpdateComponent.Errors) {
 			return nil
 		}
@@ -141,7 +140,7 @@ func (r *Repository) Update(ctx context.Context, component resources.Component) 
 		return nil
 	}
 
-	runErr := r.run(ctx, input, output, preValidationFunc)
+	runErr := r.compass.RunWithDTOs(ctx, input, output)
 	if runErr != nil {
 		return resources.Component{}, fmt.Errorf("Update component error for %s: %s", component.Name, runErr)
 	}
@@ -152,7 +151,7 @@ func (r *Repository) Update(ctx context.Context, component resources.Component) 
 func (r *Repository) Delete(ctx context.Context, component resources.Component) error {
 	input := &dtos.DeleteComponentInput{ComponentID: component.ID}
 	output := &dtos.DeleteComponentOutput{}
-	if runErr := r.run(ctx, input, output, nil); runErr != nil {
+	if runErr := r.compass.RunWithDTOs(ctx, input, output); runErr != nil {
 		return fmt.Errorf("Delete component error for %s: %s", component.ID, runErr)
 	}
 	return nil
@@ -161,7 +160,7 @@ func (r *Repository) Delete(ctx context.Context, component resources.Component) 
 func (r *Repository) SetDependency(ctx context.Context, dependent, provider resources.Component) error {
 	input := &dtos.CreateDependencyInput{DependentId: dependent.ID, ProviderId: provider.ID}
 	output := &dtos.CreateDependencyOutput{}
-	if runErr := r.run(ctx, input, output, nil); runErr != nil {
+	if runErr := r.compass.RunWithDTOs(ctx, input, output); runErr != nil {
 		return fmt.Errorf("SetDependency error for %s: %s", dependent.ID, runErr)
 	}
 	return nil
@@ -170,7 +169,7 @@ func (r *Repository) SetDependency(ctx context.Context, dependent, provider reso
 func (r *Repository) UnsetDependency(ctx context.Context, dependent, provider resources.Component) error {
 	input := &dtos.DeleteDependencyInput{DependentId: dependent.ID, ProviderId: provider.ID}
 	output := &dtos.DeleteDependencyOutput{}
-	if runErr := r.run(ctx, input, output, nil); runErr != nil {
+	if runErr := r.compass.RunWithDTOs(ctx, input, output); runErr != nil {
 		return fmt.Errorf("UnsetDependency dependency error for %s: %s", dependent.ID, runErr)
 	}
 	return nil
@@ -179,7 +178,7 @@ func (r *Repository) UnsetDependency(ctx context.Context, dependent, provider re
 func (r *Repository) GetBySlug(ctx context.Context, component resources.Component) (*resources.Component, error) {
 	input := &dtos.ComponentByReferenceInput{CompassCloudID: r.compass.GetCompassCloudId(), Slug: component.Slug}
 	output := &dtos.ComponentByReferenceOutput{}
-	runErr := r.run(ctx, input, output, nil)
+	runErr := r.compass.RunWithDTOs(ctx, input, output)
 	if runErr != nil {
 		return nil, fmt.Errorf("GetBySlug error for %s: %s", component.Slug, runErr)
 	}
@@ -209,7 +208,7 @@ func (r *Repository) AddDocument(ctx context.Context, component resources.Compon
 		CategoryID:  r.DocumentCategories[document.Type],
 	}
 	output := &dtos.CreateDocumentOutput{}
-	runErr := r.run(ctx, input, output, nil)
+	runErr := r.compass.RunWithDTOs(ctx, input, output)
 	if runErr != nil {
 		return resources.Document{}, fmt.Errorf("AddDocument error for %s/%s: %s", component.ID, document.Title, runErr)
 	}
@@ -232,7 +231,7 @@ func (r *Repository) UpdateDocument(ctx context.Context, component resources.Com
 		CategoryID: r.DocumentCategories[document.Type],
 	}
 	output := &dtos.UpdateDocumentOutput{}
-	if runErr := r.run(ctx, input, output, nil); runErr != nil {
+	if runErr := r.compass.RunWithDTOs(ctx, input, output); runErr != nil {
 		return fmt.Errorf("UpdateDocument error for %s/%s: %s", component.ID, document.Title, runErr)
 	}
 	return nil
@@ -284,7 +283,7 @@ func (r *Repository) BindMetric(ctx context.Context, component resources.Compone
 		Identifier:  identifier,
 	}
 	output := &dtos.BindMetricOutput{}
-	runErr := r.run(ctx, input, output, nil)
+	runErr := r.compass.RunWithDTOs(ctx, input, output)
 	if runErr != nil {
 		return "", fmt.Errorf("BindMetric error for %s/%s: %s", component.ID, metricID, runErr)
 	}
@@ -295,7 +294,7 @@ func (r *Repository) BindMetric(ctx context.Context, component resources.Compone
 func (r *Repository) UnbindMetric(ctx context.Context, metricSource resources.MetricSource) error {
 	input := &dtos.UnbindMetricInput{MetricID: metricSource.ID}
 	output := &dtos.UnbindMetricOutput{}
-	if runErr := r.run(ctx, input, output, nil); runErr != nil {
+	if runErr := r.compass.RunWithDTOs(ctx, input, output); runErr != nil {
 		return fmt.Errorf("UnbindMetric error for %s: %s", metricSource.ID, runErr)
 	}
 	return nil
@@ -335,7 +334,7 @@ func (r *Repository) initDocumentCategories(ctx context.Context) error {
 
 	input := &dtos.DocumentationCategoriesInput{CompassCloudID: r.compass.GetCompassCloudId()}
 	output := &dtos.DocumentationCategoriesOutput{}
-	runErr := r.run(ctx, input, output, nil)
+	runErr := r.compass.RunWithDTOs(ctx, input, output)
 	if runErr != nil {
 		return runErr
 	}
@@ -345,33 +344,6 @@ func (r *Repository) initDocumentCategories(ctx context.Context) error {
 		categories[category.Name] = category.ID
 	}
 	r.DocumentCategories = categories
-
-	return nil
-}
-
-func (r *Repository) run(
-	ctx context.Context,
-	input repositoryinterfaces.InputDTOInterface,
-	output repositoryinterfaces.OutputDTOInterface,
-	preValidationFunc repositoryinterfaces.ValidationFunc,
-) error {
-	query := input.GetQuery()
-	operation := strings.TrimSpace(query[:strings.Index(query, "(")])
-
-	if runErr := r.compass.Run(ctx, query, input.SetVariables(), output); runErr != nil {
-		log.Printf("failed to run %s: %v", operation, runErr)
-		return runErr
-	}
-
-	if preValidationFunc != nil {
-		if runErr := preValidationFunc(); runErr != nil {
-			return runErr
-		}
-	}
-
-	if !output.IsSuccessful() {
-		return fmt.Errorf("failed to execute %s: %v", operation, output.GetErrors())
-	}
 
 	return nil
 }

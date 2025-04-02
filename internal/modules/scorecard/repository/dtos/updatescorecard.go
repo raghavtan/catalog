@@ -5,6 +5,7 @@ import (
 
 	"github.com/motain/of-catalog/internal/modules/scorecard/resources"
 	"github.com/motain/of-catalog/internal/services/compassservice"
+	compassdtos "github.com/motain/of-catalog/internal/services/compassservice/dtos"
 )
 
 /*************
@@ -12,6 +13,7 @@ import (
  *************/
 
 type UpdateScorecardInput struct {
+	compassdtos.InputDTO
 	Scorecard      resources.Scorecard
 	CreateCriteria []*resources.Criterion
 	UpdateCriteria []*resources.Criterion

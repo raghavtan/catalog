@@ -1,9 +1,12 @@
 package dtos
 
+import compassdtos "github.com/motain/of-catalog/internal/services/compassservice/dtos"
+
 /*************
  * INPUT DTO *
  *************/
 type ComponentByReferenceInput struct {
+	compassdtos.InputDTO
 	CompassCloudID string
 	Slug           string
 }

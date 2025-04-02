@@ -1,11 +1,15 @@
 package dtos
 
-import "github.com/motain/of-catalog/internal/services/compassservice"
+import (
+	"github.com/motain/of-catalog/internal/services/compassservice"
+	compassdtos "github.com/motain/of-catalog/internal/services/compassservice/dtos"
+)
 
 /*************
  * INPUT DTO *
  *************/
 type BindMetricInput struct {
+	compassdtos.InputDTO
 	MetricID    string
 	ComponentID string
 	Identifier  string
