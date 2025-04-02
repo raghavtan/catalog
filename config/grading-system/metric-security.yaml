@@ -37,12 +37,6 @@ metadata:
       type: extract
       source: prometheus
       prometheusQuery: "sum(trivy_image_vulnerabilities{namespace=\"${Metadata.Name}\", severity=\"Critical\" })"
-    - id: aggregate-vulnerabilities-prometheus
-      name: Get summary of vulnerabilities for all services from Prometheus reports
-      type: aggregate
-      dependsOn:
-        - service-vulnerabilities-prometheus
-      method: "sum"
 
 spec:
   name: vulnerability-management

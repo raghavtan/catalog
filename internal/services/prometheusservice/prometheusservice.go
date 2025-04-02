@@ -14,7 +14,7 @@ import (
 type PrometheusServiceInterface interface {
 	// InstantQuery executes a PromQL query at the current time.
 	// Returns the query result as a Prometheus model.Value.
-	InstantQuery(queryString string) (model.Value, error)
+	InstantQuery(queryString string) (int, error)
 
 	// RangeQuery executes a PromQL query over a specified time range.
 	// Returns the query result as a Prometheus model.Value.
@@ -51,7 +51,7 @@ func NewPrometheusService(client PrometheusClientInterface) *PrometheusService {
 // Returns:
 //   - model.Value: The query result in Prometheus model format
 //   - error: Any error that occurred during query execution
-func (ps *PrometheusService) InstantQuery(queryString string) (model.Value, error) {
+func (ps *PrometheusService) InstantQuery(queryString string) (int, error) {
 	return ps.client.Query(queryString, time.Now())
 }
 

@@ -1,176 +1,6 @@
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-    name: adaptive-systems
-    labels:
-        grading-system: resiliency
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        - id: app-toml-replicas-min
-          type: extract
-          source: github
-          jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: app-toml-replicas-max-gt-replicas-min
-          type: extract
-          source: github
-          jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: cpu-and-memory-hpa-are-set
-          name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-          type: aggregate
-          dependsOn:
-            - app-toml-replicas-min
-            - app-toml-replicas-max-gt-replicas-min
-          method: and
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0f72a9b2-c7f2-4eff-b905-1e715c3a8810
-    name: adaptive-systems
-    description: Ensure the component is properly configured to support Adaptive Systems, which can automatically adjust to changing conditions. This helps maintain optimal performance, efficiency, and reliability without the need for manual intervention.
-    format:
-        unit: Adaptive Systems
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
-    name: allocation-efficiency
-    labels:
-        grading-system: cost-optimization
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        - id: check-app-toml-resource-request
-          name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
-          type: extract
-          source: github
-          jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: check-app-toml-cpu-limits
-          name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
-          type: extract
-          source: github
-          jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: check-app-toml-memory-limits
-          name: Check if  memory limits are defined in app.toml under [service] or [service.production]
-          type: extract
-          source: github
-          jsonPath: .service.memory_limits // .service.production.memory_limits | .==null
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: aggregate-resource-requests
-          name: check resource requests and limits
-          type: aggregate
-          dependsOn:
-            - check-app-toml-resource-request
-            - check-app-toml-cpu-limits
-            - check-app-toml-memory-limits
-          method: and
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/223be0f4-d7bb-4254-9529-e77aa497e798
-    name: allocation-efficiency
-    description: Verifies if the component has defined resource allocations in an efficient way
-    format:
-        unit: Allocation Efficiency
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
-    name: organizational-standards
-    labels:
-        grading-system: production-readiness
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        - id: readme-file
-          name: Check if the README.md file exists
-          type: extract
-          source: github
-          repo: ${Metadata.Name}
-          filePath: README.md
-          rule: notempty
-        - id: docs-readme-file
-          name: Check if the docs/README.md file exists
-          type: extract
-          source: github
-          repo: ${Metadata.Name}
-          filePath: docs/README.md
-          rule: notempty
-        - id: docs-index-file
-          name: Check if the docs/index.md file exists
-          type: extract
-          source: github
-          repo: ${Metadata.Name}
-          filePath: docs/index.md
-          rule: notempty
-        - id: paas-onboarded
-          name: Check if the service is using PaaS
-          type: extract
-          source: github
-          searchString: motain/onefootball-actions/paas-deploy@master
-          rule: search
-        - id: aggregate-readme-exists
-          name: Check if repo has documentation
-          type: aggregate
-          dependsOn:
-            - docs-index-file-exists
-            - docs-readme-file-exists
-            - readme-file-exists
-          method: or
-        - id: aggregate
-          name: Check if repo follows organizational standards
-          type: aggregate
-          dependsOn:
-            - aggregate-readme-exists
-            - paas-onboarded
-          method: and
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/005d1bf2-7188-4682-861b-a1f8bb7043ed
-    name: organizational-standards
-    description: Ensures the component aligns with defined organizational standards, including coding guidelines and compliance requirements
-    format:
-        unit: Organizational Standards
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
-    name: security-as-pipeline
-    labels:
-        grading-system: security
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        - id: trivy-exists-in-ci
-          name: Check if Trivy is used in CI/CD pipeline
-          type: extract
-          source: github
-          searchString: motain/onefootball-actions/security
-          repo: ${Metadata.Name}
-          rule: search
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/295e70fa-9359-4a0f-9188-6f7b6a0dbd7e
-    name: security-as-pipeline
-    description: Ensure We have early detection security alerts at CI/CD stage before going live with production deployment.
-    format:
-        unit: Security as Pipeline
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
     name: observability-documentation
     labels:
         grading-system: observability
@@ -341,30 +171,229 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-    name: vulnerability-management
+    name: adaptive-systems
+    labels:
+        grading-system: resiliency
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: app-toml-replicas-min
+          type: extract
+          source: github
+          jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: app-toml-replicas-max-gt-replicas-min
+          type: extract
+          source: github
+          jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: cpu-and-memory-hpa-are-set
+          name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+          type: aggregate
+          dependsOn:
+            - app-toml-replicas-min
+            - app-toml-replicas-max-gt-replicas-min
+          method: and
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0f72a9b2-c7f2-4eff-b905-1e715c3a8810
+    name: adaptive-systems
+    description: Ensure the component is properly configured to support Adaptive Systems, which can automatically adjust to changing conditions. This helps maintain optimal performance, efficiency, and reliability without the need for manual intervention.
+    format:
+        unit: Adaptive Systems
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: allocation-efficiency
+    labels:
+        grading-system: cost-optimization
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: check-app-toml-resource-request
+          name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+          type: extract
+          source: github
+          jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: check-app-toml-cpu-limits
+          name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
+          type: extract
+          source: github
+          jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: check-app-toml-memory-limits
+          name: Check if  memory limits are defined in app.toml under [service] or [service.production]
+          type: extract
+          source: github
+          jsonPath: .service.memory_limits // .service.production.memory_limits | .==null
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: aggregate-resource-requests
+          name: check resource requests and limits
+          type: aggregate
+          dependsOn:
+            - check-app-toml-resource-request
+            - check-app-toml-cpu-limits
+            - check-app-toml-memory-limits
+          method: and
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/223be0f4-d7bb-4254-9529-e77aa497e798
+    name: allocation-efficiency
+    description: Verifies if the component has defined resource allocations in an efficient way
+    format:
+        unit: Allocation Efficiency
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: organizational-standards
+    labels:
+        grading-system: production-readiness
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: readme-file
+          name: Check if the README.md file exists
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          filePath: README.md
+          rule: notempty
+        - id: docs-readme-file
+          name: Check if the docs/README.md file exists
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          filePath: docs/README.md
+          rule: notempty
+        - id: docs-index-file
+          name: Check if the docs/index.md file exists
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          filePath: docs/index.md
+          rule: notempty
+        - id: paas-onboarded
+          name: Check if the service is using PaaS
+          type: extract
+          source: github
+          searchString: motain/onefootball-actions/paas-deploy@master
+          rule: search
+        - id: aggregate-readme-exists
+          name: Check if repo has documentation
+          type: aggregate
+          dependsOn:
+            - docs-index-file-exists
+            - docs-readme-file-exists
+            - readme-file-exists
+          method: or
+        - id: aggregate
+          name: Check if repo follows organizational standards
+          type: aggregate
+          dependsOn:
+            - aggregate-readme-exists
+            - paas-onboarded
+          method: and
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/005d1bf2-7188-4682-861b-a1f8bb7043ed
+    name: organizational-standards
+    description: Ensures the component aligns with defined organizational standards, including coding guidelines and compliance requirements
+    format:
+        unit: Organizational Standards
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: security-as-pipeline
     labels:
         grading-system: security
     componentType:
         - service
         - cloud-resource
     facts:
-        - id: service-vulnerabilities-prometheus
-          name: Get summary of vulnerabilities for services from Prometheus reports
+        - id: trivy-exists-in-ci
+          name: Check if Trivy is used in CI/CD pipeline
           type: extract
-          source: prometheus
-          prometheusQuery: sum(trivy_image_vulnerabilities{namespace="${Metadata.Name}", severity="Critical" })
-        - id: aggregate-vulnerabilities-prometheus
-          name: Get summary of vulnerabilities for all services from Prometheus reports
+          source: github
+          searchString: motain/onefootball-actions/security
+          repo: ${Metadata.Name}
+          rule: search
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/295e70fa-9359-4a0f-9188-6f7b6a0dbd7e
+    name: security-as-pipeline
+    description: Ensure We have early detection security alerts at CI/CD stage before going live with production deployment.
+    format:
+        unit: Security as Pipeline
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: critical-alerts-slo-check
+    labels:
+        grading-system: observability
+    componentType:
+        - service
+    facts:
+        - id: fetch-slos
+          name: Fetch SLOs
+          type: extract
+          source: jsonapi
+          uri: https://api.eu1.honeycomb.io/1/slos/${Metadata.Name}
+          jsonPath: .[].id
+          auth:
+            header: X-Honeycomb-Team
+            tokenVar: HONEYCOMB_API_KEY
+          rule: jsonpath
+        - id: fetch-alerts-for-slos
+          name: Fetch alerts for SLOs
+          type: extract
+          dependsOn:
+            - fetch-slos
+          source: jsonapi
+          uri: https://api.eu1.honeycomb.io/1/burn_alerts/${Metadata.Name}?slo_id=:slo_id
+          jsonPath: .[].id
+          auth:
+            header: X-Honeycomb-Team
+            tokenVar: HONEYCOMB_API_KEY
+          rule: jsonpath
+        - id: count-slos
+          name: Count SLOs
           type: aggregate
           dependsOn:
-            - service-vulnerabilities-prometheus
-          method: sum
+            - fetch-slos
+          method: count
+        - id: count-alerts-for-slos
+          name: Count Alerts
+          type: aggregate
+          dependsOn:
+            - fetch-alerts-for-slos
+          method: count
+        - id: validate-alerts-for-slos
+          name: Validate that counts match
+          type: validate
+          dependsOn:
+            - count-slos
+            - count-alerts-for-slos
+          rule: deps_match
 spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c7562aa-6b71-4deb-911f-eebac354ee3e
-    name: vulnerability-management
-    description: Resource (in focus) should be able to enforce condition to stay at latest patch when severity/bugs are found and also remediation options in place when threats are discovered. This will focus specifically on state of the software codebase.
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a2523e39-c11a-4449-8465-f41613881b22
+    name: critical-alerts-slo-check
+    description: Checks if at least one critical performance or reliability metric is actively monitored and triggers an alert (e.g., SLO or metric threshold).
     format:
-        unit: Vulnerability Management
+        unit: Critical Alerts/SLO Check
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Metric
@@ -432,56 +461,21 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-    name: critical-alerts-slo-check
+    name: vulnerability-management
     labels:
-        grading-system: observability
+        grading-system: security
     componentType:
         - service
+        - cloud-resource
     facts:
-        - id: fetch-slos
-          name: Fetch SLOs
+        - id: service-vulnerabilities-prometheus
+          name: Get summary of vulnerabilities for services from Prometheus reports
           type: extract
-          source: jsonapi
-          uri: https://api.eu1.honeycomb.io/1/slos/${Metadata.Name}
-          jsonPath: .[].id
-          auth:
-            header: X-Honeycomb-Team
-            tokenVar: HONEYCOMB_API_KEY
-          rule: jsonpath
-        - id: fetch-alerts-for-slos
-          name: Fetch alerts for SLOs
-          type: extract
-          dependsOn:
-            - fetch-slos
-          source: jsonapi
-          uri: https://api.eu1.honeycomb.io/1/burn_alerts/${Metadata.Name}?slo_id=:slo_id
-          jsonPath: .[].id
-          auth:
-            header: X-Honeycomb-Team
-            tokenVar: HONEYCOMB_API_KEY
-          rule: jsonpath
-        - id: count-slos
-          name: Count SLOs
-          type: aggregate
-          dependsOn:
-            - fetch-slos
-          method: count
-        - id: count-alerts-for-slos
-          name: Count Alerts
-          type: aggregate
-          dependsOn:
-            - fetch-alerts-for-slos
-          method: count
-        - id: validate-alerts-for-slos
-          name: Validate that counts match
-          type: validate
-          dependsOn:
-            - count-slos
-            - count-alerts-for-slos
-          rule: deps_match
+          source: prometheus
+          prometheusQuery: sum(trivy_image_vulnerabilities{namespace="${Metadata.Name}", severity="Critical" })
 spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a2523e39-c11a-4449-8465-f41613881b22
-    name: critical-alerts-slo-check
-    description: Checks if at least one critical performance or reliability metric is actively monitored and triggers an alert (e.g., SLO or metric threshold).
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c7562aa-6b71-4deb-911f-eebac354ee3e
+    name: vulnerability-management
+    description: Resource (in focus) should be able to enforce condition to stay at latest patch when severity/bugs are found and also remediation options in place when threats are discovered. This will focus specifically on state of the software codebase.
     format:
-        unit: Critical Alerts/SLO Check
+        unit: Vulnerability Management
