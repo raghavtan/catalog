@@ -33,6 +33,6 @@ Resource (in focus) should be able to enforce condition to stay at latest patch 
   ```
 
 To fix any vulnerability follow the instruction defined here:
-- <Add references on solving software vulnerability detected by the security tools>
+- Add references on solving software vulnerability detected by the security tools
 
 [<< Back to the index](./index.md)
