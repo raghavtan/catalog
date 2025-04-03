@@ -73,15 +73,16 @@ metadata:
       name: Check if the service is using PaaS
       type: extract
       source: github
+      repo: "${Metadata.Name}"
       searchString: "motain/onefootball-actions/paas-deploy@master"
       rule: "search"
     - id: aggregate-readme-exists
       name: Check if repo has documentation
       type: aggregate
       dependsOn:
-        - docs-index-file-exists
-        - docs-readme-file-exists
-        - readme-file-exists
+        - docs-index-file
+        - docs-readme-file
+        - readme-file
       method: "or"
     - id: aggregate
       name: Check if repo follows organizational standards
