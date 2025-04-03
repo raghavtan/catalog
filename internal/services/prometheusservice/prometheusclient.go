@@ -24,7 +24,7 @@ import (
 // It provides methods for querying Prometheus data in different formats.
 type PrometheusClientInterface interface {
 	// Query executes an instant query at a specific timestamp
-	Query(query string, time time.Time) (int, error)
+	Query(query string, timestamp time.Time) (float64, error)
 	// QueryRange executes a query over a time range
 	QueryRange(query string, r v1.Range) (model.Value, error)
 }
@@ -104,16 +104,16 @@ func getCredentialsProvider(ctx context.Context, awsCfg aws.Config, roleARN stri
 
 // Query executes an instant query against Prometheus at the specified timestamp.
 // Returns the query result as a Prometheus model.Value.
-func (pc *PrometheusClient) Query(query string, timestamp time.Time) (int, error) {
+func (pc *PrometheusClient) Query(query string, timestamp time.Time) (float64, error) {
 	result, _, err := pc.api.Query(context.Background(), query, timestamp)
 	if err != nil {
 		fmt.Printf("Query: %s, Timestamp: %s\n", query, timestamp)
 		return 0, fmt.Errorf("failed to execute query: %w", err)
 	}
-	response := 0
+	response := 0.0
 	if vector, ok := result.(model.Vector); ok {
 		for _, sample := range vector {
-			response = int(sample.Value)
+			response = float64(sample.Value)
 		}
 	} else {
 		fmt.Println("Result is not a vector for query:", query)

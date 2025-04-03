@@ -14,6 +14,8 @@ func Interface2Float64(result interface{}) (float64, error) {
 		return Bool2Float64(v), nil
 	case string:
 		return String2Float64(v)
+	case []uint8:
+		return String2Float64(string(v))
 	default:
 		fmt.Printf("unexpected result type: %T\n", v)
 		fmt.Printf("result: %s\n", v)
