@@ -44,13 +44,13 @@ To ensure all dependencies are correct and match their checksums, run:
 go mod verify
 ```
 
-Achieving Decoupling and Maintainability with DI & IoC
+**Achieving Decoupling and Maintainability with DI & IoC**
 
 To build scalable and maintainable software, we aim for loose coupling, where components interact with minimal dependencies on each other. One way to achieve this is through Dependency Injection (DI), a design pattern that shifts the responsibility of creating and managing dependencies from within a class to an external source. Instead of hardcoding dependencies, they are "injected" from the outside, making the system more modular, testable, and easier to modify.
 
 Inversion of Control (IoC) takes this idea further by reversing the traditional flow of control. Instead of a class managing its dependencies, an external framework or container takes over, handling object creation and lifecycle. DI is a key implementation of IoC, ensuring that dependencies are managed efficiently and reducing tight coupling between components.
 
-Tools like Wire, a compile-time dependency injection framework for Go, help automate this process by generating code to wire dependencies together, simplifying configuration and improving efficiency.
+Tools like _Wire_, a compile-time dependency injection framework for Go, help automate this process by generating code to wire dependencies together, simplifying configuration and improving efficiency.
 
 For more about how to use wire in this project refer the the [wire page](./docs/wire.md).
 
