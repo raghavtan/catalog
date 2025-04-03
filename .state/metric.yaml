@@ -1,176 +1,6 @@
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-    name: observability-documentation
-    labels:
-        grading-system: observability
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        - id: extract-observability-md
-          name: Extract observability.md
-          type: extract
-          source: github
-          repo: ${Metadata.Name}
-          filePath: docs/observability.md
-          rule: notempty
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/c5f96c3d-6845-4155-9576-62f86725b07f
-    name: observability-documentation
-    description: Verifies SLOs definitions are documented.
-    format:
-        unit: Observability Documentation
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
-    name: deployment-readiness
-    labels:
-        grading-system: production-readiness
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        - id: deployment-readiness-replicas-service-production
-          name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-          type: extract
-          source: github
-          jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: deployment-readiness-replicas-service
-          name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-          type: extract
-          source: github
-          jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: aggregate-replicas
-          name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-          type: aggregate
-          dependsOn:
-            - deployment-readiness-replicas-service-production
-            - deployment-readiness-replicas-service
-          method: or
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef2ef7b8-cc47-4f67-84d3-ba9bebef1ba8
-    name: deployment-readiness
-    description: Ensures the component is correctly configured, adheres to best practices, and meets all necessary requirements for secure, stable, and efficient deployment in a production environment.
-    format:
-        unit: Deployment Standards
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
-    name: instrumentation-check
-    labels:
-        grading-system: observability
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        - id: read-otel-service-name-from-apptoml
-          name: Read OTEL_SERVICE_NAME from app.toml
-          type: extract
-          source: github
-          jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: validate-otel-service-name-matches-component-name
-          name: validate OTEL_SERVICE_NAME matches component name
-          type: validate
-          dependsOn:
-            - read-otel-service-name-from-apptoml
-          rule: regex_match
-          pattern: ^${Metadata.Name}$
-        - id: read-otel-resource-attributes-from-apptoml
-          name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
-          type: extract
-          source: github
-          jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: validate-otel-resource-attributes-sample-rate
-          name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
-          type: validate
-          dependsOn:
-            - read-otel-resource-attributes-from-apptoml
-          rule: regex_match
-          pattern: of\.sample_rate=\d+.*
-        - id: validate-otel-resource-attributes-one-sample-rate
-          name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
-          type: validate
-          dependsOn:
-            - read-otel-resource-attributes-from-apptoml
-          rule: regex_match
-          pattern: of\.error_sample_rate=\d+.*
-        - id: either-sample-rate-or-error-sample-rate
-          name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
-          type: aggregate
-          dependsOn:
-            - validate-otel-resource-attributes-sample-rate
-            - validate-otel-resource-attributes-error-sample-rate
-          method: or
-        - id: either-sample-rate-or-error-sample-rate
-          name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
-          type: aggregate
-          dependsOn:
-            - validate-otel-service-name-matches-component-name
-            - validate-otel-resource-attributes-one-sample-rate
-          method: and
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/71dfd551-e995-4092-ab06-e2718e75641e
-    name: instrumentation-check
-    description: Verifies that the component is set up to record relevant telemetry (metrics or traces).
-    format:
-        unit: Instrumentation Check
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
-    name: high-availability
-    labels:
-        grading-system: resiliency
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        - id: app-toml-hpa-target-cpu
-          type: extract
-          source: github
-          jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: app-toml-hpa-target-memory
-          type: extract
-          source: github
-          jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: cpu-and-memory-hpa-are-set
-          name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-          type: aggregate
-          dependsOn:
-            - app-toml-hpa-target-cpu
-            - app-toml-hpa-target-memory
-          method: or
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/739d09e9-de03-426c-b82e-15e7aeb385b4
-    name: high-availability
-    description: Ensure the component is properly configured to support High Availability, which keeps a system or service running with minimal downtime. This helps maintain continuous operation, even during failures or unexpected issues.
-    format:
-        unit: High Availability
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
     name: adaptive-systems
     labels:
         grading-system: resiliency
@@ -202,7 +32,7 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0f72a9b2-c7f2-4eff-b905-1e715c3a8810
     name: adaptive-systems
-    description: Ensure the component is properly configured to support Adaptive Systems, which can automatically adjust to changing conditions. This helps maintain optimal performance, efficiency, and reliability without the need for manual intervention.
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/resiliency.md#adaptive-systems
     format:
         unit: Adaptive Systems
 ---
@@ -251,7 +81,7 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/223be0f4-d7bb-4254-9529-e77aa497e798
     name: allocation-efficiency
-    description: Verifies if the component has defined resource allocations in an efficient way
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/cost-optimization.md#cost-optimization-grading-system
     format:
         unit: Allocation Efficiency
 ---
@@ -310,7 +140,7 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/005d1bf2-7188-4682-861b-a1f8bb7043ed
     name: organizational-standards
-    description: Ensures the component aligns with defined organizational standards, including coding guidelines and compliance requirements
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/production-readiness.md#organizational-standards
     format:
         unit: Organizational Standards
 ---
@@ -334,9 +164,77 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/295e70fa-9359-4a0f-9188-6f7b6a0dbd7e
     name: security-as-pipeline
-    description: Ensure We have early detection security alerts at CI/CD stage before going live with production deployment.
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/security.md#security-as-pipeline
     format:
         unit: Security as Pipeline
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: instrumentation-check
+    labels:
+        grading-system: observability
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: read-otel-service-name-from-apptoml
+          name: Read OTEL_SERVICE_NAME from app.toml
+          type: extract
+          source: github
+          jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: validate-otel-service-name-matches-component-name
+          name: validate OTEL_SERVICE_NAME matches component name
+          type: validate
+          dependsOn:
+            - read-otel-service-name-from-apptoml
+          rule: regex_match
+          pattern: ^${Metadata.Name}.*$
+        - id: read-otel-resource-attributes-from-apptoml
+          name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
+          type: extract
+          source: github
+          jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: validate-otel-resource-attributes-sample-rate
+          name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
+          type: validate
+          dependsOn:
+            - read-otel-resource-attributes-from-apptoml
+          rule: regex_match
+          pattern: of\.sample_rate=\d+.*
+        - id: validate-otel-resource-attributes-one-sample-rate
+          name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
+          type: validate
+          dependsOn:
+            - read-otel-resource-attributes-from-apptoml
+          rule: regex_match
+          pattern: of\.error_sample_rate=\d+.*
+        - id: either-sample-rate-or-error-sample-rate
+          name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
+          type: aggregate
+          dependsOn:
+            - validate-otel-resource-attributes-sample-rate
+            - validate-otel-resource-attributes-error-sample-rate
+          method: or
+        - id: either-sample-rate-or-error-sample-rate
+          name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
+          type: aggregate
+          dependsOn:
+            - validate-otel-service-name-matches-component-name
+            - validate-otel-resource-attributes-one-sample-rate
+          method: and
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/71dfd551-e995-4092-ab06-e2718e75641e
+    name: instrumentation-check
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/observability.md#instrumentation-check
+    format:
+        unit: Instrumentation Check
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Metric
@@ -391,7 +289,7 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a2523e39-c11a-4449-8465-f41613881b22
     name: critical-alerts-slo-check
-    description: Checks if at least one critical performance or reliability metric is actively monitored and triggers an alert (e.g., SLO or metric threshold).
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/observability.md#critical-alerts-slo-check
     format:
         unit: Critical Alerts/SLO Check
 ---
@@ -454,9 +352,73 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/9a068e9d-a760-4928-a092-e626128aeeb0
     name: alert-routing-and-notifications
-    description: Checks if at least one critical performance or reliability metric is actively monitored and triggers an alert (e.g., SLO or metric threshold).
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/observability.md#alert-routing-and-notifications
     format:
         unit: Critical Alerts/SLO Check
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: observability-documentation
+    labels:
+        grading-system: observability
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: extract-observability-md
+          name: Extract observability.md
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          filePath: docs/observability.md
+          rule: notempty
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/c5f96c3d-6845-4155-9576-62f86725b07f
+    name: observability-documentation
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/observability.md#observability-documentation
+    format:
+        unit: Observability Documentation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: deployment-readiness
+    labels:
+        grading-system: production-readiness
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: deployment-readiness-replicas-service-production
+          name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+          type: extract
+          source: github
+          jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: deployment-readiness-replicas-service
+          name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+          type: extract
+          source: github
+          jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: aggregate-replicas
+          name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+          type: aggregate
+          dependsOn:
+            - deployment-readiness-replicas-service-production
+            - deployment-readiness-replicas-service
+          method: or
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef2ef7b8-cc47-4f67-84d3-ba9bebef1ba8
+    name: deployment-readiness
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/production-readiness.md#deployment-readiness
+    format:
+        unit: Deployment Standards
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Metric
@@ -476,6 +438,44 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c7562aa-6b71-4deb-911f-eebac354ee3e
     name: vulnerability-management
-    description: Resource (in focus) should be able to enforce condition to stay at latest patch when severity/bugs are found and also remediation options in place when threats are discovered. This will focus specifically on state of the software codebase.
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/security.md#vulnerability-management
     format:
         unit: Vulnerability Management
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: high-availability
+    labels:
+        grading-system: resiliency
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: app-toml-hpa-target-cpu
+          type: extract
+          source: github
+          jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: app-toml-hpa-target-memory
+          type: extract
+          source: github
+          jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: cpu-and-memory-hpa-are-set
+          name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+          type: aggregate
+          dependsOn:
+            - app-toml-hpa-target-cpu
+            - app-toml-hpa-target-memory
+          method: or
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/739d09e9-de03-426c-b82e-15e7aeb385b4
+    name: high-availability
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/resiliency.md#high-availability
+    format:
+        unit: High Availability

@@ -34,7 +34,7 @@ metadata:
       method: "or"
 spec:
   name: deployment-readiness
-  description: "Ensures the component is correctly configured, adheres to best practices, and meets all necessary requirements for secure, stable, and efficient deployment in a production environment."
+  description: "https://github.com/motain/of-catalog/blob/main/docs/grading-system/production-readiness.md#deployment-readiness"
   format:
     unit: "Deployment Standards"
 ---
@@ -92,6 +92,6 @@ metadata:
       method: "and"
 spec:
   name: organizational-standards
-  description: "Ensures the component aligns with defined organizational standards, including coding guidelines and compliance requirements"
+  description: "https://github.com/motain/of-catalog/blob/main/docs/grading-system/production-readiness.md#organizational-standards"
   format:
     unit: "Organizational Standards"

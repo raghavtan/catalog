@@ -34,7 +34,7 @@ metadata:
       method: "or"
 spec:
   name: high-availability
-  description: "Ensure the component is properly configured to support High Availability, which keeps a system or service running with minimal downtime. This helps maintain continuous operation, even during failures or unexpected issues."
+  description: "https://github.com/motain/of-catalog/blob/main/docs/grading-system/resiliency.md#high-availability"
   format:
     unit: "High Availability"
 ---
@@ -73,6 +73,6 @@ metadata:
       method: "and"
 spec:
   name: adaptive-systems
-  description: "Ensure the component is properly configured to support Adaptive Systems, which can automatically adjust to changing conditions. This helps maintain optimal performance, efficiency, and reliability without the need for manual intervention."
+  description: "https://github.com/motain/of-catalog/blob/main/docs/grading-system/resiliency.md#adaptive-systems"
   format:
     unit: "Adaptive Systems"

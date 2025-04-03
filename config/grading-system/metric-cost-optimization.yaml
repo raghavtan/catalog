@@ -43,6 +43,6 @@ metadata:
       method: "and"
 spec:
   name: allocation-efficiency
-  description: "Verifies if the component has defined resource allocations in an efficient way"
+  description: "https://github.com/motain/of-catalog/blob/main/docs/grading-system/cost-optimization.md#cost-optimization-grading-system"
   format:
     unit: "Allocation Efficiency"

@@ -18,7 +18,7 @@ metadata:
       rule: "search"
 spec:
   name: security-as-pipeline
-  description: "Ensure We have early detection security alerts at CI/CD stage before going live with production deployment."
+  description: "https://github.com/motain/of-catalog/blob/main/docs/grading-system/security.md#security-as-pipeline"
   format:
     unit: "Security as Pipeline"
 ---
@@ -40,6 +40,6 @@ metadata:
 
 spec:
   name: vulnerability-management
-  description: "Resource (in focus) should be able to enforce condition to stay at latest patch when severity/bugs are found and also remediation options in place when threats are discovered. This will focus specifically on state of the software codebase."
+  description: "https://github.com/motain/of-catalog/blob/main/docs/grading-system/security.md#vulnerability-management"
   format:
     unit: "Vulnerability Management"
