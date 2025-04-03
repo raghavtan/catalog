@@ -62,6 +62,7 @@ func (p *Processor) Process(ctx context.Context, tasks []*dtos.Task) (float64, e
 	p.Mu.RLock()
 	defer p.Mu.RUnlock()
 
+	// Grab the result from the last task and try to convert it to a float64
 	return transformers.Interface2Float64(result)
 }
 

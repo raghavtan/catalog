@@ -5,7 +5,7 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/8ec1e41d-03c0-4935-bb47-5df714f6493e
     name: production-readiness
-    description: 'Guidelines to ensure that the service is ready for production. For details: https://onefootball.atlassian.net/wiki/spaces/CORE/pages/4908318721/Production+Readiness+Grading+system'
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/production-readiness.md#production-readiness-grading-system
     ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
     state: PUBLISHED
     componentTypeIds:
@@ -37,7 +37,7 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/f691cd08-83fa-42de-9821-37a79ea192fb
     name: resiliency
-    description: 'Guidelines to ensure that the service is ready for production. For details: https://onefootball.atlassian.net/wiki/spaces/CORE/pages/4908056637/Resiliency+Grading+System'
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/resiliency.md#resiliency-grading-system
     ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
     state: PUBLISHED
     componentTypeIds:
@@ -69,7 +69,7 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/fe61a807-6bf9-4134-b9f9-27da261fa13f
     name: cost-optimization
-    description: Guidelines to ensure that the service is ready for cost Optimized. https://onefootball.atlassian.net/wiki/spaces/CORE/pages/4908154881/Cost+Optimization+Grading+system
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/cost-optimization.md#cost-optimization-grading-system
     ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
     state: PUBLISHED
     componentTypeIds:
@@ -93,7 +93,7 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/7919d4d5-4564-4b25-9f44-773b1d6595e8
     name: observability
-    description: 'Guidelines to ensure that the service is observable. For details: https://onefootball.atlassian.net/wiki/spaces/CORE/pages/4853530681/Observability+Grading+System'
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/observability.md#observability-grading-system
     ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
     state: PUBLISHED
     componentTypeIds:
@@ -141,7 +141,7 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/cae16370-80c1-4e74-98a3-24e7f90014c9
     name: security
-    description: SECURITY Grading system
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/security.md#security-grading-system
     ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
     state: PUBLISHED
     componentTypeIds:

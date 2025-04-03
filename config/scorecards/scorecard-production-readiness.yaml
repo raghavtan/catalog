@@ -5,7 +5,7 @@ metadata:
     name: production-readiness
 spec:
   name: production-readiness
-  description: "Guidelines to ensure that the service is ready for production. For details: https://onefootball.atlassian.net/wiki/spaces/CORE/pages/4908318721/Production+Readiness+Grading+system"
+  description: "https://github.com/motain/of-catalog/blob/main/docs/grading-system/production-readiness.md#production-readiness-grading-system"
   ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
   state: "PUBLISHED" # DRAFT - PUBLISHED
   componentTypeIds: ["SERVICE"]
