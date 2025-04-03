@@ -7,6 +7,12 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
+	"net/http"
+	"path/filepath"
+	"regexp"
+	"strconv"
+
 	"github.com/motain/of-catalog/internal/services/configservice"
 	"github.com/motain/of-catalog/internal/services/factsystem/dtos"
 	"github.com/motain/of-catalog/internal/services/factsystem/utils"
@@ -14,11 +20,6 @@ import (
 	"github.com/motain/of-catalog/internal/services/jsonservice"
 	"github.com/motain/of-catalog/internal/services/prometheusservice"
 	"github.com/motain/of-catalog/internal/utils/transformers"
-	"io"
-	"net/http"
-	"path/filepath"
-	"regexp"
-	"strconv"
 )
 
 type ExtractorInterface interface {
@@ -74,11 +75,7 @@ func (ex *Extractor) Extract(ctx context.Context, task *dtos.Task, deps []*dtos.
 		return ex.handleMultipleResults(ctx, task, values)
 	}
 
-	if value, ok := deps[0].Result.(interface{}); ok {
-		return ex.handleSingleResult(ctx, task, fmt.Sprintf("%v", value))
-	}
-
-	return errors.New("dependency result is not a string or a string array")
+	return ex.handleSingleResult(ctx, task, fmt.Sprintf("%v", deps[0].Result))
 }
 
 func (ex *Extractor) handleSingleResult(ctx context.Context, task *dtos.Task, dependencyResult string) error {

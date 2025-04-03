@@ -15,7 +15,7 @@ Verifies that the component is set up to record relevant telemetry (metrics or t
   ...
   ```
 
-- Validate that `OTEL_RESOURCE_ATTRIBUTES` is defined and not null in `app.toml` under `[envs]`, `[env.production]`, `[service.envs]`, or `[service.production.envs]`. The value must include at least one of of.sample_rate or of.error_sample_rate.
+- Validate that `OTEL_RESOURCE_ATTRIBUTES` is defined and not null in `app.toml` under `[envs]`, `[env.production]`, `[service.envs]`, or `[service.production.envs]`. The value must include at least one of `of.sample_rate` or `of.error_sample_rate`.
   ```toml
   # Ensure OTEL_RESOURCE_ATTRIBUTES is defined as in the following examples
   [service.production.envs]

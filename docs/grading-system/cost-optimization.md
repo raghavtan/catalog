@@ -15,7 +15,7 @@ Verifies if the component has defined resource allocations in an efficient way.
   ...
   ```
 
-- Validate cpu_limits is not defined in `app.toml` under `[service]` nor `[service.production]`
+- Validate `cpu_limits` is not defined in `app.toml` under `[service]` nor `[service.production]`
   ```toml
   # Ensure the cpu_limits is not set neither in [service] nor in [service.production]
   [service.production]
@@ -24,7 +24,7 @@ Verifies if the component has defined resource allocations in an efficient way.
   ...
   ```
 
-- Validate memory_limits is defined and not null in `app.toml` under `[service]` or `[service.production]`
+- Validate `memory_limits` is defined and not null in `app.toml` under `[service]` or `[service.production]`
   ```toml
   # Ensure memory_limits is defined in [service] or [service.production]
   [service.production]

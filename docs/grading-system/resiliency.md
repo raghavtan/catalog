@@ -13,7 +13,7 @@ Ensure the component is properly configured to support High Availability, which 
   ...
   ```
 
-- Validate that target_memory_utilization_percentage is defined and not null in `app.toml` under `[service.production]` or `[service]`. The validation should pass only if its value is greater than or equal to 20.
+- Validate that `target_memory_utilization_percentage` is defined and not null in `app.toml` under `[service.production]` or `[service]`. The validation should pass only if its value is greater than or equal to 20.
   ```toml
   # Ensure target_memory_utilization_percentage is properly defined
   [service.production]
