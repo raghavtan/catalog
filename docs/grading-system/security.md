@@ -34,5 +34,9 @@ Resource (in focus) should be able to enforce condition to stay at latest patch 
 
 To fix any vulnerability follow the instruction defined here:
 - Add references on solving software vulnerability detected by the security tools
-
+  ```bash
+  # login to aws prodcution in your terminal
+  kubectx # chose prod cluster
+  kubectl get vulns -n <component-name> -ojson | jq '[.items[].report.vulnerabilities | unique_by(.vulnerabilityID) | .[]]'
+  ```
 [<< Back to the index](./index.md)
