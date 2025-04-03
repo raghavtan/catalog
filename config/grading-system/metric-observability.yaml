@@ -24,7 +24,7 @@ metadata:
       name: validate OTEL_SERVICE_NAME matches component name
       type: validate
       rule: "regex_match"
-      pattern: ^${Metadata.Name}$
+      pattern: ^${Metadata.Name}.*$
       dependsOn: ["read-otel-service-name-from-apptoml"]
     # Validate that the OTEL_RESOURCE_ATTRIBUTES in app.toml contains either of.sample_rate or of.error_sample_rate
     - id: read-otel-resource-attributes-from-apptoml

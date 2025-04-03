@@ -1,0 +1,18 @@
+# Grading Systems validations
+
+- [Cost Optimization](./cost-optimization.md)
+  - [Allocation Efficiency](./cost-optimization.md#allocation-efficiency)
+- [Observability](./observability.md)
+  - [Instrumentation Check](./observability.md#instrumentation-check)
+  - [Observability Documentation](./observability.md#observability-documentation)
+  - [Critical Alerts SLO Check](./observability.md#critical-alerts-slo-check)
+  - [Alert Routing and Notifications](./observability.md#alert-routing-and-notifications)
+- [Production Readiness](./production-readiness.md)
+  - [Deployment Readiness](./production-readiness.md#deployment-readiness)
+  - [Organizational Standards](./production-readiness.md#organizational-standards)
+- [Resiliency](./resiliency.md)
+  - [High Availability](./resiliency.md#high-availability)
+  - [Adaptive Systems](./resiliency.md#adaptive-systems)
+- [Security](./security.md)
+  - [Security as Pipeline](./security.md#security-as-pipeline)
+  - [Vulnerability Management](./security.md#vulnerability-management)
