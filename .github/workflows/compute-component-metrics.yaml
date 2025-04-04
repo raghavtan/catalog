@@ -41,7 +41,7 @@ jobs:
     strategy:
       matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
       fail-fast: false
-    runs-on: ubuntu-latest
+    runs-on: [ self-hosted, linux, x64, core-team-only ]
     env:
       GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
       COMPASS_TOKEN: ${{ secrets.COMPASS_TOKEN}}
@@ -67,7 +67,7 @@ jobs:
     strategy:
       fail-fast: false
     if: ${{ github.event.inputs.component }}
-    runs-on: ubuntu-latest
+    runs-on: [ self-hosted, linux, x64, core-team-only ]
     env:
       GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
       COMPASS_TOKEN: ${{ secrets.COMPASS_TOKEN}}
