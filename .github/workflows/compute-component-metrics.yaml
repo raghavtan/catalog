@@ -15,7 +15,7 @@ on:
         type: string
 
 concurrency:
-  group: compute-components-${{ github.head_ref }}
+  group: compute-components-${{ github.head_ref }}${{ inputs.component }}
   cancel-in-progress: true
 
 permissions: write-all
