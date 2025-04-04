@@ -1,5 +1,7 @@
 # Metric Module
 
+This document provides an overview of the module functionality and command options, serving as a guide for using the metric module effectively.
+
 The metric module is responsible for managing service catalogue metrics. A metric is a computed measurement derived from a component's data, used to track and evaluate its state and performance, and is defined using [YAML files](../metric-definition.md).
 
 
@@ -31,6 +33,8 @@ The metric module is responsible for managing service catalogue metrics. A metri
 
 ## Facts
 Metrics define a list of facts following the fact system syntax. For more information refer to the fact system documentation.
+
+Read the documentation for more information regarding the [fact system](../fact-system/overview.md).
 
 ## Dynamic placeholders
 When defining metrics it's possible to specify dynamic placeholder that are evenutally processed and replaced by the [component bind command](./component.md#bind).

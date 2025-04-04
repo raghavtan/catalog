@@ -138,6 +138,8 @@ func (h *ApplyHandler) handleUnchanged(
 
 		result = append(result, componentDTO)
 
+		h.handleDependencies(ctx, componentDTO, stateComponents)
+
 		h.handleAPISpecification(ctx, componentDTO)
 	}
 	return result
@@ -201,6 +203,8 @@ func (h *ApplyHandler) handleCreated(
 		// We need to think about the best way to handle this
 		componentDTO.Spec.DependsOn = nil
 		result = append(result, componentDTO)
+
+		h.handleDependencies(ctx, componentDTO, stateComponents)
 
 		h.handleAPISpecification(ctx, componentDTO)
 	}

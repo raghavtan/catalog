@@ -1,6 +1,6 @@
 # Component Module
 
-This document provides an overview of its functionality and command options, serving as a guide for using the component module effectively.
+This document provides an overview of the module functionality and command options, serving as a guide for using the component module effectively.
 
 The component module is responsible for managing service catalogue components. A component represents a service, cloud resource, or application, and is defined using [YAML files](../component-definition.md).
 
@@ -53,6 +53,19 @@ The `apply` command synchronizes configuration files with the state file by dete
      → Delete the resource from the remote IDP and remove it from the state file.
       - If the resource is missing on the remote IDP, the error is ignored and the state is updated.
 
+### Components relations
+Componetns defines a list of components on which they depends on, this can be used to create a dependency graph. Dependecies are recalculated for each run for resources that are new, updated, or did not change. The only scenario where these are not refreshed is when a compoennt is removed from the configuration.
+
+### Documenation
+The documentation list does not come with the component definition but is build  fetched from the component repository looking for an `mkdocs` file.
+Similarly to what happens with the dependencies, the documentation list get refreshed with every apply for compoenents that were not removed.
+
+### API Specification
+The api specification does not come with the component definition but is build  fetched from the component repository looking for `openapi` or `swagger` files.
+Similarly to what happens with the dependencies and documentation list, the api specification get refreshed with every apply for compoenents that were not removed.
+
+The relationships between components, documentation, and the API specification are the reasons for overwriting the state file for components that haven't changed. Since these details are recalculated with each run and are not specified in the configuration, changes outside the scope of the configuration can occur, resulting in the state being refreshed.
+
 - **Command Options:**
 
 ```
@@ -85,6 +98,8 @@ This replacement is performed during bind rather than at compute time to reduce 
 
 The `compute` command processes metrics for a component, computing facts and pushing values to the remote IDP.
 
+Read the documentation for more information regarding the [fact system](../fact-system/overview.md).
+
 - **Command Options:**
 
 ```
@@ -107,3 +122,24 @@ The `compute` command processes metrics for a component, computing facts and pus
 ## GitHub Workflow
 To compute all the metrics for a component run the GitHub workflow [ComputeComponentMetrics](https://github.com/motain/of-catalog/actions/workflows/compute-component-metrics.yaml)
 
+
+## Batch trigger apply
+To trigger the refresh of all the services run:
+``` bash
+$ ./apply-all-individually.sh
+```
+
+This is the same as run:
+
+```bash
+ go run ./cmd/root.go component apply -l ./config/components
+```
+
+The first option is safer though as it apply adn flush to the state one component at the time. In the second option, if the process fails, it can happen that the state is not persisted.
+
+## Batch trigger compute
+To trigger the refresh of all the services run:
+``` bash
+$ ./compute-all.sh
+```
+Similarly to the `apply-all-individually.sh` script, this script compute all the metric for all the components.

@@ -26,8 +26,8 @@ const (
 type TaskSource string
 
 const (
-	GitHubTaskSource  TaskSource = "github"
-	JSONAPITaskSource TaskSource = "jsonapi"
+	GitHubTaskSource     TaskSource = "github"
+	JSONAPITaskSource    TaskSource = "jsonapi"
 	PrometheusTaskSource TaskSource = "prometheus"
 )
 
@@ -59,15 +59,15 @@ type Task struct {
 	Source string `yaml:"source,omitempty" json:"source,omitempty"`
 
 	// Extract related fields for REST API calls
-	URI          string    `yaml:"uri,omitempty" json:"uri,omitempty"`
-	JSONPath     string    `yaml:"jsonPath,omitempty" json:"jsonPath,omitempty"`
-	Auth         *TaskAuth `yaml:"auth,omitempty" json:"auth,omitempty"`
-	SearchString string    `yaml:"searchString,omitempty" json:"searchString,omitempty"`
-	PrometheusQuery string `yaml:"prometheusQuery,omitempty" json:"prometheusQuery,omitempty"`
+	URI             string    `yaml:"uri,omitempty" json:"uri,omitempty"`
+	JSONPath        string    `yaml:"jsonPath,omitempty" json:"jsonPath,omitempty"`
+	Auth            *TaskAuth `yaml:"auth,omitempty" json:"auth,omitempty"`
+	PrometheusQuery string    `yaml:"prometheusQuery,omitempty" json:"prometheusQuery,omitempty"`
 
 	// Extract related fields for GitHub API calls
-	Repo     string `yaml:"repo,omitempty" json:"repo,omitempty"`
-	FilePath string `yaml:"filePath,omitempty"`
+	Repo         string `yaml:"repo,omitempty" json:"repo,omitempty"`
+	FilePath     string `yaml:"filePath,omitempty"`
+	SearchString string `yaml:"searchString,omitempty" json:"searchString,omitempty"`
 
 	// Validate related fields
 	Rule    string `yaml:"rule,omitempty" json:"rule,omitempty"`

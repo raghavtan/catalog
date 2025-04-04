@@ -1,5 +1,7 @@
 # Scorecard Module
 
+This document provides an overview of the module functionality and command options, serving as a guide for using the scorecard module effectively.
+
 The scorecard module is responsible for managing service catalogue scorecards. A scorecard is a tool that aggregates and displays key performance indicators (KPIs) to help monitor, assess, and improve performance against strategic goals, and is defined using [YAML files](../scorecard-definition.md).
 
 ## Overview
