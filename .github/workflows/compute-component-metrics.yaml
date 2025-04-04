@@ -48,6 +48,7 @@ jobs:
       GITHUB_ORG: motain
       COMPASS_HOST: onefootball.atlassian.net
       HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY}}
+      PROMETHEUS_URL: https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-841dbf21-00d1-4a0a-96a9-25de0ecb9562
     steps:
     - uses: actions/checkout@v4
 
