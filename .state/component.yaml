@@ -248,8 +248,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: ads-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -275,8 +275,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: ads-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0fcb9f72-1893-41bf-8aad-1aad8fc8f7dc
@@ -642,8 +642,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: airship-email
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -669,8 +669,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: airship-email
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/aaa8bf9d-5033-44fc-ad42-6a0b38b8371c
@@ -1039,8 +1039,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: amymone
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -1066,8 +1066,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: amymone
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/05a8161d-88af-40a2-bc77-e44d8ee1dca1
@@ -1331,8 +1331,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: amymone-aurora-mysql8
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -1358,8 +1358,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: amymone-aurora-mysql8
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9686246a-049e-41be-a189-6c4252024562
@@ -1725,8 +1725,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: analytics-service
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -1752,8 +1752,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: analytics-service
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/fd819f1a-90fb-4c80-94b4-91e9dd2ea078
@@ -2120,8 +2120,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: appstore-connect-iap-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -2147,8 +2147,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: appstore-connect-iap-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3a54ff17-c80c-424f-b540-59d515fbc568
@@ -2413,8 +2413,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: appstore-connect-iap-api-prod
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -2440,8 +2440,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: appstore-connect-iap-api-prod
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1b21c0fa-1092-40d1-a106-0289e5607f15
@@ -2807,8 +2807,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: archive
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -2834,8 +2834,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: archive
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6aca833f-ab16-46a6-b274-0853961c0757
@@ -3217,8 +3217,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: article-intelligence
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -3244,8 +3244,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: article-intelligence
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1caa8d00-2b3b-4ab4-abc5-e3423696ee51
@@ -3276,26 +3276,6 @@ spec:
     dependsOn: []
     fields: {}
     links:
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-service&var-container=article-service&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: ""
-          name: The Source
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/article-service
         - id: ""
           name: Monitoring page
           type: DASHBOARD
@@ -3831,8 +3811,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: auth-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -3858,8 +3838,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: auth-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5f99c063-3435-4d0b-bc80-d51dbc710459
@@ -4228,8 +4208,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: backstage
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -4255,8 +4235,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: backstage
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/611ad3d1-03cb-4cdc-871a-eb8f6571c6bf
@@ -4618,8 +4598,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: banner-free
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -4645,8 +4625,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: banner-free
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0aa12a10-4c00-4649-92eb-d507ba21982c
@@ -4911,8 +4891,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: banner-free-tf
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -4938,8 +4918,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: banner-free-tf
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c34ac41-168d-4a2c-921e-5b368d167cff
@@ -5314,8 +5294,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: betting-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -5341,8 +5321,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: betting-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c807d84-b75c-4bff-831b-c8ba22f3727c
@@ -5607,8 +5587,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: betting-prod
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -5634,8 +5614,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: betting-prod
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7ccfa311-48bd-440b-880e-081b3ffcb71a
@@ -5997,8 +5977,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: betting-workers
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -6024,8 +6004,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: betting-workers
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6c513575-ad77-42ac-be0e-d85ec6692fb7
@@ -6394,8 +6374,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: bookmarks
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -6421,8 +6401,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: bookmarks
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/b36b46c9-806c-4747-b839-60caffd5b837
@@ -6692,8 +6672,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: campaign-manager
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -6719,8 +6699,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: campaign-manager
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/f46c7f0e-bd19-496b-836e-baa7a1999458
@@ -7115,8 +7095,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: category-tiles
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -7142,8 +7122,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: category-tiles
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/b4ea0aaa-f7f0-4717-8858-ac01fed2ff1a
@@ -7508,8 +7488,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: cdp-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -7535,8 +7515,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: cdp-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1286eb99-533b-4af1-a71e-1acb3371180e
@@ -7902,8 +7882,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: cheburashka
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -7929,8 +7909,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: cheburashka
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/44d5cdd0-a1f2-4669-b2a2-ea0a95dc377a
@@ -8205,8 +8185,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: clips
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -8232,8 +8212,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: clips
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/87cf61ad-21e3-4917-b9e5-b8730dde343d
@@ -8609,8 +8589,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: clips-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -8636,8 +8616,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: clips-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a82775d4-8eb9-44d7-a34b-98dfacfecc1d
@@ -9015,8 +8995,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: clips-search
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -9042,8 +9022,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: clips-search
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a9371c14-d74e-4eb2-901f-fa0903f43312
@@ -9413,8 +9393,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: clips-webhooks
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -9440,8 +9420,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: clips-webhooks
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1d96a25b-9335-4f12-9710-41ba40eae815
@@ -9810,8 +9790,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: cloud-runtime-bot
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -9837,8 +9817,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: cloud-runtime-bot
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c285f0a-798a-42db-b5f1-b7092f23430f
@@ -10103,8 +10083,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: cms-prod
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -10130,8 +10110,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: cms-prod
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5846b72e-ae37-42c5-8695-62d8dfce7234
@@ -10502,8 +10482,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: competition-sorting-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -10529,8 +10509,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: competition-sorting-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/67afed79-01be-4f24-a3eb-90d1faed76ca
@@ -10896,8 +10876,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: consumer-web-v2
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -10923,8 +10903,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: consumer-web-v2
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/435a714b-f7f5-4c11-a769-8ce6a48b3e0a
@@ -11294,8 +11274,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: consumer-web-v3
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -11321,8 +11301,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: consumer-web-v3
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/77b8d629-e705-4af0-861d-b1257dbd9f35
@@ -11691,8 +11671,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: content-classifier
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -11718,8 +11698,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: content-classifier
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d4c03d10-d2fe-4936-a80f-79ab953f23da
@@ -11984,8 +11964,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: content-classifier-tf
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -12011,8 +11991,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: content-classifier-tf
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/b31d8b8c-ac3a-4acd-baab-ff1fa17ac94c
@@ -12386,8 +12366,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: content-recommender
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -12413,8 +12393,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: content-recommender
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/e67bea3d-b813-412f-8ddf-1b62ff27f72f
@@ -12783,8 +12763,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: content-tags-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -12810,8 +12790,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: content-tags-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/480594e7-1c6c-4118-a753-cf6b8a76f2f8
@@ -13177,8 +13157,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: creators-content
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -13204,8 +13184,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: creators-content
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/c65c597c-c837-4a12-98c7-ae8b28892a16
@@ -13571,8 +13551,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: creators-network
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -13598,8 +13578,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: creators-network
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0072e0d8-7dbb-4ac9-b0d6-2a36303da6f4
@@ -13982,8 +13962,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: daily-digest
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -14009,8 +13989,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: daily-digest
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/82bea612-7058-4ffb-9909-d79d8becf18e
@@ -14376,8 +14356,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: editorjs-translator
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -14403,8 +14383,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: editorjs-translator
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/8fdc1317-7f8c-4f91-961f-9a5e76833165
@@ -14770,8 +14750,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: emelya
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -14797,8 +14777,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: emelya
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/365dc3cc-fe13-470b-b25d-d7e86b2dc0e4
@@ -15181,8 +15161,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: entity-index-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -15208,8 +15188,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: entity-index-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/605d8bb9-8b23-484f-a8a5-3ed48ca5e226
@@ -15575,8 +15555,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: entity-resolution
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -15602,8 +15582,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: entity-resolution
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/653b7462-f45c-4cd5-8040-d8af1599fe25
@@ -15973,8 +15953,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: entity-service
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -16000,8 +15980,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: entity-service
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4da9db58-10c7-4e4a-8a29-6d99c42af500
@@ -16370,8 +16350,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: experimental-thumbor
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -16397,8 +16377,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: experimental-thumbor
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/b0243d29-6bfd-4f50-b1b3-affa546a88b9
@@ -16769,8 +16749,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: external-highlights
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -16796,8 +16776,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: external-highlights
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7fd2f618-e1c7-4504-8006-97e73d387f9c
@@ -17062,8 +17042,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: facts
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -17089,8 +17069,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: facts
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/92b05c8e-34ce-4747-803c-4b2d78ba0a01
@@ -17456,8 +17436,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: facts-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -17483,8 +17463,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: facts-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/90077c48-6286-4ffd-a3e9-269cbe5e7674
@@ -17850,8 +17830,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: facts-fetcher
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -17877,8 +17857,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: facts-fetcher
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/bcfb1c07-fe75-47f1-b31f-1a0560e9def0
@@ -18244,8 +18224,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: facts-importer
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -18271,8 +18251,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: facts-importer
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/44e62e1f-657a-492b-a482-e51dc0760804
@@ -18537,8 +18517,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: fanmatch
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -18564,8 +18544,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: fanmatch
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0e23d2b8-ac7d-4b84-b869-80c7e9841f91
@@ -18927,8 +18907,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: fanmatch-go
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -18954,8 +18934,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: fanmatch-go
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/249f3289-bbc2-4372-b026-a492f8107674
@@ -19321,8 +19301,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: feeditem-algolia-indexer
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -19348,8 +19328,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: feeditem-algolia-indexer
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6c2c4ed0-5f20-4136-be15-c5bd51c52621
@@ -19714,8 +19694,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: follower-count-publisher
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -19741,8 +19721,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: follower-count-publisher
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4132fafb-563e-43da-81d0-5490d1c5068c
@@ -20126,8 +20106,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: funtik
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -20153,8 +20133,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: funtik
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/54b97d2f-5184-49c5-8025-742a04649757
@@ -20520,8 +20500,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: gam-mrss-generator
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -20547,8 +20527,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: gam-mrss-generator
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/99b943b2-68a8-41ea-80c6-701da2c697c7
@@ -20910,8 +20890,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: geoip
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -20937,8 +20917,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: geoip
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/c59315c7-08ee-46e5-8d7c-67a5fa0caffa
@@ -21307,8 +21287,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: gitleaks-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -21334,8 +21314,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: gitleaks-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/49872432-1a46-4f71-91a8-ddc083702f02
@@ -21705,8 +21685,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: happy-keldysh
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -21732,8 +21712,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: happy-keldysh
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6f51a94f-edd0-4dd0-a6e0-ac17cb87ba9b
@@ -22102,8 +22082,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: idp-wrapper
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -22129,8 +22109,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: idp-wrapper
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/950242d8-a566-4947-954d-467a35d64ba5
@@ -22499,8 +22479,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: image-service
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -22526,8 +22506,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: image-service
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/965cf1ef-7110-43e5-afc6-ac19b457bc6a
@@ -22889,8 +22869,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: image-uploader
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -22916,8 +22896,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: image-uploader
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/91ec3986-2478-488d-91b3-8d8f9571da4c
@@ -23307,8 +23287,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: kuzya
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -23334,8 +23314,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: kuzya
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/20017673-5d9d-4447-b764-2d6fb19531a1
@@ -23697,8 +23677,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: lead-gen-campaign-manager
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -23724,8 +23704,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: lead-gen-campaign-manager
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a89a9c94-7161-4fba-b518-c8afbab80de5
@@ -24087,8 +24067,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: lead-gen-campaign-manager-web
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -24114,8 +24094,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: lead-gen-campaign-manager-web
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/2dc79f64-03ca-4574-993d-2b6ae0b7c345
@@ -24477,8 +24457,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: lead-gen-campaign-web
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -24504,8 +24484,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: lead-gen-campaign-web
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6e191af1-2738-407e-b45d-44620be7cca1
@@ -24867,8 +24847,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: lead-gen-data-collector-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -24894,8 +24874,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: lead-gen-data-collector-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6298fd16-da67-421e-8e04-5ef1f1c66836
@@ -25160,8 +25140,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: lead-gen-prod
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -25187,8 +25167,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: lead-gen-prod
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/96358949-31c4-488d-a859-e188833cbe52
@@ -25579,8 +25559,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: librarian
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -25606,8 +25586,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: librarian
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a98cd828-b76a-407d-8545-57386e58f7f8
@@ -25973,8 +25953,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: live-ticker-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -26000,8 +25980,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: live-ticker-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/f25b3365-153c-442b-b798-bdc65997dc38
@@ -26367,8 +26347,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: live-ticker-importer
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -26394,8 +26374,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: live-ticker-importer
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/97d7533e-64b7-468d-8b5f-89f050888ef0
@@ -26660,8 +26640,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: live-ticker-tf
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -26687,8 +26667,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: live-ticker-tf
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/72c17dde-eb73-4f37-90c1-bd4c809c6ea5
@@ -26953,8 +26933,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: loyalty-event-store
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -26980,8 +26960,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: loyalty-event-store
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ae746a50-b63c-416e-a5a3-a2f9781e88e2
@@ -27355,8 +27335,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: loyalty-settings
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -27382,8 +27362,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: loyalty-settings
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/2b38db2e-5ee5-44df-a864-01c2096e1e0a
@@ -27745,8 +27725,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: mediation-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -27772,8 +27752,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: mediation-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/71c0ef62-1f41-4d9f-99b4-eb988c1da811
@@ -28037,8 +28017,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: meltano-airflow
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -28064,8 +28044,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: meltano-airflow
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5fcbada0-355f-471a-8d43-d7ffa71697a9
@@ -28329,8 +28309,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: metabase-cluster
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -28356,8 +28336,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: metabase-cluster
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/069c452c-4b39-4223-9d6b-150ce19a5dc8
@@ -28723,8 +28703,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: network-admin-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -28750,8 +28730,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: network-admin-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/685f74b8-3fc1-4f81-add3-4f76b1b1fa3f
@@ -29150,8 +29130,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: news
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -29177,8 +29157,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: news
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/660b86ee-3f55-4076-9379-ba8aeb0a8027
@@ -29543,8 +29523,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: newsdesk-admin-web
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -29570,8 +29550,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: newsdesk-admin-web
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3b92604e-9006-4fef-b495-5577a30518e7
@@ -29836,8 +29816,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: newsroom-auth-cluster
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -29863,8 +29843,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: newsroom-auth-cluster
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/27a1e2a6-3278-4e2f-967b-d80d23ba6659
@@ -30247,8 +30227,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: neznaika
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -30274,8 +30254,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: neznaika
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/e94dd5b1-067f-42d3-9754-0b376f4a28ff
@@ -30644,8 +30624,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: not-found-server
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -30671,8 +30651,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: not-found-server
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/8036eecf-2a1a-4240-939d-35466f92d4cc
@@ -31054,8 +31034,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: onboarding-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -31081,8 +31061,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: onboarding-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d66fd719-a807-4213-b220-a4dc5ba500b4
@@ -31347,8 +31327,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: onboarding-api-tf-13
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -31374,8 +31354,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: onboarding-api-tf-13
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/146e8ee6-e485-4c7a-8c14-910a266db405
@@ -31744,8 +31724,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: oncall-compensation
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -31771,8 +31751,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: oncall-compensation
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1eec0387-84fd-4c68-8dab-ac2c39611085
@@ -32138,8 +32118,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: onefootball-copilot
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -32165,8 +32145,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: onefootball-copilot
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0abe084d-a534-46a1-8adb-d205c461a4e3
@@ -32531,8 +32511,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: optimistic-joliot
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -32558,8 +32538,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: optimistic-joliot
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d3daebae-55b3-4b1f-becf-41ee78966682
@@ -33054,8 +33034,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: ott-external-accounts
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -33081,8 +33061,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: ott-external-accounts
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd9c7611-c48d-4696-ac1d-a347888618f0
@@ -33347,8 +33327,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: ott-external-accounts-tf
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -33374,8 +33354,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: ott-external-accounts-tf
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/78d5a43d-7b03-4ff7-90f6-f5e3a065e152
@@ -33737,8 +33717,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: ott-live-sessions
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -33764,8 +33744,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: ott-live-sessions
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/e0711a3e-ad7c-4453-b545-8edd5ee4dfb1
@@ -34132,8 +34112,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: ott-load-test-proxy
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -34159,8 +34139,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: ott-load-test-proxy
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d259c6a6-0265-4275-b15c-9ab6b69011e9
@@ -34522,8 +34502,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: ott-mediation
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -34549,8 +34529,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: ott-mediation
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/045543fa-2cb7-4508-8828-c6e83bec8ec5
@@ -34815,8 +34795,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: ott-mediation-tf
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -34842,8 +34822,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: ott-mediation-tf
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/cce15f0c-b1a9-4e09-99e4-d1783c0bacdd
@@ -35205,8 +35185,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: ott-probe
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -35232,8 +35212,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: ott-probe
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/fcabd9c7-58d8-4f80-bbbd-fd4323039331
@@ -35608,8 +35588,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: payments-history
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -35635,8 +35615,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: payments-history
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/fb302f19-1ee9-41d6-ae22-b87dce085136
@@ -36071,8 +36051,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: personalisation-service
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -36098,8 +36078,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: personalisation-service
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ceb4180d-8fea-49f0-9ffa-7d6271732886
@@ -36464,8 +36444,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: photobooth
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -36491,8 +36471,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: photobooth
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3c9c4fbf-517d-422e-a221-ba798e2f1450
@@ -36875,8 +36855,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: polls-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -36902,8 +36882,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: polls-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/f249094f-f872-43bf-9005-9838a38d5bf8
@@ -37272,8 +37252,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: prometheus-exporter
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -37299,8 +37279,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: prometheus-exporter
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/f0df7adb-1dbd-48ee-85ff-f593a4af37d1
@@ -37667,8 +37647,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: promo
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -37694,8 +37674,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: promo
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/b0b37a84-15a5-422d-8728-933fe6c3ee43
@@ -37960,8 +37940,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: promo-cluster
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -37987,8 +37967,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: promo-cluster
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/92890726-a179-4f16-b326-894a203617f9
@@ -38354,8 +38334,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: push
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -38381,8 +38361,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: push
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1cd76358-0f38-4406-9c32-b96967fee7f8
@@ -38747,8 +38727,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: push-notification-center
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -38774,8 +38754,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: push-notification-center
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/aaaa6cef-ddaf-4e05-b334-ce08b68130b5
@@ -39137,8 +39117,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: quiz-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -39164,8 +39144,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: quiz-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0c70fbac-8a2b-40ff-8433-f04ef03c50eb
@@ -39430,8 +39410,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: quiz-cluster
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -39457,8 +39437,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: quiz-cluster
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/cbb49b07-8efc-46d1-b92a-8ae182035212
@@ -39847,8 +39827,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: relevance-service
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -39874,8 +39854,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: relevance-service
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5ccd455c-cea1-4422-80c4-a7296226a1c6
@@ -40140,8 +40120,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: relevance-service-tf
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -40167,8 +40147,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: relevance-service-tf
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d277a3fe-d0ac-4876-bb03-e92a6d4beb8a
@@ -40534,8 +40514,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: replay-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -40561,8 +40541,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: replay-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ee541605-95f7-4b4d-b724-f62df4387640
@@ -40928,8 +40908,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: resolver-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -40955,8 +40935,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: resolver-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/128d9808-aa58-4ae1-8e8f-fcc75950cc93
@@ -41220,8 +41200,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: retool
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -41247,8 +41227,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: retool
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/310cad1f-b0be-418b-9bf6-8c7ca8e67643
@@ -41610,8 +41590,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: rich-push
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -41637,8 +41617,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: rich-push
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7688eeef-9717-42dc-bb06-67e372176ecb
@@ -42004,8 +41984,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: rss-generator
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -42031,8 +42011,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: rss-generator
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7632cfd2-f40d-4fcd-9c55-c49fd6aa9dcc
@@ -42296,8 +42276,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: score
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -42323,8 +42303,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: score
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9a464f76-d71d-4881-be2b-fb3f7f6677cd
@@ -42690,8 +42670,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: score-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -42717,8 +42697,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: score-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/8ca8db08-3143-4056-8db1-e012e39ee453
@@ -43084,8 +43064,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: scores-mixer
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -43111,8 +43091,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: scores-mixer
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/f39d1cfd-4d75-4c92-ac9e-498f2e6b8f98
@@ -43501,8 +43481,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: search-gateway-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -43528,8 +43508,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: search-gateway-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c87f38f-cf39-40c7-a927-8d510ae5a891
@@ -43895,8 +43875,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: seasons-cache
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -43922,8 +43902,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: seasons-cache
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a08ce484-1de0-4a65-aecc-1a8cd4c29f10
@@ -44312,8 +44292,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: simple-service
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -44339,8 +44319,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: simple-service
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/8ccdca49-5454-46c5-aed1-5bf61b01d90a
@@ -44706,8 +44686,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: sitemap-generator-v2
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -44733,8 +44713,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: sitemap-generator-v2
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5762d657-97be-4bba-bb7c-2d99c59d989d
@@ -45101,8 +45081,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: specialone-slackbot
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -45128,8 +45108,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: specialone-slackbot
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/2813b186-b6e2-46c6-bd40-d7802a288737
@@ -45512,8 +45492,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: stories-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -45539,8 +45519,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: stories-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/003a8ffd-1e13-4347-8521-2a73fa10cd9b
@@ -45922,8 +45902,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: streaming-service
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -45949,8 +45929,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: streaming-service
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/76dd3a74-163c-4735-a546-0d9d770b96dc
@@ -46215,8 +46195,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: streaming-service-tf
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -46242,8 +46222,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: streaming-service-tf
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d11f5f9d-a23e-42a0-956a-329553fad762
@@ -46618,8 +46598,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: tv-guide-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -46645,8 +46625,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: tv-guide-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5981ef08-3503-489f-9505-94e2646540e0
@@ -47021,8 +47001,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: tv-guide-importer
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -47048,8 +47028,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: tv-guide-importer
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/aeb70c80-c496-412e-a315-26b938a66431
@@ -47314,8 +47294,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: tvguide
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -47341,8 +47321,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: tvguide
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/462641a8-7471-4551-9a14-9c952acc5fd3
@@ -47736,8 +47716,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: umka
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -47763,8 +47743,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: umka
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/74b86b7d-82e9-4923-b3a3-aa4b18394c72
@@ -48129,8 +48109,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: users-accounts-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -48156,8 +48136,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: users-accounts-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/43fbae93-f3f8-462e-85ec-5562794a362c
@@ -48422,8 +48402,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: users-accounts-tf
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -48449,8 +48429,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: users-accounts-tf
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7460f9f7-7dd5-4558-8630-092c42b7e0b7
@@ -48833,8 +48813,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: users-auth-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -48860,8 +48840,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: users-auth-api
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4b24acb8-6ce7-4b93-af16-29f5bff97ecb
@@ -49126,8 +49106,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: users-auth-tf
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -49153,8 +49133,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: users-auth-tf
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/029a3cea-1ec9-44ff-828c-f248a09c1832
@@ -49520,8 +49500,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: users-gdpr
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -49547,8 +49527,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: users-gdpr
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a1be33d1-ea2c-4fb5-8b2f-0578b3e3dfbb
@@ -49813,8 +49793,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: users-pii
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -49840,8 +49820,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: users-pii
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/304d1567-89ea-475d-90bf-f11027786028
@@ -50207,8 +50187,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: vinnipuh
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -50234,8 +50214,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: vinnipuh
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6322077f-f74b-4d8c-b25a-6f71fc976c5b
@@ -50565,8 +50545,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: watch
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -50592,8 +50572,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: watch
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/e157ba7e-0a73-4d5e-b1b9-55d82be2444a
@@ -51095,8 +51075,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: web-payments-backend
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -51122,8 +51102,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: web-payments-backend
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5e188506-fb59-427f-bad9-8e608da7a4db
@@ -51488,8 +51468,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: web-url-redirector
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -51515,8 +51495,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: web-url-redirector
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/dc5e0b12-ccb0-4dfb-a28d-7ef45629262b
@@ -51877,8 +51857,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: web3-transactions
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -51904,8 +51884,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: web3-transactions
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7ca07e9a-2ed1-40f0-a1dd-8a995bc55f4f
@@ -52271,8 +52251,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: webhook-receiver
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -52298,8 +52278,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: webhook-receiver
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/901c3964-6b6d-4b2d-97d0-335f58cf60fa
@@ -52688,8 +52668,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: webserver
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -52715,8 +52695,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: webserver
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d430bdeb-1335-47e2-b3dc-34eac51ef1eb
@@ -53082,8 +53062,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: ws-receiver
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -53109,8 +53089,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: ws-receiver
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/44bdfe97-7927-458e-8dcf-2c0d63bc69b4
@@ -53500,8 +53480,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: xpa-backend
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -53527,8 +53507,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: xpa-backend
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/25955ce4-f1e0-4bea-b131-5f9022e28d8b
@@ -53911,8 +53891,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: xpa-mobile-backend
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -53938,8 +53918,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: xpa-mobile-backend
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/fb30d73b-e914-4d6f-95c1-431b3e9af319
@@ -54322,8 +54302,8 @@ spec:
                   name: Check if the service is using PaaS
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/paas-deploy@master
                   repo: xpa-tv-backend
+                  searchString: motain/onefootball-actions/paas-deploy@master
                   rule: search
                 - id: aggregate-readme-exists
                   name: Check if repo has documentation
@@ -54349,8 +54329,8 @@ spec:
                   name: Check if Trivy is used in CI/CD pipeline
                   type: extract
                   source: github
-                  searchString: motain/onefootball-actions/security
                   repo: xpa-tv-backend
+                  searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d23fe467-c732-478f-81e9-6e09e0a1da97
