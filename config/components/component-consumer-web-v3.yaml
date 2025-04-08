@@ -10,8 +10,8 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    tribe: reach
-    squad: consumer-web
+    tribe: ott
+    squad: video-platform
     links:
         - name: Repository
           type: REPOSITORY
@@ -23,5 +23,5 @@ spec:
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     labels:
-        - consumer-web
-        - reach
+        - ott
+        - video-platform
