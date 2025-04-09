@@ -9,17 +9,8 @@ spec:
     description: ""
     typeId: SERVICE
     ownerId: ""
-    dependsOn:
-        - clips
-        - clips-api
-        - users-api
-        - users-auth-api
-        - users-accounts-api
-        - ott-mediation
-        - scores-mixer
-        - watch
-        - score-api
-    tribe: engagement
+    dependsOn: []
+    tribe: ott
     squad: live-video
     links:
         - name: Repository
@@ -32,6 +23,6 @@ spec:
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     labels:
-        - xpa-tv-backend
-        - engagement
+        - ott
         - live-video
+        - xpa-tv-backend
