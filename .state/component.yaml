@@ -2867,18 +2867,6 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: The Source
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/article-intelligence
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-intelligence&var-container=article-intelligence&from=now-1h&to=now
-        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -2906,11 +2894,23 @@ spec:
           name: r-source
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C055TBZP1B9
+        - id: ""
+          name: The Source
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/article-intelligence
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-intelligence&var-container=article-intelligence&from=now-1h&to=now
     documents: []
     labels:
+        - fan-experience
         - source
         - article-intelligence
-        - fan-experience
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9b75a4e1-64eb-470d-98f7-e57b78609c37
