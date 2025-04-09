@@ -51318,14 +51318,6 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: Cloud Runtime
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/webserver
-        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=webserver&var-container=webserver&from=now-1h&to=now
@@ -51357,10 +51349,18 @@ spec:
           name: p-cloud-runtime
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CFUCQUA04
+        - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/webserver
     documents: []
     labels:
-        - cloud-runtime
         - platform
+        - cloud-runtime
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c033457-01aa-4caa-9c76-e0e9b2ab5078
