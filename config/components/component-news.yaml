@@ -20,7 +20,7 @@ spec:
         - search-gateway-api
         - category-tiles
         - article-service
-    tribe: engagement
+    tribe: fan-experience
     squad: personalisation
     links:
         - name: Repository
@@ -33,5 +33,5 @@ spec:
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     labels:
-        - engagement
         - personalisation
+        - fan-experience
