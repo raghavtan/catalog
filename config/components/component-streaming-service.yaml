@@ -10,7 +10,7 @@ spec:
     typeId: SERVICE
     ownerId: ""
     dependsOn: []
-    tribe: engagement
+    tribe: ott
     squad: live-video
     links:
         - name: Repository
@@ -25,4 +25,4 @@ spec:
     labels:
         - live-video
         - streaming-service
-        - engagement
+        - ott
