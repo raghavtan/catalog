@@ -4723,9 +4723,9 @@ spec:
           url: https://github.com/motain/betting-api
     documents: []
     labels:
-        - betting-api
         - client-experience
         - sponsorship-integration
+        - betting-api
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/21ccab50-03ed-4a28-946a-280cb32cd6b6
