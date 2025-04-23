@@ -1,122 +1,122 @@
 #!/bin/bash
 
-go run ./cmd/root.go component compute -a -c airship-email
-go run ./cmd/root.go component compute -a -c amymone
-go run ./cmd/root.go component compute -a -c analytics-service
-go run ./cmd/root.go component compute -a -c appstore-connect-iap-api
-go run ./cmd/root.go component compute -a -c archive
-go run ./cmd/root.go component compute -a -c article-intelligence
-go run ./cmd/root.go component compute -a -c article-service
-go run ./cmd/root.go component compute -a -c article-translator
-go run ./cmd/root.go component compute -a -c auth-api
-go run ./cmd/root.go component compute -a -c backstage
-go run ./cmd/root.go component compute -a -c banner-free
-go run ./cmd/root.go component compute -a -c betting-api
-go run ./cmd/root.go component compute -a -c betting-workers
-go run ./cmd/root.go component compute -a -c bookmarks
-go run ./cmd/root.go component compute -a -c campaign-manager
-go run ./cmd/root.go component compute -a -c category-tiles
-go run ./cmd/root.go component compute -a -c cdp-api
-go run ./cmd/root.go component compute -a -c cheburashka
-go run ./cmd/root.go component compute -a -c clips-api
-go run ./cmd/root.go component compute -a -c clips-search
-go run ./cmd/root.go component compute -a -c clips-webhooks
-go run ./cmd/root.go component compute -a -c clips
-go run ./cmd/root.go component compute -a -c cloud-runtime-bot
-go run ./cmd/root.go component compute -a -c competition-sorting-api
-go run ./cmd/root.go component compute -a -c consumer-web-v2
-go run ./cmd/root.go component compute -a -c consumer-web-v3
-go run ./cmd/root.go component compute -a -c content-classifier
-go run ./cmd/root.go component compute -a -c content-recommender
-go run ./cmd/root.go component compute -a -c content-tags-api
-go run ./cmd/root.go component compute -a -c creators-content
-go run ./cmd/root.go component compute -a -c creators-network
-go run ./cmd/root.go component compute -a -c daily-digest
-go run ./cmd/root.go component compute -a -c editorjs-translator
-go run ./cmd/root.go component compute -a -c emelya
-go run ./cmd/root.go component compute -a -c entity-index-api
-go run ./cmd/root.go component compute -a -c entity-resolution
-go run ./cmd/root.go component compute -a -c entity-service
-go run ./cmd/root.go component compute -a -c experimental-thumbor
-go run ./cmd/root.go component compute -a -c external-highlights
-go run ./cmd/root.go component compute -a -c facts-api
-go run ./cmd/root.go component compute -a -c facts-fetcher
-go run ./cmd/root.go component compute -a -c facts-importer
-go run ./cmd/root.go component compute -a -c fanmatch-go
-go run ./cmd/root.go component compute -a -c feeditem-algolia-indexer
-go run ./cmd/root.go component compute -a -c follower-count-publisher
-go run ./cmd/root.go component compute -a -c funtik
-go run ./cmd/root.go component compute -a -c gam-mrss-generator
-go run ./cmd/root.go component compute -a -c geoip
-go run ./cmd/root.go component compute -a -c gitleaks-api
-go run ./cmd/root.go component compute -a -c happy-keldysh
-go run ./cmd/root.go component compute -a -c idp-wrapper
-go run ./cmd/root.go component compute -a -c image-service
-go run ./cmd/root.go component compute -a -c image-uploader
-go run ./cmd/root.go component compute -a -c kuzya
-go run ./cmd/root.go component compute -a -c lead-gen-campaign-manager-web
-go run ./cmd/root.go component compute -a -c lead-gen-campaign-manager
-go run ./cmd/root.go component compute -a -c lead-gen-campaign-web
-go run ./cmd/root.go component compute -a -c lead-gen-data-collector-api
-go run ./cmd/root.go component compute -a -c librarian
-go run ./cmd/root.go component compute -a -c live-ticker-api
-go run ./cmd/root.go component compute -a -c live-ticker-importer
-go run ./cmd/root.go component compute -a -c loyalty-service
-go run ./cmd/root.go component compute -a -c mediation-api
-go run ./cmd/root.go component compute -a -c network-admin-api
-go run ./cmd/root.go component compute -a -c news
-go run ./cmd/root.go component compute -a -c newsdesk-admin-web
-go run ./cmd/root.go component compute -a -c neznaika
-go run ./cmd/root.go component compute -a -c not-found-server
-go run ./cmd/root.go component compute -a -c onboarding-api
-go run ./cmd/root.go component compute -a -c oncall-compensation
-go run ./cmd/root.go component compute -a -c onefootball-copilot
-go run ./cmd/root.go component compute -a -c optimistic-joliot
-go run ./cmd/root.go component compute -a -c ott-api
-go run ./cmd/root.go component compute -a -c ott-external-accounts
-go run ./cmd/root.go component compute -a -c ott-live-sessions
-go run ./cmd/root.go component compute -a -c ott-load-test-proxy
-go run ./cmd/root.go component compute -a -c ott-mediation
-go run ./cmd/root.go component compute -a -c ott-probe
-go run ./cmd/root.go component compute -a -c payments-history
-go run ./cmd/root.go component compute -a -c personalisation-service
-go run ./cmd/root.go component compute -a -c photobooth
-go run ./cmd/root.go component compute -a -c polls-api
-go run ./cmd/root.go component compute -a -c prometheus-exporter
-go run ./cmd/root.go component compute -a -c promo
-go run ./cmd/root.go component compute -a -c push-notification-center
-go run ./cmd/root.go component compute -a -c push
-go run ./cmd/root.go component compute -a -c quiz-api
-go run ./cmd/root.go component compute -a -c relevance-service
-go run ./cmd/root.go component compute -a -c replay-api
-go run ./cmd/root.go component compute -a -c resolver-api
-go run ./cmd/root.go component compute -a -c rich-push
-go run ./cmd/root.go component compute -a -c rss-generator
-go run ./cmd/root.go component compute -a -c score-api
-go run ./cmd/root.go component compute -a -c scores-mixer
-go run ./cmd/root.go component compute -a -c search-gateway-api
-go run ./cmd/root.go component compute -a -c seasons-cache
-go run ./cmd/root.go component compute -a -c simple-service
-go run ./cmd/root.go component compute -a -c sitemap-generator-v2
-go run ./cmd/root.go component compute -a -c specialone-slackbot
-go run ./cmd/root.go component compute -a -c stories-api
-go run ./cmd/root.go component compute -a -c streaming-service
-go run ./cmd/root.go component compute -a -c tv-guide-api
-go run ./cmd/root.go component compute -a -c tv-guide-importer
-go run ./cmd/root.go component compute -a -c umka
-go run ./cmd/root.go component compute -a -c users-accounts-api
-go run ./cmd/root.go component compute -a -c users-auth-api
-go run ./cmd/root.go component compute -a -c users-gdpr
-go run ./cmd/root.go component compute -a -c users-pii
-go run ./cmd/root.go component compute -a -c vinnipuh
-go run ./cmd/root.go component compute -a -c watch
-go run ./cmd/root.go component compute -a -c web-experience
-go run ./cmd/root.go component compute -a -c web-payments-backend
-go run ./cmd/root.go component compute -a -c web-url-redirector
-go run ./cmd/root.go component compute -a -c web3-transactions
-go run ./cmd/root.go component compute -a -c webhook-receiver
-go run ./cmd/root.go component compute -a -c webserver
-go run ./cmd/root.go component compute -a -c ws-receiver
-go run ./cmd/root.go component compute -a -c xpa-backend
-go run ./cmd/root.go component compute -a -c xpa-mobile-backend
-go run ./cmd/root.go component compute -a -c xpa-tv-backend
+go run ./cmd/root.go component compute -a -c airship-email; sleep 3;
+go run ./cmd/root.go component compute -a -c amymone; sleep 3;
+go run ./cmd/root.go component compute -a -c analytics-service; sleep 3;
+go run ./cmd/root.go component compute -a -c appstore-connect-iap-api; sleep 3;
+go run ./cmd/root.go component compute -a -c archive; sleep 3;
+go run ./cmd/root.go component compute -a -c article-intelligence; sleep 3;
+go run ./cmd/root.go component compute -a -c article-service; sleep 3;
+go run ./cmd/root.go component compute -a -c article-translator; sleep 3;
+go run ./cmd/root.go component compute -a -c auth-api; sleep 3;
+go run ./cmd/root.go component compute -a -c backstage; sleep 3;
+go run ./cmd/root.go component compute -a -c banner-free; sleep 3;
+go run ./cmd/root.go component compute -a -c betting-api; sleep 3;
+go run ./cmd/root.go component compute -a -c betting-workers; sleep 3;
+go run ./cmd/root.go component compute -a -c bookmarks; sleep 3;
+go run ./cmd/root.go component compute -a -c campaign-manager; sleep 3;
+go run ./cmd/root.go component compute -a -c category-tiles; sleep 3;
+go run ./cmd/root.go component compute -a -c cdp-api; sleep 3;
+go run ./cmd/root.go component compute -a -c cheburashka; sleep 3;
+go run ./cmd/root.go component compute -a -c clips-api; sleep 3;
+go run ./cmd/root.go component compute -a -c clips-search; sleep 3;
+go run ./cmd/root.go component compute -a -c clips-webhooks; sleep 3;
+go run ./cmd/root.go component compute -a -c clips; sleep 3;
+go run ./cmd/root.go component compute -a -c cloud-runtime-bot; sleep 3;
+go run ./cmd/root.go component compute -a -c competition-sorting-api; sleep 3;
+go run ./cmd/root.go component compute -a -c consumer-web-v2; sleep 3;
+go run ./cmd/root.go component compute -a -c consumer-web-v3; sleep 3;
+go run ./cmd/root.go component compute -a -c content-classifier; sleep 3;
+go run ./cmd/root.go component compute -a -c content-recommender; sleep 3;
+go run ./cmd/root.go component compute -a -c content-tags-api; sleep 3;
+go run ./cmd/root.go component compute -a -c creators-content; sleep 3;
+go run ./cmd/root.go component compute -a -c creators-network; sleep 3;
+go run ./cmd/root.go component compute -a -c daily-digest; sleep 3;
+go run ./cmd/root.go component compute -a -c editorjs-translator; sleep 3;
+go run ./cmd/root.go component compute -a -c emelya; sleep 3;
+go run ./cmd/root.go component compute -a -c entity-index-api; sleep 3;
+go run ./cmd/root.go component compute -a -c entity-resolution; sleep 3;
+go run ./cmd/root.go component compute -a -c entity-service; sleep 3;
+go run ./cmd/root.go component compute -a -c experimental-thumbor; sleep 3;
+go run ./cmd/root.go component compute -a -c external-highlights; sleep 3;
+go run ./cmd/root.go component compute -a -c facts-api; sleep 3;
+go run ./cmd/root.go component compute -a -c facts-fetcher; sleep 3;
+go run ./cmd/root.go component compute -a -c facts-importer; sleep 3;
+go run ./cmd/root.go component compute -a -c fanmatch-go; sleep 3;
+go run ./cmd/root.go component compute -a -c feeditem-algolia-indexer; sleep 3;
+go run ./cmd/root.go component compute -a -c follower-count-publisher; sleep 3;
+go run ./cmd/root.go component compute -a -c funtik; sleep 3;
+go run ./cmd/root.go component compute -a -c gam-mrss-generator; sleep 3;
+go run ./cmd/root.go component compute -a -c geoip; sleep 3;
+go run ./cmd/root.go component compute -a -c gitleaks-api; sleep 3;
+go run ./cmd/root.go component compute -a -c happy-keldysh; sleep 3;
+go run ./cmd/root.go component compute -a -c idp-wrapper; sleep 3;
+go run ./cmd/root.go component compute -a -c image-service; sleep 3;
+go run ./cmd/root.go component compute -a -c image-uploader; sleep 3;
+go run ./cmd/root.go component compute -a -c kuzya; sleep 3;
+go run ./cmd/root.go component compute -a -c lead-gen-campaign-manager-web; sleep 3;
+go run ./cmd/root.go component compute -a -c lead-gen-campaign-manager; sleep 3;
+go run ./cmd/root.go component compute -a -c lead-gen-campaign-web; sleep 3;
+go run ./cmd/root.go component compute -a -c lead-gen-data-collector-api; sleep 3;
+go run ./cmd/root.go component compute -a -c librarian; sleep 3;
+go run ./cmd/root.go component compute -a -c live-ticker-api; sleep 3;
+go run ./cmd/root.go component compute -a -c live-ticker-importer; sleep 3;
+go run ./cmd/root.go component compute -a -c loyalty-service; sleep 3;
+go run ./cmd/root.go component compute -a -c mediation-api; sleep 3;
+go run ./cmd/root.go component compute -a -c network-admin-api; sleep 3;
+go run ./cmd/root.go component compute -a -c news; sleep 3;
+go run ./cmd/root.go component compute -a -c newsdesk-admin-web; sleep 3;
+go run ./cmd/root.go component compute -a -c neznaika; sleep 3;
+go run ./cmd/root.go component compute -a -c not-found-server; sleep 3;
+go run ./cmd/root.go component compute -a -c onboarding-api; sleep 3;
+go run ./cmd/root.go component compute -a -c oncall-compensation; sleep 3;
+go run ./cmd/root.go component compute -a -c onefootball-copilot; sleep 3;
+go run ./cmd/root.go component compute -a -c optimistic-joliot; sleep 3;
+go run ./cmd/root.go component compute -a -c ott-api; sleep 3;
+go run ./cmd/root.go component compute -a -c ott-external-accounts; sleep 3;
+go run ./cmd/root.go component compute -a -c ott-live-sessions; sleep 3;
+go run ./cmd/root.go component compute -a -c ott-load-test-proxy; sleep 3;
+go run ./cmd/root.go component compute -a -c ott-mediation; sleep 3;
+go run ./cmd/root.go component compute -a -c ott-probe; sleep 3;
+go run ./cmd/root.go component compute -a -c payments-history; sleep 3;
+go run ./cmd/root.go component compute -a -c personalisation-service; sleep 3;
+go run ./cmd/root.go component compute -a -c photobooth; sleep 3;
+go run ./cmd/root.go component compute -a -c polls-api; sleep 3;
+go run ./cmd/root.go component compute -a -c prometheus-exporter; sleep 3;
+go run ./cmd/root.go component compute -a -c promo; sleep 3;
+go run ./cmd/root.go component compute -a -c push-notification-center; sleep 3;
+go run ./cmd/root.go component compute -a -c push; sleep 3;
+go run ./cmd/root.go component compute -a -c quiz-api; sleep 3;
+go run ./cmd/root.go component compute -a -c relevance-service; sleep 3;
+go run ./cmd/root.go component compute -a -c replay-api; sleep 3;
+go run ./cmd/root.go component compute -a -c resolver-api; sleep 3;
+go run ./cmd/root.go component compute -a -c rich-push; sleep 3;
+go run ./cmd/root.go component compute -a -c rss-generator; sleep 3;
+go run ./cmd/root.go component compute -a -c score-api; sleep 3;
+go run ./cmd/root.go component compute -a -c scores-mixer; sleep 3;
+go run ./cmd/root.go component compute -a -c search-gateway-api; sleep 3;
+go run ./cmd/root.go component compute -a -c seasons-cache; sleep 3;
+go run ./cmd/root.go component compute -a -c simple-service; sleep 3;
+go run ./cmd/root.go component compute -a -c sitemap-generator-v2; sleep 3;
+go run ./cmd/root.go component compute -a -c specialone-slackbot; sleep 3;
+go run ./cmd/root.go component compute -a -c stories-api; sleep 3;
+go run ./cmd/root.go component compute -a -c streaming-service; sleep 3;
+go run ./cmd/root.go component compute -a -c tv-guide-api; sleep 3;
+go run ./cmd/root.go component compute -a -c tv-guide-importer; sleep 3;
+go run ./cmd/root.go component compute -a -c umka; sleep 3;
+go run ./cmd/root.go component compute -a -c users-accounts-api; sleep 3;
+go run ./cmd/root.go component compute -a -c users-auth-api; sleep 3;
+go run ./cmd/root.go component compute -a -c users-gdpr; sleep 3;
+go run ./cmd/root.go component compute -a -c users-pii; sleep 3;
+go run ./cmd/root.go component compute -a -c vinnipuh; sleep 3;
+go run ./cmd/root.go component compute -a -c watch; sleep 3;
+go run ./cmd/root.go component compute -a -c web-experience; sleep 3;
+go run ./cmd/root.go component compute -a -c web-payments-backend; sleep 3;
+go run ./cmd/root.go component compute -a -c web-url-redirector; sleep 3;
+go run ./cmd/root.go component compute -a -c web3-transactions; sleep 3;
+go run ./cmd/root.go component compute -a -c webhook-receiver; sleep 3;
+go run ./cmd/root.go component compute -a -c webserver; sleep 3;
+go run ./cmd/root.go component compute -a -c ws-receiver; sleep 3;
+go run ./cmd/root.go component compute -a -c xpa-backend; sleep 3;
+go run ./cmd/root.go component compute -a -c xpa-mobile-backend; sleep 3;
+go run ./cmd/root.go component compute -a -c xpa-tv-backend; sleep 3;

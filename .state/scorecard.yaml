@@ -1,6 +1,38 @@
 apiVersion: of-catalog/v1alpha1
 kind: Scorecard
 metadata:
+    name: security
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/cae16370-80c1-4e74-98a3-24e7f90014c9
+    name: security
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/security.md#security-grading-system
+    ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
+    state: PUBLISHED
+    componentTypeIds:
+        - SERVICE
+    importance: REQUIRED
+    scoringStrategyType: WEIGHT_BASED
+    criteria:
+        - hasMetricValue:
+            id: ""
+            weight: 50
+            name: security-as-pipeline
+            metricName: security-as-pipeline
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/295e70fa-9359-4a0f-9188-6f7b6a0dbd7e
+            comparatorValue: 1
+            comparator: EQUALS
+        - hasMetricValue:
+            id: ""
+            weight: 50
+            name: vulnerability-management
+            metricName: vulnerability-management
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c7562aa-6b71-4deb-911f-eebac354ee3e
+            comparatorValue: 1
+            comparator: LESS_THAN
+---
+apiVersion: of-catalog/v1alpha1
+kind: Scorecard
+metadata:
     name: production-readiness
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/8ec1e41d-03c0-4935-bb47-5df714f6493e
@@ -91,7 +123,7 @@ kind: Scorecard
 metadata:
     name: observability
 spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/7919d4d5-4564-4b25-9f44-773b1d6595e8
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/17965496-2b48-4f31-afa4-33ca9617257a
     name: observability
     description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/observability.md#observability-grading-system
     ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
@@ -102,66 +134,34 @@ spec:
     scoringStrategyType: WEIGHT_BASED
     criteria:
         - hasMetricValue:
-            id: ""
-            weight: 30
+            id: 48ee5d4f-71fc-4ae7-9ae6-134f73f61348
+            weight: 15
             name: instrumentation-check
             metricName: instrumentation-check
             metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/71dfd551-e995-4092-ab06-e2718e75641e
             comparatorValue: 1
             comparator: EQUALS
         - hasMetricValue:
-            id: ""
-            weight: 40
+            id: 2422c3fa-8476-4e80-961b-8209accfddc8
+            weight: 15
             name: critical-alerts-slo-check
             metricName: critical-alerts-slo-check
             metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a2523e39-c11a-4449-8465-f41613881b22
             comparatorValue: 1
             comparator: EQUALS
         - hasMetricValue:
-            id: ""
-            weight: 15
+            id: a902e415-27ca-4b9b-805a-014d3936e0f4
+            weight: 45
             name: alert-routing-and-notifications
             metricName: alert-routing-and-notifications
             metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/9a068e9d-a760-4928-a092-e626128aeeb0
             comparatorValue: 1
             comparator: EQUALS
         - hasMetricValue:
-            id: ""
-            weight: 15
+            id: dbe064d8-da93-4135-9e06-30d3fbb458cf
+            weight: 25
             name: observability-documentation
             metricName: observability-documentation
             metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/c5f96c3d-6845-4155-9576-62f86725b07f
             comparatorValue: 1
             comparator: EQUALS
----
-apiVersion: of-catalog/v1alpha1
-kind: Scorecard
-metadata:
-    name: security
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/cae16370-80c1-4e74-98a3-24e7f90014c9
-    name: security
-    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/security.md#security-grading-system
-    ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
-    state: PUBLISHED
-    componentTypeIds:
-        - SERVICE
-    importance: REQUIRED
-    scoringStrategyType: WEIGHT_BASED
-    criteria:
-        - hasMetricValue:
-            id: bbf5759d-26d2-4e3b-89bd-190a32da2ae1
-            weight: 50
-            name: security-as-pipeline
-            metricName: security-as-pipeline
-            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/295e70fa-9359-4a0f-9188-6f7b6a0dbd7e
-            comparatorValue: 1
-            comparator: EQUALS
-        - hasMetricValue:
-            id: ""
-            weight: 50
-            name: vulnerability-management
-            metricName: vulnerability-management
-            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c7562aa-6b71-4deb-911f-eebac354ee3e
-            comparatorValue: 1
-            comparator: LESS_THAN

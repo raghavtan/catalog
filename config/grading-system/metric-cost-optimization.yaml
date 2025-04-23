@@ -31,7 +31,7 @@ metadata:
       repo: "${Metadata.Name}"
       type: extract
       filePath: "app.toml"
-      jsonPath: .service.memory_limits // .service.production.memory_limits | .==null
+      jsonPath: .service.memory_limits // .service.production.memory_limits | . != null
       rule: "jsonpath"
     - id: aggregate-resource-requests
       name: check resource requests and limits

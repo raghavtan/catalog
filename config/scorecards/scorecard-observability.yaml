@@ -13,25 +13,25 @@ spec:
   scoringStrategyType: "WEIGHT_BASED" # WEIGHT_BASED - POINT_BASED
   criteria:
     - hasMetricValue:
-        weight: 30
+        weight: 15
         name: instrumentation-check
         metricName: instrumentation-check
         comparatorValue: 1
         comparator: "EQUALS" # EQUALS - GREATER_THAN - LESS_THAN - GREATER_THAN_OR_EQUAL_TO - LESS_THAN_OR_EQUAL_TO
     - hasMetricValue:
-        weight: 40
+        weight: 15
         name: critical-alerts-slo-check
         metricName: critical-alerts-slo-check
         comparatorValue: 1
         comparator: "EQUALS" # EQUALS - GREATER_THAN - LESS_THAN - GREATER_THAN_OR_EQUAL_TO - LESS_THAN_OR_EQUAL_TO
     - hasMetricValue:
-        weight: 15
+        weight: 45
         name: alert-routing-and-notifications
         metricName: alert-routing-and-notifications
         comparatorValue: 1
         comparator: "EQUALS" # EQUALS - GREATER_THAN - LESS_THAN - GREATER_THAN_OR_EQUAL_TO - LESS_THAN_OR_EQUAL_TO
     - hasMetricValue:
-        weight: 15
+        weight: 25
         name: observability-documentation
         metricName: observability-documentation
         comparatorValue: 1

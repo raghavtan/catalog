@@ -1,6 +1,104 @@
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
+    name: adaptive-systems
+    labels:
+        grading-system: resiliency
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: app-toml-replicas-min
+          type: extract
+          source: github
+          jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: app-toml-replicas-max-gt-replicas-min
+          type: extract
+          source: github
+          jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: cpu-and-memory-hpa-are-set
+          name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+          type: aggregate
+          dependsOn:
+            - app-toml-replicas-min
+            - app-toml-replicas-max-gt-replicas-min
+          method: and
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0f72a9b2-c7f2-4eff-b905-1e715c3a8810
+    name: adaptive-systems
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/resiliency.md#adaptive-systems
+    format:
+        unit: Adaptive Systems
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: organizational-standards
+    labels:
+        grading-system: production-readiness
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: readme-file
+          name: Check if the README.md file exists
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          filePath: README.md
+          rule: notempty
+        - id: docs-readme-file
+          name: Check if the docs/README.md file exists
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          filePath: docs/README.md
+          rule: notempty
+        - id: docs-index-file
+          name: Check if the docs/index.md file exists
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          filePath: docs/index.md
+          rule: notempty
+        - id: paas-onboarded
+          name: Check if the service is using PaaS
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          searchString: motain/onefootball-actions/paas-deploy@master
+          rule: search
+        - id: aggregate-readme-exists
+          name: Check if repo has documentation
+          type: aggregate
+          dependsOn:
+            - docs-index-file
+            - docs-readme-file
+            - readme-file
+          method: or
+        - id: aggregate
+          name: Check if repo follows organizational standards
+          type: aggregate
+          dependsOn:
+            - aggregate-readme-exists
+            - paas-onboarded
+          method: and
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/005d1bf2-7188-4682-861b-a1f8bb7043ed
+    name: organizational-standards
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/production-readiness.md#organizational-standards
+    format:
+        unit: Organizational Standards
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
     name: instrumentation-check
     labels:
         grading-system: observability
@@ -109,51 +207,26 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-    name: allocation-efficiency
+    name: security-as-pipeline
     labels:
-        grading-system: cost-optimization
+        grading-system: security
     componentType:
         - service
         - cloud-resource
     facts:
-        - id: check-app-toml-resource-request
-          name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+        - id: trivy-exists-in-ci
+          name: Check if Trivy is used in CI/CD pipeline
           type: extract
           source: github
-          jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
           repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: check-app-toml-cpu-limits
-          name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
-          type: extract
-          source: github
-          jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: check-app-toml-memory-limits
-          name: Check if  memory limits are defined in app.toml under [service] or [service.production]
-          type: extract
-          source: github
-          jsonPath: .service.memory_limits // .service.production.memory_limits | .==null
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: aggregate-resource-requests
-          name: check resource requests and limits
-          type: aggregate
-          dependsOn:
-            - check-app-toml-resource-request
-            - check-app-toml-cpu-limits
-            - check-app-toml-memory-limits
-          method: and
+          searchString: motain/onefootball-actions/security
+          rule: search
 spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/223be0f4-d7bb-4254-9529-e77aa497e798
-    name: allocation-efficiency
-    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/cost-optimization.md#cost-optimization-grading-system
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/295e70fa-9359-4a0f-9188-6f7b6a0dbd7e
+    name: security-as-pipeline
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/security.md#security-as-pipeline
     format:
-        unit: Allocation Efficiency
+        unit: Security as Pipeline
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Metric
@@ -242,128 +315,6 @@ spec:
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-    name: adaptive-systems
-    labels:
-        grading-system: resiliency
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        - id: app-toml-replicas-min
-          type: extract
-          source: github
-          jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: app-toml-replicas-max-gt-replicas-min
-          type: extract
-          source: github
-          jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
-          repo: ${Metadata.Name}
-          filePath: app.toml
-          rule: jsonpath
-        - id: cpu-and-memory-hpa-are-set
-          name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-          type: aggregate
-          dependsOn:
-            - app-toml-replicas-min
-            - app-toml-replicas-max-gt-replicas-min
-          method: and
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0f72a9b2-c7f2-4eff-b905-1e715c3a8810
-    name: adaptive-systems
-    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/resiliency.md#adaptive-systems
-    format:
-        unit: Adaptive Systems
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
-    name: security-as-pipeline
-    labels:
-        grading-system: security
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        - id: trivy-exists-in-ci
-          name: Check if Trivy is used in CI/CD pipeline
-          type: extract
-          source: github
-          searchString: motain/onefootball-actions/security
-          repo: ${Metadata.Name}
-          rule: search
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/295e70fa-9359-4a0f-9188-6f7b6a0dbd7e
-    name: security-as-pipeline
-    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/security.md#security-as-pipeline
-    format:
-        unit: Security as Pipeline
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
-    name: organizational-standards
-    labels:
-        grading-system: production-readiness
-    componentType:
-        - service
-        - cloud-resource
-    facts:
-        - id: readme-file
-          name: Check if the README.md file exists
-          type: extract
-          source: github
-          repo: ${Metadata.Name}
-          filePath: README.md
-          rule: notempty
-        - id: docs-readme-file
-          name: Check if the docs/README.md file exists
-          type: extract
-          source: github
-          repo: ${Metadata.Name}
-          filePath: docs/README.md
-          rule: notempty
-        - id: docs-index-file
-          name: Check if the docs/index.md file exists
-          type: extract
-          source: github
-          repo: ${Metadata.Name}
-          filePath: docs/index.md
-          rule: notempty
-        - id: paas-onboarded
-          name: Check if the service is using PaaS
-          type: extract
-          source: github
-          searchString: motain/onefootball-actions/paas-deploy@master
-          repo: ${Metadata.Name}
-          rule: search
-        - id: aggregate-readme-exists
-          name: Check if repo has documentation
-          type: aggregate
-          dependsOn:
-            - docs-index-file
-            - docs-readme-file
-            - readme-file
-          method: or
-        - id: aggregate
-          name: Check if repo follows organizational standards
-          type: aggregate
-          dependsOn:
-            - aggregate-readme-exists
-            - paas-onboarded
-          method: and
-spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/005d1bf2-7188-4682-861b-a1f8bb7043ed
-    name: organizational-standards
-    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/production-readiness.md#organizational-standards
-    format:
-        unit: Organizational Standards
----
-apiVersion: of-catalog/v1alpha1
-kind: Metric
-metadata:
     name: critical-alerts-slo-check
     labels:
         grading-system: observability
@@ -417,6 +368,55 @@ spec:
     description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/observability.md#critical-alerts-slo-check
     format:
         unit: Critical Alerts/SLO Check
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+    name: allocation-efficiency
+    labels:
+        grading-system: cost-optimization
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: check-app-toml-resource-request
+          name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+          type: extract
+          source: github
+          jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: check-app-toml-cpu-limits
+          name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
+          type: extract
+          source: github
+          jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: check-app-toml-memory-limits
+          name: Check if  memory limits are defined in app.toml under [service] or [service.production]
+          type: extract
+          source: github
+          jsonPath: .service.memory_limits // .service.production.memory_limits | . != null
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: aggregate-resource-requests
+          name: check resource requests and limits
+          type: aggregate
+          dependsOn:
+            - check-app-toml-resource-request
+            - check-app-toml-cpu-limits
+            - check-app-toml-memory-limits
+          method: and
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/223be0f4-d7bb-4254-9529-e77aa497e798
+    name: allocation-efficiency
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/cost-optimization.md#cost-optimization-grading-system
+    format:
+        unit: Allocation Efficiency
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Metric

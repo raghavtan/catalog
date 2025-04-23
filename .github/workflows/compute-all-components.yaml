@@ -1,0 +1,38 @@
+name: ComputeAllComponents
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run every night at midnight
+
+concurrency:
+  group: compute-all-components-${{ github.head_ref }}
+  cancel-in-progress: true
+
+permissions: write-all
+
+jobs:
+
+  monitor-service-from-manual-trigger:
+    strategy:
+      fail-fast: false
+    runs-on: [ self-hosted, linux, x64, core-team-only ]
+    env:
+      GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
+      COMPASS_TOKEN: ${{ secrets.COMPASS_TOKEN}}
+      GITHUB_ORG: motain
+      COMPASS_HOST: onefootball.atlassian.net
+      HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY}}
+      PROMETHEUS_URL: https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-841dbf21-00d1-4a0a-96a9-25de0ecb9562
+    steps:
+    - uses: actions/checkout@v4
+
+    - run: |
+        curl -J -L \
+          -H "Accept: application/octet-stream" \
+          -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" \
+          -o ofc \
+          $(curl -s -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" "https://api.github.com/repos/motain/of-catalog/releases/latest" | jq -r '.assets[0].url')
+          chmod +x ofc
+
+    - run: |
+        ./compute-all.sh
