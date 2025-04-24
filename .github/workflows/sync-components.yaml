@@ -40,6 +40,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
       COMPASS_TOKEN: ${{ secrets.COMPASS_TOKEN}}
+      COMPASS_CLOUD_ID: fca6a80f-888b-4079-82e6-3c2f61c788e2
       GITHUB_ORG: motain
       COMPASS_HOST: onefootball.atlassian.net
       HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY}}
