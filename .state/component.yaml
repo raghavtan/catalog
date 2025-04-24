@@ -25392,10 +25392,6 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: onefootball-club
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C05R46W1TMZ
-        - id: ""
           name: OFC
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/LOYAL/boards/393/backlog
@@ -25411,6 +25407,10 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: onefootball-club
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C05R46W1TMZ
     documents: []
     labels:
         - membership
