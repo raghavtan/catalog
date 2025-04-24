@@ -72,5 +72,7 @@ jobs:
         gh pr merge --squash --delete-branch
 
     - name: Trigger compute-component-metrics workflow
+      env:
+        GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
       run: |
         gh workflow run compute-component-metrics.yaml -f component=${{ matrix.project }}
