@@ -11,8 +11,7 @@ spec:
     ownerId: ""
     dependsOn:
         - users-accounts-api
-        - users-api
-    tribe: reach
+    tribe: membership
     squad: fan-activation
     links:
         - name: Repository
@@ -25,5 +24,5 @@ spec:
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     labels:
-        - reach
         - fan-activation
+        - membership
