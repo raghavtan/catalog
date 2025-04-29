@@ -37981,10 +37981,6 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/score-api
@@ -38020,11 +38016,15 @@ spec:
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
     documents: []
     labels:
-        - fan-experience
         - matchxp
         - score-api
+        - fan-experience
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7e432909-64df-4d50-84ab-afa28f358a7f
