@@ -9217,14 +9217,6 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/content-classifier
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-classifier&var-container=content-classifier&from=now-1h&to=now
-        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -9256,7 +9248,20 @@ spec:
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/content-classifier
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-classifier&var-container=content-classifier&from=now-1h&to=now
     documents:
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/543d7cba-debd-4616-92f9-c7c5d8f0893f
+          title: Content Tag Command Worker
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/content-classifier/blob/main/.of/docs/content-tag-command-worker.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/47d98c5c-eb23-49bb-9dd5-0fe415751c43
           title: Readme
           type: Other
@@ -9277,14 +9282,9 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/content-classifier/blob/main/.of/docs/article-sourced-worker.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/543d7cba-debd-4616-92f9-c7c5d8f0893f
-          title: Content Tag Command Worker
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/content-classifier/blob/main/.of/docs/content-tag-command-worker.md
     labels:
-        - fan-experience
         - personalisation
+        - fan-experience
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/67dd02d7-e4fc-4c9d-b3cc-5ab660b45b4c
