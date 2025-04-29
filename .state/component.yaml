@@ -46781,10 +46781,6 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/xpa-mobile-backend
-        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-mobile-backend&var-container=xpa-mobile-backend&from=now-1h&to=now
@@ -46820,11 +46816,15 @@ spec:
           name: Match XP
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/xpa-mobile-backend
     documents: []
     labels:
-        - matchxp
         - xpa-mobile-backend
         - fan-experience
+        - matchxp
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/851426f1-f6f2-414d-9a6f-d42d199ab839
