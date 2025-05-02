@@ -22210,9 +22210,9 @@ spec:
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
     documents: []
     labels:
-        - live-ticker-api
         - fan-experience
         - matchxp
+        - live-ticker-api
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3f0eabc1-d641-43a5-97b0-950ad1651caa
