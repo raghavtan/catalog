@@ -2758,9 +2758,9 @@ spec:
           url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
     documents: []
     labels:
+        - article-service
         - fan-experience
         - source
-        - article-service
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/17dfa1ba-6fe7-45bc-82b9-dc876a167049
