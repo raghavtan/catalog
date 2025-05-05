@@ -7250,13 +7250,13 @@ spec:
           type: CHAT_CHANNEL
           url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
         - id: ""
-          name: Video Platform Support
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
-        - id: ""
           name: Video Platform
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PN/boards/267
+        - id: ""
+          name: Video Platform Support
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
         - id: ""
           name: Repository
           type: REPOSITORY
@@ -7274,18 +7274,18 @@ spec:
           type: CHAT_CHANNEL
           url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
         - id: ""
-          name: Video Platform Support
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
-        - id: ""
           name: Video Platform
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PN/boards/267
+        - id: ""
+          name: Video Platform Support
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
     documents: []
     labels:
-        - clips-api
         - ott
         - video-platform
+        - clips-api
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/77ed9dbd-a3d4-44d4-9b4b-c9cce7ea2fbd
