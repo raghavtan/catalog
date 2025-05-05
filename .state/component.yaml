@@ -31683,9 +31683,9 @@ spec:
           url: https://github.com/motain/polls-api
     documents: []
     labels:
-        - fan-activation
         - polls-api
         - membership
+        - fan-activation
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/8bbe4e36-b7f2-4f95-801b-4acef0542b86
