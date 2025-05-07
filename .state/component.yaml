@@ -30846,21 +30846,6 @@ spec:
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C050KQH057C
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef42ec7f-e882-4d9d-b9b5-17e112b41f42
-          title: Tabs
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/tabs.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/86f36f7e-ab46-4029-b1e8-ed51ea0060e0
-          title: Personalisation API
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/personalisation-api.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/0eaace2b-c206-4f12-b115-055f71b5b079
-          title: Article Sourced Worker
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/article-sourced-worker.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9c9a012-f3a0-46e1-b98f-8517f990e4b9
           title: Article Classified Worker
           type: Other
@@ -30886,9 +30871,24 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/personalisation-service/blob/main/.of/docs/index.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef42ec7f-e882-4d9d-b9b5-17e112b41f42
+          title: Tabs
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/tabs.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/86f36f7e-ab46-4029-b1e8-ed51ea0060e0
+          title: Personalisation API
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/personalisation-api.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/0eaace2b-c206-4f12-b115-055f71b5b079
+          title: Article Sourced Worker
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/personalisation-service/blob/main/.of/docs/article-sourced-worker.md
     labels:
-        - fan-experience
         - personalisation
+        - fan-experience
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6e02169d-0770-46a4-a627-a1d24772cff2
