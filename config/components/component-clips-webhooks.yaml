@@ -5,17 +5,18 @@ metadata:
     name: 'clips-webhooks'
     componentType: service
 spec:
+    tribe: ott
+    squad: video-platform
     name: clips-webhooks
     slug: svc-clips-webhooks
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: 'v0.0.24'
     links:
         - name: Repository
           type: REPOSITORY
