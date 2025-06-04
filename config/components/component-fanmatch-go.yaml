@@ -1,17 +1,21 @@
+---
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: fanmatch-go
+    name: 'fanmatch-go'
     componentType: service
 spec:
     name: fanmatch-go
-    slug: ""
-    description: ""
+    slug: svc-fanmatch-go
+    description: Not Provided
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
     typeId: SERVICE
-    ownerId: ""
-    dependsOn: []
-    tribe: monetization
-    squad: sponsorship-integration
+    dependsOn:
+        - Kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: 'v0.0.51'
     links:
         - name: Repository
           type: REPOSITORY
@@ -22,7 +26,13 @@ spec:
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: client-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - name: Sponsorship Integration Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
     labels:
         - sponsorship-integration
-        - fanmatch-go
         - monetization
+    customFields: null
