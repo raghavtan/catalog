@@ -15,7 +15,7 @@ spec:
     fields:
         lifecycle: Active
         tier: 4
-        version: '381ddea'
+        version: 'v0.0.2'
     links:
         - name: Repository
           type: REPOSITORY
