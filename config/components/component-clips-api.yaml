@@ -1,19 +1,22 @@
+---
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: clips-api
+    name: 'clips-api'
     componentType: service
 spec:
     name: clips-api
-    slug: ""
-    description: ""
+    slug: svc-clips-api
+    description: Not Provided
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
     typeId: SERVICE
-    ownerId: ""
     dependsOn:
         - clips
         - ott-mediation
-    tribe: ott
-    squad: video-platform
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: 'df8a365c15309c04ae46526d11d1cb48d16ee248'
     links:
         - name: Repository
           type: REPOSITORY
@@ -24,7 +27,13 @@ spec:
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: video-platform-team
+          type: CHAT_CHANNEL
+          url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
+        - name: Video Platform Support
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
     labels:
-        - ott
         - video-platform
-        - clips-api
+        - ott
+    customFields: null
