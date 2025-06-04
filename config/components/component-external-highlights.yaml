@@ -5,17 +5,18 @@ metadata:
     name: 'external-highlights'
     componentType: service
 spec:
+    tribe: ott
+    squad: video-platform
     name: external-highlights
     slug: svc-external-highlights
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: 'v1.2.74'
     links:
         - name: Repository
           type: REPOSITORY
