@@ -5,17 +5,18 @@ metadata:
     name: 'polls-api'
     componentType: service
 spec:
+    tribe: membership
+    squad: fan-activation
     name: polls-api
     slug: svc-polls-api
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
         - score-api
     fields:
         lifecycle: Active
         tier: 4
-        version: 'v1.6.25'
     links:
         - name: Repository
           type: REPOSITORY
