@@ -1,19 +1,22 @@
+---
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: web-payments-backend
+    name: 'web-payments-backend'
     componentType: service
 spec:
     name: web-payments-backend
-    slug: ""
-    description: ""
+    slug: svc-web-payments-backend
+    description: Not Provided
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
     typeId: SERVICE
-    ownerId: ""
     dependsOn:
         - watch
         - users-accounts-api
-    tribe: ott
-    squad: live-video
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: 'v1.8.21'
     links:
         - name: Repository
           type: REPOSITORY
@@ -24,7 +27,13 @@ spec:
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: e-livevideo
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C053ATVH3N2
+        - name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
     labels:
-        - ott
         - live-video
-        - web-payments-backend
+        - ott
+    customFields: null
