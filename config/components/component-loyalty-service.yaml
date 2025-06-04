@@ -1,17 +1,21 @@
+---
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: loyalty-service
+    name: 'loyalty-service'
     componentType: service
 spec:
     name: loyalty-service
-    slug: ""
-    description: ""
+    slug: svc-loyalty-service
+    description: Not Provided
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
     typeId: SERVICE
-    ownerId: ""
-    dependsOn: []
-    tribe: membership
-    squad: onefootball-club
+    dependsOn:
+        - Kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: 'v0.0.909'
     links:
         - name: Repository
           type: REPOSITORY
@@ -22,6 +26,13 @@ spec:
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: onefootball-club
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C05R46W1TMZ
+        - name: OFC
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LOYAL/boards/393/backlog
     labels:
-        - membership
         - onefootball-club
+        - membership
+    customFields: null
