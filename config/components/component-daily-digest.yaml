@@ -1,19 +1,22 @@
+---
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: daily-digest
+    name: 'daily-digest'
     componentType: service
 spec:
     name: daily-digest
-    slug: ""
-    description: ""
+    slug: svc-daily-digest
+    description: Not Provided
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
     typeId: SERVICE
-    ownerId: ""
     dependsOn:
         - apple-news
         - news
-    tribe: reach
-    squad: fan-activation
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: '854fe28'
     links:
         - name: Repository
           type: REPOSITORY
@@ -24,6 +27,13 @@ spec:
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: r-activation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CK9LTN6DR
+        - name: Activation Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
     labels:
-        - reach
         - fan-activation
+        - reach
+    customFields: null
