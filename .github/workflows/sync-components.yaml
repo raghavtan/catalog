@@ -1,11 +1,11 @@
 name: SyncComponents
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'config/components/**'
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - 'config/components/**'
   workflow_dispatch:
 
 concurrency:
