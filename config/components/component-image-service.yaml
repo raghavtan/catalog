@@ -5,17 +5,18 @@ metadata:
     name: 'image-service'
     componentType: service
 spec:
+    tribe: fan-experience
+    squad: personalisation
     name: image-service
     slug: svc-image-service
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: 'e79f2c5edc37d4d025ddff550a8fac17b0da9328'
     links:
         - name: Repository
           type: REPOSITORY
