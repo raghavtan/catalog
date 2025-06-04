@@ -5,17 +5,18 @@ metadata:
     name: 'simple-service'
     componentType: service
 spec:
+    tribe: platform
+    squad: cloud-runtime
     name: simple-service
     slug: svc-simple-service
     description: Simple-service is a no-nonsense, do-what-it-needs-to-do kind of service. It reads a lot, writes a little, and somehow still manages to act important. If databases had best friends, Simple RDS would be its ride-or-die.
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - "Kubernetes"
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: '0.1.0'
     links:
         - name: Repository
           type: REPOSITORY
