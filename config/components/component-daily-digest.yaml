@@ -5,10 +5,12 @@ metadata:
     name: 'daily-digest'
     componentType: service
 spec:
+    tribe: reach
+    squad: fan-activation
     name: daily-digest
     slug: svc-daily-digest
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
         - apple-news
@@ -16,7 +18,6 @@ spec:
     fields:
         lifecycle: Active
         tier: 4
-        version: '854fe28'
     links:
         - name: Repository
           type: REPOSITORY
