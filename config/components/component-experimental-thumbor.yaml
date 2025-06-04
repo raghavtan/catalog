@@ -5,17 +5,18 @@ metadata:
     name: 'experimental-thumbor'
     componentType: service
 spec:
+    tribe: platform
+    squad: developer-xp
     name: experimental-thumbor
     slug: svc-experimental-thumbor
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: '0ba5c4f'
     links:
         - name: Repository
           type: REPOSITORY
