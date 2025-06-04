@@ -1,122 +1,240 @@
 #!/bin/bash
 
-go run ./cmd/root.go component apply -l ./config/components -c airship-email
-go run ./cmd/root.go component apply -l ./config/components -c amymone
-go run ./cmd/root.go component apply -l ./config/components -c analytics-service
-go run ./cmd/root.go component apply -l ./config/components -c appstore-connect-iap-api
-go run ./cmd/root.go component apply -l ./config/components -c archive
-go run ./cmd/root.go component apply -l ./config/components -c article-intelligence
-go run ./cmd/root.go component apply -l ./config/components -c article-service
-go run ./cmd/root.go component apply -l ./config/components -c article-translator
-go run ./cmd/root.go component apply -l ./config/components -c auth-api
-go run ./cmd/root.go component apply -l ./config/components -c backstage
-go run ./cmd/root.go component apply -l ./config/components -c banner-free
-go run ./cmd/root.go component apply -l ./config/components -c betting-api
-go run ./cmd/root.go component apply -l ./config/components -c betting-workers
-go run ./cmd/root.go component apply -l ./config/components -c bookmarks
-go run ./cmd/root.go component apply -l ./config/components -c campaign-manager
-go run ./cmd/root.go component apply -l ./config/components -c category-tiles
-go run ./cmd/root.go component apply -l ./config/components -c cdp-api
-go run ./cmd/root.go component apply -l ./config/components -c cheburashka
-go run ./cmd/root.go component apply -l ./config/components -c clips-api
-go run ./cmd/root.go component apply -l ./config/components -c clips-search
-go run ./cmd/root.go component apply -l ./config/components -c clips-webhooks
-go run ./cmd/root.go component apply -l ./config/components -c clips
-go run ./cmd/root.go component apply -l ./config/components -c cloud-runtime-bot
-go run ./cmd/root.go component apply -l ./config/components -c competition-sorting-api
-go run ./cmd/root.go component apply -l ./config/components -c consumer-web-v2
-go run ./cmd/root.go component apply -l ./config/components -c consumer-web-v3
-go run ./cmd/root.go component apply -l ./config/components -c content-classifier
-go run ./cmd/root.go component apply -l ./config/components -c content-recommender
-go run ./cmd/root.go component apply -l ./config/components -c content-tags-api
-go run ./cmd/root.go component apply -l ./config/components -c creators-content
-go run ./cmd/root.go component apply -l ./config/components -c creators-network
-go run ./cmd/root.go component apply -l ./config/components -c daily-digest
-go run ./cmd/root.go component apply -l ./config/components -c editorjs-translator
-go run ./cmd/root.go component apply -l ./config/components -c emelya
-go run ./cmd/root.go component apply -l ./config/components -c entity-index-api
-go run ./cmd/root.go component apply -l ./config/components -c entity-resolution
-go run ./cmd/root.go component apply -l ./config/components -c entity-service
-go run ./cmd/root.go component apply -l ./config/components -c experimental-thumbor
-go run ./cmd/root.go component apply -l ./config/components -c external-highlights
-go run ./cmd/root.go component apply -l ./config/components -c facts-api
-go run ./cmd/root.go component apply -l ./config/components -c facts-fetcher
-go run ./cmd/root.go component apply -l ./config/components -c facts-importer
-go run ./cmd/root.go component apply -l ./config/components -c fanmatch-go
-go run ./cmd/root.go component apply -l ./config/components -c feeditem-algolia-indexer
-go run ./cmd/root.go component apply -l ./config/components -c follower-count-publisher
-go run ./cmd/root.go component apply -l ./config/components -c funtik
-go run ./cmd/root.go component apply -l ./config/components -c gam-mrss-generator
-go run ./cmd/root.go component apply -l ./config/components -c geoip
-go run ./cmd/root.go component apply -l ./config/components -c gitleaks-api
-go run ./cmd/root.go component apply -l ./config/components -c happy-keldysh
-go run ./cmd/root.go component apply -l ./config/components -c idp-wrapper
-go run ./cmd/root.go component apply -l ./config/components -c image-service
-go run ./cmd/root.go component apply -l ./config/components -c image-uploader
-go run ./cmd/root.go component apply -l ./config/components -c kuzya
-go run ./cmd/root.go component apply -l ./config/components -c lead-gen-campaign-manager-web
-go run ./cmd/root.go component apply -l ./config/components -c lead-gen-campaign-manager
-go run ./cmd/root.go component apply -l ./config/components -c lead-gen-campaign-web
-go run ./cmd/root.go component apply -l ./config/components -c lead-gen-data-collector-api
-go run ./cmd/root.go component apply -l ./config/components -c librarian
-go run ./cmd/root.go component apply -l ./config/components -c live-ticker-api
-go run ./cmd/root.go component apply -l ./config/components -c live-ticker-importer
-go run ./cmd/root.go component apply -l ./config/components -c loyalty-service
-go run ./cmd/root.go component apply -l ./config/components -c mediation-api
-go run ./cmd/root.go component apply -l ./config/components -c network-admin-api
-go run ./cmd/root.go component apply -l ./config/components -c news
-go run ./cmd/root.go component apply -l ./config/components -c newsdesk-admin-web
-go run ./cmd/root.go component apply -l ./config/components -c neznaika
-go run ./cmd/root.go component apply -l ./config/components -c not-found-server
-go run ./cmd/root.go component apply -l ./config/components -c onboarding-api
-go run ./cmd/root.go component apply -l ./config/components -c oncall-compensation
-go run ./cmd/root.go component apply -l ./config/components -c onefootball-copilot
-go run ./cmd/root.go component apply -l ./config/components -c optimistic-joliot
-go run ./cmd/root.go component apply -l ./config/components -c ott-api
-go run ./cmd/root.go component apply -l ./config/components -c ott-external-accounts
-go run ./cmd/root.go component apply -l ./config/components -c ott-live-sessions
-go run ./cmd/root.go component apply -l ./config/components -c ott-load-test-proxy
-go run ./cmd/root.go component apply -l ./config/components -c ott-mediation
-go run ./cmd/root.go component apply -l ./config/components -c ott-probe
-go run ./cmd/root.go component apply -l ./config/components -c payments-history
-go run ./cmd/root.go component apply -l ./config/components -c personalisation-service
-go run ./cmd/root.go component apply -l ./config/components -c photobooth
-go run ./cmd/root.go component apply -l ./config/components -c polls-api
-go run ./cmd/root.go component apply -l ./config/components -c prometheus-exporter
-go run ./cmd/root.go component apply -l ./config/components -c promo
-go run ./cmd/root.go component apply -l ./config/components -c push-notification-center
-go run ./cmd/root.go component apply -l ./config/components -c push
-go run ./cmd/root.go component apply -l ./config/components -c quiz-api
-go run ./cmd/root.go component apply -l ./config/components -c relevance-service
-go run ./cmd/root.go component apply -l ./config/components -c replay-api
-go run ./cmd/root.go component apply -l ./config/components -c resolver-api
-go run ./cmd/root.go component apply -l ./config/components -c rich-push
-go run ./cmd/root.go component apply -l ./config/components -c rss-generator
-go run ./cmd/root.go component apply -l ./config/components -c score-api
-go run ./cmd/root.go component apply -l ./config/components -c scores-mixer
-go run ./cmd/root.go component apply -l ./config/components -c search-gateway-api
-go run ./cmd/root.go component apply -l ./config/components -c seasons-cache
-go run ./cmd/root.go component apply -l ./config/components -c simple-service
-go run ./cmd/root.go component apply -l ./config/components -c sitemap-generator-v2
-go run ./cmd/root.go component apply -l ./config/components -c specialone-slackbot
-go run ./cmd/root.go component apply -l ./config/components -c stories-api
-go run ./cmd/root.go component apply -l ./config/components -c streaming-service
-go run ./cmd/root.go component apply -l ./config/components -c tv-guide-api
-go run ./cmd/root.go component apply -l ./config/components -c tv-guide-importer
-go run ./cmd/root.go component apply -l ./config/components -c umka
-go run ./cmd/root.go component apply -l ./config/components -c users-accounts-api
-go run ./cmd/root.go component apply -l ./config/components -c users-auth-api
-go run ./cmd/root.go component apply -l ./config/components -c users-gdpr
-go run ./cmd/root.go component apply -l ./config/components -c users-pii
-go run ./cmd/root.go component apply -l ./config/components -c vinnipuh
-go run ./cmd/root.go component apply -l ./config/components -c watch
-go run ./cmd/root.go component apply -l ./config/components -c web-experience
-go run ./cmd/root.go component apply -l ./config/components -c web-payments-backend
-go run ./cmd/root.go component apply -l ./config/components -c web-url-redirector
-go run ./cmd/root.go component apply -l ./config/components -c web3-transactions
-go run ./cmd/root.go component apply -l ./config/components -c webhook-receiver
-go run ./cmd/root.go component apply -l ./config/components -c webserver
-go run ./cmd/root.go component apply -l ./config/components -c ws-receiver
-go run ./cmd/root.go component apply -l ./config/components -c xpa-backend
-go run ./cmd/root.go component apply -l ./config/components -c xpa-mobile-backend
-go run ./cmd/root.go component apply -l ./config/components -c xpa-tv-backend
+# Configuration
+COMPONENTS_DIR="./config/components"
+COMMAND_PREFIX="go run ./cmd/root.go component apply -l ./config/components -c"
+
+# Tracking files
+PROCESSED_FILE="processed_components.txt"
+FAILED_FILE="failed_components.txt"
+SKIPPED_FILE="skipped_components.txt"
+
+# Maximum number of parallel jobs (adjust based on your system)
+MAX_JOBS=10
+
+# Function to extract component names from YAML files
+get_component_names() {
+    find "$COMPONENTS_DIR" -name "component-*.yaml" -type f | \
+    sed 's|.*/component-\(.*\)\.yaml|\1|' | \
+    sort
+}
+
+# Ensure tracking files exist
+touch "$PROCESSED_FILE"
+touch "$FAILED_FILE"
+touch "$SKIPPED_FILE"
+
+# Function to check if component was already processed
+is_component_processed() {
+    local component="$1"
+    grep -Fxq "$component" "$PROCESSED_FILE" || grep -Fxq "$component" "$FAILED_FILE"
+}
+
+# Function to process a single component (runs in background)
+process_component() {
+    local component="$1"
+    local component_file="$COMPONENTS_DIR/component-$component.yaml"
+    local temp_dir="./temp_results"
+
+    # Create temp directory if it doesn't exist
+    mkdir -p "$temp_dir"
+
+    # Verify the file still exists
+    if [[ ! -f "$component_file" ]]; then
+        echo "Warning: Component file not found: $component_file"
+        echo "$component" > "$temp_dir/skipped_$component"
+        return 1
+    fi
+
+    echo "Processing component: $component"
+    echo "  File: $component_file"
+    echo "  Command: $COMMAND_PREFIX $component"
+
+    # Execute the command
+    if $COMMAND_PREFIX "$component"; then
+        echo "  ✓ Successfully processed component: $component"
+        echo "$component" > "$temp_dir/success_$component"
+        return 0
+    else
+        echo "  ✗ Failed to process component: $component"
+        echo "$component" > "$temp_dir/failed_$component"
+        return 1
+    fi
+}
+
+# Function to collect results from temp files
+collect_results() {
+    local temp_dir="./temp_results"
+
+    if [[ -d "$temp_dir" ]]; then
+        # Collect successful components
+        for file in "$temp_dir"/success_*; do
+            if [[ -f "$file" ]]; then
+                cat "$file" >> "$PROCESSED_FILE"
+            fi
+        done
+
+        # Collect failed components
+        for file in "$temp_dir"/failed_*; do
+            if [[ -f "$file" ]]; then
+                cat "$file" >> "$FAILED_FILE"
+            fi
+        done
+
+        # Collect skipped components
+        for file in "$temp_dir"/skipped_*; do
+            if [[ -f "$file" ]]; then
+                cat "$file" >> "$SKIPPED_FILE"
+            fi
+        done
+
+        # Clean up temp directory
+        rm -rf "$temp_dir"
+    fi
+}
+
+# Variables for statistics
+total_components=0
+total_new_processed=0
+total_new_failed=0
+total_prev_processed=0
+total_prev_failed=0
+total_skipped=0
+
+# Array to store background process PIDs
+declare -a pids=()
+
+# Cleanup function to print statistics
+cleanup() {
+    echo ""
+    echo "Terminating running processes..."
+
+    # Kill all background processes
+    for pid in "${pids[@]}"; do
+        if kill -0 "$pid" 2>/dev/null; then
+            kill "$pid" 2>/dev/null
+        fi
+    done
+
+    # Wait a moment for processes to terminate gracefully
+    sleep 2
+
+    # Force kill any remaining processes
+    for pid in "${pids[@]}"; do
+        if kill -0 "$pid" 2>/dev/null; then
+            kill -9 "$pid" 2>/dev/null
+        fi
+    done
+
+    # Collect any remaining results
+    collect_results
+
+    echo ""
+    echo "========== Component Apply Statistics =========="
+    echo "Total components found: $total_components"
+    echo "New components processed successfully: $total_new_processed"
+    echo "Previously processed components (skipped): $total_prev_processed"
+    echo "New components failed: $total_new_failed"
+    echo "Previously failed components (skipped): $total_prev_failed"
+    echo "Components skipped (file not found): $total_skipped"
+    echo "=============================================="
+    echo "Script terminated"
+    exit 0
+}
+
+# Trap signals for graceful shutdown
+trap cleanup SIGTERM SIGINT
+
+# Validate components directory exists
+if [[ ! -d "$COMPONENTS_DIR" ]]; then
+    echo "Error: Components directory '$COMPONENTS_DIR' does not exist"
+    exit 1
+fi
+
+# Get all component names
+component_names=$(get_component_names)
+
+if [[ -z "$component_names" ]]; then
+    echo "No component-*.yaml files found in $COMPONENTS_DIR"
+    exit 1
+fi
+
+echo "Found component files:"
+echo "$component_names" | sed 's/^/  - component-/' | sed 's/$/.yaml/'
+echo ""
+
+# First pass: identify components to process and skip already processed ones
+components_to_process=()
+for component in $component_names; do
+    ((total_components++))
+
+    component_file="$COMPONENTS_DIR/component-$component.yaml"
+
+    # Verify the file exists
+    if [[ ! -f "$component_file" ]]; then
+        echo "Warning: Component file not found: $component_file"
+        echo "$component" >> "$SKIPPED_FILE"
+        ((total_skipped++))
+        continue
+    fi
+
+    # Check if component was already processed
+    if is_component_processed "$component"; then
+        echo "Skipping component: $component (already processed)"
+        if grep -Fxq "$component" "$PROCESSED_FILE"; then
+            ((total_prev_processed++))
+        elif grep -Fxq "$component" "$FAILED_FILE"; then
+            ((total_prev_failed++))
+        fi
+        continue
+    fi
+
+    components_to_process+=("$component")
+done
+
+# If no components to process, exit
+if [[ ${#components_to_process[@]} -eq 0 ]]; then
+    echo "No new components to process."
+    cleanup
+fi
+
+echo "Starting parallel processing of ${#components_to_process[@]} components..."
+echo "Maximum concurrent jobs: $MAX_JOBS"
+echo ""
+
+# Process components in parallel with job control
+job_count=0
+for component in "${components_to_process[@]}"; do
+    # Wait if we've reached the maximum number of jobs
+    if [[ $job_count -ge $MAX_JOBS ]]; then
+        # Wait for any job to finish
+        wait -n
+        ((job_count--))
+    fi
+
+    # Start the component processing
+    process_component "$component" &
+    pids+=($!)
+    ((job_count++))
+done
+
+echo "All component processes started (with job limit of $MAX_JOBS)."
+echo "Waiting for all processes to complete..."
+echo ""
+
+# Wait for all remaining background processes to complete
+for pid in "${pids[@]}"; do
+    if wait "$pid"; then
+        ((total_new_processed++))
+    else
+        ((total_new_failed++))
+    fi
+done
+
+echo ""
+echo "All parallel processes completed."
+
+# Collect results from temporary files
+collect_results
+
+cleanup
