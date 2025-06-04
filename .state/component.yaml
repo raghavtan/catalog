@@ -2588,19 +2588,18 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/a68e1531-5020-485f-93b1-9a3677c92609
     name: article-intelligence
-    slug: ""
-    description: ""
+    slug: svc-article-intelligence
+    description: Not Provided
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
     dependsOn: []
-    fields: {}
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: a7c631c
     links:
         - id: ""
-          name: The Source
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/article-intelligence
@@ -2636,11 +2635,14 @@ spec:
           name: r-source
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C055TBZP1B9
+        - id: ""
+          name: The Source
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
     documents: []
     labels:
-        - fan-experience
         - source
-        - article-intelligence
+        - fan-experience
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9b75a4e1-64eb-470d-98f7-e57b78609c37
@@ -2697,8 +2699,8 @@ spec:
             name: vulnerability-management-svc-article-intelligence
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c7562aa-6b71-4deb-911f-eebac354ee3e
             facts: []
-    tribe: fan-experience
-    squad: source
+    tribe: ""
+    squad: ""
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Component
