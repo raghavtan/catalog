@@ -1,17 +1,21 @@
+---
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: simple-service
+    name: 'simple-service'
     componentType: service
 spec:
     name: simple-service
-    slug: ""
+    slug: svc-simple-service
     description: Simple-service is a no-nonsense, do-what-it-needs-to-do kind of service. It reads a lot, writes a little, and somehow still manages to act important. If databases had best friends, Simple RDS would be its ride-or-die.
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
     typeId: SERVICE
-    ownerId: ""
-    dependsOn: []
-    tribe: platform
-    squad: cloud-runtime
+    dependsOn:
+        - Kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: '0.1.0'
     links:
         - name: Repository
           type: REPOSITORY
@@ -22,6 +26,13 @@ spec:
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: p-cloud-runtime
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CFUCQUA04
+        - name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
     labels:
-        - platform
         - cloud-runtime
+        - platform
+    customFields: null
