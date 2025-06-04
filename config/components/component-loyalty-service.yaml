@@ -5,17 +5,18 @@ metadata:
     name: 'loyalty-service'
     componentType: service
 spec:
+    tribe: membership
+    squad: onefootball-club
     name: loyalty-service
     slug: svc-loyalty-service
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: 'v0.0.909'
     links:
         - name: Repository
           type: REPOSITORY
