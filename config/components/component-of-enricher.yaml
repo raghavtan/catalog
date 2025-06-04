@@ -10,10 +10,12 @@ spec:
     description: Not Provided
     ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
     typeId: SERVICE
+    dependsOn:
+        - Kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: '186e035'
+        version: '7878606'
     links:
         - name: Repository
           type: REPOSITORY
