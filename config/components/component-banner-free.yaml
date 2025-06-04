@@ -1,17 +1,21 @@
+---
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: banner-free
+    name: 'banner-free'
     componentType: service
 spec:
     name: banner-free
-    slug: ""
-    description: ""
+    slug: svc-banner-free
+    description: Not Provided
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
     typeId: SERVICE
-    ownerId: ""
-    dependsOn: []
-    tribe: client-experience
-    squad: media-advertising
+    dependsOn:
+        - Kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: 'v0.9.16'
     links:
         - name: Repository
           type: REPOSITORY
@@ -22,7 +26,13 @@ spec:
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: client-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - name: Media Advertising
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
     labels:
-        - banner-free
-        - client-experience
         - media-advertising
+        - client-experience
+    customFields: null
