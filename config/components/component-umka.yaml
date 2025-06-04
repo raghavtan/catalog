@@ -1,0 +1,32 @@
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: umka
+    componentType: service
+spec:
+    name: umka
+    slug: ""
+    description: ""
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - mediation-api
+        - librarian
+        - apple-news
+        - news
+        - score-api
+    tribe: fan-experience
+    squad: personalisation
+    links:
+        - name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/umka
+        - name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=umka&var-container=umka&from=now-1h&to=now
+        - name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    labels:
+        - fan-experience
+        - personalisation

@@ -1,29 +1,27 @@
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: ott-api
+    name: video-stories-ingest-api
     componentType: service
 spec:
-    name: ott-api
+    name: video-stories-ingest-api
     slug: ""
     description: ""
     typeId: SERVICE
     ownerId: ""
-    dependsOn:
-        - auth-api
+    dependsOn: []
     tribe: ott
-    squad: live-video
+    squad: video-platform
     links:
         - name: Repository
           type: REPOSITORY
-          url: https://github.com/motain/ott-api
+          url: https://github.com/motain/video-stories-ingest-api
         - name: Monitoring page
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-api&var-container=ott-api&from=now-1h&to=now
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=video-stories-ingest-api&var-container=video-stories-ingest-api&from=now-1h&to=now
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     labels:
-        - ott-api
+        - video-platform
         - ott
-        - live-video

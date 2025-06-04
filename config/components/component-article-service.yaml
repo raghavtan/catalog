@@ -1,0 +1,28 @@
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: article-service
+    componentType: service
+spec:
+    name: article-service
+    slug: ""
+    description: ""
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn: []
+    tribe: fan-experience
+    squad: source
+    links:
+        - name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/article-service
+        - name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-service&var-container=article-service&from=now-1h&to=now
+        - name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    labels:
+        - source
+        - article-service
+        - fan-experience

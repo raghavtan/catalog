@@ -1,0 +1,24 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: loyalty-event-store
+    componentType: cloud-resource
+spec:
+  name: 'loyalty-event-store'
+  description: RDS cluster used by loyalty-service.
+  typeId: CLOUD_RESOURCE
+  fields:
+    tier: 4
+    isMonorepoProject: true
+  links:
+    - name: Repository
+      type: REPOSITORY
+      url: "https://github.com/motain/iac/blob/master/production/applications/loyalty-service"
+    - name: Monitoring page
+      type: DASHBOARD
+      url: "https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=loyalty-event-store;is-cluster=true;tab=monitoring"
+  relationships: {}
+  labels: ["aws", "rds", "monetization", "loyalty-program", "loyalty-service", "aurora-postgresql"]
+  customFields: null
+

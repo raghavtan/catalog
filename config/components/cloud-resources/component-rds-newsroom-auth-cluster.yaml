@@ -1,0 +1,24 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: newsroom-auth-cluster
+    componentType: cloud-resource
+spec:
+  name: 'newsroom-auth-cluster'
+  description: RDS cluster used by newsroom-auth.
+  typeId: CLOUD_RESOURCE
+  fields:
+    tier: 4
+    isMonorepoProject: true
+  links:
+    - name: Repository
+      type: REPOSITORY
+      url: "https://github.com/motain/iac/blob/master/production/applications/newsroom-auth/rds"
+    - name: Monitoring page
+      type: DASHBOARD
+      url: "https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=newsroom-auth-cluster;is-cluster=true;tab=monitoring"
+  relationships: {}
+  labels: ["aws", "rds", "reach", "content", "newsroom-auth", "aurora-postgresql"]
+  customFields: null
+
