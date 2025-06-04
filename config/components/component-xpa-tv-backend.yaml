@@ -1,17 +1,21 @@
+---
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: xpa-tv-backend
+    name: 'xpa-tv-backend'
     componentType: service
 spec:
     name: xpa-tv-backend
-    slug: ""
-    description: ""
+    slug: svc-xpa-tv-backend
+    description: Not Provided
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
     typeId: SERVICE
-    ownerId: ""
-    dependsOn: []
-    tribe: ott
-    squad: live-video
+    dependsOn:
+        - Kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: 'v0.0.174'
     links:
         - name: Repository
           type: REPOSITORY
@@ -22,7 +26,13 @@ spec:
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: e-livevideo
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C053ATVH3N2
+        - name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
     labels:
-        - ott
         - live-video
-        - xpa-tv-backend
+        - ott
+    customFields: null
