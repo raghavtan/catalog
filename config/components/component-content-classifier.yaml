@@ -1,17 +1,21 @@
+---
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: content-classifier
+    name: 'content-classifier'
     componentType: service
 spec:
     name: content-classifier
-    slug: ""
-    description: ""
+    slug: svc-content-classifier
+    description: Not Provided
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
     typeId: SERVICE
-    ownerId: ""
-    dependsOn: []
-    tribe: fan-experience
-    squad: personalisation
+    dependsOn:
+        - Kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: 'f4ba8c0'
     links:
         - name: Repository
           type: REPOSITORY
@@ -22,6 +26,13 @@ spec:
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
     labels:
-        - fan-experience
         - personalisation
+        - fan-experience
+    customFields: null
