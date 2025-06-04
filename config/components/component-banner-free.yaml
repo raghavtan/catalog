@@ -5,17 +5,18 @@ metadata:
     name: 'banner-free'
     componentType: service
 spec:
+    tribe: client-experience
+    squad: media-advertising
     name: banner-free
     slug: svc-banner-free
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: 'v0.9.16'
     links:
         - name: Repository
           type: REPOSITORY
