@@ -5,17 +5,18 @@ metadata:
     name: 'tags-api'
     componentType: service
 spec:
+    tribe: ott
+    squad: video-platform
     name: tags-api
     slug: svc-tags-api
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: '3769d9d998f2df326075d2daf56b6e6648b499a3'
     links:
         - name: Repository
           type: REPOSITORY
