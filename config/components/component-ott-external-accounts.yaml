@@ -5,17 +5,18 @@ metadata:
     name: 'ott-external-accounts'
     componentType: service
 spec:
+    tribe: ott
+    squad: live-video
     name: ott-external-accounts
     slug: svc-ott-external-accounts
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: 'v0.0.53'
     links:
         - name: Repository
           type: REPOSITORY
