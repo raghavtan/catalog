@@ -5,17 +5,18 @@ metadata:
     name: 'ott-probe'
     componentType: service
 spec:
+    tribe: ott
+    squad: live-video
     name: ott-probe
     slug: svc-ott-probe
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: 'v1.0.25'
     links:
         - name: Repository
           type: REPOSITORY
