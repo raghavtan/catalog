@@ -5,17 +5,18 @@ metadata:
     name: 'airship-email'
     componentType: service
 spec:
+    tribe: reach
+    squad: fan-activation
     name: airship-email
     slug: svc-airship-email
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: 'cdfc061'
     links:
         - name: Repository
           type: REPOSITORY
