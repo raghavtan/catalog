@@ -5,17 +5,18 @@ metadata:
     name: 'xpa-mobile-backend'
     componentType: service
 spec:
+    tribe: fan-experience
+    squad: matchxp
     name: xpa-mobile-backend
     slug: svc-xpa-mobile-backend
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
         - clips-api
     fields:
         lifecycle: Active
         tier: 4
-        version: 'v6.69.180'
     links:
         - name: Repository
           type: REPOSITORY
