@@ -1,0 +1,38 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: 'of-enricher'
+    componentType: service
+spec:
+    name: of-enricher
+    slug: svc-of-enricher
+    description: Not Provided
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    typeId: SERVICE
+    dependsOn:
+        - Kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: '570fc1a'
+    links:
+        - name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/of-enricher
+        - name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=of-enricher&var-container=of-enricher&from=now-1h&to=now
+        - name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+    labels:
+        - matchxp
+        - fan-experience
+    customFields: null
