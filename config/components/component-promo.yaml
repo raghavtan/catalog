@@ -5,17 +5,18 @@ metadata:
     name: 'promo'
     componentType: service
 spec:
+    tribe: client-experience
+    squad: sponsorship-integration
     name: promo
     slug: svc-promo
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: 'v0.0.128'
     links:
         - name: Repository
           type: REPOSITORY
