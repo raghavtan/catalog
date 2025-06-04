@@ -1,0 +1,36 @@
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: xpa-backend
+    componentType: service
+spec:
+    name: xpa-backend
+    slug: ""
+    description: ""
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - banner-free
+        - librarian
+        - mediation-api
+        - users-api
+        - users-auth-api
+        - users-accounts-api
+        - clips
+        - ott-mediation
+    tribe: engagement
+    squad: matchxp
+    links:
+        - name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/xpa-backend
+        - name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-backend&var-container=xpa-backend&from=now-1h&to=now
+        - name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    labels:
+        - matchxp
+        - xpa-backend
+        - engagement

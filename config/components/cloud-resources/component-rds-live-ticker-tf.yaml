@@ -1,0 +1,24 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: live-ticker-tf
+    componentType: cloud-resource
+spec:
+  name: 'live-ticker-tf'
+  description: RDS cluster used by live-ticker.
+  typeId: CLOUD_RESOURCE
+  fields:
+    tier: 4
+    isMonorepoProject: true
+  links:
+    - name: Repository
+      type: REPOSITORY
+      url: "https://github.com/motain/iac/blob/master/production/applications/live-ticker-system/rds"
+    - name: Monitoring page
+      type: DASHBOARD
+      url: "https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=live-ticker-tf;is-cluster=true;tab=monitoring"
+  relationships: {}
+  labels: ["aws", "rds", "engagement", "matchxp", "live-ticker", "aurora-mysql"]
+  customFields: null
+

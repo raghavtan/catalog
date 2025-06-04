@@ -1,0 +1,24 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: onboarding-api-tf-13
+    componentType: cloud-resource
+spec:
+  name: 'onboarding-api-tf-13'
+  description: RDS cluster used by onboarding.
+  typeId: CLOUD_RESOURCE
+  fields:
+    tier: 4
+    isMonorepoProject: true
+  links:
+    - name: Repository
+      type: REPOSITORY
+      url: "https://github.com/motain/iac/blob/master/production/applications/onboarding-api/rds"
+    - name: Monitoring page
+      type: DASHBOARD
+      url: "https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=onboarding-api-tf-13;is-cluster=true;tab=monitoring"
+  relationships: {}
+  labels: ["aws", "rds", "reach", "fan-activation", "onboarding", "aurora-postgresql"]
+  customFields: null
+

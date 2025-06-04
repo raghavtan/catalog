@@ -1,0 +1,24 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: promo-cluster
+    componentType: cloud-resource
+spec:
+  name: 'promo-cluster'
+  description: RDS cluster used by promo.
+  typeId: CLOUD_RESOURCE
+  fields:
+    tier: 4
+    isMonorepoProject: true
+  links:
+    - name: Repository
+      type: REPOSITORY
+      url: "https://github.com/motain/iac/blob/master/production/applications/promo/rds"
+    - name: Monitoring page
+      type: DASHBOARD
+      url: "https://eu-west-1.console.aws.amazon.com/rds/home?region=eu-west-1#database:id=promo-cluster;is-cluster=true;tab=monitoring"
+  relationships: {}
+  labels: ["aws", "rds", "monetization", "sponsorship-integration", "promo", "aurora-postgresql"]
+  customFields: null
+

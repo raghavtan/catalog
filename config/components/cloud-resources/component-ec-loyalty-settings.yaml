@@ -1,0 +1,24 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: loyalty-settings
+    componentType: cloud-resource
+spec:
+  name: 'loyalty-settings'
+  description: ElastiCache cluster used by loyalty-service.
+  typeId: CLOUD_RESOURCE
+  fields:
+    tier: 4
+    isMonorepoProject: true
+  links:
+    - name: Repository
+      type: REPOSITORY
+      url: "https://github.com/motain/iac/blob/master/production/applications/loyalty-service"
+    - name: Monitoring page
+      type: DASHBOARD
+      url: "https://706922411989.eu-west-1.console.aws.amazon.com/elasticache/home?region=eu-west-1#/redis/leaderboard-cache"
+  relationships: {}
+  labels: ["aws", "elasticache", "monetization", "loyalty-program", "loyalty-service"]
+  customFields: null
+
