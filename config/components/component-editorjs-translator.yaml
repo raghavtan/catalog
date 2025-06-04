@@ -5,17 +5,18 @@ metadata:
     name: 'editorjs-translator'
     componentType: service
 spec:
+    tribe: fan-experience
+    squad: source
     name: editorjs-translator
     slug: svc-editorjs-translator
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: 'v1.2.58'
     links:
         - name: Repository
           type: REPOSITORY
