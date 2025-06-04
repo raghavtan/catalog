@@ -5,17 +5,18 @@ metadata:
     name: 'tv-guide-api'
     componentType: service
 spec:
+    tribe: monetization
+    squad: sponsorship-integration
     name: tv-guide-api
     slug: svc-tv-guide-api
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
         - score-api
     fields:
         lifecycle: Active
         tier: 4
-        version: 'v1.19.17'
     links:
         - name: Repository
           type: REPOSITORY
