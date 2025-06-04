@@ -331,26 +331,6 @@ spec:
           name: Activation Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/airship-email
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=airship-email&var-container=airship-email&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: r-activation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/CK9LTN6DR
-        - id: ""
-          name: Activation Squad
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
     documents: []
     labels:
         - fan-activation
@@ -431,10 +411,6 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: Personalisation
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/amymone
@@ -446,10 +422,6 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
     documents: []
     labels:
         - engagement
@@ -1131,10 +1103,6 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
     documents: []
     labels:
         - creators-network
@@ -1505,31 +1473,19 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7c751e96-4f78-4c94-ba73-b0c146fcdeaf
     name: appstore-connect-iap-api
-    slug: ""
-    description: ""
+    slug: svc-appstore-connect-iap-api
+    description: Not Provided
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
-    dependsOn: []
-    fields: {}
+    dependsOn:
+        - Kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: v1.0.46
     links:
         - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=appstore-connect-iap-api&var-container=appstore-connect-iap-api&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: e-livevideo
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C053ATVH3N2
-        - id: ""
-          name: Live Video
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/appstore-connect-iap-api
@@ -1553,6 +1509,22 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/appstore-connect-iap-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=appstore-connect-iap-api&var-container=appstore-connect-iap-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-livevideo
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C053ATVH3N2
+        - id: ""
+          name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/9a8cb54b-665c-456d-90f2-291ba0f75285
           title: Readme
@@ -1561,7 +1533,6 @@ spec:
           url: https://github.com/motain/appstore-connect-iap-api/blob/main/docs/index.md
     labels:
         - live-video
-        - appstore-connect-iap-api
         - ott
     metricSources:
         adaptive-systems:
@@ -1619,8 +1590,8 @@ spec:
             name: vulnerability-management-svc-appstore-connect-iap-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c7562aa-6b71-4deb-911f-eebac354ee3e
             facts: []
-    tribe: ott
-    squad: live-video
+    tribe: ""
+    squad: ""
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Component
@@ -1923,18 +1894,18 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b6038ae9-4d7d-4c69-9ed9-8f5b049d90e7
     name: archive
-    slug: ""
-    description: ""
+    slug: svc-archive
+    description: Not Provided
     configVersion: 0
     typeId: SERVICE
     ownerId: ""
-    dependsOn: []
-    fields: {}
+    dependsOn:
+        - Kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: v0.0.14
     links:
-        - id: ""
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
         - id: ""
           name: Repository
           type: REPOSITORY
@@ -1947,367 +1918,96 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/archive
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=archive&var-container=archive&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
     documents: []
     labels:
-        - engagement
         - matchxp
-        - archive
+        - engagement
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1194838a-2472-4c95-b1dc-0f3bd27b04db
             name: adaptive-systems-svc-archive
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0f72a9b2-c7f2-4eff-b905-1e715c3a8810
-            facts:
-                - id: app-toml-replicas-min
-                  type: extract
-                  source: github
-                  jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
-                  repo: archive
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: app-toml-replicas-max-gt-replicas-min
-                  type: extract
-                  source: github
-                  jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
-                  repo: archive
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: cpu-and-memory-hpa-are-set
-                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-                  type: aggregate
-                  dependsOn:
-                    - app-toml-replicas-min
-                    - app-toml-replicas-max-gt-replicas-min
-                  method: and
+            facts: []
         alert-routing-and-notifications:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0f9350a1-97ff-4451-a60c-def9ad74bf9a
             name: alert-routing-and-notifications-svc-archive
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/9a068e9d-a760-4928-a092-e626128aeeb0
-            facts:
-                - id: fetch-slos
-                  name: Fetch SLOs
-                  type: extract
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/slos/archive
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-alerts-for-slos
-                  name: Fetch alerts for SLOs
-                  type: extract
-                  dependsOn:
-                    - fetch-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/archive?slo_id=:slo_id
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-recipients-for-alerts
-                  name: Fetch recipients for Alerts
-                  type: extract
-                  dependsOn:
-                    - fetch-alerts-for-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/archive/:alert_id
-                  jsonPath: .recipients[].target
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: validate-each-target-is-not-empty-string
-                  name: Validate that each target is not an empty string
-                  type: validate
-                  dependsOn:
-                    - fetch-recipients-for-alerts
-                  rule: regex_match
-                  pattern: ^\S.*$
-                - id: validate-all-targets-are-not-empty-strings
-                  name: Validate that all targets are not empty strings
-                  type: aggregate
-                  dependsOn:
-                    - validate-each-target-is-not-empty-string
-                  method: and
+            facts: []
         allocation-efficiency:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/c801595a-dd21-4b22-ae97-958258a49ad7
             name: allocation-efficiency-svc-archive
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/223be0f4-d7bb-4254-9529-e77aa497e798
-            facts:
-                - id: check-app-toml-resource-request
-                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
-                  repo: archive
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: check-app-toml-cpu-limits
-                  name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
-                  repo: archive
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: check-app-toml-memory-limits
-                  name: Check if  memory limits are defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: .service.memory_limits // .service.production.memory_limits | .==null
-                  repo: archive
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: aggregate-resource-requests
-                  name: check resource requests and limits
-                  type: aggregate
-                  dependsOn:
-                    - check-app-toml-resource-request
-                    - check-app-toml-cpu-limits
-                    - check-app-toml-memory-limits
-                  method: and
+            facts: []
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/bc9aeb4e-5b5d-470e-8461-4c65cf137b6c
             name: critical-alerts-slo-check-svc-archive
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a2523e39-c11a-4449-8465-f41613881b22
-            facts:
-                - id: fetch-slos
-                  name: Fetch SLOs
-                  type: extract
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/slos/archive
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-alerts-for-slos
-                  name: Fetch alerts for SLOs
-                  type: extract
-                  dependsOn:
-                    - fetch-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/archive?slo_id=:slo_id
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: count-slos
-                  name: Count SLOs
-                  type: aggregate
-                  dependsOn:
-                    - fetch-slos
-                  method: count
-                - id: count-alerts-for-slos
-                  name: Count Alerts
-                  type: aggregate
-                  dependsOn:
-                    - fetch-alerts-for-slos
-                  method: count
-                - id: validate-alerts-for-slos
-                  name: Validate that counts match
-                  type: validate
-                  dependsOn:
-                    - count-slos
-                    - count-alerts-for-slos
-                  rule: deps_match
+            facts: []
         deployment-readiness:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/319899c0-711a-4cc2-b69a-59c56a8e1974
             name: deployment-readiness-svc-archive
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef2ef7b8-cc47-4f67-84d3-ba9bebef1ba8
-            facts:
-                - id: deployment-readiness-replicas-service-production
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: extract
-                  source: github
-                  jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
-                  repo: archive
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: deployment-readiness-replicas-service
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: extract
-                  source: github
-                  jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
-                  repo: archive
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: aggregate-replicas
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: aggregate
-                  dependsOn:
-                    - deployment-readiness-replicas-service-production
-                    - deployment-readiness-replicas-service
-                  method: or
+            facts: []
         high-availability:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/fa2b9596-c391-47f8-968f-5764a128c46e
             name: high-availability-svc-archive
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/739d09e9-de03-426c-b82e-15e7aeb385b4
-            facts:
-                - id: app-toml-hpa-target-cpu
-                  type: extract
-                  source: github
-                  jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
-                  repo: archive
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: app-toml-hpa-target-memory
-                  type: extract
-                  source: github
-                  jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
-                  repo: archive
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: cpu-and-memory-hpa-are-set
-                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-                  type: aggregate
-                  dependsOn:
-                    - app-toml-hpa-target-cpu
-                    - app-toml-hpa-target-memory
-                  method: or
+            facts: []
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/408cecd1-e496-4fee-b790-1ca2cda03ebd
             name: instrumentation-check-svc-archive
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/71dfd551-e995-4092-ab06-e2718e75641e
-            facts:
-                - id: read-otel-service-name-from-apptoml
-                  name: Read OTEL_SERVICE_NAME from app.toml
-                  type: extract
-                  source: github
-                  jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
-                  repo: archive
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: validate-otel-service-name-matches-component-name
-                  name: validate OTEL_SERVICE_NAME matches component name
-                  type: validate
-                  dependsOn:
-                    - read-otel-service-name-from-apptoml
-                  rule: regex_match
-                  pattern: ^archive.*$
-                - id: read-otel-resource-attributes-from-apptoml
-                  name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
-                  type: extract
-                  source: github
-                  jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
-                  repo: archive
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: validate-otel-resource-attributes-sample-rate
-                  name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
-                  type: validate
-                  dependsOn:
-                    - read-otel-resource-attributes-from-apptoml
-                  rule: regex_match
-                  pattern: of\.sample_rate=\d+.*
-                - id: validate-otel-resource-attributes-one-sample-rate
-                  name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
-                  type: validate
-                  dependsOn:
-                    - read-otel-resource-attributes-from-apptoml
-                  rule: regex_match
-                  pattern: of\.error_sample_rate=\d+.*
-                - id: either-sample-rate-or-error-sample-rate
-                  name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
-                  type: aggregate
-                  dependsOn:
-                    - validate-otel-resource-attributes-sample-rate
-                    - validate-otel-resource-attributes-error-sample-rate
-                  method: or
-                - id: either-sample-rate-or-error-sample-rate
-                  name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
-                  type: aggregate
-                  dependsOn:
-                    - validate-otel-service-name-matches-component-name
-                    - validate-otel-resource-attributes-one-sample-rate
-                  method: and
+            facts: []
         observability-documentation:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5fbc547b-071d-4dca-835d-47855034d166
             name: observability-documentation-svc-archive
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/c5f96c3d-6845-4155-9576-62f86725b07f
-            facts:
-                - id: extract-observability-md
-                  name: Extract observability.md
-                  type: extract
-                  source: github
-                  repo: archive
-                  filePath: docs/observability.md
-                  rule: notempty
+            facts: []
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/08595478-b2a8-42cc-b533-de5a31f77d04
             name: organizational-standards-svc-archive
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/005d1bf2-7188-4682-861b-a1f8bb7043ed
-            facts:
-                - id: readme-file
-                  name: Check if the README.md file exists
-                  type: extract
-                  source: github
-                  repo: archive
-                  filePath: README.md
-                  rule: notempty
-                - id: docs-readme-file
-                  name: Check if the docs/README.md file exists
-                  type: extract
-                  source: github
-                  repo: archive
-                  filePath: docs/README.md
-                  rule: notempty
-                - id: docs-index-file
-                  name: Check if the docs/index.md file exists
-                  type: extract
-                  source: github
-                  repo: archive
-                  filePath: docs/index.md
-                  rule: notempty
-                - id: paas-onboarded
-                  name: Check if the service is using PaaS
-                  type: extract
-                  source: github
-                  repo: archive
-                  searchString: motain/onefootball-actions/paas-deploy@master
-                  rule: search
-                - id: aggregate-readme-exists
-                  name: Check if repo has documentation
-                  type: aggregate
-                  dependsOn:
-                    - docs-index-file
-                    - docs-readme-file
-                    - readme-file
-                  method: or
-                - id: aggregate
-                  name: Check if repo follows organizational standards
-                  type: aggregate
-                  dependsOn:
-                    - aggregate-readme-exists
-                    - paas-onboarded
-                  method: and
+            facts: []
         security-as-pipeline:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/73799752-8c38-425c-a03c-da05d7812c6e
             name: security-as-pipeline-svc-archive
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/295e70fa-9359-4a0f-9188-6f7b6a0dbd7e
-            facts:
-                - id: trivy-exists-in-ci
-                  name: Check if Trivy is used in CI/CD pipeline
-                  type: extract
-                  source: github
-                  repo: archive
-                  searchString: motain/onefootball-actions/security
-                  rule: search
+            facts: []
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6aca833f-ab16-46a6-b274-0853961c0757
             name: vulnerability-management-svc-archive
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c7562aa-6b71-4deb-911f-eebac354ee3e
-            facts:
-                - id: service-vulnerabilities-prometheus
-                  name: Get summary of vulnerabilities for services from Prometheus reports
-                  type: extract
-                  source: prometheus
-                  prometheusQuery: sum(trivy_image_vulnerabilities{namespace="archive", severity="Critical" })
-    tribe: engagement
-    squad: matchxp
+            facts: []
+    tribe: ""
+    squad: ""
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Component
@@ -2322,11 +2022,12 @@ spec:
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
-    dependsOn: []
+    dependsOn:
+        - Kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: d1366ac
+        version: 8ab91f4
     links:
         - id: ""
           name: Repository
@@ -2459,34 +2160,6 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: ""
-          name: The Source
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/article-service
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-service&var-container=article-service&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: ""
-          name: The Source
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
     documents: []
     labels:
         - source
@@ -2568,6 +2241,10 @@ spec:
     fields: {}
     links:
         - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/article-translator
+        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-translator&var-container=article-translator&from=now-1h&to=now
@@ -2575,18 +2252,6 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: ""
-          name: The Source
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/article-translator
     documents: []
     labels:
         - fan-experience
@@ -2659,13 +2324,17 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/694b4991-a04b-4929-a318-fe28e72346aa
     name: auth-api
-    slug: ""
-    description: ""
+    slug: svc-auth-api
+    description: Not Provided
     configVersion: 0
     typeId: SERVICE
     ownerId: ""
-    dependsOn: []
-    fields: {}
+    dependsOn:
+        - Kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: v3.4.17
     links:
         - id: ""
           name: Repository
@@ -2683,367 +2352,92 @@ spec:
           name: r-source
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C055TBZP1B9
+        - id: ""
+          name: The Source
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/auth-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=auth-api&var-container=auth-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
+        - id: ""
+          name: The Source
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
     documents: []
     labels:
-        - auth-api
-        - reach
-        - content
+        - source
+        - fan-experience
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7239006a-4fc4-46af-b908-12c3be4700ca
             name: adaptive-systems-svc-auth-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0f72a9b2-c7f2-4eff-b905-1e715c3a8810
-            facts:
-                - id: app-toml-replicas-min
-                  type: extract
-                  source: github
-                  jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
-                  repo: auth-api
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: app-toml-replicas-max-gt-replicas-min
-                  type: extract
-                  source: github
-                  jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
-                  repo: auth-api
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: cpu-and-memory-hpa-are-set
-                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-                  type: aggregate
-                  dependsOn:
-                    - app-toml-replicas-min
-                    - app-toml-replicas-max-gt-replicas-min
-                  method: and
+            facts: []
         alert-routing-and-notifications:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/76110248-b64a-4f6a-9eac-e0135cc456e8
             name: alert-routing-and-notifications-svc-auth-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/9a068e9d-a760-4928-a092-e626128aeeb0
-            facts:
-                - id: fetch-slos
-                  name: Fetch SLOs
-                  type: extract
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/slos/auth-api
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-alerts-for-slos
-                  name: Fetch alerts for SLOs
-                  type: extract
-                  dependsOn:
-                    - fetch-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/auth-api?slo_id=:slo_id
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-recipients-for-alerts
-                  name: Fetch recipients for Alerts
-                  type: extract
-                  dependsOn:
-                    - fetch-alerts-for-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/auth-api/:alert_id
-                  jsonPath: .recipients[].target
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: validate-each-target-is-not-empty-string
-                  name: Validate that each target is not an empty string
-                  type: validate
-                  dependsOn:
-                    - fetch-recipients-for-alerts
-                  rule: regex_match
-                  pattern: ^\S.*$
-                - id: validate-all-targets-are-not-empty-strings
-                  name: Validate that all targets are not empty strings
-                  type: aggregate
-                  dependsOn:
-                    - validate-each-target-is-not-empty-string
-                  method: and
+            facts: []
         allocation-efficiency:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/45a52e4e-dd54-4c33-9c91-829b082fd3d7
             name: allocation-efficiency-svc-auth-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/223be0f4-d7bb-4254-9529-e77aa497e798
-            facts:
-                - id: check-app-toml-resource-request
-                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
-                  repo: auth-api
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: check-app-toml-cpu-limits
-                  name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
-                  repo: auth-api
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: check-app-toml-memory-limits
-                  name: Check if  memory limits are defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: .service.memory_limits // .service.production.memory_limits | .==null
-                  repo: auth-api
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: aggregate-resource-requests
-                  name: check resource requests and limits
-                  type: aggregate
-                  dependsOn:
-                    - check-app-toml-resource-request
-                    - check-app-toml-cpu-limits
-                    - check-app-toml-memory-limits
-                  method: and
+            facts: []
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/12ad6a37-dafc-4e02-9324-64950ef70fe9
             name: critical-alerts-slo-check-svc-auth-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a2523e39-c11a-4449-8465-f41613881b22
-            facts:
-                - id: fetch-slos
-                  name: Fetch SLOs
-                  type: extract
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/slos/auth-api
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-alerts-for-slos
-                  name: Fetch alerts for SLOs
-                  type: extract
-                  dependsOn:
-                    - fetch-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/auth-api?slo_id=:slo_id
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: count-slos
-                  name: Count SLOs
-                  type: aggregate
-                  dependsOn:
-                    - fetch-slos
-                  method: count
-                - id: count-alerts-for-slos
-                  name: Count Alerts
-                  type: aggregate
-                  dependsOn:
-                    - fetch-alerts-for-slos
-                  method: count
-                - id: validate-alerts-for-slos
-                  name: Validate that counts match
-                  type: validate
-                  dependsOn:
-                    - count-slos
-                    - count-alerts-for-slos
-                  rule: deps_match
+            facts: []
         deployment-readiness:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7f0e3424-7e7b-4fd0-878c-7d7d40808455
             name: deployment-readiness-svc-auth-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef2ef7b8-cc47-4f67-84d3-ba9bebef1ba8
-            facts:
-                - id: deployment-readiness-replicas-service-production
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: extract
-                  source: github
-                  jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
-                  repo: auth-api
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: deployment-readiness-replicas-service
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: extract
-                  source: github
-                  jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
-                  repo: auth-api
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: aggregate-replicas
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: aggregate
-                  dependsOn:
-                    - deployment-readiness-replicas-service-production
-                    - deployment-readiness-replicas-service
-                  method: or
+            facts: []
         high-availability:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/61820fbf-5ff7-46b1-bb7b-3d10ff06d88b
             name: high-availability-svc-auth-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/739d09e9-de03-426c-b82e-15e7aeb385b4
-            facts:
-                - id: app-toml-hpa-target-cpu
-                  type: extract
-                  source: github
-                  jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
-                  repo: auth-api
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: app-toml-hpa-target-memory
-                  type: extract
-                  source: github
-                  jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
-                  repo: auth-api
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: cpu-and-memory-hpa-are-set
-                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-                  type: aggregate
-                  dependsOn:
-                    - app-toml-hpa-target-cpu
-                    - app-toml-hpa-target-memory
-                  method: or
+            facts: []
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/e00cbd16-5b2b-468e-a737-2e24839edb02
             name: instrumentation-check-svc-auth-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/71dfd551-e995-4092-ab06-e2718e75641e
-            facts:
-                - id: read-otel-service-name-from-apptoml
-                  name: Read OTEL_SERVICE_NAME from app.toml
-                  type: extract
-                  source: github
-                  jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
-                  repo: auth-api
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: validate-otel-service-name-matches-component-name
-                  name: validate OTEL_SERVICE_NAME matches component name
-                  type: validate
-                  dependsOn:
-                    - read-otel-service-name-from-apptoml
-                  rule: regex_match
-                  pattern: ^auth-api.*$
-                - id: read-otel-resource-attributes-from-apptoml
-                  name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
-                  type: extract
-                  source: github
-                  jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
-                  repo: auth-api
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: validate-otel-resource-attributes-sample-rate
-                  name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
-                  type: validate
-                  dependsOn:
-                    - read-otel-resource-attributes-from-apptoml
-                  rule: regex_match
-                  pattern: of\.sample_rate=\d+.*
-                - id: validate-otel-resource-attributes-one-sample-rate
-                  name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
-                  type: validate
-                  dependsOn:
-                    - read-otel-resource-attributes-from-apptoml
-                  rule: regex_match
-                  pattern: of\.error_sample_rate=\d+.*
-                - id: either-sample-rate-or-error-sample-rate
-                  name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
-                  type: aggregate
-                  dependsOn:
-                    - validate-otel-resource-attributes-sample-rate
-                    - validate-otel-resource-attributes-error-sample-rate
-                  method: or
-                - id: either-sample-rate-or-error-sample-rate
-                  name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
-                  type: aggregate
-                  dependsOn:
-                    - validate-otel-service-name-matches-component-name
-                    - validate-otel-resource-attributes-one-sample-rate
-                  method: and
+            facts: []
         observability-documentation:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a293257c-809d-4b13-8fdc-68a66cfbe351
             name: observability-documentation-svc-auth-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/c5f96c3d-6845-4155-9576-62f86725b07f
-            facts:
-                - id: extract-observability-md
-                  name: Extract observability.md
-                  type: extract
-                  source: github
-                  repo: auth-api
-                  filePath: docs/observability.md
-                  rule: notempty
+            facts: []
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/8dca5818-1cf5-4cc1-bcfc-d762c3c4134b
             name: organizational-standards-svc-auth-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/005d1bf2-7188-4682-861b-a1f8bb7043ed
-            facts:
-                - id: readme-file
-                  name: Check if the README.md file exists
-                  type: extract
-                  source: github
-                  repo: auth-api
-                  filePath: README.md
-                  rule: notempty
-                - id: docs-readme-file
-                  name: Check if the docs/README.md file exists
-                  type: extract
-                  source: github
-                  repo: auth-api
-                  filePath: docs/README.md
-                  rule: notempty
-                - id: docs-index-file
-                  name: Check if the docs/index.md file exists
-                  type: extract
-                  source: github
-                  repo: auth-api
-                  filePath: docs/index.md
-                  rule: notempty
-                - id: paas-onboarded
-                  name: Check if the service is using PaaS
-                  type: extract
-                  source: github
-                  repo: auth-api
-                  searchString: motain/onefootball-actions/paas-deploy@master
-                  rule: search
-                - id: aggregate-readme-exists
-                  name: Check if repo has documentation
-                  type: aggregate
-                  dependsOn:
-                    - docs-index-file
-                    - docs-readme-file
-                    - readme-file
-                  method: or
-                - id: aggregate
-                  name: Check if repo follows organizational standards
-                  type: aggregate
-                  dependsOn:
-                    - aggregate-readme-exists
-                    - paas-onboarded
-                  method: and
+            facts: []
         security-as-pipeline:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/dd115f20-1121-44b6-8510-e3e3afd148f2
             name: security-as-pipeline-svc-auth-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/295e70fa-9359-4a0f-9188-6f7b6a0dbd7e
-            facts:
-                - id: trivy-exists-in-ci
-                  name: Check if Trivy is used in CI/CD pipeline
-                  type: extract
-                  source: github
-                  repo: auth-api
-                  searchString: motain/onefootball-actions/security
-                  rule: search
+            facts: []
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5f99c063-3435-4d0b-bc80-d51dbc710459
             name: vulnerability-management-svc-auth-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c7562aa-6b71-4deb-911f-eebac354ee3e
-            facts:
-                - id: service-vulnerabilities-prometheus
-                  name: Get summary of vulnerabilities for services from Prometheus reports
-                  type: extract
-                  source: prometheus
-                  prometheusQuery: sum(trivy_image_vulnerabilities{namespace="auth-api", severity="Critical" })
-    tribe: reach
-    squad: content
+            facts: []
+    tribe: ""
+    squad: ""
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Component
@@ -3053,14 +2447,26 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/6055b2fb-0e2f-4728-b770-54d4297dffa1
     name: backstage
-    slug: ""
-    description: ""
+    slug: svc-backstage
+    description: Not Provided
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
-    dependsOn: []
-    fields: {}
+    dependsOn:
+        - Kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: v601
     links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/backstage
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=backstage&var-container=backstage&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -3081,366 +2487,80 @@ spec:
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=backstage&var-container=backstage&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: p-cloud-runtime
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CFUCQUA04
+        - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
     documents: []
     labels:
-        - platform
         - cloud-runtime
+        - platform
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/18f13dda-e7c7-43a7-ad06-b50f587f4351
             name: adaptive-systems-svc-backstage
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0f72a9b2-c7f2-4eff-b905-1e715c3a8810
-            facts:
-                - id: app-toml-replicas-min
-                  type: extract
-                  source: github
-                  jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
-                  repo: backstage
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: app-toml-replicas-max-gt-replicas-min
-                  type: extract
-                  source: github
-                  jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
-                  repo: backstage
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: cpu-and-memory-hpa-are-set
-                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-                  type: aggregate
-                  dependsOn:
-                    - app-toml-replicas-min
-                    - app-toml-replicas-max-gt-replicas-min
-                  method: and
+            facts: []
         alert-routing-and-notifications:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/19eb090c-8f59-44b2-b0f5-8b92b779aa67
             name: alert-routing-and-notifications-svc-backstage
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/9a068e9d-a760-4928-a092-e626128aeeb0
-            facts:
-                - id: fetch-slos
-                  name: Fetch SLOs
-                  type: extract
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/slos/backstage
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-alerts-for-slos
-                  name: Fetch alerts for SLOs
-                  type: extract
-                  dependsOn:
-                    - fetch-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/backstage?slo_id=:slo_id
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-recipients-for-alerts
-                  name: Fetch recipients for Alerts
-                  type: extract
-                  dependsOn:
-                    - fetch-alerts-for-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/backstage/:alert_id
-                  jsonPath: .recipients[].target
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: validate-each-target-is-not-empty-string
-                  name: Validate that each target is not an empty string
-                  type: validate
-                  dependsOn:
-                    - fetch-recipients-for-alerts
-                  rule: regex_match
-                  pattern: ^\S.*$
-                - id: validate-all-targets-are-not-empty-strings
-                  name: Validate that all targets are not empty strings
-                  type: aggregate
-                  dependsOn:
-                    - validate-each-target-is-not-empty-string
-                  method: and
+            facts: []
         allocation-efficiency:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7f24e6b6-e1c1-41bb-9490-e21be073eca1
             name: allocation-efficiency-svc-backstage
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/223be0f4-d7bb-4254-9529-e77aa497e798
-            facts:
-                - id: check-app-toml-resource-request
-                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
-                  repo: backstage
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: check-app-toml-cpu-limits
-                  name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
-                  repo: backstage
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: check-app-toml-memory-limits
-                  name: Check if  memory limits are defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: .service.memory_limits // .service.production.memory_limits | .==null
-                  repo: backstage
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: aggregate-resource-requests
-                  name: check resource requests and limits
-                  type: aggregate
-                  dependsOn:
-                    - check-app-toml-resource-request
-                    - check-app-toml-cpu-limits
-                    - check-app-toml-memory-limits
-                  method: and
+            facts: []
         critical-alerts-slo-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/26695140-03f1-465b-9ba6-85837209c779
             name: critical-alerts-slo-check-svc-backstage
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a2523e39-c11a-4449-8465-f41613881b22
-            facts:
-                - id: fetch-slos
-                  name: Fetch SLOs
-                  type: extract
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/slos/backstage
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: fetch-alerts-for-slos
-                  name: Fetch alerts for SLOs
-                  type: extract
-                  dependsOn:
-                    - fetch-slos
-                  source: jsonapi
-                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/backstage?slo_id=:slo_id
-                  jsonPath: .[].id
-                  auth:
-                    header: X-Honeycomb-Team
-                    tokenVar: HONEYCOMB_API_KEY
-                  rule: jsonpath
-                - id: count-slos
-                  name: Count SLOs
-                  type: aggregate
-                  dependsOn:
-                    - fetch-slos
-                  method: count
-                - id: count-alerts-for-slos
-                  name: Count Alerts
-                  type: aggregate
-                  dependsOn:
-                    - fetch-alerts-for-slos
-                  method: count
-                - id: validate-alerts-for-slos
-                  name: Validate that counts match
-                  type: validate
-                  dependsOn:
-                    - count-slos
-                    - count-alerts-for-slos
-                  rule: deps_match
+            facts: []
         deployment-readiness:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3367a3db-c537-4e4d-b788-65a423b46f20
             name: deployment-readiness-svc-backstage
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef2ef7b8-cc47-4f67-84d3-ba9bebef1ba8
-            facts:
-                - id: deployment-readiness-replicas-service-production
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: extract
-                  source: github
-                  jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
-                  repo: backstage
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: deployment-readiness-replicas-service
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: extract
-                  source: github
-                  jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
-                  repo: backstage
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: aggregate-replicas
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: aggregate
-                  dependsOn:
-                    - deployment-readiness-replicas-service-production
-                    - deployment-readiness-replicas-service
-                  method: or
+            facts: []
         high-availability:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5bf85216-5272-43f0-8770-259e3c97f5f6
             name: high-availability-svc-backstage
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/739d09e9-de03-426c-b82e-15e7aeb385b4
-            facts:
-                - id: app-toml-hpa-target-cpu
-                  type: extract
-                  source: github
-                  jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
-                  repo: backstage
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: app-toml-hpa-target-memory
-                  type: extract
-                  source: github
-                  jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
-                  repo: backstage
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: cpu-and-memory-hpa-are-set
-                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-                  type: aggregate
-                  dependsOn:
-                    - app-toml-hpa-target-cpu
-                    - app-toml-hpa-target-memory
-                  method: or
+            facts: []
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ce19658d-64a3-404c-8754-eeaa128ccdc3
             name: instrumentation-check-svc-backstage
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/71dfd551-e995-4092-ab06-e2718e75641e
-            facts:
-                - id: read-otel-service-name-from-apptoml
-                  name: Read OTEL_SERVICE_NAME from app.toml
-                  type: extract
-                  source: github
-                  jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
-                  repo: backstage
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: validate-otel-service-name-matches-component-name
-                  name: validate OTEL_SERVICE_NAME matches component name
-                  type: validate
-                  dependsOn:
-                    - read-otel-service-name-from-apptoml
-                  rule: regex_match
-                  pattern: ^backstage.*$
-                - id: read-otel-resource-attributes-from-apptoml
-                  name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
-                  type: extract
-                  source: github
-                  jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
-                  repo: backstage
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: validate-otel-resource-attributes-sample-rate
-                  name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
-                  type: validate
-                  dependsOn:
-                    - read-otel-resource-attributes-from-apptoml
-                  rule: regex_match
-                  pattern: of\.sample_rate=\d+.*
-                - id: validate-otel-resource-attributes-one-sample-rate
-                  name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
-                  type: validate
-                  dependsOn:
-                    - read-otel-resource-attributes-from-apptoml
-                  rule: regex_match
-                  pattern: of\.error_sample_rate=\d+.*
-                - id: either-sample-rate-or-error-sample-rate
-                  name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
-                  type: aggregate
-                  dependsOn:
-                    - validate-otel-resource-attributes-sample-rate
-                    - validate-otel-resource-attributes-error-sample-rate
-                  method: or
-                - id: either-sample-rate-or-error-sample-rate
-                  name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
-                  type: aggregate
-                  dependsOn:
-                    - validate-otel-service-name-matches-component-name
-                    - validate-otel-resource-attributes-one-sample-rate
-                  method: and
+            facts: []
         observability-documentation:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1e80e624-bcb6-4db0-86f4-1a82856d04de
             name: observability-documentation-svc-backstage
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/c5f96c3d-6845-4155-9576-62f86725b07f
-            facts:
-                - id: extract-observability-md
-                  name: Extract observability.md
-                  type: extract
-                  source: github
-                  repo: backstage
-                  filePath: docs/observability.md
-                  rule: notempty
+            facts: []
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a21ab9ea-1b25-4b24-aaae-26fd66e1c19a
             name: organizational-standards-svc-backstage
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/005d1bf2-7188-4682-861b-a1f8bb7043ed
-            facts:
-                - id: readme-file
-                  name: Check if the README.md file exists
-                  type: extract
-                  source: github
-                  repo: backstage
-                  filePath: README.md
-                  rule: notempty
-                - id: docs-readme-file
-                  name: Check if the docs/README.md file exists
-                  type: extract
-                  source: github
-                  repo: backstage
-                  filePath: docs/README.md
-                  rule: notempty
-                - id: docs-index-file
-                  name: Check if the docs/index.md file exists
-                  type: extract
-                  source: github
-                  repo: backstage
-                  filePath: docs/index.md
-                  rule: notempty
-                - id: paas-onboarded
-                  name: Check if the service is using PaaS
-                  type: extract
-                  source: github
-                  repo: backstage
-                  searchString: motain/onefootball-actions/paas-deploy@master
-                  rule: search
-                - id: aggregate-readme-exists
-                  name: Check if repo has documentation
-                  type: aggregate
-                  dependsOn:
-                    - docs-index-file
-                    - docs-readme-file
-                    - readme-file
-                  method: or
-                - id: aggregate
-                  name: Check if repo follows organizational standards
-                  type: aggregate
-                  dependsOn:
-                    - aggregate-readme-exists
-                    - paas-onboarded
-                  method: and
+            facts: []
         security-as-pipeline:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/79501fa7-3ea6-44ef-acb7-6711041895d5
             name: security-as-pipeline-svc-backstage
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/295e70fa-9359-4a0f-9188-6f7b6a0dbd7e
-            facts:
-                - id: trivy-exists-in-ci
-                  name: Check if Trivy is used in CI/CD pipeline
-                  type: extract
-                  source: github
-                  repo: backstage
-                  searchString: motain/onefootball-actions/security
-                  rule: search
+            facts: []
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/611ad3d1-03cb-4cdc-871a-eb8f6571c6bf
             name: vulnerability-management-svc-backstage
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c7562aa-6b71-4deb-911f-eebac354ee3e
-            facts:
-                - id: service-vulnerabilities-prometheus
-                  name: Get summary of vulnerabilities for services from Prometheus reports
-                  type: extract
-                  source: prometheus
-                  prometheusQuery: sum(trivy_image_vulnerabilities{namespace="backstage", severity="Critical" })
-    tribe: platform
-    squad: cloud-runtime
+            facts: []
+    tribe: ""
+    squad: ""
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Component
@@ -31193,7 +30313,7 @@ spec:
     fields:
         lifecycle: Active
         tier: 4
-        version: 0.1.4
+        version: 0.1.1
     links:
         - id: ""
           name: Repository
@@ -36838,32 +35958,13 @@ spec:
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
-    dependsOn: []
+    dependsOn:
+        - Kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: 0.2.0
+        version: 0.1.0
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/simple-service
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: p-cloud-runtime
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/CFUCQUA04
-        - id: ""
-          name: Cloud Runtime
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
         - id: ""
           name: Repository
           type: REPOSITORY

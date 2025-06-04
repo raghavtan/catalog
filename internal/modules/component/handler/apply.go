@@ -201,7 +201,13 @@ func (h *ApplyHandler) handleCreated(
 		// We set nil and we will update it later when running aplpy again.
 		// Eventually to make it more clear we can create a specific command to set dependencies
 		// We need to think about the best way to handle this
-		componentDTO.Spec.DependsOn = nil
+
+		if len(componentDTO.Spec.DependsOn) == 0 {
+			componentDTO.Spec.DependsOn = []string{"dbf41679-8076-427f-8c45-0627a7d1e9a1"} // Default mandatory element
+		} else {
+			componentDTO.Spec.DependsOn = append(componentDTO.Spec.DependsOn, "dbf41679-8076-427f-8c45-0627a7d1e9a1")
+		}
+
 		result = append(result, componentDTO)
 
 		h.handleDependencies(ctx, componentDTO, stateComponents)
@@ -300,39 +306,40 @@ func metricSourcesDTOToResource(metricSourcesDTO map[string]*dtos.MetricSourceDT
 }
 
 func (h *ApplyHandler) handleOwner(componentDTO *dtos.ComponentDTO) *dtos.ComponentDTO {
-	owner, ownerErr := h.owner.GetOwnerByTribeAndSquad(componentDTO.Spec.Tribe, componentDTO.Spec.Squad)
-	if ownerErr != nil {
-		// If no owner is found, we do not update the component
-		return componentDTO
-	}
-
-	computedLinks := make(map[string]dtos.Link, 0)
-	for _, link := range componentDTO.Spec.Links {
-		computedLinks[link.Type+link.Name] = link
-	}
-
-	for slackChannelName, slackChannelURL := range owner.SlackChannels {
-		computedLinks["CHAT_CHANNEL"+slackChannelName] = dtos.Link{
-			Name: slackChannelName,
-			Type: "CHAT_CHANNEL",
-			URL:  slackChannelURL,
+	if componentDTO.Spec.OwnerID == "" {
+		owner, ownerErr := h.owner.GetOwnerByTribeAndSquad(componentDTO.Spec.Tribe, componentDTO.Spec.Squad)
+		if ownerErr != nil {
+			// If no owner is found, we do not update the component
+			return componentDTO
 		}
-	}
+		componentDTO.Spec.OwnerID = owner.OwnerID
 
-	for projectName, projectURL := range owner.Projects {
-		computedLinks["PROJECT"+projectName] = dtos.Link{
-			Name: projectName,
-			Type: "PROJECT",
-			URL:  projectURL,
+		computedLinks := make(map[string]dtos.Link, 0)
+		for _, link := range componentDTO.Spec.Links {
+			computedLinks[link.Type+link.Name] = link
 		}
-	}
 
-	links := make([]dtos.Link, 0)
-	for _, link := range computedLinks {
-		links = append(links, link)
+		for slackChannelName, slackChannelURL := range owner.SlackChannels {
+			computedLinks["CHAT_CHANNEL"+slackChannelName] = dtos.Link{
+				Name: slackChannelName,
+				Type: "CHAT_CHANNEL",
+				URL:  slackChannelURL,
+			}
+		}
+
+		for projectName, projectURL := range owner.Projects {
+			computedLinks["PROJECT"+projectName] = dtos.Link{
+				Name: projectName,
+				Type: "PROJECT",
+				URL:  projectURL,
+			}
+		}
+		links := make([]dtos.Link, 0)
+		for _, link := range computedLinks {
+			links = append(links, link)
+		}
+		componentDTO.Spec.Links = links
 	}
-	componentDTO.Spec.Links = links
-	componentDTO.Spec.OwnerID = owner.OwnerID
 
 	return componentDTO
 }
