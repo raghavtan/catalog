@@ -1,0 +1,38 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: 'ott-api'
+    componentType: service
+spec:
+    name: ott-api
+    slug: svc-ott-api
+    description: Not Provided
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    typeId: SERVICE
+    dependsOn:
+        - auth-api
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: 'v1.2.30'
+    links:
+        - name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/ott-api
+        - name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-api&var-container=ott-api&from=now-1h&to=now
+        - name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: e-livevideo
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C053ATVH3N2
+        - name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
+    labels:
+        - live-video
+        - ott
+    customFields: null
