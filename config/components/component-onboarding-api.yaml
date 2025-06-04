@@ -1,18 +1,22 @@
+---
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: onboarding-api
+    name: 'onboarding-api'
     componentType: service
 spec:
-    name: onboarding-api
-    slug: ""
-    description: ""
-    typeId: SERVICE
-    ownerId: ""
-    dependsOn:
-        - score-api
     tribe: reach
     squad: fan-activation
+    name: onboarding-api
+    slug: svc-onboarding-api
+    description: Not Provided
+    ownerId: ""
+    typeId: SERVICE
+    dependsOn:
+        - score-api
+    fields:
+        lifecycle: Active
+        tier: 4
     links:
         - name: Repository
           type: REPOSITORY
@@ -23,6 +27,13 @@ spec:
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: r-activation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CK9LTN6DR
+        - name: Activation Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
     labels:
         - fan-activation
         - reach
+    customFields: null
