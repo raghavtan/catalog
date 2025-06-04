@@ -5,17 +5,18 @@ metadata:
     name: 'betting-api'
     componentType: service
 spec:
+    tribe: client-experience
+    squad: sponsorship-integration
     name: betting-api
     slug: svc-betting-api
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
         - mediation-api
     fields:
         lifecycle: Active
         tier: 4
-        version: 'v1.13.40'
     links:
         - name: Repository
           type: REPOSITORY
