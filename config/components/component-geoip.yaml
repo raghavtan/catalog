@@ -5,17 +5,18 @@ metadata:
     name: 'geoip'
     componentType: service
 spec:
+    tribe: monetization
+    squad: sponsorship-integration
     name: geoip
     slug: svc-geoip
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: '66140d72bb05b9e6c0c2d3a275a59f37b6a7edcf'
     links:
         - name: Repository
           type: REPOSITORY
