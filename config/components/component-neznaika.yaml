@@ -5,17 +5,18 @@ metadata:
     name: 'neznaika'
     componentType: service
 spec:
+    tribe: fan-experience
+    squad: source
     name: neznaika
     slug: svc-neznaika
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
         - funtik
     fields:
         lifecycle: Active
         tier: 4
-        version: 'v3.7.36'
     links:
         - name: Repository
           type: REPOSITORY
