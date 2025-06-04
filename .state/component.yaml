@@ -28243,28 +28243,19 @@ metadata:
 spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7122b90f-fe73-4005-9e7d-8accd6561ead
     name: ott-api
-    slug: ""
-    description: ""
+    slug: svc-ott-api
+    description: Not Provided
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
     dependsOn:
         - auth-api
-    fields: {}
+    fields:
+        lifecycle: Active
+        tier: 4
+        version: v1.2.30
     links:
         - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: e-livevideo
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C053ATVH3N2
-        - id: ""
-          name: Live Video
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/ott-api
@@ -28292,11 +28283,22 @@ spec:
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-api&var-container=ott-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-livevideo
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C053ATVH3N2
+        - id: ""
+          name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
     documents: []
     labels:
-        - ott
         - live-video
-        - ott-api
+        - ott
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/487eb279-daee-40e0-b564-a8c83f7c363b
@@ -28353,8 +28355,8 @@ spec:
             name: vulnerability-management-svc-ott-api
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c7562aa-6b71-4deb-911f-eebac354ee3e
             facts: []
-    tribe: ott
-    squad: live-video
+    tribe: ""
+    squad: ""
 ---
 apiVersion: of-catalog/v1alpha1
 kind: Component
