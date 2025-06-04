@@ -5,17 +5,18 @@ metadata:
     name: 'bookmarks'
     componentType: service
 spec:
+    tribe: engagement
+    squad: personalisation
     name: bookmarks
     slug: svc-bookmarks
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - Kubernetes
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
-        version: '149e7feca19fb2cf7e93806551fc4dfdcc798356'
     links:
         - name: Repository
           type: REPOSITORY
