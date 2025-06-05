@@ -3,6 +3,7 @@ name: ComputeAllComponents
 on:
   schedule:
     - cron: '0 0 * * *'  # Run every night at midnight
+  workflow_dispatch:
 
 concurrency:
   group: compute-all-components-${{ github.head_ref }}

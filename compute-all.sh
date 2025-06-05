@@ -47,10 +47,16 @@ process_component() {
     if $COMMAND_PREFIX "$component"; then
         echo "  ✓ Successfully processed component: $component"
         echo "$component" >> "$PROCESSED_FILE"
+        # Add 3-second sleep after successful execution
+        echo "  Waiting 3 seconds before next component..."
+        sleep 3
         return 0
     else
         echo "  ✗ Failed to process component: $component"
         echo "$component" >> "$FAILED_FILE"
+        # Add 3-second sleep after failed execution
+        echo "  Waiting 3 seconds before next component..."
+        sleep 3
         return 1
     fi
 }
