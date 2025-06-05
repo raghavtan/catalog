@@ -31,6 +31,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - uses: motain/onefootball-actions/aws-login@master
+      with:
+        environment: production
+        role: gha-oidc-admin
+
     - run: |
         curl -J -L \
           -H "Accept: application/octet-stream" \

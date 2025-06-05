@@ -148,7 +148,7 @@ jobs:
 
       - uses: motain/onefootball-actions/aws-login@master
         with:
-          environment: management
+          environment: production
           role: gha-oidc-admin
 
       - name: Download OFC tool
@@ -190,7 +190,7 @@ jobs:
 
       - uses: motain/onefootball-actions/aws-login@master
         with:
-          environment: management
+          environment: production
           role: gha-oidc-admin
 
       - name: Download OFC tool
@@ -239,7 +239,7 @@ jobs:
 
       - uses: motain/onefootball-actions/aws-login@master
         with:
-          environment: management
+          environment: production
           role: gha-oidc-admin
 
       - name: Download OFC tool
