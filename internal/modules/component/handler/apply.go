@@ -203,9 +203,13 @@ func (h *ApplyHandler) handleCreated(
 		// We need to think about the best way to handle this
 
 		if len(componentDTO.Spec.DependsOn) == 0 {
-			componentDTO.Spec.DependsOn = []string{"dbf41679-8076-427f-8c45-0627a7d1e9a1"} // Default mandatory element
+			// Default mandatory element [kubernetes, cdn]
+			componentDTO.Spec.DependsOn = []string{
+				"kubernetes",
+				"cdn",
+			}
 		} else {
-			componentDTO.Spec.DependsOn = append(componentDTO.Spec.DependsOn, "dbf41679-8076-427f-8c45-0627a7d1e9a1")
+			componentDTO.Spec.DependsOn = append(componentDTO.Spec.DependsOn, "kubernetes", "cdn")
 		}
 
 		result = append(result, componentDTO)
@@ -431,9 +435,19 @@ func (h *ApplyHandler) handleDependencies(
 	stateComponents map[string]*dtos.ComponentDTO,
 ) {
 	componentInState := stateComponents[componentDTO.Metadata.Name]
+	if componentInState == nil {
+		return // or handle this case appropriately
+	}
+
 	for _, providerName := range componentInState.Spec.DependsOn {
 		if !listutils.Contains(componentDTO.Spec.DependsOn, providerName) {
-			err := h.repository.UnsetDependency(ctx, componentDTOToResource(componentDTO), componentDTOToResource(stateComponents[providerName]))
+			stateProvider := stateComponents[providerName]
+			if stateProvider == nil {
+				log.Printf("Provider %s not found in state for component %s", providerName, componentDTO.Spec.Name)
+				continue
+			}
+
+			err := h.repository.UnsetDependency(ctx, componentDTOToResource(componentDTO), componentDTOToResource(stateProvider))
 			if err != nil {
 				fmt.Printf("apply dependencies %s", err)
 			}

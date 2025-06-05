@@ -1,122 +1,152 @@
 #!/bin/bash
 
-go run ./cmd/root.go component compute -a -c airship-email; sleep 3;
-go run ./cmd/root.go component compute -a -c amymone; sleep 3;
-go run ./cmd/root.go component compute -a -c analytics-service; sleep 3;
-go run ./cmd/root.go component compute -a -c appstore-connect-iap-api; sleep 3;
-go run ./cmd/root.go component compute -a -c archive; sleep 3;
-go run ./cmd/root.go component compute -a -c article-intelligence; sleep 3;
-go run ./cmd/root.go component compute -a -c article-service; sleep 3;
-go run ./cmd/root.go component compute -a -c article-translator; sleep 3;
-go run ./cmd/root.go component compute -a -c auth-api; sleep 3;
-go run ./cmd/root.go component compute -a -c backstage; sleep 3;
-go run ./cmd/root.go component compute -a -c banner-free; sleep 3;
-go run ./cmd/root.go component compute -a -c betting-api; sleep 3;
-go run ./cmd/root.go component compute -a -c betting-workers; sleep 3;
-go run ./cmd/root.go component compute -a -c bookmarks; sleep 3;
-go run ./cmd/root.go component compute -a -c campaign-manager; sleep 3;
-go run ./cmd/root.go component compute -a -c category-tiles; sleep 3;
-go run ./cmd/root.go component compute -a -c cdp-api; sleep 3;
-go run ./cmd/root.go component compute -a -c cheburashka; sleep 3;
-go run ./cmd/root.go component compute -a -c clips-api; sleep 3;
-go run ./cmd/root.go component compute -a -c clips-search; sleep 3;
-go run ./cmd/root.go component compute -a -c clips-webhooks; sleep 3;
-go run ./cmd/root.go component compute -a -c clips; sleep 3;
-go run ./cmd/root.go component compute -a -c cloud-runtime-bot; sleep 3;
-go run ./cmd/root.go component compute -a -c competition-sorting-api; sleep 3;
-go run ./cmd/root.go component compute -a -c consumer-web-v2; sleep 3;
-go run ./cmd/root.go component compute -a -c consumer-web-v3; sleep 3;
-go run ./cmd/root.go component compute -a -c content-classifier; sleep 3;
-go run ./cmd/root.go component compute -a -c content-recommender; sleep 3;
-go run ./cmd/root.go component compute -a -c content-tags-api; sleep 3;
-go run ./cmd/root.go component compute -a -c creators-content; sleep 3;
-go run ./cmd/root.go component compute -a -c creators-network; sleep 3;
-go run ./cmd/root.go component compute -a -c daily-digest; sleep 3;
-go run ./cmd/root.go component compute -a -c editorjs-translator; sleep 3;
-go run ./cmd/root.go component compute -a -c emelya; sleep 3;
-go run ./cmd/root.go component compute -a -c entity-index-api; sleep 3;
-go run ./cmd/root.go component compute -a -c entity-resolution; sleep 3;
-go run ./cmd/root.go component compute -a -c entity-service; sleep 3;
-go run ./cmd/root.go component compute -a -c experimental-thumbor; sleep 3;
-go run ./cmd/root.go component compute -a -c external-highlights; sleep 3;
-go run ./cmd/root.go component compute -a -c facts-api; sleep 3;
-go run ./cmd/root.go component compute -a -c facts-fetcher; sleep 3;
-go run ./cmd/root.go component compute -a -c facts-importer; sleep 3;
-go run ./cmd/root.go component compute -a -c fanmatch-go; sleep 3;
-go run ./cmd/root.go component compute -a -c feeditem-algolia-indexer; sleep 3;
-go run ./cmd/root.go component compute -a -c follower-count-publisher; sleep 3;
-go run ./cmd/root.go component compute -a -c funtik; sleep 3;
-go run ./cmd/root.go component compute -a -c gam-mrss-generator; sleep 3;
-go run ./cmd/root.go component compute -a -c geoip; sleep 3;
-go run ./cmd/root.go component compute -a -c gitleaks-api; sleep 3;
-go run ./cmd/root.go component compute -a -c happy-keldysh; sleep 3;
-go run ./cmd/root.go component compute -a -c idp-wrapper; sleep 3;
-go run ./cmd/root.go component compute -a -c image-service; sleep 3;
-go run ./cmd/root.go component compute -a -c image-uploader; sleep 3;
-go run ./cmd/root.go component compute -a -c kuzya; sleep 3;
-go run ./cmd/root.go component compute -a -c lead-gen-campaign-manager-web; sleep 3;
-go run ./cmd/root.go component compute -a -c lead-gen-campaign-manager; sleep 3;
-go run ./cmd/root.go component compute -a -c lead-gen-campaign-web; sleep 3;
-go run ./cmd/root.go component compute -a -c lead-gen-data-collector-api; sleep 3;
-go run ./cmd/root.go component compute -a -c librarian; sleep 3;
-go run ./cmd/root.go component compute -a -c live-ticker-api; sleep 3;
-go run ./cmd/root.go component compute -a -c live-ticker-importer; sleep 3;
-go run ./cmd/root.go component compute -a -c loyalty-service; sleep 3;
-go run ./cmd/root.go component compute -a -c mediation-api; sleep 3;
-go run ./cmd/root.go component compute -a -c network-admin-api; sleep 3;
-go run ./cmd/root.go component compute -a -c news; sleep 3;
-go run ./cmd/root.go component compute -a -c newsdesk-admin-web; sleep 3;
-go run ./cmd/root.go component compute -a -c neznaika; sleep 3;
-go run ./cmd/root.go component compute -a -c not-found-server; sleep 3;
-go run ./cmd/root.go component compute -a -c onboarding-api; sleep 3;
-go run ./cmd/root.go component compute -a -c oncall-compensation; sleep 3;
-go run ./cmd/root.go component compute -a -c onefootball-copilot; sleep 3;
-go run ./cmd/root.go component compute -a -c optimistic-joliot; sleep 3;
-go run ./cmd/root.go component compute -a -c ott-api; sleep 3;
-go run ./cmd/root.go component compute -a -c ott-external-accounts; sleep 3;
-go run ./cmd/root.go component compute -a -c ott-live-sessions; sleep 3;
-go run ./cmd/root.go component compute -a -c ott-load-test-proxy; sleep 3;
-go run ./cmd/root.go component compute -a -c ott-mediation; sleep 3;
-go run ./cmd/root.go component compute -a -c ott-probe; sleep 3;
-go run ./cmd/root.go component compute -a -c payments-history; sleep 3;
-go run ./cmd/root.go component compute -a -c personalisation-service; sleep 3;
-go run ./cmd/root.go component compute -a -c photobooth; sleep 3;
-go run ./cmd/root.go component compute -a -c polls-api; sleep 3;
-go run ./cmd/root.go component compute -a -c prometheus-exporter; sleep 3;
-go run ./cmd/root.go component compute -a -c promo; sleep 3;
-go run ./cmd/root.go component compute -a -c push-notification-center; sleep 3;
-go run ./cmd/root.go component compute -a -c push; sleep 3;
-go run ./cmd/root.go component compute -a -c quiz-api; sleep 3;
-go run ./cmd/root.go component compute -a -c relevance-service; sleep 3;
-go run ./cmd/root.go component compute -a -c replay-api; sleep 3;
-go run ./cmd/root.go component compute -a -c resolver-api; sleep 3;
-go run ./cmd/root.go component compute -a -c rich-push; sleep 3;
-go run ./cmd/root.go component compute -a -c rss-generator; sleep 3;
-go run ./cmd/root.go component compute -a -c score-api; sleep 3;
-go run ./cmd/root.go component compute -a -c scores-mixer; sleep 3;
-go run ./cmd/root.go component compute -a -c search-gateway-api; sleep 3;
-go run ./cmd/root.go component compute -a -c seasons-cache; sleep 3;
-go run ./cmd/root.go component compute -a -c simple-service; sleep 3;
-go run ./cmd/root.go component compute -a -c sitemap-generator-v2; sleep 3;
-go run ./cmd/root.go component compute -a -c specialone-slackbot; sleep 3;
-go run ./cmd/root.go component compute -a -c stories-api; sleep 3;
-go run ./cmd/root.go component compute -a -c streaming-service; sleep 3;
-go run ./cmd/root.go component compute -a -c tv-guide-api; sleep 3;
-go run ./cmd/root.go component compute -a -c tv-guide-importer; sleep 3;
-go run ./cmd/root.go component compute -a -c umka; sleep 3;
-go run ./cmd/root.go component compute -a -c users-accounts-api; sleep 3;
-go run ./cmd/root.go component compute -a -c users-auth-api; sleep 3;
-go run ./cmd/root.go component compute -a -c users-gdpr; sleep 3;
-go run ./cmd/root.go component compute -a -c users-pii; sleep 3;
-go run ./cmd/root.go component compute -a -c vinnipuh; sleep 3;
-go run ./cmd/root.go component compute -a -c watch; sleep 3;
-go run ./cmd/root.go component compute -a -c web-experience; sleep 3;
-go run ./cmd/root.go component compute -a -c web-payments-backend; sleep 3;
-go run ./cmd/root.go component compute -a -c web-url-redirector; sleep 3;
-go run ./cmd/root.go component compute -a -c web3-transactions; sleep 3;
-go run ./cmd/root.go component compute -a -c webhook-receiver; sleep 3;
-go run ./cmd/root.go component compute -a -c webserver; sleep 3;
-go run ./cmd/root.go component compute -a -c ws-receiver; sleep 3;
-go run ./cmd/root.go component compute -a -c xpa-backend; sleep 3;
-go run ./cmd/root.go component compute -a -c xpa-mobile-backend; sleep 3;
-go run ./cmd/root.go component compute -a -c xpa-tv-backend; sleep 3;
+# Configuration
+COMPONENTS_DIR="./config/components"
+COMMAND_PREFIX="./ofc component compute -a -c"
+
+# Tracking files
+PROCESSED_FILE="processed_components.txt"
+FAILED_FILE="failed_components.txt"
+SKIPPED_FILE="skipped_components.txt"
+
+# Function to extract component names from YAML files
+get_component_names() {
+    find "$COMPONENTS_DIR" -name "component-*.yaml" -type f | \
+    sed 's|.*/component-\(.*\)\.yaml|\1|' | \
+    sort
+}
+
+# Ensure tracking files exist
+touch "$PROCESSED_FILE"
+touch "$FAILED_FILE"
+touch "$SKIPPED_FILE"
+
+# Function to check if component was already processed
+is_component_processed() {
+    local component="$1"
+    grep -Fxq "$component" "$PROCESSED_FILE" || grep -Fxq "$component" "$FAILED_FILE"
+}
+
+# Function to process a single component (runs serially)
+process_component() {
+    local component="$1"
+    local component_file="$COMPONENTS_DIR/component-$component.yaml"
+
+    # Verify the file still exists
+    if [[ ! -f "$component_file" ]]; then
+        echo "Warning: Component file not found: $component_file"
+        echo "$component" >> "$SKIPPED_FILE"
+        return 1
+    fi
+
+    echo "Processing component: $component"
+    echo "  File: $component_file"
+    echo "  Command: $COMMAND_PREFIX $component"
+
+    # Execute the command
+    if $COMMAND_PREFIX "$component"; then
+        echo "  ✓ Successfully processed component: $component"
+        echo "$component" >> "$PROCESSED_FILE"
+        return 0
+    else
+        echo "  ✗ Failed to process component: $component"
+        echo "$component" >> "$FAILED_FILE"
+        return 1
+    fi
+}
+
+# Variables for statistics
+total_components=0
+total_new_processed=0
+total_new_failed=0
+total_prev_processed=0
+total_prev_failed=0
+total_skipped=0
+
+# Cleanup function to print statistics
+cleanup() {
+    echo ""
+    echo "========== Component Apply Statistics =========="
+    echo "Total components found: $total_components"
+    echo "New components processed successfully: $total_new_processed"
+    echo "Previously processed components (skipped): $total_prev_processed"
+    echo "New components failed: $total_new_failed"
+    echo "Previously failed components (skipped): $total_prev_failed"
+    echo "Components skipped (file not found): $total_skipped"
+    echo "=============================================="
+    echo "Script completed"
+    exit 0
+}
+
+# Trap signals for graceful shutdown
+trap cleanup SIGTERM SIGINT
+
+# Validate components directory exists
+if [[ ! -d "$COMPONENTS_DIR" ]]; then
+    echo "Error: Components directory '$COMPONENTS_DIR' does not exist"
+    exit 1
+fi
+
+# Get all component names
+component_names=$(get_component_names)
+
+if [[ -z "$component_names" ]]; then
+    echo "No component-*.yaml files found in $COMPONENTS_DIR"
+    exit 1
+fi
+
+echo "Found component files:"
+echo "$component_names" | sed 's/^/  - component-/' | sed 's/$/.yaml/'
+echo ""
+
+# First pass: identify components to process and skip already processed ones
+components_to_process=()
+for component in $component_names; do
+    ((total_components++))
+
+    component_file="$COMPONENTS_DIR/component-$component.yaml"
+
+    # Verify the file exists
+    if [[ ! -f "$component_file" ]]; then
+        echo "Warning: Component file not found: $component_file"
+        echo "$component" >> "$SKIPPED_FILE"
+        ((total_skipped++))
+        continue
+    fi
+
+    # Check if component was already processed
+    if is_component_processed "$component"; then
+        echo "Skipping component: $component (already processed)"
+        if grep -Fxq "$component" "$PROCESSED_FILE"; then
+            ((total_prev_processed++))
+        elif grep -Fxq "$component" "$FAILED_FILE"; then
+            ((total_prev_failed++))
+        fi
+        continue
+    fi
+
+    components_to_process+=("$component")
+done
+
+# If no components to process, exit
+if [[ ${#components_to_process[@]} -eq 0 ]]; then
+    echo "No new components to process."
+    cleanup
+fi
+
+echo "Starting serial processing of ${#components_to_process[@]} components..."
+echo ""
+
+# Process components one by one (serially)
+for component in "${components_to_process[@]}"; do
+    if process_component "$component"; then
+        ((total_new_processed++))
+    else
+        ((total_new_failed++))
+    fi
+    echo "" # Add blank line between components for readability
+done
+
+echo "All components processed serially."
+
+cleanup
