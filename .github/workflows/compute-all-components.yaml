@@ -27,7 +27,7 @@ jobs:
     name: Generate job matrices
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.generate-matrix.outputs.matrix }}
+      matrix: ${{ steps.set-final-matrix.outputs.matrix }}
       batches: ${{ steps.create-batches.outputs.batches }}
     steps:
       - uses: actions/checkout@v4
@@ -59,33 +59,56 @@ jobs:
           done
           components_json+=']}'
           
+          echo "Generated matrix: $components_json"
           echo "matrix=$components_json" >> $GITHUB_OUTPUT
 
-      - name: Set matrix output
-        id: set-matrix
+      - name: Set final matrix output
+        id: set-final-matrix
         run: |
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            echo "matrix=${{ steps.generate-matrix.outputs.matrix }}" >> $GITHUB_OUTPUT
+            matrix_value='${{ steps.generate-matrix.outputs.matrix }}'
           else
-            echo "matrix=${{ steps.generate-matrix-manual.outputs.matrix }}" >> $GITHUB_OUTPUT
+            matrix_value='${{ steps.generate-matrix-manual.outputs.matrix }}'
           fi
+          
+          echo "Final matrix: $matrix_value"
+          echo "matrix=$matrix_value" >> $GITHUB_OUTPUT
 
       - name: Create component batches
         id: create-batches
         run: |
           batch_size=${{ inputs.batch_size || '5' }}
-          components='${{ steps.set-matrix.outputs.matrix }}'
+          matrix_output='${{ steps.set-final-matrix.outputs.matrix }}'
           
-          # Convert matrix to array and create batches
-          echo "$components" | jq -r '.include[].project' > components.txt
+          echo "Processing matrix: $matrix_output"
+          
+          # Validate JSON and extract components
+          if echo "$matrix_output" | jq empty 2>/dev/null; then
+            echo "$matrix_output" | jq -r '.include[].project' > components.txt
+          else
+            echo "Invalid JSON in matrix output, creating empty batches"
+            echo "batches={\"include\":[]}" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          # Check if we have any components
+          if [ ! -s components.txt ]; then
+            echo "No components found, creating empty batches"
+            echo "batches={\"include\":[]}" >> $GITHUB_OUTPUT
+            rm -f components.txt
+            exit 0
+          fi
+          
+          echo "Components to batch:"
+          cat components.txt
           
           # Split components into batches
           split -l "$batch_size" components.txt batch_
           
           # Create batch matrix
-          batches="{"
-          batches+='"include":['
+          batches='{"include":['
           first=true
+          batch_counter=1
           for batch_file in batch_*; do
             if [ "$first" = true ]; then
               first=false
@@ -93,10 +116,12 @@ jobs:
               batches+=','
             fi
             batch_components=$(cat "$batch_file" | tr '\n' ',' | sed 's/,$//')
-            batches+="{\"batch\":\"$batch_file\",\"components\":\"$batch_components\"}"
+            batches+="{\"batch\":\"batch_$batch_counter\",\"components\":\"$batch_components\"}"
+            ((batch_counter++))
           done
           batches+=']}'
           
+          echo "Generated batches: $batches"
           echo "batches=$batches" >> $GITHUB_OUTPUT
           
           # Clean up
@@ -191,7 +216,7 @@ jobs:
   # Fallback for original behavior if batching fails
   compute-components-original:
     needs: generate-matrix
-    if: ${{ !needs.generate-matrix.outputs.batches && needs.generate-matrix.outputs.matrix }}
+    if: ${{ !needs.generate-matrix.outputs.batches || needs.generate-matrix.outputs.batches == '{"include":[]}' }}
     strategy:
       matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
       fail-fast: false
