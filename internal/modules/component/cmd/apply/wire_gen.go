@@ -30,7 +30,7 @@ func initializeHandler() *handler.ApplyHandler {
 	httpClientInterface := compassservice.NewHTTPClient(configService)
 	compassService := compassservice.NewCompassService(configService, graphQLClientInterface, httpClientInterface)
 	repositoryRepository := repository.NewRepository(compassService)
-	ownerService := ownerservice.NewOwnerService(gitHubService)
+	ownerService := ownerservice.NewOwnerService()
 	documentService := documentservice.NewDocumentService(gitHubService)
 	applyHandler := handler.NewApplyHandler(gitHubService, repositoryRepository, ownerService, documentService)
 	return applyHandler

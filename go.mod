@@ -16,6 +16,7 @@ require (
 	github.com/itchyny/gojq v0.12.17
 	github.com/joho/godotenv v1.5.1
 	github.com/machinebox/graphql v0.2.2
+	github.com/motain/of-org v0.117.0
 	github.com/pelletier/go-toml/v2 v2.2.3
 	github.com/prometheus/client_golang v1.21.1
 	github.com/prometheus/common v0.63.0

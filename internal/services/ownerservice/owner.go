@@ -1,109 +1,89 @@
 package ownerservice
 
 import (
-	"bytes"
 	"fmt"
-	"io"
+	"strings"
 
-	"gopkg.in/yaml.v3"
-
-	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/services/ownerservice/dtos"
+
+	oforg "github.com/motain/of-org"
 )
 
 type OwnerServiceInterface interface {
 	GetOwnerByTribeAndSquad(tribe, squad string) (*dtos.Owner, error)
 }
 
-type OwnerService struct {
-	gitHubService githubservice.GitHubServiceInterface
-	groups        dtos.GroupList
-}
+type OwnerService struct{}
 
-func NewOwnerService(gitHubService githubservice.GitHubServiceInterface) *OwnerService {
-	return &OwnerService{
-		gitHubService: gitHubService,
-		groups:        nil,
-	}
+func NewOwnerService() *OwnerService {
+	return &OwnerService{}
 }
 
 func (os *OwnerService) GetOwnerByTribeAndSquad(tribe, squad string) (*dtos.Owner, error) {
-	groups, extractErr := os.extractData()
-	if extractErr != nil {
-		return nil, extractErr
+	squadDetails, err := GetSquadDetails(squad)
+	if err != nil {
+		return nil, err
 	}
 
-	for _, group := range groups {
-		if os.matchesTribeAndSquad(group, tribe, squad) {
-			return os.mapGroupToOwner(group), nil
-		}
+	if squadDetails.Tribe != tribe {
+		return nil, fmt.Errorf("squad '%s' belongs to tribe '%s', not '%s'", squad, squadDetails.Tribe, tribe)
 	}
 
-	return nil, fmt.Errorf("no matching group found")
+	owner := &dtos.Owner{
+		OwnerID:       squadDetails.JiraTeamID,
+		SlackChannels: make(map[string]string),
+		Projects:      make(map[string]string),
+		DisplayName:   squad,
+	}
+
+	if squadDetails.SlackURL != "" {
+		owner.SlackChannels[squadDetails.SlackTitle] = squadDetails.SlackURL
+	}
+
+	if squadDetails.JiraProjectURL != "" {
+		owner.Projects[squadDetails.JiraProjectName] = squadDetails.JiraProjectURL
+	}
+
+	return owner, nil
 }
 
-func (os *OwnerService) extractData() (dtos.GroupList, error) {
-	// Cacbe the groups to avoid multiple requests.
-	// The cache is valid for one execution of the command.
-	if os.groups != nil {
-		return os.groups, nil
+type SquadDetails struct {
+	JiraTeamID      string
+	SlackURL        string
+	SlackTitle      string
+	JiraProjectURL  string
+	JiraProjectName string
+	Tribe           string
+}
+
+func GetSquadDetails(squadName string) (SquadDetails, error) {
+	squadName = strings.TrimSpace(squadName)
+
+	squad, exists := oforg.Squads[squadName]
+	if !exists {
+		return SquadDetails{}, fmt.Errorf("squad '%s' not found", squadName)
 	}
 
-	fileContent, fileErr := os.gitHubService.GetFileContent("of-org", "main.yaml")
-	if fileErr != nil {
-		return nil, fileErr
+	details := SquadDetails{
+		Tribe: squad.Spec.Parent,
 	}
 
-	var results []*dtos.Group
-	decoder := yaml.NewDecoder(bytes.NewReader([]byte(fileContent)))
-	for {
-		var result dtos.Group
-		decodeErr := decoder.Decode(&result)
-		if decodeErr != nil {
-			if decodeErr == io.EOF {
-				break
+	if squad.Metadata.Annotations != nil {
+		details.JiraTeamID = squad.Metadata.Annotations["jiraTeamID"]
+	}
+
+	for _, link := range squad.Metadata.Links {
+		switch strings.ToLower(link.Type) {
+		case "slack":
+			details.SlackURL = link.URL
+			details.SlackTitle = link.Title
+		case "project":
+			if strings.ToLower(link.Icon) == "jira" {
+				details.JiraProjectURL = link.URL
+				details.JiraProjectName = link.Title
 			}
-			return nil, decodeErr
-		}
-		results = append(results, &result)
-	}
-
-	os.groups = results
-	return results, nil
-}
-
-func (os *OwnerService) matchesTribeAndSquad(group *dtos.Group, tribe, squad string) bool {
-	if group.Spec.Type != "squad" {
-		return false
-	}
-	if group.Metadata.Name != squad {
-		return false
-	}
-	if group.Spec.Parent != tribe {
-		return false
-	}
-
-	return true
-}
-
-func (os *OwnerService) mapGroupToOwner(group *dtos.Group) *dtos.Owner {
-	slackChannel := os.getLinks(group, "slack")
-	projects := os.getLinks(group, "project")
-
-	return &dtos.Owner{
-		OwnerID:       group.Metadata.Annotations.JiraTeamID,
-		SlackChannels: slackChannel,
-		Projects:      projects,
-		DisplayName:   group.Spec.Profile.DisplayName,
-	}
-}
-
-func (os *OwnerService) getLinks(group *dtos.Group, linkType string) map[string]string {
-	founds := map[string]string{}
-	for _, link := range group.Metadata.Links {
-		if link.Type == linkType {
-			founds[link.Title] = link.URL
 		}
 	}
-	return founds
+
+	return details, nil
 }
