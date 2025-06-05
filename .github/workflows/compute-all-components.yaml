@@ -23,7 +23,7 @@ permissions: write-all
 
 jobs:
   generate-matrix:
-    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.component }}
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && !inputs.component) }}
     name: Generate job matrices
     runs-on: ubuntu-latest
     outputs:
@@ -32,17 +32,49 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate matrix
+      - name: Generate matrix for scheduled runs
         id: generate-matrix
+        if: ${{ github.event_name == 'schedule' }}
         uses: motain/onefootball-actions/changed-matrix@master
         with:
           pattern: config/components/component-(?P<project>[^/]+)\.yaml
+
+      - name: Generate matrix for manual dispatch (all components)
+        id: generate-matrix-manual
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.component }}
+        run: |
+          # Create matrix with all components for manual dispatch
+          components_json='{"include":['
+          first=true
+          for file in config/components/component-*.yaml; do
+            if [ -f "$file" ]; then
+              component=$(basename "$file" .yaml | sed 's/component-//')
+              if [ "$first" = true ]; then
+                first=false
+              else
+                components_json+=','
+              fi
+              components_json+="{\"project\":\"$component\"}"
+            fi
+          done
+          components_json+=']}'
+          
+          echo "matrix=$components_json" >> $GITHUB_OUTPUT
+
+      - name: Set matrix output
+        id: set-matrix
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "matrix=${{ steps.generate-matrix.outputs.matrix }}" >> $GITHUB_OUTPUT
+          else
+            echo "matrix=${{ steps.generate-matrix-manual.outputs.matrix }}" >> $GITHUB_OUTPUT
+          fi
 
       - name: Create component batches
         id: create-batches
         run: |
           batch_size=${{ inputs.batch_size || '5' }}
-          components='${{ steps.generate-matrix.outputs.matrix }}'
+          components='${{ steps.set-matrix.outputs.matrix }}'
           
           # Convert matrix to array and create batches
           echo "$components" | jq -r '.include[].project' > components.txt
