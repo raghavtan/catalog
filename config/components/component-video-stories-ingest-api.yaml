@@ -5,6 +5,8 @@ metadata:
     name: 'video-stories-ingest-api'
     componentType: service
 spec:
+    tribe: ott
+    squad: video-platform
     name: video-stories-ingest-api
     slug: svc-video-stories-ingest-api
     description: Not Provided
@@ -12,7 +14,6 @@ spec:
     typeId: SERVICE
     dependsOn:
         - kubernetes
-        - cdn
     fields:
         lifecycle: Active
         tier: 4
