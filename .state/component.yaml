@@ -28111,7 +28111,7 @@ spec:
     fields:
         lifecycle: Active
         tier: 4
-        version: v0.0.921
+        version: v0.0.922
     links:
         - id: ""
           name: Repository
