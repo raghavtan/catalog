@@ -1,17 +1,22 @@
+---
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: article-service
+    name: 'article-service'
     componentType: service
 spec:
-    name: article-service
-    slug: ""
-    description: ""
-    typeId: SERVICE
-    ownerId: ""
-    dependsOn: []
     tribe: fan-experience
     squad: source
+    name: article-service
+    slug: svc-article-service
+    description: Not Provided
+    ownerId: ""
+    typeId: SERVICE
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
     links:
         - name: Repository
           type: REPOSITORY
@@ -22,7 +27,13 @@ spec:
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
+        - name: The Source
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
     labels:
         - source
-        - article-service
         - fan-experience
+    customFields: null
