@@ -4,6 +4,16 @@ on:
   schedule:
     - cron: '0 0 * * *'  # Run every night at midnight
   workflow_dispatch:
+    inputs:
+      component:
+        description: 'Specific component to process (optional)'
+        required: false
+        type: string
+      batch_size:
+        description: 'Number of components to process per job'
+        required: false
+        default: '5'
+        type: string
 
 concurrency:
   group: compute-all-components-${{ github.head_ref }}
@@ -12,28 +22,178 @@ concurrency:
 permissions: write-all
 
 jobs:
+  generate-matrix:
+    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.component }}
+    name: Generate job matrices
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.generate-matrix.outputs.matrix }}
+      batches: ${{ steps.create-batches.outputs.batches }}
+    steps:
+      - uses: actions/checkout@v4
 
-  monitor-service-from-manual-trigger:
-    strategy:
-      fail-fast: false
-    runs-on: [ self-hosted, linux, x64, core-team-only ]
+      - name: Generate matrix
+        id: generate-matrix
+        uses: motain/onefootball-actions/changed-matrix@master
+        with:
+          pattern: config/components/component-(?P<project>[^/]+)\.yaml
+
+      - name: Create component batches
+        id: create-batches
+        run: |
+          batch_size=${{ inputs.batch_size || '5' }}
+          components='${{ steps.generate-matrix.outputs.matrix }}'
+          
+          # Convert matrix to array and create batches
+          echo "$components" | jq -r '.include[].project' > components.txt
+          
+          # Split components into batches
+          split -l "$batch_size" components.txt batch_
+          
+          # Create batch matrix
+          batches="{"
+          batches+='"include":['
+          first=true
+          for batch_file in batch_*; do
+            if [ "$first" = true ]; then
+              first=false
+            else
+              batches+=','
+            fi
+            batch_components=$(cat "$batch_file" | tr '\n' ',' | sed 's/,$//')
+            batches+="{\"batch\":\"$batch_file\",\"components\":\"$batch_components\"}"
+          done
+          batches+=']}'
+          
+          echo "batches=$batches" >> $GITHUB_OUTPUT
+          
+          # Clean up
+          rm -f components.txt batch_*
+
+  # Single component job for manual dispatch
+  compute-single-component:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.component }}
+    runs-on:
+      - self-hosted
+      - linux, x64
+      - core-team-only
+    timeout-minutes: 30  # Reduced timeout for single component
     env:
       GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
       COMPASS_TOKEN: ${{ secrets.COMPASS_TOKEN}}
+      COMPASS_CLOUD_ID: fca6a80f-888b-4079-82e6-3c2f61c788e2
       GITHUB_ORG: motain
       COMPASS_HOST: onefootball.atlassian.net
       HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY}}
       PROMETHEUS_URL: https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-841dbf21-00d1-4a0a-96a9-25de0ecb9562
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - run: |
-        curl -J -L \
-          -H "Accept: application/octet-stream" \
-          -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" \
-          -o ofc \
-          $(curl -s -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" "https://api.github.com/repos/motain/of-catalog/releases/latest" | jq -r '.assets[0].url')
+      - uses: motain/onefootball-actions/aws-login@master
+        with:
+          environment: management
+          role: gha-oidc-admin
+
+      - name: Download OFC tool
+        run: |
+          curl -J -L \
+            -H "Accept: application/octet-stream" \
+            -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" \
+            -o ofc \
+            $(curl -s -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" "https://api.github.com/repos/motain/of-catalog/releases/latest" | jq -r '.assets[0].url')
           chmod +x ofc
 
-    - run: |
-        ./compute-all.sh
+      - name: Process single component
+        run: |
+          ./compute-all.sh "${{ inputs.component }}"
+
+  # Batch processing jobs
+  compute-components-batch:
+    needs: generate-matrix
+    if: ${{ needs.generate-matrix.outputs.batches }}
+    strategy:
+      matrix: ${{ fromJson(needs.generate-matrix.outputs.batches) }}
+      fail-fast: false
+      max-parallel: 2  # Limit concurrent jobs to reduce API pressure
+    runs-on:
+      - self-hosted
+      - linux, x64
+      - core-team-only
+    timeout-minutes: 120  # 2 hours for batch processing
+    env:
+      GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
+      COMPASS_TOKEN: ${{ secrets.COMPASS_TOKEN}}
+      COMPASS_CLOUD_ID: fca6a80f-888b-4079-82e6-3c2f61c788e2
+      GITHUB_ORG: motain
+      COMPASS_HOST: onefootball.atlassian.net
+      HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY}}
+      PROMETHEUS_URL: https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-841dbf21-00d1-4a0a-96a9-25de0ecb9562
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: motain/onefootball-actions/aws-login@master
+        with:
+          environment: management
+          role: gha-oidc-admin
+
+      - name: Download OFC tool
+        run: |
+          curl -J -L \
+            -H "Accept: application/octet-stream" \
+            -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" \
+            -o ofc \
+            $(curl -s -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" "https://api.github.com/repos/motain/of-catalog/releases/latest" | jq -r '.assets[0].url')
+          chmod +x ofc
+
+      - name: Process component batch
+        run: |
+          # Process each component in the batch
+          IFS=',' read -ra COMPONENTS <<< "${{ matrix.components }}"
+          for component in "${COMPONENTS[@]}"; do
+            if [ -n "$component" ]; then
+              echo "Processing component: $component"
+              ./compute-all.sh "$component"
+            fi
+          done
+
+  # Fallback for original behavior if batching fails
+  compute-components-original:
+    needs: generate-matrix
+    if: ${{ !needs.generate-matrix.outputs.batches && needs.generate-matrix.outputs.matrix }}
+    strategy:
+      matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
+      fail-fast: false
+      max-parallel: 1  # Process one at a time to avoid rate limits
+    runs-on:
+      - self-hosted
+      - linux, x64
+      - core-team-only
+    timeout-minutes: 360  # 6 hours maximum
+    env:
+      GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
+      COMPASS_TOKEN: ${{ secrets.COMPASS_TOKEN}}
+      COMPASS_CLOUD_ID: fca6a80f-888b-4079-82e6-3c2f61c788e2
+      GITHUB_ORG: motain
+      COMPASS_HOST: onefootball.atlassian.net
+      HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY}}
+      PROMETHEUS_URL: https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-841dbf21-00d1-4a0a-96a9-25de0ecb9562
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: motain/onefootball-actions/aws-login@master
+        with:
+          environment: management
+          role: gha-oidc-admin
+
+      - name: Download OFC tool
+        run: |
+          curl -J -L \
+            -H "Accept: application/octet-stream" \
+            -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" \
+            -o ofc \
+            $(curl -s -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" "https://api.github.com/repos/motain/of-catalog/releases/latest" | jq -r '.assets[0].url')
+          chmod +x ofc
+
+      - name: Process component
+        run: |
+          ./compute-all.sh ${{ matrix.project }}
