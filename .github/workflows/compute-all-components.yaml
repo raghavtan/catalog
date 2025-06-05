@@ -1,38 +1,23 @@
-name: ComputeAllComponents
+name: ComputeComponentMetricsAll
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # Run every night at midnight
   workflow_dispatch:
-    inputs:
-      component:
-        description: 'Specific component to process (optional)'
-        required: false
-        type: string
-      batch_size:
-        description: 'Number of components to process per job'
-        required: false
-        default: '5'
-        type: string
+  schedule:
+    - cron: '0 0 * * *' # Every day at midnight
 
 concurrency:
-  group: compute-all-components-${{ github.head_ref }}
+  group: compute-components-${{ github.head_ref }}
   cancel-in-progress: true
 
 permissions: write-all
 
 jobs:
-  compute-single-component:
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.component }}
-    runs-on:
-      - self-hosted
-      - linux, x64
-      - core-team-only
-    timeout-minutes: 30  # Reduced timeout for single component
+
+  compute:
+    runs-on: [ self-hosted, linux, x64, core-team-only ]
     env:
       GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
       COMPASS_TOKEN: ${{ secrets.COMPASS_TOKEN}}
-      COMPASS_CLOUD_ID: fca6a80f-888b-4079-82e6-3c2f61c788e2
       GITHUB_ORG: motain
       COMPASS_HOST: onefootball.atlassian.net
       HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY}}
@@ -45,50 +30,12 @@ jobs:
           environment: production
           role: gha-oidc-admin
 
-      - name: Download OFC tool
-        run: |
+      - run: |
           curl -J -L \
             -H "Accept: application/octet-stream" \
             -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" \
             -o ofc \
             $(curl -s -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" "https://api.github.com/repos/motain/of-catalog/releases/latest" | jq -r '.assets[0].url')
-          chmod +x ofc
+            chmod +x ofc
 
-      - name: Process single component
-        run: |
-          ./compute-all.sh "${{ inputs.component }}"
-
-  compute-components-original:
-    runs-on:
-      - self-hosted
-      - linux, x64
-      - core-team-only
-    timeout-minutes: 360  # 6 hours maximum
-    env:
-      GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
-      COMPASS_TOKEN: ${{ secrets.COMPASS_TOKEN}}
-      COMPASS_CLOUD_ID: fca6a80f-888b-4079-82e6-3c2f61c788e2
-      GITHUB_ORG: motain
-      COMPASS_HOST: onefootball.atlassian.net
-      HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY}}
-      PROMETHEUS_URL: https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-841dbf21-00d1-4a0a-96a9-25de0ecb9562
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: motain/onefootball-actions/aws-login@master
-        with:
-          environment: production
-          role: gha-oidc-admin
-
-      - name: Download OFC tool
-        run: |
-          curl -J -L \
-            -H "Accept: application/octet-stream" \
-            -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" \
-            -o ofc \
-            $(curl -s -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" "https://api.github.com/repos/motain/of-catalog/releases/latest" | jq -r '.assets[0].url')
-          chmod +x ofc
-
-      - name: Process component
-        run: |
-          ./compute-all.sh 
+      - run: ./compute-all.sh
