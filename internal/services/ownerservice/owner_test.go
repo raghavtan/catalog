@@ -1,169 +1,96 @@
 package ownerservice_test
 
 import (
-	"errors"
 	"testing"
 
-	"github.com/golang/mock/gomock"
-	githubservice "github.com/motain/of-catalog/internal/services/githubservice/mocks"
 	"github.com/motain/of-catalog/internal/services/ownerservice"
 	"github.com/motain/of-catalog/internal/services/ownerservice/dtos"
 	"github.com/stretchr/testify/assert"
 )
 
-var ofOrgMainYAML = `
-apiVersion: backstage.io/v1alpha1
-kind: Group
-metadata:
-  name: squad1
-  description: ""
-  annotations:
-    jiraTeamID: "ari:cloud:identity::team/squad1"
-  links:
-    - url: "https://onefootball.slack.com/archives/FOOBAR"
-      title: squad1-chat
-      type: slack
-      icon: chat
-    - url: "https://onefootball.atlassian.net/jira/servicedesk/projects/FOO"
-      title: "IT Helpdesk"
-      type: project
-      icon: jira
-    - url: "https://onefootball.atlassian.net/jira/software/projects/ITP/boards/1278"
-      title: "IT Projects"
-      type: project
-      icon: jira
-spec:
-  profile:
-    displayName: SQUAD ONE
-  type: squad
-  parent: TRIBE FOOBARBZ42
-  children: []
-`
-
-func TestOwnerService_extractData(t *testing.T) {
-	ctrl := gomock.NewController(t)
-	defer ctrl.Finish()
-
-	mockGitHubService := githubservice.NewMockGitHubServiceInterface(ctrl)
-
+func TestOwnerService_GetOwnerByTribeAndSquad(t *testing.T) {
 	tests := []struct {
 		name          string
 		tribe         string
 		squad         string
-		mockSetup     func()
-		extraCal      func(os *ownerservice.OwnerService)
-		expectedError error
+		expectedError string
 		expectedData  *dtos.Owner
 	}{
 		{
-			name:  "successfully extracts data",
+			name:  "successfully gets owner data",
 			tribe: "TRIBE FOOBARBZ42",
 			squad: "squad1",
-			mockSetup: func() {
-				mockGitHubService.EXPECT().
-					GetFileContent("of-org", "main.yaml").
-					Return(ofOrgMainYAML, nil)
-			},
-			expectedError: nil,
 			expectedData: &dtos.Owner{
 				OwnerID: "ari:cloud:identity::team/squad1",
 				SlackChannels: map[string]string{
 					"squad1-chat": "https://onefootball.slack.com/archives/FOOBAR",
 				},
 				Projects: map[string]string{
-					"IT Helpdesk": "https://onefootball.atlassian.net/jira/servicedesk/projects/FOO",
 					"IT Projects": "https://onefootball.atlassian.net/jira/software/projects/ITP/boards/1278",
 				},
-				DisplayName: "SQUAD ONE",
+				DisplayName: "squad1",
 			},
 		},
 		{
-			name:  "returns error when GetFileContent fails",
+			name:          "returns error when squad not found",
+			tribe:         "TRIBE FOOBARBZ42",
+			squad:         "nonexistent-squad",
+			expectedError: "squad 'nonexistent-squad' not found",
+		},
+		{
+			name:          "returns error when tribe doesn't match",
+			tribe:         "WRONG TRIBE",
+			squad:         "squad1",
+			expectedError: "squad 'squad1' belongs to tribe 'TRIBE FOOBARBZ42', not 'WRONG TRIBE'",
+		},
+		{
+			name:  "handles squad with no Slack channel",
 			tribe: "TRIBE FOOBARBZ42",
-			squad: "squad1",
-			mockSetup: func() {
-				mockGitHubService.EXPECT().
-					GetFileContent("of-org", "main.yaml").
-					Return("", errors.New("failed to fetch file content"))
-			},
-			expectedError: errors.New("failed to fetch file content"),
-			expectedData:  nil,
-		},
-		{
-			name: "returns error when YAML decoding fails",
-			mockSetup: func() {
-				mockGitHubService.EXPECT().
-					GetFileContent("of-org", "main.yaml").
-					Return("invalid yaml content", nil)
-			},
-			expectedError: errors.New("yaml: unmarshal errors:\n  line 1: cannot unmarshal !!str `invalid...` into dtos.Group"),
-			expectedData:  nil,
-		},
-		{
-			name:  "do not call twice GetFileContent but uses the cached data",
-			tribe: "TRIBE FOOBARBZ42",
-			squad: "squad1",
-			mockSetup: func() {
-				mockGitHubService.EXPECT().
-					GetFileContent("of-org", "main.yaml").
-					Return(ofOrgMainYAML, nil)
-			},
-			extraCal: func(os *ownerservice.OwnerService) {
-				os.GetOwnerByTribeAndSquad("TRIBE FOOBARBZ42", "squad1")
-			},
-			expectedError: nil,
+			squad: "squad-no-slack",
 			expectedData: &dtos.Owner{
-				OwnerID: "ari:cloud:identity::team/squad1",
-				SlackChannels: map[string]string{
-					"squad1-chat": "https://onefootball.slack.com/archives/FOOBAR",
-				},
+				OwnerID:       "ari:cloud:identity::team/squad-no-slack",
+				SlackChannels: map[string]string{},
 				Projects: map[string]string{
-					"IT Helpdesk": "https://onefootball.atlassian.net/jira/servicedesk/projects/FOO",
-					"IT Projects": "https://onefootball.atlassian.net/jira/software/projects/ITP/boards/1278",
+					"Some Project": "https://onefootball.atlassian.net/jira/software/projects/SP/boards/123",
 				},
-				DisplayName: "SQUAD ONE",
+				DisplayName: "squad-no-slack",
 			},
 		},
 		{
-			name:  "returns nil when tribe does not match",
-			tribe: "TRIBE WRONG",
-			squad: "squad1",
-			mockSetup: func() {
-				mockGitHubService.EXPECT().
-					GetFileContent("of-org", "main.yaml").
-					Return(ofOrgMainYAML, nil)
-			},
-			expectedError: errors.New("no matching group found"),
-			expectedData:  nil,
-		},
-		{
-			name:  "returns nil when squad does not match",
+			name:  "handles squad with no projects",
 			tribe: "TRIBE FOOBARBZ42",
-			squad: "wrong-squad",
-			mockSetup: func() {
-				mockGitHubService.EXPECT().
-					GetFileContent("of-org", "main.yaml").
-					Return(ofOrgMainYAML, nil)
+			squad: "squad-no-projects",
+			expectedData: &dtos.Owner{
+				OwnerID: "ari:cloud:identity::team/squad-no-projects",
+				SlackChannels: map[string]string{
+					"squad-chat": "https://onefootball.slack.com/archives/CHANNEL",
+				},
+				Projects:    map[string]string{},
+				DisplayName: "squad-no-projects",
 			},
-			expectedError: errors.New("no matching group found"),
-			expectedData:  nil,
+		},
+		{
+			name:  "handles squad with minimal data",
+			tribe: "TRIBE FOOBARBZ42",
+			squad: "minimal-squad",
+			expectedData: &dtos.Owner{
+				OwnerID:       "ari:cloud:identity::team/minimal-squad",
+				SlackChannels: map[string]string{},
+				Projects:      map[string]string{},
+				DisplayName:   "minimal-squad",
+			},
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.mockSetup()
-
-			service := ownerservice.NewOwnerService(mockGitHubService)
+			service := ownerservice.NewOwnerService()
 			data, err := service.GetOwnerByTribeAndSquad(tt.tribe, tt.squad)
 
-			if tt.extraCal != nil {
-				tt.extraCal(service)
-			}
-
-			if tt.expectedError != nil {
+			if tt.expectedError != "" {
 				assert.Error(t, err)
-				assert.EqualError(t, err, tt.expectedError.Error())
+				assert.Contains(t, err.Error(), tt.expectedError)
+				assert.Nil(t, data)
 			} else {
 				assert.NoError(t, err)
 				assert.Equal(t, tt.expectedData, data)
