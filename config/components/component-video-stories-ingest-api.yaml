@@ -8,7 +8,7 @@ spec:
     name: video-stories-ingest-api
     slug: svc-video-stories-ingest-api
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
         - kubernetes
