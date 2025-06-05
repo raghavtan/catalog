@@ -116,7 +116,7 @@ func executeWithRetry[T any](fn func() (*T, *github.Response, error)) (*T, *gith
 		if rateLimitErr, ok := err.(*github.RateLimitError); ok {
 			if attempt < maxRetries-1 {
 				// Wait until rate limit resets, with a small buffer
-				waitTime := rateLimitErr.Rate.Reset.Time.Sub(time.Now()) + time.Second*5
+				waitTime := time.Until(rateLimitErr.Rate.Reset.Time) + time.Second*5
 				fmt.Printf("Rate limit hit, waiting %v until reset...\n", waitTime)
 				time.Sleep(waitTime)
 				continue
@@ -162,7 +162,7 @@ func executeWithRetryContents(fn func() (*github.RepositoryContent, []*github.Re
 		// Check if it's a rate limit error
 		if rateLimitErr, ok := err.(*github.RateLimitError); ok {
 			if attempt < maxRetries-1 {
-				waitTime := rateLimitErr.Rate.Reset.Time.Sub(time.Now()) + time.Second*5
+				waitTime := time.Until(rateLimitErr.Rate.Reset.Time) + time.Second*5
 				fmt.Printf("Rate limit hit, waiting %v until reset...\n", waitTime)
 				time.Sleep(waitTime)
 				continue
@@ -172,7 +172,7 @@ func executeWithRetryContents(fn func() (*github.RepositoryContent, []*github.Re
 		// Check for secondary rate limit
 		if abuseErr, ok := err.(*github.AbuseRateLimitError); ok {
 			if attempt < maxRetries-1 {
-				waitTime := time.Duration(abuseErr.GetRetryAfter()) * time.Second
+				waitTime := abuseErr.GetRetryAfter() * time.Second
 				fmt.Printf("Secondary rate limit hit, waiting %v...\n", waitTime)
 				time.Sleep(waitTime)
 				continue
