@@ -79,35 +79,6 @@ The application uses configuration files located in:
 ```bash
 # Build Linux binary
 make build
-
-# Clean previous builds
-make clean
-```
-
-### Managing Dependencies
-
-```bash
-# Update all dependencies and vendor them
-make update-deps
-
-# Only vendor existing dependencies
-make vendor
-```
-
-### Code Quality
-
-```bash
-# Run linter
-make lint
-
-# Run all tests with coverage
-make test
-
-# Run tests for specific component
-make stest C=path/to/component
-
-# Generate coverage report
-make test/coverage
 ```
 
 ### Applying Changes
@@ -185,6 +156,32 @@ make create-all
 ```
 
 ## Development Workflow
+
+### Managing Dependencies
+
+```bash
+# Update all dependencies and vendor them
+make update-deps
+
+# Only vendor existing dependencies
+make vendor
+```
+
+### Code Quality
+
+```bash
+# Run linter
+make lint
+
+# Run all tests with coverage
+make test
+
+# Run tests for specific component
+make stest C=path/to/component
+
+# Generate coverage report
+make test/coverage
+```
 
 ### Available Commands
 
