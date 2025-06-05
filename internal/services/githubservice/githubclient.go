@@ -211,7 +211,7 @@ func executeWithRetrySearch(fn func() (*github.CodeSearchResult, *github.Respons
 		// Check if it's a rate limit error
 		if rateLimitErr, ok := err.(*github.RateLimitError); ok {
 			if attempt < maxRetries-1 {
-				waitTime := rateLimitErr.Rate.Reset.Time.Sub(time.Now()) + time.Second*5
+				waitTime := time.Until(rateLimitErr.Rate.Reset.Time) + time.Second*5
 				fmt.Printf("Search rate limit hit, waiting %v until reset...\n", waitTime)
 				time.Sleep(waitTime)
 				continue
@@ -221,7 +221,7 @@ func executeWithRetrySearch(fn func() (*github.CodeSearchResult, *github.Respons
 		// Check for secondary rate limit
 		if abuseErr, ok := err.(*github.AbuseRateLimitError); ok {
 			if attempt < maxRetries-1 {
-				waitTime := time.Duration(abuseErr.GetRetryAfter()) * time.Second
+				waitTime := abuseErr.GetRetryAfter() * time.Second
 				fmt.Printf("Search secondary rate limit hit, waiting %v...\n", waitTime)
 				time.Sleep(waitTime)
 				continue
