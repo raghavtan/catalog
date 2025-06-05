@@ -28111,7 +28111,7 @@ spec:
     fields:
         lifecycle: Active
         tier: 4
-        version: v0.0.920
+        version: v0.0.921
     links:
         - id: ""
           name: Repository
@@ -28202,257 +28202,47 @@ spec:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7a833e14-07c9-4eff-86f1-298316d4e4b0
             name: adaptive-systems-svc-loyalty-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0f72a9b2-c7f2-4eff-b905-1e715c3a8810
-            facts:
-                - id: app-toml-replicas-min
-                  type: extract
-                  source: github
-                  jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
-                  repo: loyalty-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: app-toml-replicas-max-gt-replicas-min
-                  type: extract
-                  source: github
-                  jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
-                  repo: loyalty-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: cpu-and-memory-hpa-are-set
-                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-                  type: aggregate
-                  dependsOn:
-                    - app-toml-replicas-min
-                    - app-toml-replicas-max-gt-replicas-min
-                  method: and
+            facts: []
         allocation-efficiency:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/82c67c7c-5518-4de1-a5c9-d4e27d04ea44
             name: allocation-efficiency-svc-loyalty-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/223be0f4-d7bb-4254-9529-e77aa497e798
-            facts:
-                - id: check-app-toml-resource-request
-                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
-                  repo: loyalty-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: check-app-toml-cpu-limits
-                  name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
-                  repo: loyalty-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: check-app-toml-memory-limits
-                  name: Check if  memory limits are defined in app.toml under [service] or [service.production]
-                  type: extract
-                  source: github
-                  jsonPath: .service.memory_limits // .service.production.memory_limits | . != null
-                  repo: loyalty-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: aggregate-resource-requests
-                  name: check resource requests and limits
-                  type: aggregate
-                  dependsOn:
-                    - check-app-toml-resource-request
-                    - check-app-toml-cpu-limits
-                    - check-app-toml-memory-limits
-                  method: and
+            facts: []
         deployment-readiness:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9a250963-102e-4318-9a34-bfe0840f995e
             name: deployment-readiness-svc-loyalty-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef2ef7b8-cc47-4f67-84d3-ba9bebef1ba8
-            facts:
-                - id: deployment-readiness-replicas-service-production
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: extract
-                  source: github
-                  jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
-                  repo: loyalty-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: deployment-readiness-replicas-service
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: extract
-                  source: github
-                  jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
-                  repo: loyalty-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: aggregate-replicas
-                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
-                  type: aggregate
-                  dependsOn:
-                    - deployment-readiness-replicas-service-production
-                    - deployment-readiness-replicas-service
-                  method: or
+            facts: []
         high-availability:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d7d3cae0-7c11-4618-b6a0-9190e96131bb
             name: high-availability-svc-loyalty-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/739d09e9-de03-426c-b82e-15e7aeb385b4
-            facts:
-                - id: app-toml-hpa-target-cpu
-                  type: extract
-                  source: github
-                  jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
-                  repo: loyalty-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: app-toml-hpa-target-memory
-                  type: extract
-                  source: github
-                  jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
-                  repo: loyalty-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: cpu-and-memory-hpa-are-set
-                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-                  type: aggregate
-                  dependsOn:
-                    - app-toml-hpa-target-cpu
-                    - app-toml-hpa-target-memory
-                  method: or
+            facts: []
         instrumentation-check:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4d8a8fc7-d833-4f21-b8a9-c2811af0d6c7
             name: instrumentation-check-svc-loyalty-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/71dfd551-e995-4092-ab06-e2718e75641e
-            facts:
-                - id: read-otel-service-name-from-apptoml
-                  name: Read OTEL_SERVICE_NAME from app.toml
-                  type: extract
-                  source: github
-                  jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
-                  repo: loyalty-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: validate-otel-service-name-matches-component-name
-                  name: validate OTEL_SERVICE_NAME matches component name
-                  type: validate
-                  dependsOn:
-                    - read-otel-service-name-from-apptoml
-                  rule: regex_match
-                  pattern: ^loyalty-service.*$
-                - id: read-otel-resource-attributes-from-apptoml
-                  name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
-                  type: extract
-                  source: github
-                  jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
-                  repo: loyalty-service
-                  filePath: app.toml
-                  rule: jsonpath
-                - id: validate-otel-resource-attributes-sample-rate
-                  name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
-                  type: validate
-                  dependsOn:
-                    - read-otel-resource-attributes-from-apptoml
-                  rule: regex_match
-                  pattern: of\.sample_rate=\d+.*
-                - id: validate-otel-resource-attributes-one-sample-rate
-                  name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
-                  type: validate
-                  dependsOn:
-                    - read-otel-resource-attributes-from-apptoml
-                  rule: regex_match
-                  pattern: of\.error_sample_rate=\d+.*
-                - id: either-sample-rate-or-error-sample-rate
-                  name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
-                  type: aggregate
-                  dependsOn:
-                    - validate-otel-resource-attributes-sample-rate
-                    - validate-otel-resource-attributes-error-sample-rate
-                  method: or
-                - id: either-sample-rate-or-error-sample-rate
-                  name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
-                  type: aggregate
-                  dependsOn:
-                    - validate-otel-service-name-matches-component-name
-                    - validate-otel-resource-attributes-one-sample-rate
-                  method: and
+            facts: []
         observability-documentation:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/43ee9335-7607-41a9-b8ea-1ac4fe611d77
             name: observability-documentation-svc-loyalty-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/c5f96c3d-6845-4155-9576-62f86725b07f
-            facts:
-                - id: extract-observability-md
-                  name: Extract observability.md
-                  type: extract
-                  source: github
-                  repo: loyalty-service
-                  filePath: docs/observability.md
-                  rule: notempty
+            facts: []
         organizational-standards:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/61f3a0d4-83a4-43f5-8a56-19b67023a5f2
             name: organizational-standards-svc-loyalty-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/005d1bf2-7188-4682-861b-a1f8bb7043ed
-            facts:
-                - id: readme-file
-                  name: Check if the README.md file exists
-                  type: extract
-                  source: github
-                  repo: loyalty-service
-                  filePath: README.md
-                  rule: notempty
-                - id: docs-readme-file
-                  name: Check if the docs/README.md file exists
-                  type: extract
-                  source: github
-                  repo: loyalty-service
-                  filePath: docs/README.md
-                  rule: notempty
-                - id: docs-index-file
-                  name: Check if the docs/index.md file exists
-                  type: extract
-                  source: github
-                  repo: loyalty-service
-                  filePath: docs/index.md
-                  rule: notempty
-                - id: paas-onboarded
-                  name: Check if the service is using PaaS
-                  type: extract
-                  source: github
-                  repo: loyalty-service
-                  searchString: motain/onefootball-actions/paas-deploy@master
-                  rule: search
-                - id: aggregate-readme-exists
-                  name: Check if repo has documentation
-                  type: aggregate
-                  dependsOn:
-                    - docs-index-file
-                    - docs-readme-file
-                    - readme-file
-                  method: or
-                - id: aggregate
-                  name: Check if repo follows organizational standards
-                  type: aggregate
-                  dependsOn:
-                    - aggregate-readme-exists
-                    - paas-onboarded
-                  method: and
+            facts: []
         security-as-pipeline:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ec175caa-24a4-49f2-a12f-0abfa96ff557
             name: security-as-pipeline-svc-loyalty-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/295e70fa-9359-4a0f-9188-6f7b6a0dbd7e
-            facts:
-                - id: trivy-exists-in-ci
-                  name: Check if Trivy is used in CI/CD pipeline
-                  type: extract
-                  source: github
-                  repo: loyalty-service
-                  searchString: motain/onefootball-actions/security
-                  rule: search
+            facts: []
         vulnerability-management:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/b2ed4949-52bb-43f6-9e60-940542c2dcfb
             name: vulnerability-management-svc-loyalty-service
             metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c7562aa-6b71-4deb-911f-eebac354ee3e
-            facts:
-                - id: service-vulnerabilities-prometheus
-                  name: Get summary of vulnerabilities for services from Prometheus reports
-                  type: extract
-                  source: prometheus
-                  prometheusQuery: sum(trivy_image_vulnerabilities{namespace="loyalty-service", severity="Critical" })
+            facts: []
     tribe: ""
     squad: ""
 ---
