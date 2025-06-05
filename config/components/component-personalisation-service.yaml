@@ -5,10 +5,12 @@ metadata:
     name: 'personalisation-service'
     componentType: service
 spec:
+    tribe: fan-experience
+    squad: personalisation
     name: personalisation-service
     slug: svc-personalisation-service
     description: Not Provided
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ""
     typeId: SERVICE
     dependsOn:
         - personalisation-service
