@@ -1,0 +1,39 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: 'cdn'
+    componentType: service
+spec:
+    tribe: platform
+    squad: cloud-runtime
+    name: cdn
+    slug: cdn
+    description: CDN service for OneFootball
+    ownerId: ""
+    typeId: SERVICE
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 1
+    links:
+        - name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/simple-service
+        - name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+        - name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: p-cloud-runtime
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CFUCQUA04
+        - name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+    labels:
+        - cloud-runtime
+        - platform
+    customFields: null

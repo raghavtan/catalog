@@ -1,0 +1,3834 @@
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: airship-email
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/00d1c5da-6cd5-4a0b-b3e9-a1db52bfe998
+    name: airship-email
+    slug: svc-airship-email
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - fan-activation
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: amymone
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/fc049c37-cdc5-4eef-81f3-f760d6204c30
+    name: amymone
+    slug: svc-amymone
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: analytics-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7174ae09-3e28-4f92-8b74-55e05bd6ba7b
+    name: analytics-service
+    slug: svc-analytics-service
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - creators-network
+        - reach
+        - content
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: appstore-connect-iap-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/254961a7-1b3e-459c-b074-6bd3aa96a79b
+    name: appstore-connect-iap-api
+    slug: svc-appstore-connect-iap-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - live-video
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: archive
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/bd5464ec-168c-4eab-8426-6a60509a9440
+    name: archive
+    slug: svc-archive
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/archive
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=archive&var-container=archive&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+    documents: []
+    labels:
+        - matchxp
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: article-intelligence
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b1e6ebc2-1f9c-4523-bdbb-c97ec4434a82
+    name: article-intelligence
+    slug: svc-article-intelligence
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - source
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: source
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: article-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c3388a0a-0883-4025-bf7b-eb0f8a73cd79
+    name: article-service
+    slug: svc-article-service
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - source
+        - article-service
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: source
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: article-translator
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/1a998ba7-b9e2-4be2-b583-360d340bc7a5
+    name: article-translator
+    slug: svc-article-translator
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - fan-experience
+        - source
+        - article-translator
+    metricSources: {}
+    tribe: fan-experience
+    squad: source
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: auth-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2bced0fe-68d3-418c-bfff-0cfb66627b96
+    name: auth-api
+    slug: svc-auth-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - source
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: source
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: aws-rds
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/667eb5b9-3899-4bb3-baf1-3a7c6aa97e54
+    name: aws-rds
+    slug: aws-rds
+    description: AWS RDS service for OneFootball
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 1
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/simple-service
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: p-cloud-runtime
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CFUCQUA04
+        - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+    documents: []
+    labels:
+        - cloud-runtime
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: cloud-runtime
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: backstage
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/1f238099-842a-48f9-b553-a169e43d646f
+    name: backstage
+    slug: svc-backstage
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - cloud-runtime
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: cloud-runtime
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: banner-free
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/a9da0f0d-9551-4c74-a881-f4fd88fc5645
+    name: banner-free
+    slug: svc-banner-free
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/257919b2-db67-4bf8-80b3-30e4e7cdb485
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - media-advertising
+        - client-experience
+    metricSources: {}
+    tribe: client-experience
+    squad: media-advertising
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: betting-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/95c730db-2ae3-4f58-a103-d8f1b0e704e9
+    name: betting-api
+    slug: svc-betting-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/e072d774-f06a-473d-b478-3967a637fb22
+    dependsOn:
+        - mediation-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - sponsorship-integration
+        - client-experience
+    metricSources: {}
+    tribe: client-experience
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: betting-workers
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/efeca838-2c3a-4da4-8073-a6b9a73e4c92
+    name: betting-workers
+    slug: svc-betting-workers
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - sponsorship-integration
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: bookmarks
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f652dd2a-3f7b-4a11-964e-e14b70c239f1
+    name: bookmarks
+    slug: svc-bookmarks
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - personalisation
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: campaign-manager
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/1f3d7530-ce1b-4713-a254-e2797cfd818c
+    name: campaign-manager
+    slug: svc-campaign-manager
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - sponsorship-integration
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: category-tiles
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2a454699-68d9-4d1c-b6b1-103bf88d329e
+    name: category-tiles
+    slug: svc-category-tiles
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - score-api
+        - users-accounts-api
+        - watch
+        - watch
+        - users-accounts-api
+        - stories-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: cdn
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f73640db-3e9f-4ecf-a37c-e5d068a91eb0
+    name: cdn
+    slug: cdn
+    description: CDN service for OneFootball
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 1
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/simple-service
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: p-cloud-runtime
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CFUCQUA04
+        - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/simple-service
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: p-cloud-runtime
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CFUCQUA04
+        - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+    documents: []
+    labels:
+        - cloud-runtime
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: cloud-runtime
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: cdp-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/44f1fc18-3112-4447-80eb-1efdc440bb7b
+    name: cdp-api
+    slug: svc-cdp-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - data-platform
+        - dacore
+    metricSources: {}
+    tribe: data-platform
+    squad: dacore
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: cheburashka
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/4309e772-7005-417f-b50c-7d2a2c147f15
+    name: cheburashka
+    slug: svc-cheburashka
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: clips
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/aceccf66-219f-4071-8c20-f6a5aa24effc
+    name: clips
+    slug: svc-clips
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
+    dependsOn:
+        - librarian
+        - funtik
+        - creators-network
+        - score-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - clips
+        - ott
+        - video-platform
+    metricSources: {}
+    tribe: ott
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: clips-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/edc87603-5220-47c0-97b3-4c014f1eb93f
+    name: clips-api
+    slug: svc-clips-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
+    dependsOn:
+        - clips
+        - ott-mediation
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - video-platform
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: clips-search
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/77614455-8199-459d-9aa1-70556e1f6463
+    name: clips-search
+    slug: svc-clips-search
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - video-platform
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: clips-webhooks
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/0529e563-4f80-4013-8918-6ff6d2f198bd
+    name: clips-webhooks
+    slug: svc-clips-webhooks
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - video-platform
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: cloud-runtime-bot
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/a9966fcc-a366-41dd-bac0-0100d7db7e67
+    name: cloud-runtime-bot
+    slug: svc-cloud-runtime-bot
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - cloud-runtime
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: cloud-runtime
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: competition-sorting-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/4cbfa2e1-2d85-4fe9-810e-90dbc0c25d60
+    name: competition-sorting-api
+    slug: svc-competition-sorting-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: consumer-web-v2
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d5aaf860-ee58-4227-8d9c-2402d588c64a
+    name: consumer-web-v2
+    slug: svc-consumer-web-v2
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - video-platform
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: consumer-web-v3
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/165d9a5c-8cbc-45a3-8650-ffbe654f7afa
+    name: consumer-web-v3
+    slug: svc-consumer-web-v3
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - video-platform
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: content-classifier
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d1af8be3-ef4c-440b-b67c-e0c65b9a93fd
+    name: content-classifier
+    slug: svc-content-classifier
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - personalisation
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: content-recommender
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b6c73b3a-46d2-447b-8bd5-ac6ee747b3c0
+    name: content-recommender
+    slug: svc-content-recommender
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - engagement
+        - personalisation
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: content-tags-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/fd0689d1-6a2b-473f-94d1-5f3218912488
+    name: content-tags-api
+    slug: ""
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
+    dependsOn: []
+    fields: {}
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/content-tags-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-tags-api&var-container=content-tags-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/content-tags-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-tags-api&var-container=content-tags-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents:
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/6c5c1a36-414d-4c5d-91c5-5ff815b310ad
+          title: Readme
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/content-tags-api/blob/main/docs/index.md
+    labels:
+        - personalisation
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: creators-content
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2f884fbe-7ac3-4340-a54e-c570a4799b36
+    name: creators-content
+    slug: svc-creators-content
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - video-platform
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: creators-network
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/3e07ffaa-f1eb-43ed-b639-d711e3dfc403
+    name: creators-network
+    slug: svc-creators-network
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - source
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: source
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: daily-digest
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/9370815f-9e7a-474b-a500-9a1f2ee5c8bc
+    name: daily-digest
+    slug: svc-daily-digest
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - apple-news
+        - news
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - fan-activation
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: editorjs-translator
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/582b1f9a-f660-4c0a-8aed-010393c524a9
+    name: editorjs-translator
+    slug: svc-editorjs-translator
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - source
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: source
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: emelya
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f748400d-32e7-4c7f-9e57-940de6fb7264
+    name: emelya
+    slug: svc-emelya
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: entity-index-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/adfe585e-c946-4995-8a30-3075b7e5c4c6
+    name: entity-index-api
+    slug: svc-entity-index-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - cheburashka
+        - score-one-proxy
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - consumer-web
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: consumer-web
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: entity-resolution
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/02b65afc-cc08-49aa-bb60-021176695e0e
+    name: entity-resolution
+    slug: svc-entity-resolution
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: entity-resolution-v2
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7d081204-8e5a-4273-bd3d-871706c4f729
+    name: entity-resolution-v2
+    slug: svc-entity-resolution-v2
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: entity-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/6e847cf0-36ed-4ba0-a7c9-8b88b155f567
+    name: entity-service
+    slug: svc-entity-service
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: experimental-thumbor
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/1ee5ab1c-225d-4b59-a8e6-a7ebb30d3e44
+    name: experimental-thumbor
+    slug: svc-experimental-thumbor
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - developer-xp
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: developer-xp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: external-highlights
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9ff69f5-ec44-4057-9da1-b26cacf871db
+    name: external-highlights
+    slug: svc-external-highlights
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - video-platform
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: facts-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/baa63e20-4989-4aba-a307-efc78e4eac58
+    name: facts-api
+    slug: svc-facts-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: facts-fetcher
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/9d940fa4-e830-46c6-8415-8d7c15f97d5b
+    name: facts-fetcher
+    slug: svc-facts-fetcher
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: facts-importer
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e02e8da4-e1a6-42e0-9dad-61b5269bd987
+    name: facts-importer
+    slug: svc-facts-importer
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: fanmatch-go
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/639dfc4d-f2c9-4f0d-9122-cb26793bfeb7
+    name: fanmatch-go
+    slug: svc-fanmatch-go
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - sponsorship-integration
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: feeditem-algolia-indexer
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f43cf388-1c69-41c4-b73d-4ecc5cee2fe9
+    name: feeditem-algolia-indexer
+    slug: svc-feeditem-algolia-indexer
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - reach
+        - content
+        - feeditem-algolia-indexer
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: follower-count-publisher
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/6c48becf-1c3a-4418-91a9-3fb5fa512b8b
+    name: follower-count-publisher
+    slug: svc-follower-count-publisher
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: funtik
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/33602e71-d027-4040-b376-d6082b0ec0cd
+    name: funtik
+    slug: svc-funtik
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
+    dependsOn:
+        - librarian
+        - score-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - source
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: source
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: gam-mrss-generator
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/20ef4e57-d370-4929-910d-03f4b39cce70
+    name: gam-mrss-generator
+    slug: svc-gam-mrss-generator
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - gam-mrss-generator
+        - reach
+        - content
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: geoip
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/67f4d845-ba64-4903-aab2-38423b6f3339
+    name: geoip
+    slug: svc-geoip
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - sponsorship-integration
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: gitleaks-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/43ad2550-735e-4287-8455-7c8762c88269
+    name: gitleaks-api
+    slug: svc-gitleaks-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - developer-xp
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: developer-xp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: happy-keldysh
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ae05fd74-bc35-4187-9e9c-f40a17ccf920
+    name: happy-keldysh
+    slug: svc-happy-keldysh
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - dacore
+        - data-platform
+    metricSources: {}
+    tribe: data-platform
+    squad: dacore
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: image-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c8d3408c-c63f-4f68-8a1d-b6dc389ebc69
+    name: image-service
+    slug: svc-image-service
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - personalisation
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: image-uploader
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f7a25a9d-00d4-40e7-b596-d10f2f8f1284
+    name: image-uploader
+    slug: svc-image-uploader
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/e072d774-f06a-473d-b478-3967a637fb22
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - sponsorship-integration
+        - client-experience
+    metricSources: {}
+    tribe: client-experience
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: kubernetes
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d3f789e5-80a4-4c08-9d57-3dca1c4cb4f1
+    name: kubernetes
+    slug: kubernetes
+    description: Kubernetes cluster for OneFootball
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 1
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/simple-service
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: p-cloud-runtime
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CFUCQUA04
+        - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+    documents: []
+    labels:
+        - cloud-runtime
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: cloud-runtime
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: kuzya
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/3ece3634-5999-4c28-a6cb-34aa0edddd95
+    name: kuzya
+    slug: svc-kuzya
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: lead-gen-campaign-manager
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/4abd1719-ff5f-4eed-9223-dc5c198ce226
+    name: lead-gen-campaign-manager
+    slug: svc-lead-gen-campaign-manager
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - sponsorship-integration
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: lead-gen-campaign-manager-web
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/97fdbba7-6837-41ff-99e3-10a8b58d39c8
+    name: lead-gen-campaign-manager-web
+    slug: svc-lead-gen-campaign-manager-web
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - sponsorship-integration
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: lead-gen-campaign-web
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/472da445-96c6-4366-ae0a-3b81890971aa
+    name: lead-gen-campaign-web
+    slug: svc-lead-gen-campaign-web
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - sponsorship-integration
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: lead-gen-data-collector-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/8bcf3b72-1d63-4123-9b4d-fb71ab3d883e
+    name: lead-gen-data-collector-api
+    slug: svc-lead-gen-data-collector-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - sponsorship-integration
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: librarian
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d9782c30-7b65-4f9c-a47a-e93e8bec288a
+    name: librarian
+    slug: svc-librarian
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - ott-mediation
+        - score-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - personalisation
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: live-ticker-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/853c99e4-c539-4a9b-8aec-f1f9a66a8b54
+    name: live-ticker-api
+    slug: svc-live-ticker-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: live-ticker-importer
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2477bc04-fd7f-47a1-88c5-c5972801a4e6
+    name: live-ticker-importer
+    slug: svc-live-ticker-importer
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: mediation-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/5f897298-b5b1-46b2-928a-8c4276e5a155
+    name: mediation-api
+    slug: svc-mediation-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/257919b2-db67-4bf8-80b3-30e4e7cdb485
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - media-advertising
+        - client-experience
+    metricSources: {}
+    tribe: client-experience
+    squad: media-advertising
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: network-admin-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e7304455-88ed-4e7a-8020-1ae0152b1f7c
+    name: network-admin-api
+    slug: svc-network-admin-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - source
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: source
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: news
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/28b0dc2b-3f82-4c0a-9a6a-d655678fb0fe
+    name: news
+    slug: svc-news
+    description: News public API.
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
+    dependsOn:
+        - bookmarks
+        - score-api
+        - mediation-api
+        - ott-mediation
+        - librarian
+        - clips
+        - personalisation-service
+        - search-gateway-api
+        - category-tiles
+        - article-service
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - fan-experience
+        - personalisation
+    metricSources: {}
+    tribe: fan-experience
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: newsdesk-admin-web
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/40c7b195-0af4-4305-929a-e921aad58aeb
+    name: newsdesk-admin-web
+    slug: svc-newsdesk-admin-web
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - content
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: neznaika
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/acb1bc3a-9052-4d46-8044-f3708c48b6b5
+    name: neznaika
+    slug: svc-neznaika
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
+    dependsOn:
+        - funtik
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - source
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: source
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: not-found-server
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d3e133d7-767c-40c9-9a49-9062c9a2adc7
+    name: not-found-server
+    slug: svc-not-found-server
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - developer-xp
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: developer-xp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: onboarding-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b422255b-88c9-45dd-a420-f31fb2db1fea
+    name: onboarding-api
+    slug: svc-onboarding-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - score-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - fan-activation
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: oncall-compensation
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef47fbc0-8ddb-48e3-885f-dbf643944334
+    name: oncall-compensation
+    slug: svc-oncall-compensation
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - developer-xp
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: developer-xp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: onefootball-copilot
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2eb8b679-fb41-41c2-be09-d6651a002436
+    name: onefootball-copilot
+    slug: svc-onefootball-copilot
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - source
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: source
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: optimistic-joliot
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c86c5aac-8251-4679-9ea7-fe39cb324b69
+    name: optimistic-joliot
+    slug: svc-optimistic-joliot
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - data-platform
+        - dacore
+    metricSources: {}
+    tribe: data-platform
+    squad: dacore
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2bfca489-96dd-4107-98fb-128a87742e11
+    name: ott-api
+    slug: svc-ott-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
+    dependsOn:
+        - auth-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - live-video
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-external-accounts
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ca9ea4c1-05c2-47e2-bff2-447b234bd6cb
+    name: ott-external-accounts
+    slug: svc-ott-external-accounts
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - live-video
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-live-sessions
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f2a8df25-2898-40af-bcac-4d4d1a46aa5c
+    name: ott-live-sessions
+    slug: svc-ott-live-sessions
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - live-video
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-load-test-proxy
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/3c18f352-d4ce-4803-b460-1cca7e3dbe84
+    name: ott-load-test-proxy
+    slug: svc-ott-load-test-proxy
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - live-video
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-mediation
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/03c4ce2f-8399-4e43-90df-a6c8aee6fde7
+    name: ott-mediation
+    slug: svc-ott-mediation
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/257919b2-db67-4bf8-80b3-30e4e7cdb485
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - media-advertising
+        - client-experience
+    metricSources: {}
+    tribe: client-experience
+    squad: media-advertising
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-probe
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f2c75809-3947-4e9e-b7ec-a9bc7b33735c
+    name: ott-probe
+    slug: svc-ott-probe
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - live-video
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: payments-history
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d005ff43-9304-4b4a-b2e7-cbc5adaae0f4
+    name: payments-history
+    slug: svc-payments-history
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
+    dependsOn:
+        - watch
+    fields:
+        lifecycle: Active
+        tier: 4
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/payments-history
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=payments-history&var-container=payments-history&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-livevideo
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C053ATVH3N2
+        - id: ""
+          name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/payments-history
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=payments-history&var-container=payments-history&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-livevideo
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C053ATVH3N2
+        - id: ""
+          name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
+    documents:
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/f3744f0a-80e0-4a1b-9925-9be3f68ed9a4
+          title: Introduction
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/payments-history/blob/main/docs/index.md
+    labels:
+        - live-video
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: photobooth
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/401c7f10-9504-4145-a28b-8f62454b0247
+    name: photobooth
+    slug: svc-photobooth
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - reach
+        - consumer-web
+    metricSources: {}
+    tribe: reach
+    squad: consumer-web
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: playground-ai-content
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d8fbc0f2-1363-408c-b682-99fb037f1444
+    name: playground-ai-content
+    slug: svc-playground-ai-content
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - personalisation
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: polls-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/96dd7303-86d7-4da3-9171-828e843dce32
+    name: polls-api
+    slug: svc-polls-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    dependsOn:
+        - score-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - fan-activation
+        - membership
+    metricSources: {}
+    tribe: membership
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: prometheus-exporter
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/908101a7-b297-49a8-bdc1-de0bcb0497c0
+    name: prometheus-exporter
+    slug: svc-prometheus-exporter
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - cloud-runtime
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: cloud-runtime
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: pubnet-o-and-d-backoffice-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b74713a5-59ef-44cd-857d-186f4b18c710
+    name: pubnet-o-and-d-backoffice-api
+    slug: svc-pubnet-o-and-d-backoffice-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - video-platform
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: push
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/30c6b456-bfb9-4dc2-be6b-04eb632baac8
+    name: push
+    slug: svc-push
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: push-notification-center
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/50d75d9b-7605-4452-9d41-92c9ed7d58ed
+    name: push-notification-center
+    slug: svc-push-notification-center
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - reach
+        - content
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: quiz-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b83df64b-5fd9-41d5-ab6d-d0515cd9b32b
+    name: quiz-api
+    slug: svc-quiz-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/quiz-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=quiz-api&var-container=quiz-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: client-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: ""
+          name: Sponsorship Integration Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/quiz-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=quiz-api&var-container=quiz-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: client-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: ""
+          name: Sponsorship Integration Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
+    documents:
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/75deb42d-3f08-4206-80f2-f613f24aaf74
+          title: Readme
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/quiz-api/blob/main/docs/index.md
+    labels:
+        - sponsorship-integration
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: relevance-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e3a7998b-8060-481b-95f2-6f13c3a0c516
+    name: relevance-service
+    slug: svc-relevance-service
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - personalisation
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: replay-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/bd87761d-b8c3-4d27-86a5-ff14d38e1bdd
+    name: replay-api
+    slug: svc-replay-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: resolver-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b50aec6a-bbf8-4cdf-84ec-15b179a042ad
+    name: resolver-api
+    slug: svc-resolver-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/resolver-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=resolver-api&var-container=resolver-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/resolver-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=resolver-api&var-container=resolver-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+    documents: []
+    labels:
+        - matchxp
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: rich-push
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ca10be5d-1c82-458a-9c74-fac104375059
+    name: rich-push
+    slug: svc-rich-push
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - sponsorship-integration
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: rss-generator
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/5ab76587-63af-434e-be1a-0c00343f87c4
+    name: rss-generator
+    slug: svc-rss-generator
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - reach
+        - content
+        - rss-generator
+    metricSources: {}
+    tribe: reach
+    squad: content
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: score-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/5ca0f7e8-5876-4dc9-a641-d61319e9f55f
+    name: score-api
+    slug: svc-score-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: score-api-load-test
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/de3cf3bc-81de-4681-95a8-f773d66db6f4
+    name: score-api-load-test
+    slug: svc-score-api-load-test
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - engagement
+        - matchxp
+        - score-api-load-test
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: scores-mixer
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/fffb6bd1-6397-468e-8b83-145b3f4d15be
+    name: scores-mixer
+    slug: svc-scores-mixer
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: search-gateway-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/4597b0d5-9a5e-4af8-991a-b5aa95fefb20
+    name: search-gateway-api
+    slug: svc-search-gateway-api
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - fan-experience
+        - personalisation
+    metricSources: {}
+    tribe: fan-experience
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: seasons-cache
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ca6de149-c371-44c7-b890-a03a2506b1c4
+    name: seasons-cache
+    slug: svc-seasons-cache
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: simple-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/5d104332-6726-418a-873a-8d6cafa0b858
+    name: simple-service
+    slug: svc-simple-service
+    description: Simple-service is a no-nonsense, do-what-it-needs-to-do kind of service. It reads a lot, writes a little, and somehow still manages to act important. If databases had best friends, Simple RDS would be its ride-or-die.
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/simple-service
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: p-cloud-runtime
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CFUCQUA04
+        - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+    documents: []
+    labels:
+        - cloud-runtime
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: cloud-runtime
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: sitemap-generator-v2
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/6f4470d2-614c-44a0-b028-3f9379e2935c
+    name: sitemap-generator-v2
+    slug: svc-sitemap-generator-v2
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - reach
+        - consumer-web
+        - sitemap-generator-v2
+    metricSources: {}
+    tribe: reach
+    squad: consumer-web
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: specialone-slackbot
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2e8f9f81-c257-4338-82ec-380130915244
+    name: specialone-slackbot
+    slug: svc-specialone-slackbot
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - live-video
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: stories-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b8b73814-a776-4056-9355-64ff4ea50986
+    name: stories-api
+    slug: svc-stories-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    dependsOn:
+        - personalisation-service
+        - score-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - fan-activation
+        - membership
+    metricSources: {}
+    tribe: membership
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: streaming-service
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/70045cc6-8ceb-4612-988e-7fdaf41d3cef
+    name: streaming-service
+    slug: svc-streaming-service
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - live-video
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: tags-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b30a0e2d-21cb-4111-9fe8-fb9514a13552
+    name: tags-api
+    slug: svc-tags-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - video-platform
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: thesource-data-products
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/3844a194-6a01-4a9a-86d4-bdf68397c4df
+    name: thesource-data-products
+    slug: svc-thesource-data-products
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - thesource-data-products
+        - fan-experience
+        - source
+    metricSources: {}
+    tribe: fan-experience
+    squad: source
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: tv-guide-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/80d3a5f8-ac36-47ca-a6c9-201c89320a83
+    name: tv-guide-api
+    slug: svc-tv-guide-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - score-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - sponsorship-integration
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: tv-guide-importer
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/a60b6660-4c42-49fe-9137-1913afef3f39
+    name: tv-guide-importer
+    slug: svc-tv-guide-importer
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/e072d774-f06a-473d-b478-3967a637fb22
+    dependsOn:
+        - resolver-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - sponsorship-integration
+        - client-experience
+    metricSources: {}
+    tribe: client-experience
+    squad: sponsorship-integration
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: umka
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d3a959ac-ba26-4b34-bda9-c1cad3b91a3e
+    name: umka
+    slug: svc-umka
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
+    dependsOn:
+        - mediation-api
+        - librarian
+        - apple-news
+        - news
+        - score-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - fan-experience
+        - personalisation
+    metricSources: {}
+    tribe: fan-experience
+    squad: personalisation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: users-accounts-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b42e659b-1679-45f4-940a-3f1fae434d2f
+    name: users-accounts-api
+    slug: svc-users-accounts-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - fan-activation
+        - membership
+    metricSources: {}
+    tribe: membership
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: users-auth-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/afe4e98f-e932-4614-b409-df75228b093f
+    name: users-auth-api
+    slug: svc-users-auth-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    dependsOn:
+        - users-accounts-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - fan-activation
+        - membership
+    metricSources: {}
+    tribe: membership
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: users-gdpr
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/1d3ae99b-a19c-4905-bc46-9c0e85a3ea25
+    name: users-gdpr
+    slug: svc-users-gdpr
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - fan-activation
+        - users-gdpr
+        - reach
+    metricSources: {}
+    tribe: reach
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: users-pii
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/88a61d4d-8f41-43d7-bea9-f67b5e827b5a
+    name: users-pii
+    slug: svc-users-pii
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - users-pii
+        - membership
+        - fan-activation
+    metricSources: {}
+    tribe: membership
+    squad: fan-activation
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: video-stories-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b54e4777-92cb-4fb7-b6df-2c9a9de111ce
+    name: video-stories-api
+    slug: svc-video-stories-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - video-platform
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: video-platform
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: vinnipuh
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b8ed9bb9-e70b-4028-8c44-71302fed1404
+    name: vinnipuh
+    slug: svc-vinnipuh
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/vinnipuh
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=vinnipuh&var-container=vinnipuh&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/vinnipuh
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=vinnipuh&var-container=vinnipuh&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: watch
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/3973a515-b555-4ece-9ddc-9148a61c7203
+    name: watch
+    slug: svc-watch
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
+    dependsOn:
+        - ott-mediation
+        - score-api
+        - ott-external-accounts
+        - users-pii
+        - users-accounts-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - live-video
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: web-experience
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f1ed809a-6e2c-4b57-aca4-db2c160d52ad
+    name: web-experience
+    slug: svc-web-experience
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
+    dependsOn:
+        - search-gateway-api
+        - userresearch-shiny
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - live-video
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: web-payments-backend
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2613c2f3-c0c9-4519-840c-147dff51781d
+    name: web-payments-backend
+    slug: svc-web-payments-backend
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
+    dependsOn:
+        - watch
+        - users-accounts-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - live-video
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: live-video
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: web-url-redirector
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c4b26f0b-db93-4e0d-a79e-4b98286bfe66
+    name: web-url-redirector
+    slug: svc-web-url-redirector
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - reach
+        - consumer-web
+    metricSources: {}
+    tribe: reach
+    squad: consumer-web
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: web3-transactions
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/1cd6471a-dfe7-4fa1-b4cd-a69cbb200397
+    name: web3-transactions
+    slug: svc-web3-transactions
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - loyalty-program-squad
+        - monetization
+    metricSources: {}
+    tribe: monetization
+    squad: loyalty-program-squad
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: webhook-receiver
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/5fd0f591-2765-42c6-9558-cca35584c732
+    name: webhook-receiver
+    slug: svc-webhook-receiver
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: webserver
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/cb4b1d07-5c35-4f54-bb45-531a9f0d2c69
+    name: webserver
+    slug: svc-webserver
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - cloud-runtime
+        - platform
+    metricSources: {}
+    tribe: platform
+    squad: cloud-runtime
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ws-receiver
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/db8071a5-544f-4e56-a55c-a689304e7866
+    name: ws-receiver
+    slug: svc-ws-receiver
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: xpa-backend
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/fa00c82e-2ad6-41a3-b718-ae68351cd62f
+    name: xpa-backend
+    slug: svc-xpa-backend
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - banner-free
+        - librarian
+        - mediation-api
+        - users-api
+        - users-auth-api
+        - users-accounts-api
+        - clips
+        - ott-mediation
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - xpa-backend
+        - engagement
+    metricSources: {}
+    tribe: engagement
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: xpa-mobile-backend
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/518eacaa-cb3c-40f6-993f-477db3d9e6de
+    name: xpa-mobile-backend
+    slug: svc-xpa-mobile-backend
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - clips-api
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: xpa-mobile-backend-load-test
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/6a23a323-9d03-4c9b-9c2f-7ed209d4b591
+    name: xpa-mobile-backend-load-test
+    slug: svc-xpa-mobile-backend-load-test
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields: {}
+    links: []
+    documents: []
+    labels:
+        - matchxp
+        - xpa-mobile-backend-load-test
+        - fan-experience
+    metricSources: {}
+    tribe: fan-experience
+    squad: matchxp
+---
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: xpa-tv-backend
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/79203d7c-e692-40d5-bdb8-d84d5c9445e8
+    name: xpa-tv-backend
+    slug: svc-xpa-tv-backend
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
+    dependsOn:
+        - kubernetes
+        - dbf41679-8076-427f-8c45-0627a7d1e9a1
+    fields:
+        lifecycle: Active
+        tier: 4
+    links: []
+    documents: []
+    labels:
+        - live-video
+        - ott
+    metricSources: {}
+    tribe: ott
+    squad: live-video

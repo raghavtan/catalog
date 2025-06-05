@@ -9,9 +9,6 @@ PROCESSED_FILE="processed_components.txt"
 FAILED_FILE="failed_components.txt"
 SKIPPED_FILE="skipped_components.txt"
 
-# Maximum number of parallel jobs (adjust based on your system)
-MAX_JOBS=10
-
 # Function to extract component names from YAML files
 get_component_names() {
     find "$COMPONENTS_DIR" -name "component-*.yaml" -type f | \
@@ -30,19 +27,15 @@ is_component_processed() {
     grep -Fxq "$component" "$PROCESSED_FILE" || grep -Fxq "$component" "$FAILED_FILE"
 }
 
-# Function to process a single component (runs in background)
+# Function to process a single component (runs serially)
 process_component() {
     local component="$1"
     local component_file="$COMPONENTS_DIR/component-$component.yaml"
-    local temp_dir="./temp_results"
-
-    # Create temp directory if it doesn't exist
-    mkdir -p "$temp_dir"
 
     # Verify the file still exists
     if [[ ! -f "$component_file" ]]; then
         echo "Warning: Component file not found: $component_file"
-        echo "$component" > "$temp_dir/skipped_$component"
+        echo "$component" >> "$SKIPPED_FILE"
         return 1
     fi
 
@@ -53,43 +46,12 @@ process_component() {
     # Execute the command
     if $COMMAND_PREFIX "$component"; then
         echo "  ✓ Successfully processed component: $component"
-        echo "$component" > "$temp_dir/success_$component"
+        echo "$component" >> "$PROCESSED_FILE"
         return 0
     else
         echo "  ✗ Failed to process component: $component"
-        echo "$component" > "$temp_dir/failed_$component"
+        echo "$component" >> "$FAILED_FILE"
         return 1
-    fi
-}
-
-# Function to collect results from temp files
-collect_results() {
-    local temp_dir="./temp_results"
-
-    if [[ -d "$temp_dir" ]]; then
-        # Collect successful components
-        for file in "$temp_dir"/success_*; do
-            if [[ -f "$file" ]]; then
-                cat "$file" >> "$PROCESSED_FILE"
-            fi
-        done
-
-        # Collect failed components
-        for file in "$temp_dir"/failed_*; do
-            if [[ -f "$file" ]]; then
-                cat "$file" >> "$FAILED_FILE"
-            fi
-        done
-
-        # Collect skipped components
-        for file in "$temp_dir"/skipped_*; do
-            if [[ -f "$file" ]]; then
-                cat "$file" >> "$SKIPPED_FILE"
-            fi
-        done
-
-        # Clean up temp directory
-        rm -rf "$temp_dir"
     fi
 }
 
@@ -101,34 +63,8 @@ total_prev_processed=0
 total_prev_failed=0
 total_skipped=0
 
-# Array to store background process PIDs
-declare -a pids=()
-
 # Cleanup function to print statistics
 cleanup() {
-    echo ""
-    echo "Terminating running processes..."
-
-    # Kill all background processes
-    for pid in "${pids[@]}"; do
-        if kill -0 "$pid" 2>/dev/null; then
-            kill "$pid" 2>/dev/null
-        fi
-    done
-
-    # Wait a moment for processes to terminate gracefully
-    sleep 2
-
-    # Force kill any remaining processes
-    for pid in "${pids[@]}"; do
-        if kill -0 "$pid" 2>/dev/null; then
-            kill -9 "$pid" 2>/dev/null
-        fi
-    done
-
-    # Collect any remaining results
-    collect_results
-
     echo ""
     echo "========== Component Apply Statistics =========="
     echo "Total components found: $total_components"
@@ -138,7 +74,7 @@ cleanup() {
     echo "Previously failed components (skipped): $total_prev_failed"
     echo "Components skipped (file not found): $total_skipped"
     echo "=============================================="
-    echo "Script terminated"
+    echo "Script completed"
     exit 0
 }
 
@@ -198,43 +134,19 @@ if [[ ${#components_to_process[@]} -eq 0 ]]; then
     cleanup
 fi
 
-echo "Starting parallel processing of ${#components_to_process[@]} components..."
-echo "Maximum concurrent jobs: $MAX_JOBS"
+echo "Starting serial processing of ${#components_to_process[@]} components..."
 echo ""
 
-# Process components in parallel with job control
-job_count=0
+# Process components one by one (serially)
 for component in "${components_to_process[@]}"; do
-    # Wait if we've reached the maximum number of jobs
-    if [[ $job_count -ge $MAX_JOBS ]]; then
-        # Wait for any job to finish
-        wait -n
-        ((job_count--))
-    fi
-
-    # Start the component processing
-    process_component "$component" &
-    pids+=($!)
-    ((job_count++))
-done
-
-echo "All component processes started (with job limit of $MAX_JOBS)."
-echo "Waiting for all processes to complete..."
-echo ""
-
-# Wait for all remaining background processes to complete
-for pid in "${pids[@]}"; do
-    if wait "$pid"; then
+    if process_component "$component"; then
         ((total_new_processed++))
     else
         ((total_new_failed++))
     fi
+    echo "" # Add blank line between components for readability
 done
 
-echo ""
-echo "All parallel processes completed."
-
-# Collect results from temporary files
-collect_results
+echo "All components processed serially."
 
 cleanup
