@@ -5,7 +5,7 @@ metadata:
     name: 'airship-email'
     componentType: service
 spec:
-    tribe: reach
+    tribe: membership
     squad: fan-activation
     name: airship-email
     slug: svc-airship-email
@@ -14,7 +14,6 @@ spec:
     typeId: SERVICE
     dependsOn:
         - kubernetes
-        - cdn
     fields:
         lifecycle: Active
         tier: 4
@@ -36,5 +35,5 @@ spec:
           url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
     labels:
         - fan-activation
-        - reach
+        - membership
     customFields: null
