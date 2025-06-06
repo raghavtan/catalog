@@ -5,6 +5,8 @@ metadata:
     name: 'of-enricher'
     componentType: service
 spec:
+    tribe: fan-experience
+    squad: matchxp
     name: of-enricher
     slug: svc-of-enricher
     description: Not Provided
@@ -12,7 +14,6 @@ spec:
     typeId: SERVICE
     dependsOn:
         - kubernetes
-        - cdn
     fields:
         lifecycle: Active
         tier: 4
