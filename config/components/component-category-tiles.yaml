@@ -16,6 +16,7 @@ spec:
         - watch
         - users-accounts-api
         - stories-api
+        - kubernetes
     tribe: engagement
     squad: personalisation
     links:

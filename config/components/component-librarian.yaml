@@ -15,6 +15,7 @@ spec:
     dependsOn:
         - ott-mediation
         - score-api
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4

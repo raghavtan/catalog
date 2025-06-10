@@ -15,6 +15,7 @@ spec:
         - apple-news
         - news
         - score-api
+        - kubernetes
     tribe: fan-experience
     squad: personalisation
     links:

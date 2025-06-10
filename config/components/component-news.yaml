@@ -20,6 +20,7 @@ spec:
         - search-gateway-api
         - category-tiles
         - article-service
+        - kubernetes
     tribe: fan-experience
     squad: personalisation
     links:

@@ -12,7 +12,6 @@ spec:
     typeId: SERVICE
     dependsOn:
         - kubernetes
-        - cdn
     fields:
         lifecycle: Active
         tier: 4

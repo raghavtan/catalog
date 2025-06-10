@@ -15,6 +15,7 @@ spec:
     dependsOn:
         - personalisation-service
         - score-api
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4

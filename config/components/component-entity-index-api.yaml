@@ -12,6 +12,7 @@ spec:
     dependsOn:
         - cheburashka
         - score-one-proxy
+        - kubernetes
     tribe: reach
     squad: consumer-web
     links:

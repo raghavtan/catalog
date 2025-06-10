@@ -9,7 +9,8 @@ spec:
     description: ""
     typeId: SERVICE
     ownerId: ""
-    dependsOn: []
+    dependsOn:
+      - kubernetes
     tribe: engagement
     squad: matchxp
     links:

@@ -18,6 +18,7 @@ spec:
         - ott-external-accounts
         - users-pii
         - users-accounts-api
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4

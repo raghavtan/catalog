@@ -15,6 +15,7 @@ spec:
     dependsOn:
         - clips
         - ott-mediation
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4

@@ -9,7 +9,8 @@ spec:
     description: ""
     typeId: SERVICE
     ownerId: ""
-    dependsOn: []
+    dependsOn:
+      - kubernetes
     tribe: data-platform
     squad: dacore
     links:

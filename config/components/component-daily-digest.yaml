@@ -15,6 +15,7 @@ spec:
     dependsOn:
         - apple-news
         - news
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4

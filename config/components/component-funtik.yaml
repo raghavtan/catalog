@@ -15,6 +15,7 @@ spec:
     dependsOn:
         - librarian
         - score-api
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4

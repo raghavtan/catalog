@@ -203,13 +203,12 @@ func (h *ApplyHandler) handleCreated(
 		// We need to think about the best way to handle this
 
 		if len(componentDTO.Spec.DependsOn) == 0 {
-			// Default mandatory element [kubernetes, cdn]
+			// Default mandatory element [kubernetes]
 			componentDTO.Spec.DependsOn = []string{
 				"kubernetes",
-				"cdn",
 			}
 		} else {
-			componentDTO.Spec.DependsOn = append(componentDTO.Spec.DependsOn, "kubernetes", "cdn")
+			componentDTO.Spec.DependsOn = append(componentDTO.Spec.DependsOn, "kubernetes")
 		}
 
 		result = append(result, componentDTO)

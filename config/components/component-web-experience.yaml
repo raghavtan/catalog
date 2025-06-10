@@ -15,6 +15,7 @@ spec:
     dependsOn:
         - search-gateway-api
         - userresearch-shiny
+        - kubernetes
     fields:
         lifecycle: Active
         tier: 4

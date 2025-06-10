@@ -14,6 +14,7 @@ spec:
         - funtik
         - creators-network
         - score-api
+        - kubernetes
     tribe: ott
     squad: video-platform
     links:
