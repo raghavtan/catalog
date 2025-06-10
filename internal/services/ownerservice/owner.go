@@ -2,50 +2,11 @@ package ownerservice
 
 import (
 	"fmt"
+	oforg "github.com/motain/of-org"
 	"strings"
 
 	"github.com/motain/of-catalog/internal/services/ownerservice/dtos"
-
-	oforg "github.com/motain/of-org"
 )
-
-type OwnerServiceInterface interface {
-	GetOwnerByTribeAndSquad(tribe, squad string) (*dtos.Owner, error)
-}
-
-type OwnerService struct{}
-
-func NewOwnerService() *OwnerService {
-	return &OwnerService{}
-}
-
-func (os *OwnerService) GetOwnerByTribeAndSquad(tribe, squad string) (*dtos.Owner, error) {
-	squadDetails, err := GetSquadDetails(squad)
-	if err != nil {
-		return nil, err
-	}
-
-	if squadDetails.Tribe != tribe {
-		return nil, fmt.Errorf("squad '%s' belongs to tribe '%s', not '%s'", squad, squadDetails.Tribe, tribe)
-	}
-
-	owner := &dtos.Owner{
-		OwnerID:       squadDetails.JiraTeamID,
-		SlackChannels: make(map[string]string),
-		Projects:      make(map[string]string),
-		DisplayName:   squad,
-	}
-
-	if squadDetails.SlackURL != "" {
-		owner.SlackChannels[squadDetails.SlackTitle] = squadDetails.SlackURL
-	}
-
-	if squadDetails.JiraProjectURL != "" {
-		owner.Projects[squadDetails.JiraProjectName] = squadDetails.JiraProjectURL
-	}
-
-	return owner, nil
-}
 
 type SquadDetails struct {
 	JiraTeamID      string
@@ -56,6 +17,60 @@ type SquadDetails struct {
 	Tribe           string
 }
 
+type OwnerServiceInterface interface {
+	GetOwnerByTribeAndSquad(tribe, squad string) (*dtos.Owner, error)
+}
+
+type OwnerService struct {
+	getSquadDetails func(string) (SquadDetails, error)
+}
+
+// NewOwnerService creates a new OwnerService with default dependencies
+func NewOwnerService() *OwnerService {
+	return &OwnerService{
+		getSquadDetails: GetSquadDetails,
+	}
+}
+
+// NewOwnerServiceWithDependencies allows injecting dependencies for testing
+func NewOwnerServiceWithDependencies(getSquadDetails func(string) (SquadDetails, error)) *OwnerService {
+	return &OwnerService{
+		getSquadDetails: getSquadDetails,
+	}
+}
+
+func (os *OwnerService) GetOwnerByTribeAndSquad(tribe, squad string) (*dtos.Owner, error) {
+	squadDetails, err := os.getSquadDetails(squad)
+	if err != nil {
+		return nil, err
+	}
+
+	// Verify tribe matches
+	if squadDetails.Tribe != tribe {
+		return nil, fmt.Errorf("squad '%s' belongs to tribe '%s', not '%s'", squad, squadDetails.Tribe, tribe)
+	}
+
+	owner := &dtos.Owner{
+		OwnerID:       squadDetails.JiraTeamID,
+		SlackChannels: make(map[string]string),
+		Projects:      make(map[string]string),
+		DisplayName:   squad, // Using squad name as display name
+	}
+
+	// Add Slack channel if available
+	if squadDetails.SlackURL != "" {
+		owner.SlackChannels[squadDetails.SlackTitle] = squadDetails.SlackURL
+	}
+
+	// Add Jira project if available
+	if squadDetails.JiraProjectURL != "" {
+		owner.Projects[squadDetails.JiraProjectName] = squadDetails.JiraProjectURL
+	}
+
+	return owner, nil
+}
+
+// GetSquadDetails retrieves detailed information for a given squad
 func GetSquadDetails(squadName string) (SquadDetails, error) {
 	squadName = strings.TrimSpace(squadName)
 
