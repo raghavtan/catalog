@@ -19,7 +19,6 @@ spec:
         - apple-news
         - news
         - score-api
-        - kubernetes
     fields:
         lifecycle: Active
         tier: 4
