@@ -1,23 +1,23 @@
 apiVersion: of-catalog/v1alpha1
 kind: Scorecard
 metadata:
-  name: cost-optimization
+    name: cost-optimization
 spec:
-  id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/60e4a503-1fc1-4626-a216-6a41dfae7747
-  name: cost-optimization
-  description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/cost-optimization.md#cost-optimization-grading-system
-  ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
-  state: PUBLISHED
-  componentTypeIds:
-    - SERVICE
-  importance: REQUIRED
-  scoringStrategyType: WEIGHT_BASED
-  criteria:
-    - hasMetricValue:
-        id: 60169781-28b8-40a9-8a6c-0981f31cae67
-        weight: 100
-        name: allocation-efficiency
-        metricName: allocation-efficiency
-        metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0280d248-c53a-4dcf-a5a4-945cdd931406
-        comparatorValue: 1
-        comparator: EQUALS
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/60e4a503-1fc1-4626-a216-6a41dfae7747
+    name: cost-optimization
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/cost-optimization.md#cost-optimization-grading-system
+    ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
+    state: PUBLISHED
+    componentTypeIds:
+        - SERVICE
+    importance: REQUIRED
+    scoringStrategyType: WEIGHT_BASED
+    criteria:
+        - hasMetricValue:
+            id: 60169781-28b8-40a9-8a6c-0981f31cae67
+            weight: 100
+            name: allocation-efficiency
+            metricName: allocation-efficiency
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0280d248-c53a-4dcf-a5a4-945cdd931406
+            comparatorValue: 1
+            comparator: EQUALS

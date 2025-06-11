@@ -1,32 +1,31 @@
----
 apiVersion: of-catalog/v1alpha1
 kind: Scorecard
 metadata:
-  name: production-readiness
+    name: production-readiness
 spec:
-  id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/09359de9-1a80-48d6-bd5d-60a236c7a18b
-  name: production-readiness
-  description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/production-readiness.md#production-readiness-grading-system
-  ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
-  state: PUBLISHED
-  componentTypeIds:
-    - SERVICE
-  importance: REQUIRED
-  scoringStrategyType: WEIGHT_BASED
-  criteria:
-    - hasMetricValue:
-        id: 8f624c81-e107-4a5e-bcfb-45b2b981ec54
-        weight: 50
-        name: organizational-standards
-        metricName: organizational-standards
-        metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/557a1209-6a66-4eda-8051-9634991b75f2
-        comparatorValue: 1
-        comparator: EQUALS
-    - hasMetricValue:
-        id: 0c23d568-cc35-49f3-b539-751896c0d465
-        weight: 50
-        name: deployment-readiness
-        metricName: deployment-readiness
-        metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9c34910-156e-4669-b283-3d3bb08c58ac
-        comparatorValue: 1
-        comparator: EQUALS
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/09359de9-1a80-48d6-bd5d-60a236c7a18b
+    name: production-readiness
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/production-readiness.md#production-readiness-grading-system
+    ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
+    state: PUBLISHED
+    componentTypeIds:
+        - SERVICE
+    importance: REQUIRED
+    scoringStrategyType: WEIGHT_BASED
+    criteria:
+        - hasMetricValue:
+            id: 8f624c81-e107-4a5e-bcfb-45b2b981ec54
+            weight: 50
+            name: organizational-standards
+            metricName: organizational-standards
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/557a1209-6a66-4eda-8051-9634991b75f2
+            comparatorValue: 1
+            comparator: EQUALS
+        - hasMetricValue:
+            id: 0c23d568-cc35-49f3-b539-751896c0d465
+            weight: 50
+            name: deployment-readiness
+            metricName: deployment-readiness
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9c34910-156e-4669-b283-3d3bb08c58ac
+            comparatorValue: 1
+            comparator: EQUALS

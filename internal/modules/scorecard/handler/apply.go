@@ -2,7 +2,6 @@ package handler
 
 import (
 	"context"
-	"fmt"
 	"log"
 
 	metricdtos "github.com/motain/of-catalog/internal/modules/metric/dtos"
@@ -33,40 +32,15 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 		log.Fatalf("error: %v", errConfig)
 	}
 
-	// DEBUG: Log scorecard config
-	fmt.Printf("DEBUG: Found %d config scorecards\n", len(configScorecards))
-
 	// Read metrics from split metric state files
 	stateMetrics, errMetricState := yaml.Parse(yaml.GetMetricStateInput(), metricdtos.GetMetricUniqueKey)
 	if errMetricState != nil {
 		log.Fatalf("error: %v", errMetricState)
 	}
 
-	// DEBUG: Log metrics found in state
-	fmt.Printf("DEBUG: Found %d state metrics\n", len(stateMetrics))
-	for name, metric := range stateMetrics {
-		fmt.Printf("DEBUG: State metric '%s' has ID: '%s'\n", name, metric.Spec.ID)
-	}
-
-	// DEBUG: Check metric assignment
-	for scorecardName, scorecard := range configScorecards {
-		fmt.Printf("DEBUG: Processing scorecard: %s\n", scorecardName)
-		for i, criterion := range scorecard.Spec.Criteria {
-			metricName := criterion.HasMetricValue.MetricName
-			fmt.Printf("DEBUG: Criterion %d needs metric: '%s'\n", i, metricName)
-
-			if stateMetric, exists := stateMetrics[metricName]; exists {
-				fmt.Printf("DEBUG: Found metric '%s' with ID: '%s'\n", metricName, stateMetric.Spec.ID)
-				criterion.HasMetricValue.MetricDefinitionId = stateMetric.Spec.ID
-				fmt.Printf("DEBUG: Assigned MetricDefinitionId: '%s'\n", criterion.HasMetricValue.MetricDefinitionId)
-			} else {
-				fmt.Printf("DEBUG: ERROR - Metric '%s' not found in state metrics!\n", metricName)
-				fmt.Printf("DEBUG: Available metrics: ")
-				for availableName := range stateMetrics {
-					fmt.Printf("'%s' ", availableName)
-				}
-				fmt.Println()
-			}
+	for _, scorecard := range configScorecards {
+		for _, criterion := range scorecard.Spec.Criteria {
+			criterion.HasMetricValue.MetricDefinitionId = stateMetrics[criterion.HasMetricValue.MetricName].Spec.ID
 		}
 	}
 
@@ -76,9 +50,6 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 		log.Fatalf("error: %v", errState)
 	}
 
-	// DEBUG: Log scorecard state
-	fmt.Printf("DEBUG: Found %d state scorecards\n", len(stateScorecards))
-
 	created, updated, deleted, unchanged := drift.Detect(
 		stateScorecards,
 		configScorecards,
@@ -86,25 +57,11 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 		dtos.IsScoreCardEqual,
 	)
 
-	// DEBUG: Log drift detection
-	fmt.Printf("DEBUG: Drift detection - Created: %d, Updated: %d, Deleted: %d, Unchanged: %d\n",
-		len(created), len(updated), len(deleted), len(unchanged))
-
-	result := make([]*dtos.ScorecardDTO, 0)
+	var result []*dtos.ScorecardDTO
 	h.handleDeleted(ctx, deleted)
-	result = h.handleUnchanged(ctx, result, unchanged)
+	result = h.handleUnchanged(ctx, result, unchanged, stateScorecards, configScorecards)
 	result = h.handleCreated(ctx, result, created)
 	result = h.handleUpdated(ctx, result, updated, stateScorecards)
-
-	// DEBUG: Check final result
-	fmt.Printf("DEBUG: Final result has %d scorecards\n", len(result))
-	for _, scorecard := range result {
-		fmt.Printf("DEBUG: Scorecard '%s' has %d criteria\n", scorecard.Spec.Name, len(scorecard.Spec.Criteria))
-		for i, criterion := range scorecard.Spec.Criteria {
-			fmt.Printf("DEBUG: Criterion %d: ID='%s', MetricDefinitionId='%s'\n",
-				i, criterion.HasMetricValue.ID, criterion.HasMetricValue.MetricDefinitionId)
-		}
-	}
 
 	// Write each scorecard to its own state file
 	err := yaml.WriteScorecardStates(result, dtos.GetScorecardUniqueKey)
@@ -122,19 +79,70 @@ func (h *ApplyHandler) handleDeleted(ctx context.Context, scorecards map[string]
 	}
 }
 
-func (h *ApplyHandler) handleUnchanged(ctx context.Context, result []*dtos.ScorecardDTO, scorecards map[string]*dtos.ScorecardDTO) []*dtos.ScorecardDTO {
-	fmt.Printf("DEBUG: handleUnchanged processing %d scorecards\n", len(scorecards))
-	for name, scorecardDTO := range scorecards {
-		fmt.Printf("DEBUG: Adding unchanged scorecard: %s\n", name)
-		result = append(result, scorecardDTO)
+// FIXED: handleUnchanged now merges state scorecards (with IDs) with config scorecards (with updated MetricDefinitionIds)
+func (h *ApplyHandler) handleUnchanged(
+	ctx context.Context,
+	result []*dtos.ScorecardDTO,
+	unchanged map[string]*dtos.ScorecardDTO,
+	stateScorecards map[string]*dtos.ScorecardDTO,
+	configScorecards map[string]*dtos.ScorecardDTO,
+) []*dtos.ScorecardDTO {
+	for name, _ := range unchanged {
+		// Start with the state scorecard (which has the criterion IDs)
+		stateScorecard := stateScorecards[name]
+		configScorecard := configScorecards[name]
+
+		// Create a copy of the state scorecard to avoid modifying the original
+		mergedScorecard := &dtos.ScorecardDTO{
+			APIVersion: stateScorecard.APIVersion,
+			Kind:       stateScorecard.Kind,
+			Metadata:   stateScorecard.Metadata,
+			Spec: dtos.Spec{
+				ID:                  stateScorecard.Spec.ID,
+				Name:                stateScorecard.Spec.Name,
+				Description:         stateScorecard.Spec.Description,
+				OwnerID:             stateScorecard.Spec.OwnerID,
+				State:               stateScorecard.Spec.State,
+				ComponentTypeIDs:    stateScorecard.Spec.ComponentTypeIDs,
+				Importance:          stateScorecard.Spec.Importance,
+				ScoringStrategyType: stateScorecard.Spec.ScoringStrategyType,
+				Criteria:            make([]*dtos.Criterion, len(stateScorecard.Spec.Criteria)),
+			},
+		}
+
+		// Copy criteria from state (preserving IDs) but update MetricDefinitionIds from config
+		for i, stateCriterion := range stateScorecard.Spec.Criteria {
+			// Find matching criterion in config by name
+			var configCriterion *dtos.Criterion
+			for _, c := range configScorecard.Spec.Criteria {
+				if c.HasMetricValue.Name == stateCriterion.HasMetricValue.Name {
+					configCriterion = c
+					break
+				}
+			}
+
+			// Create merged criterion
+			mergedScorecard.Spec.Criteria[i] = &dtos.Criterion{
+				HasMetricValue: dtos.MetricValue{
+					ID:                 stateCriterion.HasMetricValue.ID, // Keep ID from state
+					Weight:             stateCriterion.HasMetricValue.Weight,
+					Name:               stateCriterion.HasMetricValue.Name,
+					MetricName:         stateCriterion.HasMetricValue.MetricName,
+					MetricDefinitionId: configCriterion.HasMetricValue.MetricDefinitionId, // Updated MetricDefinitionId from config
+					ComparatorValue:    stateCriterion.HasMetricValue.ComparatorValue,
+					Comparator:         stateCriterion.HasMetricValue.Comparator,
+				},
+			}
+		}
+
+		result = append(result, mergedScorecard)
 	}
+
 	return result
 }
 
 func (h *ApplyHandler) handleCreated(ctx context.Context, result []*dtos.ScorecardDTO, scorecards map[string]*dtos.ScorecardDTO) []*dtos.ScorecardDTO {
-	fmt.Printf("DEBUG: handleCreated processing %d scorecards\n", len(scorecards))
-	for name, scorecardDTO := range scorecards {
-		fmt.Printf("DEBUG: Creating scorecard: %s\n", name)
+	for _, scorecardDTO := range scorecards {
 		scorecard := h.scorecardDTOToResource(scorecardDTO)
 
 		id, criteriaMap, errScorecard := h.repository.Create(ctx, scorecard)
@@ -142,21 +150,13 @@ func (h *ApplyHandler) handleCreated(ctx context.Context, result []*dtos.Scoreca
 			panic(errScorecard)
 		}
 
-		fmt.Printf("DEBUG: Created scorecard with ID: %s\n", id)
-		fmt.Printf("DEBUG: Criteria map has %d entries\n", len(criteriaMap))
-		for criteriaName, criteriaID := range criteriaMap {
-			fmt.Printf("DEBUG: Criteria '%s' -> ID '%s'\n", criteriaName, criteriaID)
-		}
-
 		scorecardDTO.Spec.ID = &id
-		for i, criterion := range scorecardDTO.Spec.Criteria {
-			criteriaID := criteriaMap[criterion.HasMetricValue.Name]
-			fmt.Printf("DEBUG: Setting criterion %d ID from '%s' to '%s'\n",
-				i, criterion.HasMetricValue.ID, criteriaID)
-			criterion.HasMetricValue.ID = criteriaID
+		for _, criterion := range scorecardDTO.Spec.Criteria {
+			criterion.HasMetricValue.ID = criteriaMap[criterion.HasMetricValue.Name]
 		}
 		result = append(result, scorecardDTO)
 	}
+
 	return result
 }
 
@@ -166,7 +166,6 @@ func (h *ApplyHandler) handleUpdated(
 	scorecards map[string]*dtos.ScorecardDTO,
 	stateScorecards map[string]*dtos.ScorecardDTO,
 ) []*dtos.ScorecardDTO {
-	fmt.Printf("DEBUG: handleUpdated processing %d scorecards\n", len(scorecards))
 	for _, scorecardDTO := range scorecards {
 
 		stateScorecard, ok := stateScorecards[scorecardDTO.Spec.Name]
