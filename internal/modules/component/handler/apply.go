@@ -237,14 +237,17 @@ func (h *ApplyHandler) handleUpdated(
 		}
 
 		componentDTO.Spec.ID = component.ID
-		for _, link := range component.Links {
-			componentDTO.Spec.Links = append(componentDTO.Spec.Links, dtos.Link{
+		
+		updatedLinks := make([]dtos.Link, len(component.Links))
+		for i, link := range component.Links {
+			updatedLinks[i] = dtos.Link{
 				ID:   link.ID,
 				Name: link.Name,
 				Type: link.Type,
 				URL:  link.URL,
-			})
+			}
 		}
+		componentDTO.Spec.Links = updatedLinks
 
 		if componentDTO.Spec.MetricSources == nil {
 			componentDTO.Spec.MetricSources = make(map[string]*dtos.MetricSourceDTO)
@@ -284,14 +287,24 @@ func componentDTOToResource(componentDTO *dtos.ComponentDTO) resources.Component
 }
 
 func linksDTOToResource(linksDTO []dtos.Link) []resources.Link {
-	links := make([]resources.Link, 0)
+	uniqueLinks := make(map[string]resources.Link)
+
 	for _, link := range linksDTO {
-		links = append(links, resources.Link{
-			Name: link.Name,
-			Type: link.Type,
-			URL:  link.URL,
-		})
+		uniqueKey := fmt.Sprintf("%s-%s-%s", link.Name, link.Type, link.URL)
+		if _, exists := uniqueLinks[uniqueKey]; !exists {
+			uniqueLinks[uniqueKey] = resources.Link{
+				Name: link.Name,
+				Type: link.Type,
+				URL:  link.URL,
+			}
+		}
 	}
+
+	links := make([]resources.Link, 0, len(uniqueLinks))
+	for _, link := range uniqueLinks {
+		links = append(links, link)
+	}
+
 	return links
 }
 

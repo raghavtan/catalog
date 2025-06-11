@@ -43,6 +43,7 @@ spec:
           url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
     documents: []
     labels:
+        - simple-service
         - cloud-runtime
         - platform
     metricSources:
