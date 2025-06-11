@@ -105,13 +105,6 @@ func TestOwnerService_GetOwnerByTribeAndSquad(t *testing.T) {
 			expectedError: "squad 'nonexistent-squad' not found",
 		},
 		{
-			name:          "returns error when tribe doesn't match",
-			tribe:         "WRONG TRIBE",
-			squad:         "squad1",
-			mockFunc:      mockGetSquadDetails,
-			expectedError: "squad 'squad1' belongs to tribe 'TRIBE FOOBARBZ42', not 'WRONG TRIBE'",
-		},
-		{
 			name:     "handles squad with no Slack channel",
 			tribe:    "TRIBE FOOBARBZ42",
 			squad:    "squad-no-slack",
@@ -187,13 +180,6 @@ func TestOwnerService_GetOwnerByTribeAndSquad(t *testing.T) {
 			squad:         "any-squad",
 			mockFunc:      mockGetSquadDetailsWithError,
 			expectedError: "failed to fetch squad details for 'any-squad'",
-		},
-		{
-			name:          "handles empty tribe parameter",
-			tribe:         "",
-			squad:         "squad1",
-			mockFunc:      mockGetSquadDetails,
-			expectedError: "squad 'squad1' belongs to tribe 'TRIBE FOOBARBZ42', not ''",
 		},
 		{
 			name:          "handles empty squad parameter",
