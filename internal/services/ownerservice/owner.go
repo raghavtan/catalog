@@ -45,11 +45,6 @@ func (os *OwnerService) GetOwnerByTribeAndSquad(tribe, squad string) (*dtos.Owne
 		return nil, err
 	}
 
-	// Verify tribe matches
-	if squadDetails.Tribe != tribe {
-		return nil, fmt.Errorf("squad '%s' belongs to tribe '%s', not '%s'", squad, squadDetails.Tribe, tribe)
-	}
-
 	owner := &dtos.Owner{
 		OwnerID:       squadDetails.JiraTeamID,
 		SlackChannels: make(map[string]string),
