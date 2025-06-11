@@ -5,7 +5,7 @@ metadata:
     name: 'betting-workers'
     componentType: service
 spec:
-    tribe: monetization
+    tribe: client-experience
     squad: sponsorship-integration
     name: betting-workers
     slug: svc-betting-workers
@@ -21,12 +21,15 @@ spec:
         - name: Repository
           type: REPOSITORY
           url: https://github.com/motain/betting-workers
-        - name: Monitoring page
+        - name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=betting-workers&var-container=betting-workers&from=now-1h&to=now
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=betting_workers_betting_workers_svc_cluster_local_&refresh=5s
         - name: client-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C07MMBZDYV6
@@ -35,5 +38,5 @@ spec:
           url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
     labels:
         - sponsorship-integration
-        - monetization
+        - client-experience
     customFields: null

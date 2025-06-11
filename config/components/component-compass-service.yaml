@@ -2,13 +2,13 @@
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: 'prometheus-exporter'
+    name: 'compass-service'
     componentType: service
 spec:
     tribe: platform
     squad: cloud-runtime
-    name: prometheus-exporter
-    slug: svc-prometheus-exporter
+    name: compass-service
+    slug: svc-compass-service
     description: Not Provided
     ownerId: ""
     typeId: SERVICE
@@ -20,16 +20,16 @@ spec:
     links:
         - name: Repository
           type: REPOSITORY
-          url: https://github.com/motain/prometheus-exporter
+          url: https://github.com/motain/compass-service
         - name: Prometheus Resource Metrics
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=prometheus-exporter&var-container=prometheus-exporter&from=now-1h&to=now
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=compass-service&var-container=compass-service&from=now-1h&to=now
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
         - name: Emissary Metrics
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=prometheus_exporter_prometheus_exporter_svc_cluster_local_&refresh=5s
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=compass_service_compass_service_svc_cluster_local_&refresh=5s
         - name: p-cloud-runtime
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CFUCQUA04

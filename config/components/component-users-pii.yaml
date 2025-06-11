@@ -1,29 +1,42 @@
+---
 apiVersion: of-catalog/v1alpha1
 kind: Component
 metadata:
-    name: users-pii
+    name: 'users-pii'
     componentType: service
 spec:
-    name: users-pii
-    slug: ""
-    description: ""
-    typeId: SERVICE
-    ownerId: ""
-    dependsOn:
-      - kubernetes
     tribe: membership
     squad: fan-activation
+    name: users-pii
+    slug: svc-users-pii
+    description: Not Provided
+    ownerId: ""
+    typeId: SERVICE
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
     links:
         - name: Repository
           type: REPOSITORY
           url: https://github.com/motain/users-pii
-        - name: Monitoring page
+        - name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-pii&var-container=users-pii&from=now-1h&to=now
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=users_pii_users_pii_svc_cluster_local_&refresh=5s
+        - name: r-activation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CK9LTN6DR
+        - name: Activation Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
     labels:
-        - users-pii
-        - membership
         - fan-activation
+        - membership
+    customFields: null
