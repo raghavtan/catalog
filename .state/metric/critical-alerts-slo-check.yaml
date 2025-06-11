@@ -1,0 +1,57 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+  name: critical-alerts-slo-check
+  labels:
+    grading-system: observability
+  componentType:
+    - service
+  facts:
+    - id: fetch-slos
+      name: Fetch SLOs
+      type: extract
+      source: jsonapi
+      uri: https://api.eu1.honeycomb.io/1/slos/${Metadata.Name}
+      jsonPath: .[].id
+      auth:
+        header: X-Honeycomb-Team
+        tokenVar: HONEYCOMB_API_KEY
+      rule: jsonpath
+    - id: fetch-alerts-for-slos
+      name: Fetch alerts for SLOs
+      type: extract
+      dependsOn:
+        - fetch-slos
+      source: jsonapi
+      uri: https://api.eu1.honeycomb.io/1/burn_alerts/${Metadata.Name}?slo_id=:slo_id
+      jsonPath: .[].id
+      auth:
+        header: X-Honeycomb-Team
+        tokenVar: HONEYCOMB_API_KEY
+      rule: jsonpath
+    - id: count-slos
+      name: Count SLOs
+      type: aggregate
+      dependsOn:
+        - fetch-slos
+      method: count
+    - id: count-alerts-for-slos
+      name: Count Alerts
+      type: aggregate
+      dependsOn:
+        - fetch-alerts-for-slos
+      method: count
+    - id: validate-alerts-for-slos
+      name: Validate that counts match
+      type: validate
+      dependsOn:
+        - count-slos
+        - count-alerts-for-slos
+      rule: deps_match
+spec:
+  id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/80249b35-572f-41be-9f7d-78d7ca793029
+  name: critical-alerts-slo-check
+  description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/observability.md#critical-alerts-slo-check
+  format:
+    unit: Critical Alerts/SLO Check

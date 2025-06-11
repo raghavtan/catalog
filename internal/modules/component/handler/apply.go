@@ -45,7 +45,7 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 		log.Fatalf("error: %v", errConfig)
 	}
 
-	stateComponents, errState := yaml.Parse(yaml.GetStateInput(stateRootLocation), dtos.GetComponentUniqueKey)
+	stateComponents, errState := yaml.Parse(yaml.GetComponentStateInput(), dtos.GetComponentUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}
@@ -77,8 +77,7 @@ func (h *ApplyHandler) handleAll(ctx context.Context, stateComponents, configCom
 	result = h.handleUnchanged(ctx, result, unchanged, stateComponents)
 	result = h.handleCreated(ctx, result, created, stateComponents)
 	result = h.handleUpdated(ctx, result, updated, stateComponents)
-
-	err := yaml.WriteState(yaml.SortResults(result, dtos.GetComponentUniqueKey))
+	err := yaml.WriteComponentStates(yaml.SortResults(result, dtos.GetComponentUniqueKey), dtos.GetComponentUniqueKey)
 	if err != nil {
 		log.Fatalf("error writing components to file: %v", err)
 	}
@@ -111,7 +110,7 @@ func (h *ApplyHandler) handleOne(ctx context.Context, stateComponents, configCom
 	result = h.handleCreated(ctx, result, created, stateComponents)
 	result = h.handleUpdated(ctx, result, updated, stateComponents)
 
-	err := yaml.WriteState(yaml.SortResults(result, dtos.GetComponentUniqueKey))
+	err := yaml.WriteComponentStates(yaml.SortResults(result, dtos.GetComponentUniqueKey), dtos.GetComponentUniqueKey)
 	if err != nil {
 		log.Fatalf("error writing components to file: %v", err)
 	}

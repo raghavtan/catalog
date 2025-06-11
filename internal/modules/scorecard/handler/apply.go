@@ -32,7 +32,8 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 		log.Fatalf("error: %v", errConfig)
 	}
 
-	stateMetrics, errMetricState := yaml.Parse(yaml.GetStateInput(stateRootLocation), metricdtos.GetMetricUniqueKey)
+	// Read metrics from split metric state files
+	stateMetrics, errMetricState := yaml.Parse(yaml.GetMetricStateInput(), metricdtos.GetMetricUniqueKey)
 	if errMetricState != nil {
 		log.Fatalf("error: %v", errMetricState)
 	}
@@ -43,7 +44,8 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 		}
 	}
 
-	stateScorecards, errState := yaml.Parse(yaml.GetStateInput(stateRootLocation), dtos.GetScorecardUniqueKey)
+	// Read scorecards from split scorecard state files
+	stateScorecards, errState := yaml.Parse(yaml.GetScorecardStateInput(), dtos.GetScorecardUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}
@@ -61,9 +63,10 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 	result = h.handleCreated(ctx, result, created)
 	result = h.handleUpdated(ctx, result, updated, stateScorecards)
 
-	err := yaml.WriteState(result)
+	// Write each scorecard to its own state file
+	err := yaml.WriteScorecardStates(result, dtos.GetScorecardUniqueKey)
 	if err != nil {
-		log.Fatalf("error writing scorecards to file: %v", err)
+		log.Fatalf("error writing scorecards to files: %v", err)
 	}
 }
 

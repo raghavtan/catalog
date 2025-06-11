@@ -1,0 +1,32 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Scorecard
+metadata:
+  name: resiliency
+spec:
+  id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef175b13-4017-47e6-94c0-d6a9b06628f4
+  name: resiliency
+  description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/resiliency.md#resiliency-grading-system
+  ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
+  state: PUBLISHED
+  componentTypeIds:
+    - SERVICE
+  importance: REQUIRED
+  scoringStrategyType: WEIGHT_BASED
+  criteria:
+    - hasMetricValue:
+        id: 134b83ea-3527-4b79-8760-420500b12685
+        weight: 50
+        name: high-availability
+        metricName: high-availability
+        metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/43e2c6ef-1a41-4fd6-b0e9-d7d7545681fd
+        comparatorValue: 1
+        comparator: EQUALS
+    - hasMetricValue:
+        id: c2c66206-b925-4fb5-a271-c0f121d6a203
+        weight: 50
+        name: adaptive-systems
+        metricName: adaptive-systems
+        metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6af0782-90a4-44e6-a9e9-4535573bd716
+        comparatorValue: 1
+        comparator: EQUALS

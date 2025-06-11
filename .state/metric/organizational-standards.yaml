@@ -1,0 +1,60 @@
+---
+apiVersion: of-catalog/v1alpha1
+kind: Metric
+metadata:
+  name: organizational-standards
+  labels:
+    grading-system: production-readiness
+  componentType:
+    - service
+    - cloud-resource
+  facts:
+    - id: readme-file
+      name: Check if the README.md file exists
+      type: extract
+      source: github
+      repo: ${Metadata.Name}
+      filePath: README.md
+      rule: notempty
+    - id: docs-readme-file
+      name: Check if the docs/README.md file exists
+      type: extract
+      source: github
+      repo: ${Metadata.Name}
+      filePath: docs/README.md
+      rule: notempty
+    - id: docs-index-file
+      name: Check if the docs/index.md file exists
+      type: extract
+      source: github
+      repo: ${Metadata.Name}
+      filePath: docs/index.md
+      rule: notempty
+    - id: paas-onboarded
+      name: Check if the service is using PaaS
+      type: extract
+      source: github
+      repo: ${Metadata.Name}
+      searchString: motain/onefootball-actions/paas-deploy@master
+      rule: search
+    - id: aggregate-readme-exists
+      name: Check if repo has documentation
+      type: aggregate
+      dependsOn:
+        - docs-index-file
+        - docs-readme-file
+        - readme-file
+      method: or
+    - id: aggregate
+      name: Check if repo follows organizational standards
+      type: aggregate
+      dependsOn:
+        - aggregate-readme-exists
+        - paas-onboarded
+      method: and
+spec:
+  id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/557a1209-6a66-4eda-8051-9634991b75f2
+  name: organizational-standards
+  description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/production-readiness.md#organizational-standards
+  format:
+    unit: Organizational Standards

@@ -22,7 +22,7 @@ func NewApplyHandler(
 }
 
 func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, stateRootLocation string, recursive bool) {
-	stateMetrics, errState := yaml.Parse(yaml.GetStateInput(stateRootLocation), dtos.GetMetricUniqueKey)
+	stateMetrics, errState := yaml.Parse(yaml.GetMetricStateInput(), dtos.GetMetricUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}
@@ -53,8 +53,7 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 	result = h.handleUnchanged(ctx, result, unchanged)
 	result = h.handleCreated(ctx, result, created)
 	result = h.handleUpdated(ctx, result, updated)
-
-	err := yaml.WriteState(result)
+	err := yaml.WriteMetricStates(result, dtos.GetMetricUniqueKey)
 	if err != nil {
 		log.Fatalf("error writing metrics to file: %v", err)
 	}

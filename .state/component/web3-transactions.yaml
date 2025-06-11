@@ -1,0 +1,389 @@
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: web3-transactions
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/1cd6471a-dfe7-4fa1-b4cd-a69cbb200397
+    name: web3-transactions
+    slug: ""
+    description: ""
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ""
+    dependsOn:
+        - kubernetes
+    fields: {}
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/web3-transactions
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=web3-transactions&var-container=web3-transactions&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents: []
+    labels:
+        - loyalty-program-squad
+        - monetization
+    metricSources:
+        adaptive-systems:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/fd17013b-65ce-43ff-8b4c-aa1b6ff91e6f
+            name: adaptive-systems-svc-web3-transactions
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6af0782-90a4-44e6-a9e9-4535573bd716
+            facts:
+                - id: app-toml-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
+                  repo: web3-transactions
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-replicas-max-gt-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
+                  repo: web3-transactions
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-replicas-min
+                    - app-toml-replicas-max-gt-replicas-min
+                  method: and
+        alert-routing-and-notifications:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/340d0950-1055-498e-8621-be8804ab4bee
+            name: alert-routing-and-notifications-svc-web3-transactions
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a475e853-8c43-47af-8b94-99240e853480
+            facts:
+                - id: fetch-slos
+                  name: Fetch SLOs
+                  type: extract
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/slos/web3-transactions
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-alerts-for-slos
+                  name: Fetch alerts for SLOs
+                  type: extract
+                  dependsOn:
+                    - fetch-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/web3-transactions?slo_id=:slo_id
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-recipients-for-alerts
+                  name: Fetch recipients for Alerts
+                  type: extract
+                  dependsOn:
+                    - fetch-alerts-for-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/web3-transactions/:alert_id
+                  jsonPath: .recipients[].target
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: validate-each-target-is-not-empty-string
+                  name: Validate that each target is not an empty string
+                  type: validate
+                  dependsOn:
+                    - fetch-recipients-for-alerts
+                  rule: regex_match
+                  pattern: ^\S.*$
+                - id: validate-all-targets-are-not-empty-strings
+                  name: Validate that all targets are not empty strings
+                  type: aggregate
+                  dependsOn:
+                    - validate-each-target-is-not-empty-string
+                  method: and
+        allocation-efficiency:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d338b25d-f7a0-4f8a-bcd8-888112cc2eec
+            name: allocation-efficiency-svc-web3-transactions
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0280d248-c53a-4dcf-a5a4-945cdd931406
+            facts:
+                - id: check-app-toml-resource-request
+                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
+                  repo: web3-transactions
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: check-app-toml-cpu-limits
+                  name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
+                  repo: web3-transactions
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: check-app-toml-memory-limits
+                  name: Check if  memory limits are defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: .service.memory_limits // .service.production.memory_limits | . != null
+                  repo: web3-transactions
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: aggregate-resource-requests
+                  name: check resource requests and limits
+                  type: aggregate
+                  dependsOn:
+                    - check-app-toml-resource-request
+                    - check-app-toml-cpu-limits
+                    - check-app-toml-memory-limits
+                  method: and
+        critical-alerts-slo-check:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7b4d792f-d842-4cb3-b1a6-c561997f1718
+            name: critical-alerts-slo-check-svc-web3-transactions
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/80249b35-572f-41be-9f7d-78d7ca793029
+            facts:
+                - id: fetch-slos
+                  name: Fetch SLOs
+                  type: extract
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/slos/web3-transactions
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-alerts-for-slos
+                  name: Fetch alerts for SLOs
+                  type: extract
+                  dependsOn:
+                    - fetch-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/web3-transactions?slo_id=:slo_id
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: count-slos
+                  name: Count SLOs
+                  type: aggregate
+                  dependsOn:
+                    - fetch-slos
+                  method: count
+                - id: count-alerts-for-slos
+                  name: Count Alerts
+                  type: aggregate
+                  dependsOn:
+                    - fetch-alerts-for-slos
+                  method: count
+                - id: validate-alerts-for-slos
+                  name: Validate that counts match
+                  type: validate
+                  dependsOn:
+                    - count-slos
+                    - count-alerts-for-slos
+                  rule: deps_match
+        deployment-readiness:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5ba1cb18-1b04-4600-ae02-1bc71a920dd7
+            name: deployment-readiness-svc-web3-transactions
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9c34910-156e-4669-b283-3d3bb08c58ac
+            facts:
+                - id: deployment-readiness-replicas-service-production
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
+                  repo: web3-transactions
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: deployment-readiness-replicas-service
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
+                  repo: web3-transactions
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: aggregate-replicas
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: aggregate
+                  dependsOn:
+                    - deployment-readiness-replicas-service-production
+                    - deployment-readiness-replicas-service
+                  method: or
+        high-availability:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/47c0500e-4070-465a-8de8-4da391a11473
+            name: high-availability-svc-web3-transactions
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/43e2c6ef-1a41-4fd6-b0e9-d7d7545681fd
+            facts:
+                - id: app-toml-hpa-target-cpu
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
+                  repo: web3-transactions
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-hpa-target-memory
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
+                  repo: web3-transactions
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-hpa-target-cpu
+                    - app-toml-hpa-target-memory
+                  method: or
+        instrumentation-check:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/32172ebf-2730-4ede-bd5a-db027217b743
+            name: instrumentation-check-svc-web3-transactions
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/be5dd5aa-9468-4dd1-8e7a-580b9da4e5c6
+            facts:
+                - id: read-otel-service-name-from-apptoml
+                  name: Read OTEL_SERVICE_NAME from app.toml
+                  type: extract
+                  source: github
+                  jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
+                  repo: web3-transactions
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: validate-otel-service-name-matches-component-name
+                  name: validate OTEL_SERVICE_NAME matches component name
+                  type: validate
+                  dependsOn:
+                    - read-otel-service-name-from-apptoml
+                  rule: regex_match
+                  pattern: ^web3-transactions.*$
+                - id: read-otel-resource-attributes-from-apptoml
+                  name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
+                  type: extract
+                  source: github
+                  jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
+                  repo: web3-transactions
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: validate-otel-resource-attributes-sample-rate
+                  name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
+                  type: validate
+                  dependsOn:
+                    - read-otel-resource-attributes-from-apptoml
+                  rule: regex_match
+                  pattern: of\.sample_rate=\d+.*
+                - id: validate-otel-resource-attributes-one-sample-rate
+                  name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
+                  type: validate
+                  dependsOn:
+                    - read-otel-resource-attributes-from-apptoml
+                  rule: regex_match
+                  pattern: of\.error_sample_rate=\d+.*
+                - id: either-sample-rate-or-error-sample-rate
+                  name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
+                  type: aggregate
+                  dependsOn:
+                    - validate-otel-resource-attributes-sample-rate
+                    - validate-otel-resource-attributes-error-sample-rate
+                  method: or
+                - id: either-sample-rate-or-error-sample-rate
+                  name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
+                  type: aggregate
+                  dependsOn:
+                    - validate-otel-service-name-matches-component-name
+                    - validate-otel-resource-attributes-one-sample-rate
+                  method: and
+        observability-documentation:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/fde5a245-2c36-4e83-9ad2-e5aff3d8f66e
+            name: observability-documentation-svc-web3-transactions
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f133b6d9-595f-4862-a10d-cb356968e2bc
+            facts:
+                - id: extract-observability-md
+                  name: Extract observability.md
+                  type: extract
+                  source: github
+                  repo: web3-transactions
+                  filePath: docs/observability.md
+                  rule: notempty
+        organizational-standards:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/b8f25945-f0d8-4b7e-8f57-170a47278c54
+            name: organizational-standards-svc-web3-transactions
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/557a1209-6a66-4eda-8051-9634991b75f2
+            facts:
+                - id: readme-file
+                  name: Check if the README.md file exists
+                  type: extract
+                  source: github
+                  repo: web3-transactions
+                  filePath: README.md
+                  rule: notempty
+                - id: docs-readme-file
+                  name: Check if the docs/README.md file exists
+                  type: extract
+                  source: github
+                  repo: web3-transactions
+                  filePath: docs/README.md
+                  rule: notempty
+                - id: docs-index-file
+                  name: Check if the docs/index.md file exists
+                  type: extract
+                  source: github
+                  repo: web3-transactions
+                  filePath: docs/index.md
+                  rule: notempty
+                - id: paas-onboarded
+                  name: Check if the service is using PaaS
+                  type: extract
+                  source: github
+                  repo: web3-transactions
+                  searchString: motain/onefootball-actions/paas-deploy@master
+                  rule: search
+                - id: aggregate-readme-exists
+                  name: Check if repo has documentation
+                  type: aggregate
+                  dependsOn:
+                    - docs-index-file
+                    - docs-readme-file
+                    - readme-file
+                  method: or
+                - id: aggregate
+                  name: Check if repo follows organizational standards
+                  type: aggregate
+                  dependsOn:
+                    - aggregate-readme-exists
+                    - paas-onboarded
+                  method: and
+        security-as-pipeline:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9497de9a-5ffc-4af6-ba7d-ecca2ce5e6fd
+            name: security-as-pipeline-svc-web3-transactions
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f16a5dad-816a-48db-9e96-6d1250e63659
+            facts:
+                - id: trivy-exists-in-ci
+                  name: Check if Trivy is used in CI/CD pipeline
+                  type: extract
+                  source: github
+                  repo: web3-transactions
+                  searchString: motain/onefootball-actions/security
+                  rule: search
+        vulnerability-management:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3da15041-7718-4791-90b2-f8dd6d9f05d4
+            name: vulnerability-management-svc-web3-transactions
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/6390dfc8-c94e-492a-8741-3fcbfa2fbddb
+            facts:
+                - id: service-vulnerabilities-prometheus
+                  name: Get summary of vulnerabilities for services from Prometheus reports
+                  type: extract
+                  source: prometheus
+                  prometheusQuery: sum(trivy_image_vulnerabilities{namespace="web3-transactions", severity="Critical" })
+    tribe: monetization
+    squad: loyalty-program-squad
