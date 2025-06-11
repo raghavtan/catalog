@@ -24,7 +24,6 @@ func NewApplyHandler(
 }
 
 func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, stateRootLocation string, recursive bool) {
-	// DEBUG: Check what files exist in the metric state directory
 	fmt.Println("DEBUG: Checking .state/metric/ directory:")
 	entries, err := os.ReadDir(".state/metric")
 	if err != nil {
@@ -47,7 +46,6 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 		log.Fatalf("error: %v", errState)
 	}
 
-	// DEBUG: Read config
 	parseInput := yaml.ParseInput{
 		RootLocation: configRootLocation,
 		Recursive:    recursive,
@@ -57,7 +55,6 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 		log.Fatalf("error: %v", errConfig)
 	}
 
-	// DEBUG: Print what we found in config
 	fmt.Printf("DEBUG: Config metrics count: %d\n", len(configMetrics))
 	for name := range configMetrics {
 		fmt.Printf("DEBUG: Config metric: %s\n", name)
