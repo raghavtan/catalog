@@ -55,6 +55,7 @@ jobs:
           chmod +x ofc
     - run: |
         ./ofc component apply -l ./config/components -c ${{ matrix.project }}
+        ./ofc component bind
 
     - name: Commit and push state changes
       run: |
