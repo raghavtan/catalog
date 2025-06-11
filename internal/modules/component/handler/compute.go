@@ -37,7 +37,7 @@ func (h *ComputeHandler) Compute(ctx context.Context, componentName string, all 
 	}
 
 	if !all {
-		fmt.Printf("Tracking metric '%s' for component '%s'\n", metricName, componentName)
+		fmt.Printf("Tracking metric '%s' component '%s'\n", metricName, componentName)
 		computeErr := h.computeMetric(ctx, component, metricName)
 		if computeErr != nil {
 			log.Fatalf("compute: %v", computeErr)
