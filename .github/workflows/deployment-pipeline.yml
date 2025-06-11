@@ -21,6 +21,8 @@ jobs:
   commit-cycle:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      GITHUB_TOKEN: ${{ secrets.PRIVATE_DEPENDENCIES_GITHUB_TOKEN}}
     outputs:
       version: ${{ github.sha }}
     steps:

@@ -38,4 +38,6 @@ jobs:
             $(curl -s -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" "https://api.github.com/repos/motain/of-catalog/releases/latest" | jq -r '.assets[0].url')
             chmod +x ofc
 
-      - run: ./compute-all.sh
+      - run: |
+          ./ofc component bind
+          ./compute-all.sh

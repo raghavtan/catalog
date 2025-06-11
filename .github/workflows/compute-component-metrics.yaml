@@ -45,4 +45,5 @@ jobs:
           chmod +x ofc
 
     - run: |
+        ./ofc component bind
         ./ofc component compute -a -c ${{ github.event.inputs.component }}
