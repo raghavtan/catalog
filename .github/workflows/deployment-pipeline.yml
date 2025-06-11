@@ -27,13 +27,23 @@ jobs:
       version: ${{ github.sha }}
     steps:
       - uses: actions/checkout@v4
-
-      - id: set-up-go
-        uses: actions/setup-go@v5
         with:
-          go-version: '1.24'
-          go-version-file: "go.mod"
+          fetch-depth: "0"
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
           cache: true
+
+      - uses: motain/onefootball-actions/pvt-deps@master
+        with:
+          github-token: ${{ secrets.PRIVATE_DEPENDENCIES_GITHUB_TOKEN }}
+      - uses: actions/cache@v4
+        with:
+          path: |
+            vendor
+            bin
+          key: ${{ hashFiles('go.mod') }}
 
       - name: Install gnome-keyring
         run: |
@@ -76,17 +86,27 @@ jobs:
       group: release-cycle
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: "0"
 
       # - name: Install dependencies
       #   run: |
       #     apt-get update && apt-get install curl build-essential make -y
 
-      - id: set-up-go
-        uses: actions/setup-go@v5
+      - uses: actions/setup-go@v5
         with:
-          go-version: '1.24'
-          go-version-file: "go.mod"
+          go-version-file: go.mod
           cache: true
+
+      - uses: motain/onefootball-actions/pvt-deps@master
+        with:
+          github-token: ${{ secrets.PRIVATE_DEPENDENCIES_GITHUB_TOKEN }}
+      - uses: actions/cache@v4
+        with:
+          path: |
+            vendor
+            bin
+          key: ${{ hashFiles('go.mod') }}
 
       - id: install-project-dependencies
         run: go mod tidy

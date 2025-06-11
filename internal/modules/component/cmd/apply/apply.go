@@ -17,7 +17,7 @@ func Init() *cobra.Command {
 		Short: "Apply changes to scorecards",
 		Run: func(cmd *cobra.Command, args []string) {
 			if configRootLocation == "" {
-				fmt.Println("Error: configRootLocation is required")
+				fmt.Println("Error: configRootLocation required")
 				cmd.Help()
 				return
 			}
