@@ -1,68 +1,67 @@
----
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-  name: instrumentation-check
-  labels:
-    grading-system: observability
-  componentType:
-    - service
-    - cloud-resource
-  facts:
-    - id: read-otel-service-name-from-apptoml
-      name: Read OTEL_SERVICE_NAME from app.toml
-      type: extract
-      source: github
-      jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
-      repo: ${Metadata.Name}
-      filePath: app.toml
-      rule: jsonpath
-    - id: validate-otel-service-name-matches-component-name
-      name: validate OTEL_SERVICE_NAME matches component name
-      type: validate
-      dependsOn:
-        - read-otel-service-name-from-apptoml
-      rule: regex_match
-      pattern: ^${Metadata.Name}.*$
-    - id: read-otel-resource-attributes-from-apptoml
-      name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
-      type: extract
-      source: github
-      jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
-      repo: ${Metadata.Name}
-      filePath: app.toml
-      rule: jsonpath
-    - id: validate-otel-resource-attributes-sample-rate
-      name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
-      type: validate
-      dependsOn:
-        - read-otel-resource-attributes-from-apptoml
-      rule: regex_match
-      pattern: of\.sample_rate=\d+.*
-    - id: validate-otel-resource-attributes-one-sample-rate
-      name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
-      type: validate
-      dependsOn:
-        - read-otel-resource-attributes-from-apptoml
-      rule: regex_match
-      pattern: of\.error_sample_rate=\d+.*
-    - id: either-sample-rate-or-error-sample-rate
-      name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
-      type: aggregate
-      dependsOn:
-        - validate-otel-resource-attributes-sample-rate
-        - validate-otel-resource-attributes-error-sample-rate
-      method: or
-    - id: either-sample-rate-or-error-sample-rate
-      name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
-      type: aggregate
-      dependsOn:
-        - validate-otel-service-name-matches-component-name
-        - validate-otel-resource-attributes-one-sample-rate
-      method: and
+    name: instrumentation-check
+    labels:
+        grading-system: observability
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: read-otel-service-name-from-apptoml
+          name: Read OTEL_SERVICE_NAME from app.toml
+          type: extract
+          source: github
+          jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: validate-otel-service-name-matches-component-name
+          name: validate OTEL_SERVICE_NAME matches component name
+          type: validate
+          dependsOn:
+            - read-otel-service-name-from-apptoml
+          rule: regex_match
+          pattern: ^${Metadata.Name}.*$
+        - id: read-otel-resource-attributes-from-apptoml
+          name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
+          type: extract
+          source: github
+          jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: validate-otel-resource-attributes-sample-rate
+          name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
+          type: validate
+          dependsOn:
+            - read-otel-resource-attributes-from-apptoml
+          rule: regex_match
+          pattern: of\.sample_rate=\d+.*
+        - id: validate-otel-resource-attributes-one-sample-rate
+          name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
+          type: validate
+          dependsOn:
+            - read-otel-resource-attributes-from-apptoml
+          rule: regex_match
+          pattern: of\.error_sample_rate=\d+.*
+        - id: either-sample-rate-or-error-sample-rate
+          name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
+          type: aggregate
+          dependsOn:
+            - validate-otel-resource-attributes-sample-rate
+            - validate-otel-resource-attributes-error-sample-rate
+          method: or
+        - id: either-sample-rate-or-error-sample-rate
+          name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
+          type: aggregate
+          dependsOn:
+            - validate-otel-service-name-matches-component-name
+            - validate-otel-resource-attributes-one-sample-rate
+          method: and
 spec:
-  id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/be5dd5aa-9468-4dd1-8e7a-580b9da4e5c6
-  name: instrumentation-check
-  description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/observability.md#instrumentation-check
-  format:
-    unit: Instrumentation Check
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/be5dd5aa-9468-4dd1-8e7a-580b9da4e5c6
+    name: instrumentation-check
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/observability.md#instrumentation-check
+    format:
+        unit: Instrumentation Check

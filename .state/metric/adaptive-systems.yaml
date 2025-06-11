@@ -1,38 +1,37 @@
----
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-  name: adaptive-systems
-  labels:
-    grading-system: resiliency
-  componentType:
-    - service
-    - cloud-resource
-  facts:
-    - id: app-toml-replicas-min
-      type: extract
-      source: github
-      jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
-      repo: ${Metadata.Name}
-      filePath: app.toml
-      rule: jsonpath
-    - id: app-toml-replicas-max-gt-replicas-min
-      type: extract
-      source: github
-      jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
-      repo: ${Metadata.Name}
-      filePath: app.toml
-      rule: jsonpath
-    - id: cpu-and-memory-hpa-are-set
-      name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
-      type: aggregate
-      dependsOn:
-        - app-toml-replicas-min
-        - app-toml-replicas-max-gt-replicas-min
-      method: and
+    name: adaptive-systems
+    labels:
+        grading-system: resiliency
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: app-toml-replicas-min
+          type: extract
+          source: github
+          jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: app-toml-replicas-max-gt-replicas-min
+          type: extract
+          source: github
+          jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
+          repo: ${Metadata.Name}
+          filePath: app.toml
+          rule: jsonpath
+        - id: cpu-and-memory-hpa-are-set
+          name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+          type: aggregate
+          dependsOn:
+            - app-toml-replicas-min
+            - app-toml-replicas-max-gt-replicas-min
+          method: and
 spec:
-  id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6af0782-90a4-44e6-a9e9-4535573bd716
-  name: adaptive-systems
-  description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/resiliency.md#adaptive-systems
-  format:
-    unit: Adaptive Systems
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6af0782-90a4-44e6-a9e9-4535573bd716
+    name: adaptive-systems
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/resiliency.md#adaptive-systems
+    format:
+        unit: Adaptive Systems

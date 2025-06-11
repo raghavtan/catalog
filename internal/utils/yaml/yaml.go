@@ -274,8 +274,18 @@ func getFilePath[T any](tKind string, parseInput ParseInput) (string, error) {
 		directory = fmt.Sprintf("%s/**", directory)
 	}
 
+	if isSplitStateDirectory(parseInput.RootLocation) {
+		return filepath.Join(directory, "*.yaml"), nil
+	}
+
 	fileString := fmt.Sprintf("%s*", tKind)
 	return filepath.Join(directory, getKindFileName(fileString)), nil
+}
+
+func isSplitStateDirectory(rootLocation string) bool {
+	return rootLocation == MetricStateLocation ||
+		rootLocation == ScorecardStateLocation ||
+		rootLocation == ComponentStateLocation
 }
 
 func encodeData[T any](data []*T) ([]byte, error) {

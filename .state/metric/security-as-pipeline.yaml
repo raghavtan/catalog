@@ -1,23 +1,23 @@
 apiVersion: of-catalog/v1alpha1
 kind: Metric
 metadata:
-  name: security-as-pipeline
-  labels:
-    grading-system: security
-  componentType:
-    - service
-    - cloud-resource
-  facts:
-    - id: trivy-exists-in-ci
-      name: Check if Trivy is used in CI/CD pipeline
-      type: extract
-      source: github
-      repo: ${Metadata.Name}
-      searchString: motain/onefootball-actions/security
-      rule: search
+    name: security-as-pipeline
+    labels:
+        grading-system: security
+    componentType:
+        - service
+        - cloud-resource
+    facts:
+        - id: trivy-exists-in-ci
+          name: Check if Trivy is used in CI/CD pipeline
+          type: extract
+          source: github
+          repo: ${Metadata.Name}
+          searchString: motain/onefootball-actions/security
+          rule: search
 spec:
-  id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f16a5dad-816a-48db-9e96-6d1250e63659
-  name: security-as-pipeline
-  description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/security.md#security-as-pipeline
-  format:
-    unit: Security as Pipeline
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f16a5dad-816a-48db-9e96-6d1250e63659
+    name: security-as-pipeline
+    description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/security.md#security-as-pipeline
+    format:
+        unit: Security as Pipeline
