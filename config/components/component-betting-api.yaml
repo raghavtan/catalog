@@ -13,7 +13,6 @@ spec:
     ownerId: ""
     typeId: SERVICE
     dependsOn:
-        - kubernetes
         - mediation-api
     fields:
         lifecycle: Active
