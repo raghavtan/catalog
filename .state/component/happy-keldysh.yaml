@@ -10,11 +10,15 @@ spec:
     description: ""
     configVersion: 0
     typeId: SERVICE
-    ownerId: ""
+    ownerId: ari:cloud:identity::team/1a1d7694-4219-4d82-b6c6-32fe779056de
     dependsOn:
         - kubernetes
     fields: {}
     links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/happy-keldysh
         - id: ""
           name: Monitoring page
           type: DASHBOARD
@@ -28,9 +32,9 @@ spec:
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C04NG20NVPW
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/happy-keldysh
+          name: DACORE
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/DACORE/boards/909
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a40747e7-205c-432e-ad39-cb54a87959d2
           title: Readme

@@ -8,7 +8,7 @@ spec:
     slug: ""
     description: ""
     typeId: SERVICE
-    ownerId: ""
+    ownerId: "WRONG SQUAD"
     dependsOn:
       - kubernetes
     tribe: reach
@@ -17,9 +17,12 @@ spec:
         - name: Repository
           type: REPOSITORY
           url: https://github.com/motain/gam-mrss-generator
-        - name: Monitoring page
+        - name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=gam-mrss-generator&var-container=gam-mrss-generator&from=now-1h&to=now
+        - name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=gam_mrss_generator_gam_mrss_generator_svc_cluster_local_&refresh=5s
         - name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9

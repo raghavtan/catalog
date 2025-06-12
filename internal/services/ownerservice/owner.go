@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/motain/of-catalog/internal/services/ownerservice/dtos"
+	_ "github.com/motain/of-org"
 	"gopkg.in/yaml.v3"
 )
 
