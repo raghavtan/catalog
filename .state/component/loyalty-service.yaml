@@ -15,20 +15,8 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 3
+        tier: 4
     links:
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=loyalty_service_loyalty_service_svc_cluster_local_&refresh=5s
-        - id: ""
-          name: onefootball-club
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C05R46W1TMZ
         - id: ""
           name: OFC
           type: PROJECT
@@ -41,9 +29,20 @@ spec:
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=loyalty-service&var-container=loyalty-service&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=loyalty_service_loyalty_service_svc_cluster_local_&refresh=5s
+        - id: ""
+          name: onefootball-club
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C05R46W1TMZ
     documents: []
     labels:
-        - of-catalog
         - onefootball-club
         - membership
     metricSources:
