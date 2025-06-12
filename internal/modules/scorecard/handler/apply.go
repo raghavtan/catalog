@@ -32,7 +32,8 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 		log.Fatalf("error: %v", errConfig)
 	}
 
-	stateMetrics, errMetricState := yaml.Parse(yaml.GetStateInput(stateRootLocation), metricdtos.GetMetricUniqueKey)
+	// Read metrics from split metric state files
+	stateMetrics, errMetricState := yaml.Parse(yaml.GetMetricStateInput(), metricdtos.GetMetricUniqueKey)
 	if errMetricState != nil {
 		log.Fatalf("error: %v", errMetricState)
 	}
@@ -43,7 +44,8 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 		}
 	}
 
-	stateScorecards, errState := yaml.Parse(yaml.GetStateInput(stateRootLocation), dtos.GetScorecardUniqueKey)
+	// Read scorecards from split scorecard state files
+	stateScorecards, errState := yaml.Parse(yaml.GetScorecardStateInput(), dtos.GetScorecardUniqueKey)
 	if errState != nil {
 		log.Fatalf("error: %v", errState)
 	}
@@ -55,15 +57,16 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 		dtos.IsScoreCardEqual,
 	)
 
-	result := make([]*dtos.ScorecardDTO, 0)
+	var result []*dtos.ScorecardDTO
 	h.handleDeleted(ctx, deleted)
-	result = h.handleUnchanged(ctx, result, unchanged)
+	result = h.handleUnchanged(ctx, result, unchanged, stateScorecards, configScorecards)
 	result = h.handleCreated(ctx, result, created)
 	result = h.handleUpdated(ctx, result, updated, stateScorecards)
 
-	err := yaml.WriteState(result)
+	// Write each scorecard to its own state file
+	err := yaml.WriteScorecardStates(result, dtos.GetScorecardUniqueKey)
 	if err != nil {
-		log.Fatalf("error writing scorecards to file: %v", err)
+		log.Fatalf("error writing scorecards to files: %v", err)
 	}
 }
 
@@ -76,9 +79,63 @@ func (h *ApplyHandler) handleDeleted(ctx context.Context, scorecards map[string]
 	}
 }
 
-func (h *ApplyHandler) handleUnchanged(ctx context.Context, result []*dtos.ScorecardDTO, scorecards map[string]*dtos.ScorecardDTO) []*dtos.ScorecardDTO {
-	for _, scorecardDTO := range scorecards {
-		result = append(result, scorecardDTO)
+// FIXED: handleUnchanged now merges state scorecards (with IDs) with config scorecards (with updated MetricDefinitionIds)
+func (h *ApplyHandler) handleUnchanged(
+	ctx context.Context,
+	result []*dtos.ScorecardDTO,
+	unchanged map[string]*dtos.ScorecardDTO,
+	stateScorecards map[string]*dtos.ScorecardDTO,
+	configScorecards map[string]*dtos.ScorecardDTO,
+) []*dtos.ScorecardDTO {
+	for name, _ := range unchanged {
+		// Start with the state scorecard (which has the criterion IDs)
+		stateScorecard := stateScorecards[name]
+		configScorecard := configScorecards[name]
+
+		// Create a copy of the state scorecard to avoid modifying the original
+		mergedScorecard := &dtos.ScorecardDTO{
+			APIVersion: stateScorecard.APIVersion,
+			Kind:       stateScorecard.Kind,
+			Metadata:   stateScorecard.Metadata,
+			Spec: dtos.Spec{
+				ID:                  stateScorecard.Spec.ID,
+				Name:                stateScorecard.Spec.Name,
+				Description:         stateScorecard.Spec.Description,
+				OwnerID:             stateScorecard.Spec.OwnerID,
+				State:               stateScorecard.Spec.State,
+				ComponentTypeIDs:    stateScorecard.Spec.ComponentTypeIDs,
+				Importance:          stateScorecard.Spec.Importance,
+				ScoringStrategyType: stateScorecard.Spec.ScoringStrategyType,
+				Criteria:            make([]*dtos.Criterion, len(stateScorecard.Spec.Criteria)),
+			},
+		}
+
+		// Copy criteria from state (preserving IDs) but update MetricDefinitionIds from config
+		for i, stateCriterion := range stateScorecard.Spec.Criteria {
+			// Find matching criterion in config by name
+			var configCriterion *dtos.Criterion
+			for _, c := range configScorecard.Spec.Criteria {
+				if c.HasMetricValue.Name == stateCriterion.HasMetricValue.Name {
+					configCriterion = c
+					break
+				}
+			}
+
+			// Create merged criterion
+			mergedScorecard.Spec.Criteria[i] = &dtos.Criterion{
+				HasMetricValue: dtos.MetricValue{
+					ID:                 stateCriterion.HasMetricValue.ID, // Keep ID from state
+					Weight:             stateCriterion.HasMetricValue.Weight,
+					Name:               stateCriterion.HasMetricValue.Name,
+					MetricName:         stateCriterion.HasMetricValue.MetricName,
+					MetricDefinitionId: configCriterion.HasMetricValue.MetricDefinitionId, // Updated MetricDefinitionId from config
+					ComparatorValue:    stateCriterion.HasMetricValue.ComparatorValue,
+					Comparator:         stateCriterion.HasMetricValue.Comparator,
+				},
+			}
+		}
+
+		result = append(result, mergedScorecard)
 	}
 
 	return result

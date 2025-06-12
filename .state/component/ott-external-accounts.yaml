@@ -1,0 +1,408 @@
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: ott-external-accounts
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ca9ea4c1-05c2-47e2-bff2-447b234bd6cb
+    name: ott-external-accounts
+    slug: svc-ott-external-accounts
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/ott-external-accounts
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-external-accounts&var-container=ott-external-accounts&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=ott_external_accounts_ott_external_accounts_svc_cluster_local_&refresh=5s
+        - id: ""
+          name: e-livevideo
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C053ATVH3N2
+        - id: ""
+          name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
+    documents:
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/1d63858c-9e97-4a92-a7da-1e052b5ddd16
+          title: Readme
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/ott-external-accounts/blob/main/docs/index.md
+    labels:
+        - live-video
+        - ott
+    metricSources:
+        adaptive-systems:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d3122793-c246-4d34-b4d6-de69d44fa47d
+            name: adaptive-systems-svc-ott-external-accounts
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6af0782-90a4-44e6-a9e9-4535573bd716
+            facts:
+                - id: app-toml-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
+                  repo: ott-external-accounts
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-replicas-max-gt-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
+                  repo: ott-external-accounts
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-replicas-min
+                    - app-toml-replicas-max-gt-replicas-min
+                  method: and
+        alert-routing-and-notifications:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/9ace7dbf-33e2-476a-9784-e136dd6032c9
+            name: alert-routing-and-notifications-svc-ott-external-accounts
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a475e853-8c43-47af-8b94-99240e853480
+            facts:
+                - id: fetch-slos
+                  name: Fetch SLOs
+                  type: extract
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/slos/ott-external-accounts
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-alerts-for-slos
+                  name: Fetch alerts for SLOs
+                  type: extract
+                  dependsOn:
+                    - fetch-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/ott-external-accounts?slo_id=:slo_id
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-recipients-for-alerts
+                  name: Fetch recipients for Alerts
+                  type: extract
+                  dependsOn:
+                    - fetch-alerts-for-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/ott-external-accounts/:alert_id
+                  jsonPath: .recipients[].target
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: validate-each-target-is-not-empty-string
+                  name: Validate that each target is not an empty string
+                  type: validate
+                  dependsOn:
+                    - fetch-recipients-for-alerts
+                  rule: regex_match
+                  pattern: ^\S.*$
+                - id: validate-all-targets-are-not-empty-strings
+                  name: Validate that all targets are not empty strings
+                  type: aggregate
+                  dependsOn:
+                    - validate-each-target-is-not-empty-string
+                  method: and
+        allocation-efficiency:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a566a90d-9aae-4234-bca3-f6e62f4119a4
+            name: allocation-efficiency-svc-ott-external-accounts
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0280d248-c53a-4dcf-a5a4-945cdd931406
+            facts:
+                - id: check-app-toml-resource-request
+                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
+                  repo: ott-external-accounts
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: check-app-toml-cpu-limits
+                  name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
+                  repo: ott-external-accounts
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: check-app-toml-memory-limits
+                  name: Check if  memory limits are defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: .service.memory_limits // .service.production.memory_limits | . != null
+                  repo: ott-external-accounts
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: aggregate-resource-requests
+                  name: check resource requests and limits
+                  type: aggregate
+                  dependsOn:
+                    - check-app-toml-resource-request
+                    - check-app-toml-cpu-limits
+                    - check-app-toml-memory-limits
+                  method: and
+        critical-alerts-slo-check:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/b344abb0-ada5-419e-89d9-95caf6c30cab
+            name: critical-alerts-slo-check-svc-ott-external-accounts
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/80249b35-572f-41be-9f7d-78d7ca793029
+            facts:
+                - id: fetch-slos
+                  name: Fetch SLOs
+                  type: extract
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/slos/ott-external-accounts
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-alerts-for-slos
+                  name: Fetch alerts for SLOs
+                  type: extract
+                  dependsOn:
+                    - fetch-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/ott-external-accounts?slo_id=:slo_id
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: count-slos
+                  name: Count SLOs
+                  type: aggregate
+                  dependsOn:
+                    - fetch-slos
+                  method: count
+                - id: count-alerts-for-slos
+                  name: Count Alerts
+                  type: aggregate
+                  dependsOn:
+                    - fetch-alerts-for-slos
+                  method: count
+                - id: validate-alerts-for-slos
+                  name: Validate that counts match
+                  type: validate
+                  dependsOn:
+                    - count-slos
+                    - count-alerts-for-slos
+                  rule: deps_match
+        deployment-readiness:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/631044c4-cf57-49cc-a355-82ba05278d71
+            name: deployment-readiness-svc-ott-external-accounts
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9c34910-156e-4669-b283-3d3bb08c58ac
+            facts:
+                - id: deployment-readiness-replicas-service-production
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
+                  repo: ott-external-accounts
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: deployment-readiness-replicas-service
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
+                  repo: ott-external-accounts
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: aggregate-replicas
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: aggregate
+                  dependsOn:
+                    - deployment-readiness-replicas-service-production
+                    - deployment-readiness-replicas-service
+                  method: or
+        high-availability:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3ff07609-a395-4d3f-888d-90c91f7c4500
+            name: high-availability-svc-ott-external-accounts
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/43e2c6ef-1a41-4fd6-b0e9-d7d7545681fd
+            facts:
+                - id: app-toml-hpa-target-cpu
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
+                  repo: ott-external-accounts
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-hpa-target-memory
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
+                  repo: ott-external-accounts
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-hpa-target-cpu
+                    - app-toml-hpa-target-memory
+                  method: or
+        instrumentation-check:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/52ce794b-3490-41e1-8c75-4d5de161c75b
+            name: instrumentation-check-svc-ott-external-accounts
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/be5dd5aa-9468-4dd1-8e7a-580b9da4e5c6
+            facts:
+                - id: read-otel-service-name-from-apptoml
+                  name: Read OTEL_SERVICE_NAME from app.toml
+                  type: extract
+                  source: github
+                  jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
+                  repo: ott-external-accounts
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: validate-otel-service-name-matches-component-name
+                  name: validate OTEL_SERVICE_NAME matches component name
+                  type: validate
+                  dependsOn:
+                    - read-otel-service-name-from-apptoml
+                  rule: regex_match
+                  pattern: ^ott-external-accounts.*$
+                - id: read-otel-resource-attributes-from-apptoml
+                  name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
+                  type: extract
+                  source: github
+                  jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
+                  repo: ott-external-accounts
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: validate-otel-resource-attributes-sample-rate
+                  name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
+                  type: validate
+                  dependsOn:
+                    - read-otel-resource-attributes-from-apptoml
+                  rule: regex_match
+                  pattern: of\.sample_rate=\d+.*
+                - id: validate-otel-resource-attributes-one-sample-rate
+                  name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
+                  type: validate
+                  dependsOn:
+                    - read-otel-resource-attributes-from-apptoml
+                  rule: regex_match
+                  pattern: of\.error_sample_rate=\d+.*
+                - id: either-sample-rate-or-error-sample-rate
+                  name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
+                  type: aggregate
+                  dependsOn:
+                    - validate-otel-resource-attributes-sample-rate
+                    - validate-otel-resource-attributes-error-sample-rate
+                  method: or
+                - id: either-sample-rate-or-error-sample-rate
+                  name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
+                  type: aggregate
+                  dependsOn:
+                    - validate-otel-service-name-matches-component-name
+                    - validate-otel-resource-attributes-one-sample-rate
+                  method: and
+        observability-documentation:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ca2e8392-b50f-4dce-95d4-65fb53e02a50
+            name: observability-documentation-svc-ott-external-accounts
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f133b6d9-595f-4862-a10d-cb356968e2bc
+            facts:
+                - id: extract-observability-md
+                  name: Extract observability.md
+                  type: extract
+                  source: github
+                  repo: ott-external-accounts
+                  filePath: docs/observability.md
+                  rule: notempty
+        organizational-standards:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/76f36855-3f24-4b64-bcb6-315baab52ba4
+            name: organizational-standards-svc-ott-external-accounts
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/557a1209-6a66-4eda-8051-9634991b75f2
+            facts:
+                - id: readme-file
+                  name: Check if the README.md file exists
+                  type: extract
+                  source: github
+                  repo: ott-external-accounts
+                  filePath: README.md
+                  rule: notempty
+                - id: docs-readme-file
+                  name: Check if the docs/README.md file exists
+                  type: extract
+                  source: github
+                  repo: ott-external-accounts
+                  filePath: docs/README.md
+                  rule: notempty
+                - id: docs-index-file
+                  name: Check if the docs/index.md file exists
+                  type: extract
+                  source: github
+                  repo: ott-external-accounts
+                  filePath: docs/index.md
+                  rule: notempty
+                - id: paas-onboarded
+                  name: Check if the service is using PaaS
+                  type: extract
+                  source: github
+                  repo: ott-external-accounts
+                  searchString: motain/onefootball-actions/paas-deploy@master
+                  rule: search
+                - id: aggregate-readme-exists
+                  name: Check if repo has documentation
+                  type: aggregate
+                  dependsOn:
+                    - docs-index-file
+                    - docs-readme-file
+                    - readme-file
+                  method: or
+                - id: aggregate
+                  name: Check if repo follows organizational standards
+                  type: aggregate
+                  dependsOn:
+                    - aggregate-readme-exists
+                    - paas-onboarded
+                  method: and
+        security-as-pipeline:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a660756f-bac2-4095-a193-4babd7df4155
+            name: security-as-pipeline-svc-ott-external-accounts
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f16a5dad-816a-48db-9e96-6d1250e63659
+            facts:
+                - id: trivy-exists-in-ci
+                  name: Check if Trivy is used in CI/CD pipeline
+                  type: extract
+                  source: github
+                  repo: ott-external-accounts
+                  searchString: motain/onefootball-actions/security
+                  rule: search
+        vulnerability-management:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/62d9758f-5c7a-4c14-b465-3df65b9cfa9a
+            name: vulnerability-management-svc-ott-external-accounts
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/6390dfc8-c94e-492a-8741-3fcbfa2fbddb
+            facts:
+                - id: service-vulnerabilities-prometheus
+                  name: Get summary of vulnerabilities for services from Prometheus reports
+                  type: extract
+                  source: prometheus
+                  prometheusQuery: sum(trivy_image_vulnerabilities{namespace="ott-external-accounts", severity="Critical" })
+    tribe: ott
+    squad: live-video

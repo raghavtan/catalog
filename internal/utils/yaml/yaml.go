@@ -16,10 +16,13 @@ import (
 )
 
 const (
-	StateLocation  = ".state"
-	Kind           = "Kind"
-	DTO            = "DTO"
-	FilePermission = 0644
+	StateLocation          = ".state"
+	MetricStateLocation    = ".state/metric"
+	ScorecardStateLocation = ".state/scorecard"
+	ComponentStateLocation = ".state/component"
+	Kind                   = "Kind"
+	DTO                    = "DTO"
+	FilePermission         = 0644
 )
 
 type ParseInput struct {
@@ -33,6 +36,30 @@ type Filter[T any] func(def *T) bool
 func GetStateInput(stateRootLocation string) ParseInput {
 	return ParseInput{
 		RootLocation: StateLocation,
+		Recursive:    false,
+	}
+}
+
+// GetMetricStateInput returns ParseInput for reading metric state files from state/metric directory
+func GetMetricStateInput() ParseInput {
+	return ParseInput{
+		RootLocation: MetricStateLocation,
+		Recursive:    false,
+	}
+}
+
+// GetScorecardStateInput returns ParseInput for reading scorecard state files from state/scorecard directory
+func GetScorecardStateInput() ParseInput {
+	return ParseInput{
+		RootLocation: ScorecardStateLocation,
+		Recursive:    false,
+	}
+}
+
+// GetComponentStateInput returns ParseInput for reading component state files from state/component directory
+func GetComponentStateInput() ParseInput {
+	return ParseInput{
+		RootLocation: ComponentStateLocation,
 		Recursive:    false,
 	}
 }
@@ -143,6 +170,81 @@ func WriteState[T any](data []*T) error {
 	return os.WriteFile(stateFileLocation, buffer, FilePermission)
 }
 
+// WriteMetricStates writes each metric to its own file in the state/metric/ directory
+func WriteMetricStates[T any](data []*T, getName KeyExtractor[T]) error {
+	return writeEntityStates(data, getName, MetricStateLocation)
+}
+
+// WriteScorecardStates writes each scorecard to its own file in the state/scorecard/ directory
+func WriteScorecardStates[T any](data []*T, getName KeyExtractor[T]) error {
+	return writeEntityStates(data, getName, ScorecardStateLocation)
+}
+
+// WriteComponentStates writes each component to its own file in the state/component/ directory
+func WriteComponentStates[T any](data []*T, getName KeyExtractor[T]) error {
+	return writeEntityStates(data, getName, ComponentStateLocation)
+}
+
+// writeEntityStates is a generic function to write entities to their own files
+func writeEntityStates[T any](data []*T, getName KeyExtractor[T], baseDir string) error {
+	// Create the directory if it doesn't exist
+	if err := os.MkdirAll(baseDir, os.ModePerm); err != nil {
+		return err
+	}
+
+	// Clean up existing files first (removes orphaned state files)
+	if err := cleanupStateDirectory(baseDir); err != nil {
+		return err
+	}
+
+	if len(data) == 0 {
+		return nil
+	}
+
+	// Write each entity to its own file
+	for _, item := range data {
+		name := getName(item)
+		fileName := fmt.Sprintf("%s.yaml", name)
+		filePath := filepath.Join(baseDir, fileName)
+
+		// Encode the single item
+		buffer, err := encodeData([]*T{item})
+		if err != nil {
+			return fmt.Errorf("failed to encode entity %s: %w", name, err)
+		}
+
+		// Write to individual file
+		if err := os.WriteFile(filePath, buffer, FilePermission); err != nil {
+			return fmt.Errorf("failed to write entity file %s: %w", filePath, err)
+		}
+	}
+
+	return nil
+}
+
+// cleanupStateDirectory removes all yaml files from the state directory
+// This ensures that deleted entities don't leave orphaned state files
+func cleanupStateDirectory(dir string) error {
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return nil // Directory doesn't exist, nothing to clean
+		}
+		return err
+	}
+
+	for _, entry := range entries {
+		if !entry.IsDir() && strings.HasSuffix(entry.Name(), ".yaml") {
+			filePath := filepath.Join(dir, entry.Name())
+			if err := os.Remove(filePath); err != nil {
+				return fmt.Errorf("failed to remove file %s: %w", filePath, err)
+			}
+		}
+	}
+
+	return nil
+}
+
 func getDefinitions[T any](parseInput ParseInput) ([]*T, error) {
 	tKind, kindErr := GetKindFromGeneric(fmt.Sprintf("%T", new(T)))
 	if kindErr != nil {
@@ -172,8 +274,18 @@ func getFilePath[T any](tKind string, parseInput ParseInput) (string, error) {
 		directory = fmt.Sprintf("%s/**", directory)
 	}
 
+	if isSplitStateDirectory(parseInput.RootLocation) {
+		return filepath.Join(directory, "*.yaml"), nil
+	}
+
 	fileString := fmt.Sprintf("%s*", tKind)
 	return filepath.Join(directory, getKindFileName(fileString)), nil
+}
+
+func isSplitStateDirectory(rootLocation string) bool {
+	return rootLocation == MetricStateLocation ||
+		rootLocation == ScorecardStateLocation ||
+		rootLocation == ComponentStateLocation
 }
 
 func encodeData[T any](data []*T) ([]byte, error) {

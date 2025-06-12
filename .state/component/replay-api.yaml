@@ -1,0 +1,403 @@
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: replay-api
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/bd87761d-b8c3-4d27-86a5-ff14d38e1bdd
+    name: replay-api
+    slug: svc-replay-api
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/replay-api
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=replay-api&var-container=replay-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=replay_api_replay_api_svc_cluster_local_&refresh=5s
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+    documents: []
+    labels:
+        - matchxp
+        - engagement
+    metricSources:
+        adaptive-systems:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6d367574-84aa-4a2f-8fe3-46d667ab7dd3
+            name: adaptive-systems-svc-replay-api
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6af0782-90a4-44e6-a9e9-4535573bd716
+            facts:
+                - id: app-toml-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
+                  repo: replay-api
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-replicas-max-gt-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
+                  repo: replay-api
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-replicas-min
+                    - app-toml-replicas-max-gt-replicas-min
+                  method: and
+        alert-routing-and-notifications:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/f8c8a88a-be09-4fb4-803a-2dd08a0b7d97
+            name: alert-routing-and-notifications-svc-replay-api
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a475e853-8c43-47af-8b94-99240e853480
+            facts:
+                - id: fetch-slos
+                  name: Fetch SLOs
+                  type: extract
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/slos/replay-api
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-alerts-for-slos
+                  name: Fetch alerts for SLOs
+                  type: extract
+                  dependsOn:
+                    - fetch-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/replay-api?slo_id=:slo_id
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-recipients-for-alerts
+                  name: Fetch recipients for Alerts
+                  type: extract
+                  dependsOn:
+                    - fetch-alerts-for-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/replay-api/:alert_id
+                  jsonPath: .recipients[].target
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: validate-each-target-is-not-empty-string
+                  name: Validate that each target is not an empty string
+                  type: validate
+                  dependsOn:
+                    - fetch-recipients-for-alerts
+                  rule: regex_match
+                  pattern: ^\S.*$
+                - id: validate-all-targets-are-not-empty-strings
+                  name: Validate that all targets are not empty strings
+                  type: aggregate
+                  dependsOn:
+                    - validate-each-target-is-not-empty-string
+                  method: and
+        allocation-efficiency:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/81a14751-97ba-4708-b7ab-ca986c3c43c2
+            name: allocation-efficiency-svc-replay-api
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0280d248-c53a-4dcf-a5a4-945cdd931406
+            facts:
+                - id: check-app-toml-resource-request
+                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
+                  repo: replay-api
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: check-app-toml-cpu-limits
+                  name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
+                  repo: replay-api
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: check-app-toml-memory-limits
+                  name: Check if  memory limits are defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: .service.memory_limits // .service.production.memory_limits | . != null
+                  repo: replay-api
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: aggregate-resource-requests
+                  name: check resource requests and limits
+                  type: aggregate
+                  dependsOn:
+                    - check-app-toml-resource-request
+                    - check-app-toml-cpu-limits
+                    - check-app-toml-memory-limits
+                  method: and
+        critical-alerts-slo-check:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/2b5d4f4b-d1c9-4fa7-b2a6-fb9dad2b8c79
+            name: critical-alerts-slo-check-svc-replay-api
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/80249b35-572f-41be-9f7d-78d7ca793029
+            facts:
+                - id: fetch-slos
+                  name: Fetch SLOs
+                  type: extract
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/slos/replay-api
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-alerts-for-slos
+                  name: Fetch alerts for SLOs
+                  type: extract
+                  dependsOn:
+                    - fetch-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/replay-api?slo_id=:slo_id
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: count-slos
+                  name: Count SLOs
+                  type: aggregate
+                  dependsOn:
+                    - fetch-slos
+                  method: count
+                - id: count-alerts-for-slos
+                  name: Count Alerts
+                  type: aggregate
+                  dependsOn:
+                    - fetch-alerts-for-slos
+                  method: count
+                - id: validate-alerts-for-slos
+                  name: Validate that counts match
+                  type: validate
+                  dependsOn:
+                    - count-slos
+                    - count-alerts-for-slos
+                  rule: deps_match
+        deployment-readiness:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/aeec30de-a519-4581-ad69-dc6503c65b5a
+            name: deployment-readiness-svc-replay-api
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9c34910-156e-4669-b283-3d3bb08c58ac
+            facts:
+                - id: deployment-readiness-replicas-service-production
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
+                  repo: replay-api
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: deployment-readiness-replicas-service
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
+                  repo: replay-api
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: aggregate-replicas
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: aggregate
+                  dependsOn:
+                    - deployment-readiness-replicas-service-production
+                    - deployment-readiness-replicas-service
+                  method: or
+        high-availability:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/543c22ac-f2ee-4ab6-89d9-c7b4c7a52895
+            name: high-availability-svc-replay-api
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/43e2c6ef-1a41-4fd6-b0e9-d7d7545681fd
+            facts:
+                - id: app-toml-hpa-target-cpu
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
+                  repo: replay-api
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-hpa-target-memory
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
+                  repo: replay-api
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-hpa-target-cpu
+                    - app-toml-hpa-target-memory
+                  method: or
+        instrumentation-check:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/918c402b-3098-43aa-9e86-3d1d10b38297
+            name: instrumentation-check-svc-replay-api
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/be5dd5aa-9468-4dd1-8e7a-580b9da4e5c6
+            facts:
+                - id: read-otel-service-name-from-apptoml
+                  name: Read OTEL_SERVICE_NAME from app.toml
+                  type: extract
+                  source: github
+                  jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
+                  repo: replay-api
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: validate-otel-service-name-matches-component-name
+                  name: validate OTEL_SERVICE_NAME matches component name
+                  type: validate
+                  dependsOn:
+                    - read-otel-service-name-from-apptoml
+                  rule: regex_match
+                  pattern: ^replay-api.*$
+                - id: read-otel-resource-attributes-from-apptoml
+                  name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
+                  type: extract
+                  source: github
+                  jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
+                  repo: replay-api
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: validate-otel-resource-attributes-sample-rate
+                  name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
+                  type: validate
+                  dependsOn:
+                    - read-otel-resource-attributes-from-apptoml
+                  rule: regex_match
+                  pattern: of\.sample_rate=\d+.*
+                - id: validate-otel-resource-attributes-one-sample-rate
+                  name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
+                  type: validate
+                  dependsOn:
+                    - read-otel-resource-attributes-from-apptoml
+                  rule: regex_match
+                  pattern: of\.error_sample_rate=\d+.*
+                - id: either-sample-rate-or-error-sample-rate
+                  name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
+                  type: aggregate
+                  dependsOn:
+                    - validate-otel-resource-attributes-sample-rate
+                    - validate-otel-resource-attributes-error-sample-rate
+                  method: or
+                - id: either-sample-rate-or-error-sample-rate
+                  name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
+                  type: aggregate
+                  dependsOn:
+                    - validate-otel-service-name-matches-component-name
+                    - validate-otel-resource-attributes-one-sample-rate
+                  method: and
+        observability-documentation:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/bdc0ad00-9be3-4c50-b346-57bec1fe2497
+            name: observability-documentation-svc-replay-api
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f133b6d9-595f-4862-a10d-cb356968e2bc
+            facts:
+                - id: extract-observability-md
+                  name: Extract observability.md
+                  type: extract
+                  source: github
+                  repo: replay-api
+                  filePath: docs/observability.md
+                  rule: notempty
+        organizational-standards:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1f87e3fd-a0aa-4685-b552-187e0c6afe1f
+            name: organizational-standards-svc-replay-api
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/557a1209-6a66-4eda-8051-9634991b75f2
+            facts:
+                - id: readme-file
+                  name: Check if the README.md file exists
+                  type: extract
+                  source: github
+                  repo: replay-api
+                  filePath: README.md
+                  rule: notempty
+                - id: docs-readme-file
+                  name: Check if the docs/README.md file exists
+                  type: extract
+                  source: github
+                  repo: replay-api
+                  filePath: docs/README.md
+                  rule: notempty
+                - id: docs-index-file
+                  name: Check if the docs/index.md file exists
+                  type: extract
+                  source: github
+                  repo: replay-api
+                  filePath: docs/index.md
+                  rule: notempty
+                - id: paas-onboarded
+                  name: Check if the service is using PaaS
+                  type: extract
+                  source: github
+                  repo: replay-api
+                  searchString: motain/onefootball-actions/paas-deploy@master
+                  rule: search
+                - id: aggregate-readme-exists
+                  name: Check if repo has documentation
+                  type: aggregate
+                  dependsOn:
+                    - docs-index-file
+                    - docs-readme-file
+                    - readme-file
+                  method: or
+                - id: aggregate
+                  name: Check if repo follows organizational standards
+                  type: aggregate
+                  dependsOn:
+                    - aggregate-readme-exists
+                    - paas-onboarded
+                  method: and
+        security-as-pipeline:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0caaf6fc-e020-4e8a-8451-81abb205177d
+            name: security-as-pipeline-svc-replay-api
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f16a5dad-816a-48db-9e96-6d1250e63659
+            facts:
+                - id: trivy-exists-in-ci
+                  name: Check if Trivy is used in CI/CD pipeline
+                  type: extract
+                  source: github
+                  repo: replay-api
+                  searchString: motain/onefootball-actions/security
+                  rule: search
+        vulnerability-management:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/8ce2fba7-3ea6-4bf6-8a4d-95098622c6aa
+            name: vulnerability-management-svc-replay-api
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/6390dfc8-c94e-492a-8741-3fcbfa2fbddb
+            facts:
+                - id: service-vulnerabilities-prometheus
+                  name: Get summary of vulnerabilities for services from Prometheus reports
+                  type: extract
+                  source: prometheus
+                  prometheusQuery: sum(trivy_image_vulnerabilities{namespace="replay-api", severity="Critical" })
+    tribe: engagement
+    squad: matchxp

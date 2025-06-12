@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/motain/of-catalog/internal/modules/component/dtos"
+	"github.com/motain/of-catalog/internal/modules/component/repository"
+	_ "github.com/motain/of-catalog/internal/modules/component/resources"
 	"github.com/motain/of-catalog/internal/modules/component/utils"
 	metricdtos "github.com/motain/of-catalog/internal/modules/metric/dtos"
 	fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
-
-	"github.com/motain/of-catalog/internal/modules/component/dtos"
-	"github.com/motain/of-catalog/internal/modules/component/repository"
 	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/utils/yaml"
 )
@@ -28,12 +28,12 @@ func NewBindHandler(
 }
 
 func (h *BindHandler) Bind(ctx context.Context, stateRootLocation string) {
-	components, errCState := yaml.Parse(yaml.GetStateInput(stateRootLocation), dtos.GetComponentUniqueKey)
+	components, errCState := yaml.Parse(yaml.GetComponentStateInput(), dtos.GetComponentUniqueKey)
 	if errCState != nil {
 		log.Fatalf("error: %v", errCState)
 	}
 
-	metricsMap := h.getMetricsGroupedByCompoentType(stateRootLocation)
+	metricsMap := h.getMetricsGroupedByCompoentType()
 
 	for _, component := range components {
 		for metricName, metricSource := range component.Spec.MetricSources {
@@ -60,16 +60,14 @@ func (h *BindHandler) Bind(ctx context.Context, stateRootLocation string) {
 		i += 1
 	}
 
-	err := yaml.WriteState(state)
+	err := yaml.WriteComponentStates(state, dtos.GetComponentUniqueKey)
 	if err != nil {
 		log.Fatalf("error writing metrics to file: %v", err)
 	}
 }
 
-func (*BindHandler) getMetricsGroupedByCompoentType(
-	stateRootLocation string,
-) map[string]map[string]*metricdtos.MetricDTO {
-	metrics, errMState := yaml.Parse(yaml.GetStateInput(stateRootLocation), metricdtos.GetMetricUniqueKey)
+func (*BindHandler) getMetricsGroupedByCompoentType() map[string]map[string]*metricdtos.MetricDTO {
+	metrics, errMState := yaml.Parse(yaml.GetMetricStateInput(), metricdtos.GetMetricUniqueKey)
 	if errMState != nil {
 		log.Fatalf("error: %v", errMState)
 	}

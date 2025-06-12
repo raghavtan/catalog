@@ -1,0 +1,403 @@
+apiVersion: of-catalog/v1alpha1
+kind: Component
+metadata:
+    name: emelya
+    componentType: service
+spec:
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f748400d-32e7-4c7f-9e57-940de6fb7264
+    name: emelya
+    slug: svc-emelya
+    description: Not Provided
+    configVersion: 0
+    typeId: SERVICE
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
+    dependsOn:
+        - kubernetes
+    fields:
+        lifecycle: Active
+        tier: 4
+    links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/emelya
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=emelya&var-container=emelya&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=emelya_emelya_svc_cluster_local_&refresh=5s
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+    documents: []
+    labels:
+        - matchxp
+        - fan-experience
+    metricSources:
+        adaptive-systems:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7fe01e7b-af1a-439e-9426-43bf1b4117ee
+            name: adaptive-systems-svc-emelya
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6af0782-90a4-44e6-a9e9-4535573bd716
+            facts:
+                - id: app-toml-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: .service.replicas_min // .service.production.replicas_min | . >= 3
+                  repo: emelya
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-replicas-max-gt-replicas-min
+                  type: extract
+                  source: github
+                  jsonPath: (.service.replicas_min // .service.production.replicas_min) < (.service.replicas_max // .service.production.replicas_max)
+                  repo: emelya
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-replicas-min
+                    - app-toml-replicas-max-gt-replicas-min
+                  method: and
+        alert-routing-and-notifications:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/fda7e883-1710-4f3c-ac40-5771e35c6823
+            name: alert-routing-and-notifications-svc-emelya
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a475e853-8c43-47af-8b94-99240e853480
+            facts:
+                - id: fetch-slos
+                  name: Fetch SLOs
+                  type: extract
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/slos/emelya
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-alerts-for-slos
+                  name: Fetch alerts for SLOs
+                  type: extract
+                  dependsOn:
+                    - fetch-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/emelya?slo_id=:slo_id
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-recipients-for-alerts
+                  name: Fetch recipients for Alerts
+                  type: extract
+                  dependsOn:
+                    - fetch-alerts-for-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/emelya/:alert_id
+                  jsonPath: .recipients[].target
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: validate-each-target-is-not-empty-string
+                  name: Validate that each target is not an empty string
+                  type: validate
+                  dependsOn:
+                    - fetch-recipients-for-alerts
+                  rule: regex_match
+                  pattern: ^\S.*$
+                - id: validate-all-targets-are-not-empty-strings
+                  name: Validate that all targets are not empty strings
+                  type: aggregate
+                  dependsOn:
+                    - validate-each-target-is-not-empty-string
+                  method: and
+        allocation-efficiency:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/8676ad25-2149-4d4b-9e04-6be7dfe73356
+            name: allocation-efficiency-svc-emelya
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0280d248-c53a-4dcf-a5a4-945cdd931406
+            facts:
+                - id: check-app-toml-resource-request
+                  name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: (.service.cpu_requests // .service.production.cpu_requests | . != null) and (.service.memory_requests // .service.production.memory_requests | . != null)
+                  repo: emelya
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: check-app-toml-cpu-limits
+                  name: Check if CPU limits are not defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: .service.cpu_limits // .service.production.cpu_limits | not
+                  repo: emelya
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: check-app-toml-memory-limits
+                  name: Check if  memory limits are defined in app.toml under [service] or [service.production]
+                  type: extract
+                  source: github
+                  jsonPath: .service.memory_limits // .service.production.memory_limits | . != null
+                  repo: emelya
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: aggregate-resource-requests
+                  name: check resource requests and limits
+                  type: aggregate
+                  dependsOn:
+                    - check-app-toml-resource-request
+                    - check-app-toml-cpu-limits
+                    - check-app-toml-memory-limits
+                  method: and
+        critical-alerts-slo-check:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ffff162e-4388-4e18-b7d8-bb46951fdd92
+            name: critical-alerts-slo-check-svc-emelya
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/80249b35-572f-41be-9f7d-78d7ca793029
+            facts:
+                - id: fetch-slos
+                  name: Fetch SLOs
+                  type: extract
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/slos/emelya
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: fetch-alerts-for-slos
+                  name: Fetch alerts for SLOs
+                  type: extract
+                  dependsOn:
+                    - fetch-slos
+                  source: jsonapi
+                  uri: https://api.eu1.honeycomb.io/1/burn_alerts/emelya?slo_id=:slo_id
+                  jsonPath: .[].id
+                  auth:
+                    header: X-Honeycomb-Team
+                    tokenVar: HONEYCOMB_API_KEY
+                  rule: jsonpath
+                - id: count-slos
+                  name: Count SLOs
+                  type: aggregate
+                  dependsOn:
+                    - fetch-slos
+                  method: count
+                - id: count-alerts-for-slos
+                  name: Count Alerts
+                  type: aggregate
+                  dependsOn:
+                    - fetch-alerts-for-slos
+                  method: count
+                - id: validate-alerts-for-slos
+                  name: Validate that counts match
+                  type: validate
+                  dependsOn:
+                    - count-slos
+                    - count-alerts-for-slos
+                  rule: deps_match
+        deployment-readiness:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ec8ed633-c0bf-4e5c-8e01-d5bb8fb88943
+            name: deployment-readiness-svc-emelya
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9c34910-156e-4669-b283-3d3bb08c58ac
+            facts:
+                - id: deployment-readiness-replicas-service-production
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  jsonPath: (.service.production.replicas_min != .service.production.replicas_max) and (.service.production.replicas_min >= 3) and (.service.production.replicas_max > 3)
+                  repo: emelya
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: deployment-readiness-replicas-service
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: extract
+                  source: github
+                  jsonPath: (.service.replicas_min != .service.replicas_max) and (.service.replicas_min >= 3) and (.service.replicas_max > 3)
+                  repo: emelya
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: aggregate-replicas
+                  name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
+                  type: aggregate
+                  dependsOn:
+                    - deployment-readiness-replicas-service-production
+                    - deployment-readiness-replicas-service
+                  method: or
+        high-availability:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/1be68f0c-8815-4045-a413-b7d9644f41c7
+            name: high-availability-svc-emelya
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/43e2c6ef-1a41-4fd6-b0e9-d7d7545681fd
+            facts:
+                - id: app-toml-hpa-target-cpu
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_cpu_utilization_percentage // .service.production.target_cpu_utilization_percentage | . >= 20
+                  repo: emelya
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: app-toml-hpa-target-memory
+                  type: extract
+                  source: github
+                  jsonPath: .service.target_memory_utilization_percentage // .service.production.target_memory_utilization_percentage | . >= 20
+                  repo: emelya
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: cpu-and-memory-hpa-are-set
+                  name: Validate that CPU and Memory Horizontal Pod Autoscalers are set
+                  type: aggregate
+                  dependsOn:
+                    - app-toml-hpa-target-cpu
+                    - app-toml-hpa-target-memory
+                  method: or
+        instrumentation-check:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/070c98be-2d92-43ed-8658-758441913388
+            name: instrumentation-check-svc-emelya
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/be5dd5aa-9468-4dd1-8e7a-580b9da4e5c6
+            facts:
+                - id: read-otel-service-name-from-apptoml
+                  name: Read OTEL_SERVICE_NAME from app.toml
+                  type: extract
+                  source: github
+                  jsonPath: .envs.OTEL_SERVICE_NAME // .envs.production.OTEL_SERVICE_NAME // .service.production.envs.OTEL_SERVICE_NAME // .service.envs.OTEL_SERVICE_NAME
+                  repo: emelya
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: validate-otel-service-name-matches-component-name
+                  name: validate OTEL_SERVICE_NAME matches component name
+                  type: validate
+                  dependsOn:
+                    - read-otel-service-name-from-apptoml
+                  rule: regex_match
+                  pattern: ^emelya.*$
+                - id: read-otel-resource-attributes-from-apptoml
+                  name: Read OTEL_RESOURCE_ATTRIBUTES from app.toml
+                  type: extract
+                  source: github
+                  jsonPath: .envs.OTEL_RESOURCE_ATTRIBUTES // .envs.production.OTEL_RESOURCE_ATTRIBUTES // .service.production.envs.OTEL_RESOURCE_ATTRIBUTES
+                  repo: emelya
+                  filePath: app.toml
+                  rule: jsonpath
+                - id: validate-otel-resource-attributes-sample-rate
+                  name: validate OTEL_RESOURCE_ATTRIBUTES defines sample rate
+                  type: validate
+                  dependsOn:
+                    - read-otel-resource-attributes-from-apptoml
+                  rule: regex_match
+                  pattern: of\.sample_rate=\d+.*
+                - id: validate-otel-resource-attributes-one-sample-rate
+                  name: validate OTEL_RESOURCE_ATTRIBUTES defines one sample rate
+                  type: validate
+                  dependsOn:
+                    - read-otel-resource-attributes-from-apptoml
+                  rule: regex_match
+                  pattern: of\.error_sample_rate=\d+.*
+                - id: either-sample-rate-or-error-sample-rate
+                  name: Validate that OTEL_RESOURCE_ATTRIBUTES contains either of.sample_rate or of.error_sample_rate
+                  type: aggregate
+                  dependsOn:
+                    - validate-otel-resource-attributes-sample-rate
+                    - validate-otel-resource-attributes-error-sample-rate
+                  method: or
+                - id: either-sample-rate-or-error-sample-rate
+                  name: Validate that both OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES are set up correctly
+                  type: aggregate
+                  dependsOn:
+                    - validate-otel-service-name-matches-component-name
+                    - validate-otel-resource-attributes-one-sample-rate
+                  method: and
+        observability-documentation:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a265a48c-21c3-425f-be2e-fcb9931410fe
+            name: observability-documentation-svc-emelya
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f133b6d9-595f-4862-a10d-cb356968e2bc
+            facts:
+                - id: extract-observability-md
+                  name: Extract observability.md
+                  type: extract
+                  source: github
+                  repo: emelya
+                  filePath: docs/observability.md
+                  rule: notempty
+        organizational-standards:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd78879c-3481-44ad-9807-9019856f5d9e
+            name: organizational-standards-svc-emelya
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/557a1209-6a66-4eda-8051-9634991b75f2
+            facts:
+                - id: readme-file
+                  name: Check if the README.md file exists
+                  type: extract
+                  source: github
+                  repo: emelya
+                  filePath: README.md
+                  rule: notempty
+                - id: docs-readme-file
+                  name: Check if the docs/README.md file exists
+                  type: extract
+                  source: github
+                  repo: emelya
+                  filePath: docs/README.md
+                  rule: notempty
+                - id: docs-index-file
+                  name: Check if the docs/index.md file exists
+                  type: extract
+                  source: github
+                  repo: emelya
+                  filePath: docs/index.md
+                  rule: notempty
+                - id: paas-onboarded
+                  name: Check if the service is using PaaS
+                  type: extract
+                  source: github
+                  repo: emelya
+                  searchString: motain/onefootball-actions/paas-deploy@master
+                  rule: search
+                - id: aggregate-readme-exists
+                  name: Check if repo has documentation
+                  type: aggregate
+                  dependsOn:
+                    - docs-index-file
+                    - docs-readme-file
+                    - readme-file
+                  method: or
+                - id: aggregate
+                  name: Check if repo follows organizational standards
+                  type: aggregate
+                  dependsOn:
+                    - aggregate-readme-exists
+                    - paas-onboarded
+                  method: and
+        security-as-pipeline:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/a87f2fb6-cd9c-498d-855e-35015470039c
+            name: security-as-pipeline-svc-emelya
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f16a5dad-816a-48db-9e96-6d1250e63659
+            facts:
+                - id: trivy-exists-in-ci
+                  name: Check if Trivy is used in CI/CD pipeline
+                  type: extract
+                  source: github
+                  repo: emelya
+                  searchString: motain/onefootball-actions/security
+                  rule: search
+        vulnerability-management:
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/f51ae03e-3f63-4d52-b9f1-6da995ff3f97
+            name: vulnerability-management-svc-emelya
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/6390dfc8-c94e-492a-8741-3fcbfa2fbddb
+            facts:
+                - id: service-vulnerabilities-prometheus
+                  name: Get summary of vulnerabilities for services from Prometheus reports
+                  type: extract
+                  source: prometheus
+                  prometheusQuery: sum(trivy_image_vulnerabilities{namespace="emelya", severity="Critical" })
+    tribe: fan-experience
+    squad: matchxp
