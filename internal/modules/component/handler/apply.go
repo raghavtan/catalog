@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
 	"log"
 	"path/filepath"
 
@@ -135,6 +136,23 @@ func (h *ApplyHandler) handleUnchanged(
 		componentDTO = h.handleOwner(componentDTO)
 		componentDTO = h.handleDocumenation(ctx, componentDTO, stateComponents)
 
+		// FIXED: For unchanged components, ensure we preserve all state data including facts
+		stateComponent := stateComponents[componentDTO.Metadata.Name]
+		if stateComponent != nil {
+			// Preserve MetricSources with facts from state
+			if stateComponent.Spec.MetricSources != nil {
+				componentDTO.Spec.MetricSources = make(map[string]*dtos.MetricSourceDTO)
+				for metricName, stateMetricSource := range stateComponent.Spec.MetricSources {
+					componentDTO.Spec.MetricSources[metricName] = &dtos.MetricSourceDTO{
+						ID:     stateMetricSource.ID,
+						Name:   stateMetricSource.Name,
+						Metric: stateMetricSource.Metric,
+						Facts:  stateMetricSource.Facts, // PRESERVE FACTS!
+					}
+				}
+			}
+		}
+
 		result = append(result, componentDTO)
 
 		h.handleDependencies(ctx, componentDTO, stateComponents)
@@ -193,21 +211,26 @@ func (h *ApplyHandler) handleCreated(
 				ID:     metricSource.ID,
 				Name:   metricSource.Name,
 				Metric: metricSource.Metric,
+				Facts:  []*fsdtos.Task{}, // Empty facts for new sources
 			}
 		}
-		// At this point dependecies may not be set because we set dependecies after creating the component
-		// But the dependency for this component may not have been create yet.
-		// We set nil and we will update it later when running aplpy again.
-		// Eventually to make it more clear we can create a specific command to set dependencies
-		// We need to think about the best way to handle this
 
+		// FIXED: Handle DependsOn duplicates - check if kubernetes already exists
 		if len(componentDTO.Spec.DependsOn) == 0 {
 			// Default mandatory element [kubernetes]
-			componentDTO.Spec.DependsOn = []string{
-				"kubernetes",
-			}
+			componentDTO.Spec.DependsOn = []string{"kubernetes"}
 		} else {
-			componentDTO.Spec.DependsOn = append(componentDTO.Spec.DependsOn, "kubernetes")
+			// Check if kubernetes is already in the list to avoid duplicates
+			hasKubernetes := false
+			for _, dep := range componentDTO.Spec.DependsOn {
+				if dep == "kubernetes" {
+					hasKubernetes = true
+					break
+				}
+			}
+			if !hasKubernetes {
+				componentDTO.Spec.DependsOn = append(componentDTO.Spec.DependsOn, "kubernetes")
+			}
 		}
 
 		result = append(result, componentDTO)
@@ -249,14 +272,53 @@ func (h *ApplyHandler) handleUpdated(
 		}
 		componentDTO.Spec.Links = updatedLinks
 
-		if componentDTO.Spec.MetricSources == nil {
-			componentDTO.Spec.MetricSources = make(map[string]*dtos.MetricSourceDTO)
-		}
-		for metricName, metricSource := range component.MetricSources {
-			componentDTO.Spec.MetricSources[metricName] = &dtos.MetricSourceDTO{
-				ID:     metricSource.ID,
-				Name:   metricSource.Name,
-				Metric: metricSource.Metric,
+		// FIXED: Preserve existing MetricSources with facts, only update basic properties
+		stateComponent := stateComponents[componentDTO.Metadata.Name]
+		if stateComponent != nil && stateComponent.Spec.MetricSources != nil {
+			if componentDTO.Spec.MetricSources == nil {
+				componentDTO.Spec.MetricSources = make(map[string]*dtos.MetricSourceDTO)
+			}
+
+			// Copy existing metric sources with their facts
+			for metricName, stateMetricSource := range stateComponent.Spec.MetricSources {
+				componentDTO.Spec.MetricSources[metricName] = &dtos.MetricSourceDTO{
+					ID:     stateMetricSource.ID,     // Keep existing ID
+					Name:   stateMetricSource.Name,   // Keep existing name
+					Metric: stateMetricSource.Metric, // Keep existing metric
+					Facts:  stateMetricSource.Facts,  // PRESERVE FACTS!
+				}
+			}
+
+			// Update any metric sources that changed in the repository response
+			for metricName, metricSource := range component.MetricSources {
+				if existingMetricSource, exists := componentDTO.Spec.MetricSources[metricName]; exists {
+					// Update basic properties but keep facts
+					existingMetricSource.ID = metricSource.ID
+					existingMetricSource.Name = metricSource.Name
+					existingMetricSource.Metric = metricSource.Metric
+					// Facts are preserved from state
+				} else {
+					// New metric source
+					componentDTO.Spec.MetricSources[metricName] = &dtos.MetricSourceDTO{
+						ID:     metricSource.ID,
+						Name:   metricSource.Name,
+						Metric: metricSource.Metric,
+						Facts:  []*fsdtos.Task{}, // Empty facts for new sources
+					}
+				}
+			}
+		} else {
+			// Fallback if no state component (shouldn't happen in update)
+			if componentDTO.Spec.MetricSources == nil {
+				componentDTO.Spec.MetricSources = make(map[string]*dtos.MetricSourceDTO)
+			}
+			for metricName, metricSource := range component.MetricSources {
+				componentDTO.Spec.MetricSources[metricName] = &dtos.MetricSourceDTO{
+					ID:     metricSource.ID,
+					Name:   metricSource.Name,
+					Metric: metricSource.Metric,
+					Facts:  []*fsdtos.Task{}, // Empty facts for new sources
+				}
 			}
 		}
 
