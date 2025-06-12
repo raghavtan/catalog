@@ -237,7 +237,7 @@ func (h *ApplyHandler) handleUpdated(
 		}
 
 		componentDTO.Spec.ID = component.ID
-		
+
 		updatedLinks := make([]dtos.Link, len(component.Links))
 		for i, link := range component.Links {
 			updatedLinks[i] = dtos.Link{

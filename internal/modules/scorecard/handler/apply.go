@@ -87,7 +87,7 @@ func (h *ApplyHandler) handleUnchanged(
 	stateScorecards map[string]*dtos.ScorecardDTO,
 	configScorecards map[string]*dtos.ScorecardDTO,
 ) []*dtos.ScorecardDTO {
-	for name, _ := range unchanged {
+	for name := range unchanged {
 		// Start with the state scorecard (which has the criterion IDs)
 		stateScorecard := stateScorecards[name]
 		configScorecard := configScorecards[name]
