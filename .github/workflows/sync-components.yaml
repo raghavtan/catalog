@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: compute-components-${{ github.head_ref }}
+  group: sync-components-${{ github.head_ref }}
   cancel-in-progress: false # We need to terminate the sync of the component
 
 permissions: write-all
