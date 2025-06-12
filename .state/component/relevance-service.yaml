@@ -15,12 +15,8 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/relevance-service
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -41,12 +37,11 @@ spec:
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/relevance-service
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ca9de4bf-b391-488d-bcf6-631c94bf9217
-          title: Articles Scoring Machine Learning
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/relevance-service/blob/main/.of/docs/articles-scoring-ml.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a3961e61-6505-4a0b-9c5c-a719714f8d62
           title: Home
           type: Other
@@ -62,7 +57,13 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/relevance-service/blob/main/.of/docs/articles-scoring-evaluation.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ca9de4bf-b391-488d-bcf6-631c94bf9217
+          title: Articles Scoring Machine Learning
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/relevance-service/blob/main/.of/docs/articles-scoring-ml.md
     labels:
+        - of-catalog
         - personalisation
         - fan-experience
     metricSources:

@@ -15,16 +15,8 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/ott-external-accounts
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-external-accounts&var-container=ott-external-accounts&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -41,6 +33,14 @@ spec:
           name: Live Video
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/ott-external-accounts
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-external-accounts&var-container=ott-external-accounts&from=now-1h&to=now
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/1d63858c-9e97-4a92-a7da-1e052b5ddd16
           title: Readme
@@ -48,6 +48,7 @@ spec:
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/ott-external-accounts/blob/main/docs/index.md
     labels:
+        - of-catalog
         - live-video
         - ott
     metricSources:

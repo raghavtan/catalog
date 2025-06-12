@@ -66,9 +66,21 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 }
 
 func (h *ApplyHandler) handleAll(ctx context.Context, stateComponents, configComponents map[string]*dtos.ComponentDTO) {
+	// FIXED: Ensure owner is calculated correctly before drift detection
+	// Apply handleOwner to all components before comparison
+	correctedConfigComponents := make(map[string]*dtos.ComponentDTO)
+	for name, component := range configComponents {
+		correctedConfigComponents[name] = h.handleOwner(component)
+	}
+
+	correctedStateComponents := make(map[string]*dtos.ComponentDTO)
+	for name, component := range stateComponents {
+		correctedStateComponents[name] = h.handleOwner(component)
+	}
+
 	created, updated, deleted, unchanged := drift.Detect(
-		stateComponents,
-		configComponents,
+		correctedStateComponents,
+		correctedConfigComponents,
 		dtos.FromStateToConfig,
 		dtos.IsEqualComponent,
 	)
@@ -86,6 +98,7 @@ func (h *ApplyHandler) handleAll(ctx context.Context, stateComponents, configCom
 
 func (h *ApplyHandler) handleOne(ctx context.Context, stateComponents, configComponents map[string]*dtos.ComponentDTO, componentName string) {
 	configComponent := configComponents[componentName]
+
 	result := make([]*dtos.ComponentDTO, 0)
 	for stateComponentName, stateComponent := range stateComponents {
 		if stateComponentName != componentName {
@@ -99,12 +112,21 @@ func (h *ApplyHandler) handleOne(ctx context.Context, stateComponents, configCom
 		stateMap[componentName] = stateComponents[componentName]
 	}
 
+	configComponentWithCorrectOwner := h.handleOwner(configComponent)
+
+	var stateComponentWithCorrectOwner *dtos.ComponentDTO
+	if stateComponents[componentName] != nil {
+		stateComponentWithCorrectOwner = h.handleOwner(stateComponents[componentName])
+		stateMap[componentName] = stateComponentWithCorrectOwner
+	}
+
 	created, updated, deleted, unchanged := drift.Detect(
 		stateMap,
-		map[string]*dtos.ComponentDTO{componentName: configComponent},
+		map[string]*dtos.ComponentDTO{componentName: configComponentWithCorrectOwner},
 		dtos.FromStateToConfig,
 		dtos.IsEqualComponent,
 	)
+	fmt.Printf("DEBUG: created: %d, updated: %d, deleted: %d, unchanged: %d\n", len(created), len(updated), len(deleted), len(unchanged))
 
 	h.handleDeleted(ctx, deleted)
 	result = h.handleUnchanged(ctx, result, unchanged, stateComponents)
@@ -383,39 +405,59 @@ func metricSourcesDTOToResource(metricSourcesDTO map[string]*dtos.MetricSourceDT
 }
 
 func (h *ApplyHandler) handleOwner(componentDTO *dtos.ComponentDTO) *dtos.ComponentDTO {
-	if componentDTO.Spec.OwnerID == "" {
+
+	// FIXED: Always recalculate owner based on tribe/squad
+	// This ensures correct OwnerID even if component already has one set
+
+	if componentDTO.Spec.Tribe != "" && componentDTO.Spec.Squad != "" {
+
 		owner, ownerErr := h.owner.GetOwnerByTribeAndSquad(componentDTO.Spec.Tribe, componentDTO.Spec.Squad)
-		if ownerErr != nil {
-			// If no owner is found, we do not update the component
-			return componentDTO
-		}
-		componentDTO.Spec.OwnerID = owner.OwnerID
+		if ownerErr == nil {
 
-		computedLinks := make(map[string]dtos.Link, 0)
-		for _, link := range componentDTO.Spec.Links {
-			computedLinks[link.Type+link.Name] = link
-		}
-
-		for slackChannelName, slackChannelURL := range owner.SlackChannels {
-			computedLinks["CHAT_CHANNEL"+slackChannelName] = dtos.Link{
-				Name: slackChannelName,
-				Type: "CHAT_CHANNEL",
-				URL:  slackChannelURL,
+			if componentDTO.Spec.OwnerID != "" && componentDTO.Spec.OwnerID != owner.OwnerID {
+				fmt.Printf("INFO: Updating OwnerID for %s from %s to %s (squad: %s)\n",
+					componentDTO.Spec.Name, componentDTO.Spec.OwnerID, owner.OwnerID, componentDTO.Spec.Squad)
+			} else if componentDTO.Spec.OwnerID == "" {
+				fmt.Printf("INFO: Setting OwnerID for %s to %s (squad: %s)\n",
+					componentDTO.Spec.Name, owner.OwnerID, componentDTO.Spec.Squad)
 			}
-		}
 
-		for projectName, projectURL := range owner.Projects {
-			computedLinks["PROJECT"+projectName] = dtos.Link{
-				Name: projectName,
-				Type: "PROJECT",
-				URL:  projectURL,
+			componentDTO.Spec.OwnerID = owner.OwnerID
+
+			computedLinks := make(map[string]dtos.Link, 0)
+			for _, link := range componentDTO.Spec.Links {
+				computedLinks[link.Type+link.Name] = link
 			}
+
+			for slackChannelName, slackChannelURL := range owner.SlackChannels {
+				computedLinks["CHAT_CHANNEL"+slackChannelName] = dtos.Link{
+					Name: slackChannelName,
+					Type: "CHAT_CHANNEL",
+					URL:  slackChannelURL,
+				}
+			}
+
+			for projectName, projectURL := range owner.Projects {
+				computedLinks["PROJECT"+projectName] = dtos.Link{
+					Name: projectName,
+					Type: "PROJECT",
+					URL:  projectURL,
+				}
+			}
+
+			links := make([]dtos.Link, 0)
+			for _, link := range computedLinks {
+				links = append(links, link)
+			}
+			componentDTO.Spec.Links = links
+		} else {
+			// If no owner is found, keep the existing OwnerID (don't clear it)
+			fmt.Printf("WARNING: Owner lookup failed for tribe '%s', squad '%s': %v\n",
+				componentDTO.Spec.Tribe, componentDTO.Spec.Squad, ownerErr)
 		}
-		links := make([]dtos.Link, 0)
-		for _, link := range computedLinks {
-			links = append(links, link)
-		}
-		componentDTO.Spec.Links = links
+	} else {
+		fmt.Printf("WARNING: Tribe or Squad not set for component %s (tribe: '%s', squad: '%s')\n",
+			componentDTO.Spec.Name, componentDTO.Spec.Tribe, componentDTO.Spec.Squad)
 	}
 
 	return componentDTO

@@ -15,12 +15,8 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/clips-webhooks
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -41,8 +37,13 @@ spec:
           name: Video Platform Support
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/clips-webhooks
     documents: []
     labels:
+        - of-catalog
         - video-platform
         - ott
     metricSources:

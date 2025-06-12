@@ -10,13 +10,17 @@ spec:
     description: Not Provided
     configVersion: 0
     typeId: SERVICE
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
     dependsOn:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
         - id: ""
           name: Repository
           type: REPOSITORY
@@ -37,10 +41,6 @@ spec:
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: ""
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/7bbb149e-f7d9-44d5-ace2-9e6f7cf99349
           title: Readme
@@ -48,6 +48,7 @@ spec:
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/competition-sorting-api/blob/main/docs/index.md
     labels:
+        - of-catalog
         - matchxp
         - engagement
     metricSources:

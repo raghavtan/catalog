@@ -10,17 +10,13 @@ spec:
     description: Not Provided
     configVersion: 0
     typeId: SERVICE
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
     dependsOn:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/video-stories-ingest-api
         - id: ""
           name: Monitoring page
           type: DASHBOARD
@@ -37,8 +33,13 @@ spec:
           name: Video Platform Support
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/video-stories-ingest-api
     documents: []
     labels:
+        - of-catalog
         - video-platform
         - ott
     metricSources:

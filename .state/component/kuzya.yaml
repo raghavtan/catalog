@@ -15,12 +15,8 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/kuzya
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -41,8 +37,13 @@ spec:
           name: Match XP
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/kuzya
     documents: []
     labels:
+        - of-catalog
         - matchxp
         - fan-experience
     metricSources:

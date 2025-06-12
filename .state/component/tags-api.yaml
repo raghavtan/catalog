@@ -15,16 +15,8 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/tags-api
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=tags-api&var-container=tags-api&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -37,8 +29,17 @@ spec:
           name: Video Platform Support
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/tags-api
+        - id: ""
+          name: Monitoring page
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=tags-api&var-container=tags-api&from=now-1h&to=now
     documents: []
     labels:
+        - of-catalog
         - video-platform
         - ott
     metricSources:

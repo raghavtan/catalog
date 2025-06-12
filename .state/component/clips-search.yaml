@@ -15,8 +15,12 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
+        - id: ""
+          name: Video Platform Support
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
         - id: ""
           name: Repository
           type: REPOSITORY
@@ -37,10 +41,6 @@ spec:
           name: video-platform-team
           type: CHAT_CHANNEL
           url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
-        - id: ""
-          name: Video Platform Support
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/56227686-c0d1-45c9-8db0-1fa133b1746a
           title: Readme
@@ -48,6 +48,7 @@ spec:
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/clips-search/blob/main/docs/index.md
     labels:
+        - of-catalog
         - video-platform
         - ott
     metricSources:

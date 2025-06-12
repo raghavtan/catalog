@@ -15,16 +15,8 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/experimental-thumbor
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=experimental-thumbor&var-container=experimental-thumbor&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -41,8 +33,17 @@ spec:
           name: Developer Experience
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/experimental-thumbor
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=experimental-thumbor&var-container=experimental-thumbor&from=now-1h&to=now
     documents: []
     labels:
+        - of-catalog
         - developer-xp
         - platform
     metricSources:

@@ -15,7 +15,7 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
         - id: ""
           name: Repository
@@ -43,6 +43,7 @@ spec:
           url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
     documents: []
     labels:
+        - of-catalog
         - media-advertising
         - client-experience
     metricSources:

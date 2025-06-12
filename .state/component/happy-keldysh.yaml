@@ -16,10 +16,6 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/happy-keldysh
-        - id: ""
           name: Monitoring page
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=happy-keldysh&var-container=happy-keldysh&from=now-1h&to=now
@@ -31,6 +27,10 @@ spec:
           name: pe-dacore
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C04NG20NVPW
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/happy-keldysh
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a40747e7-205c-432e-ad39-cb54a87959d2
           title: Readme
@@ -38,6 +38,7 @@ spec:
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/happy-keldysh/blob/main/docs/index.md
     labels:
+        - of-catalog
         - dacore
         - data-platform
     metricSources:

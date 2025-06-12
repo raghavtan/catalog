@@ -10,21 +10,13 @@ spec:
     description: Not Provided
     configVersion: 0
     typeId: SERVICE
-    ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
+    ownerId: ari:cloud:identity::team/39c4ae2a-dd18-4bb1-8d23-5ba08ab3c8a9
     dependsOn:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/loyalty-service
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=loyalty-service&var-container=loyalty-service&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -41,8 +33,17 @@ spec:
           name: OFC
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/LOYAL/boards/393/backlog
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/loyalty-service
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=loyalty-service&var-container=loyalty-service&from=now-1h&to=now
     documents: []
     labels:
+        - of-catalog
         - onefootball-club
         - membership
     metricSources:

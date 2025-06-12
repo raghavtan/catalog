@@ -33,6 +33,7 @@ spec:
           url: https://github.com/motain/cdp-api
     documents: []
     labels:
+        - of-catalog
         - data-platform
         - dacore
     metricSources:

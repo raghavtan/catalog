@@ -18,6 +18,10 @@ spec:
         tier: 1
     links:
         - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/simple-service
@@ -33,12 +37,9 @@ spec:
           name: p-cloud-runtime
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CFUCQUA04
-        - id: ""
-          name: Cloud Runtime
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
     documents: []
     labels:
+        - of-catalog
         - cloud-runtime
         - platform
     metricSources:

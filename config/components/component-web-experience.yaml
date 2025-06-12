@@ -18,7 +18,7 @@ spec:
         - userresearch-shiny
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
         - name: Repository
           type: REPOSITORY
@@ -39,6 +39,7 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
     labels:
+        - of-catalog
         - live-video
         - ott
     customFields: null

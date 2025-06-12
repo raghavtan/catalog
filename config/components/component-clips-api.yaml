@@ -18,7 +18,7 @@ spec:
         - ott-mediation
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
         - name: Repository
           type: REPOSITORY
@@ -39,6 +39,7 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
     labels:
+        - of-catalog
         - video-platform
         - ott
     customFields: null

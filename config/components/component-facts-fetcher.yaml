@@ -16,7 +16,7 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
         - name: Repository
           type: REPOSITORY
@@ -37,6 +37,7 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
     labels:
+        - of-catalog
         - matchxp
         - fan-experience
     customFields: null

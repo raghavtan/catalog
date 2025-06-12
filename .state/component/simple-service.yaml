@@ -15,12 +15,8 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/simple-service
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -41,8 +37,13 @@ spec:
           name: Cloud Runtime
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/simple-service
     documents: []
     labels:
+        - of-catalog
         - simple-service
         - cloud-runtime
         - platform

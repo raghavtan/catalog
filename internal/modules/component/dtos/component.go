@@ -82,7 +82,7 @@ func IsEqualComponent(c1, c2 *ComponentDTO) bool {
 		c1.Spec.ConfigVersion == c2.Spec.ConfigVersion &&
 		c1.Spec.TypeID == c2.Spec.TypeID &&
 		c1.Spec.OwnerID == c2.Spec.OwnerID &&
-		// IsEqualLinks(c1.Spec.Links, c2.Spec.Links) &&
+		IsEqualLinks(c1.Spec.Links, c2.Spec.Links) &&
 		IsEqualLabels(c1.Spec.Labels, c2.Spec.Labels) &&
 		IsEqualDependsOn(c1.Spec.DependsOn, c2.Spec.DependsOn) &&
 		IsEqualFields(c1.Spec.Fields, c2.Spec.Fields)
