@@ -16,7 +16,7 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 3
+        tier: 4
     links:
         - name: Repository
           type: REPOSITORY
@@ -37,7 +37,6 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/LOYAL/boards/393/backlog
     labels:
-        - of-catalog
         - onefootball-club
         - membership
     customFields: null
