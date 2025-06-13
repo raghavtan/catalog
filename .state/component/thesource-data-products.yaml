@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/3844a194-6a01-4a9a-86d4-bdf68397c4df
     name: thesource-data-products
     slug: ""
-    description: ""
+    description: Component thesource-data-products
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
@@ -16,17 +16,13 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/thesource-data-products
-        - id: ""
-          name: Monitoring page
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=thesource-data-products&var-container=thesource-data-products&from=now-1h&to=now
-        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=thesource_data_products_thesource_data_products_svc_cluster_local_&refresh=5s
         - id: ""
           name: r-source
           type: CHAT_CHANNEL
@@ -35,9 +31,21 @@ spec:
           name: The Source
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
-    documents: []
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/thesource-data-products
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=thesource-data-products&var-container=thesource-data-products&from=now-1h&to=now
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/thesource-data-products/blob/main/README.md
     labels:
-        - of-catalog
         - thesource-data-products
         - fan-experience
         - source

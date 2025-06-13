@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/3e07ffaa-f1eb-43ed-b639-d711e3dfc403
     name: creators-network
     slug: svc-creators-network
-    description: Not Provided
+    description: Backend application to manage creators related content.
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
@@ -17,6 +17,10 @@ spec:
         lifecycle: Active
         tier: 4
     links:
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
         - id: ""
           name: Emissary Metrics
           type: DASHBOARD
@@ -37,12 +41,14 @@ spec:
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=creators-network&var-container=creators-network&from=now-1h&to=now
+    documents:
         - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/creators-network/blob/master/docs/index.md
     labels:
+        - creators-network
         - source
         - fan-experience
     metricSources:

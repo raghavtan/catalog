@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/baa63e20-4989-4aba-a307-efc78e4eac58
     name: facts-api
     slug: svc-facts-api
-    description: Not Provided
+    description: Component facts-api
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
@@ -17,6 +17,14 @@ spec:
         lifecycle: Active
         tier: 3
     links:
+        - id: ""
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
         - id: ""
           name: Repository
           type: REPOSITORY
@@ -33,17 +41,13 @@ spec:
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=facts_api_facts_api_svc_cluster_local_&refresh=5s
+    documents:
         - id: ""
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: ""
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/facts-api/blob/master/README.md
     labels:
-        - of-catalog
         - matchxp
         - engagement
     metricSources:

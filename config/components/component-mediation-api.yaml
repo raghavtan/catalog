@@ -37,7 +37,6 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
     labels:
-        - of-catalog
         - media-advertising
         - client-experience
     customFields: null

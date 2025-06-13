@@ -18,17 +18,13 @@ spec:
         tier: 1
     links:
         - id: ""
-          name: Cloud Runtime
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/simple-service
-        - id: ""
-          name: Monitoring page
+          name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=simple_service_simple_service_svc_cluster_local_&refresh=5s
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -37,9 +33,16 @@ spec:
           name: p-cloud-runtime
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CFUCQUA04
+        - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/simple-service
     documents: []
     labels:
-        - of-catalog
         - cloud-runtime
         - platform
     metricSources:

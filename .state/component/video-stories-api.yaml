@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b54e4777-92cb-4fb7-b6df-2c9a9de111ce
     name: video-stories-api
     slug: svc-video-stories-api
-    description: Not Provided
+    description: Service for handling video stories labels and other related configurations.
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
@@ -42,6 +42,11 @@ spec:
           type: REPOSITORY
           url: https://github.com/motain/video-stories-api
     documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/video-stories-api/blob/main/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/7d0ad87b-8cb7-4a49-b629-bbdc763a0cdc
           title: Readme
           type: Other
@@ -50,6 +55,7 @@ spec:
     labels:
         - video-platform
         - ott
+        - video-stories-api
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0469a956-dfd2-428d-a399-ce9f3b74b2af

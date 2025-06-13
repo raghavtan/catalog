@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/a60b6660-4c42-49fe-9137-1913afef3f39
     name: tv-guide-importer
     slug: svc-tv-guide-importer
-    description: Not Provided
+    description: Imports data about where a match is on TV
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/e072d774-f06a-473d-b478-3967a637fb22
@@ -18,6 +18,10 @@ spec:
         lifecycle: Active
         tier: 3
     links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/tv-guide-importer
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -38,13 +42,13 @@ spec:
           name: Sponsorship Integration Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
+    documents:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/tv-guide-importer
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/tv-guide-importer/blob/master/README.md
     labels:
-        - of-catalog
         - sponsorship-integration
         - client-experience
     metricSources:

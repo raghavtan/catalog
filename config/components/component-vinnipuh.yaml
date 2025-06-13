@@ -39,4 +39,5 @@ spec:
     labels:
         - matchxp
         - fan-experience
+        - vinnipuh
     customFields: null

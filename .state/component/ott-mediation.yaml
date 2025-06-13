@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/03c4ce2f-8399-4e43-90df-a6c8aee6fde7
     name: ott-mediation
     slug: svc-ott-mediation
-    description: Not Provided
+    description: Component ott-mediation
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/257919b2-db67-4bf8-80b3-30e4e7cdb485
@@ -17,14 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Media Advertising
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/ott-mediation
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -41,9 +33,21 @@ spec:
           name: client-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C07MMBZDYV6
-    documents: []
+        - id: ""
+          name: Media Advertising
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/ott-mediation
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/ott-mediation/blob/main/README.md
     labels:
-        - of-catalog
         - media-advertising
         - client-experience
     metricSources:

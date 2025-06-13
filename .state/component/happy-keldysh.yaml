@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ae05fd74-bc35-4187-9e9c-f40a17ccf920
     name: happy-keldysh
     slug: ""
-    description: ""
+    description: happy-keldysh is a temporary ml-entities service with proper ci/cd/monitoring
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/1a1d7694-4219-4d82-b6c6-32fe779056de
@@ -16,13 +16,9 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/happy-keldysh
-        - id: ""
-          name: Monitoring page
+          name: Emissary Metrics
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=happy-keldysh&var-container=happy-keldysh&from=now-1h&to=now
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=happy_keldysh_happy_keldysh_svc_cluster_local_&refresh=5s
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -35,14 +31,26 @@ spec:
           name: DACORE
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/DACORE/boards/909
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/happy-keldysh
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=happy-keldysh&var-container=happy-keldysh&from=now-1h&to=now
     documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/happy-keldysh/blob/main/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a40747e7-205c-432e-ad39-cb54a87959d2
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/happy-keldysh/blob/main/docs/index.md
     labels:
-        - of-catalog
         - dacore
         - data-platform
     metricSources:

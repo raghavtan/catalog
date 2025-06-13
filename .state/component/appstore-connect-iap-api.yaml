@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/254961a7-1b3e-459c-b074-6bd3aa96a79b
     name: appstore-connect-iap-api
     slug: svc-appstore-connect-iap-api
-    description: Not Provided
+    description: Component appstore-connect-iap-api
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
@@ -17,18 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=appstore_connect_iap_api_appstore_connect_iap_api_svc_cluster_local_&refresh=5s
-        - id: ""
-          name: e-livevideo
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C053ATVH3N2
         - id: ""
           name: Live Video
           type: PROJECT
@@ -41,14 +29,30 @@ spec:
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=appstore-connect-iap-api&var-container=appstore-connect-iap-api&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=appstore_connect_iap_api_appstore_connect_iap_api_svc_cluster_local_&refresh=5s
+        - id: ""
+          name: e-livevideo
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C053ATVH3N2
     documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/appstore-connect-iap-api/blob/main/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/bcad5020-87f4-4ff1-9701-5564a8cb337a
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/appstore-connect-iap-api/blob/main/docs/index.md
     labels:
-        - of-catalog
         - live-video
         - ott
     metricSources:

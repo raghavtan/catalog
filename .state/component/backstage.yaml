@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/1f238099-842a-48f9-b553-a169e43d646f
     name: backstage
     slug: svc-backstage
-    description: ""
+    description: Backstage Onefootball
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
@@ -41,7 +41,12 @@ spec:
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=backstage&var-container=backstage&from=now-1h&to=now
-    documents: []
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/backstage/blob/main/docs/index.md
     labels:
         - cloud-runtime
         - platform

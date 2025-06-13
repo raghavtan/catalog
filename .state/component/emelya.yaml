@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/f748400d-32e7-4c7f-9e57-940de6fb7264
     name: emelya
     slug: svc-emelya
-    description: Not Provided
+    description: Fetchers
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
@@ -17,14 +17,6 @@ spec:
         lifecycle: Active
         tier: 4
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/emelya
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=emelya&var-container=emelya&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -41,8 +33,22 @@ spec:
           name: Match XP
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-    documents: []
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/emelya
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=emelya&var-container=emelya&from=now-1h&to=now
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/emelya/blob/master/README.md
     labels:
+        - emelya
         - matchxp
         - fan-experience
     metricSources:

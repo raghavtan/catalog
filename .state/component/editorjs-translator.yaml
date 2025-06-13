@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/582b1f9a-f660-4c0a-8aed-010393c524a9
     name: editorjs-translator
     slug: svc-editorjs-translator
-    description: Not Provided
+    description: EditorJS translator is a service that translates editorJS output to HTML and vice-versa.
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
@@ -41,9 +41,13 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/editorjs-translator
-    documents: []
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/editorjs-translator/blob/main/README.md
     labels:
-        - of-catalog
         - source
         - fan-experience
     metricSources:

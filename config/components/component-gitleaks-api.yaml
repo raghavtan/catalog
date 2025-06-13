@@ -37,7 +37,6 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
     labels:
-        - of-catalog
         - developer-xp
         - platform
     customFields: null

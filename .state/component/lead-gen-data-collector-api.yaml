@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/8bcf3b72-1d63-4123-9b4d-fb71ab3d883e
     name: lead-gen-data-collector-api
     slug: svc-lead-gen-data-collector-api
-    description: Not Provided
+    description: Data collector for Lead Generation
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/e072d774-f06a-473d-b478-3967a637fb22
@@ -41,9 +41,13 @@ spec:
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=lead-gen-data-collector-api&var-container=lead-gen-data-collector-api&from=now-1h&to=now
-    documents: []
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/lead-gen-data-collector-api/blob/master/README.md
     labels:
-        - of-catalog
         - sponsorship-integration
         - client-experience
     metricSources:

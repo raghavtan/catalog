@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/efeca838-2c3a-4da4-8073-a6b9a73e4c92
     name: betting-workers
     slug: svc-betting-workers
-    description: Not Provided
+    description: Workers for the betting system
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/e072d774-f06a-473d-b478-3967a637fb22
@@ -41,9 +41,13 @@ spec:
           name: client-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C07MMBZDYV6
-    documents: []
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/betting-workers/blob/master/README.md
     labels:
-        - of-catalog
         - sponsorship-integration
         - client-experience
     metricSources:

@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/cb4b1d07-5c35-4f54-bb45-531a9f0d2c69
     name: webserver
     slug: svc-webserver
-    description: Not Provided
+    description: Nginx frontend webserver onefootball.com
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
@@ -17,18 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=webserver_webserver_svc_cluster_local_&refresh=5s
-        - id: ""
-          name: p-cloud-runtime
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/CFUCQUA04
-        - id: ""
-          name: Cloud Runtime
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
         - id: ""
           name: Repository
           type: REPOSITORY
@@ -41,9 +29,25 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-    documents: []
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=webserver_webserver_svc_cluster_local_&refresh=5s
+        - id: ""
+          name: p-cloud-runtime
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CFUCQUA04
+        - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/webserver/blob/main/README.md
     labels:
-        - of-catalog
         - cloud-runtime
         - platform
     metricSources:

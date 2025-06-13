@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/96dd7303-86d7-4da3-9171-828e843dce32
     name: polls-api
     slug: svc-polls-api
-    description: ""
+    description: Component polls-api
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
@@ -42,7 +42,12 @@ spec:
           name: Activation Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
-    documents: []
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/polls-api/blob/main/README.md
     labels:
         - fan-activation
         - membership

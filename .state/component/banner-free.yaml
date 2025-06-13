@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/a9da0f0d-9551-4c74-a881-f4fd88fc5645
     name: banner-free
     slug: svc-banner-free
-    description: Not Provided
+    description: banner-free is a service to validate user subscription at AppStore/GooglePlay for ad-free feature.
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/257919b2-db67-4bf8-80b3-30e4e7cdb485
@@ -17,10 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/banner-free
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -41,9 +37,17 @@ spec:
           name: Media Advertising
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
-    documents: []
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/banner-free
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/banner-free/blob/master/README.md
     labels:
-        - of-catalog
         - media-advertising
         - client-experience
     metricSources:

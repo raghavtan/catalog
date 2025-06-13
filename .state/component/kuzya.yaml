@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/3ece3634-5999-4c28-a6cb-34aa0edddd95
     name: kuzya
     slug: svc-kuzya
-    description: Not Provided
+    description: Scores Admin - Domovenok Kuzya
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
@@ -17,6 +17,14 @@ spec:
         lifecycle: Active
         tier: 3
     links:
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/kuzya
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -33,17 +41,13 @@ spec:
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
+    documents:
         - id: ""
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/kuzya
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/kuzya/blob/master/README.md
     labels:
-        - of-catalog
         - matchxp
         - fan-experience
     metricSources:

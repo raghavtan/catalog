@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/908101a7-b297-49a8-bdc1-de0bcb0497c0
     name: prometheus-exporter
     slug: svc-prometheus-exporter
-    description: Not Provided
+    description: Component prometheus-exporter
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
@@ -17,10 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Cloud Runtime
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
         - id: ""
           name: Repository
           type: REPOSITORY
@@ -41,9 +37,17 @@ spec:
           name: p-cloud-runtime
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CFUCQUA04
-    documents: []
+        - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/prometheus-exporter/blob/main/README.md
     labels:
-        - of-catalog
         - cloud-runtime
         - platform
     metricSources:

@@ -47,7 +47,6 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
     labels:
-        - of-catalog
         - personalisation
         - fan-experience
     customFields: null

@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d9782c30-7b65-4f9c-a47a-e93e8bec288a
     name: librarian
     slug: svc-librarian
-    description: Not Provided
+    description: Onefootball API interface for CMS database
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
@@ -19,10 +19,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/librarian
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -43,12 +39,11 @@ spec:
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/librarian
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ff901a38-2a12-4d94-bb41-8ed3ac2c2d74
-          title: Home
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/librarian/blob/master/.of/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/391bef37-5d0d-4237-8ba7-dba0465a5cd8
           title: Cache Recovery
           type: Other
@@ -59,13 +54,22 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/librarian/blob/master/.of/docs/cache-updater.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ff901a38-2a12-4d94-bb41-8ed3ac2c2d74
+          title: Home
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/librarian/blob/master/.of/docs/index.md
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/librarian/blob/master/README.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a1cfcd83-165a-49da-8723-0201dd3c1cef
           title: Service
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/librarian/blob/master/.of/docs/service.md
     labels:
-        - of-catalog
         - personalisation
         - engagement
     metricSources:

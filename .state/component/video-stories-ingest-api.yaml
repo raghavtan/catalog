@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/8fcb89e4-a949-42ae-8991-642026dbd28c
     name: video-stories-ingest-api
     slug: svc-video-stories-ingest-api
-    description: Not Provided
+    description: Component video-stories-ingest-api
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
@@ -17,10 +17,6 @@ spec:
         lifecycle: Active
         tier: 4
     links:
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=video-stories-ingest-api&var-container=video-stories-ingest-api&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -41,10 +37,15 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/video-stories-ingest-api
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=video-stories-ingest-api&var-container=video-stories-ingest-api&from=now-1h&to=now
     documents: []
     labels:
         - video-platform
         - ott
+        - video-stories-ingest-api
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/b1c86f39-f057-4419-9a17-40f63caa9f50

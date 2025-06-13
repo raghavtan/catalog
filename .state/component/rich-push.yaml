@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ca10be5d-1c82-458a-9c74-fac104375059
     name: rich-push
     slug: svc-rich-push
-    description: Not Provided
+    description: Dynamic and configurable media attachments for push notifications
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/e072d774-f06a-473d-b478-3967a637fb22
@@ -17,10 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=rich-push&var-container=rich-push&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -41,9 +37,17 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/rich-push
-    documents: []
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=rich-push&var-container=rich-push&from=now-1h&to=now
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/rich-push/blob/master/README.md
     labels:
-        - of-catalog
         - sponsorship-integration
         - client-experience
     metricSources:

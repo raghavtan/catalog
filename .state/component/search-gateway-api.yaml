@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/4597b0d5-9a5e-4af8-991a-b5aa95fefb20
     name: search-gateway-api
     slug: svc-search-gateway-api
-    description: Not Provided
+    description: "\U0001F50E A search gateway API providing search results through Algolia."
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
@@ -17,18 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=search_gateway_api_search_gateway_api_svc_cluster_local_&refresh=5s
-        - id: ""
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
         - id: ""
           name: Personalisation
           type: PROJECT
@@ -41,9 +29,25 @@ spec:
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=search-gateway-api&var-container=search-gateway-api&from=now-1h&to=now
-    documents: []
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=search_gateway_api_search_gateway_api_svc_cluster_local_&refresh=5s
+        - id: ""
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/search-gateway-api/blob/main/README.md
     labels:
-        - of-catalog
         - personalisation
         - fan-experience
     metricSources:

@@ -7,42 +7,53 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/739e852b-fe02-403d-9fdd-b9090270aa0e
     name: log-gateway
     slug: svc-log-gateway
-    description: Not Provided
+    description: '**Log Gateway** is a lightweight HTTP log ingestion service for Kubernetes. It accepts JSON logs over HTTP with Basic Authentication, and forwards them to Fluent Bit, which sends them to an OpenTelemetry backend.'
     configVersion: 0
     typeId: SERVICE
-    ownerId: ""
+    ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
     dependsOn:
         - kubernetes
     fields:
         lifecycle: Active
         tier: 4
     links:
-        - id: 9852b1a8-08d2-4bc3-9cd8-afe998616aba
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/log-gateway
-        - id: 6ac6bdd9-2473-4a55-9df7-a2051de16f00
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=log-gateway&var-container=log-gateway&from=now-1h&to=now
-        - id: fcce91bd-1773-474b-acf2-149f18dfdd32
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: c6e91e81-f6b6-4954-ab3b-c7f379de0626
+        - id: ""
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=log_gateway_log_gateway_svc_cluster_local_&refresh=5s
-        - id: e06c4d4b-1823-4d9c-a850-f660b80e97ca
+        - id: ""
           name: p-cloud-runtime
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CFUCQUA04
-        - id: e35c037c-a476-4e3e-b3d6-57ce7a17a942
+        - id: ""
           name: Cloud Runtime
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
-    documents: []
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/log-gateway
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=log-gateway&var-container=log-gateway&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/log-gateway/blob/main/docs/index.md
+        - id: ""
+          title: Readme
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/log-gateway/blob/main/docs/index.md
     labels:
+        - log-gateway
         - cloud-runtime
         - platform
     metricSources:

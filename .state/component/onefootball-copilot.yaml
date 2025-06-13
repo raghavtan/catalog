@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2eb8b679-fb41-41c2-be09-d6651a002436
     name: onefootball-copilot
     slug: svc-onefootball-copilot
-    description: Not Provided
+    description: "A smart assistant to help you with knowledge \U0001F9E0 and tasks \U0001F4DD as a OneFootballer"
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
@@ -17,6 +17,14 @@ spec:
         lifecycle: Active
         tier: 3
     links:
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=onefootball_copilot_onefootball_copilot_svc_cluster_local_&refresh=5s
+        - id: ""
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
         - id: ""
           name: The Source
           type: PROJECT
@@ -33,17 +41,13 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents:
         - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=onefootball_copilot_onefootball_copilot_svc_cluster_local_&refresh=5s
-        - id: ""
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/onefootball-copilot/blob/main/README.md
     labels:
-        - of-catalog
         - source
         - fan-experience
     metricSources:

@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b8ed9bb9-e70b-4028-8c44-71302fed1404
     name: vinnipuh
     slug: svc-vinnipuh
-    description: Not Provided
+    description: AMQP consumers
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
@@ -17,6 +17,10 @@ spec:
         lifecycle: Active
         tier: 4
     links:
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=vinnipuh&var-container=vinnipuh&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -37,14 +41,16 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/vinnipuh
+    documents:
         - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=vinnipuh&var-container=vinnipuh&from=now-1h&to=now
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/vinnipuh/blob/master/README.md
     labels:
         - matchxp
         - fan-experience
+        - vinnipuh
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3eef8541-d7c6-4ccb-a40c-4cdbeacd1492

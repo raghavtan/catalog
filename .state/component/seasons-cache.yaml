@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ca6de149-c371-44c7-b890-a03a2506b1c4
     name: seasons-cache
     slug: svc-seasons-cache
-    description: Not Provided
+    description: Periodically caches profiles and translations in active seasons
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
@@ -17,18 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/seasons-cache
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=seasons-cache&var-container=seasons-cache&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
         - id: ""
           name: Emissary Metrics
           type: DASHBOARD
@@ -41,9 +29,25 @@ spec:
           name: Match XP
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-    documents: []
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/seasons-cache
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=seasons-cache&var-container=seasons-cache&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/seasons-cache/blob/master/README.md
     labels:
-        - of-catalog
         - matchxp
         - engagement
     metricSources:

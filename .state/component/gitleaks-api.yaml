@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/43ad2550-735e-4287-8455-7c8762c88269
     name: gitleaks-api
     slug: svc-gitleaks-api
-    description: Not Provided
+    description: Provides API to access gitleaks results. It is the backbone of a custom plugin we built for Backstage.
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
@@ -41,9 +41,13 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/gitleaks-api
-    documents: []
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/gitleaks-api/blob/main/README.md
     labels:
-        - of-catalog
         - developer-xp
         - platform
     metricSources:

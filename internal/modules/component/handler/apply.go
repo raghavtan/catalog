@@ -443,35 +443,50 @@ func (h *ApplyHandler) handleDocuments(
 	componentDTO *dtos.ComponentDTO,
 	stateComponents map[string]*dtos.ComponentDTO,
 ) *dtos.ComponentDTO {
-	resultDocuments := make(map[string]*dtos.Document, 0)
+	fmt.Printf("DEBUG: Processing documents for component %s\n", componentDTO.Metadata.Name)
+	resultDocuments := make(map[string]*dtos.Document)
 	componentInState := stateComponents[componentDTO.Metadata.Name]
 
-	mappedStateDocuments := make(map[string]*dtos.Document, len(componentInState.Spec.Documents))
-	for _, document := range componentInState.Spec.Documents {
-		mappedStateDocuments[document.Title] = document
+	if componentInState == nil {
+		fmt.Printf("DEBUG: Component %s not found in state (new component)\n", componentDTO.Metadata.Name)
+	} else {
+		fmt.Printf("DEBUG: Component %s found in state with %d documents\n",
+			componentDTO.Metadata.Name, len(componentInState.Spec.Documents))
 	}
 
+	var mappedStateDocuments map[string]*dtos.Document
+	if componentInState != nil && componentInState.Spec.Documents != nil {
+		mappedStateDocuments = make(map[string]*dtos.Document, len(componentInState.Spec.Documents))
+		for _, document := range componentInState.Spec.Documents {
+			mappedStateDocuments[document.Title] = document
+		}
+	} else {
+		mappedStateDocuments = make(map[string]*dtos.Document)
+	}
 	mappedComponentDocuments := make(map[string]*dtos.Document, len(componentDTO.Spec.Documents))
 	for _, document := range componentDTO.Spec.Documents {
 		mappedComponentDocuments[document.Title] = document
 	}
-
-	for _, document := range mappedStateDocuments {
-		if _, exists := mappedComponentDocuments[document.Title]; !exists {
+	for title, document := range mappedStateDocuments {
+		if _, exists := mappedComponentDocuments[title]; !exists {
 			documentResource := resources.Document{
+				ID:    document.ID,
 				Title: document.Title,
 				Type:  document.Type,
 				URL:   document.URL,
 			}
-			h.repository.RemoveDocument(ctx, h.converter.ToResource(componentDTO), documentResource)
+			if err := h.repository.RemoveDocument(ctx, h.converter.ToResource(componentDTO), documentResource); err != nil {
+				fmt.Printf("Warning: Failed to remove document %s: %v\n", document.Title, err)
+			}
 			continue
 		}
-
-		resultDocuments[document.Title] = document
+		resultDocuments[title] = document
 	}
 
-	for _, document := range mappedComponentDocuments {
-		if _, exists := mappedStateDocuments[document.Title]; !exists {
+	for title, document := range mappedComponentDocuments {
+		stateDocument, existsInState := mappedStateDocuments[title]
+
+		if !existsInState {
 			documentResource := resources.Document{
 				Title: document.Title,
 				Type:  document.Type,
@@ -480,19 +495,16 @@ func (h *ApplyHandler) handleDocuments(
 
 			newDocument, addDocumentErr := h.repository.AddDocument(ctx, h.converter.ToResource(componentDTO), documentResource)
 			if addDocumentErr != nil {
-				fmt.Printf("apply documents %s", addDocumentErr)
+				fmt.Printf("Warning: Failed to add document %s: %v\n", document.Title, addDocumentErr)
+				resultDocuments[title] = document
+			} else {
+				document.ID = newDocument.ID
+				document.DocumentationCategoryId = newDocument.DocumentationCategoryId
+				resultDocuments[title] = document
 			}
-
-			document.ID = newDocument.ID
-			document.DocumentationCategoryId = newDocument.DocumentationCategoryId
-			resultDocuments[document.Title] = document
-
-			continue
-		}
-
-		if document.URL != mappedStateDocuments[document.Title].URL {
+		} else if document.URL != stateDocument.URL {
 			documentResource := resources.Document{
-				ID:    mappedStateDocuments[document.Title].ID,
+				ID:    stateDocument.ID,
 				Title: document.Title,
 				Type:  document.Type,
 				URL:   document.URL,
@@ -500,20 +512,30 @@ func (h *ApplyHandler) handleDocuments(
 
 			updateDocumentErr := h.repository.UpdateDocument(ctx, h.converter.ToResource(componentDTO), documentResource)
 			if updateDocumentErr != nil {
-				fmt.Printf("apply documents %s", updateDocumentErr)
+				fmt.Printf("Warning: Failed to update document %s: %v\n", document.Title, updateDocumentErr)
 			}
-
-			document.ID = mappedStateDocuments[document.Title].ID
-			document.DocumentationCategoryId = mappedStateDocuments[document.Title].DocumentationCategoryId
-			resultDocuments[document.Title] = document
-
-			continue
+			document.ID = stateDocument.ID
+			document.DocumentationCategoryId = stateDocument.DocumentationCategoryId
+			resultDocuments[title] = document
+		} else {
+			resultDocuments[title] = stateDocument
 		}
 	}
+	componentDTO.Spec.Documents = dtos.SortAndRemoveDuplicateDocuments(
+		func() []*dtos.Document {
+			docs := make([]*dtos.Document, 0, len(resultDocuments))
+			for _, doc := range resultDocuments {
+				docs = append(docs, doc)
+			}
+			return docs
+		}(),
+	)
 
-	componentDTO.Spec.Documents = make([]*dtos.Document, 0)
-	for _, document := range resultDocuments {
-		componentDTO.Spec.Documents = append(componentDTO.Spec.Documents, document)
+	fmt.Printf("DEBUG: Final documents for %s: %d documents\n",
+		componentDTO.Metadata.Name, len(resultDocuments))
+	for title, doc := range resultDocuments {
+		fmt.Printf("DEBUG:   - %s (ID: %s, CategoryID: %s)\n",
+			title, doc.ID, doc.DocumentationCategoryId)
 	}
 
 	return componentDTO
@@ -567,37 +589,31 @@ func (h *ApplyHandler) handleDocumenation(
 ) *dtos.ComponentDTO {
 	documents, documentErr := h.document.GetDocuments(componentDTO.Spec.Name)
 	if documentErr != nil {
+		fmt.Printf("Warning: Could not get documents for %s: %v\n", componentDTO.Spec.Name, documentErr)
 		return componentDTO
 	}
-
 	mappedDocuments := make(map[string]*dtos.Document)
 	for _, doc := range componentDTO.Spec.Documents {
 		mappedDocuments[doc.Title] = doc
 	}
-
 	for documentTitle, documentURL := range documents {
-		docType := h.determineDocumentType(documentTitle, documentURL)
-
-		mappedDocuments[documentTitle] = &dtos.Document{
-			Title: documentTitle,
-			Type:  docType,
-			URL:   documentURL,
+		docType := "OTHER"
+		if _, exists := mappedDocuments[documentTitle]; !exists {
+			mappedDocuments[documentTitle] = &dtos.Document{
+				Title: documentTitle,
+				Type:  docType,
+				URL:   documentURL,
+			}
 		}
 	}
 
-	processedDocuments := make([]*dtos.Document, len(mappedDocuments))
-	i := 0
+	processedDocuments := make([]*dtos.Document, 0, len(mappedDocuments))
 	for _, document := range mappedDocuments {
-		processedDocuments[i] = document
-		i++
+		processedDocuments = append(processedDocuments, document)
 	}
 	componentDTO.Spec.Documents = processedDocuments
 
 	return h.handleDocuments(ctx, componentDTO, stateComponents)
-}
-
-func (h *ApplyHandler) determineDocumentType(title, url string) string {
-	return "OTHER"
 }
 
 func (h *ApplyHandler) handleAPISpecification(ctx context.Context, componentDTO *dtos.ComponentDTO) {

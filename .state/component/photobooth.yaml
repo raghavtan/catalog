@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/401c7f10-9504-4145-a28b-8f62454b0247
     name: photobooth
     slug: ""
-    description: ""
+    description: WRONG SQUAD
     configVersion: 0
     typeId: SERVICE
     ownerId: ""
@@ -20,16 +20,24 @@ spec:
           type: REPOSITORY
           url: https://github.com/motain/photobooth
         - id: ""
-          name: Monitoring page
+          name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=photobooth&var-container=photobooth&from=now-1h&to=now
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=photobooth_photobooth_svc_cluster_local_&refresh=5s
         - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-    documents: []
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/photobooth/blob/master/README.md
     labels:
-        - of-catalog
         - reach
         - consumer-web
     metricSources:

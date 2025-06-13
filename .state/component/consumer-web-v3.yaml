@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/165d9a5c-8cbc-45a3-8650-ffbe654f7afa
     name: consumer-web-v3
     slug: svc-consumer-web-v3
-    description: Not Provided
+    description: front-end code behind onefootball.com
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
@@ -42,13 +42,17 @@ spec:
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=consumer-web-v3&var-container=consumer-web-v3&from=now-1h&to=now
     documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/consumer-web-v3/blob/main/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/efdcbd40-50c9-47c4-8a44-5e9c6dd26971
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/consumer-web-v3/blob/main/docs/index.md
     labels:
-        - of-catalog
         - video-platform
         - ott
     metricSources:

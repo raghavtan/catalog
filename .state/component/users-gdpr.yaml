@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/1d3ae99b-a19c-4905-bc46-9c0e85a3ea25
     name: users-gdpr
     slug: ""
-    description: ""
+    description: Component users-gdpr
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
@@ -15,6 +15,10 @@ spec:
         - kubernetes
     fields: {}
     links:
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=users_gdpr_users_gdpr_svc_cluster_local_&refresh=5s
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -32,12 +36,16 @@ spec:
           type: REPOSITORY
           url: https://github.com/motain/users-gdpr
         - id: ""
-          name: Monitoring page
+          name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-gdpr&var-container=users-gdpr&from=now-1h&to=now
-    documents: []
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/users-gdpr/blob/main/README.md
     labels:
-        - of-catalog
         - fan-activation
         - users-gdpr
         - reach

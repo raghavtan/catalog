@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b6cb2be0-c640-4790-8fe6-2d4568035c6b
     name: loyalty-service
     slug: svc-loyalty-service
-    description: Not Provided
+    description: Onefootball Club components
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/39c4ae2a-dd18-4bb1-8d23-5ba08ab3c8a9
@@ -17,6 +17,10 @@ spec:
         lifecycle: Active
         tier: 4
     links:
+        - id: ""
+          name: onefootball-club
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C05R46W1TMZ
         - id: ""
           name: OFC
           type: PROJECT
@@ -37,12 +41,14 @@ spec:
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=loyalty_service_loyalty_service_svc_cluster_local_&refresh=5s
+    documents:
         - id: ""
-          name: onefootball-club
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C05R46W1TMZ
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/loyalty-service/blob/main/docs/index.md
     labels:
+        - loyalty-service
         - onefootball-club
         - membership
     metricSources:

@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d3a959ac-ba26-4b34-bda9-c1cad3b91a3e
     name: umka
     slug: svc-umka
-    description: Not Provided
+    description: "\U0001F43B Streams of content API for news"
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
@@ -22,6 +22,14 @@ spec:
         lifecycle: Active
         tier: 3
     links:
+        - id: ""
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: ""
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
         - id: ""
           name: Repository
           type: REPOSITORY
@@ -38,17 +46,13 @@ spec:
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=umka_umka_svc_cluster_local_&refresh=5s
+    documents:
         - id: ""
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: ""
-          name: Personalisation
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/umka/blob/master/README.md
     labels:
-        - of-catalog
         - personalisation
         - fan-experience
     metricSources:

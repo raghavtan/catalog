@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/a9966fcc-a366-41dd-bac0-0100d7db7e67
     name: cloud-runtime-bot
     slug: svc-cloud-runtime-bot
-    description: ""
+    description: Component cloud-runtime-bot
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/5a8eb464-b74d-46b1-b7b2-0b17efc117b6
@@ -17,6 +17,14 @@ spec:
         lifecycle: Active
         tier: 4
     links:
+        - id: ""
+          name: p-cloud-runtime
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CFUCQUA04
+        - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
         - id: ""
           name: Repository
           type: REPOSITORY
@@ -33,15 +41,12 @@ spec:
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=cloud_runtime_bot_cloud_runtime_bot_svc_cluster_local_&refresh=5s
+    documents:
         - id: ""
-          name: p-cloud-runtime
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/CFUCQUA04
-        - id: ""
-          name: Cloud Runtime
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/cloud-runtime-bot/blob/main/README.md
     labels:
         - cloud-runtime
         - platform

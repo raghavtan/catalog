@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/7174ae09-3e28-4f92-8b74-55e05bd6ba7b
     name: analytics-service
     slug: svc-analytics-service
-    description: Not Provided
+    description: (Semi Retired) Provides analytics data for content creators.
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
@@ -17,6 +17,14 @@ spec:
         lifecycle: Active
         tier: 3
     links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/analytics-service
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=analytics-service&var-container=analytics-service&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -33,17 +41,13 @@ spec:
           name: The Source
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
+    documents:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/analytics-service
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=analytics-service&var-container=analytics-service&from=now-1h&to=now
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/analytics-service/blob/main/README.md
     labels:
-        - of-catalog
         - source
         - fan-experience
     metricSources:

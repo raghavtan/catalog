@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2bced0fe-68d3-418c-bfff-0cfb66627b96
     name: auth-api
     slug: svc-auth-api
-    description: Not Provided
+    description: Authentication API for internal tools
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
@@ -17,18 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: The Source
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/auth-api
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=auth-api&var-container=auth-api&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -41,9 +29,25 @@ spec:
           name: r-source
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C055TBZP1B9
-    documents: []
+        - id: ""
+          name: The Source
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/auth-api
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=auth-api&var-container=auth-api&from=now-1h&to=now
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/auth-api/blob/master/README.md
     labels:
-        - of-catalog
         - source
         - fan-experience
     metricSources:

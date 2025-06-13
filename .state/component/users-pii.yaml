@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/88a61d4d-8f41-43d7-bea9-f67b5e827b5a
     name: users-pii
     slug: svc-users-pii
-    description: Not Provided
+    description: Component users-pii
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
@@ -17,18 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Activation Squad
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/users-pii
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-pii&var-container=users-pii&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -41,9 +29,25 @@ spec:
           name: r-activation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CK9LTN6DR
-    documents: []
+        - id: ""
+          name: Activation Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/users-pii
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-pii&var-container=users-pii&from=now-1h&to=now
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/users-pii/blob/main/README.md
     labels:
-        - of-catalog
         - fan-activation
         - membership
     metricSources:

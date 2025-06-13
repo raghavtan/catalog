@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/b42e659b-1679-45f4-940a-3f1fae434d2f
     name: users-accounts-api
     slug: svc-users-accounts-api
-    description: Not Provided
+    description: users-accounts-api is a successor of the https://github.com/motain/users-api settings part.
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/f4797497-61c0-4312-93f3-8d0f31ace225
@@ -41,9 +41,13 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/users-accounts-api
-    documents: []
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/users-accounts-api/blob/master/README.md
     labels:
-        - of-catalog
         - fan-activation
         - membership
     metricSources:

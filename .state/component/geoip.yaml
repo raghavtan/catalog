@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/67f4d845-ba64-4903-aab2-38423b6f3339
     name: geoip
     slug: svc-geoip
-    description: Not Provided
+    description: "\U0001F30F GeoIP Service - New implementation of geoip service in golang."
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/e072d774-f06a-473d-b478-3967a637fb22
@@ -17,10 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/geoip
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -41,9 +37,17 @@ spec:
           name: Sponsorship Integration Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
-    documents: []
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/geoip
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/geoip/blob/main/README.md
     labels:
-        - of-catalog
         - sponsorship-integration
         - monetization
     metricSources:

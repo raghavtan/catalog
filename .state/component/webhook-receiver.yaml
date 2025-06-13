@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/5fd0f591-2765-42c6-9558-cca35584c732
     name: webhook-receiver
     slug: svc-webhook-receiver
-    description: Not Provided
+    description: Webhook replacement for FTP receiver for Opta
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
@@ -17,6 +17,14 @@ spec:
         lifecycle: Active
         tier: 3
     links:
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=webhook_receiver_webhook_receiver_svc_cluster_local_&refresh=5s
         - id: ""
           name: e-matchxp
           type: CHAT_CHANNEL
@@ -33,17 +41,13 @@ spec:
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=webhook-receiver&var-container=webhook-receiver&from=now-1h&to=now
+    documents:
         - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=webhook_receiver_webhook_receiver_svc_cluster_local_&refresh=5s
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/webhook-receiver/blob/master/README.md
     labels:
-        - of-catalog
         - matchxp
         - fan-experience
     metricSources:

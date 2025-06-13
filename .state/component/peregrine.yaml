@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/771c4a71-419c-427a-9db6-87a02fbf1b19
     name: peregrine
     slug: svc-peregrine
-    description: Not Provided
+    description: Webapp lightweight metadata generation service
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
@@ -17,6 +17,14 @@ spec:
         lifecycle: Active
         tier: 3
     links:
+        - id: ""
+          name: Developer Experience
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/peregrine
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -33,17 +41,13 @@ spec:
           name: p-developer-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C04NMNZC89L
+    documents:
         - id: ""
-          name: Developer Experience
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/peregrine
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/peregrine/blob/main/README.md
     labels:
-        - of-catalog
         - developer-xp
         - platform
     metricSources: {}

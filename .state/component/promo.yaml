@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ae65212f-4c3c-407e-91d8-7bfde8c66223
     name: promo
     slug: svc-promo
-    description: Not Provided
+    description: Service to generate promo code from sponsored campaigns.
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/e072d774-f06a-473d-b478-3967a637fb22
@@ -17,10 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Sponsorship Integration Squad
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
         - id: ""
           name: Repository
           type: REPOSITORY
@@ -41,14 +37,22 @@ spec:
           name: client-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: ""
+          name: Sponsorship Integration Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
     documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/promo/blob/main/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/f0bf1702-ad89-4e60-9d51-b6f148786342
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/promo/blob/main/docs/index.md
     labels:
-        - of-catalog
         - sponsorship-integration
         - client-experience
     metricSources:

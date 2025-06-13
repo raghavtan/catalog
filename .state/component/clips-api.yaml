@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/edc87603-5220-47c0-97b3-4c014f1eb93f
     name: clips-api
     slug: svc-clips-api
-    description: Not Provided
+    description: Component clips-api
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
@@ -19,6 +19,14 @@ spec:
         lifecycle: Active
         tier: 3
     links:
+        - id: ""
+          name: Video Platform Support
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/clips-api
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -35,17 +43,13 @@ spec:
           name: video-platform-team
           type: CHAT_CHANNEL
           url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
+    documents:
         - id: ""
-          name: Video Platform Support
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/clips-api
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/clips-api/blob/main/README.md
     labels:
-        - of-catalog
         - video-platform
         - ott
     metricSources:

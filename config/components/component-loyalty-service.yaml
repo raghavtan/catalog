@@ -37,6 +37,7 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/LOYAL/boards/393/backlog
     labels:
+        - loyalty-service
         - onefootball-club
         - membership
     customFields: null

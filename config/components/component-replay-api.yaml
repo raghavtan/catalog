@@ -37,7 +37,6 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
     labels:
-        - of-catalog
         - matchxp
         - engagement
     customFields: null

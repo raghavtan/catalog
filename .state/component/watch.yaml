@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/3973a515-b555-4ece-9ddc-9148a61c7203
     name: watch
     slug: svc-watch
-    description: Not Provided
+    description: Pay-per-view service
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
@@ -22,10 +22,6 @@ spec:
         lifecycle: Active
         tier: 4
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/watch
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -46,37 +42,16 @@ spec:
           name: Live Video
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/watch
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/c3ef81cc-a4c0-4ec6-825a-7d03c2925d3a
-          title: Content Ingest/Flows/Product Activation
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_product_activation.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a5a178f0-9109-40f9-a37e-917ba0335626
-          title: Content Ingest/Flows/Push Notifications
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_push_notifications.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/6b758c97-cc42-4634-a53f-213888f5ed54
-          title: Content Ingest/Flows/Match State Updater
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_match_state_updater.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/fd80fe43-974e-4e73-8fec-b5594b1c3bb1
-          title: Content Ingest/Flows/Stores Cleanup
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_stores_cleanup.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/8ae48425-e698-4b42-8c65-e4b2272c4e4b
           title: Content Distribution/Architecture
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/watch/blob/main/docs/content-distribution/architecture.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d26f544f-4556-42ed-9bea-24af679c7a58
-          title: Content Ingest/Flows/Stream Health Check
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_stream_health_check.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9d97173-3f3d-4249-8312-b3b730f215c4
           title: Content Ingest/Architecture
           type: Other
@@ -87,11 +62,6 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/watch/blob/main/docs/content-ingest/ingest_generic.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a9ba3cfc-0a93-461a-b2a3-583087803eef
-          title: Content Ingest/Flows/Sales Disable
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_sales_disable.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a38370b3-3a5f-4c5a-94df-77468c684b5e
           title: Content Ingest/Content Importers/Norwegian League
           type: Other
@@ -102,6 +72,36 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_alert_partners.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/6b758c97-cc42-4634-a53f-213888f5ed54
+          title: Content Ingest/Flows/Match State Updater
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_match_state_updater.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/c3ef81cc-a4c0-4ec6-825a-7d03c2925d3a
+          title: Content Ingest/Flows/Product Activation
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_product_activation.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a5a178f0-9109-40f9-a37e-917ba0335626
+          title: Content Ingest/Flows/Push Notifications
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_push_notifications.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a9ba3cfc-0a93-461a-b2a3-583087803eef
+          title: Content Ingest/Flows/Sales Disable
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_sales_disable.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/fd80fe43-974e-4e73-8fec-b5594b1c3bb1
+          title: Content Ingest/Flows/Stores Cleanup
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_stores_cleanup.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d26f544f-4556-42ed-9bea-24af679c7a58
+          title: Content Ingest/Flows/Stream Health Check
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/watch/blob/main/docs/content-ingest/flows_stream_health_check.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/7a6c2a64-5ff0-43ce-98bc-16ba6da5272e
           title: Glossary
           type: Other
@@ -112,9 +112,15 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/watch/blob/main/docs/index.md
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/watch/blob/main/docs/index.md
     labels:
         - live-video
         - ott
+        - watch
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d51f59cd-5218-440f-9683-421f1656e27a

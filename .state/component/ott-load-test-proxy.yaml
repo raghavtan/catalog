@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/3c18f352-d4ce-4803-b460-1cca7e3dbe84
     name: ott-load-test-proxy
     slug: svc-ott-load-test-proxy
-    description: Not Provided
+    description: Component ott-load-test-proxy
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
@@ -17,6 +17,10 @@ spec:
         lifecycle: Active
         tier: 3
     links:
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-load-test-proxy&var-container=ott-load-test-proxy&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -37,18 +41,18 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/ott-load-test-proxy
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-load-test-proxy&var-container=ott-load-test-proxy&from=now-1h&to=now
     documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/ott-load-test-proxy/blob/main/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/2885be47-892a-4e2e-a1d2-e1a9cdab3692
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/ott-load-test-proxy/blob/main/docs/index.md
     labels:
-        - of-catalog
         - live-video
         - ott
     metricSources:

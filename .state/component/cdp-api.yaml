@@ -7,10 +7,10 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/44f1fc18-3112-4447-80eb-1efdc440bb7b
     name: cdp-api
     slug: ""
-    description: ""
+    description: Experimental CDP Api
     configVersion: 0
     typeId: SERVICE
-    ownerId: ""
+    ownerId: ari:cloud:identity::team/1a1d7694-4219-4d82-b6c6-32fe779056de
     dependsOn:
         - kubernetes
     fields: {}
@@ -31,9 +31,21 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-    documents: []
+        - id: ""
+          name: pe-dacore
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C04NG20NVPW
+        - id: ""
+          name: DACORE
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/DACORE/boards/909
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/cdp-api/blob/main/README.md
     labels:
-        - of-catalog
         - data-platform
         - dacore
     metricSources:

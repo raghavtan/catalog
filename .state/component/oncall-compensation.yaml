@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef47fbc0-8ddb-48e3-885f-dbf643944334
     name: oncall-compensation
     slug: svc-oncall-compensation
-    description: Not Provided
+    description: Our On-Call bot responsible for doing all the calculations regarding our on-call shifts
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/0fd09579-1055-4db8-9f5e-71e1b562f15e
@@ -41,9 +41,13 @@ spec:
           name: Developer Experience
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
-    documents: []
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/oncall-compensation/blob/main/docs/index.md
     labels:
-        - of-catalog
         - developer-xp
         - platform
     metricSources:

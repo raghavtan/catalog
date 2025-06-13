@@ -37,7 +37,6 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
     labels:
-        - of-catalog
         - cloud-runtime
         - platform
     customFields: null

@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c4b26f0b-db93-4e0d-a79e-4b98286bfe66
     name: web-url-redirector
     slug: ""
-    description: ""
+    description: WRONG SQUAD
     configVersion: 0
     typeId: SERVICE
     ownerId: ""
@@ -20,16 +20,24 @@ spec:
           type: REPOSITORY
           url: https://github.com/motain/web-url-redirector
         - id: ""
-          name: Monitoring page
+          name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=web-url-redirector&var-container=web-url-redirector&from=now-1h&to=now
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=web_url_redirector_web_url_redirector_svc_cluster_local_&refresh=5s
         - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-    documents: []
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/web-url-redirector/blob/master/docs/index.md
     labels:
-        - of-catalog
         - reach
         - consumer-web
     metricSources:

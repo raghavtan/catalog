@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/1a998ba7-b9e2-4be2-b583-360d340bc7a5
     name: article-translator
     slug: ""
-    description: ""
+    description: Component article-translator
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/c125b90b-9c80-4e04-9016-a0fd8a0e6b43
@@ -19,9 +19,13 @@ spec:
           type: REPOSITORY
           url: https://github.com/motain/article-translator
         - id: ""
-          name: Monitoring page
+          name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-translator&var-container=article-translator&from=now-1h&to=now
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=article_translator_article_translator_svc_cluster_local_&refresh=5s
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -36,7 +40,6 @@ spec:
           url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
     documents: []
     labels:
-        - of-catalog
         - fan-experience
         - source
         - article-translator

@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/77614455-8199-459d-9aa1-70556e1f6463
     name: clips-search
     slug: svc-clips-search
-    description: Not Provided
+    description: A service for searching and serving videos via Algolia
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/6a4a5733-ac01-4fd8-a6e6-d100dc3fb290
@@ -17,6 +17,10 @@ spec:
         lifecycle: Active
         tier: 3
     links:
+        - id: ""
+          name: video-platform-team
+          type: CHAT_CHANNEL
+          url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
         - id: ""
           name: Video Platform Support
           type: PROJECT
@@ -37,18 +41,18 @@ spec:
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=clips_search_clips_search_svc_cluster_local_&refresh=5s
-        - id: ""
-          name: video-platform-team
-          type: CHAT_CHANNEL
-          url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
     documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/clips-search/blob/main/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/56227686-c0d1-45c9-8db0-1fa133b1746a
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/clips-search/blob/main/docs/index.md
     labels:
-        - of-catalog
         - video-platform
         - ott
     metricSources:

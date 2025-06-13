@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/d1af8be3-ef4c-440b-b67c-e0c65b9a93fd
     name: content-classifier
     slug: svc-content-classifier
-    description: Not Provided
+    description: Analyses and extract relevant informations from given content
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
@@ -17,10 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=content_classifier_content_classifier_svc_cluster_local_&refresh=5s
         - id: ""
           name: e-personalisation
           type: CHAT_CHANNEL
@@ -41,34 +37,42 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=content_classifier_content_classifier_svc_cluster_local_&refresh=5s
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/f564a8fb-7410-4db2-b337-13a37fc348a5
-          title: Content Tags API
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/content-classifier/blob/main/.of/docs/content-tags-api.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/509c3450-64ca-4495-8137-29a0783958d3
-          title: Content Classifier API
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/content-classifier/blob/main/.of/docs/content-classifier-api.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/98b17fb2-709e-486a-976a-2ad2c6ddddb1
           title: Article Sourced Worker
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/content-classifier/blob/main/.of/docs/article-sourced-worker.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/509c3450-64ca-4495-8137-29a0783958d3
+          title: Content Classifier API
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/content-classifier/blob/main/.of/docs/content-classifier-api.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/f4cda555-11b6-41a1-b15d-c967d27b07ce
           title: Content Tag Command Worker
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/content-classifier/blob/main/.of/docs/content-tag-command-worker.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/f564a8fb-7410-4db2-b337-13a37fc348a5
+          title: Content Tags API
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/content-classifier/blob/main/.of/docs/content-tags-api.md
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/content-classifier/blob/main/README.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/3544e01d-8b09-4d2f-b0fd-b4d31b8a6445
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/content-classifier/blob/main/.of/docs/index.md
     labels:
-        - of-catalog
         - personalisation
         - fan-experience
     metricSources:

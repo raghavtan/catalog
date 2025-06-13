@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/70045cc6-8ceb-4612-988e-7fdaf41d3cef
     name: streaming-service
     slug: svc-streaming-service
-    description: Not Provided
+    description: Component streaming-service
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/a1604116-f750-4bb3-a850-800958ce934a
@@ -62,8 +62,12 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/streaming-service/blob/main/docs/overview.md
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/streaming-service/blob/main/docs/index.md
     labels:
-        - of-catalog
         - live-video
         - ott
     metricSources:

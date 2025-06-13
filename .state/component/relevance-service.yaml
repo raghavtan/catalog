@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/e3a7998b-8060-481b-95f2-6f13c3a0c516
     name: relevance-service
     slug: svc-relevance-service
-    description: Not Provided
+    description: Relevance Service delivers trending topics and provide content recommendations to enhance user engagement.
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
@@ -17,14 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=relevance-service&var-container=relevance-service&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
         - id: ""
           name: Emissary Metrics
           type: DASHBOARD
@@ -41,12 +33,15 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/relevance-service
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=relevance-service&var-container=relevance-service&from=now-1h&to=now
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a3961e61-6505-4a0b-9c5c-a719714f8d62
-          title: Home
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/relevance-service/blob/main/.of/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/986fc903-9438-4b3c-bc91-389f61b697b1
           title: Articles Scoring
           type: Other
@@ -62,8 +57,17 @@ spec:
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/relevance-service/blob/main/.of/docs/articles-scoring-ml.md
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a3961e61-6505-4a0b-9c5c-a719714f8d62
+          title: Home
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
+          url: https://github.com/motain/relevance-service/blob/main/.of/docs/index.md
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/relevance-service/blob/main/README.md
     labels:
-        - of-catalog
         - personalisation
         - fan-experience
     metricSources:

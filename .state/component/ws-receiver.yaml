@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/db8071a5-544f-4e56-a55c-a689304e7866
     name: ws-receiver
     slug: svc-ws-receiver
-    description: Not Provided
+    description: Connecting to Opta via WebSocket
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
@@ -17,6 +17,10 @@ spec:
         lifecycle: Active
         tier: 3
     links:
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ws-receiver&var-container=ws-receiver&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -37,13 +41,13 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/ws-receiver
+    documents:
         - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ws-receiver&var-container=ws-receiver&from=now-1h&to=now
-    documents: []
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/ws-receiver/blob/master/README.md
     labels:
-        - of-catalog
         - matchxp
         - fan-experience
     metricSources:

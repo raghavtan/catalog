@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/5f897298-b5b1-46b2-928a-8c4276e5a155
     name: mediation-api
     slug: svc-mediation-api
-    description: Not Provided
+    description: Component mediation-api
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/257919b2-db67-4bf8-80b3-30e4e7cdb485
@@ -17,18 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=mediation_api_mediation_api_svc_cluster_local_&refresh=5s
-        - id: ""
-          name: client-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C07MMBZDYV6
-        - id: ""
-          name: Media Advertising
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
         - id: ""
           name: Repository
           type: REPOSITORY
@@ -41,9 +29,25 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-    documents: []
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=mediation_api_mediation_api_svc_cluster_local_&refresh=5s
+        - id: ""
+          name: client-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: ""
+          name: Media Advertising
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/mediation-api/blob/master/README.md
     labels:
-        - of-catalog
         - media-advertising
         - client-experience
     metricSources:

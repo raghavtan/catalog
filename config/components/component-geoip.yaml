@@ -37,7 +37,6 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
     labels:
-        - of-catalog
         - sponsorship-integration
         - monetization
     customFields: null

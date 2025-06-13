@@ -37,6 +37,7 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
     labels:
+        - article-intelligence
         - source
         - fan-experience
     customFields: null

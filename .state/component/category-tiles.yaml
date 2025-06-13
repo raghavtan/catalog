@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/2a454699-68d9-4d1c-b6b1-103bf88d329e
     name: category-tiles
     slug: svc-category-tiles
-    description: Not Provided
+    description: Component category-tiles
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/4fcee7cc-227d-4526-a725-617a7b57d585
@@ -47,9 +47,13 @@ spec:
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-    documents: []
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/category-tiles/blob/main/README.md
     labels:
-        - of-catalog
         - personalisation
         - engagement
     metricSources:

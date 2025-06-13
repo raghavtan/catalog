@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/80d3a5f8-ac36-47ca-a6c9-201c89320a83
     name: tv-guide-api
     slug: svc-tv-guide-api
-    description: Not Provided
+    description: API for showing where a match is on TV
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/e072d774-f06a-473d-b478-3967a637fb22
@@ -42,9 +42,13 @@ spec:
           name: client-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C07MMBZDYV6
-    documents: []
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/tv-guide-api/blob/master/README.md
     labels:
-        - of-catalog
         - sponsorship-integration
         - client-experience
     metricSources:

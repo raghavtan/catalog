@@ -7,38 +7,50 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/c86c5aac-8251-4679-9ea7-fe39cb324b69
     name: optimistic-joliot
     slug: ""
-    description: ""
+    description: THIS IS ARCHIVED COMPONENT
     configVersion: 0
     typeId: SERVICE
-    ownerId: ""
+    ownerId: ari:cloud:identity::team/1a1d7694-4219-4d82-b6c6-32fe779056de
     dependsOn:
         - kubernetes
     fields: {}
     links:
         - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=optimistic_joliot_optimistic_joliot_svc_cluster_local_&refresh=5s
+        - id: ""
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
           name: pe-dacore
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C04NG20NVPW
+        - id: ""
+          name: DACORE
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/DACORE/boards/909
         - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/optimistic-joliot
         - id: ""
-          name: Monitoring page
+          name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=optimistic-joliot&var-container=optimistic-joliot&from=now-1h&to=now
-        - id: ""
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/optimistic-joliot/blob/main/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/be388dc2-bf50-4b64-9ca2-0d12c5aa3b7f
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/optimistic-joliot/blob/main/docs/index.md
     labels:
-        - of-catalog
         - data-platform
         - dacore
     metricSources:

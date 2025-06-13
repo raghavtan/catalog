@@ -7,7 +7,7 @@ spec:
     id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:component/4d010f50-96c4-48c0-bab5-a3dd5112b464/4309e772-7005-417f-b50c-7d2a2c147f15
     name: cheburashka
     slug: svc-cheburashka
-    description: Not Provided
+    description: sCores Config API - dedicated to https://en.wikipedia.org/wiki/Cheburashka
     configVersion: 0
     typeId: SERVICE
     ownerId: ari:cloud:identity::team/785514ef-d96d-4369-82f9-b39fe8614233
@@ -17,10 +17,6 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/cheburashka
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -41,9 +37,17 @@ spec:
           name: Match XP
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-    documents: []
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/cheburashka
+    documents:
+        - id: ""
+          title: README
+          type: OTHER
+          documentationCategoryId: ""
+          url: https://github.com/motain/cheburashka/blob/master/README.md
     labels:
-        - of-catalog
         - matchxp
         - fan-experience
     metricSources:
