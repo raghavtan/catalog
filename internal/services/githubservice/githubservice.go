@@ -16,6 +16,7 @@ type GitHubServiceInterface interface {
 	GetFileExists(repo, path string) (bool, error)
 	GetFileContent(repo, path string) (string, error)
 	GetRepoProperties(repo string) (map[string]string, error)
+	GetRepoDescription(repo string) (string, error)
 	Search(repo, query string) ([]string, error)
 }
 
@@ -93,6 +94,22 @@ func (gh *GitHubService) GetRepoProperties(repo string) (map[string]string, erro
 	}
 
 	return properties, nil
+}
+
+func (gh *GitHubService) GetRepoDescription(repo string) (string, error) {
+	ctx := context.Background()
+
+	repoDetails, _, err := gh.client.GetRepo().Get(ctx, gh.owner, repo)
+	if err != nil {
+		return "", fmt.Errorf("failed to fetch repo description: %w", err)
+	}
+
+	description := repoDetails.GetDescription()
+	if description == "" {
+		return "", fmt.Errorf("repository %s has no description", repo)
+	}
+
+	return description, nil
 }
 
 func (gh *GitHubService) Search(repo, query string) ([]string, error) {

@@ -1,5 +1,7 @@
 package dtos
 
+import "sort"
+
 type ComponentDTO struct {
 	APIVersion string   `yaml:"apiVersion" json:"apiVersion"`
 	Kind       string   `yaml:"kind" json:"kind"`
@@ -86,6 +88,38 @@ func IsEqualComponent(c1, c2 *ComponentDTO) bool {
 		IsEqualLabels(c1.Spec.Labels, c2.Spec.Labels) &&
 		IsEqualDependsOn(c1.Spec.DependsOn, c2.Spec.DependsOn) &&
 		IsEqualFields(c1.Spec.Fields, c2.Spec.Fields)
+}
+
+func SortAndRemoveDuplicateDocuments(documents []*Document) []*Document {
+	if len(documents) == 0 {
+		return documents
+	}
+	type docKey struct {
+		title   string
+		url     string
+		docType string
+	}
+
+	uniqueDocs := make(map[docKey]*Document)
+	for _, doc := range documents {
+		key := docKey{
+			title:   doc.Title,
+			url:     doc.URL,
+			docType: doc.Type,
+		}
+		uniqueDocs[key] = doc
+	}
+
+	result := make([]*Document, 0, len(uniqueDocs))
+	for _, doc := range uniqueDocs {
+		result = append(result, doc)
+	}
+
+	sort.Slice(result, func(i, j int) bool {
+		return result[i].Title < result[j].Title
+	})
+
+	return result
 }
 
 type Metadata struct {

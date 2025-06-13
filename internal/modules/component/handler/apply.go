@@ -7,6 +7,7 @@ import (
 	fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
 	"log"
 	"path/filepath"
+	"strings"
 
 	"github.com/motain/of-catalog/internal/modules/component/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/repository"
@@ -404,6 +405,14 @@ func metricSourcesDTOToResource(metricSourcesDTO map[string]*dtos.MetricSourceDT
 	return metricSources
 }
 
+func getRepositoryDescription(componentDTO *dtos.ComponentDTO) string {
+	if componentDTO.Spec.Description != "" {
+		return componentDTO.Spec.Description
+	}
+	// If no description is set,
+	return "No description available"
+}
+
 func (h *ApplyHandler) handleOwner(componentDTO *dtos.ComponentDTO) *dtos.ComponentDTO {
 
 	// FIXED: Always recalculate owner based on tribe/squad
@@ -601,9 +610,11 @@ func (h *ApplyHandler) handleDocumenation(
 	}
 
 	for documentTitle, documentURL := range documents {
+		docType := h.determineDocumentType(documentTitle, documentURL)
+
 		mappedDocuments[documentTitle] = &dtos.Document{
 			Title: documentTitle,
-			Type:  "Other",
+			Type:  docType,
 			URL:   documentURL,
 		}
 	}
@@ -614,9 +625,31 @@ func (h *ApplyHandler) handleDocumenation(
 		processedDocuments[i] = document
 		i++
 	}
-	componentDTO.Spec.Documents = processedDocuments
-
+	componentDTO.Spec.Documents = dtos.SortAndRemoveDuplicateDocuments(processedDocuments)
 	return h.handleDocuments(ctx, componentDTO, stateComponents)
+}
+
+func (h *ApplyHandler) determineDocumentType(title, url string) string {
+	titleLower := strings.ToLower(title)
+	urlLower := strings.ToLower(url)
+
+	if strings.Contains(titleLower, "readme") ||
+		strings.Contains(urlLower, "readme.md") ||
+		strings.Contains(urlLower, "/readme.md") {
+		return "README"
+	}
+
+	if strings.Contains(titleLower, "index") ||
+		strings.Contains(urlLower, "index.md") ||
+		strings.Contains(urlLower, "/index.md") {
+		return "INDEX"
+	}
+
+	if strings.Contains(urlLower, "/docs/") {
+		return "DOCUMENTATION"
+	}
+
+	return "Other"
 }
 
 func (h *ApplyHandler) handleAPISpecification(ctx context.Context, componentDTO *dtos.ComponentDTO) {
