@@ -32,7 +32,7 @@ Resource (in focus) should be able to enforce condition to stay at latest patch 
   sum(trivy_image_vulnerabilities{namespace="<component-name>", severity="Critical" })
   ```
 
-**Fix Guidelines**
+### Howto - Fix Guidelines
 
 
 To know more about the other security issues and fix vulnerabilities follow the instruction below:
