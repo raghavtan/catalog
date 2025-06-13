@@ -9,14 +9,14 @@ spec:
     squad: cloud-runtime
     name: simple-service
     slug: svc-simple-service
-    description: Simple-service is a no-nonsense, do-what-it-needs-to-do kind of service. It reads a lot, writes a little, and somehow still manages to act important. If databases had best friends, Simple RDS would be its ride-or-die.
+    description: "Simple-service is a no-nonsense, do-what-it-needs-to-do kind of service. It reads a lot, writes a little, and somehow still manages to act important. If databases had best friends, Simple RDS would be its ride-or-die."
     ownerId: ""
     typeId: SERVICE
     dependsOn:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 3
+        tier: 4
     links:
         - name: Repository
           type: REPOSITORY
@@ -37,8 +37,6 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
     labels:
-        - of-catalog
-        - simple-service
         - cloud-runtime
         - platform
     customFields: null
