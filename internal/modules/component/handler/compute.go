@@ -8,21 +8,27 @@ import (
 
 	"github.com/motain/of-catalog/internal/modules/component/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/repository"
-	"github.com/motain/of-catalog/internal/modules/component/resources"
 	"github.com/motain/of-catalog/internal/services/factsystem/processor"
+	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/utils/yaml"
 )
 
 type ComputeHandler struct {
 	repository    repository.RepositoryInterface
 	factProcessor processor.ProcessorInterface
+	converter     *ComponentConverter
 }
 
 func NewComputeHandler(
 	repository repository.RepositoryInterface,
 	factProcessor processor.ProcessorInterface,
+	github githubservice.GitHubServiceInterface, // Add GitHub service for consistency
 ) *ComputeHandler {
-	return &ComputeHandler{repository: repository, factProcessor: factProcessor}
+	return &ComputeHandler{
+		repository:    repository,
+		factProcessor: factProcessor,
+		converter:     NewComponentConverter(github), // Initialize converter
+	}
 }
 
 func (h *ComputeHandler) Compute(ctx context.Context, componentName string, all bool, metricName string, stateRootLocation string) {
@@ -71,13 +77,4 @@ func (h *ComputeHandler) computeMetric(ctx context.Context, component *dtos.Comp
 	}
 
 	return nil
-}
-
-func MetricSourceDTOToResource(metricSource *dtos.MetricSourceDTO) resources.MetricSource {
-	return resources.MetricSource{
-		ID:     metricSource.ID,
-		Name:   metricSource.Name,
-		Metric: metricSource.Metric,
-		Facts:  metricSource.Facts,
-	}
 }

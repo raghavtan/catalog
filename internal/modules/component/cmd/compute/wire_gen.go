@@ -40,7 +40,7 @@ func initializeHandler() *handler.ComputeHandler {
 	prometheusService := prometheusservice.NewPrometheusService(prometheusClientInterface)
 	extractor := extractors.NewExtractor(configService, jsonServiceInterface, gitHubService, prometheusService)
 	processorProcessor := processor.NewProcessor(aggregator, validator, extractor)
-	computeHandler := handler.NewComputeHandler(repositoryRepository, processorProcessor)
+	computeHandler := handler.NewComputeHandler(repositoryRepository, processorProcessor, gitHubService)
 	return computeHandler
 }
 

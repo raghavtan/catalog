@@ -4,21 +4,18 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
-	"log"
-	"path/filepath"
-	"strings"
-
 	"github.com/motain/of-catalog/internal/modules/component/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/repository"
 	"github.com/motain/of-catalog/internal/modules/component/resources"
-	"github.com/motain/of-catalog/internal/modules/component/utils"
 	"github.com/motain/of-catalog/internal/services/documentservice"
+	fsdtos "github.com/motain/of-catalog/internal/services/factsystem/dtos"
 	"github.com/motain/of-catalog/internal/services/githubservice"
 	"github.com/motain/of-catalog/internal/services/ownerservice"
 	"github.com/motain/of-catalog/internal/utils/drift"
 	listutils "github.com/motain/of-catalog/internal/utils/list"
 	"github.com/motain/of-catalog/internal/utils/yaml"
+	"log"
+	"path/filepath"
 )
 
 type ApplyHandler struct {
@@ -26,6 +23,7 @@ type ApplyHandler struct {
 	repository repository.RepositoryInterface
 	owner      ownerservice.OwnerServiceInterface
 	document   documentservice.DocumentServiceInterface
+	converter  *ComponentConverter
 }
 
 func NewApplyHandler(
@@ -34,7 +32,13 @@ func NewApplyHandler(
 	owner ownerservice.OwnerServiceInterface,
 	document documentservice.DocumentServiceInterface,
 ) *ApplyHandler {
-	return &ApplyHandler{github: gh, repository: repository, owner: owner, document: document}
+	return &ApplyHandler{
+		github:     gh,
+		repository: repository,
+		owner:      owner,
+		document:   document,
+		converter:  NewComponentConverter(gh), // Initialize converter with GitHub service
+	}
 }
 
 func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, stateRootLocation string, recursive bool, componentName string) {
@@ -142,7 +146,7 @@ func (h *ApplyHandler) handleOne(ctx context.Context, stateComponents, configCom
 
 func (h *ApplyHandler) handleDeleted(ctx context.Context, components map[string]*dtos.ComponentDTO) {
 	for _, componentDTO := range components {
-		errComponent := h.repository.Delete(ctx, componentDTOToResource(componentDTO))
+		errComponent := h.repository.Delete(ctx, h.converter.ToResource(componentDTO))
 		if errComponent != nil {
 			panic(errComponent)
 		}
@@ -197,7 +201,7 @@ func (h *ApplyHandler) handleCreated(
 		// Should we call this at creation time?
 		// componentDTO = h.handleDocumenation(componentDTO)
 
-		component := componentDTOToResource(componentDTO)
+		component := h.converter.ToResource(componentDTO)
 
 		component, errComponent := h.repository.Create(ctx, component)
 		if errComponent != nil {
@@ -206,7 +210,7 @@ func (h *ApplyHandler) handleCreated(
 
 		for _, providerName := range componentDTO.Spec.DependsOn {
 			if provider, exists := stateComponents[providerName]; exists {
-				h.repository.SetDependency(ctx, component, componentDTOToResource(provider))
+				h.repository.SetDependency(ctx, component, h.converter.ToResource(provider))
 			} else {
 				log.Printf("Provider %s not found for component %s", providerName, componentDTO.Spec.Name)
 			}
@@ -276,7 +280,7 @@ func (h *ApplyHandler) handleUpdated(
 		componentDTO = h.handleOwner(componentDTO)
 		componentDTO = h.handleDocumenation(ctx, componentDTO, stateComponents)
 
-		component := componentDTOToResource(componentDTO)
+		component := h.converter.ToResource(componentDTO)
 		component, errComponent := h.repository.Update(ctx, component)
 		if errComponent != nil {
 			panic(errComponent)
@@ -353,64 +357,6 @@ func (h *ApplyHandler) handleUpdated(
 	}
 
 	return result
-}
-
-func componentDTOToResource(componentDTO *dtos.ComponentDTO) resources.Component {
-	return resources.Component{
-		ID:            componentDTO.Spec.ID,
-		Name:          componentDTO.Spec.Name,
-		Slug:          utils.GetSlug(componentDTO.Spec.Name, componentDTO.Spec.TypeID),
-		Description:   componentDTO.Spec.Description,
-		ConfigVersion: componentDTO.Spec.ConfigVersion,
-		TypeID:        componentDTO.Spec.TypeID,
-		OwnerID:       componentDTO.Spec.OwnerID,
-		Fields:        componentDTO.Spec.Fields,
-		Links:         linksDTOToResource(componentDTO.Spec.Links),
-		Labels:        componentDTO.Spec.Labels,
-		MetricSources: metricSourcesDTOToResource(componentDTO.Spec.MetricSources),
-	}
-}
-
-func linksDTOToResource(linksDTO []dtos.Link) []resources.Link {
-	uniqueLinks := make(map[string]resources.Link)
-
-	for _, link := range linksDTO {
-		uniqueKey := fmt.Sprintf("%s-%s-%s", link.Name, link.Type, link.URL)
-		if _, exists := uniqueLinks[uniqueKey]; !exists {
-			uniqueLinks[uniqueKey] = resources.Link{
-				Name: link.Name,
-				Type: link.Type,
-				URL:  link.URL,
-			}
-		}
-	}
-
-	links := make([]resources.Link, 0, len(uniqueLinks))
-	for _, link := range uniqueLinks {
-		links = append(links, link)
-	}
-
-	return links
-}
-
-func metricSourcesDTOToResource(metricSourcesDTO map[string]*dtos.MetricSourceDTO) map[string]*resources.MetricSource {
-	metricSources := make(map[string]*resources.MetricSource)
-	for metricName, metricSourceDTO := range metricSourcesDTO {
-		metricSources[metricName] = &resources.MetricSource{
-			ID:     metricSourceDTO.ID,
-			Name:   metricSourceDTO.Name,
-			Metric: metricSourceDTO.Metric,
-		}
-	}
-	return metricSources
-}
-
-func getRepositoryDescription(componentDTO *dtos.ComponentDTO) string {
-	if componentDTO.Spec.Description != "" {
-		return componentDTO.Spec.Description
-	}
-	// If no description is set,
-	return "No description available"
 }
 
 func (h *ApplyHandler) handleOwner(componentDTO *dtos.ComponentDTO) *dtos.ComponentDTO {
@@ -497,7 +443,7 @@ func (h *ApplyHandler) handleDocuments(
 				Type:  document.Type,
 				URL:   document.URL,
 			}
-			h.repository.RemoveDocument(ctx, componentDTOToResource(componentDTO), documentResource)
+			h.repository.RemoveDocument(ctx, h.converter.ToResource(componentDTO), documentResource)
 			continue
 		}
 
@@ -512,7 +458,7 @@ func (h *ApplyHandler) handleDocuments(
 				URL:   document.URL,
 			}
 
-			newDocument, addDocumentErr := h.repository.AddDocument(ctx, componentDTOToResource(componentDTO), documentResource)
+			newDocument, addDocumentErr := h.repository.AddDocument(ctx, h.converter.ToResource(componentDTO), documentResource)
 			if addDocumentErr != nil {
 				fmt.Printf("apply documents %s", addDocumentErr)
 			}
@@ -532,7 +478,7 @@ func (h *ApplyHandler) handleDocuments(
 				URL:   document.URL,
 			}
 
-			updateDocumentErr := h.repository.UpdateDocument(ctx, componentDTOToResource(componentDTO), documentResource)
+			updateDocumentErr := h.repository.UpdateDocument(ctx, h.converter.ToResource(componentDTO), documentResource)
 			if updateDocumentErr != nil {
 				fmt.Printf("apply documents %s", updateDocumentErr)
 			}
@@ -571,7 +517,7 @@ func (h *ApplyHandler) handleDependencies(
 				continue
 			}
 
-			err := h.repository.UnsetDependency(ctx, componentDTOToResource(componentDTO), componentDTOToResource(stateProvider))
+			err := h.repository.UnsetDependency(ctx, h.converter.ToResource(componentDTO), h.converter.ToResource(stateProvider))
 			if err != nil {
 				fmt.Printf("apply dependencies %s", err)
 			}
@@ -586,7 +532,7 @@ func (h *ApplyHandler) handleDependencies(
 				continue
 			}
 
-			err := h.repository.SetDependency(ctx, componentDTOToResource(componentDTO), componentDTOToResource(stateProvider))
+			err := h.repository.SetDependency(ctx, h.converter.ToResource(componentDTO), h.converter.ToResource(stateProvider))
 			if err != nil {
 				fmt.Printf("apply dependencies %s", err)
 			}
@@ -625,31 +571,13 @@ func (h *ApplyHandler) handleDocumenation(
 		processedDocuments[i] = document
 		i++
 	}
-	componentDTO.Spec.Documents = dtos.SortAndRemoveDuplicateDocuments(processedDocuments)
+	componentDTO.Spec.Documents = processedDocuments
+
 	return h.handleDocuments(ctx, componentDTO, stateComponents)
 }
 
 func (h *ApplyHandler) determineDocumentType(title, url string) string {
-	titleLower := strings.ToLower(title)
-	urlLower := strings.ToLower(url)
-
-	if strings.Contains(titleLower, "readme") ||
-		strings.Contains(urlLower, "readme.md") ||
-		strings.Contains(urlLower, "/readme.md") {
-		return "README"
-	}
-
-	if strings.Contains(titleLower, "index") ||
-		strings.Contains(urlLower, "index.md") ||
-		strings.Contains(urlLower, "/index.md") {
-		return "INDEX"
-	}
-
-	if strings.Contains(urlLower, "/docs/") {
-		return "DOCUMENTATION"
-	}
-
-	return "Other"
+	return "OTHER"
 }
 
 func (h *ApplyHandler) handleAPISpecification(ctx context.Context, componentDTO *dtos.ComponentDTO) {
@@ -658,7 +586,7 @@ func (h *ApplyHandler) handleAPISpecification(ctx context.Context, componentDTO 
 		return
 	}
 
-	err := h.repository.SetAPISpecifications(ctx, componentDTOToResource(componentDTO), apiSpecs, apiSpecsFile)
+	err := h.repository.SetAPISpecifications(ctx, h.converter.ToResource(componentDTO), apiSpecs, apiSpecsFile)
 	if err != nil {
 		fmt.Printf("apply api specifications error: %s", err)
 	}

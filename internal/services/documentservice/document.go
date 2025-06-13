@@ -4,11 +4,9 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"gopkg.in/yaml.v3"
 	"io"
 	"path/filepath"
-	"strings"
-
-	"gopkg.in/yaml.v3"
 
 	"github.com/motain/of-catalog/internal/services/documentservice/dtos"
 	"github.com/motain/of-catalog/internal/services/githubservice"
@@ -39,7 +37,6 @@ func (ds *DocumentService) GetDocuments(repo string) (map[string]string, error) 
 			ds.processDocuments(document.Nav, documentLinks, uriToDocFile, "")
 		}
 	}
-
 	readmeLinks, readmeErr := ds.getReadmeDocuments(repo)
 	if readmeErr == nil {
 		for title, url := range readmeLinks {
@@ -89,31 +86,7 @@ func (ds *DocumentService) getReadmeDocuments(repo string) (map[string]string, e
 }
 
 func (ds *DocumentService) generateReadmeTitle(filePath string) string {
-	// Extract filename without extension
-	filename := filepath.Base(filePath)
-	nameWithoutExt := strings.TrimSuffix(filename, filepath.Ext(filename))
-
-	// Determine the directory for context
-	dir := filepath.Dir(filePath)
-
-	// Generate appropriate title based on location and filename
-	switch {
-	case dir == "docs" && strings.ToLower(nameWithoutExt) == "readme":
-		return "Documentation README"
-	case dir == "docs" && strings.ToLower(nameWithoutExt) == "index":
-		return "Documentation Index"
-	case dir == "." && strings.ToLower(nameWithoutExt) == "readme":
-		return "Project README"
-	case dir == "." && strings.ToLower(nameWithoutExt) == "index":
-		return "Project Index"
-	default:
-		// Fallback: capitalize first letter and add context
-		title := strings.Title(strings.ToLower(nameWithoutExt))
-		if dir != "." {
-			title = fmt.Sprintf("%s %s", strings.Title(dir), title)
-		}
-		return title
-	}
+	return "README" // Simplified title generation for README files
 }
 
 func (ds *DocumentService) extractData(repo string) (dtos.Document, string, error) {

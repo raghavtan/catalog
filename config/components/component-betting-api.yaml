@@ -9,7 +9,7 @@ spec:
     squad: sponsorship-integration
     name: betting-api
     slug: svc-betting-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

@@ -18,13 +18,18 @@ import (
 type BindHandler struct {
 	github     githubservice.GitHubServiceInterface
 	repository repository.RepositoryInterface
+	converter  *ComponentConverter
 }
 
 func NewBindHandler(
 	gh githubservice.GitHubServiceInterface,
 	repository repository.RepositoryInterface,
 ) *BindHandler {
-	return &BindHandler{github: gh, repository: repository}
+	return &BindHandler{
+		github:     gh,
+		repository: repository,
+		converter:  NewComponentConverter(gh),
+	}
 }
 
 func (h *BindHandler) Bind(ctx context.Context, stateRootLocation string) {
@@ -98,8 +103,7 @@ func (h *BindHandler) handleBind(ctx context.Context, component *dtos.ComponentD
 		component.Spec.MetricSources[metricName].Name = identifier
 		return nil
 	}
-
-	id, errBind := h.repository.BindMetric(ctx, componentDTOToResource(component), metric.Spec.ID, identifier)
+	id, errBind := h.repository.BindMetric(ctx, h.converter.ToResource(component), metric.Spec.ID, identifier)
 	if errBind != nil {
 		return fmt.Errorf("failed to create metric source for %s/%s (component/metric): %v", componentName, metricName, errBind)
 	}
