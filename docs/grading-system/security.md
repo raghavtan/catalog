@@ -32,11 +32,28 @@ Resource (in focus) should be able to enforce condition to stay at latest patch 
   sum(trivy_image_vulnerabilities{namespace="<component-name>", severity="Critical" })
   ```
 
-To fix any vulnerability follow the instruction defined here:
-- Add references on solving software vulnerability detected by the security tools
+**Fix Guidelines**
+
+
+To know more about the other security issues and fix vulnerabilities follow the instruction below:
+
+**[Grafana - Trivy Operator](https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-3h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cloud-runtime-bot&refresh=5m&tab=transformations&viewPanel=panel-33)**
+
+**Steps:**
+- Select the `namespace` for the services
+- Review the list defined which contains all the details of the package impacted. Please upgrade to `fixed_version` to eliminate and patch the vulnerability. 
+
+<img width="1858" alt="Screenshot 2025-06-13 at 16 24 46" src="https://github.com/user-attachments/assets/dcc45196-9b00-401f-bfbe-79c7b3a363f5" />
+
+--- 
+ 
+**(Optional) Additonal CRDs available in Kubernetes for more details:**
+
+Add references on solving software vulnerability detected by the security tools
   ```bash
   # login to aws production in your terminal
   kubectx # chose prod cluster
   kubectl get vulns -n <component-name> -ojson | jq '[.items[].report.vulnerabilities | unique_by(.vulnerabilityID) | .[]]'
   ```
+
 [<< Back to the index](./index.md)
