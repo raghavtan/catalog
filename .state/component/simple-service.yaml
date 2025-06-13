@@ -15,7 +15,7 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 3
+        tier: 4
     links:
         - id: ""
           name: OnCall
@@ -41,15 +41,8 @@ spec:
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
-    documents:
-        - id: ""
-          title: Documentation README
-          type: README
-          documentationCategoryId: ""
-          url: https://github.com/motain/simple-service/blob/master/docs/README.md
+    documents: []
     labels:
-        - of-catalog
-        - simple-service
         - cloud-runtime
         - platform
     metricSources:
