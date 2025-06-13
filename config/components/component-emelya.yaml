@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: emelya
     slug: svc-emelya
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

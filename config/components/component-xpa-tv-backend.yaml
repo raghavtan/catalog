@@ -9,7 +9,7 @@ spec:
     squad: live-video
     name: xpa-tv-backend
     slug: svc-xpa-tv-backend
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

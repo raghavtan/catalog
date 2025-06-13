@@ -9,7 +9,7 @@ spec:
     squad: fan-activation
     name: polls-api
     slug: svc-polls-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

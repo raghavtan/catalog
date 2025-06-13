@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: seasons-cache
     slug: svc-seasons-cache
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

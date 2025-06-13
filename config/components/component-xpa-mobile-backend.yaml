@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: xpa-mobile-backend
     slug: svc-xpa-mobile-backend
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

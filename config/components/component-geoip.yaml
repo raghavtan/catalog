@@ -9,7 +9,7 @@ spec:
     squad: sponsorship-integration
     name: geoip
     slug: svc-geoip
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

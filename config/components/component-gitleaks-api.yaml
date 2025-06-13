@@ -9,7 +9,7 @@ spec:
     squad: developer-xp
     name: gitleaks-api
     slug: svc-gitleaks-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

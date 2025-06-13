@@ -9,7 +9,7 @@ spec:
     squad: source
     name: onefootball-copilot
     slug: svc-onefootball-copilot
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

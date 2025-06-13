@@ -9,7 +9,7 @@ spec:
     squad: live-video
     name: watch
     slug: svc-watch
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

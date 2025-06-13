@@ -9,7 +9,7 @@ spec:
     squad: personalisation
     name: bookmarks
     slug: svc-bookmarks
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

@@ -9,7 +9,7 @@ spec:
     squad: video-platform
     name: video-stories-api
     slug: svc-video-stories-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

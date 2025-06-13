@@ -9,7 +9,7 @@ spec:
     squad: live-video
     name: web-experience
     slug: svc-web-experience
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

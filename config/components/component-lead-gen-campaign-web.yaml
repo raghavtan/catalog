@@ -9,7 +9,7 @@ spec:
     squad: sponsorship-integration
     name: lead-gen-campaign-web
     slug: svc-lead-gen-campaign-web
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

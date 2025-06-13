@@ -9,7 +9,7 @@ spec:
     squad: video-platform
     name: consumer-web-v3
     slug: svc-consumer-web-v3
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

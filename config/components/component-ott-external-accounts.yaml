@@ -9,7 +9,7 @@ spec:
     squad: live-video
     name: ott-external-accounts
     slug: svc-ott-external-accounts
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

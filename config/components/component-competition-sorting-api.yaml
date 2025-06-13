@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: competition-sorting-api
     slug: svc-competition-sorting-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

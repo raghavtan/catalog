@@ -9,7 +9,7 @@ spec:
     squad: sponsorship-integration
     name: tv-guide-importer
     slug: svc-tv-guide-importer
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

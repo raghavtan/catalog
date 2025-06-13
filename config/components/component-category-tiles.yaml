@@ -9,7 +9,7 @@ spec:
     squad: personalisation
     name: category-tiles
     slug: svc-category-tiles
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

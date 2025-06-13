@@ -9,7 +9,7 @@ spec:
     squad: media-advertising
     name: ott-mediation
     slug: svc-ott-mediation
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

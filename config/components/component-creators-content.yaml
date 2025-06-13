@@ -9,7 +9,7 @@ spec:
     squad: video-platform
     name: creators-content
     slug: svc-creators-content
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: ws-receiver
     slug: svc-ws-receiver
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

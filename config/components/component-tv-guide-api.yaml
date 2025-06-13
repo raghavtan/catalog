@@ -9,7 +9,7 @@ spec:
     squad: sponsorship-integration
     name: tv-guide-api
     slug: svc-tv-guide-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

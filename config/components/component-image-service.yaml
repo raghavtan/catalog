@@ -9,7 +9,7 @@ spec:
     squad: personalisation
     name: image-service
     slug: svc-image-service
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

@@ -9,7 +9,7 @@ spec:
     squad: developer-xp
     name: experimental-thumbor
     slug: svc-experimental-thumbor
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

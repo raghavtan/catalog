@@ -9,7 +9,7 @@ spec:
     squad: sponsorship-integration
     name: fanmatch-go
     slug: svc-fanmatch-go
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

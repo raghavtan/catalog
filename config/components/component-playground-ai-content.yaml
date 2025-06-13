@@ -9,7 +9,7 @@ spec:
     squad: personalisation
     name: playground-ai-content
     slug: svc-playground-ai-content
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

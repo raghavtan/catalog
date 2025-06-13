@@ -9,7 +9,7 @@ spec:
     squad: cloud-runtime
     name: compass-service
     slug: svc-compass-service
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

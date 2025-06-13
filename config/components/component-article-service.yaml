@@ -9,7 +9,7 @@ spec:
     squad: source
     name: article-service
     slug: svc-article-service
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

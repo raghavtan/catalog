@@ -9,7 +9,7 @@ spec:
     squad: personalisation
     name: amymone
     slug: svc-amymone
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

@@ -9,7 +9,7 @@ spec:
     squad: source
     name: analytics-service
     slug: svc-analytics-service
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

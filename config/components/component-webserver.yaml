@@ -9,7 +9,7 @@ spec:
     squad: cloud-runtime
     name: webserver
     slug: svc-webserver
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

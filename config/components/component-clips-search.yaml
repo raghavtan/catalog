@@ -9,7 +9,7 @@ spec:
     squad: video-platform
     name: clips-search
     slug: svc-clips-search
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

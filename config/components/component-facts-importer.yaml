@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: facts-importer
     slug: svc-facts-importer
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

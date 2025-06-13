@@ -9,7 +9,7 @@ spec:
     squad: personalisation
     name: search-gateway-api
     slug: svc-search-gateway-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

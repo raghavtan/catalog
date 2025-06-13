@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: kuzya
     slug: svc-kuzya
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

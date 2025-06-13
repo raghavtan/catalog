@@ -9,7 +9,7 @@ spec:
     squad: live-video
     name: web-payments-backend
     slug: svc-web-payments-backend
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

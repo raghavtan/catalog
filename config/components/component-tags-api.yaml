@@ -9,7 +9,7 @@ spec:
     squad: video-platform
     name: tags-api
     slug: svc-tags-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

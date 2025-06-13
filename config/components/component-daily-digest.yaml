@@ -9,7 +9,7 @@ spec:
     squad: fan-activation
     name: daily-digest
     slug: svc-daily-digest
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

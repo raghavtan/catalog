@@ -161,6 +161,7 @@ func (h *ApplyHandler) handleUnchanged(
 ) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		componentDTO = h.handleOwner(componentDTO)
+		componentDTO = h.handleDescription(componentDTO) // FIXED: Handle description for unchanged components too
 		componentDTO = h.handleDocumenation(ctx, componentDTO, stateComponents)
 
 		// FIXED: For unchanged components, ensure we preserve all state data including facts
@@ -197,6 +198,7 @@ func (h *ApplyHandler) handleCreated(
 ) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		componentDTO = h.handleOwner(componentDTO)
+		componentDTO = h.handleDescription(componentDTO)
 
 		// Should we call this at creation time?
 		// componentDTO = h.handleDocumenation(componentDTO)
@@ -278,6 +280,7 @@ func (h *ApplyHandler) handleUpdated(
 ) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		componentDTO = h.handleOwner(componentDTO)
+		componentDTO = h.handleDescription(componentDTO)
 		componentDTO = h.handleDocumenation(ctx, componentDTO, stateComponents)
 
 		component := h.converter.ToResource(componentDTO)
@@ -413,6 +416,23 @@ func (h *ApplyHandler) handleOwner(componentDTO *dtos.ComponentDTO) *dtos.Compon
 	} else {
 		fmt.Printf("WARNING: Tribe or Squad not set for component %s (tribe: '%s', squad: '%s')\n",
 			componentDTO.Spec.Name, componentDTO.Spec.Tribe, componentDTO.Spec.Squad)
+	}
+
+	return componentDTO
+}
+
+// handleDescription fetches and sets repository description from GitHub
+func (h *ApplyHandler) handleDescription(componentDTO *dtos.ComponentDTO) *dtos.ComponentDTO {
+	if componentDTO.Spec.Description != "" {
+		return componentDTO
+	}
+	description, err := h.github.GetRepoDescription(componentDTO.Metadata.Name)
+	if err != nil {
+		log.Printf("Warning: Could not get repository description for %s: %v", componentDTO.Metadata.Name, err)
+		componentDTO.Spec.Description = fmt.Sprintf("Component %s", componentDTO.Spec.Name)
+	} else {
+		fmt.Printf("INFO: Setting description for %s from repository: %s\n", componentDTO.Spec.Name, description)
+		componentDTO.Spec.Description = description
 	}
 
 	return componentDTO

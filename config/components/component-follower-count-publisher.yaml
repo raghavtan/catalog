@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: follower-count-publisher
     slug: svc-follower-count-publisher
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

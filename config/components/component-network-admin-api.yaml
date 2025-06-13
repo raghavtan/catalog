@@ -9,7 +9,7 @@ spec:
     squad: source
     name: network-admin-api
     slug: svc-network-admin-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

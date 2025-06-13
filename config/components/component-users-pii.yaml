@@ -9,7 +9,7 @@ spec:
     squad: fan-activation
     name: users-pii
     slug: svc-users-pii
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

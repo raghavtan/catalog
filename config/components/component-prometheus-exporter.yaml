@@ -9,7 +9,7 @@ spec:
     squad: cloud-runtime
     name: prometheus-exporter
     slug: svc-prometheus-exporter
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

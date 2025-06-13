@@ -9,7 +9,7 @@ spec:
     squad: live-video
     name: ott-probe
     slug: svc-ott-probe
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

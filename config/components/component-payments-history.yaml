@@ -9,7 +9,7 @@ spec:
     squad: live-video
     name: payments-history
     slug: svc-payments-history
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

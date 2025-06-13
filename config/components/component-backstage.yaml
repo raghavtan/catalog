@@ -9,7 +9,7 @@ spec:
     squad: cloud-runtime
     name: backstage
     slug: svc-backstage
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

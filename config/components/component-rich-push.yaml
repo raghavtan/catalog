@@ -9,7 +9,7 @@ spec:
     squad: sponsorship-integration
     name: rich-push
     slug: svc-rich-push
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

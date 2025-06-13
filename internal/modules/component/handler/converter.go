@@ -41,17 +41,12 @@ func (c *ComponentConverter) ToResource(componentDTO *dtos.ComponentDTO) resourc
 
 // getDescription handles description logic with GitHub fallback
 func (c *ComponentConverter) getDescription(componentDTO *dtos.ComponentDTO) string {
-	// If description is already set, use it
 	if componentDTO.Spec.Description != "" {
 		return componentDTO.Spec.Description
 	}
-
-	// If no GitHub service available, use default
 	if c.github == nil {
 		return fmt.Sprintf("Component %s", componentDTO.Spec.Name)
 	}
-
-	// Try to get description from GitHub
 	description, err := c.github.GetRepoDescription(componentDTO.Metadata.Name)
 	if err != nil {
 		log.Printf("Warning: Could not get repository description for %s: %v", componentDTO.Metadata.Name, err)

@@ -9,7 +9,7 @@ spec:
     squad: video-platform
     name: pubnet-o-and-d-backoffice-api
     slug: svc-pubnet-o-and-d-backoffice-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

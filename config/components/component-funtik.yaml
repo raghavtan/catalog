@@ -9,7 +9,7 @@ spec:
     squad: source
     name: funtik
     slug: svc-funtik
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

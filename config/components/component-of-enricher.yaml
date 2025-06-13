@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: of-enricher
     slug: svc-of-enricher
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

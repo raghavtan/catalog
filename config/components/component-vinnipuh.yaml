@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: vinnipuh
     slug: svc-vinnipuh
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

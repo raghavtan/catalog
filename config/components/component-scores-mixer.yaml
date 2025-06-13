@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: scores-mixer
     slug: svc-scores-mixer
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

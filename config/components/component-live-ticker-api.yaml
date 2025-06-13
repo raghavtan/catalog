@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: live-ticker-api
     slug: svc-live-ticker-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

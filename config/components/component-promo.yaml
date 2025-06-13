@@ -9,7 +9,7 @@ spec:
     squad: sponsorship-integration
     name: promo
     slug: svc-promo
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: resolver-api
     slug: svc-resolver-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

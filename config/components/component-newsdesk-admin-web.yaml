@@ -9,7 +9,7 @@ spec:
     squad: source
     name: newsdesk-admin-web
     slug: svc-newsdesk-admin-web
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

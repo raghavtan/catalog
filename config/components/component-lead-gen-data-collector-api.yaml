@@ -9,7 +9,7 @@ spec:
     squad: sponsorship-integration
     name: lead-gen-data-collector-api
     slug: svc-lead-gen-data-collector-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

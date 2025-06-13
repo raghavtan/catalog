@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: facts-fetcher
     slug: svc-facts-fetcher
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

@@ -9,7 +9,7 @@ spec:
     squad: onefootball-club
     name: loyalty-service
     slug: svc-loyalty-service
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

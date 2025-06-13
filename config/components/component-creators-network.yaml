@@ -9,7 +9,7 @@ spec:
     squad: source
     name: creators-network
     slug: svc-creators-network
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

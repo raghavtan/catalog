@@ -9,7 +9,7 @@ spec:
     squad: personalisation
     name: content-recommender
     slug: svc-content-recommender
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

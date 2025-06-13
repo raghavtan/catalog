@@ -9,7 +9,7 @@ spec:
     squad: media-advertising
     name: mediation-api
     slug: svc-mediation-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

@@ -9,7 +9,7 @@ spec:
     squad: cloud-runtime
     name: log-gateway
     slug: svc-log-gateway
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

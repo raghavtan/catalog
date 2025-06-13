@@ -9,7 +9,7 @@ spec:
     squad: sponsorship-integration
     name: campaign-manager
     slug: svc-campaign-manager
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

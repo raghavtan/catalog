@@ -9,7 +9,7 @@ spec:
     squad: developer-xp
     name: oncall-compensation
     slug: svc-oncall-compensation
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

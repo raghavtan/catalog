@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: cheburashka
     slug: svc-cheburashka
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

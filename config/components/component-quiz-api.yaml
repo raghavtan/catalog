@@ -9,7 +9,7 @@ spec:
     squad: sponsorship-integration
     name: quiz-api
     slug: svc-quiz-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

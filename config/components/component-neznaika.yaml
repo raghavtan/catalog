@@ -9,7 +9,7 @@ spec:
     squad: source
     name: neznaika
     slug: svc-neznaika
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

@@ -9,7 +9,7 @@ spec:
     squad: sponsorship-integration
     name: image-uploader
     slug: svc-image-uploader
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: score-api
     slug: svc-score-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

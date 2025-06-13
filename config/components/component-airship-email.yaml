@@ -9,7 +9,7 @@ spec:
     squad: fan-activation
     name: airship-email
     slug: svc-airship-email
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

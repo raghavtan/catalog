@@ -9,7 +9,7 @@ spec:
     squad: cloud-runtime
     name: cloud-runtime-bot
     slug: svc-cloud-runtime-bot
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

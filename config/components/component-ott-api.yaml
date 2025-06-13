@@ -9,7 +9,7 @@ spec:
     squad: live-video
     name: ott-api
     slug: svc-ott-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

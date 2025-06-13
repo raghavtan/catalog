@@ -9,7 +9,7 @@ spec:
     squad: video-platform
     name: clips-webhooks
     slug: svc-clips-webhooks
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

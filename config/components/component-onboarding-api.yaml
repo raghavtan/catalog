@@ -9,7 +9,7 @@ spec:
     squad: fan-activation
     name: onboarding-api
     slug: svc-onboarding-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

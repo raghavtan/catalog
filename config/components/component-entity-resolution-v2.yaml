@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: entity-resolution-v2
     slug: svc-entity-resolution-v2
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

@@ -9,7 +9,7 @@ spec:
     squad: developer-xp
     name: not-found-server
     slug: svc-not-found-server
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

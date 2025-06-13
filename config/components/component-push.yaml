@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: push
     slug: svc-push
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

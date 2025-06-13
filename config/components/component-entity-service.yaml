@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: entity-service
     slug: svc-entity-service
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

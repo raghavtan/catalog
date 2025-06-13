@@ -9,7 +9,7 @@ spec:
     squad: matchxp
     name: webhook-receiver
     slug: svc-webhook-receiver
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

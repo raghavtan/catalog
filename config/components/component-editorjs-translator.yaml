@@ -9,7 +9,7 @@ spec:
     squad: source
     name: editorjs-translator
     slug: svc-editorjs-translator
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

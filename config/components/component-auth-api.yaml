@@ -9,7 +9,7 @@ spec:
     squad: source
     name: auth-api
     slug: svc-auth-api
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

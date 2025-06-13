@@ -9,7 +9,7 @@ spec:
     squad: developer-xp
     name: peregrine
     slug: svc-peregrine
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:

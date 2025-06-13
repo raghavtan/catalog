@@ -9,7 +9,7 @@ spec:
     squad: personalisation
     name: umka
     slug: svc-umka
-    description: Not Provided
+    description: ""
     ownerId: ""
     typeId: SERVICE
     dependsOn:
