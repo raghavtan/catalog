@@ -5,7 +5,7 @@ metadata:
     name: 'ott-live-sessions'
     componentType: service
 spec:
-    tribe: engagement
+    tribe: ott
     squad: live-video
     name: ott-live-sessions
     slug: svc-ott-live-sessions
@@ -16,7 +16,7 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 3
+        tier: 4
     links:
         - name: Repository
           type: REPOSITORY
@@ -38,5 +38,5 @@ spec:
           url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
     labels:
         - live-video
-        - engagement
+        - ott
     customFields: null
