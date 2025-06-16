@@ -163,6 +163,7 @@ func (h *ApplyHandler) handleUnchanged(
 		componentDTO = h.handleOwner(componentDTO)
 		componentDTO = h.handleDescription(componentDTO) // FIXED: Handle description for unchanged components too
 		componentDTO = h.handleDocumenation(ctx, componentDTO, stateComponents)
+		componentDTO.Spec.Links = dtos.UniqueAndSortLinks(componentDTO.Spec.Links)
 
 		// FIXED: For unchanged components, ensure we preserve all state data including facts
 		stateComponent := stateComponents[componentDTO.Metadata.Name]
@@ -231,6 +232,7 @@ func (h *ApplyHandler) handleCreated(
 			}
 		}
 		componentDTO.Spec.Links = createdLinks
+		componentDTO.Spec.Links = dtos.UniqueAndSortLinks(componentDTO.Spec.Links)
 
 		if componentDTO.Spec.MetricSources == nil {
 			componentDTO.Spec.MetricSources = make(map[string]*dtos.MetricSourceDTO)
@@ -243,6 +245,20 @@ func (h *ApplyHandler) handleCreated(
 				Facts:  []*fsdtos.Task{}, // Empty facts for new sources
 			}
 		}
+
+		// Map component.Documents (from resources.Component) to componentDTO.Spec.Documents
+		createdDocuments := make([]*dtos.Document, len(component.Documents))
+		for i, docRes := range component.Documents { // docRes is of type resources.Document
+			createdDocuments[i] = &dtos.Document{
+				ID:                      docRes.ID,
+				Title:                   docRes.Title,
+				Type:                    docRes.Type,
+				DocumentationCategoryId: docRes.DocumentationCategoryId,
+				URL:                     docRes.URL,
+			}
+		}
+		// Apply sorting and uniqueness
+		componentDTO.Spec.Documents = dtos.SortAndRemoveDuplicateDocuments(createdDocuments)
 
 		// FIXED: Handle DependsOn duplicates - check if kubernetes already exists
 		if len(componentDTO.Spec.DependsOn) == 0 {
@@ -301,6 +317,21 @@ func (h *ApplyHandler) handleUpdated(
 			}
 		}
 		componentDTO.Spec.Links = updatedLinks
+
+		// Update componentDTO.Spec.Documents with the fresh documents from Compass
+		refreshedDtoDocuments := make([]*dtos.Document, len(component.Documents))
+		for i, docRes := range component.Documents { // docRes is of type resources.Document
+			refreshedDtoDocuments[i] = &dtos.Document{
+				ID:                      docRes.ID,
+				Title:                   docRes.Title,
+				Type:                    docRes.Type,
+				DocumentationCategoryId: docRes.DocumentationCategoryId,
+				URL:                     docRes.URL,
+			}
+		}
+		// Apply the same sorting and uniqueness logic used elsewhere for documents
+		componentDTO.Spec.Documents = dtos.SortAndRemoveDuplicateDocuments(refreshedDtoDocuments)
+		componentDTO.Spec.Links = dtos.UniqueAndSortLinks(componentDTO.Spec.Links)
 
 		// FIXED: Preserve existing MetricSources with facts, only update basic properties
 		stateComponent := stateComponents[componentDTO.Metadata.Name]
