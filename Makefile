@@ -50,6 +50,7 @@ lint: ## Run static analysis with staticcheck
 
 .PHONY: test
 test: ## Run all unit tests with coverage
+	set -e
 	@echo "Running unit tests..."
 	GOPRIVATE=github.com/motain $(GO) test -v -race -count=1 -tags unit ./... \
 		-cover -coverprofile=coverage.out | \
