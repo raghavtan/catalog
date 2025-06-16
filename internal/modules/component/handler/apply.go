@@ -4,6 +4,9 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log"
+	"path/filepath"
+
 	"github.com/motain/of-catalog/internal/modules/component/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/repository"
 	"github.com/motain/of-catalog/internal/modules/component/resources"
@@ -14,8 +17,6 @@ import (
 	"github.com/motain/of-catalog/internal/utils/drift"
 	listutils "github.com/motain/of-catalog/internal/utils/list"
 	"github.com/motain/of-catalog/internal/utils/yaml"
-	"log"
-	"path/filepath"
 )
 
 type ApplyHandler struct {
@@ -291,6 +292,7 @@ func (h *ApplyHandler) handleUpdated(
 		componentDTO = h.handleOwner(componentDTO)
 		componentDTO = h.handleDescription(componentDTO)
 		componentDTO = h.handleDocumenation(ctx, componentDTO, stateComponents)
+		fmt.Printf("DEBUG: Processing updated component %s, # of documents: %d\n", componentDTO.Metadata.Name, len(componentDTO.Spec.Documents))
 
 		component := h.converter.ToResource(componentDTO)
 		component, errComponent := h.repository.Update(ctx, component)
@@ -476,6 +478,9 @@ func (h *ApplyHandler) handleDocuments(
 	for _, document := range componentDTO.Spec.Documents {
 		mappedComponentDocuments[document.Title] = document
 	}
+
+	h.purgeDocuments(ctx, componentDTO, stateComponents)
+
 	for title, document := range mappedStateDocuments {
 		if _, exists := mappedComponentDocuments[title]; !exists {
 			documentResource := resources.Document{
@@ -540,14 +545,42 @@ func (h *ApplyHandler) handleDocuments(
 		}(),
 	)
 
-	fmt.Printf("DEBUG: Final documents for %s: %d documents\n",
-		componentDTO.Metadata.Name, len(resultDocuments))
+	fmt.Printf("DEBUG: Final documents for %s: %d documents\n", componentDTO.Metadata.Name, len(resultDocuments))
 	for title, doc := range resultDocuments {
-		fmt.Printf("DEBUG:   - %s (ID: %s, CategoryID: %s)\n",
-			title, doc.ID, doc.DocumentationCategoryId)
+		fmt.Printf("DEBUG:   - %s (ID: %s, CategoryID: %s)\n", title, doc.ID, doc.DocumentationCategoryId)
+		componentDTO.Spec.Documents = append(componentDTO.Spec.Documents, doc)
 	}
 
 	return componentDTO
+}
+
+func (h *ApplyHandler) purgeDocuments(
+	ctx context.Context,
+	componentDTO *dtos.ComponentDTO,
+	stateComponents map[string]*dtos.ComponentDTO,
+) {
+	componentInState := stateComponents[componentDTO.Metadata.Name]
+
+	compassComponentDocuments, getDocumentsErr := h.repository.GetDocuments(ctx, h.converter.ToResource(componentDTO))
+	if getDocumentsErr != nil {
+		fmt.Printf("Warning: Failed to get documents for component %s: %v\n", componentDTO.Spec.Name, getDocumentsErr)
+	}
+	for _, compassDocument := range compassComponentDocuments {
+		found := false
+		for _, docInState := range componentInState.Spec.Documents {
+			if docInState.ID == compassDocument.ID {
+				found = true
+				fmt.Printf("DEBUG: Document %s (ID: %s) found in state\n", compassDocument.Title, compassDocument.ID)
+				break
+			}
+		}
+		if !found {
+			fmt.Printf("DEBUG: Document %s (ID: %s) not found in state, cleaning up Compass\n", compassDocument.Title, compassDocument.ID)
+			if purgeErr := h.repository.RemoveDocument(ctx, h.converter.ToResource(componentDTO), compassDocument); purgeErr != nil {
+				fmt.Printf("Warning: Failed to remove document %s: %v\n", compassDocument.Title, purgeErr)
+			}
+		}
+	}
 }
 
 func (h *ApplyHandler) handleDependencies(

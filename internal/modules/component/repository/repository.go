@@ -6,7 +6,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"log"
 	"strings"
 	"time"
 
@@ -25,6 +24,7 @@ type RepositoryInterface interface {
 	SetDependency(ctx context.Context, dependent, provider resources.Component) error
 	UnsetDependency(ctx context.Context, dependent, provider resources.Component) error
 	// Documents operations
+	GetDocuments(ctx context.Context, component resources.Component) ([]resources.Document, error)
 	AddDocument(ctx context.Context, component resources.Component, document resources.Document) (resources.Document, error)
 	UpdateDocument(ctx context.Context, component resources.Component, document resources.Document) error
 	RemoveDocument(ctx context.Context, component resources.Component, document resources.Document) error
@@ -223,6 +223,31 @@ func (r *Repository) AddDocument(ctx context.Context, component resources.Compon
 	return doc, nil
 }
 
+func (r *Repository) GetDocuments(ctx context.Context, component resources.Component) ([]resources.Document, error) {
+	input := &dtos.GetDocumentsInput{
+		ComponentID: component.ID,
+	}
+	output := &dtos.GetDocumentsOutput{}
+	if runErr := r.compass.RunWithDTOs(ctx, input, output); runErr != nil {
+		return nil, fmt.Errorf("GetDocuments error for %s: %s", component.ID, runErr)
+	}
+
+	if len(output.Compass.Documents.Nodes) == 0 {
+		return nil, nil
+	}
+	// Convert the output nodes to resources.Document
+	documents := make([]resources.Document, len(output.Compass.Documents.Nodes))
+	for i, node := range output.Compass.Documents.Nodes {
+		documents[i] = resources.Document{
+			ID:                      node.ID,
+			Title:                   node.Title,
+			URL:                     node.URL,
+			DocumentationCategoryId: node.DocumentationCategoryID,
+		}
+	}
+	return documents, nil
+}
+
 func (r *Repository) UpdateDocument(ctx context.Context, component resources.Component, document resources.Document) error {
 	r.initDocumentCategories(ctx)
 
@@ -237,41 +262,13 @@ func (r *Repository) UpdateDocument(ctx context.Context, component resources.Com
 	return nil
 }
 
-// @TODO work on this
 func (r *Repository) RemoveDocument(ctx context.Context, component resources.Component, document resources.Document) error {
-	query := `
-		mutation deleteComponentLink($id: ID!) {
-			compass {
-				deleteComponentLink(input: {id: $id}) {
-					deletedMetricSourceId
-					errors {
-						message
-					}
-					success
-				}
-			}
-		}`
-
-	variables := map[string]interface{}{
-		"componentId": component.ID,
-		"id":          document.ID,
+	input := &dtos.DeleteDocumentInput{
+		ID: document.ID,
 	}
-
-	var response struct {
-		Compass struct {
-			DeleteComponentLink struct {
-				Success bool `json:"success"`
-			} `json:"deleteComponentLink"`
-		} `json:"compass"`
-	}
-
-	if runErr := r.compass.Run(ctx, query, variables, &response); runErr != nil {
-		log.Printf("failed to delete metric source: %v", runErr)
-		return runErr
-	}
-
-	if !response.Compass.DeleteComponentLink.Success {
-		return errors.New("failed to delete metric source")
+	output := &dtos.DeleteDocumentOutput{}
+	if runErr := r.compass.RunWithDTOs(ctx, input, output); runErr != nil {
+		return fmt.Errorf("RemoveDocument error for %s/%s: %s", component.ID, document.Title, runErr)
 	}
 	return nil
 }

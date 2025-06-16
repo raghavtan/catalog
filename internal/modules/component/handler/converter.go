@@ -36,6 +36,7 @@ func (c *ComponentConverter) ToResource(componentDTO *dtos.ComponentDTO) resourc
 		Links:         linksDTOToResource(componentDTO.Spec.Links),
 		Labels:        componentDTO.Spec.Labels,
 		MetricSources: metricSourcesDTOToResource(componentDTO.Spec.MetricSources),
+		Documents:     documentsDTOToResource(componentDTO.Spec.Documents),
 	}
 }
 
@@ -101,4 +102,21 @@ func metricSourcesDTOToResource(metricSourcesDTO map[string]*dtos.MetricSourceDT
 		}
 	}
 	return metricSources
+}
+
+func documentsDTOToResource(documentsDTO []*dtos.Document) []resources.Document {
+	documents := make([]resources.Document, 0, len(documentsDTO))
+
+	for _, doc := range documentsDTO {
+		document := resources.Document{
+			ID:                      doc.ID,
+			Title:                   doc.Title,
+			Type:                    doc.Type,
+			DocumentationCategoryId: doc.DocumentationCategoryId,
+			URL:                     doc.URL,
+		}
+		documents = append(documents, document)
+	}
+
+	return documents
 }

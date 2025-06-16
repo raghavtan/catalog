@@ -10,28 +10,19 @@ import (
  *************/
 type DeleteDocumentInput struct {
 	compassdtos.InputDTO
-	ComponentID string
-	Title       string
-	CategoryID  string
-	URL         string
+	ID string
 }
 
 func (dto *DeleteDocumentInput) GetQuery() string {
 	return `
-		mutation addDocument($input: CompassAddDocumentInput!) {
+		mutation deleteDocument($input: CompassDeleteDocumentInput!) {
    		compass @optIn(to: "compass-beta") {
-   			addDocument(input: $input) {
+   			deleteDocument(input: $input) {
    				success
  					errors {
 						message
 					}
-					documentDetails {
-						id
-						title
-						url
-						componentId
-						documentationCategoryId
-					}
+					success
 				}
 			}
 		}`
@@ -40,10 +31,7 @@ func (dto *DeleteDocumentInput) GetQuery() string {
 func (dto *DeleteDocumentInput) SetVariables() map[string]interface{} {
 	return map[string]interface{}{
 		"input": map[string]interface{}{
-			"componentId":             dto.ComponentID,
-			"title":                   dto.Title,
-			"documentationCategoryId": dto.CategoryID,
-			"url":                     dto.URL,
+			"id": dto.ID,
 		},
 	}
 }
@@ -58,7 +46,7 @@ type DeleteDocumentOutput struct {
 			Errors  []compassservice.CompassError `json:"errors"`
 			Success bool                          `json:"success"`
 			Details Document                      `json:"documentDetails"`
-		} `json:"addDocument"`
+		} `json:"deleteDocument"`
 	} `json:"compass"`
 }
 
