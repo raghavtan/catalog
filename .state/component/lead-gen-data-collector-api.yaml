@@ -15,8 +15,16 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 3
+        tier: 4
     links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/lead-gen-data-collector-api
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=lead-gen-data-collector-api&var-container=lead-gen-data-collector-api&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -33,14 +41,6 @@ spec:
           name: Sponsorship Integration Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/lead-gen-data-collector-api
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=lead-gen-data-collector-api&var-container=lead-gen-data-collector-api&from=now-1h&to=now
     documents:
         - id: ""
           title: README
