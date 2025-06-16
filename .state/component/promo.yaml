@@ -15,8 +15,12 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 3
+        tier: 4
     links:
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/promo
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -37,10 +41,6 @@ spec:
           name: Sponsorship Integration Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/promo
     documents:
         - id: ""
           title: README
