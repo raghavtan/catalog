@@ -48,7 +48,6 @@ spec:
           documentationCategoryId: ""
           url: https://github.com/motain/article-intelligence/blob/main/docs/index.md
     labels:
-        - article-intelligence
         - source
         - fan-experience
     metricSources:
