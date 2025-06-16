@@ -108,6 +108,9 @@ func GetKindFromGeneric(typeName string) (string, error) {
 func parse[T any](tKind, globString string) ([]*T, error) {
 	basepath, pattern := doublestar.SplitPattern(globString)
 	matches, globErr := doublestar.Glob(os.DirFS(basepath), pattern)
+
+	fmt.Printf("Searching for %s in %s\n", pattern, basepath)
+
 	if globErr != nil {
 		return nil, globErr
 	}
@@ -116,11 +119,13 @@ func parse[T any](tKind, globString string) ([]*T, error) {
 	for _, match := range matches {
 		decodedResults, decodeErr := decodeData[T](tKind, filepath.Join(basepath, match))
 		if decodeErr != nil {
+			fmt.Printf("Failed to decode %s: %v\n", match, decodeErr)
 			return nil, decodeErr
 		}
 
 		results = append(results, decodedResults...)
 	}
+	fmt.Printf("Found %d %s definitions in %s\n", len(results), tKind, basepath)
 	return results, nil
 }
 
@@ -305,6 +310,7 @@ func encodeData[T any](data []*T) ([]byte, error) {
 
 func decodeData[T any](tKind, fileName string) ([]*T, error) {
 	data, readErr := os.ReadFile(fileName)
+
 	if readErr != nil {
 		return nil, readErr
 	}

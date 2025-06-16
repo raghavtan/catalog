@@ -18,6 +18,14 @@ spec:
         tier: 4
     links:
         - id: ""
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/simple-service
+        - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
@@ -33,19 +41,6 @@ spec:
           name: p-cloud-runtime
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CFUCQUA04
-        - id: ""
-          name: Cloud Runtime
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/simple-service
-<<<<<<< HEAD
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
     documents:
         - id: ""
           title: README
@@ -53,7 +48,6 @@ spec:
           documentationCategoryId: ""
           url: https://github.com/motain/simple-service/blob/master/docs/README.md
     labels:
-        - simple-service
         - cloud-runtime
         - platform
     metricSources:

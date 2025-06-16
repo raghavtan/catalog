@@ -57,18 +57,6 @@ func (c *ComponentConverter) getDescription(componentDTO *dtos.ComponentDTO) str
 	return description
 }
 
-// Backward compatibility functions
-func componentDTOToResource(componentDTO *dtos.ComponentDTO) resources.Component {
-	// Create converter without GitHub service for backward compatibility
-	converter := &ComponentConverter{github: nil}
-	return converter.ToResource(componentDTO)
-}
-
-func componentDTOToResourceWithGitHub(componentDTO *dtos.ComponentDTO, github githubservice.GitHubServiceInterface) resources.Component {
-	converter := &ComponentConverter{github: github}
-	return converter.ToResource(componentDTO)
-}
-
 // MetricSourceDTOToResource converts MetricSourceDTO to Resource
 // Used by BindHandler and ComputeHandler
 func MetricSourceDTOToResource(metricSourceDTO *dtos.MetricSourceDTO) resources.MetricSource {
