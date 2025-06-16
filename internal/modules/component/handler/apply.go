@@ -4,6 +4,9 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log"
+	"path/filepath"
+
 	"github.com/motain/of-catalog/internal/modules/component/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/repository"
 	"github.com/motain/of-catalog/internal/modules/component/resources"
@@ -14,8 +17,6 @@ import (
 	"github.com/motain/of-catalog/internal/utils/drift"
 	listutils "github.com/motain/of-catalog/internal/utils/list"
 	"github.com/motain/of-catalog/internal/utils/yaml"
-	"log"
-	"path/filepath"
 )
 
 type ApplyHandler struct {
@@ -597,7 +598,7 @@ func (h *ApplyHandler) handleDocumenation(
 		mappedDocuments[doc.Title] = doc
 	}
 	for documentTitle, documentURL := range documents {
-		docType := "OTHER"
+		docType := "Other"
 		if _, exists := mappedDocuments[documentTitle]; !exists {
 			mappedDocuments[documentTitle] = &dtos.Document{
 				Title: documentTitle,
