@@ -122,6 +122,71 @@ func SortAndRemoveDuplicateDocuments(documents []*Document) []*Document {
 	return result
 }
 
+// UniqueAndSortLinks ensures that a slice of Links contains unique elements
+// and is sorted by Type, then Name, then URL.
+func UniqueAndSortLinks(links []Link) []Link {
+	if len(links) == 0 {
+		return links
+	}
+
+	// Ensure uniqueness
+	// Using a map with a composite key (Type + Name + URL) for uniqueness.
+	// If links have reliable IDs from Compass that should define uniqueness,
+	// this logic might need adjustment, but for mixed sources (Compass + derived),
+	// content-based key is safer.
+	type linkKey struct {
+		linkType string
+		name     string
+		url      string
+	}
+	uniqueMap := make(map[linkKey]Link)
+
+	for _, l := range links {
+		// Normalize or ensure consistency if needed, e.g., trimming spaces, lowercasing for key
+		key := linkKey{
+			linkType: l.Type,
+			name:     l.Name,
+			url:      l.URL,
+		}
+		// If multiple links have the same key, the last one encountered wins.
+		// If IDs are present and should be preserved, prioritize the one with an ID,
+		// or decide on a merging strategy if content is identical but IDs differ (unlikely for this problem).
+		// For now, simple last-one-wins for the content key.
+		if existing, found := uniqueMap[key]; found {
+			// If existing link has an ID and current one doesn't, keep existing.
+			// Or if current one has an ID, it might be an update from Compass.
+			// This part can get complex if we need to merge intelligently.
+			// Simplest for now: if an ID exists, it's likely from Compass and authoritative.
+			if l.ID != "" { // Current link has an ID, prefer it.
+				uniqueMap[key] = l
+			} else if existing.ID == "" && l.ID == "" { // Neither has ID, last one wins.
+				uniqueMap[key] = l
+			}
+			// If existing has ID and current does not, existing is kept (implicitly).
+		} else {
+			uniqueMap[key] = l
+		}
+	}
+
+	result := make([]Link, 0, len(uniqueMap))
+	for _, l := range uniqueMap {
+		result = append(result, l)
+	}
+
+	// Sort the unique links
+	sort.Slice(result, func(i, j int) bool {
+		if result[i].Type != result[j].Type {
+			return result[i].Type < result[j].Type
+		}
+		if result[i].Name != result[j].Name {
+			return result[i].Name < result[j].Name
+		}
+		return result[i].URL < result[j].URL
+	})
+
+	return result
+}
+
 type Metadata struct {
 	Name          string `yaml:"name" jsonyaml:"name"`
 	ComponentType string `yaml:"componentType" jsonyaml:"componentType"`

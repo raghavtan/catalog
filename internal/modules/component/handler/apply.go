@@ -4,9 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"log"
-	"path/filepath"
-
 	"github.com/motain/of-catalog/internal/modules/component/dtos"
 	"github.com/motain/of-catalog/internal/modules/component/repository"
 	"github.com/motain/of-catalog/internal/modules/component/resources"
@@ -17,6 +14,8 @@ import (
 	"github.com/motain/of-catalog/internal/utils/drift"
 	listutils "github.com/motain/of-catalog/internal/utils/list"
 	"github.com/motain/of-catalog/internal/utils/yaml"
+	"log"
+	"path/filepath"
 )
 
 type ApplyHandler struct {
@@ -72,8 +71,6 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 }
 
 func (h *ApplyHandler) handleAll(ctx context.Context, stateComponents, configComponents map[string]*dtos.ComponentDTO) {
-	// FIXED: Ensure owner is calculated correctly before drift detection
-	// Apply handleOwner to all components before comparison
 	correctedConfigComponents := make(map[string]*dtos.ComponentDTO)
 	for name, component := range configComponents {
 		correctedConfigComponents[name] = h.handleOwner(component)
@@ -162,13 +159,12 @@ func (h *ApplyHandler) handleUnchanged(
 ) []*dtos.ComponentDTO {
 	for _, componentDTO := range components {
 		componentDTO = h.handleOwner(componentDTO)
-		componentDTO = h.handleDescription(componentDTO) // FIXED: Handle description for unchanged components too
+		componentDTO = h.handleDescription(componentDTO)
 		componentDTO = h.handleDocumenation(ctx, componentDTO, stateComponents)
+		componentDTO.Spec.Links = dtos.UniqueAndSortLinks(componentDTO.Spec.Links)
 
-		// FIXED: For unchanged components, ensure we preserve all state data including facts
 		stateComponent := stateComponents[componentDTO.Metadata.Name]
 		if stateComponent != nil {
-			// Preserve MetricSources with facts from state
 			if stateComponent.Spec.MetricSources != nil {
 				componentDTO.Spec.MetricSources = make(map[string]*dtos.MetricSourceDTO)
 				for metricName, stateMetricSource := range stateComponent.Spec.MetricSources {
@@ -232,6 +228,7 @@ func (h *ApplyHandler) handleCreated(
 			}
 		}
 		componentDTO.Spec.Links = createdLinks
+		componentDTO.Spec.Links = dtos.UniqueAndSortLinks(componentDTO.Spec.Links)
 
 		if componentDTO.Spec.MetricSources == nil {
 			componentDTO.Spec.MetricSources = make(map[string]*dtos.MetricSourceDTO)
@@ -245,7 +242,18 @@ func (h *ApplyHandler) handleCreated(
 			}
 		}
 
-		// FIXED: Handle DependsOn duplicates - check if kubernetes already exists
+		createdDocuments := make([]*dtos.Document, len(component.Documents))
+		for i, docRes := range component.Documents { // docRes is of type resources.Document
+			createdDocuments[i] = &dtos.Document{
+				ID:                      docRes.ID,
+				Title:                   docRes.Title,
+				Type:                    docRes.Type,
+				DocumentationCategoryId: docRes.DocumentationCategoryId,
+				URL:                     docRes.URL,
+			}
+		}
+		componentDTO.Spec.Documents = dtos.SortAndRemoveDuplicateDocuments(createdDocuments)
+
 		if len(componentDTO.Spec.DependsOn) == 0 {
 			// Default mandatory element [kubernetes]
 			componentDTO.Spec.DependsOn = []string{"kubernetes"}
@@ -303,14 +311,24 @@ func (h *ApplyHandler) handleUpdated(
 		}
 		componentDTO.Spec.Links = updatedLinks
 
-		// FIXED: Preserve existing MetricSources with facts, only update basic properties
+		refreshedDtoDocuments := make([]*dtos.Document, len(component.Documents))
+		for i, docRes := range component.Documents {
+			refreshedDtoDocuments[i] = &dtos.Document{
+				ID:                      docRes.ID,
+				Title:                   docRes.Title,
+				Type:                    docRes.Type,
+				DocumentationCategoryId: docRes.DocumentationCategoryId,
+				URL:                     docRes.URL,
+			}
+		}
+		componentDTO.Spec.Documents = dtos.SortAndRemoveDuplicateDocuments(refreshedDtoDocuments)
+		componentDTO.Spec.Links = dtos.UniqueAndSortLinks(componentDTO.Spec.Links)
 		stateComponent := stateComponents[componentDTO.Metadata.Name]
 		if stateComponent != nil && stateComponent.Spec.MetricSources != nil {
 			if componentDTO.Spec.MetricSources == nil {
 				componentDTO.Spec.MetricSources = make(map[string]*dtos.MetricSourceDTO)
 			}
 
-			// Copy existing metric sources with their facts
 			for metricName, stateMetricSource := range stateComponent.Spec.MetricSources {
 				componentDTO.Spec.MetricSources[metricName] = &dtos.MetricSourceDTO{
 					ID:     stateMetricSource.ID,     // Keep existing ID
@@ -320,16 +338,12 @@ func (h *ApplyHandler) handleUpdated(
 				}
 			}
 
-			// Update any metric sources that changed in the repository response
 			for metricName, metricSource := range component.MetricSources {
 				if existingMetricSource, exists := componentDTO.Spec.MetricSources[metricName]; exists {
-					// Update basic properties but keep facts
 					existingMetricSource.ID = metricSource.ID
 					existingMetricSource.Name = metricSource.Name
 					existingMetricSource.Metric = metricSource.Metric
-					// Facts are preserved from state
 				} else {
-					// New metric source
 					componentDTO.Spec.MetricSources[metricName] = &dtos.MetricSourceDTO{
 						ID:     metricSource.ID,
 						Name:   metricSource.Name,
@@ -339,7 +353,6 @@ func (h *ApplyHandler) handleUpdated(
 				}
 			}
 		} else {
-			// Fallback if no state component (shouldn't happen in update)
 			if componentDTO.Spec.MetricSources == nil {
 				componentDTO.Spec.MetricSources = make(map[string]*dtos.MetricSourceDTO)
 			}
@@ -364,12 +377,7 @@ func (h *ApplyHandler) handleUpdated(
 }
 
 func (h *ApplyHandler) handleOwner(componentDTO *dtos.ComponentDTO) *dtos.ComponentDTO {
-
-	// FIXED: Always recalculate owner based on tribe/squad
-	// This ensures correct OwnerID even if component already has one set
-
 	if componentDTO.Spec.Tribe != "" && componentDTO.Spec.Squad != "" {
-
 		owner, ownerErr := h.owner.GetOwnerByTribeAndSquad(componentDTO.Spec.Tribe, componentDTO.Spec.Squad)
 		if ownerErr == nil {
 
