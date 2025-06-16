@@ -18,10 +18,6 @@ spec:
         tier: 3
     links:
         - id: ""
-          name: Activation Squad
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/users-pii
@@ -41,11 +37,15 @@ spec:
           name: r-activation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CK9LTN6DR
-    documents:
         - id: ""
+          name: Activation Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
+    documents:
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/2c01d6fe-0bb9-4ee6-bde4-2f192cc6b919
           title: README
-          type: OTHER
-          documentationCategoryId: ""
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/users-pii/blob/main/README.md
     labels:
         - fan-activation

@@ -42,10 +42,10 @@ spec:
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
     documents:
-        - id: ""
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ae4af352-7602-4945-ab88-31562ead7b27
           title: README
-          type: OTHER
-          documentationCategoryId: ""
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/resolver-api/blob/master/README.md
     labels:
         - resolver-api

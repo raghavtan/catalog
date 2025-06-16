@@ -43,10 +43,10 @@ spec:
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CK9LTN6DR
     documents:
-        - id: ""
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/0a829b17-58c4-46c2-bd34-45da2f838c70
           title: README
-          type: OTHER
-          documentationCategoryId: ""
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/polls-api/blob/main/README.md
     labels:
         - fan-activation

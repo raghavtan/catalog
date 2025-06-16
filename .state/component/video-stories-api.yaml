@@ -18,6 +18,10 @@ spec:
         tier: 4
     links:
         - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/video-stories-api
+        - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=video-stories-api&var-container=video-stories-api&from=now-1h&to=now
@@ -37,15 +41,11 @@ spec:
           name: Video Platform Support
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/video-stories-api
     documents:
-        - id: ""
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef55a28f-9703-4411-807b-c61844f0ca8f
           title: README
-          type: OTHER
-          documentationCategoryId: ""
+          type: Other
+          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/video-stories-api/blob/main/docs/index.md
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/7d0ad87b-8cb7-4a49-b629-bbdc763a0cdc
           title: Readme

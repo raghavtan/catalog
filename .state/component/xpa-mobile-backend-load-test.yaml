@@ -16,10 +16,6 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-mobile-backend-load-test&var-container=xpa-mobile-backend-load-test&from=now-1h&to=now
-        - id: ""
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=xpa_mobile_backend_load_test_xpa_mobile_backend_load_test_svc_cluster_local_&refresh=5s
@@ -39,6 +35,10 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/xpa-mobile-backend-load-test
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-mobile-backend-load-test&var-container=xpa-mobile-backend-load-test&from=now-1h&to=now
     documents: []
     labels:
         - matchxp
