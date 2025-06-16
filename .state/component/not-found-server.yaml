@@ -18,21 +18,13 @@ spec:
         tier: 3
     links:
         - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=not_found_server_not_found_server_svc_cluster_local_&refresh=5s
-        - id: ""
           name: p-developer-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C04NMNZC89L
         - id: ""
-          name: Developer Experience
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/not-found-server
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=not_found_server_not_found_server_svc_cluster_local_&refresh=5s
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -41,8 +33,16 @@ spec:
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: ""
+          name: Developer Experience
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/not-found-server
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d38107e4-0ff3-4be9-afef-7b197f28168b
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/9b9c1204-c240-413e-8650-e6889e9acbaa
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
