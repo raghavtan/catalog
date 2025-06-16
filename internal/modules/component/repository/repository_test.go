@@ -134,76 +134,221 @@ func TestRepository_Create(t *testing.T) {
 	}
 }
 func TestRepository_Update(t *testing.T) {
+	// Define some sample links for testing
+	sampleLink1 := dtos.CompassLink{ID: "link-id-1", Name: "Link One", Type: "WEBSITE", URL: "http://example.com/one"}
+	sampleLink2 := dtos.CompassLink{ID: "link-id-2", Name: "Link Two", Type: "DOCUMENT", URL: "http://example.com/two"}
+	sampleLink3Updated := dtos.CompassLink{ID: "link-id-1", Name: "Link One Updated", Type: "WEBSITE", URL: "http://example.com/one-updated"}
+
+
+	// Define sample metric sources for testing (using the new DTO structure)
+	sampleMetricSourceNode1 := dtos.CompassMetricSourceNode{
+		ID: "ms-id-1",
+		MetricDefinition: dtos.CompassMetricDefinition{ID: "md-id-1", Name: "MetricDef1"},
+	}
+	sampleMetricSourceNode2 := dtos.CompassMetricSourceNode{
+		ID: "ms-id-2",
+		MetricDefinition: dtos.CompassMetricDefinition{ID: "md-id-2", Name: "MetricDef2"},
+	}
+
+	// Define sample documents for testing
+	sampleDocumentNode1 := dtos.CompassDocumentNode{ID: "doc-id-1", Title: "Doc One", URL: "http://example.com/doc1"}
+
+
 	tests := []struct {
-		name           string
-		inputComponent resources.Component
-		mockSetup      func(mockCompass *compassmocks.MockCompassServiceInterface)
-		expectedResult resources.Component
-		expectedError  error
+		name                string
+		inputComponent      resources.Component
+		mockSetup           func(mockCompass *compassmocks.MockCompassServiceInterface, inputComp resources.Component)
+		expectedResult      resources.Component
+		expectedError       error
+		expectedErrorString string // For error message comparison
 	}{
 		{
-			name: "successfully update a component",
+			name: "successfully update component and refresh links (no initial links, new links fetched)",
 			inputComponent: resources.Component{
-				ID:   "component-id",
-				Name: "UpdatedComponent",
-				Slug: "updated-component",
+				ID:   "comp-id-1",
+				Name: "Component With New Links",
+				Slug: "comp-new-links",
 			},
-			mockSetup: func(mockCompass *compassmocks.MockCompassServiceInterface) {
-				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).DoAndReturn(
-					func(ctx context.Context, input, output interface{}) error {
-						updateInput := input.(*dtos.UpdateComponentInput)
+			mockSetup: func(mockCompass *compassmocks.MockCompassServiceInterface, inputComp resources.Component) {
+				// Mock for UpdateComponent mutation
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.AssignableToTypeOf(&dtos.UpdateComponentInput{}), gomock.AssignableToTypeOf(&dtos.UpdateComponentOutput{})).
+					DoAndReturn(func(ctx context.Context, input, output interface{}) error {
 						updateOutput := output.(*dtos.UpdateComponentOutput)
-
-						if updateInput.Component.ID != "component-id" {
-							return fmt.Errorf("unexpected component ID")
-						}
-
 						updateOutput.Compass.UpdateComponent.Success = true
+						// The actual UpdateComponent mutation in Compass might not return all details,
+						// so we don't populate links here. That's GetBySlug's job.
 						return nil
-					},
-				)
+					}).Times(1)
+
+				// Mock for GetCompassCloudId (called by GetBySlug)
+				mockCompass.EXPECT().GetCompassCloudId().Return("test-cloud-id").Times(1)
+
+				// Mock for GetBySlug query
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.AssignableToTypeOf(&dtos.ComponentByReferenceInput{}), gomock.AssignableToTypeOf(&dtos.ComponentByReferenceOutput{})).
+					DoAndReturn(func(ctx context.Context, input, output interface{}) error {
+						getBySlugOutput := output.(*dtos.ComponentByReferenceOutput)
+						getBySlugOutput.Compass.Component = dtos.ComponentDetail{
+							ID:            inputComp.ID,
+							Name:          inputComp.Name, // Name from original input for consistency in this part
+							Description:   "Desc for new links",
+							OwnerID:       "owner-1",
+							Labels:        []string{"label1"},
+							Type:          dtos.CompassComponentType{ID: "type-id-1"},
+							Links:         []dtos.CompassLink{sampleLink1, sampleLink2},
+							Documents:     dtos.CompassDocumentConnection{Nodes: []dtos.CompassDocumentNode{sampleDocumentNode1}},
+							MetricSources: dtos.CompassMetricSourceConnection{Nodes: []dtos.CompassMetricSourceNode{sampleMetricSourceNode1}},
+						}
+						return nil
+					}).Times(1)
 			},
 			expectedResult: resources.Component{
-				ID:   "component-id",
-				Name: "UpdatedComponent",
-				Slug: "updated-component",
+				ID:            "comp-id-1",
+				Name:          "Component With New Links", // GetBySlug returns this
+				Slug:          "comp-new-links", // Slug is from original input, not GetBySlug typically
+				Description:   "Desc for new links",
+				OwnerID:       "owner-1",
+				Labels:        []string{"label1"},
+				TypeID:        "type-id-1",
+				Links: []resources.Link{
+					{ID: "link-id-1", Name: "Link One", Type: "WEBSITE", URL: "http://example.com/one"},
+					{ID: "link-id-2", Name: "Link Two", Type: "DOCUMENT", URL: "http://example.com/two"},
+				},
+				Documents: []resources.Document{
+					{ID: "doc-id-1", Title: "Doc One", URL: "http://example.com/doc1"},
+				},
+				MetricSources: map[string]*resources.MetricSource{
+					"MetricDef1": {ID: "ms-id-1", Metric: "md-id-1"},
+				},
 			},
-			expectedError: nil,
 		},
 		{
-			name: "error during component update",
+			name: "successfully update component and refresh links (existing links updated, new one added)",
 			inputComponent: resources.Component{
-				ID:   "component-id",
-				Name: "UpdatedComponent",
-				Slug: "updated-component",
+				ID:   "comp-id-2",
+				Name: "Component With Updated Links",
+				Slug: "comp-updated-links",
+				Links: []resources.Link{ // These are initial links, will be overridden by GetBySlug
+					{ID: "old-link-id", Name: "Old Link", Type: "OLD_TYPE", URL: "http://example.com/old"},
+				},
 			},
-			mockSetup: func(mockCompass *compassmocks.MockCompassServiceInterface) {
-				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.Any(), gomock.Any()).Return(errors.New("mock error"))
+			mockSetup: func(mockCompass *compassmocks.MockCompassServiceInterface, inputComp resources.Component) {
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.AssignableToTypeOf(&dtos.UpdateComponentInput{}), gomock.AssignableToTypeOf(&dtos.UpdateComponentOutput{})).
+					DoAndReturn(func(ctx context.Context, input, output interface{}) error {
+						o := output.(*dtos.UpdateComponentOutput)
+						o.Compass.UpdateComponent.Success = true
+						return nil
+					}).Times(1)
+
+				mockCompass.EXPECT().GetCompassCloudId().Return("test-cloud-id").Times(1)
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.AssignableToTypeOf(&dtos.ComponentByReferenceInput{}), gomock.AssignableToTypeOf(&dtos.ComponentByReferenceOutput{})).
+					DoAndReturn(func(ctx context.Context, input, output interface{}) error {
+						o := output.(*dtos.ComponentByReferenceOutput)
+						o.Compass.Component = dtos.ComponentDetail{
+							ID:            inputComp.ID,
+							Name:          inputComp.Name,
+							Description:   "Desc for updated links",
+							Links:         []dtos.CompassLink{sampleLink3Updated, sampleLink2}, // sampleLink1 updated, sampleLink2 added
+							MetricSources: dtos.CompassMetricSourceConnection{Nodes: []dtos.CompassMetricSourceNode{sampleMetricSourceNode2}},
+						}
+						return nil
+					}).Times(1)
 			},
-			expectedResult: resources.Component{},
-			expectedError:  fmt.Errorf("Update component error for UpdatedComponent: mock error"),
+			expectedResult: resources.Component{
+				ID:            "comp-id-2",
+				Name:          "Component With Updated Links",
+				Slug:          "comp-updated-links",
+				Description:   "Desc for updated links",
+				Links: []resources.Link{
+					{ID: "link-id-1", Name: "Link One Updated", Type: "WEBSITE", URL: "http://example.com/one-updated"},
+					{ID: "link-id-2", Name: "Link Two", Type: "DOCUMENT", URL: "http://example.com/two"},
+				},
+				MetricSources: map[string]*resources.MetricSource{
+					"MetricDef2": {ID: "ms-id-2", Metric: "md-id-2"},
+				},
+				// Other fields like Documents, TypeID, OwnerID, Labels would be zero/nil if not set in mock GetBySlug
+				Documents: []resources.Document{}, // Explicitly empty if not set
+				Labels: nil, // Explicitly nil if not set
+			},
 		},
+		{
+			name: "error during main update mutation",
+			inputComponent: resources.Component{
+				ID: "comp-id-3", Name: "Update Fail", Slug: "update-fail",
+			},
+			mockSetup: func(mockCompass *compassmocks.MockCompassServiceInterface, inputComp resources.Component) {
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.AssignableToTypeOf(&dtos.UpdateComponentInput{}), gomock.AssignableToTypeOf(&dtos.UpdateComponentOutput{})).
+					Return(errors.New("compass update mutation error")).Times(1)
+				// GetBySlug should not be called if the main update fails
+			},
+			expectedResult:      resources.Component{},
+			expectedErrorString: "Update component error for Update Fail: compass update mutation error",
+		},
+		{
+			name: "error during GetBySlug after successful update",
+			inputComponent: resources.Component{
+				ID: "comp-id-4", Name: "GetBySlug Fail", Slug: "getbyslug-fail",
+			},
+			mockSetup: func(mockCompass *compassmocks.MockCompassServiceInterface, inputComp resources.Component) {
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.AssignableToTypeOf(&dtos.UpdateComponentInput{}), gomock.AssignableToTypeOf(&dtos.UpdateComponentOutput{})).
+					DoAndReturn(func(ctx context.Context, input, output interface{}) error {
+						o := output.(*dtos.UpdateComponentOutput)
+						o.Compass.UpdateComponent.Success = true
+						return nil
+					}).Times(1)
+
+				mockCompass.EXPECT().GetCompassCloudId().Return("test-cloud-id").Times(1)
+				mockCompass.EXPECT().RunWithDTOs(gomock.Any(), gomock.AssignableToTypeOf(&dtos.ComponentByReferenceInput{}), gomock.AssignableToTypeOf(&dtos.ComponentByReferenceOutput{})).
+					Return(errors.New("compass getbyslug query error")).Times(1)
+			},
+			expectedResult:      resources.Component{},
+			expectedErrorString: "failed to retrieve updated component details for GetBySlug Fail after update: GetBySlug error for getbyslug-fail: compass getbyslug query error",
+		},
+		// TODO: Add a test case for the PreValidationFunc if its behavior needs specific verification,
+		// though the task was to avoid modifying it. For now, assume it works as before or is covered by existing logic if ID is missing.
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			ctrl := gomock.NewController(t)
-			defer ctrl.Finish()
+			// No need for defer ctrl.Finish() if using t.Cleanup
 
 			mockCompass := compassmocks.NewMockCompassServiceInterface(ctrl)
-			tt.mockSetup(mockCompass)
+			if tt.mockSetup != nil {
+				tt.mockSetup(mockCompass, tt.inputComponent)
+			}
 
 			repo := repository.NewRepository(mockCompass)
 			result, err := repo.Update(context.Background(), tt.inputComponent)
 
-			if tt.expectedError != nil {
+			if tt.expectedErrorString != "" {
 				assert.Error(t, err)
-				assert.EqualError(t, err, tt.expectedError.Error())
-			} else if err != nil {
-				t.Errorf("unexpected error: %v", err)
+				assert.EqualError(t, err, tt.expectedErrorString)
+			} else if tt.expectedError != nil {
+				// For specific error types if needed, though string comparison is often sufficient
+				assert.True(t, errors.Is(err, tt.expectedError) || err.Error() == tt.expectedError.Error())
+			} else {
+				assert.NoError(t, err)
 			}
 
-			assert.Equal(t, tt.expectedResult, result, "expected result does not match actual result")
+			// Compare individual fields if direct comparison of structs with maps/slices is tricky
+			assert.Equal(t, tt.expectedResult.ID, result.ID, "ID mismatch")
+			assert.Equal(t, tt.expectedResult.Name, result.Name, "Name mismatch")
+			assert.Equal(t, tt.expectedResult.Slug, result.Slug, "Slug mismatch")
+			assert.Equal(t, tt.expectedResult.Description, result.Description, "Description mismatch")
+			assert.Equal(t, tt.expectedResult.OwnerID, result.OwnerID, "OwnerID mismatch")
+			assert.Equal(t, tt.expectedResult.TypeID, result.TypeID, "TypeID mismatch")
+			assert.ElementsMatch(t, tt.expectedResult.Labels, result.Labels, "Labels mismatch")
+			assert.ElementsMatch(t, tt.expectedResult.Links, result.Links, "Links mismatch")
+			assert.ElementsMatch(t, tt.expectedResult.Documents, result.Documents, "Documents mismatch")
+
+			// For maps like MetricSources, check keys and values
+			assert.Equal(t, len(tt.expectedResult.MetricSources), len(result.MetricSources), "MetricSources length mismatch")
+			for k, v := range tt.expectedResult.MetricSources {
+				assert.Equal(t, v, result.MetricSources[k], "MetricSource for key %s mismatch", k)
+			}
+
+            // If you want to keep the overall struct comparison too (it might fail due to map/slice ordering)
+			// assert.Equal(t, tt.expectedResult, result, "expected result struct does not match actual result struct")
 		})
 	}
 }

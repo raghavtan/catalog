@@ -145,7 +145,13 @@ func (r *Repository) Update(ctx context.Context, component resources.Component) 
 		return resources.Component{}, fmt.Errorf("Update component error for %s: %s", component.Name, runErr)
 	}
 
-	return component, nil
+	// Refresh component data from Compass
+	refreshedComponent, getErr := r.GetBySlug(ctx, resources.Component{ID: component.ID, Slug: component.Slug})
+	if getErr != nil {
+		return resources.Component{}, fmt.Errorf("Error refreshing component %s after update: %w", component.Slug, getErr)
+	}
+
+	return *refreshedComponent, nil
 }
 
 func (r *Repository) Delete(ctx context.Context, component resources.Component) error {
