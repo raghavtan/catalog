@@ -469,20 +469,20 @@ func (h *ApplyHandler) handleDocuments(
 	if componentInState != nil && componentInState.Spec.Documents != nil {
 		mappedStateDocuments = make(map[string]*dtos.Document, len(componentInState.Spec.Documents))
 		for _, document := range componentInState.Spec.Documents {
-			mappedStateDocuments[document.Title] = document
+			mappedStateDocuments[document.Title+document.ID] = document
 		}
 	} else {
 		mappedStateDocuments = make(map[string]*dtos.Document)
 	}
 	mappedComponentDocuments := make(map[string]*dtos.Document, len(componentDTO.Spec.Documents))
 	for _, document := range componentDTO.Spec.Documents {
-		mappedComponentDocuments[document.Title] = document
+		mappedComponentDocuments[document.Title+document.ID] = document
 	}
 
 	h.purgeDocuments(ctx, componentDTO, stateComponents)
 
-	for title, document := range mappedStateDocuments {
-		if _, exists := mappedComponentDocuments[title]; !exists {
+	for mapKey, document := range mappedStateDocuments {
+		if _, exists := mappedComponentDocuments[document.Title+document.ID]; !exists {
 			documentResource := resources.Document{
 				ID:    document.ID,
 				Title: document.Title,
@@ -494,11 +494,11 @@ func (h *ApplyHandler) handleDocuments(
 			}
 			continue
 		}
-		resultDocuments[title] = document
+		resultDocuments[mapKey] = document
 	}
 
-	for title, document := range mappedComponentDocuments {
-		stateDocument, existsInState := mappedStateDocuments[title]
+	for mapKey, document := range mappedComponentDocuments {
+		stateDocument, existsInState := mappedStateDocuments[document.Title+document.ID]
 
 		if !existsInState {
 			documentResource := resources.Document{
@@ -510,11 +510,11 @@ func (h *ApplyHandler) handleDocuments(
 			newDocument, addDocumentErr := h.repository.AddDocument(ctx, h.converter.ToResource(componentDTO), documentResource)
 			if addDocumentErr != nil {
 				fmt.Printf("Warning: Failed to add document %s: %v\n", document.Title, addDocumentErr)
-				resultDocuments[title] = document
+				resultDocuments[mapKey] = document
 			} else {
 				document.ID = newDocument.ID
 				document.DocumentationCategoryId = newDocument.DocumentationCategoryId
-				resultDocuments[title] = document
+				resultDocuments[mapKey] = document
 			}
 		} else if document.URL != stateDocument.URL {
 			documentResource := resources.Document{
@@ -530,9 +530,9 @@ func (h *ApplyHandler) handleDocuments(
 			}
 			document.ID = stateDocument.ID
 			document.DocumentationCategoryId = stateDocument.DocumentationCategoryId
-			resultDocuments[title] = document
+			resultDocuments[mapKey] = document
 		} else {
-			resultDocuments[title] = stateDocument
+			resultDocuments[mapKey] = stateDocument
 		}
 	}
 	componentDTO.Spec.Documents = dtos.SortAndRemoveDuplicateDocuments(
