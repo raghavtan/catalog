@@ -44,5 +44,4 @@ spec:
     labels:
         - live-video
         - ott
-        - watch
     customFields: null
