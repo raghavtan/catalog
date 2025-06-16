@@ -41,5 +41,4 @@ spec:
     labels:
         - live-video
         - ott
-        - web-experience
     customFields: null
