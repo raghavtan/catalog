@@ -39,5 +39,4 @@ spec:
     labels:
         - video-platform
         - ott
-        - video-stories-api
     customFields: null
