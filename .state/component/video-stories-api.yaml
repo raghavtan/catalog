@@ -18,9 +18,13 @@ spec:
         tier: 4
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/video-stories-api
+          name: video-platform-team
+          type: CHAT_CHANNEL
+          url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
+        - id: ""
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=video_stories_api_video_stories_api_svc_cluster_local_&refresh=5s
         - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
@@ -30,24 +34,20 @@ spec:
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
         - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=video_stories_api_video_stories_api_svc_cluster_local_&refresh=5s
-        - id: ""
-          name: video-platform-team
-          type: CHAT_CHANNEL
-          url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
-        - id: ""
           name: Video Platform Support
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/video-stories-api
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ef55a28f-9703-4411-807b-c61844f0ca8f
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a9b93a13-7271-4540-84c5-d59d3bfbb25c
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/video-stories-api/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/7d0ad87b-8cb7-4a49-b629-bbdc763a0cdc
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/9e059f72-3bff-4182-8a4e-ca6312678a62
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
@@ -55,7 +55,6 @@ spec:
     labels:
         - video-platform
         - ott
-        - video-stories-api
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/0469a956-dfd2-428d-a399-ce9f3b74b2af
