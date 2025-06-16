@@ -18,6 +18,10 @@ spec:
         tier: 4
     links:
         - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=video-stories-ingest-api&var-container=video-stories-ingest-api&from=now-1h&to=now
+        - id: ""
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
@@ -37,10 +41,6 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/video-stories-ingest-api
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=video-stories-ingest-api&var-container=video-stories-ingest-api&from=now-1h&to=now
     documents: []
     labels:
         - video-platform

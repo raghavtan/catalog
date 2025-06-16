@@ -18,6 +18,14 @@ spec:
         tier: 3
     links:
         - id: ""
+          name: client-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: ""
+          name: Media Advertising
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/mediation-api
@@ -33,14 +41,6 @@ spec:
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=mediation_api_mediation_api_svc_cluster_local_&refresh=5s
-        - id: ""
-          name: client-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C07MMBZDYV6
-        - id: ""
-          name: Media Advertising
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
     documents:
         - id: ""
           title: README

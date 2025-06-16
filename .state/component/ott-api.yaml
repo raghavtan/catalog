@@ -19,6 +19,10 @@ spec:
         tier: 3
     links:
         - id: ""
+          name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/ott-api
@@ -38,10 +42,6 @@ spec:
           name: e-livevideo
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C053ATVH3N2
-        - id: ""
-          name: Live Video
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
     documents:
         - id: ""
           title: README

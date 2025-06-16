@@ -16,14 +16,6 @@ spec:
     fields: {}
     links:
         - id: ""
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/xpa-mobile-backend-load-test
-        - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-mobile-backend-load-test&var-container=xpa-mobile-backend-load-test&from=now-1h&to=now
@@ -39,6 +31,14 @@ spec:
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/xpa-mobile-backend-load-test
     documents: []
     labels:
         - matchxp

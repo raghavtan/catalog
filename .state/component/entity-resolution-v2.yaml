@@ -18,10 +18,6 @@ spec:
         tier: 3
     links:
         - id: ""
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/entity-resolution-v2
@@ -41,6 +37,10 @@ spec:
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: ""
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
     documents:
         - id: ""
           title: README

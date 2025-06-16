@@ -18,14 +18,6 @@ spec:
         tier: 3
     links:
         - id: ""
-          name: Sponsorship Integration Squad
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/betting-workers
-        - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=betting-workers&var-container=betting-workers&from=now-1h&to=now
@@ -41,6 +33,14 @@ spec:
           name: client-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: ""
+          name: Sponsorship Integration Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/betting-workers
     documents:
         - id: ""
           title: README

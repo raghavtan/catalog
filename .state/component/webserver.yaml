@@ -18,10 +18,6 @@ spec:
         tier: 3
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/webserver
-        - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=webserver&var-container=webserver&from=now-1h&to=now
@@ -41,6 +37,10 @@ spec:
           name: Cloud Runtime
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/webserver
     documents:
         - id: ""
           title: README

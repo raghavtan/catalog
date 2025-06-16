@@ -16,6 +16,10 @@ spec:
     fields: {}
     links:
         - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=happy-keldysh&var-container=happy-keldysh&from=now-1h&to=now
+        - id: ""
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=happy_keldysh_happy_keldysh_svc_cluster_local_&refresh=5s
@@ -35,10 +39,6 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/happy-keldysh
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=happy-keldysh&var-container=happy-keldysh&from=now-1h&to=now
     documents:
         - id: ""
           title: README

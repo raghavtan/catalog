@@ -23,6 +23,14 @@ spec:
         tier: 4
     links:
         - id: ""
+          name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/watch
+        - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=watch&var-container=watch&from=now-1h&to=now
@@ -38,14 +46,6 @@ spec:
           name: e-livevideo
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C053ATVH3N2
-        - id: ""
-          name: Live Video
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/watch
     documents:
         - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/8ae48425-e698-4b42-8c65-e4b2272c4e4b
           title: Content Distribution/Architecture
@@ -120,7 +120,6 @@ spec:
     labels:
         - live-video
         - ott
-        - watch
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/d51f59cd-5218-440f-9683-421f1656e27a

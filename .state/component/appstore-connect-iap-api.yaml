@@ -18,6 +18,10 @@ spec:
         tier: 3
     links:
         - id: ""
+          name: e-livevideo
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C053ATVH3N2
+        - id: ""
           name: Live Video
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
@@ -37,10 +41,6 @@ spec:
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=appstore_connect_iap_api_appstore_connect_iap_api_svc_cluster_local_&refresh=5s
-        - id: ""
-          name: e-livevideo
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C053ATVH3N2
     documents:
         - id: ""
           title: README

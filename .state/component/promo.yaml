@@ -18,10 +18,6 @@ spec:
         tier: 3
     links:
         - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/promo
-        - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=promo&var-container=promo&from=now-1h&to=now
@@ -41,6 +37,10 @@ spec:
           name: Sponsorship Integration Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
+        - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/promo
     documents:
         - id: ""
           title: README

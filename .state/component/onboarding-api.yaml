@@ -19,6 +19,10 @@ spec:
         tier: 3
     links:
         - id: ""
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/onboarding-api
+        - id: ""
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=onboarding-api&var-container=onboarding-api&from=now-1h&to=now
@@ -38,10 +42,6 @@ spec:
           name: Activation Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
-        - id: ""
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/onboarding-api
     documents:
         - id: ""
           title: README

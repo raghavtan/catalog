@@ -19,6 +19,10 @@ spec:
         tier: 3
     links:
         - id: ""
+          name: Activation Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/users-auth-api
@@ -38,10 +42,6 @@ spec:
           name: r-activation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CK9LTN6DR
-        - id: ""
-          name: Activation Squad
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
     documents:
         - id: ""
           title: README

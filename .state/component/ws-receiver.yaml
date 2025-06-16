@@ -15,12 +15,8 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 3
+        tier: 4
     links:
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ws-receiver&var-container=ws-receiver&from=now-1h&to=now
         - id: ""
           name: OnCall
           type: ON_CALL
@@ -41,6 +37,10 @@ spec:
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/ws-receiver
+        - id: ""
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ws-receiver&var-container=ws-receiver&from=now-1h&to=now
     documents:
         - id: ""
           title: README

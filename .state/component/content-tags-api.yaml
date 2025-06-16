@@ -18,6 +18,10 @@ spec:
         tier: 3
     links:
         - id: ""
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: ""
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/content-tags-api
@@ -37,10 +41,6 @@ spec:
           name: e-personalisation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: ""
-          name: Personalisation
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
     documents:
         - id: ""
           title: README
