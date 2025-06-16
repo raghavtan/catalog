@@ -15,7 +15,7 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 3
+        tier: 4
     links:
         - id: ""
           name: OnCall
