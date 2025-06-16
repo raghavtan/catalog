@@ -37,7 +37,7 @@ Resource (in focus) should be able to enforce condition to stay at latest patch 
 
 To know more about the other security issues and fix vulnerabilities follow the instruction below:
 
-**[Visit Dashboard : Grafana - Trivy Vulnerabilty](https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-3h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cloud-runtime-bot&refresh=5m&tab=transformations&viewPanel=panel-33)**
+**[Visit Dashboard : Grafana - Trivy Vulnerabilty (VPN only)](https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-3h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cloud-runtime-bot&refresh=5m&tab=transformations&viewPanel=panel-33)**
 
 **Steps:**
 - Select the `namespace` for the services
