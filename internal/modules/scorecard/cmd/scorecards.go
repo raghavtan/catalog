@@ -1,17 +1,24 @@
 package cmd
 
 import (
-	"github.com/motain/of-catalog/internal/modules/scorecard/cmd/apply"
+	"github.com/motain/of-catalog/internal/modules/scorecard/cmd/create"
+	"github.com/motain/of-catalog/internal/modules/scorecard/cmd/delete"
+	// Placeholder for read when DTO is identified
+	"github.com/motain/of-catalog/internal/modules/scorecard/cmd/update"
 	"github.com/spf13/cobra"
 )
 
-func Init() *cobra.Command {
-	componentCmd := &cobra.Command{
+// InitCmd initializes the scorecard command and its subcommands.
+func InitCmd() *cobra.Command { // Renamed from Init
+	scorecardCmd := &cobra.Command{
 		Use:   "scorecard",
-		Short: "scorecards related commands",
+		Short: "scorecard related commands",
 	}
 
-	componentCmd.AddCommand(apply.Init())
+	scorecardCmd.AddCommand(create.Init())
+	scorecardCmd.AddCommand(update.Init())
+	scorecardCmd.AddCommand(delete.Init())
+	// scorecardCmd.AddCommand(read.Init()) // Add when read is implemented
 
-	return componentCmd
+	return scorecardCmd
 }
