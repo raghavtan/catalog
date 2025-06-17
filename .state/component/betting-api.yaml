@@ -16,34 +16,34 @@ spec:
         - mediation-api
     fields:
         lifecycle: Active
-        tier: 3
+        tier: 4
     links:
-        - id: 470bc726-38f9-48e6-ad4a-1cafa3123167
-          name: Sponsorship Integration Squad
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
-        - id: 82c01773-577c-4b4d-9112-7a2c31d6e543
+        - id: 3f8375c3-8b9f-41b5-bebc-bb972ab50077
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/betting-api
-        - id: 2b7c7a77-eb82-4823-8cc3-90f752c12e17
+        - id: a0dafc22-ed84-4a39-bbd1-dcf250275722
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=betting-api&var-container=betting-api&from=now-1h&to=now
-        - id: ebd5bd1a-c84f-4ec2-9851-388d035b9e48
+        - id: 5a4d67f0-5146-4bb2-a13f-73d73fc0d29d
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: afe05848-1fcc-43cd-86f8-fe82826fb96b
+        - id: 492e0cae-d977-4588-9124-706133516ec8
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=betting_api_betting_api_svc_cluster_local_&refresh=5s
-        - id: cb8e7a65-1829-4353-ba7c-63da687c166b
+        - id: bcf32b55-e0a0-41f4-aea1-6bc83ea35b55
           name: client-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: 17ad8a8f-e41c-4f38-9c6f-9bdfc0be2ec0
+          name: Sponsorship Integration Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/cf8a9070-1b86-4cde-91cd-8ef84664b4aa
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/cfae4d01-098f-4ad3-9119-dc8adaeda18d
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
