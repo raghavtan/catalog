@@ -15,34 +15,34 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 3
+        tier: 4
     links:
-        - id: 077ff109-0caa-48a3-93aa-62be82744034
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=score-api&var-container=score-api&from=now-1h&to=now
-        - id: 2d8580ff-5500-41c3-9885-42cff03f2291
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: cf2d52bd-5b0e-45ee-98f8-473d168db6f1
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=score_api_score_api_svc_cluster_local_&refresh=5s
-        - id: fe8adf58-e2a7-471c-8524-2cc87ca514b7
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: f4b73364-6497-4198-86ce-52f2a38d6bf3
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: a6aea615-d7fe-4551-96e8-e594c1f27cbd
+        - id: 6c18b1dd-f5f6-45b9-8f07-a17b06f25776
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/score-api
+        - id: 6eb41ca1-d6f8-4173-a0f0-49e78bb7e683
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=score-api&var-container=score-api&from=now-1h&to=now
+        - id: e23b5702-04d8-4015-93a6-32f390f0e957
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: c643163b-4c48-4f60-b0d7-3d138b25bd99
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=score_api_score_api_svc_cluster_local_&refresh=5s
+        - id: 8363ed20-e9b0-4af3-9148-2c6f8e07fc61
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: 796a5f03-22fe-4663-b9b6-b576a7cfd9e2
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/4124a97e-53dd-4fe0-a1b7-22a53361d4eb
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/eece295c-bb5f-420f-9483-24d5f0e041e1
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
