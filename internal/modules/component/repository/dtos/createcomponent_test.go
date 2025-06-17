@@ -53,7 +53,7 @@ func TestCreateComponentInput_SetVariables(t *testing.T) {
 					TypeID:      "type-123",
 					OwnerID:     "owner-123",
 					Links: []resources.Link{
-						{Type: "github", Name: "Repo", URL: "https://github.com"},
+						{ID: "link1", Type: "github", Name: "Repo", URL: "https://github.com"},
 					},
 					Fields: map[string]interface{}{
 						"field1": true,
@@ -78,7 +78,7 @@ func TestCreateComponentInput_SetVariables(t *testing.T) {
 						},
 					},
 					"links": []map[string]string{
-						{"type": "github", "name": "Repo", "url": "https://github.com"},
+						{"id": "link1", "type": "github", "name": "Repo", "url": "https://github.com"},
 					},
 					"labels": []string{"label1"},
 				},

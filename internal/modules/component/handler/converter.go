@@ -33,7 +33,7 @@ func (c *ComponentConverter) ToResource(componentDTO *dtos.ComponentDTO) resourc
 		TypeID:        componentDTO.Spec.TypeID,
 		OwnerID:       componentDTO.Spec.OwnerID,
 		Fields:        componentDTO.Spec.Fields,
-		Links:         linksDTOToResource(componentDTO.Spec.Links),
+		Links:         c.LinksDTOToResource(componentDTO.Spec.Links),
 		Labels:        componentDTO.Spec.Labels,
 		MetricSources: metricSourcesDTOToResource(componentDTO.Spec.MetricSources),
 		Documents:     documentsDTOToResource(componentDTO.Spec.Documents),
@@ -70,17 +70,13 @@ func MetricSourceDTOToResource(metricSourceDTO *dtos.MetricSourceDTO) resources.
 }
 
 // Helper functions remain the same
-func linksDTOToResource(linksDTO []dtos.Link) []resources.Link {
+func (c *ComponentConverter) LinksDTOToResource(linksDTO []dtos.Link) []resources.Link {
 	uniqueLinks := make(map[string]resources.Link)
 
 	for _, link := range linksDTO {
 		uniqueKey := fmt.Sprintf("%s-%s-%s", link.Name, link.Type, link.URL)
 		if _, exists := uniqueLinks[uniqueKey]; !exists {
-			uniqueLinks[uniqueKey] = resources.Link{
-				Name: link.Name,
-				Type: link.Type,
-				URL:  link.URL,
-			}
+			uniqueLinks[uniqueKey] = c.LinkDTOToResource(link)
 		}
 	}
 
@@ -90,6 +86,15 @@ func linksDTOToResource(linksDTO []dtos.Link) []resources.Link {
 	}
 
 	return links
+}
+
+func (c *ComponentConverter) LinkDTOToResource(linkDTO dtos.Link) resources.Link {
+	return resources.Link{
+		Name: linkDTO.Name,
+		Type: linkDTO.Type,
+		URL:  linkDTO.URL,
+	}
+
 }
 
 func metricSourcesDTOToResource(metricSourcesDTO map[string]*dtos.MetricSourceDTO) map[string]*resources.MetricSource {

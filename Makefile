@@ -58,7 +58,8 @@ test: ## Run all unit tests with coverage
 		grep -v /vendor/ | \
 		grep -v /tools/ | \
 		grep -v /mocks | \
-		grep -v /wire_gen.go
+		grep -v /wire_gen.go | \
+		awk '{if($$0 ~ /FAIL|panic/) {print "\033[31m" $$0 "\033[0m"} else if($$0 ~ /PASS/) {print "\033[32m" $$0 "\033[0m"} else {print $$0}}'
 
 .PHONY: stest
 stest: ## Run tests for specific component (use C=path/to/component)

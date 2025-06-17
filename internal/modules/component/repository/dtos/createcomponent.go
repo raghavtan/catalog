@@ -44,6 +44,7 @@ func (dto *CreateComponentInput) SetVariables() map[string]interface{} {
 	links := make([]map[string]string, 0)
 	for _, link := range dto.Component.Links {
 		links = append(links, map[string]string{
+			"id":   link.ID,
 			"type": link.Type,
 			"name": link.Name,
 			"url":  link.URL,

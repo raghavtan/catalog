@@ -25,6 +25,12 @@ func TestComponentByReferenceInput_GetQuery(t *testing.T) {
 								}
 							}
 						}
+						links {
+							id
+							name
+							url
+							type
+                        }
 					}
 				}
 			}

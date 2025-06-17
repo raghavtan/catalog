@@ -28,6 +28,12 @@ func (dto *ComponentByReferenceInput) GetQuery() string {
 								}
 							}
 						}
+						links {
+							id
+							name
+							url
+							type
+                        }
 					}
 				}
 			}

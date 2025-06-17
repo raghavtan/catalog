@@ -23,6 +23,9 @@ type RepositoryInterface interface {
 	// Dependency operations
 	SetDependency(ctx context.Context, dependent, provider resources.Component) error
 	UnsetDependency(ctx context.Context, dependent, provider resources.Component) error
+	// Lunks operations
+	AddLink(ctx context.Context, component resources.Component, link resources.Link) (*resources.Link, error)
+	RemoveLink(ctx context.Context, component resources.Component, id string) error
 	// Documents operations
 	GetDocuments(ctx context.Context, component resources.Component) ([]resources.Document, error)
 	AddDocument(ctx context.Context, component resources.Component, document resources.Document) (resources.Document, error)
@@ -191,9 +194,20 @@ func (r *Repository) GetBySlug(ctx context.Context, component resources.Componen
 		}
 	}
 
+	links := make([]resources.Link, len(output.Compass.Component.Links))
+	for i, link := range output.Compass.Component.Links {
+		links[i] = resources.Link{
+			ID:   link.ID,
+			Type: link.Type,
+			Name: link.Name,
+			URL:  link.URL,
+		}
+	}
+
 	found := resources.Component{
 		ID:            output.Compass.Component.ID,
 		MetricSources: metricSources,
+		Links:         links,
 	}
 
 	return &found, nil
@@ -221,6 +235,32 @@ func (r *Repository) AddDocument(ctx context.Context, component resources.Compon
 		DocumentationCategoryId: r.DocumentCategories[document.Type],
 	}
 	return doc, nil
+}
+
+func (r *Repository) AddLink(ctx context.Context, component resources.Component, link resources.Link) (*resources.Link, error) {
+	input := &dtos.CreateLinkInput{
+		ComponentID: component.ID,
+		Link:        link,
+	}
+	output := &dtos.CreateLinkOutput{}
+	if runErr := r.compass.RunWithDTOs(ctx, input, output); runErr != nil {
+		return nil, fmt.Errorf("AddLink error for %s/%s: %s", component.ID, link.Name, runErr)
+	}
+
+	return &resources.Link{ID: output.Compass.CreateComponentLink.Details.ID}, nil
+}
+
+func (r *Repository) RemoveLink(ctx context.Context, component resources.Component, id string) error {
+	input := &dtos.RemoveLinkInput{
+		ComponentID: component.ID,
+		LinkID:      id,
+	}
+
+	output := &dtos.RemoveLinkOutput{}
+	if runErr := r.compass.RunWithDTOs(ctx, input, output); runErr != nil {
+		return fmt.Errorf("RemoveLink error for %s/%s: %s", component.ID, id, runErr)
+	}
+	return nil
 }
 
 func (r *Repository) GetDocuments(ctx context.Context, component resources.Component) ([]resources.Document, error) {

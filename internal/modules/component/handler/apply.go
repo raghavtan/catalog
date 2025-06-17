@@ -161,8 +161,8 @@ func (h *ApplyHandler) handleUnchanged(
 	for _, componentDTO := range components {
 		componentDTO = h.handleOwner(componentDTO)
 		componentDTO = h.handleDescription(componentDTO)
+		componentDTO = h.handleLinks(ctx, componentDTO, stateComponents)
 		componentDTO = h.handleDocumenation(ctx, componentDTO, stateComponents)
-		componentDTO.Spec.Links = dtos.UniqueAndSortLinks(componentDTO.Spec.Links)
 
 		stateComponent := stateComponents[componentDTO.Metadata.Name]
 		if stateComponent != nil {
@@ -291,8 +291,8 @@ func (h *ApplyHandler) handleUpdated(
 	for _, componentDTO := range components {
 		componentDTO = h.handleOwner(componentDTO)
 		componentDTO = h.handleDescription(componentDTO)
+		componentDTO = h.handleLinks(ctx, componentDTO, stateComponents)
 		componentDTO = h.handleDocumenation(ctx, componentDTO, stateComponents)
-		fmt.Printf("DEBUG: Processing updated component %s, # of documents: %d\n", componentDTO.Metadata.Name, len(componentDTO.Spec.Documents))
 
 		component := h.converter.ToResource(componentDTO)
 		component, errComponent := h.repository.Update(ctx, component)
@@ -301,17 +301,6 @@ func (h *ApplyHandler) handleUpdated(
 		}
 
 		componentDTO.Spec.ID = component.ID
-
-		updatedLinks := make([]dtos.Link, len(component.Links))
-		for i, link := range component.Links {
-			updatedLinks[i] = dtos.Link{
-				ID:   link.ID,
-				Name: link.Name,
-				Type: link.Type,
-				URL:  link.URL,
-			}
-		}
-		componentDTO.Spec.Links = updatedLinks
 
 		refreshedDtoDocuments := make([]*dtos.Document, len(component.Documents))
 		for i, docRes := range component.Documents {
@@ -324,7 +313,6 @@ func (h *ApplyHandler) handleUpdated(
 			}
 		}
 		componentDTO.Spec.Documents = dtos.SortAndRemoveDuplicateDocuments(refreshedDtoDocuments)
-		componentDTO.Spec.Links = dtos.UniqueAndSortLinks(componentDTO.Spec.Links)
 		stateComponent := stateComponents[componentDTO.Metadata.Name]
 		if stateComponent != nil && stateComponent.Spec.MetricSources != nil {
 			if componentDTO.Spec.MetricSources == nil {
@@ -579,6 +567,55 @@ func (h *ApplyHandler) purgeDocuments(
 			if purgeErr := h.repository.RemoveDocument(ctx, h.converter.ToResource(componentDTO), compassDocument); purgeErr != nil {
 				fmt.Printf("Warning: Failed to remove document %s: %v\n", compassDocument.Title, purgeErr)
 			}
+		}
+	}
+}
+
+func (h *ApplyHandler) handleLinks(
+	ctx context.Context,
+	componentDTO *dtos.ComponentDTO,
+	stateComponents map[string]*dtos.ComponentDTO,
+) *dtos.ComponentDTO {
+	h.purgeLinks(ctx, componentDTO, stateComponents)
+
+	links := make([]dtos.Link, len(componentDTO.Spec.Links))
+	resourceComponent := h.converter.ToResource(componentDTO)
+	for i, componentLink := range componentDTO.Spec.Links {
+		link, addLinkErr := h.repository.AddLink(ctx, resourceComponent, h.converter.LinkDTOToResource(componentLink))
+		if addLinkErr != nil {
+			fmt.Printf("Warning: Failed to add link %s: %v\n", link.Name, addLinkErr)
+			continue
+		}
+		links[i] = dtos.Link{
+			ID:   link.ID,
+			Name: componentLink.Name,
+			Type: componentLink.Type,
+			URL:  componentLink.URL,
+		}
+	}
+	componentDTO.Spec.Links = links
+
+	return componentDTO
+}
+
+func (h *ApplyHandler) purgeLinks(
+	ctx context.Context,
+	componentDTO *dtos.ComponentDTO,
+	stateComponents map[string]*dtos.ComponentDTO,
+) {
+	componentInState := stateComponents[componentDTO.Metadata.Name]
+	if componentInState == nil {
+		return // or handle this case appropriately
+	}
+
+	remoteComponent, remoteComponentErr := h.repository.GetBySlug(ctx, h.converter.ToResource(componentDTO))
+	if remoteComponentErr != nil {
+		fmt.Printf("Warning: Could not get remote component %s: %v\n", componentDTO.Spec.Name, remoteComponentErr)
+		return
+	}
+	for _, link := range remoteComponent.Links {
+		if removeLinkErr := h.repository.RemoveLink(ctx, h.converter.ToResource(componentDTO), link.ID); removeLinkErr != nil {
+			fmt.Printf("Warning: Failed to remove link %s from component %s: %v\n", link.Name, componentDTO.Spec.Name, removeLinkErr)
 		}
 	}
 }

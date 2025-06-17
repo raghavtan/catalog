@@ -402,6 +402,7 @@ func TestRepository_GetBySlug(t *testing.T) {
 									},
 								},
 							},
+							Links: []dtos.Link{},
 						}
 						return nil
 					},
@@ -415,6 +416,7 @@ func TestRepository_GetBySlug(t *testing.T) {
 						Metric: "metric-id",
 					},
 				},
+				Links: []resources.Link{},
 			},
 			expectedError: nil,
 		},
