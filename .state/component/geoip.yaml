@@ -17,32 +17,32 @@ spec:
         lifecycle: Active
         tier: 4
     links:
-        - id: ""
-          name: client-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C07MMBZDYV6
-        - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=geoip_geoip_svc_cluster_local_&refresh=5s
-        - id: ""
+        - id: f89e7b4b-2b0d-4d36-8750-57f4157fc72e
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=geoip&var-container=geoip&from=now-1h&to=now
-        - id: ""
+        - id: c2ebef2e-31b8-49f2-8763-9e4e6470b2e7
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
+        - id: 4eedd64e-9ca1-4e3a-9ce0-1346284303bf
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=geoip_geoip_svc_cluster_local_&refresh=5s
+        - id: dae7601e-1084-49fd-ab7c-4c27e90d9746
+          name: client-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: b85aa36b-d396-47d3-8bdd-6cbf58805d69
           name: Sponsorship Integration Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
-        - id: ""
+        - id: 59def405-a364-4a1a-ba51-6bd5d00cc541
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/geoip
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/80a3f777-a4c1-4913-9cb9-cda11f0a01fc
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/e54df12c-eaae-42f6-9e50-befef457fd08
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

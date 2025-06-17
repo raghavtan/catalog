@@ -17,32 +17,32 @@ spec:
         lifecycle: Active
         tier: 4
     links:
-        - id: ""
-          name: onefootball-club
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C05R46W1TMZ
-        - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=loyalty_service_loyalty_service_svc_cluster_local_&refresh=5s
-        - id: ""
+        - id: 000e1f4b-ab74-4ceb-95a5-18b0307937d6
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=loyalty-service&var-container=loyalty-service&from=now-1h&to=now
-        - id: ""
+        - id: 50752e2e-d9f4-4808-ad4b-bb204af7d146
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
+        - id: 0d03d87a-34e7-4f11-8f1e-5a3f57589e27
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=loyalty_service_loyalty_service_svc_cluster_local_&refresh=5s
+        - id: c6070fc2-b656-4121-b0d0-4187aecd7b56
+          name: onefootball-club
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C05R46W1TMZ
+        - id: 6a344e91-324a-4ed6-a2ef-c728aa69a94a
           name: OFC
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/LOYAL/boards/393/backlog
-        - id: ""
+        - id: ee918bd5-1898-4a3e-b9b9-7b77aa41ae2b
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/loyalty-service
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/f9ec9b65-1ce5-4320-b85d-8fdf069df095
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/62c214ea-4691-44c3-bb44-559185a6ad26
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

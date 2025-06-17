@@ -15,30 +15,30 @@ spec:
         - kubernetes
     fields: {}
     links:
-        - id: ""
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: ""
+        - id: 05fa6329-40c5-4eae-b299-0ea527ea8cb9
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=score_api_load_test_score_api_load_test_svc_cluster_local_&refresh=5s
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=score-api-load-test&var-container=score-api-load-test&from=now-1h&to=now
-        - id: ""
+        - id: 618fb528-736a-4a73-aba6-0548c93512af
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
+        - id: 492f51fa-f53b-4617-926a-9ff8ac16eb0c
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: f22ba5ca-8f7b-4a0b-aae1-d1ad4b0cd293
           name: Match XP
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: ""
+        - id: f3e6f126-a72f-4461-bf1b-0658d3e47dbf
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/score-api-load-test
+        - id: d4e3bb22-e7a6-40bf-b9df-b1d1f2083f5d
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=score-api-load-test&var-container=score-api-load-test&from=now-1h&to=now
     documents: []
     labels:
         - engagement

@@ -15,30 +15,30 @@ spec:
         - kubernetes
     fields: {}
     links:
-        - id: ""
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=xpa_mobile_backend_load_test_xpa_mobile_backend_load_test_svc_cluster_local_&refresh=5s
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-mobile-backend-load-test&var-container=xpa-mobile-backend-load-test&from=now-1h&to=now
-        - id: ""
+        - id: 2fb8f788-79b7-4fd0-89ee-cd795566c165
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
+        - id: ec7cdb8b-5162-4e02-bd78-8504d8ecf27c
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: 85b40b7b-4075-4734-8e15-6bc1763de995
           name: Match XP
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: ""
+        - id: 31d52b06-5ebd-49cb-9218-e211e0c01bce
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/xpa-mobile-backend-load-test
+        - id: 4341c5a9-11f9-4c77-9905-3819b1349ad7
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-mobile-backend-load-test&var-container=xpa-mobile-backend-load-test&from=now-1h&to=now
+        - id: f3c38875-0a3e-4140-bf9b-828c5dfaae4d
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=xpa_mobile_backend_load_test_xpa_mobile_backend_load_test_svc_cluster_local_&refresh=5s
     documents: []
     labels:
         - matchxp

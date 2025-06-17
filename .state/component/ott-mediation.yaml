@@ -17,32 +17,32 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: client-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C07MMBZDYV6
-        - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=ott_mediation_ott_mediation_svc_cluster_local_&refresh=5s
-        - id: ""
+        - id: 0ab68e7b-4c7d-4e90-80b2-16484fc3d48c
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-mediation&var-container=ott-mediation&from=now-1h&to=now
-        - id: ""
+        - id: c1e50d72-0f9a-417a-bd1a-d805df443e25
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
+        - id: 67caceb5-296a-429e-acba-8cc321b5ea79
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=ott_mediation_ott_mediation_svc_cluster_local_&refresh=5s
+        - id: a873d24b-4e72-4a6d-b521-046ad38c352f
+          name: client-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: 96c98a9a-74ca-442e-bbd1-65b889bff868
           name: Media Advertising
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
-        - id: ""
+        - id: 530bc43d-76a4-44c2-935e-485d2ec7f512
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/ott-mediation
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/f9099204-fddb-409d-9edc-c9e312869961
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/fb9f44cf-fa35-46c9-bb19-773040bc082d
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

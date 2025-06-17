@@ -17,32 +17,32 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: ""
-          name: p-developer-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C04NMNZC89L
-        - id: ""
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=not_found_server_not_found_server_svc_cluster_local_&refresh=5s
-        - id: ""
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=not-found-server&var-container=not-found-server&from=now-1h&to=now
-        - id: ""
+        - id: db36b02d-a3e4-4266-8276-e8d5517bab66
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ""
+        - id: d7beb363-3f9b-400a-8dc2-56cbcee056df
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=not_found_server_not_found_server_svc_cluster_local_&refresh=5s
+        - id: 3c72f7f7-a3cf-4b2b-bf78-1b322b308d6b
+          name: p-developer-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C04NMNZC89L
+        - id: ea29bee1-aebc-49d2-902b-e8f04b15e4f0
           name: Developer Experience
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
-        - id: ""
+        - id: a7a62142-ac4f-4587-87f5-35b043965bbf
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/not-found-server
+        - id: 7702350e-da13-40b4-a9d8-317f4ca5484e
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=not-found-server&var-container=not-found-server&from=now-1h&to=now
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/9b9c1204-c240-413e-8650-e6889e9acbaa
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/9003d66f-4744-4d85-85fb-b10b124f06a2
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
