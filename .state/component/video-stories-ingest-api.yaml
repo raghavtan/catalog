@@ -15,32 +15,40 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: 2ff57ab9-f47a-489f-a7bc-85aebf668624
-          name: video-platform-team
-          type: CHAT_CHANNEL
-          url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
-        - id: a19b073d-502f-4b4d-b46f-2995889070c5
-          name: Video Platform Support
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
-        - id: c4929a41-1905-49d0-a210-6dd3bcbdf342
+        - id: 64027b18-7935-4032-9f2b-d871e1dbd2c6
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/video-stories-ingest-api
-        - id: 445f01be-d39b-451b-bf8f-4220158794fd
+        - id: 14b62cfd-48b5-48c8-b904-76a725d42016
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=video-stories-ingest-api&var-container=video-stories-ingest-api&from=now-1h&to=now
-        - id: e84a10b7-3c6d-4e1e-9a06-67ce7dda6a02
+        - id: b1f4926a-7439-4887-b8ce-0dd859070a9d
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: a3286d36-aa60-4c0d-bf6c-43446794ca0d
+        - id: 24910d93-4cb3-49f3-883a-42bfbd39dfd1
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=video_stories_ingest_api_video_stories_ingest_api_svc_cluster_local_&refresh=5s
+        - id: 7f301620-3327-4929-bee3-3ef683960847
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/video-stories-ingest-api/home?tab=traces
+        - id: 60976f8f-8c1a-474c-a74c-f28018e88034
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=video-stories-ingest-api
+        - id: 9cd218b3-8a6a-4b6d-97a7-ae93822ac9cb
+          name: video-platform-team
+          type: CHAT_CHANNEL
+          url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
+        - id: 3b4c76d4-060e-4323-a95d-2e345b90d68b
+          name: Video Platform Support
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
     documents: []
     labels:
         - video-platform
