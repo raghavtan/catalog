@@ -18,32 +18,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 201838ab-eee4-4d7b-97c5-c4460e1152b3
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=onboarding-api&var-container=onboarding-api&from=now-1h&to=now
-        - id: 8cfe045d-8312-4f25-a0b5-402edf77cc68
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 93a9a3ed-c47f-4a3f-ac54-b7dd3e0446cc
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=onboarding_api_onboarding_api_svc_cluster_local_&refresh=5s
-        - id: b5e03e44-71cb-4033-b182-560947536eb4
-          name: r-activation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/CK9LTN6DR
-        - id: e92838da-5be2-4322-a85c-f7451299e7a5
-          name: Activation Squad
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
-        - id: 41c5dd98-a56f-4e90-9b70-c0357af129a2
+        - id: 23dbd426-71b2-4c46-977f-867c49dc914b
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/onboarding-api
+        - id: 24f6317d-73dc-44ed-b189-6da1525cc87b
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=onboarding-api&var-container=onboarding-api&from=now-1h&to=now
+        - id: 5d5d5a93-482d-4cc7-9aaa-6cea4f36dce6
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: c880b127-d02c-4c2f-9cdc-be8c98f7ed15
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=onboarding_api_onboarding_api_svc_cluster_local_&refresh=5s
+        - id: b04f2984-512d-4fdf-8c11-e062630d7116
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/onboarding-api/home?tab=traces
+        - id: 2e0cbb06-db07-4a78-b852-fbe1ba5d4001
+          name: r-activation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CK9LTN6DR
+        - id: 882dadc6-ca00-4c47-bd91-3142b4e87669
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=onboarding-api
+        - id: 48af802b-3fb8-4b09-a5d5-eb151b0f1526
+          name: Activation Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/c1449278-40d6-42fc-8ebb-ecfb5a546514
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/405c02d0-6935-4601-a76c-36da2c87551f
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

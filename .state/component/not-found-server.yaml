@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: db36b02d-a3e4-4266-8276-e8d5517bab66
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: d7beb363-3f9b-400a-8dc2-56cbcee056df
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=not_found_server_not_found_server_svc_cluster_local_&refresh=5s
-        - id: 3c72f7f7-a3cf-4b2b-bf78-1b322b308d6b
-          name: p-developer-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C04NMNZC89L
-        - id: ea29bee1-aebc-49d2-902b-e8f04b15e4f0
-          name: Developer Experience
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
-        - id: a7a62142-ac4f-4587-87f5-35b043965bbf
+        - id: 5cd43a4b-761d-451e-beb0-f6f2eb3222f9
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/not-found-server
-        - id: 7702350e-da13-40b4-a9d8-317f4ca5484e
+        - id: a4cd361a-fa99-47df-acda-ed238048a7e4
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=not-found-server&var-container=not-found-server&from=now-1h&to=now
+        - id: bdceb0ac-b407-4bd3-a763-42f632447d8e
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/not-found-server/home?tab=traces
+        - id: 212c18f4-a47a-4252-a731-de1662d7a0e9
+          name: Developer Experience
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
+        - id: 766cab19-da9c-4944-8b2f-d4597d44c6fd
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 89944ed4-2c1d-4515-9194-5e128d888e5a
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=not_found_server_not_found_server_svc_cluster_local_&refresh=5s
+        - id: 61cd1b4a-39de-47a3-abfb-afc540599d65
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=not-found-server
+        - id: 23ba7977-e5cf-4705-b0c3-6e4ce81178bf
+          name: p-developer-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C04NMNZC89L
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/9003d66f-4744-4d85-85fb-b10b124f06a2
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/07081fce-7e32-4ad0-bbc3-01864b0a1b3e
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

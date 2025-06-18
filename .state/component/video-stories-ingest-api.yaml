@@ -17,30 +17,30 @@ spec:
         lifecycle: Active
         tier: 4
     links:
-        - id: 9c4ee2c9-c735-4abc-bbb2-ea3541194f6f
-          name: Video Platform Support
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
-        - id: bef60ec1-f05b-4f29-a207-ae9986ac2500
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/video-stories-ingest-api
-        - id: a074baaa-fd2c-460d-9796-728d5e658120
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=video-stories-ingest-api&var-container=video-stories-ingest-api&from=now-1h&to=now
-        - id: e91055ac-460b-40f4-a60d-880c4048336b
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 10176aef-5e9c-4e88-99ae-c265ddc285ac
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=video_stories_ingest_api_video_stories_ingest_api_svc_cluster_local_&refresh=5s
-        - id: f1eaf808-58b7-4607-a3f2-1130efc77550
+        - id: 2ff57ab9-f47a-489f-a7bc-85aebf668624
           name: video-platform-team
           type: CHAT_CHANNEL
           url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
+        - id: a19b073d-502f-4b4d-b46f-2995889070c5
+          name: Video Platform Support
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
+        - id: c4929a41-1905-49d0-a210-6dd3bcbdf342
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/video-stories-ingest-api
+        - id: 445f01be-d39b-451b-bf8f-4220158794fd
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=video-stories-ingest-api&var-container=video-stories-ingest-api&from=now-1h&to=now
+        - id: e84a10b7-3c6d-4e1e-9a06-67ce7dda6a02
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: a3286d36-aa60-4c0d-bf6c-43446794ca0d
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=video_stories_ingest_api_video_stories_ingest_api_svc_cluster_local_&refresh=5s
     documents: []
     labels:
         - video-platform

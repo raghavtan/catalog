@@ -17,57 +17,65 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: bfe78cd5-3d31-45fd-924a-a632568f3be2
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: fab1b406-83be-4123-be0c-84641ffa7d86
+        - id: 72e72dc1-8b71-4f74-b013-b1effa4b696b
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-classifier
+        - id: 1a685ed4-04fd-48de-9be0-41516138d1e6
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=content_classifier_content_classifier_svc_cluster_local_&refresh=5s
-        - id: 92106fff-2ed2-42ab-8734-3b8f3bb6fe72
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: ade517e1-c263-419f-986a-e2e25ffd68b0
+        - id: 1eb501ab-0d1f-47a0-91ef-1eb740c101e4
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/content-classifier/home?tab=traces
+        - id: c15795c8-aee6-4d6a-b062-afb5113fd42e
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-        - id: 783757d0-0ff9-43a2-b0e5-d78f1dd0193d
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/content-classifier
-        - id: 91cf4ef9-bcbd-44d0-9e61-d22aebb423b6
+        - id: 5ed3abae-1642-48f6-af0b-35936e64752b
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-classifier&var-container=content-classifier&from=now-1h&to=now
+        - id: 64fef18e-eeeb-4784-8298-332a94ce5538
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/content-classifier
+        - id: 993a8a4e-db4e-4d57-b231-2d12e3d2e2f0
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: 0200ee64-502c-46d0-a601-ef488bb6800e
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/359de477-6e76-47e7-aa43-ab3464f1af5b
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/cde9f428-55b7-4ee6-b2ed-177f4eda4cca
           title: Article Sourced Worker
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/content-classifier/blob/main/.of/docs/article-sourced-worker.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/eb678fdb-bee6-40eb-80b2-0db661653e7b
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d4c9a9dd-65bd-4de8-a491-93798a9888d8
           title: Content Classifier API
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/content-classifier/blob/main/.of/docs/content-classifier-api.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/b3a723ba-d40b-42f0-b066-99d3b3948886
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/0fe93f31-4efc-4ec6-8f41-93a04be49ba7
           title: Content Tag Command Worker
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/content-classifier/blob/main/.of/docs/content-tag-command-worker.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/245fd748-7a3a-4949-bce6-8d24c524915f
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/076c8bdf-0031-48e2-ba0e-3fdb6fd0cd14
           title: Content Tags API
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/content-classifier/blob/main/.of/docs/content-tags-api.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/6b36f0d8-3d48-4d94-af54-91c6952b278a
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/5e269420-a3d0-4578-83ae-d413cf84faa4
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/content-classifier/blob/main/README.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/f6b6b2d4-34cf-4a58-b365-1da6a0b2a4d1
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/b82e6973-9636-400f-a6fc-b16884b87e04
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

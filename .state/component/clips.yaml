@@ -21,42 +21,50 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: e030d21f-9464-4d5b-bca5-ae0e01a71b74
-          name: Video Platform Support
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
-        - id: 26334f1c-57e5-4c31-bf3d-fc402c61db93
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/clips
-        - id: 58351a70-0152-4e3c-b552-9e2af2efa2df
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips&var-container=clips&from=now-1h&to=now
-        - id: fd112279-8c76-4daf-a447-b394e981e77e
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 868b51e4-0808-4299-a089-f4e00d5e325c
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=clips_clips_svc_cluster_local_&refresh=5s
-        - id: 5387ac4a-19aa-435d-9a73-bf854632e453
+        - id: 555cfd15-1242-4d89-a7fb-1ce420ddf53d
           name: video-platform-team
           type: CHAT_CHANNEL
           url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
+        - id: 5cce44d1-4d1f-407e-ae11-be6754dcd4bc
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: a5d34e95-2cd0-4080-be7a-ba4bef816a98
+          name: Video Platform Support
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
+        - id: 4a2f7ceb-568f-4a11-88c2-e90882540949
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=clips_clips_svc_cluster_local_&refresh=5s
+        - id: 22a18108-678a-4ba5-bbcd-2791a89b5e0d
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips
+        - id: 3fbd6cb5-d5b4-4c29-89a3-8097ee71651b
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/clips
+        - id: 062289eb-1a6a-4526-add4-79a93ded1140
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips&var-container=clips&from=now-1h&to=now
+        - id: dc265aba-74bb-4b3c-bae7-ddf1eda35fab
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/clips/home?tab=traces
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/df788877-f8f9-40c5-8434-947ff8ef2cf9
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/dbcfebe8-1e52-4d14-be09-58a2967503dc
           title: Home
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/clips/blob/main/.of/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/eee4d92a-25d9-4f28-88ce-02c3125a046a
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/cc0a5699-dc57-4991-97bf-f6663d96adfa
           title: Live clips deals configuration
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/clips/blob/main/.of/docs/live-clips-deals-configuration.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/fcba501e-f9d2-464a-9d9d-6462a1b367a3
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/59ade088-6e4d-4217-ac27-6c1a2d0f16b2
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: d59456ef-9aa7-4bd9-9503-e3319b956fcd
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=gitleaks-api&var-container=gitleaks-api&from=now-1h&to=now
-        - id: bfb85c32-1d27-46b4-8ec5-3388ba319626
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 990378f2-5544-4d9d-8120-7d63a9e95b1d
+        - id: fd27fd02-b56d-4b91-a525-e152246ab6d3
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=gitleaks_api_gitleaks_api_svc_cluster_local_&refresh=5s
-        - id: c6a2c77f-a01f-4b3c-b0c9-85e3bc355511
+        - id: d11cff6a-c628-45ce-a528-75747d06aea6
           name: p-developer-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C04NMNZC89L
-        - id: 03220dc7-cfc4-4875-a18d-b6df00d3f6d9
+        - id: 4b0ba956-0f7d-48e4-8fa5-821c395c3cd1
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=gitleaks-api
+        - id: 41bac917-40ce-4190-8c74-dc7ca2d51e68
           name: Developer Experience
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
-        - id: 897a7c7c-e9eb-48c6-a384-9ce9e3c75813
+        - id: 1b9c8a07-f286-4b12-b93c-48a22b0fb3c1
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/gitleaks-api
+        - id: ece6ce71-530a-45d4-aabf-7fe2fa2b5239
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=gitleaks-api&var-container=gitleaks-api&from=now-1h&to=now
+        - id: 182b35f1-f362-4d69-8e9a-0259c43c8ae2
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/gitleaks-api/home?tab=traces
+        - id: 3d065d7c-50f8-4c1a-a59b-390640b42831
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a09430f1-8cc1-4d5d-900b-b6d2aec03fb6
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/798c7a37-bb96-4b48-8a14-d182edc48af7
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

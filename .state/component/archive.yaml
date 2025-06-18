@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 1c6dbe2c-5cc9-44d4-b56b-15cb0734d8cd
+        - id: b5ba6062-ddc4-4333-956b-851a853d5fe9
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=archive&var-container=archive&from=now-1h&to=now
-        - id: 3b8e58be-84a4-476d-b64e-d58d1905ae73
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 83b94cc2-2997-4fcd-a135-fd625e0f3c44
+        - id: 01cd1f77-34a5-4bd2-8dd0-595008ffae41
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=archive_archive_svc_cluster_local_&refresh=5s
-        - id: 081796f0-19f5-410a-9819-5960c3a491fd
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: 3dbf54c5-e484-4fc2-87d7-602c5f367adb
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: c1365d87-e663-4625-9a7c-92e4564c1070
+        - id: 36d4f403-0253-4834-96bc-97075004918b
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/archive/home?tab=traces
+        - id: 7a8cef92-817d-484b-92f7-88417c702fd9
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/archive
+        - id: c4764d5c-bb51-47a2-be09-c1c63b3b27a9
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 0e52c031-7a3c-4dce-bfcf-9a90d1c0591d
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: 3aaeda4c-4a53-46d2-a446-559676339900
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: 488d081a-9a1b-42f7-b296-d0620c7f5b5c
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=archive
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/06094694-2f0b-4a13-865b-f15c5e53bfa8
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c26beaf-ca36-427d-aafe-1f7dd9c351cb
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

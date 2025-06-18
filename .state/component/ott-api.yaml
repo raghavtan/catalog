@@ -18,32 +18,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: a0bf62e9-6fbc-4af1-9a73-ca189d070be1
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-api&var-container=ott-api&from=now-1h&to=now
-        - id: 1182b905-993b-4886-a2e7-8a8b1033ed6f
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: f1d78cd9-3f28-40f9-8238-2e047e20c4a5
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=ott_api_ott_api_svc_cluster_local_&refresh=5s
-        - id: fa0e4525-a056-43a4-b352-17385c77ddca
-          name: e-livevideo
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C053ATVH3N2
-        - id: 62c771b7-bd2a-49c9-8f7b-037c2350f3a7
-          name: Live Video
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
-        - id: 6e1b81e2-0abf-4337-882d-ff6f772b668c
+        - id: 7f4178b2-0017-45bf-bc1b-11f9976f06e4
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/ott-api
+        - id: c06859d3-2e5f-431f-beeb-a8465d8524cd
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-api
+        - id: 501c6304-7c79-4bb9-8c3c-78a2062e4083
+          name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
+        - id: 9ee3af19-6d4d-45a6-9fac-dcb0097276bf
+          name: e-livevideo
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C053ATVH3N2
+        - id: 2cd26e2d-6414-4947-8bd7-c648049f261a
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=ott_api_ott_api_svc_cluster_local_&refresh=5s
+        - id: d7363ba5-b09a-406b-90b2-d92b3a04de70
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-api&var-container=ott-api&from=now-1h&to=now
+        - id: ecdf0329-6b98-48e0-8992-d59467714ffa
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: cf7d4193-8042-4b66-a700-c9b005e99ad7
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/ott-api/home?tab=traces
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/650113b9-25ef-4503-8c11-17abf871d9f0
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a0f17909-df81-4420-a68c-5acc9f0ee4b1
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

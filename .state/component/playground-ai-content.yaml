@@ -17,37 +17,45 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: eb4ebe1f-ab58-41ae-a982-bbfaa1ef14ea
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/playground-ai-content
-        - id: a40c3a41-ffca-4325-93be-2dcf5ac4967b
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=playground-ai-content&var-container=playground-ai-content&from=now-1h&to=now
-        - id: 3d88989a-981a-4fba-a9e0-25fb50ec734a
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: d0b6d958-ee04-4f5f-9cb6-c0ccac6458ca
+        - id: 1c06977a-a1ec-47b3-9eb0-21aba660b90a
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=playground_ai_content_playground_ai_content_svc_cluster_local_&refresh=5s
-        - id: 8705d97a-b1bc-4a73-a1e9-380125559585
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: 8018e3df-ab27-4b90-b5a6-152c6f654c66
+        - id: 467af954-ad25-4856-9fe5-c20e65ae0a68
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/playground-ai-content
+        - id: 7ec8adbd-2a29-4a48-8f00-0708a2a91681
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 269da5e8-0263-493b-9325-e4110a1982f2
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=playground-ai-content
+        - id: b194007a-5ff8-4cc0-8059-da699e4b0637
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: aa0e34f6-abe2-495b-b972-36acee2879eb
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=playground-ai-content&var-container=playground-ai-content&from=now-1h&to=now
+        - id: 7c484e58-4ee6-490a-bb8d-31744e26ac63
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: bd4f482f-978b-4168-aa9c-5f97e916e3a5
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/playground-ai-content/home?tab=traces
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9ed4906-12fb-4152-bbdb-1713fc02fb94
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/b01beacd-8e41-46cf-a88f-0917ce57b0ee
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/playground-ai-content/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a2fcf198-e50d-4b0c-b136-1dbb380e35cc
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/993ce170-7ded-4abc-963d-62ba5f58dd4f
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

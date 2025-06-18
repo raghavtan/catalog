@@ -17,30 +17,30 @@ spec:
         lifecycle: Active
         tier: 4
     links:
-        - id: 990f8a01-6e65-4178-95c1-081628926322
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/article-service
-        - id: 5e22eae9-bf0a-43cb-afaf-1ee3418a7b56
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-service&var-container=article-service&from=now-1h&to=now
-        - id: f4de4c92-51d4-49c3-8f01-051c298db630
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 90f57601-6f13-45a8-9c44-3a4808958a74
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=article_service_article_service_svc_cluster_local_&refresh=5s
-        - id: ef4e220d-f420-42a1-af1c-631ab7963ba3
+        - id: 265c7451-d154-41ef-ac45-dd86a344a680
           name: r-source
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: a4915ea6-9a92-40af-acc4-3299fa3699e0
+        - id: 64e4f4f6-7fdc-45a0-8963-cc9ea85d09e7
           name: The Source
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
+        - id: 37c15dc9-1d1b-40cb-aa7b-496e4fb6c631
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/article-service
+        - id: 0b577169-ab93-4e88-a17b-764f4ee779f0
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-service&var-container=article-service&from=now-1h&to=now
+        - id: 77e98123-03b7-4673-8c5f-583218b48e1e
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: b69588ca-7dce-4ca8-adeb-1baf8f01bef4
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=article_service_article_service_svc_cluster_local_&refresh=5s
     documents: []
     labels:
         - source

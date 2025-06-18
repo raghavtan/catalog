@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 3bd01857-908a-4153-ae7b-48318f9a6dd0
+        - id: 2448c53c-3ca1-4bb0-b6a0-84e2cd80bb47
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 6f2b93ed-af0c-4c26-b447-3c78d3a2e6e1
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=image_uploader_image_uploader_svc_cluster_local_&refresh=5s
-        - id: b55943d6-ee2a-44e8-9a6b-da4f7cf2dbae
-          name: client-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C07MMBZDYV6
-        - id: 63ff1ff5-a53a-4d23-8743-2a3946b25f7b
+        - id: 915360dd-6e7f-4854-a79a-dbe03f112b54
           name: Sponsorship Integration Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
-        - id: 14706b72-0d41-4e00-89d8-1614373677ef
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/image-uploader
-        - id: ce8162d5-0928-4239-9610-5f024776d953
+        - id: 1ac80565-bd5e-4749-84de-9d0f967475d2
+          name: client-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: 3e7a7ad5-0d4e-4679-b87d-f3428fc1f164
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=image-uploader&var-container=image-uploader&from=now-1h&to=now
+        - id: 9719ead0-e026-4170-849b-5df6199ff2fd
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=image_uploader_image_uploader_svc_cluster_local_&refresh=5s
+        - id: 351f42f6-40f5-4303-b83e-4bc8e115a102
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/image-uploader/home?tab=traces
+        - id: 2648174d-56bf-4fc9-8630-55890a99d73c
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=image-uploader
+        - id: eae3c163-c398-40ef-afa3-cc2dda8ae5e1
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/image-uploader
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/6ce8243a-0eb7-48a7-b6f0-2cc83c4282b1
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/5d75912e-3705-4979-a89d-f7751d8c67fe
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

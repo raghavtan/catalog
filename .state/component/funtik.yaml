@@ -19,32 +19,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 58bb54f0-2a87-473c-9601-18343c40f2e8
+        - id: 58eddfe4-59d0-4ac5-bcc9-04d7feb5e423
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/funtik
-        - id: 44415f49-c588-41e6-ab05-009aa2a6b083
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=funtik&var-container=funtik&from=now-1h&to=now
-        - id: 1125f138-c5b2-4158-b9c9-26b49e79259f
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: d3b2e4d6-71dc-47f1-8871-0a59b8e59ee6
+        - id: 80161001-4bc6-4599-bb5b-01dfc150e98a
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=funtik_funtik_svc_cluster_local_&refresh=5s
-        - id: 4d987c97-1577-4a35-ae8a-e15188eaa796
+        - id: 1ac24194-8d81-418b-bbd0-122945c2ed3a
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 35a8e5b0-0c4b-4634-8dec-36d98af53a7f
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/funtik/home?tab=traces
+        - id: 82417ce3-8d07-49cc-ac54-5317fc7c4c16
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=funtik
+        - id: 7d29ef07-2cb2-4c31-96e6-71a3437ecdd4
           name: r-source
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: b70ff4ae-2395-45b6-93e0-0c5e7447de2e
+        - id: afe3e5e8-7967-48b5-b345-78b4ea614714
           name: The Source
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
+        - id: 2fba2f9c-cb99-445c-afec-466776864af8
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=funtik&var-container=funtik&from=now-1h&to=now
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d9fad204-bd48-451b-a096-7febd2db8788
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/cbae7f9c-ba5e-4528-8d96-e4f714e910ed
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

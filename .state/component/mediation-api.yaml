@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 6839ee58-e96c-49cd-a908-f9816fab9bb4
+        - id: a2951e45-c09d-4f18-a9e6-d61e285fc8b3
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=mediation-api&var-container=mediation-api&from=now-1h&to=now
-        - id: 0b4649e5-2e7c-42a7-892d-d600acc7bd1d
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 39b336c6-3d56-45a3-9e7e-878f04de6b48
+        - id: d789ac17-3608-432b-bf7b-ac62c5b8f5be
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=mediation_api_mediation_api_svc_cluster_local_&refresh=5s
-        - id: 16c5cece-e3bc-40e3-9a2f-d98e7f898e13
+        - id: 0b6ba61d-bad4-4c83-b993-f7fcf921fe7a
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: f6caa01e-f563-44c5-b4ed-ab6e5e53a884
           name: client-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C07MMBZDYV6
-        - id: 75c40df6-1352-49fc-942e-98f60b3d5cf5
-          name: Media Advertising
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
-        - id: 63fb0d01-acf5-4bd1-9155-907e47769689
+        - id: ef8402d9-5dde-45e6-8db9-60fee5fe8698
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/mediation-api
+        - id: 8ede8ab7-e318-4768-86b9-aa72488a3c9d
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/mediation-api/home?tab=traces
+        - id: 41385040-7975-47f4-9e53-a8c4d6ff1613
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=mediation-api
+        - id: 441677cb-31c3-40db-9a94-ac26c149b70a
+          name: Media Advertising
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/23d68dc2-ef6d-45d4-9e26-a946f5087ef2
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d5b223da-3246-4786-b770-91d3219db813
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

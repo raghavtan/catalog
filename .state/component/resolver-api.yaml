@@ -15,40 +15,47 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: 51cd4613-7f04-4bfe-aeb4-0272228fa90c
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=resolver_api_resolver_api_svc_cluster_local_&refresh=5s
-        - id: 46cdf2a6-0d7e-408a-9ef4-764423524454
+        - id: 50751901-7d41-4458-9a5e-cb0618246524
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: 8cde597b-15cb-49f9-9618-6d9286ae152e
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: a5b0c4a8-6fbc-4d17-ac5e-d2b40da41162
+        - id: cd5d7d73-f748-4877-aed8-9514f4fe416d
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/resolver-api
-        - id: 92286270-1975-48af-a6b4-42dbe1fb59a1
+        - id: f7f222df-0831-459f-a62e-a077c4834047
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=resolver-api
+        - id: 6fe7dd4d-10ea-4667-8656-4ab9063dc5cb
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=resolver-api&var-container=resolver-api&from=now-1h&to=now
-        - id: 15932b36-a04b-4bd6-8299-7852bc64cb1b
+        - id: 2e5e342a-9470-44de-841d-848d15d71615
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: 065e1dce-0272-428c-a803-efe10f1102b8
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/resolver-api/home?tab=traces
+        - id: 23f5e77f-3f88-4eba-a40c-df39d89b9f59
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 3ef3c737-bcca-4411-a42e-1002f1ab543d
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=resolver_api_resolver_api_svc_cluster_local_&refresh=5s
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ea5ab2b5-1de7-4b8a-a6da-35ceed0dc700
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ee22d11e-f78a-4bda-912f-956817f15ff0
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/resolver-api/blob/master/README.md
     labels:
-        - resolver-api
         - matchxp
         - fan-experience
     metricSources:

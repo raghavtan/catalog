@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: f45c4470-4ce9-403d-a874-0bc8b1eb478d
-          name: e-livevideo
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C053ATVH3N2
-        - id: fa30b734-0615-4879-bec3-81fa7de11842
+        - id: 061d7e63-350c-4bc2-96f2-c87811a6f187
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-tv-backend
+        - id: 34019c8c-3774-4798-b16c-3204a3f00491
           name: Live Video
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
-        - id: 0b59c3bd-78aa-4370-a816-501186111cf2
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/xpa-tv-backend
-        - id: 6daa6482-ad3f-4169-9e15-1f603bcc9887
+        - id: df143a17-43e0-4dc0-9a0d-80030440f66e
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-tv-backend&var-container=xpa-tv-backend&from=now-1h&to=now
-        - id: acdc47ef-4ef5-43a5-a187-5fde811507da
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ef4b4e36-6fb1-44b7-8093-ee273a6d3831
+        - id: a6923bac-1a33-49bb-a0ad-1b37a3a3500b
+          name: e-livevideo
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C053ATVH3N2
+        - id: 91b3aef3-7686-46a1-b046-b12b4609e87b
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=xpa_tv_backend_xpa_tv_backend_svc_cluster_local_&refresh=5s
+        - id: 6b3ea609-8e21-4343-9f87-587b9a3af326
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/xpa-tv-backend/home?tab=traces
+        - id: 5b2112da-ebc8-4de1-a55e-1ffb869a544e
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/xpa-tv-backend
+        - id: 63e1de91-1a92-4267-a8e0-83d77085765a
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/281246d0-c10b-42ff-a4c7-28702334508a
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/f6593383-77cf-48d7-a2b4-b64a3572e6de
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

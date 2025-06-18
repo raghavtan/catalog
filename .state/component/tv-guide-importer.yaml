@@ -18,32 +18,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 5a40aaed-1402-430d-a0dd-3046b2e2289e
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=tv-guide-importer&var-container=tv-guide-importer&from=now-1h&to=now
-        - id: 9cf53558-a6c8-4840-a477-c7edd81c21a6
+        - id: 7f6fbc8c-5ffc-44e7-9b34-a8280c2971c2
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: d0a35d37-dca9-483f-90ec-0709bda015bd
-          name: Emissary Metrics
+        - id: 4f676da7-44df-4ed7-b7a6-36978620c1fb
+          name: Honeycomb
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=tv_guide_importer_tv_guide_importer_svc_cluster_local_&refresh=5s
-        - id: 3ae33047-0a5d-4d43-a988-c5d8cd9c3b59
-          name: client-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C07MMBZDYV6
-        - id: d24e8427-6de1-44b7-8334-a92bee4e86ba
-          name: Sponsorship Integration Squad
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
-        - id: 00b8c949-857d-4cda-a978-61f2bd511797
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/tv-guide-importer/home?tab=traces
+        - id: b56be39a-838b-4a8a-95f8-9051973d2386
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/tv-guide-importer
+        - id: cb47fb6d-9ec9-4c8d-958c-4ad602f4218b
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=tv_guide_importer_tv_guide_importer_svc_cluster_local_&refresh=5s
+        - id: 20c2ab63-85e5-4791-9f33-acc921945524
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=tv-guide-importer
+        - id: 26557dd3-013a-485c-b97b-9c682ecf6baa
+          name: client-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: 4e8ff07d-9b2b-4185-af39-02e2e648be12
+          name: Sponsorship Integration Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
+        - id: 50c110b7-17d3-4345-9625-f1bfa89ba194
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=tv-guide-importer&var-container=tv-guide-importer&from=now-1h&to=now
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/f382aedf-e354-49b3-b485-d7b307acd7e2
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/400d36af-4c71-4456-935c-30ca7c4223fc
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

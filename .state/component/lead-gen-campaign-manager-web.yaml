@@ -15,34 +15,42 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: aae68c6d-0507-4dde-b6c3-b3affd5eecb0
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 19876a7c-3080-4329-aacb-32532faeb860
-          name: Emissary Metrics
+        - id: 9772d1a1-7a21-4029-93c5-ac379ccf4b6d
+          name: Honeycomb
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=lead_gen_campaign_manager_web_lead_gen_campaign_manager_web_svc_cluster_local_&refresh=5s
-        - id: 1c159aff-5646-48ee-ad78-e465f2ef7d63
-          name: client-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C07MMBZDYV6
-        - id: 735bd940-3de6-444e-8e51-7cf414145b8a
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/lead-gen-campaign-manager-web/home?tab=traces
+        - id: 8aa431a7-7aa1-4a97-ae59-50e520b57d45
           name: Sponsorship Integration Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
-        - id: 7eab8eaa-5fc5-4dd3-ae91-99d4f9ac9949
+        - id: 96222a76-de03-4ce0-82c3-79bb91194176
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=lead_gen_campaign_manager_web_lead_gen_campaign_manager_web_svc_cluster_local_&refresh=5s
+        - id: 835f4915-bc6b-456b-bc3d-21d97fc6b2a9
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=lead-gen-campaign-manager-web
+        - id: c2f6c672-fce9-4986-85cd-18c00e005293
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/lead-gen-campaign-manager-web
-        - id: c22e6cd0-92e4-49b6-a65b-ec0e6b2a10c7
+        - id: c5ccfc8d-8e6e-4eaf-b766-f614bf336ff1
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=lead-gen-campaign-manager-web&var-container=lead-gen-campaign-manager-web&from=now-1h&to=now
+        - id: d36b2293-08cf-49b5-aaa0-7a609ef744ef
+          name: client-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: 907f471e-73e2-4cbe-be82-94b6330b4bb5
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/146d23a2-d02c-406b-890d-6b70227b9971
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/19c8e2e6-60cd-46ec-8dd8-0b9984a73787
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

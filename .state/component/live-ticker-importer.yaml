@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: dc19c6ab-8e45-4fa7-af66-f36df64c0e0f
+        - id: fc4e0e9c-61ac-4b6c-af85-142e41416f73
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=live-ticker-importer&var-container=live-ticker-importer&from=now-1h&to=now
-        - id: f54b34cd-9d64-4647-8121-baf5476c54ad
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 15142687-3822-4690-89b3-fa1ec087d52e
+        - id: 349391aa-6d21-455e-978a-a4de1713891e
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/live-ticker-importer/home?tab=traces
+        - id: 92f765a0-4c8f-4690-bc81-a1b10d2ea633
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=live_ticker_importer_live_ticker_importer_svc_cluster_local_&refresh=5s
-        - id: 51def6ed-9a85-47a9-8b26-f927996fc2c8
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: 4df3fb33-9fe6-4108-a3e1-786bc4ba5b8c
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: 4d908e3a-befd-4e61-8e76-a074920d6d06
+        - id: baac35ff-882b-463e-8a93-761a7949a4f5
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=live-ticker-importer
+        - id: 89706f65-8ba5-4b0f-b767-d27a5690e3f7
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/live-ticker-importer
+        - id: 9c422c40-80c3-4c35-8951-d026a65e03fa
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 7f53f631-4034-43c4-bc57-4c7ae71c18d4
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: c1f2db7d-e54e-41ba-8014-318d24940f6d
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/e79b47f0-8823-401e-ab1f-e5691508c78e
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/3329d1c3-c1e3-4f20-904b-6cd3b79d6888
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

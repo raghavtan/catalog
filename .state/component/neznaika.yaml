@@ -18,32 +18,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: fe3780a2-5419-4f1b-9bfa-fe9a1fd45756
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=neznaika_neznaika_svc_cluster_local_&refresh=5s
-        - id: c77c2e2e-3c6b-4f82-a925-93fcf952ce6b
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: 7b633da7-e815-42f7-b654-f2479b0a69c3
-          name: The Source
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
-        - id: d4107d63-50b0-449d-ba06-f8f6e2f07ecf
+        - id: d76f1e83-902b-4fed-a8eb-16cc37eee718
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/neznaika
-        - id: c75b9f89-854c-49a7-9448-11604da5fb28
+        - id: 929f412b-be18-4d2b-a145-4344fe49bf99
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=neznaika_neznaika_svc_cluster_local_&refresh=5s
+        - id: 9a55a702-1766-49ec-94e5-da52c2f80205
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=neznaika
+        - id: d322fc6b-5983-4028-b17e-36d76e9a14bc
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
+        - id: 7d413926-5b51-4f6f-8846-9190c3d79c8d
+          name: The Source
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
+        - id: 1c811612-7b80-4a19-acc4-e6b3d1e38bc5
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=neznaika&var-container=neznaika&from=now-1h&to=now
-        - id: ec28b431-1d12-482d-b866-e3ba831ea49f
+        - id: f8d7c3e6-749d-4978-ae86-23346865b68c
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 50dbfcbd-9759-4c46-a7cd-26969d65ec3e
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/neznaika/home?tab=traces
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/dc0ac002-804e-4bbc-af8b-295a39842b2d
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d9740b31-b320-4b80-b637-99cf16e70aee
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

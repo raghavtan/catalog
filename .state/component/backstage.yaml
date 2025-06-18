@@ -15,34 +15,42 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: ef62f377-aa67-46bb-9ae5-3a00964ad01d
-          name: p-cloud-runtime
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/CFUCQUA04
-        - id: 1898b39a-ae82-4d8c-951e-cd870428ca86
+        - id: bbace461-67ac-42a4-937f-1690d042b952
           name: Cloud Runtime
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
-        - id: 715da03b-8fc0-4fcf-b137-2ea323d13297
+        - id: 61de6f77-6b9b-4b05-bb03-ce1ad8dec420
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/backstage
-        - id: cdbea45e-c062-491b-b7d9-76a3cda558da
+        - id: ba67bc6d-9d79-48f3-bfb9-0f3c46821d88
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/backstage/home?tab=traces
+        - id: d26d1881-f573-453c-9d99-9a4803d8aa1a
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=backstage&var-container=backstage&from=now-1h&to=now
-        - id: 2217b187-65fa-4f2a-81d3-6847f5599fe0
+        - id: 290ed4a4-db90-4b73-80d5-6f314e01755a
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: fa4c663c-e1f2-4ebb-b43f-b2d9b2fa6c8f
+        - id: ff3986d1-ed06-4d45-b8d0-dc6016482f96
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=backstage
+        - id: 8dc550f4-d544-4a60-b635-1dfa7983b7eb
+          name: p-cloud-runtime
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CFUCQUA04
+        - id: a5606e4d-6fbc-4551-a800-17e2a68c8deb
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=backstage_backstage_svc_cluster_local_&refresh=5s
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a5fcca50-86be-43a6-b686-bf26eab309e8
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/179bb117-1c68-4011-88a3-ab44ff5981a6
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

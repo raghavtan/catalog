@@ -17,37 +17,45 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 2d6b20cb-cd66-4343-964b-7a75b86f2ef5
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: a3f9e58d-2781-4b85-97f9-a9b3ab619e63
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=competition_sorting_api_competition_sorting_api_svc_cluster_local_&refresh=5s
-        - id: e1fa2122-631e-4e90-9484-c42bf2ed3aa0
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: 28f05354-fc51-446b-8e05-c4674277e88a
+        - id: 8db0d413-04a1-4c12-826b-cc24060ad298
           name: Match XP
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: 006a08ce-0ee5-4c44-9a48-a828b8813504
+        - id: 5ebe0dbd-306f-46d9-822a-fd13f7db6be7
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 9c97fdd2-3456-4b7f-9000-832e67970923
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=competition_sorting_api_competition_sorting_api_svc_cluster_local_&refresh=5s
+        - id: c4d18b76-494a-4192-8a73-f0c06d1593e3
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/competition-sorting-api/home?tab=traces
+        - id: fb5e5551-1bd8-47b6-a23b-1d5bf55fd8f3
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: a7754d88-6ce9-4ff7-9007-637159652ba8
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/competition-sorting-api
-        - id: 69d888e6-26e5-404a-b9aa-c517f26c97a1
+        - id: 99372137-22d6-43c2-8db4-eb1de0346ce0
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=competition-sorting-api&var-container=competition-sorting-api&from=now-1h&to=now
+        - id: 28a9735f-0cbd-493c-9181-1c9808fd0ae9
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=competition-sorting-api
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/8bf04d82-c832-4e59-abc3-cfdabe97f496
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/f68dd0be-1040-435f-b9dd-f75762fd190a
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/competition-sorting-api/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/28593287-7f86-41b9-9795-f7b8d65ba3f6
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/2ae563d0-ae67-4128-8d29-6fdf52e4307e
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

@@ -15,47 +15,37 @@ spec:
         - kubernetes
     fields: {}
     links:
-        - id: 02890fea-1f3c-4195-a2d0-e3e7e3705f77
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=optimistic-joliot&var-container=optimistic-joliot&from=now-1h&to=now
-        - id: 2a166ab9-647b-4181-bd83-c6cd19a9f95b
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=optimistic_joliot_optimistic_joliot_svc_cluster_local_&refresh=5s
-        - id: cb868cd4-5611-422b-9063-79028de8caa8
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 18367ca1-5a90-4aff-9059-408d16d32aa6
-          name: pe-dacore
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C04NG20NVPW
-        - id: c7b30df3-f6f5-40aa-b8c6-3aeba5c4aaf7
-          name: DACORE
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/DACORE/boards/909
-        - id: 4bd3d8fd-8b5f-4662-9466-b756abb4329b
+        - id: 0a330874-63ae-4764-9d56-2a6cbb2c35f8
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/optimistic-joliot
+        - id: d7f4580a-8511-49b1-9ef3-3e62b9095192
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=optimistic-joliot&var-container=optimistic-joliot&from=now-1h&to=now
+        - id: 1c9e497e-9bb9-4f53-b5fe-de4903edb742
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=optimistic_joliot_optimistic_joliot_svc_cluster_local_&refresh=5s
+        - id: e6e18010-04a7-4a81-83cd-e50129d29e24
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 0c673e5a-7054-4294-8384-65ce583a9365
+          name: pe-dacore
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C04NG20NVPW
+        - id: b8c896b0-256e-4951-aeda-d329a80bc018
+          name: DACORE
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/DACORE/boards/909
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a4b6ce34-e6bf-4d40-a8c0-511c94d1574a
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/88b80202-b9b6-488d-98ba-6dff3777c0f0
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/optimistic-joliot/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/3a0d7501-3263-4577-af41-84000568ca6c
-          title: Readme
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/optimistic-joliot/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a4b6ce34-e6bf-4d40-a8c0-511c94d1574a
-          title: README
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/optimistic-joliot/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/3a0d7501-3263-4577-af41-84000568ca6c
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/af93809b-a200-4846-8ac9-80081b848d85
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

@@ -15,34 +15,42 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: a2b0cbc3-3da9-4b29-b098-f6b0d87893fc
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/cloud-runtime-bot
-        - id: f8ab92ef-00e1-4dfd-b0bb-e77ae5125e0e
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cloud-runtime-bot&var-container=cloud-runtime-bot&from=now-1h&to=now
-        - id: b3a54e96-17fd-4679-9de9-2713102737f6
+        - id: b21f90d1-5175-41d4-8a0b-5b6ae0fafc47
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 457c20d6-c164-48ba-99f5-1c4d947ae88c
-          name: Emissary Metrics
+        - id: 357d7a29-3685-43ef-ad24-a394b522dfab
+          name: Honeycomb
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=cloud_runtime_bot_cloud_runtime_bot_svc_cluster_local_&refresh=5s
-        - id: 55550d91-0ad0-415d-9d1c-277a1e76db58
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/cloud-runtime-bot/home?tab=traces
+        - id: d328edaf-0a35-4b7f-98e8-af467479e4ba
           name: p-cloud-runtime
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CFUCQUA04
-        - id: 01db501f-f7ce-4b64-ba5c-72aa53f20f78
+        - id: 1802fdf1-1590-412e-9177-9585bdb9b014
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cloud-runtime-bot&var-container=cloud-runtime-bot&from=now-1h&to=now
+        - id: 48858d80-b50d-4f9d-af31-73c2ed105f3f
           name: Cloud Runtime
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+        - id: 54e90c59-8b30-4564-924d-96eca2669ae9
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/cloud-runtime-bot
+        - id: 50650bbf-b8d8-4992-8405-b23728c895ea
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=cloud_runtime_bot_cloud_runtime_bot_svc_cluster_local_&refresh=5s
+        - id: e7cb0345-ffab-4fb4-bb3a-0f48a095f8e3
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cloud-runtime-bot
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/6f0458c8-34b6-432a-a066-d3edd05d72af
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/acbbd3a1-d85f-43f6-8abd-1a7377a5d88d
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

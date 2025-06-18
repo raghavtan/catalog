@@ -22,32 +22,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 1b684ce7-dba2-4287-8dc2-77b9da9933eb
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 0ccada8a-7349-4418-a33e-8fee814abee1
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=umka_umka_svc_cluster_local_&refresh=5s
-        - id: 3f7f6064-99f2-485a-b843-d9a090e4eff7
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: 9bc8a046-28a2-4720-a025-e9c21b0a2b23
+        - id: b1c16cc7-7155-48ee-9217-fcd25004e443
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-        - id: d8b1ae6f-32f4-4d9b-aece-ecee1ff4a680
+        - id: a927c422-c9b4-446d-abcf-823c0b00fe20
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/umka
-        - id: 97824dcc-b71d-4736-94cd-2bbfd30a9fc0
+        - id: 1129f03b-f8d3-4515-ab6c-6112fcf29d08
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=umka&var-container=umka&from=now-1h&to=now
+        - id: 8e615e8d-483f-4261-896a-e957c3492ae7
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=umka_umka_svc_cluster_local_&refresh=5s
+        - id: fb548cb7-cbbc-47a7-a9c6-15704cdafc06
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 78fe2831-101d-424e-9fb2-a33c8c9f034b
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: aed4a261-db9b-4420-89bd-27c2ed525ae5
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/umka/home?tab=traces
+        - id: bb88ec13-9234-42e6-b261-ffabae5765aa
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=umka
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a098c1b6-5342-451c-ae7c-3215ed18191c
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/16a12bd5-8677-4972-a368-f210f75a5e1e
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

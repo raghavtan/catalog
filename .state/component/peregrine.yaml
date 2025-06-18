@@ -15,34 +15,42 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: 6b1b7c91-3064-4e45-95c2-f2d7fcba7194
-          name: p-developer-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C04NMNZC89L
-        - id: 6c6dc115-9c3b-4851-90ae-dbc1d6c3efad
-          name: Developer Experience
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
-        - id: 12b09558-bd61-4acd-89c0-affd275a8294
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/peregrine
-        - id: 213e2c74-b030-4c3b-91d1-c2a438de3e9e
-          name: Prometheus Resource Metrics
+        - id: 2faca3c1-13f6-4872-8bbc-18f4a36347c5
+          name: Security Vulnerability Report
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=peregrine&var-container=peregrine&from=now-1h&to=now
-        - id: 1b7752ec-92bf-4d68-886e-ebebe313b051
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 7090d641-ab3d-4b00-9d35-869bb183c069
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=peregrine
+        - id: a68e70f6-f8b3-4137-8cab-0b4bf182a378
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=peregrine_peregrine_svc_cluster_local_&refresh=5s
+        - id: 3c7d39f3-5dc9-4e7f-b753-413b8bdea51e
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 0fceb90e-887f-4111-a760-bb8bed95b772
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/peregrine/home?tab=traces
+        - id: fc7eb0ed-6c85-4352-abb9-75e10ec1f6fc
+          name: p-developer-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C04NMNZC89L
+        - id: e672d580-2785-4ff3-bd56-d8b5784c2959
+          name: Developer Experience
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
+        - id: 45a4b701-1275-44be-9da9-c2123b242074
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/peregrine
+        - id: a65efe2b-150a-4814-b9c4-b9f4af4049ae
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=peregrine&var-container=peregrine&from=now-1h&to=now
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d5cb3fbe-0d54-4d09-b7d5-b8ea686aca42
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/eed8419d-43d6-492a-a11e-efe6e2fa89bd
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

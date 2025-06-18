@@ -15,39 +15,47 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: 09ea2b17-646f-4682-80d2-9453faa08bf5
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: 292f20dc-5082-4665-92cc-b1137ff1d91f
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: f3c3374f-2211-403d-9edd-b8dab76c7808
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/of-enricher
-        - id: 97776881-0cf3-4211-b5d2-e8cfbe4b8e47
+        - id: 75005a11-5268-46cb-bd8e-ea30dd5e71b6
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=of-enricher&var-container=of-enricher&from=now-1h&to=now
-        - id: 15cd0f10-60a8-44cb-8991-da75ad37d281
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: a83d9200-a0bb-4475-baaa-a6e5b64c1a8d
+        - id: 4e64519f-da6f-4593-ab7e-9da8331c4bde
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=of_enricher_of_enricher_svc_cluster_local_&refresh=5s
+        - id: f73cd5ef-b39d-4c97-bb3c-f7a11ae9f326
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: 924a4e7b-6612-4082-bb2f-cd30e0b160c4
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: ceaac9b2-fc3f-4f4d-bc8f-af08fa89f0d0
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/of-enricher
+        - id: eb00d6d2-ce12-4da7-87cf-b0c6b6d1a7df
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: b4408f2c-da12-4c45-a48f-463e4946a330
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/of-enricher/home?tab=traces
+        - id: d60aae30-c5fa-4391-b316-c18255050adb
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=of-enricher
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/4d278e8a-fcfc-4201-af58-a26bfff1a7f1
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/cd68c7d3-749b-4994-a505-7c665f0faddc
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/of-enricher/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/490db2d7-dd7d-494b-a799-74aeb90e1000
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/98d2b032-1d0a-4753-bc5b-4bff8566ec82
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

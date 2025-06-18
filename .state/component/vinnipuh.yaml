@@ -15,34 +15,42 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: a9df6e64-47e0-45a6-8906-192e8b4536ea
-          name: Emissary Metrics
+        - id: dde6bdba-d9da-4b39-aa1c-6b0a928f2b44
+          name: Security Vulnerability Report
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=vinnipuh_vinnipuh_svc_cluster_local_&refresh=5s
-        - id: 1770c263-fa1f-4ec2-8c5b-4ae340cf537c
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=vinnipuh
+        - id: ccf3b0a8-07d7-4f72-a4a0-b8f071fcb55a
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: 646a0f69-5455-4675-89cd-914f19b55b0d
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: 0c78b2b6-22f3-485c-be0d-e5c819a659de
+        - id: 68b14956-41fe-4b55-a16e-ee92a69d295c
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/vinnipuh/home?tab=traces
+        - id: 769271b1-9b5a-46df-857b-194082ef74bf
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/vinnipuh
-        - id: c6669d73-257a-4d4d-9365-e069febf58ef
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=vinnipuh&var-container=vinnipuh&from=now-1h&to=now
-        - id: c871012d-f5f9-439a-8f86-edcd1e825067
+        - id: 3b168dd9-8e59-4cb6-b071-b4796f4c0d17
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: be3c1ba2-7203-494b-9f1e-5d8120d02b08
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=vinnipuh_vinnipuh_svc_cluster_local_&refresh=5s
+        - id: 1d503cba-7fb9-462e-ab96-394a5fe3b36a
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=vinnipuh&var-container=vinnipuh&from=now-1h&to=now
+        - id: b741b22d-461a-42d2-850e-de11479ad182
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/13e55574-4c86-44f5-8971-7a642d77eb11
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/495c1e69-5277-4984-9d89-284d9aedc91b
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
@@ -50,7 +58,6 @@ spec:
     labels:
         - matchxp
         - fan-experience
-        - vinnipuh
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3eef8541-d7c6-4ccb-a40c-4cdbeacd1492

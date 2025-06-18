@@ -15,30 +15,30 @@ spec:
         - kubernetes
     fields: {}
     links:
-        - id: 05fa6329-40c5-4eae-b299-0ea527ea8cb9
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=score_api_load_test_score_api_load_test_svc_cluster_local_&refresh=5s
-        - id: 618fb528-736a-4a73-aba6-0548c93512af
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 492f51fa-f53b-4617-926a-9ff8ac16eb0c
+        - id: 08998f52-5010-474b-b45d-3bbd387d8906
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: f22ba5ca-8f7b-4a0b-aae1-d1ad4b0cd293
+        - id: 999ba16e-498a-4ec6-833f-f79a8a3294ff
           name: Match XP
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: f3e6f126-a72f-4461-bf1b-0658d3e47dbf
+        - id: 5409ccdc-bdca-40fd-b797-e8a0c69651c1
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/score-api-load-test
-        - id: d4e3bb22-e7a6-40bf-b9df-b1d1f2083f5d
+        - id: 067e5a69-d516-470b-b93a-9b7a4c985693
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=score-api-load-test&var-container=score-api-load-test&from=now-1h&to=now
+        - id: 812732d1-6b9f-4bcd-bd1e-3a9b95fc603f
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=score_api_load_test_score_api_load_test_svc_cluster_local_&refresh=5s
+        - id: 2778fc60-5ffb-4af0-bb97-43c30d3e8287
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents: []
     labels:
         - engagement

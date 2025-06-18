@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 0ab68e7b-4c7d-4e90-80b2-16484fc3d48c
-          name: Prometheus Resource Metrics
+        - id: 1ecce1c0-0a99-4910-a7e2-67877a42480f
+          name: Security Vulnerability Report
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-mediation&var-container=ott-mediation&from=now-1h&to=now
-        - id: c1e50d72-0f9a-417a-bd1a-d805df443e25
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 67caceb5-296a-429e-acba-8cc321b5ea79
-          name: Emissary Metrics
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-mediation
+        - id: 8c3811bd-7a7a-4280-a894-673138908c27
+          name: Honeycomb
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=ott_mediation_ott_mediation_svc_cluster_local_&refresh=5s
-        - id: a873d24b-4e72-4a6d-b521-046ad38c352f
-          name: client-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C07MMBZDYV6
-        - id: 96c98a9a-74ca-442e-bbd1-65b889bff868
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/ott-mediation/home?tab=traces
+        - id: 0d30338b-6ed8-4125-a3e0-380980273d9c
           name: Media Advertising
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
-        - id: 530bc43d-76a4-44c2-935e-485d2ec7f512
+        - id: ea18020b-5bf4-41f1-bd63-4bd0e4170c34
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-mediation&var-container=ott-mediation&from=now-1h&to=now
+        - id: 8c69f56e-76c4-454e-88c7-aa7018614a40
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 9a98713c-f305-4d7f-a4fa-75f8b2619992
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=ott_mediation_ott_mediation_svc_cluster_local_&refresh=5s
+        - id: 071d52bc-3cbd-4c36-abfb-eb29fcce8c66
+          name: client-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: b829938b-c662-4e9a-a7ed-e3a94371cd3f
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/ott-mediation
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/fb9f44cf-fa35-46c9-bb19-773040bc082d
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d447be64-b589-4145-8d2b-3d85edf9a121
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

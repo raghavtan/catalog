@@ -22,32 +22,32 @@ spec:
         - ott-mediation
     fields: {}
     links:
-        - id: 849ff9c0-09c7-45ff-871a-d51a36b33885
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/xpa-backend
-        - id: db1ba93c-0f90-410b-8bb9-7b36db14b786
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-backend&var-container=xpa-backend&from=now-1h&to=now
-        - id: 8ec23f9c-0c2b-47ce-ab32-1efda9b80db8
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=xpa_backend_xpa_backend_svc_cluster_local_&refresh=5s
-        - id: 1a2c54e9-ca1a-4c52-847d-b18ae774fa48
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 54cb938b-3988-4792-b105-ced22ae791ab
+        - id: 13407519-05ae-4494-b94e-fbd89ca03b21
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: 83c4c585-d176-40fd-9cff-d4434f51f90d
+        - id: dc90bf69-239e-47ea-b807-100ab48c460f
           name: Match XP
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: 96c9f1a0-9efe-4bfb-96c9-a00a72bcec4d
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/xpa-backend
+        - id: d5aaab96-5202-4ac2-942d-6885dddca18f
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=xpa-backend&var-container=xpa-backend&from=now-1h&to=now
+        - id: d73e1ab0-62ce-4b20-937d-6514db521879
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=xpa_backend_xpa_backend_svc_cluster_local_&refresh=5s
+        - id: 978d2e91-ae71-4447-beec-c2eccb154800
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/f0a0621d-1fab-4430-a32d-21810a399226
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ac7a385f-2d6b-4fe8-bc5c-4b16897783d6
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

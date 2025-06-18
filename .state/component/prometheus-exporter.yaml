@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: f5cbcdfa-584c-4900-9c64-3684bdadbd8b
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/prometheus-exporter
-        - id: 106b9644-6ffb-4185-87fd-6af8d72e2e54
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=prometheus-exporter&var-container=prometheus-exporter&from=now-1h&to=now
-        - id: dda2f161-4fb8-498e-96b0-c0f35f946e6d
+        - id: 69666baf-6e8a-4945-abde-f50fd84bcecb
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 6a7533fb-40fa-45ef-a540-a742e33eec77
+        - id: d9f9de28-f27b-49fa-b064-f50d78f008cd
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=prometheus_exporter_prometheus_exporter_svc_cluster_local_&refresh=5s
-        - id: ace1b612-82c6-4bc9-9d4c-19ee2cd5bd78
-          name: p-cloud-runtime
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/CFUCQUA04
-        - id: a5e97c42-0bac-4b9d-936a-5d062d2cfb55
+        - id: c3261239-6555-4265-9c8e-8b73216790ad
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=prometheus-exporter
+        - id: a54e4208-0ed2-4fb4-84b6-a3e63fc24f4c
           name: Cloud Runtime
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+        - id: cfe0d2cd-7643-4a9c-a2c5-65c06a7f6d33
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/prometheus-exporter/home?tab=traces
+        - id: 8a13429f-d655-49be-b17c-bf6d092b1f15
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/prometheus-exporter
+        - id: 79fa6f1d-ef5b-49ae-aaf0-222fdc3f7aab
+          name: p-cloud-runtime
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/CFUCQUA04
+        - id: 62f6df7e-fbc7-4ff4-ac39-0d2df61731bf
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=prometheus-exporter&var-container=prometheus-exporter&from=now-1h&to=now
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/b04c58a0-34b6-43aa-9dd9-a685f210e31e
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/712e2107-237c-43ac-b09d-bdaa40ff1ca4
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 2fbd23cf-74a0-4237-85ce-9336e2d04e50
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: f8ed0710-292b-452f-a08f-76a04e276401
-          name: Emissary Metrics
+        - id: a4d4d1b6-53c6-430e-ad49-4dacc4c5779a
+          name: Security Vulnerability Report
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=experimental_thumbor_experimental_thumbor_svc_cluster_local_&refresh=5s
-        - id: 3f231444-be8a-4998-8928-019e95c5e98e
-          name: p-developer-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C04NMNZC89L
-        - id: 0a6be21a-b23d-434f-ac8b-d6b5a3b82526
-          name: Developer Experience
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
-        - id: 59f3aafb-6293-4acb-8c95-10c18cd02480
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=experimental-thumbor
+        - id: c0339d5e-0a94-42aa-af79-1ac1e7a8064a
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/experimental-thumbor
-        - id: 568855f1-074d-45f5-82d2-355a64a7a16f
+        - id: 526f4ca3-35c8-4b1b-8e1c-567a1a5b1d1f
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: aec807cc-e3fd-4802-b821-2a92eca4116f
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=experimental_thumbor_experimental_thumbor_svc_cluster_local_&refresh=5s
+        - id: 2ab8ca3b-0884-438e-8600-3b963f629746
+          name: Developer Experience
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/DX/boards/375
+        - id: f84a3059-2db4-45fc-966a-48f2c488f6ba
+          name: p-developer-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C04NMNZC89L
+        - id: ff603bce-3d62-4442-98cc-544da0b82ccf
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/experimental-thumbor/home?tab=traces
+        - id: f5ed2865-b82e-4a5a-a720-27cabad5f1bc
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=experimental-thumbor&var-container=experimental-thumbor&from=now-1h&to=now
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/be29f683-20f4-4cb5-b858-d004dd0a961c
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/67dfb467-66a5-4f14-942b-b06380d16ee6
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

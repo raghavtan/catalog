@@ -23,32 +23,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 68b1903c-250b-442f-a597-7a1952fddc5a
+        - id: 8aa72788-c6f1-4e7d-9c36-3375cf803ef9
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=category_tiles_category_tiles_svc_cluster_local_&refresh=5s
-        - id: c7434dab-1e24-42a4-a1b5-b73ddfc01b27
+        - id: 2b4a7587-f8e1-46fd-a17c-f0b2af435602
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/category-tiles/home?tab=traces
+        - id: 03542fe6-803e-49ca-9d96-99e81d8b1bf2
           name: e-personalisation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: 2893d563-c9e3-4848-aace-fcb06e15ee94
+        - id: ce10393e-a9ab-41a3-bbbe-3092dbc09e4f
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-        - id: 90097a36-0583-4959-992f-13046e626994
+        - id: fa149379-bd9e-4049-ab79-46edf037ad1f
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/category-tiles
-        - id: 96485c73-4457-4586-9e92-8df607509bc7
+        - id: 57a616c1-a702-411e-ab8e-9f896b3317f3
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=category-tiles
+        - id: 0d201c31-9a10-46e5-94c7-6a293fa6c847
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=category-tiles&var-container=category-tiles&from=now-1h&to=now
-        - id: 4ecb2f51-40d0-4e18-8c6c-3362df15f4aa
+        - id: 9718cf4a-4688-460f-9fd2-962d107a7619
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/730f9e06-1c92-4943-ad10-0c7978c28755
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a4562b54-0bd5-41a3-8377-ebdb4f60de2a
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

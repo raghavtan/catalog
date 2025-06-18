@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: e99eeb65-afbf-4665-b503-f6a5ed06a03c
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=consumer_web_v2_consumer_web_v2_svc_cluster_local_&refresh=5s
-        - id: b213fa9d-023d-4114-91e7-fae3e8f50df1
-          name: video-platform-team
-          type: CHAT_CHANNEL
-          url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
-        - id: 2887bc63-fa44-4569-bd50-1796bbec77a1
-          name: Video Platform Support
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
-        - id: dee0b308-5dae-430d-b0fc-e16c90e26c2b
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/consumer-web-v2
-        - id: 58c2588f-cc0e-4abc-a57b-a944dcc41fba
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=consumer-web-v2&var-container=consumer-web-v2&from=now-1h&to=now
-        - id: 3da57815-e3b5-4577-9bdb-e92b48e4f53b
+        - id: 2721b974-b102-44e5-8d0d-78c2655e3f0a
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 2d61c7ea-977b-45f0-9c81-b9c2bd16b9b6
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=consumer-web-v2&var-container=consumer-web-v2&from=now-1h&to=now
+        - id: 55a652b2-9415-4bae-8d16-3a1fcac8afb0
+          name: Video Platform Support
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
+        - id: 6b356fd5-2e74-4d11-8818-ac4b00089678
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/consumer-web-v2
+        - id: 03aec70b-ebc9-4063-9959-b63581fb2bbb
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=consumer-web-v2
+        - id: cc387e2e-5bb8-4d4a-9cc5-8ba484110131
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=consumer_web_v2_consumer_web_v2_svc_cluster_local_&refresh=5s
+        - id: ed7f2ef1-75a4-4782-a35f-471a42150549
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/consumer-web-v2/home?tab=traces
+        - id: bb574726-69db-4930-96fe-216421c663d7
+          name: video-platform-team
+          type: CHAT_CHANNEL
+          url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/e48d30bb-6002-4ba3-85b9-dc896b0010a7
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/2b0d97e2-9986-4148-92d0-b84101766201
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

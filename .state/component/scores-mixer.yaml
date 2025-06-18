@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: f9308e9a-e37d-4864-8c24-65c9f386c090
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: 56313172-774a-48a9-b8a9-03b77da49d65
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/scores-mixer
-        - id: 3c4c571c-c4e6-4dba-a3d7-fc167c25e03c
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=scores-mixer&var-container=scores-mixer&from=now-1h&to=now
-        - id: eb716ba2-9089-4a13-869f-55fc3510b586
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 1adc9120-d1e5-4da7-8de5-4691b123e140
+        - id: 06195d32-dfa2-453b-b854-01f760c9cb87
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=scores_mixer_scores_mixer_svc_cluster_local_&refresh=5s
-        - id: 12f68c36-076f-4aa1-8a83-3d9f3ff3b9d8
+        - id: dc18e404-e7bc-411b-8ea5-dc66d8807867
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=scores-mixer
+        - id: 305d4fc7-fc4e-4ae1-a8d4-4852285f0f7f
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=scores-mixer&var-container=scores-mixer&from=now-1h&to=now
+        - id: 53fe7868-584a-4b5a-880f-e8f09e4afbea
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/scores-mixer/home?tab=traces
+        - id: 4f23e830-a2bd-4d87-8f8e-5e62f0dbde39
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: e8b4bf5f-25ed-4145-9878-00c7f2a66d7d
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/scores-mixer
+        - id: 9a60ab10-aa07-437c-9e98-ee065f29d449
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 68f5dcc0-f757-478c-a8b9-d81edcb9bea7
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/23343cd4-9c32-4b4e-95c7-91aae0f1d70e
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a106ec9e-7b3c-4452-b380-c612c3454205
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

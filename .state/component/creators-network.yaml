@@ -15,34 +15,42 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: 6c99f739-6ca0-47f3-9fc5-1433a64e4309
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=creators_network_creators_network_svc_cluster_local_&refresh=5s
-        - id: c5ee665d-3627-4825-bf9b-011ea08e2a25
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: 6059cc23-8e1a-485f-9c28-432e4a67e991
+        - id: 01a2cf26-e08b-4c42-997e-682864120ff2
           name: The Source
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
-        - id: 1ea562b2-2e34-4b79-9cd8-352efb276951
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/creators-network
-        - id: bd1253b7-2fb1-4b23-bc9b-f49fa1500a25
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=creators-network&var-container=creators-network&from=now-1h&to=now
-        - id: 281ea258-63a2-4d44-b193-d8d63ace9d96
+        - id: b5938074-07ac-448f-a51e-d4e6a00731fb
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
+        - id: 791ebb7b-ab06-4594-be68-e335015a6abc
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 27fc90ac-4404-4b5b-9777-510462a100d4
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/creators-network/home?tab=traces
+        - id: 1e54e244-4050-4c70-9321-95498cb518bf
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/creators-network
+        - id: 9089526a-bf21-4cd2-b67a-5b29bd86a666
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=creators-network
+        - id: 1d2005c0-a8ca-482c-9d8a-4f18bf790766
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=creators-network&var-container=creators-network&from=now-1h&to=now
+        - id: 39886fa6-eaf1-4dae-aba5-274dda091ecc
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=creators_network_creators_network_svc_cluster_local_&refresh=5s
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/4fd2ec8d-07be-48c1-b009-46805739fff6
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/58445e9a-d3a9-4cc0-9dce-9f4e42d47f85
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

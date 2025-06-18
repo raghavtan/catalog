@@ -15,34 +15,42 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: 9055cf16-7739-4a5a-981b-0a4a8bc08015
-          name: Prometheus Resource Metrics
+        - id: 26e4ac68-3566-486f-a448-10deb71763c3
+          name: Honeycomb
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=fanmatch-go&var-container=fanmatch-go&from=now-1h&to=now
-        - id: 15e10e03-f17a-485a-a8da-e5bdb5b5aaa1
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: ec455bef-9498-4d4a-89c9-c857d338576e
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=fanmatch_go_fanmatch_go_svc_cluster_local_&refresh=5s
-        - id: 309921b4-849a-42e7-b144-5f2c6552b540
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/fanmatch-go/home?tab=traces
+        - id: 5e2428bd-f3a1-4226-8aad-6dc6046ebdfb
           name: client-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C07MMBZDYV6
-        - id: aa4eb30e-4529-4b6c-8b83-a91877392c8c
+        - id: 31d2728f-4290-424f-9f57-92024175ec0a
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=fanmatch-go
+        - id: 6e369f45-07f0-4b66-a0cd-fcbe0e46acb5
           name: Sponsorship Integration Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
-        - id: c6acf219-c072-4700-a58e-874f8ab73767
+        - id: 0a0ceb98-78a7-48e7-8049-16ff343bb6aa
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/fanmatch-go
+        - id: 3decc3f8-59bb-42d0-80f9-a972f25292a0
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=fanmatch-go&var-container=fanmatch-go&from=now-1h&to=now
+        - id: 3243c405-923c-448d-9348-d2f588cf06b5
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 0a06dc45-7c2c-4f2f-b734-6f2b7408a2d4
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=fanmatch_go_fanmatch_go_svc_cluster_local_&refresh=5s
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/03fecc6b-a303-40a5-84a9-b886ad0223b4
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/fcee8b41-c34a-4aec-a97c-788fcc853156
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

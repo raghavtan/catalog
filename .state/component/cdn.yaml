@@ -17,30 +17,30 @@ spec:
         lifecycle: Active
         tier: 1
     links:
-        - id: 42484580-9ff9-4e71-b734-68ed8467484d
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
-        - id: 203e4311-308f-4a2b-b630-651db659687a
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=simple_service_simple_service_svc_cluster_local_&refresh=5s
-        - id: 2d97f38a-0112-4bac-9f8e-826f08ebf82a
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 5c73c804-d641-480e-9a33-aed5e2d047e1
+        - id: fcc52033-bb7a-40c0-b075-3dbb138482be
           name: p-cloud-runtime
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CFUCQUA04
-        - id: fcf087c2-065e-4ff0-8862-65c7c9571e58
+        - id: ae4255d2-f560-465c-b783-3d496bdf88c7
           name: Cloud Runtime
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
-        - id: 0f7c5721-7c8e-41dd-82f9-567c9c2e0700
+        - id: 036d92f2-e882-40bd-b66c-43e146bb1224
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/simple-service
+        - id: dc9da5e8-3eed-4f36-8d6f-cd276aad5f7a
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=simple-service&var-container=simple-service&from=now-1h&to=now
+        - id: ae572819-1b93-45e3-887d-dd362421e43c
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=simple_service_simple_service_svc_cluster_local_&refresh=5s
+        - id: 56b32b58-3bda-46bf-b0db-9cd1ff2d1afe
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents: []
     labels:
         - cloud-runtime

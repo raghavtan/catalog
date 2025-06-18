@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 2153440e-5099-4325-adeb-5bfe6ba7b863
-          name: Media Advertising
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
-        - id: 9241b107-1526-4617-9d13-d80167faf58e
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/banner-free
-        - id: 0dfd33a4-389f-41a3-a037-67162ad9080d
-          name: Prometheus Resource Metrics
+        - id: 5ddc53ac-903f-4d78-be66-cfb870ef203e
+          name: Security Vulnerability Report
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=banner-free&var-container=banner-free&from=now-1h&to=now
-        - id: f6b5789c-a88a-4af4-9724-ea01c326fecd
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 20fc2067-e78d-40f1-b280-229c2551bf7d
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=banner-free
+        - id: 9b967d85-6557-4820-82d2-0e0f8cb0d5d2
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=banner_free_banner_free_svc_cluster_local_&refresh=5s
-        - id: 987f1d34-b4bf-4ea8-b354-c568125c7b9f
+        - id: d83be7b7-0401-4994-86de-b3fa11318316
+          name: Media Advertising
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MONEY/boards/201
+        - id: 018ce422-9a38-40c0-a591-303982d2e5a4
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/banner-free
+        - id: a4736add-64f2-4928-be0e-b93147920775
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/banner-free/home?tab=traces
+        - id: 3242e615-8b09-4ec9-b5b6-10da0062e171
           name: client-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: 275c6a77-769c-41ef-ba4b-7071c647ae8b
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=banner-free&var-container=banner-free&from=now-1h&to=now
+        - id: ae64776c-4d3d-43f3-b8e3-90f2b166762a
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/425cf92c-a45b-4918-9d0e-2dd411c4753a
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/45832837-93a1-48c0-b55a-52d0d22e5fbf
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

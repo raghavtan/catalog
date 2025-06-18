@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 9c73d58b-6d2e-44ba-bf17-fa3b9388c268
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/amymone
-        - id: 65cdfb3f-9774-48e2-89af-99d26f2a1dc6
-          name: Prometheus Resource Metrics
+        - id: d3839365-e659-446d-a745-279e63f75bd0
+          name: Honeycomb
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=amymone&var-container=amymone&from=now-1h&to=now
-        - id: c84d22ec-e2a2-4945-bd42-010c9a23c04f
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: a1f6f810-717f-4acd-9110-fbaa088e9f3d
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/amymone/home?tab=traces
+        - id: 56ed5475-d2f1-4e68-9ec4-f35818ea5b54
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=amymone
+        - id: 3f288106-4c2e-4185-a6c1-2960bf9639dc
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=amymone_amymone_svc_cluster_local_&refresh=5s
-        - id: a388bec2-2a7e-4c4b-8e45-c142ca34d17d
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: 560f307c-e4b7-4e0f-9298-88d2a38f7366
+        - id: a14abb9d-4c14-441a-bcf5-57fd280e48a6
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: 110cb04e-6e3f-4be2-a641-ae99f56ff67d
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 2be3cfd6-e3c5-4436-91f1-44a9162b4c14
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: 3974a683-df6f-4cd7-89a6-ff24d447506d
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/amymone
+        - id: dfeb2f5d-1f40-49c2-b7a2-84666283950b
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=amymone&var-container=amymone&from=now-1h&to=now
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a9622bdd-f553-415e-937d-3179d6510022
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/1e00fdba-8d23-442f-a5ac-9063364e9218
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

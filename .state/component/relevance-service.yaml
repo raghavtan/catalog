@@ -17,52 +17,60 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 32fc0664-966b-4ff8-b2e1-7f9550a91abd
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 2f7b60d0-98ea-47a2-8515-81e56311435f
-          name: Emissary Metrics
+        - id: 8a438f52-4c27-4fb6-843f-f12e2457de64
+          name: Honeycomb
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=relevance_service_relevance_service_svc_cluster_local_&refresh=5s
-        - id: 7b9af4b1-f26a-4d92-9eec-49d2fb0cb4af
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/relevance-service/home?tab=traces
+        - id: ee55f445-5875-46c5-a2b4-854f2048446b
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=relevance-service
+        - id: 95cc7580-7af2-470f-82da-f6b78e94bbe0
           name: e-personalisation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: 3d099288-b4aa-498a-9acd-97d2c90ba738
+        - id: 7859ac0d-89a5-43e5-9c3e-5a48312d1021
           name: Personalisation
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-        - id: 2a530f8a-d2ef-463c-9dbb-67b00a59c412
+        - id: c4b7be9f-8041-4a0e-a016-36f262961841
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: faf10f95-5098-4370-a1e8-fee7701395fb
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/relevance-service
-        - id: 07562a7d-2173-4598-85f9-86b28df9dda7
+        - id: 45c76e1e-7bb1-4290-b1df-2474d73f660b
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=relevance-service&var-container=relevance-service&from=now-1h&to=now
+        - id: 9a052177-cfbd-4514-886a-7ce863aa61f5
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=relevance_service_relevance_service_svc_cluster_local_&refresh=5s
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/00c2301a-a9ba-48cf-9126-e9db1979aca5
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/47acb68d-ed34-4d16-992a-a5eb207bd1fd
           title: Articles Scoring
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/relevance-service/blob/main/.of/docs/articles-scoring.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/172bee77-2baf-4539-b75c-b0b025dc64f7
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a89846f4-b564-4a39-a5b0-a1a617720f4e
           title: Articles Scoring Evaluation
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/relevance-service/blob/main/.of/docs/articles-scoring-evaluation.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a14b9cec-6933-4d4e-bfa2-56a85acc7aed
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/58791472-460d-46d5-bb8a-51470745f22a
           title: Articles Scoring Machine Learning
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/relevance-service/blob/main/.of/docs/articles-scoring-ml.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/b4661725-6a27-4e3a-8e64-b1aff26891c4
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/dac93941-fadf-4717-9b6e-847bd4d38d46
           title: Home
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/relevance-service/blob/main/.of/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/082ebe5a-d698-4bd4-b4e2-58812b113d56
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/29061015-dc35-4898-85d0-3698f7056fc3
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

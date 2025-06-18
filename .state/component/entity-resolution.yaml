@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: f6243009-1016-49de-908e-9e864d89285e
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: 33c37a14-7233-4001-8951-1d12f8eebf51
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/entity-resolution
-        - id: fc924607-ec85-469f-b433-ef05177c8360
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=entity-resolution&var-container=entity-resolution&from=now-1h&to=now
-        - id: 2d197e1d-f439-4fe9-9ac4-0c5e3fa5469e
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 30a5f1f8-c3eb-4488-aae0-bf636d596aff
+        - id: 64f1c43d-0b8d-492a-bf70-ee0b45c2d299
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=entity_resolution_entity_resolution_svc_cluster_local_&refresh=5s
-        - id: f545cc85-56e0-4e17-a3ab-6a8449dbfeee
+        - id: b72bdb72-ec19-44ba-af2d-3cd7edd04f6f
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: 6525e831-edaf-49d2-95e0-fa4b759f8883
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: c9df9d32-8b4b-42ee-a0e4-dccce1aee514
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/entity-resolution
+        - id: 2dbe7cc6-094c-4612-913e-9ec202419c3f
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=entity-resolution&var-container=entity-resolution&from=now-1h&to=now
+        - id: 677d0470-eea1-410d-bc4a-50558e508e0d
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=entity-resolution
+        - id: 8f48e3b3-495f-4178-a149-8f276617ad26
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: db72537c-6df4-4ce3-b8a5-9ef1b6698cb4
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/entity-resolution/home?tab=traces
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/1d0a3c2a-da7b-4236-a65f-19db0437e887
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/15f791b5-d32e-4aeb-9204-4f417424b134
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

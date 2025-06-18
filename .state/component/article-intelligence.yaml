@@ -17,40 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 5cee4818-c354-4ae6-9c4c-f6f02d8fc900
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/article-intelligence
-        - id: 97b08d42-6732-4e74-99a0-07139e9cc1bf
+        - id: 5ac53be0-2d4a-4406-ac88-a145299fd374
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-intelligence&var-container=article-intelligence&from=now-1h&to=now
-        - id: d098d593-2683-4263-a0b3-a4715a713171
+        - id: 71c93c33-bc97-4fde-a55c-1b31352fdb12
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: cbe83b4e-4fd8-4f33-a2e9-7348c2a73a50
+        - id: fbb6f447-f6bc-4441-bfc7-aded18f53002
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=article_intelligence_article_intelligence_svc_cluster_local_&refresh=5s
-        - id: 3fe8f6f4-243c-4ddd-b353-a4931ab5b267
-          name: Honeycomb
-          type: DASHBOARD
-          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/article-intelligence/home?tab=traces
-        - id: 3e9419a3-d91f-49f1-ac93-41b335e110f5
-          name: Security Vulnerability Report
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-intelligence
-        - id: 702f5b1d-2ba8-4b8f-a14a-d03183dc5fcd
+        - id: 04b98145-a9f1-4a30-93cc-81edbdd363e9
           name: r-source
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: 44d40e30-7d99-4a7f-8fca-041931848208
+        - id: 174dc54c-a1a0-44f3-9659-88e4b336aacf
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/article-intelligence/home?tab=traces
+        - id: d3d2a34e-5d50-4bc1-934a-4a9e8902122d
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-intelligence
+        - id: 755db8c7-2a0e-487f-880e-88abebf91956
           name: The Source
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
+        - id: 83b63704-3bbd-4905-a9b5-26f66dc6fdd8
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/article-intelligence
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/de5a40c7-f2b1-462d-87a8-ee1229cff7c2
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/9016d529-dccf-4807-8514-f864fa9f8f08
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

@@ -16,34 +16,42 @@ spec:
         - score-api
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: 7365e872-0627-421f-905e-202044becca0
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 4251519a-c3fc-4d78-83a4-a7f756f53a60
-          name: Emissary Metrics
+        - id: eb247df2-08aa-4f38-9644-1943f407ac2d
+          name: Security Vulnerability Report
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=tv_guide_api_tv_guide_api_svc_cluster_local_&refresh=5s
-        - id: 53ea80bf-b7b9-4d96-b0d5-436274f17537
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=tv-guide-api
+        - id: 16d4c7c3-ab02-40dd-8bc6-c8f5447f2e03
           name: client-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C07MMBZDYV6
-        - id: e0da93c8-8617-49fb-9524-aa59a33fb1e2
+        - id: 6beebca8-2aac-4126-a15b-a6d811662447
           name: Sponsorship Integration Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
-        - id: 6d486042-99d2-42f0-8400-9d74d9254f41
+        - id: 0f2aeaec-5890-42aa-b285-16b0cc4b3aaf
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/tv-guide-api
-        - id: bb537a4c-1227-416e-98f1-5ce9cf3a7bd0
+        - id: c3fa297a-ee84-4b74-abef-01cd99ed872e
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=tv_guide_api_tv_guide_api_svc_cluster_local_&refresh=5s
+        - id: c33f7249-1ecc-475f-878b-47096ed560aa
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 6b5e3c5e-861e-4b07-a14d-b0843ea365ae
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/tv-guide-api/home?tab=traces
+        - id: 27701f97-66a0-45dc-8f97-78fc03ef0e15
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=tv-guide-api&var-container=tv-guide-api&from=now-1h&to=now
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/7269abe9-bdec-4567-8769-c25e7794fb6d
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/0bbdf4a6-2780-4015-a053-a2931858a086
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

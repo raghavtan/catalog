@@ -17,52 +17,60 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: c592c4b2-0d8b-46b8-8be4-f7acd44ef18c
-          name: e-livevideo
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C053ATVH3N2
-        - id: 741e71aa-c3b1-4ef2-93ea-7413822fbeb8
-          name: Live Video
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
-        - id: 4eb8e0fe-f1a5-415e-8409-97bc6ceafb1a
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/streaming-service
-        - id: 1454c633-37b6-481a-800a-0002b5e7526c
+        - id: 155674f9-016a-41cb-9431-d49f950981b4
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=streaming-service&var-container=streaming-service&from=now-1h&to=now
-        - id: 146098a7-b85b-4541-9d19-356e08923f3a
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 80009136-08de-4730-9f35-7b9d329dc17a
+        - id: c1cdf8a2-7d02-4fe3-a3d5-61890166d4be
+          name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
+        - id: d9a8489d-341c-429c-9c52-51e8d986954f
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=streaming_service_streaming_service_svc_cluster_local_&refresh=5s
+        - id: 0a12761d-87e5-44db-9c32-dc1568a5b9bc
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/streaming-service
+        - id: 769eec94-2a99-4ddc-835e-1e22513c747e
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: adcd977d-11b6-4b45-bd64-ccd4f7e75999
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/streaming-service/home?tab=traces
+        - id: 6e68a2fc-6ae0-4a75-b7ed-26e310d4ed68
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=streaming-service
+        - id: 3718f9e5-a8cf-4e05-9b22-3cd617605c63
+          name: e-livevideo
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C053ATVH3N2
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/03f113c8-66a8-463d-9796-2286a112752e
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/31555357-0339-4665-bdb4-6e9120984001
           title: Akamai integration
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/streaming-service/blob/main/docs/akamai.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/401eeb61-c299-4567-a4c4-ec95976bb670
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/33c7c862-b201-44be-aae8-29225034052e
           title: Bitmovin integration
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/streaming-service/blob/main/docs/bitmovin.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/f0f05add-52bc-41d1-8ba1-9f01c9a65df2
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/c27e00d7-225d-4a5e-900c-4d2925eb69d3
           title: Home
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/streaming-service/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/16c90c1f-3047-408c-baa4-05ea73b48bfb
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/828be40d-7df5-4bde-bbe5-62e05a81b1d6
           title: Overview
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/streaming-service/blob/main/docs/overview.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/16a279d3-b40a-49db-9bc8-62d99b9117df
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/79337b40-739d-4f90-af43-8d92bbeb2a25
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

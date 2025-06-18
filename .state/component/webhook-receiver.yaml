@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: b732ca01-c151-4b4b-a6f6-7ddbd9e7263b
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 8479f7cf-84d7-4505-9c87-e7b96b3fe226
-          name: Emissary Metrics
+        - id: e2cd23c1-2d56-4e27-a70d-27f486a7a8ff
+          name: Security Vulnerability Report
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=webhook_receiver_webhook_receiver_svc_cluster_local_&refresh=5s
-        - id: dc5c3f14-e2dc-44db-b9be-14c7dc6cf889
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: 7e9877d3-ef1a-42be-8b21-c7d93e3b0cd0
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: 3d98068e-a8fb-497b-b0aa-39cf60e9b112
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/webhook-receiver
-        - id: 769a98ea-4650-4dd0-aed2-3f74d455b24e
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=webhook-receiver
+        - id: 589127e3-5be2-4ddc-be7a-b6b82d7bffcf
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=webhook-receiver&var-container=webhook-receiver&from=now-1h&to=now
+        - id: 7d268919-81db-4808-a771-a4eec41bb884
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/webhook-receiver/home?tab=traces
+        - id: 2a7ee1d3-ec7c-4bff-ae6c-f3774ee1afef
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: d724677a-be22-4c2e-8795-bd8bd986fe4d
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/webhook-receiver
+        - id: f603b53f-3478-444f-ab3a-3629df645e4f
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=webhook_receiver_webhook_receiver_svc_cluster_local_&refresh=5s
+        - id: d5febb8b-167d-40e5-9e86-61c2f7320179
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: c37c88b9-45de-4138-b62d-bcbbd6654b55
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d3efa891-68c1-411d-9db4-505ea8e4578e
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/9be78573-5100-46b6-a968-cf6bf76f01a1
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

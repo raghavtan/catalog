@@ -15,37 +15,37 @@ spec:
         - kubernetes
     fields: {}
     links:
-        - id: 3ba45288-63bc-4a9d-b581-1c259c64016c
-          name: pe-dacore
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C04NG20NVPW
-        - id: 548c7e0b-7ddd-473b-b4ed-ebd1f732c7b1
-          name: DACORE
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/DACORE/boards/909
-        - id: 1fa99199-4837-4290-84ba-ded435102e1a
+        - id: 19ea5214-6d25-400e-9b41-a27d68496b23
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/happy-keldysh
-        - id: 1788402b-bc1a-4c58-b39f-d81728ac6fcf
+        - id: 10ad43cf-4ed3-48c0-bff0-0689d549e21c
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=happy-keldysh&var-container=happy-keldysh&from=now-1h&to=now
-        - id: b8b0b47a-b982-4c3f-b6fc-3c804a500b2e
+        - id: b7a89cd0-cf64-48dc-8664-5698e9c24845
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=happy_keldysh_happy_keldysh_svc_cluster_local_&refresh=5s
-        - id: 65944879-65a7-4001-8d4d-7f65e979ec97
+        - id: de1fdcfc-0fc0-46f7-b482-79aecce1c601
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 9ee5cf5b-7a84-4665-9a25-5979c4dd38be
+          name: pe-dacore
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C04NG20NVPW
+        - id: e5813b02-54e5-4beb-8a2e-dc4ea2e6d033
+          name: DACORE
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/DACORE/boards/909
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/39d202ca-5028-4f18-8928-f579c832258f
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/10cde87a-80e6-4bdd-a2eb-d07daada9f95
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/happy-keldysh/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/74e008c6-afba-45ec-b0d4-d04c0b7818bc
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c8cc7f5-f941-4ff7-99e0-140a53b76b4e
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

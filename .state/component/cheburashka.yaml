@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: b0b6c85c-285b-4a63-84fc-21d834b54314
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: c0dce229-d813-49b7-8b2e-b2d66987a425
-          name: Match XP
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: 3c796557-f0b7-48f9-b091-44f093e50c03
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/cheburashka
-        - id: d191027f-a085-428f-acd6-cc9a71ad64c9
-          name: Prometheus Resource Metrics
+        - id: 65aa5880-d840-4139-a12a-03a3c4b38f88
+          name: Security Vulnerability Report
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cheburashka&var-container=cheburashka&from=now-1h&to=now
-        - id: 5666adbc-8331-4b6b-b14b-2e71d2b4badd
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 597444a6-26ba-4a7d-926b-c90999ec65b2
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cheburashka
+        - id: c2e0b2d7-afd5-4ca0-83ef-a2a9df2bf689
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=cheburashka_cheburashka_svc_cluster_local_&refresh=5s
+        - id: c1df70e7-e71a-4e90-b667-be691e463180
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cheburashka&var-container=cheburashka&from=now-1h&to=now
+        - id: 121e2dbe-0766-4e72-997e-447d25cd738b
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/cheburashka/home?tab=traces
+        - id: 36fa3ef0-01f9-4552-b82b-13227db1fe41
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: 82ecfd7f-825a-4b13-826c-7c679e017e90
+          name: Match XP
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: bc565498-317f-4797-a1ea-f1cbb6e84988
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/cheburashka
+        - id: 413f8ab5-3f81-44d7-bd05-c28852b8fdc3
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/cefbf66f-408c-4f32-b792-63d41daf2745
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/0baf3f59-db12-4a92-a55e-b43a235745f5
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

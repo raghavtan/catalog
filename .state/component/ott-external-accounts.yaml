@@ -17,37 +17,45 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 4385d7d0-5ef9-4599-989c-317005fd49c0
-          name: Prometheus Resource Metrics
+        - id: aa379785-48de-47f1-9f81-77009fbe00b2
+          name: Honeycomb
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-external-accounts&var-container=ott-external-accounts&from=now-1h&to=now
-        - id: b399cef5-2829-42ff-87e3-37044885a09e
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 871d5ff6-b00e-4d88-be54-1ef41c66c8a9
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=ott_external_accounts_ott_external_accounts_svc_cluster_local_&refresh=5s
-        - id: 1038b7a3-5b4b-4ef6-a9f1-4ec1628c24ab
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/ott-external-accounts/home?tab=traces
+        - id: cdf38e88-093c-4f4e-bfbb-0a3606f5d18e
           name: e-livevideo
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C053ATVH3N2
-        - id: 42a9e6a3-8d32-48ce-a987-a7fdda6fa42d
-          name: Live Video
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
-        - id: 2cc5a2fa-c6e4-4d7b-9de6-bbfb772b05d9
+        - id: 2617066f-7625-4e12-adde-2112e1527d5d
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/ott-external-accounts
+        - id: c04d2bc8-5702-4c8f-962f-b45b289a7d29
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 7d8ccf7d-39c5-4f4b-9ce2-9d89c4e4690d
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-external-accounts
+        - id: 67a34cd8-2ed6-4e9b-9a90-031882209a27
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=ott_external_accounts_ott_external_accounts_svc_cluster_local_&refresh=5s
+        - id: 4ee78245-9e64-4c6f-988b-0b8a8d0c4741
+          name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
+        - id: 6c842974-77ae-4c01-acc6-981924b1f084
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-external-accounts&var-container=ott-external-accounts&from=now-1h&to=now
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/3e50af7f-09c3-4443-8e53-bf650a65b698
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/9d637a25-d857-44f8-8e5b-4199481477ee
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/ott-external-accounts/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/9e94734f-bf95-44de-ba60-83a9e40f3b07
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/36cf4544-6241-40a3-870e-9f32bd9aceb4
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

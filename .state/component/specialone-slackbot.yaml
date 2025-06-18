@@ -17,37 +17,45 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 69a913ff-a62f-48b7-836b-9ff2770acf6b
-          name: Live Video
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
-        - id: d4f4025d-a2b9-45b3-91e8-bcd0f00ae22c
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/specialone-slackbot
-        - id: 3880e635-ece4-4715-a9b4-ffb68b5e73e1
+        - id: 9a85335e-f945-4bd0-95df-0ccd17457b73
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=specialone-slackbot&var-container=specialone-slackbot&from=now-1h&to=now
-        - id: 68a2d783-acbf-4634-9bd1-5c521b116191
+        - id: b5babcfd-fb0d-4de9-aff6-0ba845866d35
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 8be3a235-53b7-497e-96d1-2d32b743c9f3
+        - id: a636ba6b-1074-4540-bba2-f7898bdea36a
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/specialone-slackbot/home?tab=traces
+        - id: 0cef4f2c-65b1-4ad6-a08c-4e82c9cdfe05
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=specialone-slackbot
+        - id: ad1e4954-8466-401a-93ac-e2700019c0e5
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=specialone_slackbot_specialone_slackbot_svc_cluster_local_&refresh=5s
-        - id: 05ea7765-d085-4a99-b5b8-832ac3ec79c4
+        - id: f698c556-0ff9-4ca7-b000-33c4809fc6df
+          name: Live Video
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
+        - id: 5eed5667-0dcb-47ca-a94b-b10c32be1a43
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/specialone-slackbot
+        - id: 451b9f32-b7b5-4105-a405-51d304aba561
           name: e-livevideo
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C053ATVH3N2
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d3cfc5c0-14bf-4969-a490-dd37cc24be29
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/7e657dca-7b01-4860-a239-b221d56cc98b
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/specialone-slackbot/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/be92f5dc-c88f-4f04-b049-fc4a5b50df75
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/fb118732-cd96-4300-b94b-e4f652c52c62
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

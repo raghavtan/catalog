@@ -15,29 +15,24 @@ spec:
         - kubernetes
     fields: {}
     links:
-        - id: 90df2bfa-7a3d-44c4-899e-9cb2b907adcc
+        - id: 04475bf2-332c-474b-8128-42de9f6b4710
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/web3-transactions
-        - id: d28c1ebf-cc49-4e14-a02e-1417c6712bc6
+        - id: 4c9895d2-9422-455d-8d31-2fcf2e717e64
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=web3-transactions&var-container=web3-transactions&from=now-1h&to=now
-        - id: 31937b0d-6053-4a7f-a8da-31dc26b70cf0
+        - id: dec1f1f0-ff21-40b7-93ee-ab6f63fdd4f0
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=web3_transactions_web3_transactions_svc_cluster_local_&refresh=5s
-        - id: 55230823-3c06-4d9b-827a-8480b7faeca9
+        - id: 09b13cee-a7a3-4330-a141-32959836b345
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/8cf048e4-b851-4af6-a13d-78d5adf18221
-          title: README
-          type: Other
-          documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
-          url: https://github.com/motain/web3-transactions/blob/main/README.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/8cf048e4-b851-4af6-a13d-78d5adf18221
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/32df13ae-742c-4283-9e33-946a245da7e6
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

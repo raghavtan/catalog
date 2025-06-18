@@ -15,45 +15,52 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: c8682ee8-8439-4597-85ee-0bbc291747e7
-          name: Cloud Runtime
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
-        - id: 21dead2b-4b1b-427f-9199-7b8673ed1303
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/log-gateway
-        - id: fde933b5-1b8b-429d-8a3b-ba9f6c03a984
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=log-gateway&var-container=log-gateway&from=now-1h&to=now
-        - id: edbc9369-91e6-4390-9c2a-596ff382e27d
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: d09ce40d-c8f7-45b7-bca0-76a42b21f6fa
+        - id: 170d223b-6222-4f56-a8c1-005a98161576
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=log_gateway_log_gateway_svc_cluster_local_&refresh=5s
-        - id: dc01da65-b465-4b97-8432-70239e64bf56
+        - id: e19bd0e8-492c-4dba-a31c-04d25c9eae89
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=log-gateway
+        - id: adc7f178-82b5-4037-9576-ab984d962ff2
+          name: Cloud Runtime
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/CORE/boards/185
+        - id: 3c21b28a-a425-4719-8129-eb03474edab2
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/log-gateway
+        - id: 9d23baf6-eac5-4752-bd34-3e683c20a2b8
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 312bb18d-cf6d-4d87-af3b-d4c2e5786278
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/log-gateway/home?tab=traces
+        - id: a2f4365f-8214-488f-90e0-1552ecf003e8
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=log-gateway&var-container=log-gateway&from=now-1h&to=now
+        - id: 533d8185-acee-4914-840e-7571e15cb472
           name: p-cloud-runtime
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CFUCQUA04
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/7de13218-308c-4551-bfef-34775cf2494c
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/a8060697-7773-4706-bc8b-9978d13149fc
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/log-gateway/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ed979cf5-6ad3-4967-9929-06bfc2eee8b6
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/bc82e572-5831-49e8-9614-5ffd74e6f388
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/log-gateway/blob/main/docs/index.md
     labels:
-        - log-gateway
         - cloud-runtime
         - platform
     metricSources:

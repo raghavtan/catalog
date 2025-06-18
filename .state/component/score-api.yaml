@@ -15,34 +15,42 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: 6c18b1dd-f5f6-45b9-8f07-a17b06f25776
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/score-api
-        - id: 6eb41ca1-d6f8-4173-a0f0-49e78bb7e683
+        - id: 421a6ef8-1ce7-47be-96d9-3aa20b9db912
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=score-api&var-container=score-api&from=now-1h&to=now
-        - id: e23b5702-04d8-4015-93a6-32f390f0e957
+        - id: 091d1b79-f2b1-4df8-a48f-6ca2ba71f167
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: c643163b-4c48-4f60-b0d7-3d138b25bd99
+        - id: a0a9bdea-b5e6-476e-bc62-9e86c61ce46e
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=score_api_score_api_svc_cluster_local_&refresh=5s
-        - id: 8363ed20-e9b0-4af3-9148-2c6f8e07fc61
-          name: e-matchxp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C938X7JP9
-        - id: 796a5f03-22fe-4663-b9b6-b576a7cfd9e2
+        - id: 6b48e6e7-7280-4242-8afc-2487554bd6f9
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/score-api/home?tab=traces
+        - id: 4968ea49-e54e-4c44-ad71-233a70038494
           name: Match XP
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
+        - id: d4ea2d03-2650-4290-89b5-db2a19ed29ae
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=score-api
+        - id: b34f2e56-3cae-4842-9610-c741c3b617c2
+          name: e-matchxp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: 59891df2-d89c-490a-b780-d2a50d1867bc
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/score-api
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/eece295c-bb5f-420f-9483-24d5f0e041e1
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/6787f6b1-32e0-48e0-b3eb-bd11f65bc074
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

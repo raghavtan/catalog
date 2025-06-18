@@ -18,37 +18,45 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 953f7357-d729-4496-bb7f-1382e16536d3
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 71742d6d-fa1f-4498-9434-7dfe6a80d1e1
+        - id: b9a31866-3070-4192-9d13-03c9d564dfaa
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=payments_history_payments_history_svc_cluster_local_&refresh=5s
-        - id: 8aae661c-0e4b-47ca-a86a-6fa70d092f7a
+        - id: d3679fc5-b19a-4606-8d40-27ad3847677b
           name: e-livevideo
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C053ATVH3N2
-        - id: a8689fbe-365c-40ca-a78e-2331ebca18cb
+        - id: 667c3c3c-7d6b-4489-98c4-8cffc6593ab8
           name: Live Video
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/LIVEVIDEO/boards/300
-        - id: 81cdbb37-5203-4df7-aa97-906dc44f5c64
+        - id: 0056ea6f-a4f6-48d1-ab9c-8d9854c64765
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/payments-history
-        - id: 5df37d13-bab0-4b8c-b610-4c24c04c56f7
+        - id: 2c35bdc5-b11b-4bf2-8f5a-1214b62cee54
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=payments-history&var-container=payments-history&from=now-1h&to=now
+        - id: 3d9e836e-87da-4899-8fb5-1020d46cb0d7
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: be612c05-76f1-41d8-b38a-7a842dc6c282
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/payments-history/home?tab=traces
+        - id: 89176752-68d8-41c2-9e83-80374eca6758
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=payments-history
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/88d961ea-66da-43ab-aa71-93d6e1c3f180
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/b71b77d3-d988-4b79-8a4d-3852f999fd41
           title: Introduction
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/payments-history/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/070d975e-0959-4144-8f93-dbc7af50bceb
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/5c3385b0-02ff-4494-9f12-11d098772d4a
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

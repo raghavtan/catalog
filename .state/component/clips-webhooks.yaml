@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 4a23af67-1b92-44ca-803a-ae551c38677e
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/clips-webhooks
-        - id: e6ce324f-da41-4d63-8fb1-aee6196ee07d
-          name: Prometheus Resource Metrics
+        - id: e1c3d515-abc9-4ccb-987f-9c49394cd374
+          name: Security Vulnerability Report
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips-webhooks&var-container=clips-webhooks&from=now-1h&to=now
-        - id: 75ffb872-1006-4662-a48e-775980fabb3b
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 44448200-8725-48d9-aa9c-c8a5a5a9ef8a
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips-webhooks
+        - id: 643bf131-04bd-455a-b2fa-c3b0bc66638f
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=clips_webhooks_clips_webhooks_svc_cluster_local_&refresh=5s
-        - id: 85abcba3-f659-4eed-89d3-a46f9ea527e6
+        - id: 4f39a550-f1e1-416e-a24c-6065cff78b00
           name: video-platform-team
           type: CHAT_CHANNEL
           url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
-        - id: dcb81b84-40b5-4e63-919f-17debcb76d9d
+        - id: 8e94eaf2-edee-426f-b7f8-606c0da2f040
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=clips-webhooks&var-container=clips-webhooks&from=now-1h&to=now
+        - id: f786883a-fee3-469f-9373-a66eb85f9c40
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/clips-webhooks/home?tab=traces
+        - id: df8bc095-b01b-411a-a040-5581f42d95b4
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 0c2c26f7-3a22-4a86-84cc-ada6e389c7af
           name: Video Platform Support
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
+        - id: d593daff-111f-4162-bf27-4ffa3dff26d0
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/clips-webhooks
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/95fd9ae6-8af4-4d5d-9b04-2dcb63940828
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/762643ad-bcfe-4672-90c4-1f317294bb31
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

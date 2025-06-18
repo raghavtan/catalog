@@ -15,32 +15,32 @@ spec:
         - kubernetes
     fields: {}
     links:
-        - id: e08eafea-b0dd-4163-b2de-175613f22ab6
-          name: pe-dacore
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C04NG20NVPW
-        - id: c807856a-a956-4ea2-8626-90c5f21d82c6
-          name: DACORE
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/DACORE/boards/909
-        - id: 08df7694-8c78-42ba-974a-1677656cdb67
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/cdp-api
-        - id: 8abd174f-677f-49f5-9b65-8e7a89988337
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cdp-api&var-container=cdp-api&from=now-1h&to=now
-        - id: dc6085b7-4adc-4646-8bf1-a27a77dabdbf
+        - id: 00ec60e8-02dc-4808-b6b2-9bebb84f49a0
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=cdp_api_cdp_api_svc_cluster_local_&refresh=5s
-        - id: 44b52948-1f45-4607-979b-e91965f43fed
+        - id: cfe2de75-16ae-4f25-9d00-3483fbe395e9
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 2aca447f-3b47-4bc1-b55e-6440f437bd3f
+          name: pe-dacore
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C04NG20NVPW
+        - id: 465693ef-b552-4c11-be48-fc461b1da730
+          name: DACORE
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/DACORE/boards/909
+        - id: d6f9ad8b-fa72-4f99-ad89-ff199f152968
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/cdp-api
+        - id: ae2e65f8-d3b4-4514-b979-3eb29ccb714b
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=cdp-api&var-container=cdp-api&from=now-1h&to=now
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/4730886b-b91c-428e-afbf-70f67ad6ac68
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/0a90eb51-baaa-477a-b712-0a4d6a94ea8d
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

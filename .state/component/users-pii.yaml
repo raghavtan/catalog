@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 7dbc3031-7112-4c96-beef-5b60a0ddebb9
-          name: Emissary Metrics
+        - id: 291574a8-b4e1-4a40-ace7-9e7e2dc8ab7f
+          name: Security Vulnerability Report
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=users_pii_users_pii_svc_cluster_local_&refresh=5s
-        - id: f0a4b720-dbdb-4451-8050-2d93cfc18eb9
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-pii
+        - id: d804e3fb-c6bd-42c4-bca4-b950862f5c31
           name: r-activation
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/CK9LTN6DR
-        - id: 8556d4e9-3a71-46aa-bc47-1a057afbdee9
-          name: Activation Squad
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
-        - id: d22cda3b-23c1-4a92-830c-c1f51c5ec3d3
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/users-pii
-        - id: 763b4290-ac80-4dfe-bafe-92e13447c343
+        - id: da4b7ddb-d88f-47a9-8ca5-14ed60085114
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=users-pii&var-container=users-pii&from=now-1h&to=now
-        - id: 82003bb0-d24b-45d3-9f89-43d4bf898a68
+        - id: ba6e4464-e1bc-4461-997d-4b97d2166509
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=users_pii_users_pii_svc_cluster_local_&refresh=5s
+        - id: 56666de1-181d-4cf9-b385-ce53978eaea3
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/users-pii/home?tab=traces
+        - id: 405b9a3f-9b56-40e5-a36f-67fb77cb115c
+          name: Activation Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/AC/boards/376
+        - id: 93f18ed4-5f8e-4ca4-9566-02bc9f72fec2
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/users-pii
+        - id: 6341a9f1-bf6f-43e9-acbf-eaaad5e85e4d
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/e8ce63e2-17aa-433e-a08e-f11f8a11783b
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/3036b7d7-6de9-4560-8e90-7da76cc8ed5a
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

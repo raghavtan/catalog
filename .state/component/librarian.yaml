@@ -19,52 +19,60 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 3e9c12cb-9971-4f96-9c1e-441a0ca9a65f
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=librarian&var-container=librarian&from=now-1h&to=now
-        - id: 1315dde6-d8c8-4a54-9cf7-3d2267c2ecca
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 4648d960-6320-464a-ac3a-f23389f59d26
+        - id: d79969f4-a5de-4c3f-a918-47b3d32b7874
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=librarian_librarian_svc_cluster_local_&refresh=5s
-        - id: b27e4b82-9373-43e0-a3cb-611a520c91d5
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: 30b10e5e-8f4a-40c6-b04c-aada9f9e372c
-          name: Personalisation
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-        - id: 996719c3-a295-4f51-bbed-c5cb56255a1a
+        - id: 2fdee2da-de6f-4b69-9e4d-e898cde1017e
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=librarian
+        - id: f002fa91-942c-4b38-809f-93d7819e3dfd
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/librarian
+        - id: 17fb6c91-579c-4fbf-939b-ba4d85ef49a3
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: fddd81f7-6596-4706-af50-784e5e4ff9ec
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: aec41125-369c-4374-8217-de352dff9612
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=librarian&var-container=librarian&from=now-1h&to=now
+        - id: be79bb2a-9074-4861-a60c-864a601edd0d
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
+        - id: 0f66d860-89d4-40d4-861f-b6b917fb2ca8
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/librarian/home?tab=traces
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/d351ac76-00ec-43f1-a894-cf6862b54b3e
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/c3db8df8-9373-4fe6-bcad-16023a82cbc1
           title: Cache Recovery
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/librarian/blob/master/.of/docs/cache-recovery.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/288f0de2-0a96-4a02-a125-b9c519211ad4
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/b8ec70c6-da62-4d46-ad6b-43fd204f9037
           title: Cache Updater
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/librarian/blob/master/.of/docs/cache-updater.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/424fef1f-1d6f-45d1-a81f-81783e61708f
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/db4c5b5d-a983-4999-955f-ab20715fcfce
           title: Home
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/librarian/blob/master/.of/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/1c6fe1dc-ffb8-4fd9-8c04-a62118be146c
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/c01366c6-1249-4d7b-a78b-8bbec6259bb4
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/librarian/blob/master/README.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/52e8bfd3-ad60-4593-b2af-632a40501f3c
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/19309bc7-2da6-48b8-8a91-d3508f225170
           title: Service
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

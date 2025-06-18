@@ -17,37 +17,45 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 6633f696-7204-4217-998b-78c6dff0aee4
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 813dcaa2-e41a-4550-ae42-d7523b11daff
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=pubnet_o_and_d_backoffice_api_pubnet_o_and_d_backoffice_api_svc_cluster_local_&refresh=5s
-        - id: a7847b38-5df8-4504-9bd3-34268ae56b2d
-          name: video-platform-team
-          type: CHAT_CHANNEL
-          url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
-        - id: e573ecc2-9d8b-405f-a3ad-c67ac0fd797f
-          name: Video Platform Support
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
-        - id: e82b73ec-469c-42a9-8e22-c533d5d0d8bd
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/pubnet-o-and-d-backoffice-api
-        - id: bcd5b919-f656-4944-b294-b220d82e59cf
+        - id: a01c0aaa-a68c-4da8-bbab-394a695fd5c2
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=pubnet-o-and-d-backoffice-api&var-container=pubnet-o-and-d-backoffice-api&from=now-1h&to=now
+        - id: 1d692b9a-3a0d-476f-a65f-24cec2a35123
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/pubnet-o-and-d-backoffice-api/home?tab=traces
+        - id: 2adae258-dfaf-4efa-b46f-14ba5d39467d
+          name: video-platform-team
+          type: CHAT_CHANNEL
+          url: https://app.slack.com/client/T02D83YUF/C05CLDUJX45
+        - id: b3b02fcd-2061-41c8-bfa0-62b72fcf8219
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=pubnet-o-and-d-backoffice-api
+        - id: 5f1a358d-53f5-4dd9-bde0-ea4e6fb2bc3f
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/pubnet-o-and-d-backoffice-api
+        - id: 2d66b77d-a068-408a-b899-11a331000e24
+          name: Video Platform Support
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PNS/boards/292
+        - id: 3dba22e6-3bf2-44db-8854-41509b3fd4c3
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: cc1501de-e07f-441e-820d-6cdd7f0b4b0b
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=pubnet_o_and_d_backoffice_api_pubnet_o_and_d_backoffice_api_svc_cluster_local_&refresh=5s
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/9644217c-0cbf-4b72-b59d-71cce7a3dd93
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/6ee32e20-9c1c-4dbf-a576-49ecfc2f1d7c
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/pubnet-o-and-d-backoffice-api/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/311d89c4-b2c2-4892-8949-b8e78777e195
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/2824b8f4-cad8-468f-946f-17dc53be7d23
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

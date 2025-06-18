@@ -16,34 +16,42 @@ spec:
         - mediation-api
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: 3f8375c3-8b9f-41b5-bebc-bb972ab50077
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/betting-api
-        - id: a0dafc22-ed84-4a39-bbd1-dcf250275722
-          name: Prometheus Resource Metrics
+        - id: 083c3c2a-8cfa-45e0-bb1b-bd339f0c6f75
+          name: Security Vulnerability Report
           type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=betting-api&var-container=betting-api&from=now-1h&to=now
-        - id: 5a4d67f0-5146-4bb2-a13f-73d73fc0d29d
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 492e0cae-d977-4588-9124-706133516ec8
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=betting_api_betting_api_svc_cluster_local_&refresh=5s
-        - id: bcf32b55-e0a0-41f4-aea1-6bc83ea35b55
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=betting-api
+        - id: 0b2fc47b-fc9f-45fe-8007-fcf8da021d33
           name: client-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C07MMBZDYV6
-        - id: 17ad8a8f-e41c-4f38-9c6f-9bdfc0be2ec0
+        - id: 1a5fd3a4-a33f-4e84-9e62-77b4579ec319
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/betting-api
+        - id: 565b3917-20c0-4ade-8d86-6376b298d772
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=betting-api&var-container=betting-api&from=now-1h&to=now
+        - id: 4a94a89b-e695-4a24-bfb2-4c5733d304e4
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: a506104c-1859-41af-9357-4398e559c179
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=betting_api_betting_api_svc_cluster_local_&refresh=5s
+        - id: 4eb27a06-8505-439a-b201-92b9f4dea842
           name: Sponsorship Integration Squad
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
+        - id: e717bad9-0a06-4849-abf2-c029379f7c04
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/betting-api/home?tab=traces
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/cfae4d01-098f-4ad3-9119-dc8adaeda18d
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/fb1c2c1f-ee52-49d4-8aef-cfd93bc4a89a
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

@@ -17,32 +17,40 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 14395b49-09b1-44cb-b5bb-2ee5b63a143e
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=betting-workers&var-container=betting-workers&from=now-1h&to=now
-        - id: 101a63b1-a369-47e6-845a-262242d687c2
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 657126e9-b44c-40c0-8be5-d09b3a0f71db
-          name: Emissary Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=betting_workers_betting_workers_svc_cluster_local_&refresh=5s
-        - id: 6fe2f8d9-17e0-4d99-9044-a7e4c2ee3ab3
-          name: client-xp
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C07MMBZDYV6
-        - id: d8015910-85cb-4139-90a2-dd334505179e
-          name: Sponsorship Integration Squad
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
-        - id: ee42a344-fc90-425f-963b-91671bc62d86
+        - id: 1fc5dd5d-2e47-49e9-99f2-fb460aa57ad5
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/betting-workers
+        - id: 1024e015-90e9-4fa3-9275-c6e3c1a54aae
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/betting-workers/home?tab=traces
+        - id: 34f5311e-40ba-4b00-bff4-65d9a14c146b
+          name: client-xp
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C07MMBZDYV6
+        - id: a8c77e80-3e5f-47f8-89a0-4d2e74b32b7d
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=betting-workers&var-container=betting-workers&from=now-1h&to=now
+        - id: ccf9a7ca-e2a5-49bd-bf3d-c3150b3b2edb
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 2f76f156-c291-467c-aaf1-eee508cb730a
+          name: Sponsorship Integration Squad
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SIS/boards/378/backlog
+        - id: 4afdd5d1-a5b1-4b4a-a14c-7ad90a7110e1
+          name: Emissary Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=betting_workers_betting_workers_svc_cluster_local_&refresh=5s
+        - id: 6f672bef-0fb9-4212-b72d-03d6c78da480
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=betting-workers
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/32c6274b-92ae-4225-b6c0-eadc78121fbe
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/16ab84a0-2389-4e83-998c-a555ad8d6f0e
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8

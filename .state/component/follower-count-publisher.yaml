@@ -17,37 +17,45 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 8534543f-4265-4a24-8ccc-ec3ac20fbb3d
+        - id: 2703f5bc-ec9e-46cd-b99a-f2c11b5c81d3
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/follower-count-publisher/home?tab=traces
+        - id: 4f9c4c10-8928-4fd3-bee9-8aed235017b3
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=follower-count-publisher
+        - id: efa3a2d9-fb4e-4074-ab20-34a24d83eaea
           name: Match XP
           type: PROJECT
           url: https://onefootball.atlassian.net/jira/software/projects/MATXP/boards/207
-        - id: ba4ab3cb-ef2b-475a-ae31-a91603fab976
-          name: Repository
-          type: REPOSITORY
-          url: https://github.com/motain/follower-count-publisher
-        - id: 66fb028a-4b47-4bb8-aa42-7d8f724e19a3
-          name: Prometheus Resource Metrics
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=follower-count-publisher&var-container=follower-count-publisher&from=now-1h&to=now
-        - id: 7c6103d4-b8bd-4e30-b2cb-ace9f3026ca0
+        - id: 026e7d6f-546c-4f26-b0c6-db90a35e96a2
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: 6401dbc0-bcf1-4059-a833-c6dd34673543
+        - id: abcc063c-151c-4549-993a-e1f9d3a65197
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=follower_count_publisher_follower_count_publisher_svc_cluster_local_&refresh=5s
-        - id: 07e651d5-b6de-4b5f-9612-1095bbf4829d
+        - id: a587f26d-4ccf-4eb1-b9b0-03d7b56814d0
           name: e-matchxp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C938X7JP9
+        - id: 03207c6a-d95c-4335-90f2-007b8c4f936c
+          name: Repository
+          type: REPOSITORY
+          url: https://github.com/motain/follower-count-publisher
+        - id: b9ad0594-7046-439b-942d-d1859299b1a4
+          name: Prometheus Resource Metrics
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=follower-count-publisher&var-container=follower-count-publisher&from=now-1h&to=now
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/6a55320c-7d48-4ce5-b232-399c0b20667c
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/dec6a1b4-d765-4d05-8c00-e644008655f0
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/follower-count-publisher/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/841a8455-fb10-4997-986d-1d71d655e7f4
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/73a52c8d-89a1-443d-9fad-732da2a1a50b
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
