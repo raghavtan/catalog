@@ -31,6 +31,12 @@ spec:
         - name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=ott_api_ott_api_svc_cluster_local_&refresh=5s
+        - name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/ott-api/home?tab=traces
+        - name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=ott-api
         - name: e-livevideo
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C053ATVH3N2

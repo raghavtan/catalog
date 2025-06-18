@@ -17,7 +17,7 @@ spec:
         - score-api
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
         - name: Repository
           type: REPOSITORY
@@ -31,6 +31,12 @@ spec:
         - name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=tv_guide_api_tv_guide_api_svc_cluster_local_&refresh=5s
+        - name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/tv-guide-api/home?tab=traces
+        - name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=tv-guide-api
         - name: client-xp
           type: CHAT_CHANNEL
           url: https://onefootball.slack.com/archives/C07MMBZDYV6
