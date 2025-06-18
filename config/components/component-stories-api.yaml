@@ -18,7 +18,7 @@ spec:
         - score-api
     fields:
         lifecycle: Active
-        tier: 3
+        tier: 4
     links:
         - name: Repository
           type: REPOSITORY
