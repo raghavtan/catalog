@@ -5,7 +5,7 @@ metadata:
     name: 'content-tags-api'
     componentType: service
 spec:
-    tribe: engagement
+    tribe: fan-experience
     squad: personalisation
     name: content-tags-api
     slug: svc-content-tags-api
@@ -44,5 +44,5 @@ spec:
           url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
     labels:
         - personalisation
-        - engagement
+        - fan-experience
     customFields: null
