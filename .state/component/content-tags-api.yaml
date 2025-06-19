@@ -17,52 +17,52 @@ spec:
         lifecycle: Active
         tier: 3
     links:
-        - id: 35bbc794-f06a-4120-b685-8a4b9596b01d
-          name: Security Vulnerability Report
-          type: DASHBOARD
-          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-tags-api
-        - id: 3e779b52-e2b4-46d5-9722-7c38c1ad74b2
-          name: e-personalisation
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C050KQH057C
-        - id: 5753f4ef-b148-4c55-a51d-bd60eb43ad1d
+        - id: 1e45054b-829a-4ba3-9259-c310f892893f
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/content-tags-api
-        - id: f3237d0d-5453-4495-a732-0c77ddb0885f
-          name: OnCall
-          type: ON_CALL
-          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: c6dce108-2fb9-4f93-8ae3-2202f63aebc6
-          name: Personalisation
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
-        - id: b9c7f220-ec67-4a17-b51f-0fe79409f897
+        - id: ade6165e-15e3-485c-b5b1-999387778cee
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-tags-api&var-container=content-tags-api&from=now-1h&to=now
-        - id: 3da82f9d-0222-40f0-8aeb-d1cbaf8bcb0d
+        - id: 4ef607e7-ff6c-4c9f-aeb2-bac4b4bfa2a9
+          name: OnCall
+          type: ON_CALL
+          url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
+        - id: 8cf2b49e-273f-46c0-acec-16aba5649eb9
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=content_tags_api_content_tags_api_svc_cluster_local_&refresh=5s
-        - id: 56e27512-2387-4212-80f4-5aceced09dfa
+        - id: 8fd0fc9b-9b6e-4e89-ab62-0944f3d6a0bf
           name: Honeycomb
           type: DASHBOARD
           url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/content-tags-api/home?tab=traces
+        - id: 157919d6-d5fe-41fa-bf97-c75239b5aad8
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=content-tags-api
+        - id: 2c85c569-007d-413c-ba62-4d74b68964df
+          name: e-personalisation
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C050KQH057C
+        - id: bd2d8455-e036-4c10-9569-6ab61f4fc136
+          name: Personalisation
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/PERSO/boards/206
     documents:
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/ec058be5-9b27-425f-b188-994738b1321b
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/0b2975c6-f105-4cfa-9624-b7ff49f45857
           title: README
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/content-tags-api/blob/main/docs/index.md
-        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/1bbeebcc-157b-4ef4-ac49-0f2ea707fd49
+        - id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:document/4d010f50-96c4-48c0-bab5-a3dd5112b464/92f64363-cd25-47d6-8e42-ae32905d4730
           title: Readme
           type: Other
           documentationCategoryId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:documentation-category/4d010f50-96c4-48c0-bab5-a3dd5112b464/154bf547-86c3-4d30-a74e-e73569ae37f8
           url: https://github.com/motain/content-tags-api/blob/main/docs/index.md
     labels:
         - personalisation
-        - engagement
+        - fan-experience
     metricSources:
         adaptive-systems:
             id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/f0462e39-d49f-4e2c-9a73-ed76ef68c9ea
@@ -417,5 +417,5 @@ spec:
                   type: extract
                   source: prometheus
                   prometheusQuery: sum(trivy_image_vulnerabilities{namespace="content-tags-api", severity="Critical" })
-    tribe: engagement
+    tribe: fan-experience
     squad: personalisation
