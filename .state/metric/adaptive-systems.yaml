@@ -30,7 +30,7 @@ metadata:
             - app-toml-replicas-max-gt-replicas-min
           method: and
 spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6af0782-90a4-44e6-a9e9-4535573bd716
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6c1a5ed-b0ce-4fed-b020-0a445cc8e6b2
     name: adaptive-systems
     description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/resiliency.md#adaptive-systems
     format:

@@ -32,7 +32,7 @@ metadata:
             - deployment-readiness-replicas-service
           method: or
 spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9c34910-156e-4669-b283-3d3bb08c58ac
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/05fd721b-1464-4973-bee6-ac873c3b75c1
     name: deployment-readiness
     description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/production-readiness.md#deployment-readiness
     format:

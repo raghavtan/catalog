@@ -92,7 +92,7 @@ func (h *ApplyHandler) Apply(ctx context.Context, configRootLocation string, sta
 	}
 
 	var result []*dtos.MetricDTO
-	h.handleDeleted(ctx, deleted)
+	//h.handleDeleted(ctx, deleted)
 	result = h.handleUnchanged(ctx, result, unchanged)
 	result = h.handleCreated(ctx, result, created)
 	result = h.handleUpdated(ctx, result, updated)

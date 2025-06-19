@@ -30,7 +30,7 @@ metadata:
             - app-toml-hpa-target-memory
           method: or
 spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/43e2c6ef-1a41-4fd6-b0e9-d7d7545681fd
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/164a9d9b-cc07-4105-9a31-2bc46ae9c076
     name: high-availability
     description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/resiliency.md#high-availability
     format:

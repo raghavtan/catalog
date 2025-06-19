@@ -60,7 +60,7 @@ metadata:
             - validate-otel-resource-attributes-one-sample-rate
           method: and
 spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/be5dd5aa-9468-4dd1-8e7a-580b9da4e5c6
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/98aa724b-bd81-48f1-a002-1b443aa7906c
     name: instrumentation-check
     description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/observability.md#instrumentation-check
     format:

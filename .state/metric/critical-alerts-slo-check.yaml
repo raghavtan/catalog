@@ -49,7 +49,7 @@ metadata:
             - count-alerts-for-slos
           rule: deps_match
 spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/80249b35-572f-41be-9f7d-78d7ca793029
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/65626941-1133-4262-8f52-4e126d409348
     name: critical-alerts-slo-check
     description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/observability.md#critical-alerts-slo-check
     format:

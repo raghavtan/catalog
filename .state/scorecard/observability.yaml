@@ -3,7 +3,7 @@ kind: Scorecard
 metadata:
     name: observability
 spec:
-    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/9898047d-9310-4ec4-a920-8dd740d6cf39
+    id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:scorecard/4d010f50-96c4-48c0-bab5-a3dd5112b464/9e5df335-1bb6-4d1c-8d62-a944d373716a
     name: observability
     description: https://github.com/motain/of-catalog/blob/main/docs/grading-system/observability.md#observability-grading-system
     ownerId: 712020:edcf2690-1f3e-4310-9eb8-1ecef88d64b6
@@ -14,34 +14,34 @@ spec:
     scoringStrategyType: WEIGHT_BASED
     criteria:
         - hasMetricValue:
-            id: d683cca2-1e0f-41f7-bc20-98bbaf80bff5
+            id: 24d37176-c3fc-4e6d-8143-ea37a535ee4f
             weight: 15
             name: instrumentation-check
             metricName: instrumentation-check
-            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/be5dd5aa-9468-4dd1-8e7a-580b9da4e5c6
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/98aa724b-bd81-48f1-a002-1b443aa7906c
             comparatorValue: 1
             comparator: EQUALS
         - hasMetricValue:
-            id: 5ec3f2ea-c7c4-429c-b62d-1fe93512862e
+            id: e06b5768-ba3e-4c6c-9289-52f463cd60c9
             weight: 15
             name: critical-alerts-slo-check
             metricName: critical-alerts-slo-check
-            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/80249b35-572f-41be-9f7d-78d7ca793029
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/65626941-1133-4262-8f52-4e126d409348
             comparatorValue: 1
             comparator: EQUALS
         - hasMetricValue:
-            id: cd39e584-f33e-4f7c-85e5-a5c003aef342
+            id: 85d281ee-bdb4-46cf-8a43-be0a6e15406d
             weight: 45
             name: alert-routing-and-notifications
             metricName: alert-routing-and-notifications
-            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a475e853-8c43-47af-8b94-99240e853480
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1f42301f-6118-4aef-8a45-80d5b63a0d93
             comparatorValue: 1
             comparator: EQUALS
         - hasMetricValue:
-            id: cc5ab930-dd32-41d4-803b-e655a8fad5b9
+            id: f8a860b7-5318-4292-99cc-c527fc7a33a3
             weight: 25
             name: observability-documentation
             metricName: observability-documentation
-            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f133b6d9-595f-4862-a10d-cb356968e2bc
+            metricDefinitionId: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/8808d2fd-9ea3-4ebb-9652-bfc3ddca7c4c
             comparatorValue: 1
             comparator: EQUALS
