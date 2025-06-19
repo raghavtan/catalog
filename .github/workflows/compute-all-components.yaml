@@ -15,6 +15,7 @@ jobs:
 
   compute:
     runs-on: [ self-hosted, linux, x64, core-team-only ]
+    timeout-minutes: 60
     env:
       GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
       COMPASS_TOKEN: ${{ secrets.COMPASS_TOKEN}}
