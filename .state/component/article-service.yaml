@@ -15,32 +15,40 @@ spec:
         - kubernetes
     fields:
         lifecycle: Active
-        tier: 4
+        tier: 3
     links:
-        - id: 265c7451-d154-41ef-ac45-dd86a344a680
-          name: r-source
-          type: CHAT_CHANNEL
-          url: https://onefootball.slack.com/archives/C055TBZP1B9
-        - id: 64e4f4f6-7fdc-45a0-8963-cc9ea85d09e7
-          name: The Source
-          type: PROJECT
-          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
-        - id: 37c15dc9-1d1b-40cb-aa7b-496e4fb6c631
+        - id: bbd1870e-4c02-412a-a6a8-41d84c43e0ae
           name: Repository
           type: REPOSITORY
           url: https://github.com/motain/article-service
-        - id: 0b577169-ab93-4e88-a17b-764f4ee779f0
+        - id: 7c4cdc61-82ab-4655-98a1-356e50c6c8a6
           name: Prometheus Resource Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/pthfJGV4z/kubernetes-app-metrics?orgId=1&refresh=30s&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-service&var-container=article-service&from=now-1h&to=now
-        - id: 77e98123-03b7-4673-8c5f-583218b48e1e
+        - id: 18c69031-73b2-48fc-b5a7-2ff520459aa4
           name: OnCall
           type: ON_CALL
           url: https://onefootball.app.opsgenie.com/settings/schedule/detail/191b6b6d-f7eb-4a88-977e-bcc12f38b1b9
-        - id: b69588ca-7dce-4ca8-adeb-1baf8f01bef4
+        - id: cef8c889-d9aa-41d1-b062-9b5523f3d953
           name: Emissary Metrics
           type: DASHBOARD
           url: https://grafana.mgm.onefootball.com/d/z387xeWVk/ambassador-emissary-ingress?var-window=1m&orgId=1&from=now-30m&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-SERVICE=article_service_article_service_svc_cluster_local_&refresh=5s
+        - id: 7802b76f-bd7b-4a70-a12a-944a875b25a4
+          name: Honeycomb
+          type: DASHBOARD
+          url: https://ui.eu1.honeycomb.io/onefootball/environments/production/datasets/article-service/home?tab=traces
+        - id: 511a0fda-45a3-4aba-8270-bdc4e7f8c279
+          name: Security Vulnerability Report
+          type: DASHBOARD
+          url: https://grafana.mgm.onefootball.com/d/ycwPj724k/trivy-operator-dashboard?orgId=1&from=now-24h&to=now&timezone=browser&var-DS_PROMETHEUS=P0F161AC36DE6FE17&var-namespace=article-service
+        - id: e4dd78f9-04b6-4abe-bc70-ff5f47164f4b
+          name: r-source
+          type: CHAT_CHANNEL
+          url: https://onefootball.slack.com/archives/C055TBZP1B9
+        - id: 5dcfdf0c-b768-4a4b-86c5-f792deaff5c9
+          name: The Source
+          type: PROJECT
+          url: https://onefootball.atlassian.net/jira/software/projects/SRC/boards/200
     documents: []
     labels:
         - source
