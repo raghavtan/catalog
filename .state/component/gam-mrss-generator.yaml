@@ -43,9 +43,9 @@ spec:
         - content
     metricSources:
         adaptive-systems:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/57612b82-2316-4ca7-a913-725dedf0f7bb
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/93029d93-7193-4297-9660-46973f37ccdb
             name: adaptive-systems-svc-gam-mrss-generator
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6af0782-90a4-44e6-a9e9-4535573bd716
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/d6c1a5ed-b0ce-4fed-b020-0a445cc8e6b2
             facts:
                 - id: app-toml-replicas-min
                   type: extract
@@ -69,9 +69,9 @@ spec:
                     - app-toml-replicas-max-gt-replicas-min
                   method: and
         alert-routing-and-notifications:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/37220799-a496-4f7b-82ad-87ce17258c7b
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/af0e5f6b-e332-4776-b66a-172015e2905a
             name: alert-routing-and-notifications-svc-gam-mrss-generator
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/a475e853-8c43-47af-8b94-99240e853480
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/1f42301f-6118-4aef-8a45-80d5b63a0d93
             facts:
                 - id: fetch-slos
                   name: Fetch SLOs
@@ -121,9 +121,9 @@ spec:
                     - validate-each-target-is-not-empty-string
                   method: and
         allocation-efficiency:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/daaf78e3-7c23-4de2-9c6f-0745b7daed66
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/8a50995f-589b-4b0e-bb73-fb7d3ca90e51
             name: allocation-efficiency-svc-gam-mrss-generator
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/0280d248-c53a-4dcf-a5a4-945cdd931406
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/145c429c-b1d4-4f1f-b5c1-f322f62a34ff
             facts:
                 - id: check-app-toml-resource-request
                   name: Check if CPU requests and memory requests are defined in app.toml under [service] or [service.production]
@@ -158,9 +158,9 @@ spec:
                     - check-app-toml-memory-limits
                   method: and
         critical-alerts-slo-check:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/cc1a4d39-87d9-4f8a-a8bc-e3524ef24af3
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/5183eea7-6231-4ce1-b82e-46df5c21a2da
             name: critical-alerts-slo-check-svc-gam-mrss-generator
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/80249b35-572f-41be-9f7d-78d7ca793029
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/65626941-1133-4262-8f52-4e126d409348
             facts:
                 - id: fetch-slos
                   name: Fetch SLOs
@@ -204,9 +204,9 @@ spec:
                     - count-alerts-for-slos
                   rule: deps_match
         deployment-readiness:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/fb21e382-8650-46e2-a6fc-d59f54abf07b
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/798b890e-43c4-448d-98b0-f03189c76b7f
             name: deployment-readiness-svc-gam-mrss-generator
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/e9c34910-156e-4669-b283-3d3bb08c58ac
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/05fd721b-1464-4973-bee6-ac873c3b75c1
             facts:
                 - id: deployment-readiness-replicas-service-production
                   name: Check deployment readiness where min != Max, Min >= 3 and Max > 3
@@ -232,9 +232,9 @@ spec:
                     - deployment-readiness-replicas-service
                   method: or
         high-availability:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/7a7e4215-b9bf-4f66-a3d4-83ec398d123f
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6d89f6dc-1f68-4f5b-a243-a23d58589433
             name: high-availability-svc-gam-mrss-generator
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/43e2c6ef-1a41-4fd6-b0e9-d7d7545681fd
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/164a9d9b-cc07-4105-9a31-2bc46ae9c076
             facts:
                 - id: app-toml-hpa-target-cpu
                   type: extract
@@ -258,9 +258,9 @@ spec:
                     - app-toml-hpa-target-memory
                   method: or
         instrumentation-check:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/c869c670-be86-4e66-adcf-d52a1de14bcd
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/2644279d-8930-4df8-b21b-5711b2077223
             name: instrumentation-check-svc-gam-mrss-generator
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/be5dd5aa-9468-4dd1-8e7a-580b9da4e5c6
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/98aa724b-bd81-48f1-a002-1b443aa7906c
             facts:
                 - id: read-otel-service-name-from-apptoml
                   name: Read OTEL_SERVICE_NAME from app.toml
@@ -314,9 +314,9 @@ spec:
                     - validate-otel-resource-attributes-one-sample-rate
                   method: and
         observability-documentation:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/63b7c638-e9e3-4c8a-aa1d-f433807b94af
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/ea331f29-6e05-4fe1-a0c1-b106f0b8cb72
             name: observability-documentation-svc-gam-mrss-generator
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f133b6d9-595f-4862-a10d-cb356968e2bc
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/8808d2fd-9ea3-4ebb-9652-bfc3ddca7c4c
             facts:
                 - id: extract-observability-md
                   name: Extract observability.md
@@ -326,9 +326,9 @@ spec:
                   filePath: docs/observability.md
                   rule: notempty
         organizational-standards:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/4c6ccec2-ac81-46bc-b706-8d6d32b95599
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/91deb3de-6d33-413c-b6ec-1a492dc58990
             name: organizational-standards-svc-gam-mrss-generator
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/557a1209-6a66-4eda-8051-9634991b75f2
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f2c4711f-89c4-4a36-bebf-dd44336b2bc5
             facts:
                 - id: readme-file
                   name: Check if the README.md file exists
@@ -374,9 +374,9 @@ spec:
                     - paas-onboarded
                   method: and
         security-as-pipeline:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/31459ae0-2882-4638-812b-f4bfb54d3c74
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/3edc7600-83ae-4fb3-88a3-46727b39ca35
             name: security-as-pipeline-svc-gam-mrss-generator
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/f16a5dad-816a-48db-9e96-6d1250e63659
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/5476a4d0-3094-4c6e-9394-06ad83be748c
             facts:
                 - id: trivy-exists-in-ci
                   name: Check if Trivy is used in CI/CD pipeline
@@ -386,9 +386,9 @@ spec:
                   searchString: motain/onefootball-actions/security
                   rule: search
         vulnerability-management:
-            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/fc5dbf4b-4d59-4c29-b1bb-2a83b36c547b
+            id: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-source/4d010f50-96c4-48c0-bab5-a3dd5112b464/6e468789-9b88-4980-aa6e-dffe101d9977
             name: vulnerability-management-svc-gam-mrss-generator
-            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/6390dfc8-c94e-492a-8741-3fcbfa2fbddb
+            metric: ari:cloud:compass:fca6a80f-888b-4079-82e6-3c2f61c788e2:metric-definition/4d010f50-96c4-48c0-bab5-a3dd5112b464/ebde9d4a-2810-42ec-81c0-8aea8b9e6751
             facts:
                 - id: service-vulnerabilities-prometheus
                   name: Get summary of vulnerabilities for services from Prometheus reports
