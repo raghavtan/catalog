@@ -72,9 +72,3 @@ jobs:
 
         gh pr create --title "chore(components): update state" --body "PaaS: update components state automation." --base main
         gh pr merge --squash --delete-branch
-
-    - name: Trigger compute-component-metrics workflow
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      run: |
-        gh workflow run compute-component-metrics.yaml -f component=${{ matrix.project }}

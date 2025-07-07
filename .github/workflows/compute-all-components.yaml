@@ -1,12 +1,19 @@
-name: ComputeComponentMetricsAll
+---
+name: Compute Component Metrics
 
 on:
   workflow_dispatch:
+    inputs:
+      component:
+        description: 'Name of the components to compute metrics for. Comma-separated list or empty for all components.'
+        required: false
+        default: ''
+        type: string
   schedule:
     - cron: '0 */3 * * *'
 
 concurrency:
-  group: compute-components-${{ github.head_ref }}
+  group: compute-components-${{ github.head_ref }}${{ inputs.component }}
   cancel-in-progress: true
 
 permissions: write-all
@@ -17,12 +24,12 @@ jobs:
     runs-on: [ self-hosted, linux, x64, core-team-only ]
     timeout-minutes: 60
     env:
-      GITHUB_TOKEN: ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}
-      COMPASS_TOKEN: ${{ secrets.COMPASS_TOKEN}}
-      GITHUB_ORG: motain
-      COMPASS_HOST: onefootball.atlassian.net
       HONEYCOMB_API_KEY: ${{ secrets.HONEYCOMB_API_KEY}}
-      PROMETHEUS_URL: https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-841dbf21-00d1-4a0a-96a9-25de0ecb9562
+      COMPASS_API_TOKEN: ${{ secrets.COMPASS_TOKEN}}
+      COMPASS_API_BASE_URL: https://onefootball.atlassian.net/gateway/api/graphql
+      COMPASS_CLOUD_ID: fca6a80f-888b-4079-82e6-3c2f61c788e2
+      PROMETHEUS_WORKSPACE_URL: https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-841dbf21-00d1-4a0a-96a9-25de0ecb9562
+
     steps:
       - uses: actions/checkout@v4
 
@@ -31,14 +38,27 @@ jobs:
           environment: production
           role: gha-oidc-admin
 
-      - run: |
-          curl -J -L \
-            -H "Accept: application/octet-stream" \
-            -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" \
-            -o ofc \
-            $(curl -s -H "Authorization: token ${{ secrets.PRIVATE_GH_TOKEN_RELEASE_WITH_ASSETS}}" "https://api.github.com/repos/motain/of-catalog/releases/latest" | jq -r '.assets[0].url')
-            chmod +x ofc
+      - name: Install compass-compute version
+        if: hashFiles('~/.local/bin/compass-compute') == ''
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRIVATE_DEPENDENCIES_GITHUB_TOKEN }}
+        run: |
+          gh release download -R motain/compass-compute -p " compass-compute-v*-linux-amd64.tar.gz" \
+           && tar -xvf compass-compute-v*-linux-amd64.tar.gz  --skip-existing \
+           && mv compass-compute-linux-amd64 compass-compute \
+           && chmod +x compass-compute \
+           && mkdir -p $HOME/.local/bin \
+           && cp compass-compute $HOME/.local/bin/ \
+           && echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - run: |
-          ./ofc component bind
-          ./compute-all.sh
+      - run: compass-compute compute -A
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAAS_CREATE_AND_MERGE_TO_HELM_CHARTS }}
+
+      - run: compass-compute compute ${{ github.event.inputs.component }}
+        if: ${{ github.event.inputs.component != '' }}
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAAS_CREATE_AND_MERGE_TO_HELM_CHARTS }}
