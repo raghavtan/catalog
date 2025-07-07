@@ -53,7 +53,7 @@ metadata:
       type: aggregate
       dependsOn:
         - validate-otel-resource-attributes-sample-rate
-        - validate-otel-resource-attributes-error-sample-rate
+        - validate-otel-resource-attributes-one-sample-rate
       method: "or"
     # Aggregate the OTEL_SERVICE_NAME and OTEL_RESOURCE_ATTRIBUTES facts
     - id: either-sample-rate-or-error-sample-rate
