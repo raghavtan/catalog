@@ -29,6 +29,7 @@ jobs:
       COMPASS_API_BASE_URL: https://onefootball.atlassian.net/gateway/api/graphql
       COMPASS_CLOUD_ID: fca6a80f-888b-4079-82e6-3c2f61c788e2
       PROMETHEUS_WORKSPACE_URL: https://aps-workspaces.eu-west-1.amazonaws.com/workspaces/ws-841dbf21-00d1-4a0a-96a9-25de0ecb9562
+      AWS_REGION: eu-west-1
 
     steps:
       - uses: actions/checkout@v4
